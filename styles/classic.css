@@ -1,0 +1,56 @@
+/*
+classic.css
+'Classic' style for the Tarski theme - http://tarskitheme.com/
+Designed by Benedict Eastaugh, http://extralogical.net/
+*/
+
+
+/* Navigation
+----------------------------------------------- */
+body.classic #wrapper .nav-current:link, body.classic #wrapper .nav-current:visited, body.classic #wrapper .nav-current:active { color: #bf6030; }
+body.classic #wrapper .nav-current:hover { color: #e59900; }
+
+	/* Feed icon
+	------------------------------------------- */
+	body.classic .feed { background: url('../images/feed-add.gif') no-repeat 0 50%; }
+
+/* Content
+----------------------------------------------- */
+body.classic code, body.classic pre { font-family: 'Courier New', Courier, monospace; font-size: 1em; color: #bf8060; }
+body.classic abbr, body.classic acronym { border-bottom: 1px solid #bf8060; }
+
+		/* Headers
+		--------------------------------------- */
+		body.classic h3 { color: #bf6030; }
+
+		/* Post content
+		--------------------------------------- */
+		body.classic .articlenav { background: #fcfeff; }
+
+		/* Inserts
+		--------------------------------------- */
+		body.classic .insert { background: #fcfeff; margin: 0 0 1em 0; border: 1px solid #cfdde5; padding: 9px; }
+			body.classic .insert h3 { border-bottom: 1px solid #cfdde5; }
+
+		/* Downloads
+		--------------------------------------- */		
+		body.classic a.download:link, body.classic a.download:visited, body.classic a.download:active { background: #fcfeff url('../images/download.gif') no-repeat 10px 50%; border-top: 1px solid #cfdde5; border-bottom: 1px solid #cfdde5 !important; }
+		body.classic a.download:hover { background: #fffdfa url('../images/download.gif') no-repeat 10px 50%; border-top: 1px solid #e5d6b8; border-bottom: 1px solid #e5d6b8 !important; }
+
+		/* Images
+		--------------------------------------- */
+		body.classic a img { border: 1px solid #0f6b99; }
+		body.classic a:hover img { border: 1px solid #e59900; }
+			
+		/* Comments
+		--------------------------------------- */
+		body.classic .comments-feed a { background: url('../images/feed.gif') no-repeat 100% 50%; }
+		body.classic .trackback { background: #fcfeff url('../images/trackback.gif') no-repeat 100% 60%; }
+
+/* Links
+----------------------------------------------- */
+body.classic a:link, body.classic a:active, body.classic a:visited { color: #0f6b99; }
+body.classic a:hover { color: #e59900; }
+
+body.classic .content a:link, body.classic .content a:active, body.classic .content a:visited { border-bottom: 1px solid #cfdde5; }
+body.classic .content a:hover { border-bottom: 1px solid #e59900; }

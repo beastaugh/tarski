@@ -1,0 +1,19 @@
+/*
+functions.css - CSS file for the Tarski Options page
+*/
+
+label { display: block; margin: 0.5em 0; }
+textarea { width: 98%; }
+hr { width: 100%; height: 0; display: block; clear: both; margin: 0.5em 0; border: none; border-bottom: 3px solid #e5f3ff; }
+
+h3 { color: #000; }
+
+.section { clear: both; }
+.primary { width: 45%; float: left; }
+.secondary { width: 45%; float: right; }
+
+.insert { margin: 10px 0; padding: 10px; background: #e5f3ff; }
+#widgets-sidebar-section p { margin: 0; }
+
+.info { text-align: center; }
+.spaced-out { margin: 1.5em 0 0.5em; }

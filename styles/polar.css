@@ -1,0 +1,55 @@
+/*
+polar.css
+'Polar' style for the Tarski theme - http://tarskitheme.com/
+Designed by Benedict Eastaugh, http://extralogical.net/
+*/
+
+
+/* Navigation
+----------------------------------------------- */
+body.polar #wrapper .nav-current:link, body.polar #wrapper .nav-current:visited, body.polar #wrapper .nav-current:active { color: #a8a8a8; }
+body.polar #wrapper .nav-current:hover { color: #000; }
+
+	/* Feed icon
+	------------------------------------------- */
+	body.polar .feed { background: url('../images/feed-add.gif') no-repeat 0 50%; }
+
+/* Content
+----------------------------------------------- */
+body.polar code, body.polar pre { font-family: 'Courier New', Courier, monospace; font-size: 1em; color: #8fafbf; }
+body.polar abbr, body.polar acronym { border-bottom: 1px solid #5c8499; }
+
+		/* Headers
+		--------------------------------------- */
+		body.polar h3 { color: #a8a8a8; }
+
+		/* Post content
+		--------------------------------------- */
+		body.polar .articlenav { background: #fff; }
+
+		/* Inserts
+		--------------------------------------- */
+		body.polar .insert { background: #fff; margin: 0 0 1em 0; border: 1px solid #cfdee5; padding: 9px; }
+			body.polar .insert h3 { border-bottom: 1px solid #cfdee5; }
+
+		/* Downloads
+		--------------------------------------- */
+		body.polar a.download:link, body.polar a.download:visited, body.polar a.download:active { background: #fafcfc url('../images/download.gif') no-repeat 10px 50%; border-top: 1px solid #cfdee5; border-bottom: 1px solid #cfdee5 !important; }
+		body.polar a.download:hover { background: #fafafa url('../images/download.gif') no-repeat 10px 50%; border-top: 1px solid #a8a8a8; border-bottom: 1px solid #a8a8a8 !important; }
+
+		/* Images
+		--------------------------------------- */
+		body.polar a img { border: 1px solid #4c8099; }
+		body.polar a:hover img { border: 1px solid #000; }
+			
+		/* Comments
+		--------------------------------------- */
+		body.polar .comments-feed a { background: url('../images/feed.gif') no-repeat 100% 50%; }
+		body.polar .trackback { background: url('../images/trackback.gif') no-repeat 100% 60%; }
+/* Links
+----------------------------------------------- */
+body.polar a:link, body.polar a:active, body.polar a:visited { color: #4c8099; }
+body.polar a:hover { color: #000; }
+
+body.polar .content a:link, body.polar .content a:visited, body.polar .content a:active { border-bottom: 1px solid #ccc; }
+body.polar .content a:hover { border-bottom: 1px solid #000; }
