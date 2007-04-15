@@ -14,7 +14,7 @@ Theme URI: http://tarskitheme.com/
 Description: An elegant, flexible theme developed by <a href="http://extralogical.net/">Ben Eastaugh</a> and <a href="http://ceejayoz.com/">Chris Sternal-Johnson</a>
 Author: Benedict Eastaugh and Chris Sternal-Johnson
 Author URI: http://tarskitheme.com/
-Version: 1.3
+Version: 1.4
 .
 Released under the <a href="http://www.opensource.org/licenses/gpl-license.php">GPL</a>.
 .
@@ -67,6 +67,7 @@ body.left { text-align: left; }
 	#navigation ul.primary li { display: inline; margin: 0 1em 0 0; }
 #navigation div.secondary { padding: 0.5em 0 0.2em 0; }
 	#navigation div.secondary p { margin: 0; }
+	body.janus #navigation .secondary p, body.janus #theme-info .secondary p { text-align: right; }
 
 #wrapper .nav-current:link, #wrapper .nav-current:visited, #wrapper .nav-current:active { color: #8fbf60; }
 #wrapper .nav-current:hover { color: #a8001c; }
@@ -74,6 +75,7 @@ body.left { text-align: left; }
 	/* Feed icon
 	------------------------------------------- */
 	.feed { padding: 5px 0 5px 20px; font-size: 0.8em; background: url('images/feed-add.gif') no-repeat 0 50%; }
+	body.janus #wrapper .feed { padding: 5px 20px 5px 0; background: url('images/feed-add.gif') no-repeat 100% 50%; }
 
 /* Clearfix
 ----------------------------------------------- */
@@ -125,6 +127,7 @@ body.left { text-align: left; }
 		/* Post content
 		--------------------------------------- */
 		.articlenav { margin: -2em 0 2em 0; border-bottom: 1px solid #e5e5e5; padding-top: 0.75em; padding-bottom: 0.75em; background: #fcffff; color: #a8a8a8; }
+			body.janus .articlenav { padding-top: 0.75em; padding-bottom: 0.75em; text-align: right; }
 		.entry { margin: 0 0 4em 0; clear: both; }
 		body.single .entry { margin: 0 0 2em 0; }
 			.entry .meta { margin: 0 0 1em 0; }
@@ -180,9 +183,10 @@ body.left { text-align: left; }
 		/* Comments
 		--------------------------------------- */
 		#comments { clear: both; padding: 2em 0 0 0; }
+		body.janus #comments .secondary { text-align: right; }
 		#comments .meta {}
-			#comments .meta .title { margin: 0; border: none; padding: 0.1em 0 0 0; }
-			.meta .comments-feed { text-align: right; margin: 0; padding: 0.75em 0 0 0; }
+			#comments .meta .title { width: 350px; float: left; margin: 0; border: none; padding: 0.1em 0 0 0; }
+			.meta .comments-feed { width: 350px; float: right; text-align: right; padding: 0.75em 0 0 0; }
 				.meta .comments-feed a { padding: 5px 20px 5px 0; background: url('images/feed.gif') no-repeat 100% 50%; font-size: 0.8em; }
 			#trackback-link { margin: 0; border-top: 1px solid #ccc; padding-top: 0.5em; padding-bottom: 0.5em; background: url('images/trackback.gif') no-repeat 100% 60%; font-size: 0.8em; color: #a8a8a8; clear: both; }
 				#trackback-link p { margin: 0; }
@@ -247,11 +251,11 @@ input { font-family: Verdana, Helvetica, Arial, sans-serif; font-size: 100%; }
 		/* Comment form
 		--------------------------------------- */
 		#commentform {}
-		#info-input { width: 200px; float: left; }
+		#info-input {}
 			.userinfo { color: #a8a8a8; }
 			#info-input label { display: block; margin: 0 0 1.2em 0; color: #a8a8a8; }
 			#author, #email, #url { display: block; width: 194px; margin: 0.2em 0 0 0; border: 1px solid #ccc; padding: 2px; background: #fafafa; color: #545454; }
-		#comment-input { width: 500px; float: right; }
+		#comment-input {}
 			#comment-input label { display: block; margin: 0 0 0.2em 0; color: #a8a8a8; }
 			#comment-input textarea { width: 494px; font-family: Verdana, Arial, Helvetica, sans-serif; margin: 0 0 1.2em 0; border: 1px solid #ccc; padding: 2px; background: #fafafa; color: #545454; }
 		

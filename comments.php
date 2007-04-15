@@ -1,10 +1,10 @@
 <?php global $trackbackLink;
 
 // Do not delete these lines
-if ('comments.php' == basename($_SERVER['SCRIPT_FILENAME']))
+if('comments.php' == basename($_SERVER['SCRIPT_FILENAME']))
 	die ('Please do not load this page directly. Thanks!');
-	if (!empty($post->post_password)) { // if there's a password
-		if ($_COOKIE['wp-postpass_' . COOKIEHASH] != $post->post_password) {  // and it doesn't match the cookie
+	if(!empty($post->post_password)) { // if there's a password
+		if($_COOKIE['wp-postpass_' . COOKIEHASH] != $post->post_password) {  // and it doesn't match the cookie
 ?>
 	<p><?php _e('This post is password protected. Enter the password to view comments.', 'tarski'); ?><p>
 <?php
@@ -17,23 +17,23 @@ $oddcomment = 'alt';
 
 ?>
 
-<?php if ($comments) : ?>
+<?php if($comments) { ?>
 <div id="comments">
-<?php if ('open' == $post-> comment_status) : ?>
+<?php if('open' == $post-> comment_status) { ?>
 
 	<div class="meta">
-		<div class="secondary"><h2 class="title"><?php comments_number(__('No comments', 'tarski'), __('1 comment', 'tarski'), '%' . __(' comments', 'tarski')); ?></h2></div>
-		<div class="primary"><p class="comments-feed"><?php comments_rss_link(__('Comments feed for this article', 'tarski')); ?></p></div>
+		<h2 class="title"><?php comments_number(__('No comments', 'tarski'), __('1 comment', 'tarski'), '%' . __(' comments', 'tarski')); ?></h2>
+		<p class="comments-feed"><?php comments_rss_link(__('Comments feed for this article', 'tarski')); ?></p>
 		<?php if(pings_open()) { ?><div id="trackback-link"><p class="secondary"><?php _e('Trackback link', 'tarski'); ?></p><p class="primary"><a href="<?php echo $trackbackLink; ?>"><?php echo $trackbackLink; ?></a></p></div><?php } ?>
 	</div> <!-- close comments header div -->
 
-<?php else : // comments are closed ?>
+<?php } else { // comments are closed ?>
 
 	<div id="meta">
 		<h2 class="title"><?php comments_number(__('No comments', 'tarski'), __('1 comment', 'tarski'), '%' . __(' comments', 'tarski')); ?></h2>
 	</div> <!-- /comments header -->
 
-<?php endif; ?>
+<?php } ?>
 
 
 
@@ -65,7 +65,7 @@ $oddcomment = 'alt';
 <?php endforeach; /* end for each comment */ ?>
 
 
-<?php foreach ($comments as $comment) : $comment_count++; ?>
+<?php foreach ($comments as $comment) { $comment_count++; ?>
 	<?php if ($comment->comment_type != "trackback" && $comment->comment_type != "pingback" && !ereg("<pingback />", $comment->comment_content) && !ereg("<trackback />", $comment->comment_content)) { ?>
 		
 	<div class="comment<?php
@@ -99,7 +99,7 @@ $oddcomment = 'alt';
 		</div> <!-- /comment content -->
 	</div> <!-- /comment -->
 	<?php } // end if not trackback ?>
-<?php endforeach; /* end for each comment */ ?>
+<?php } /* end for each comment */ ?>
 
 
 
@@ -107,49 +107,45 @@ $oddcomment = 'alt';
 
 
 </div>
-<?php else : // this is displayed if there are no comments so far ?>
+<?php } else { // this is displayed if there are no comments so far ?>
 
-<?php if ('open' == $post-> comment_status) : ?>
+<?php if('open' == $post-> comment_status) { ?>
 <div id="comments">
 	<div class="meta">
-		<div class="secondary"><h2 class="title"><?php comments_number(__('No comments', 'tarski'), __('1 comment', 'tarski'), '%' . __(' comments', 'tarski')); ?></h2></div>
-		<div class="primary"><p class="comments-feed"><?php comments_rss_link('Comments feed for this article'); ?></p></div>
+		<h2 class="title"><?php comments_number(__('No comments', 'tarski'), __('1 comment', 'tarski'), '%' . __(' comments', 'tarski')); ?></h2>
+		<p class="comments-feed"><?php comments_rss_link('Comments feed for this article'); ?></p>
 		<?php if(pings_open()) { ?><div id="trackback-link"><p class="secondary"><?php _e('Trackback link', 'tarski'); ?></p><p class="primary"><a href="<?php echo $trackbackLink; ?>"><?php echo $trackbackLink; ?></a></p></div><?php } ?>
 	</div> <!-- /comment content -->
 </div> <!-- /comment -->
-<?php else : // comments are closed ?>
+<?php } else { // comments are closed ?>
 
-<?php endif; ?>
-
-<?php endif; ?>
-
-<?php if ('open' == $post-> comment_status) : ?>
+<?php } } if('open' == $post-> comment_status) { ?>
 
 <div id="respond">
 
 <?php // if registration is mandatory
-	if ( get_option('comment_registration') && !$user_ID ) : ?>
+	if(get_option('comment_registration') && !$user_ID) { ?>
 	<div class="content">
 		<p><em><?php _e('You must be ', 'tarski'); ?><a href="<?php echo get_option('siteurl'); echo '/wp-login.php?redirect_to='; the_permalink(); ?>"><?php _e('logged in', 'tarski'); ?></a><?php _e(' to post a comment.', 'tarski'); ?></em></p>
 	</div>
 </div>
-<?php else : ?>
+<?php } else { ?>
 
 		<form action="<?php echo get_option('siteurl'); ?>/wp-comments-post.php" method="post" id="commentform"><fieldset>
 
 <?php // if user is logged in
-	if ( $user_ID ) : ?>
+	if($user_ID) { ?>
 
-		<div id="info-input" class="content">
+		<div id="info-input" class="secondary content">
 			<p class="userinfo"><?php _e('You are logged in as ', 'tarski'); ?><a href="<?php echo get_option('siteurl'); ?>/wp-admin/profile.php"><?php echo $user_identity; ?></a>.</p>
 			<p><a href="<?php echo get_option('siteurl'); ?>/wp-login.php?action=logout" title="<?php _e('Log out of this account', 'tarski') ?>"><?php _e('Logout &raquo;', 'tarski'); ?></a></p>
 			<?php if(function_exists('show_subscription_checkbox')) { show_subscription_checkbox(); } ?>
 		</div> <!-- /info fields -->
 
 <?php // if user is not logged in - name, email and website fields
-	else : ?>
+	} else { ?>
 
-			<div id="info-input" class="content">
+			<div id="info-input" class="secondary content">
 				<label for="author"><?php _e('Name', 'tarski'); ?><input type="text" name="author" id="author" value="<?php echo $comment_author; ?>" size="22" tabindex="1" /></label>
 				<label for="email"><?php _e('Email', 'tarski'); ?><input type="text" name="email" id="email" value="<?php echo $comment_author_email; ?>" size="22" tabindex="2" /></label>
 				<label for="url"><?php _e('Website', 'tarski'); ?><input type="text" name="url" id="url" value="<?php echo $comment_author_url; ?>" size="22" tabindex="3" /></label>
@@ -158,8 +154,8 @@ $oddcomment = 'alt';
 
 
 <?php // actual comment form
-endif; ?>
-			<div id="comment-input">
+	} ?>
+			<div id="comment-input" class="primary">
 				<label for="comment"><?php _e('Your comment', 'tarski'); ?></label>
 				<textarea name="comment" id="comment" cols="60" rows="12" tabindex="4"></textarea>
 				<input name="submit" type="submit" id="submit" tabindex="5" value="Submit Comment" />
@@ -171,5 +167,5 @@ endif; ?>
 		</fieldset></form>
 	</div> <!-- /comment form -->
 
-<?php endif; // If registration required and not logged in ?>
-<?php endif; // if you delete this the sky will fall on your head / O RLY / YA RLY ?>
+<?php } // If registration required and not logged in ?>
+<?php } // if you delete this the sky will fall on your head / O RLY / YA RLY ?>

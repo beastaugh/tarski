@@ -16,7 +16,7 @@ get_header(); ?>
 	UTW_ShowWeightedTagSetAlphabetical("coloredsizedtagcloud");
 	echo "</div>\n";
 	
-	if(get_option('tarski_ajax_tags')) {
+	if(get_tarski_option('ajax_tags')) {
 ?>
 
 <script language="javascript">

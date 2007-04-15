@@ -25,14 +25,16 @@ if($prev_post && $next_post) {
 		<div class="meta">
 			<h1 class="title"><?php the_title(); ?></h1>
 			<p class="metadata"><?php echo tarski_date();
-			if(!get_option('tarski_hide_categories')) { _e(' in ', 'tarski'); the_category(', '); }
+			if(!get_tarski_option('hide_categories')) { _e(' in ', 'tarski'); the_category(', '); }
 			if($multipleAuthors) { _e(' by ', 'tarski'); the_author_posts_link(); }
 			edit_post_link(__('edit', 'tarski'),' (',')'); ?></p>
 		</div>
 		<div class="content">
 			<?php the_content(); ?>
-			<?php if(function_exists(UTW_ShowTagsForCurrentPost)) { // UTW tags
+			<?php if(function_exists('UTW_ShowTagsForCurrentPost')) { // UTW tags
 			echo '<p class="tagdata"><strong>'; _e('Tags:', 'tarski'); echo '</strong> '; UTW_ShowTagsForCurrentPost('commalist'); echo '</p>'; } ?>
+			<?php // WP 2.2 built-in tagging
+			if(function_exists('the_tags')) { the_tags('<p class="tagdata"><strong>' . __('Tags','tarski') . '</strong>', ', ', '</p>'); } ?> 
 		</div>
 		<?php link_pages_without_spaces();
 		echo $postEndInclude; ?>
@@ -143,9 +145,9 @@ if($prev_post && $next_post) {
 
 
 <?php // General loop including Asides goes here
-if(!is_home() && !get_option('tarski_use_pages')) { $posts = query_posts($query_string . '&nopaging=1'); }
+if(!is_home() && !get_tarski_option('use_pages')) { $posts = query_posts($query_string . '&nopaging=1'); }
 while (have_posts()) { the_post(); ?>
-<?php if(get_option('tarski_asidescategory') != 0 && in_category(get_option('tarski_asidescategory'))) { // Aside loop ?>
+<?php if(get_tarski_option('asidescategory') != 0 && in_category(get_tarski_option('asidescategory'))) { // Aside loop ?>
 	<div class="aside" id="p-<?php the_ID(); ?>">
 		<div class="content"><?php the_content(__('Read the rest of this entry &raquo;', 'tarski')); ?></div>
 		<p class="meta"><?php echo tarski_date(); if($multipleAuthors) { _e(' by ', 'tarski'); the_author_posts_link(); } echo ' | '; ?><a href="<?php the_permalink(); ?>"><?php if($post->comment_status == 'open' || $post->comment_count > 0) { comments_number(__('No comments', 'tarski'), __('1 comment', 'tarski'), '%' . __(' comments', 'tarski')); } else { _e('Permalink', 'tarski'); } ?></a><?php edit_post_link(__('edit', 'tarski'), ' (', ')'); ?></p>
@@ -155,7 +157,7 @@ while (have_posts()) { the_post(); ?>
 		<div class="meta">
 			<h2 class="title" id="post-<?php the_ID(); ?>"><a href="<?php the_permalink(); ?>" rel="bookmark" title="<?php _e('Permanent Link to ', 'tarski'); the_title(); ?>"><?php the_title(); ?></a></h2>
 			<p class="metadata"><?php echo tarski_date();
-			if(!get_option('tarski_hide_categories')) { _e(' in ', 'tarski'); the_category(', '); }
+			if(!get_tarski_option('hide_categories')) { _e(' in ', 'tarski'); the_category(', '); }
 			if($multipleAuthors) { _e(' by ', 'tarski'); the_author_posts_link(); }
 			if($post->comment_status == 'open' || $post->comment_count > 0) { echo ' | '; comments_popup_link(__('No comments', 'tarski'), __('1 comment', 'tarski'), '%' . __(' comments', 'tarski'), '', __('Comments closed', 'tarski')); }
 			edit_post_link(__('edit', 'tarski'),' (',')'); ?></p>
@@ -175,7 +177,7 @@ query_posts("paged=$paged");
 ?>
 <?php
 /* Experimental code, not currently active (ought to work with WP trunk 2.2+)
-if(is_paged() && get_option('tarski_use_pages')) {
+if(is_paged() && get_tarski_option('use_pages')) {
 	echo "<p class=\"pagination\">\n";
 	$prev_page = '';
 	$next_page = '';
@@ -196,7 +198,7 @@ if(is_paged() && get_option('tarski_use_pages')) {
 */
 
 // Current, hackish code
-if(is_paged() && get_option('tarski_use_pages')) {
+if(is_paged() && get_tarski_option('use_pages')) {
 	echo "<p class=\"pagination\">\n";
 	if(is_search()) {
 		$prev_page = '';

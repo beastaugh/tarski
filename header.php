@@ -13,8 +13,8 @@
 	<link rel="stylesheet" href="<?php echo get_bloginfo('template_directory'); ?>/library/rtl.css" type="text/css" media="screen,projection" />
 <?php } ?>
 	<link rel="stylesheet" href="<?php echo get_bloginfo('template_directory'); ?>/library/print.css" type="text/css" media="print" />
-<?php if(get_option('tarski_style')) { ?>
-	<link rel="stylesheet" href="<?php echo get_bloginfo('template_directory'); ?>/styles/<?php echo get_option('tarski_style'); ?>" type="text/css" media="screen,projection" />
+<?php if(get_tarski_option('style')) { ?>
+	<link rel="stylesheet" href="<?php echo get_bloginfo('template_directory'); ?>/styles/<?php echo get_tarski_option('style'); ?>" type="text/css" media="screen,projection" />
 <?php } ?>
 
 <?php if (is_single()) { ?>
@@ -36,10 +36,10 @@ echo $headerInclude; ?>
 
 	<?php tarski_headerimage(); ?>
 	
-	<?php if(get_option('tarski_display_title') != 'lolno' || get_option('tarski_display_tagline')) { ?>
+	<?php if(get_tarski_option('display_title') != 'lolno' || get_tarski_option('display_tagline')) { ?>
 	<div id="title">
-		<?php if(get_option('tarski_display_title') != 'lolno') { tarski_title('header'); }
-		if((get_bloginfo('description') != '') && get_option('tarski_display_tagline')) { echo '<p id="tagline">' .  get_bloginfo('description') . '</p>'; } ?>
+		<?php if(get_tarski_option('display_title') != 'lolno') { tarski_title('header'); }
+		if((get_bloginfo('description') != '') && get_tarski_option('display_tagline')) { echo '<p id="tagline">' .  get_bloginfo('description') . '</p>'; } ?>
 	</div>
 	<?php } ?>
 

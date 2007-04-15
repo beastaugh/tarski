@@ -29,7 +29,7 @@ get_header(); ?>
 	</div> <!-- /primary -->
 <?php } ?>
 	<div class="secondary">
-	<?php if(!get_option('tarski_hide_categories')) { ?>
+	<?php if(!get_tarski_option('hide_categories')) { ?>
 		<h3><?php _e('Category Archives', 'tarski'); ?></h3>
 		<ul class="archivelist">
 		<?php wp_list_cats('sort_column=name&sort_order=desc'); ?>
