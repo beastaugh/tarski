@@ -292,7 +292,7 @@ function tarski_navbar() {
 		echo $navbarInclude . "\n";
 	}
 	if(is_user_logged_in()) {
-		echo '<li><a href="' . get_option('siteurl') . '/wp-admin/">' . __('Site Admin', 'tarski') . '</a></li>' . "\n";
+		echo '<li><a id="nav-admin" href="' . get_option('siteurl') . '/wp-admin/">' . __('Site Admin', 'tarski') . '</a></li>' . "\n";
 	}
 }
 
