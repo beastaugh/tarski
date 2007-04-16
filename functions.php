@@ -80,7 +80,7 @@ if(!get_tarski_option('sidebar_type')) {
 	if(function_exists('register_sidebar')) {
 		update_tarski_option('sidebar_type', 'widgets');
 	} else {
-		update_tarski_option('sidebar_type', 'tarski');
+		update_tarski_option('sidebar_type','tarski');
 	}
 }
 
@@ -97,14 +97,14 @@ add_action('activity_box_end', 'update_dashboard');
 // Widgets
 if(function_exists('register_sidebar')) {
 	register_sidebar(array(
-		'name' => __('Main Sidebar', 'tarski'),
+		'name' => __('Main Sidebar','tarski'),
 		'before_widget' => '<div id="%1$s" class="widget %2$s">',
 		'after_widget' => '</div>',
 		'before_title' => '<h3>',
 		'after_title' => '</h3>'
 	));
 	register_sidebar(array(
-		'name' => __('Footer Widgets', 'tarski'),
+		'name' => __('Footer Widgets','tarski'),
 		'before_widget' => '<div id="%1$s" class="widget %2$s">',
 		'after_widget' => '</div>',
 		'before_title' => '<h3>',
@@ -244,11 +244,11 @@ function tarski_headerimage() {
 	if($headerImage) {
 		echo '<div id="header-image">' . "\n";
 		if(get_theme_mod('header_image')) {
-			echo '	<img alt="' . __('Header image', 'tarski') . '" src="';
+			echo '	<img alt="' . __('Header image','tarski') . '" src="';
 			header_image();
 			echo '" />' . "\n";
 		} else {
-			echo '	<img alt="' . __('Header image', 'tarski') . '" src="' . $headerImage . '" />' . "\n";
+			echo '	<img alt="' . __('Header image','tarski') . '" src="' . $headerImage . '" />' . "\n";
 		}
 		echo "</div>\n";
 	}
@@ -260,7 +260,7 @@ function tarski_title($type = 'title') {
 	// tarski_title('header') is for use within the document <body>
 	if ($type == 'header') {
 		if(is_home()) { $prefix = '<h1 id="blog-title">'; $suffix = '</h1>'; }
-		else { $prefix = '<p id="blog-title"><a title="' . __('Return to front page', 'tarski') . '" href="' . get_settings('home') . '">'; $suffix = '</a></p>'; }
+		else { $prefix = '<p id="blog-title"><a title="' . __('Return to front page','tarski') . '" href="' . get_settings('home') . '">'; $suffix = '</a></p>'; }
 		echo $prefix . get_bloginfo('name') . $suffix . "\n";
 	}
 	// tarski_title() is for use within the document <title>
@@ -276,7 +276,7 @@ function tarski_title($type = 'title') {
 function tarski_navbar() {
 	$current = 'class="nav-current" ';
 	if(is_home()) { $homeStatus = $current; }
-	echo '<li><a id="nav-home" ' . $homeStatus . 'href="' . get_settings('home') . '">' . __('Home', 'tarski') . "</a></li>\n";
+	echo '<li><a id="nav-home" ' . $homeStatus . 'href="' . get_settings('home') . '">' . __('Home','tarski') . "</a></li>\n";
 	
 	global $wpdb;
 	$nav_pages = get_tarski_option('nav_pages');
@@ -292,7 +292,7 @@ function tarski_navbar() {
 		echo $navbarInclude . "\n";
 	}
 	if(is_user_logged_in()) {
-		echo '<li><a id="nav-admin" href="' . get_option('siteurl') . '/wp-admin/">' . __('Site Admin', 'tarski') . '</a></li>' . "\n";
+		echo '<li><a id="nav-admin" href="' . get_option('siteurl') . '/wp-admin/">' . __('Site Admin','tarski') . '</a></li>' . "\n";
 	}
 }
 
@@ -425,9 +425,9 @@ function tarskiupdate() {
 	get_currentuserinfo();
 	
 	if ( !empty($_POST) ) {
-		if($_POST['tarski_update_notification'] == __('Turn update notification off?', 'tarski')) {
+		if($_POST['tarski_update_notification'] == __('Turn update notification off?','tarski')) {
 			update_tarski_option('update_notification', 'false');
-		}	elseif($_POST['tarski_update_notification'] == __('Turn update notification on?', 'tarski')) {
+		}	elseif($_POST['tarski_update_notification'] == __('Turn update notification on?','tarski')) {
 			update_tarski_option('update_notification', 'true');
 		}
 		
@@ -469,7 +469,7 @@ function tarskiupdate() {
 if (!get_tarski_option('installed')) {
 	add_tarski_option('installed', $installedVersion);
 	add_tarski_option('header', 'greytree.jpg');
-	add_tarski_option('blurb', __('This is the about text', 'tarski'));
+	add_tarski_option('blurb', __('This is the about text','tarski'));
 }
 
 // Here we handle upgrading our users with new options and such. If tarski_installed is in the DB but the version they are running is lower than our current version, trigger this event.
