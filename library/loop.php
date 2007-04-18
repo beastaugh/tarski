@@ -201,10 +201,12 @@ if(is_paged() && get_tarski_option('use_pages')) {
 if(is_paged() && get_tarski_option('use_pages')) {
 	echo "<p class=\"pagination\">\n";
 	if(is_search()) {
+		$prev_page_text = __('Previous results','tarski');
+		$next_page_text = __('More results','tarski');
 		$prev_page = '';
 		$next_page = '';
-		$prev_page = tarski_get_output("posts_nav_link('','&laquo; Previous results','');");
-		$next_page = tarski_get_output("posts_nav_link('','','More results &raquo; ');");
+		$prev_page = tarski_get_output("posts_nav_link('','&laquo; ' . $prev_page_text,'');");
+		$next_page = tarski_get_output("posts_nav_link('','',$next_page_text . ' &raquo; ');");
 		
 		if(strip_tags($prev_page) && strip_tags($next_page)) {
 			echo $prev_page . " &sect; " . $next_page;
@@ -212,10 +214,12 @@ if(is_paged() && get_tarski_option('use_pages')) {
 			echo $prev_page . $next_page;
 		}
 	} else {
+		$prev_page_text = __('Older entries','tarski');
+		$next_page_text = __('Newer entries','tarski');
 		$prev_page = '';
 		$next_page = '';
-		$prev_page = tarski_get_output("posts_nav_link('','','&laquo; ' . __('Older entries','tarski'));");
-		$next_page = tarski_get_output("posts_nav_link('',__('Newer entries','tarski') . ' &raquo;','');");
+		$prev_page = tarski_get_output("posts_nav_link('','','&laquo; ' . $prev_page_text);");
+		$next_page = tarski_get_output("posts_nav_link('',$next_page_text . ' &raquo;','');");
 		
 		if(strip_tags($prev_page) && strip_tags($next_page)) {
 			echo $prev_page . " &sect; " . $next_page;
