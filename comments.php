@@ -24,7 +24,12 @@ $oddcomment = 'alt';
 	<div class="meta">
 		<h2 class="title"><?php comments_number(__('No comments','tarski'), __('1 comment','tarski'), '%' . __(' comments','tarski')); ?></h2>
 		<p class="comments-feed"><?php comments_rss_link(__('Comments feed for this article','tarski')); ?></p>
-		<?php if(pings_open()) { ?><div id="trackback-link"><p class="secondary"><?php _e('Trackback link','tarski'); ?></p><p class="primary"><a href="<?php echo $trackbackLink; ?>"><?php echo $trackbackLink; ?></a></p></div><?php } ?>
+		<?php if(pings_open()) { ?>
+		<div id="trackback-link">
+			<div class="secondary"><p><?php _e('Trackback link','tarski'); ?></p></div>
+			<div class="primary"><p><a href="<?php echo $trackbackLink; ?>"><?php echo $trackbackLink; ?></a></p></div>
+		</div>
+		<?php } ?>
 	</div> <!-- close comments header div -->
 
 <?php } else { // comments are closed ?>
@@ -114,7 +119,12 @@ $oddcomment = 'alt';
 	<div class="meta">
 		<h2 class="title"><?php comments_number(__('No comments','tarski'), __('1 comment','tarski'), '%' . __(' comments','tarski')); ?></h2>
 		<p class="comments-feed"><?php comments_rss_link(__('Comments feed for this article','tarski')); ?></p>
-		<?php if(pings_open()) { ?><div id="trackback-link"><p class="secondary"><?php _e('Trackback link','tarski'); ?></p><p class="primary"><a href="<?php echo $trackbackLink; ?>"><?php echo $trackbackLink; ?></a></p></div><?php } ?>
+		<?php if(pings_open()) { ?>
+		<div id="trackback-link">
+			<div class="secondary"><p><?php _e('Trackback link','tarski'); ?></p></div>
+			<div class="primary"><p><a href="<?php echo $trackbackLink; ?>"><?php echo $trackbackLink; ?></a></p></div>
+		</div>
+		<?php } ?>
 	</div> <!-- /comment content -->
 </div> <!-- /comment -->
 <?php } else { // comments are closed ?>

@@ -188,9 +188,9 @@ body.left { text-align: left; }
 			#comments .meta .title { width: 350px; float: left; margin: 0; border: none; padding: 0.1em 0 0 0; }
 			.meta .comments-feed { width: 350px; float: right; text-align: right; padding: 0.75em 0 0 0; }
 				.meta .comments-feed a { padding: 5px 20px 5px 0; background: url('images/feed.gif') no-repeat 100% 50%; font-size: 0.8em; }
-			#trackback-link { margin: 0; border-top: 1px solid #ccc; padding-top: 0.5em; padding-bottom: 0.5em; background: url('images/trackback.gif') no-repeat 100% 60%; font-size: 0.8em; color: #a8a8a8; clear: both; }
-				#trackback-link p { margin: 0; }
-				#trackback-link .secondary { font-weight: bold; }
+			#trackback-link { margin: 0; border-top: 1px solid #ccc; font-size: 0.8em; color: #a8a8a8; background: url('images/trackback.gif') no-repeat 100% 60%; clear: both; }
+				#trackback-link .secondary p { font-weight: bold; margin: 0; padding: 5px 24px 5px 0; }
+				#trackback-link .primary p { margin: 0; padding: 5px 0; }
 
 		.comment { margin: 0; border-top: 1px solid #ccc; padding: 0.5em 0; }
 			.comment-permalink { font-size: 0.8em; margin: 0; }
