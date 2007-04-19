@@ -493,7 +493,7 @@ function tarski_admin() {
 
 function tarski_get_output($code) {
 	ob_start();
-	eval($code);
+	@eval($code);
 	$return = ob_get_contents();
 	ob_end_clean();
 	return $return;
