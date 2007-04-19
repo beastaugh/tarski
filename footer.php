@@ -10,7 +10,7 @@
 
 	<?php if(!function_exists('dynamic_sidebar') || !dynamic_sidebar(__('Footer Widgets', 'tarski')) ) :  // Footer widgets ?>
 	
-		<?php if(!is_search()) { include(TEMPLATEPATH . '/library/searchform.php'); } ?>
+		<?php if(!is_search()) { include(TEMPLATEPATH . '/searchform.php'); } ?>
 
 	<?php endif; // end widgets if ?>
 
