@@ -113,7 +113,7 @@ $oddcomment = 'alt';
 <div id="comments">
 	<div class="meta">
 		<h2 class="title"><?php comments_number(__('No comments','tarski'), __('1 comment','tarski'), '%' . __(' comments','tarski')); ?></h2>
-		<p class="comments-feed"><?php comments_rss_link('Comments feed for this article'); ?></p>
+		<p class="comments-feed"><?php comments_rss_link(__('Comments feed for this article','tarski')); ?></p>
 		<?php if(pings_open()) { ?><div id="trackback-link"><p class="secondary"><?php _e('Trackback link','tarski'); ?></p><p class="primary"><a href="<?php echo $trackbackLink; ?>"><?php echo $trackbackLink; ?></a></p></div><?php } ?>
 	</div> <!-- /comment content -->
 </div> <!-- /comment -->
