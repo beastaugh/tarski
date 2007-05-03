@@ -164,7 +164,7 @@ body.left { text-align: left; }
 			.imageleft { float: left; margin: 0 10px 10px 0; }
 			.imageright { float: right; margin: 0 0 10px 10px; }
 			.imageblock { display: block; margin: 0 0 1em 0; }
-			.imagecentre, imagecenter /* For the colonists amongst you... */ { display: block; text-align: center; margin: 0 auto 1em auto; }
+			.imagecentre, .imagecenter /* For the colonists amongst you... */ { display: block; text-align: center; margin: 0 auto 1em auto; }
 
 		/* Tags & Tags page
 		--------------------------------------- */
