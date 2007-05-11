@@ -33,8 +33,8 @@ if($prev_post && $next_post) {
 			<?php the_content(); ?>
 			<?php if(function_exists('UTW_ShowTagsForCurrentPost')) { // UTW tags
 			echo '<p class="tagdata"><strong>'; _e('Tags:', 'tarski'); echo '</strong> '; UTW_ShowTagsForCurrentPost('commalist'); echo '</p>'; } ?>
-			<?php // WP 2.2 built-in tagging
-			if(function_exists('the_tags')) { the_tags('<p class="tagdata"><strong>' . __('Tags','tarski') . '</strong>', ', ', '</p>'); } ?> 
+			<?php // WP 2.2 built-in tagging, commented out for now
+			// if(function_exists('the_tags')) { the_tags('<p class="tagdata"><strong>' . __('Tags','tarski') . '</strong>', ', ', '</p>'); } ?> 
 		</div>
 		<?php link_pages_without_spaces();
 		echo $postEndInclude; ?>
