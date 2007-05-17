@@ -256,34 +256,58 @@ function tarski_headerimage() {
 
 // Site title output
 function tarski_title($type = 'title') {
+	global $wp_query;
 	$titleSep = '&middot;';
+	$frontPageID = get_option('page_on_front');
 	// tarski_title('header') is for use within the document <body>
 	if ($type == 'header') {
-		if(is_home()) { $prefix = '<h1 id="blog-title">'; $suffix = '</h1>'; }
-		else { $prefix = '<p id="blog-title"><a title="' . __('Return to front page','tarski') . '" href="' . get_settings('home') . '">'; $suffix = '</a></p>'; }
+		if((get_option('show_on_front') == 'page') && ($frontPageID == $wp_query->post->ID)) {
+			$prefix = '<p id="blog-title">';
+			$suffix = '</p>';
+		} elseif((get_option('show_on_front') == 'post') && is_home()) {
+			$prefix = '<h1 id="blog-title">';
+			$suffix = '</h1>';
+		} else {
+			$prefix = '<p id="blog-title"><a title="' . __('Return to front page','tarski') . '" href="' . get_settings('home') . '">';
+			$suffix = '</a></p>';
+		}
 		echo $prefix . get_bloginfo('name') . $suffix . "\n";
 	}
 	// tarski_title() is for use within the document <title>
-	else { echo get_bloginfo('name');
-		if (is_home()) { if (get_bloginfo('description') != '') { echo ' ' . $titleSep . ' ' . get_bloginfo('description'); } }
-		elseif (is_search()) { echo ' ' . $titleSep . ' Search results'; }
-		elseif (is_month()) { echo ' ' . $titleSep . ' '; single_month_title(' '); }
-		else { wp_title($titleSep); }
+	else {
+		echo get_bloginfo('name');
+		if((get_option('show_on_front') == 'post') && is_home()) {
+			if(get_bloginfo('description') != '') {
+				echo ' ' . $titleSep . ' ' . get_bloginfo('description');
+			}
+		} elseif(is_search()) {
+			echo ' ' . $titleSep . ' Search results';
+		} elseif(is_month()) {
+			echo ' ' . $titleSep . ' '; single_month_title(' ');
+		} else {
+			wp_title($titleSep);
+		}
 	}
 }
 
 // Navbar
 function tarski_navbar() {
 	$current = 'class="nav-current" ';
-	if(is_home()) { $homeStatus = $current; }
-	echo '<li><a id="nav-home" ' . $homeStatus . 'href="' . get_settings('home') . '">' . __('Home','tarski') . "</a></li>\n";
+	if(get_option('show_on_front') != 'page') {
+		if(is_home()) { $homeStatus = $current; }
+		echo '<li><a id="nav-home" ' . $homeStatus . 'href="' . get_settings('home') . '">' . __('Home','tarski') . "</a></li>\n";
+	}
 	
 	global $wpdb;
 	$nav_pages = get_tarski_option('nav_pages');
 	if($nav_pages) {
 		$nav_pages = explode(',', $nav_pages);
 		foreach($nav_pages as $page) {
-			if(is_page($page)) { $pageStatus = $current; } else { $pageStatus = ''; }
+			if(is_page($page) || ((get_option('page_for_posts') == $page) && is_home())) {
+				$pageStatus = $current;
+			} else {
+				$pageStatus = '';
+			}
 			echo '			<li><a id="nav-' . $page . '-' . $wpdb->get_var("SELECT post_name from $wpdb->posts WHERE ID = $page") . '" ' . $pageStatus . 'href="' . get_permalink($page) . '">' . $wpdb->get_var("SELECT post_title from $wpdb->posts WHERE ID = $page") . '</a></li>' . "\n";
 		}
 	}
