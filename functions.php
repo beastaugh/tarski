@@ -264,7 +264,7 @@ function tarski_title($type = 'title') {
 		if((get_option('show_on_front') == 'page') && ($frontPageID == $wp_query->post->ID)) {
 			$prefix = '<p id="blog-title">';
 			$suffix = '</p>';
-		} elseif((get_option('show_on_front') == 'post') && is_home()) {
+		} elseif((get_option('show_on_front') == 'posts') && is_home()) {
 			$prefix = '<h1 id="blog-title">';
 			$suffix = '</h1>';
 		} else {
@@ -276,7 +276,7 @@ function tarski_title($type = 'title') {
 	// tarski_title() is for use within the document <title>
 	else {
 		echo get_bloginfo('name');
-		if((get_option('show_on_front') == 'post') && is_home()) {
+		if((get_option('show_on_front') == 'posts') && is_home()) {
 			if(get_bloginfo('description') != '') {
 				echo ' ' . $titleSep . ' ' . get_bloginfo('description');
 			}
