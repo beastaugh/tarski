@@ -303,7 +303,7 @@ function tarski_navbar() {
 	if($nav_pages) {
 		$nav_pages = explode(',', $nav_pages);
 		foreach($nav_pages as $page) {
-			if(is_page($page) || ((get_option('page_for_posts') == $page) && is_home())) {
+			if(is_page($page) || ((get_option('show_on_front') == 'page') && (get_option('page_for_posts') == $page) && is_home())) {
 				$pageStatus = $current;
 			} else {
 				$pageStatus = '';
