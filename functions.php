@@ -191,7 +191,7 @@ function update_dashboard() {
 		if(get_tarski_option('update_notification') == 'true') {
 			echo "<script src=\"http://tarskitheme.com/version.php?version=$installedVersion&verbose=true\" type=\"text/javascript\"></script>\n";
 		} else {
-			echo "<p>" . __("Update notification for the Tarski theme ", "tarski") . "<a href=\"themes.php?page=functions.php\">" . __("is currently turned off", "tarski") . "</a>" . __(".", "tarski") . "</p>\n";
+			echo "<p>" . __("Update notification for the Tarski theme ", "tarski") . "<a href=\"themes.php?page=tarski-options\">" . __("is currently turned off", "tarski") . "</a>" . __(".", "tarski") . "</p>\n";
 		}
 	}
 }
