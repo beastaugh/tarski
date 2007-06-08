@@ -167,15 +167,11 @@ while (have_posts()) { the_post(); ?>
 		</div>
 		<?php link_pages_without_spaces(); ?>
 	</div>
-<?php } if(is_home() && !$completedBlurb) { $completedBlurb = 1; echo $frontPageInclude; } } // End entry loop ?>
-<?php 
-// weird code courtesy Kafkaesqui
-// http://wordpress.org/support/topic/57912?replies=7#post-312858
-// The next two lines break in WP 2.1
-$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
-query_posts("paged=$paged");
-?>
-<?php
+<?php } if(is_home() && !$completedBlurb) { $completedBlurb = 1; echo $frontPageInclude; } } // End entry loop
+ 
+global $wp_query;
+$wp_query->is_paged = true;
+
 /* Experimental code, not currently active (ought to work with WP trunk 2.2+)
 if(is_paged() && get_tarski_option('use_pages')) {
 	echo "<p class=\"pagination\">\n";
