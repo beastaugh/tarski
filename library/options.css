@@ -2,6 +2,8 @@
 functions.css - CSS file for the Tarski Options page
 */
 
+.rtl { text-align: right; direction: rtl; }
+
 label { display: block; margin: 0.5em 0; }
 textarea { width: 98%; }
 hr { width: 100%; height: 0; display: block; clear: both; margin: 0.5em 0; border: none; border-bottom: 3px solid #e5f3ff; }

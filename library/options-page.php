@@ -21,7 +21,7 @@ if(get_tarski_option('update_notification') == 'true' && !detectWPMU()) { ?>
 
 
 
-<div class="wrap"><h2><?php _e('Tarski Options','tarski'); ?></h2>
+<div class="wrap<?php if($text_direction == 'rtl') { echo " rtl"; } ?>"><h2><?php _e('Tarski Options','tarski'); ?></h2>
 <form name="dofollow" action="" method="post">
 
 	<p class="submit"><input type="submit" name="Submit" value="<?php _e('Update Options','tarski') ?> &raquo;" /></p>
