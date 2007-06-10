@@ -13,6 +13,7 @@
 	<link rel="stylesheet" href="<?php echo get_bloginfo('template_directory'); ?>/library/rtl.css" type="text/css" media="screen,projection" />
 <?php } ?>
 	<link rel="stylesheet" href="<?php echo get_bloginfo('template_directory'); ?>/library/print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="<?php echo get_bloginfo('template_directory'); ?>/library/mobile.css" type="text/css" media="handheld" />
 <?php if(get_tarski_option('style')) { ?>
 	<link rel="stylesheet" href="<?php echo get_bloginfo('template_directory'); ?>/styles/<?php echo get_tarski_option('style'); ?>" type="text/css" media="screen,projection" />
 <?php } ?>
