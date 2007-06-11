@@ -87,6 +87,12 @@ if(!get_tarski_option('sidebar_type')) {
 // Constants file include
 @include(TEMPLATEPATH . '/constants.php');
 
+// Functions and hooks - important!
+require(TEMPLATEPATH . '/library/template-functions.php');
+require(TEMPLATEPATH . '/library/content-functions.php');
+require(TEMPLATEPATH . '/library/tarski-hooks.php');
+require(TEMPLATEPATH . '/library/constants-hooks.php');
+
 // Localisation
 load_theme_textdomain('tarski');
 
@@ -181,7 +187,6 @@ function detectWPMU() {
 	return function_exists('is_site_admin');
 }
 
-
 // Dashboard update notification
 function update_dashboard() {
 	global $installedVersion;
@@ -192,239 +197,6 @@ function update_dashboard() {
 			echo "<script src=\"http://tarskitheme.com/version.php?version=$installedVersion&verbose=true\" type=\"text/javascript\"></script>\n";
 		}
 	}
-}
-
-// Multiple user check
-$count_users = $wpdb->get_var("SELECT COUNT(*) FROM $wpdb->usermeta WHERE `meta_key` = '" . $wpdb->prefix . "user_level' AND `meta_value` > 1");
-	if ($count_users > 1) { $multipleAuthors = 1; }
-
-// Clean page linkage
-function link_pages_without_spaces() {
-	ob_start();
-	link_pages('<p class="pagelinks"><strong>Pages</strong>', '</p>', 'number', '', '', '%', '');
-	$text = ob_get_contents();
-	ob_end_clean();
-	
-	$text = str_replace(' <a href', '<a href', $text);
-	$text = str_replace('> ', '>', $text);
-	echo $text;
-}
-
-// Header image check
-if(get_tarski_option('header') == 'blank.gif') {
-	$noHeaderImage = true;
-}
-
-// Header image status output
-function tarski_header_status() {
-	global $noHeaderImage;
-	if($noHeaderImage) {
-		return 'noheaderimage';
-	} else {
-		return 'headerimage';
-	}
-}
-
-// Header image output
-function tarski_headerimage() {
-	if($_SERVER['HTTP_HOST'] == 'themes.wordpress.net') { // Makes the theme preview work properly
-		$headerImage = 'http://tarskitheme.com/wp-content/themes/tarski/headers/greytree.jpg';
-	} else {
-		if(get_tarski_option('header')) {
-			if(get_tarski_option('header') != 'blank.gif') {
-				$headerImage = get_bloginfo('template_directory') . '/headers/' . get_tarski_option('header');
-			}
-		} else {
-			$headerImage = get_bloginfo('template_directory') . '/headers/greytree.jpg';
-		}
-	}
-	
-	if($headerImage) {
-		echo '<div id="header-image">' . "\n";
-		if(get_theme_mod('header_image')) {
-			echo '	<img alt="' . __('Header image','tarski') . '" src="';
-			header_image();
-			echo '" />' . "\n";
-		} else {
-			echo '	<img alt="' . __('Header image','tarski') . '" src="' . $headerImage . '" />' . "\n";
-		}
-		echo "</div>\n";
-	}
-}
-
-// Site title output
-function tarski_title($type = 'title') {
-	global $wp_query;
-	$titleSep = '&middot;';
-	$frontPageID = get_option('page_on_front');
-	// tarski_title('header') is for use within the document <body>
-	if ($type == 'header') {
-		if((get_option('show_on_front') == 'page') && ($frontPageID == $wp_query->post->ID)) {
-			$prefix = '<p id="blog-title">';
-			$suffix = '</p>';
-		} elseif((get_option('show_on_front') == 'posts') && is_home()) {
-			$prefix = '<h1 id="blog-title">';
-			$suffix = '</h1>';
-		} else {
-			$prefix = '<p id="blog-title"><a title="' . __('Return to front page','tarski') . '" href="' . get_settings('home') . '">';
-			$suffix = '</a></p>';
-		}
-		echo $prefix . get_bloginfo('name') . $suffix . "\n";
-	}
-	// tarski_title() is for use within the document <title>
-	else {
-		echo get_bloginfo('name');
-		if((get_option('show_on_front') == 'posts') && is_home()) {
-			if(get_bloginfo('description') != '') {
-				echo ' ' . $titleSep . ' ' . get_bloginfo('description');
-			}
-		} elseif(is_search()) {
-			echo ' ' . $titleSep . ' Search results';
-		} elseif(is_month()) {
-			echo ' ' . $titleSep . ' '; single_month_title(' ');
-		} else {
-			wp_title($titleSep);
-		}
-	}
-}
-
-// Navbar
-function tarski_navbar() {
-	$current = 'class="nav-current" ';
-	if(get_option('show_on_front') != 'page') {
-		if(is_home()) { $homeStatus = $current; }
-		echo '<li><a id="nav-home" ' . $homeStatus . 'href="' . get_settings('home') . '">' . __('Home','tarski') . "</a></li>\n";
-	}
-	
-	global $wpdb;
-	$nav_pages = get_tarski_option('nav_pages');
-	if($nav_pages) {
-		$nav_pages = explode(',', $nav_pages);
-		foreach($nav_pages as $page) {
-			if(is_page($page) || ((get_option('show_on_front') == 'page') && (get_option('page_for_posts') == $page) && is_home())) {
-				$pageStatus = $current;
-			} else {
-				$pageStatus = '';
-			}
-			echo '			<li><a id="nav-' . $page . '-' . $wpdb->get_var("SELECT post_name from $wpdb->posts WHERE ID = $page") . '" ' . $pageStatus . 'href="' . get_permalink($page) . '">' . $wpdb->get_var("SELECT post_title from $wpdb->posts WHERE ID = $page") . '</a></li>' . "\n";
-		}
-	}
-	global $navbarInclude;
-	if($navbarInclude) {
-		echo $navbarInclude . "\n";
-	}
-	if(is_user_logged_in()) {
-		echo '<li><a id="nav-admin" href="' . get_option('siteurl') . '/wp-admin/">' . __('Site Admin','tarski') . '</a></li>' . "\n";
-	}
-}
-
-// Body classes
-function tarski_bodyclass() {
-	if(get_tarski_option('centered_theme')) { // Centred or not
-		echo 'center';
-	} else {
-		echo 'left';
-	}
-	if(get_tarski_option('swap_sides')) { // Swapped or not
-		echo ' janus';
-	}
-	if(get_tarski_option('style')) { // Alternate style
-		echo ' ' . str_replace('.css', '', get_tarski_option('style'));
-	}
-	if (is_page() || is_single() || is_404()) { // Is it a single page?
-		echo ' single';
-	}
-	global $headerImageSet;
-	if($headerImageSet == false) { // No header image
-		echo ' noheader';
-	}
-}
-
-// A better the_date() function
-function tarski_date() {
-	global $post;
-	return mysql2date(get_settings('date_format'), $post->post_date);
-}
-
-// Tarski excerpts
-// Code shamelessly borrowed from http://guff.szub.net/2005/02/26/the-excerpt-reloaded/
-function tarski_excerpt($excerpt_length = 120, $allowedtags = '', $filter_type = 'none', $use_more_link = 1, $more_link_text = '(more...)', $force_more = 1, $fakeit = 1, $no_more = 0, $more_tag = 'div', $more_link_title = 'Continue reading this entry', $showdots = 1) {
-	global $post;
-
-	if (!empty($post->post_password)) { // if there's a password
-		if ($_COOKIE['wp-postpass_'.COOKIEHASH] != $post->post_password) { // and it doesn't match cookie
-			if(is_feed()) { // if this runs in a feed
-				$output = __('This entry is protected.','tarski');
-			} else {
-				$output = get_the_password_form();
-			}
-		}
-		return $output;
-	}
-
-	if($fakeit == 2) { // force content as excerpt
-		$text = $post->post_content;
-	} elseif($fakeit == 1) { // content as excerpt, if no excerpt
-		$text = (empty($post->post_excerpt)) ? $post->post_content : $post->post_excerpt;
-	} else { // excerpt no matter what
-		$text = $post->post_excerpt;
-	}
-
-	if($excerpt_length < 0) {
-		$output = $text;
-	} else {
-	if(!$no_more && strpos($text, '<!--more-->')) {
-		$text = explode('<!--more-->', $text, 2);
-			$l = count($text[0]);
-			$more_link = 1;
-		} else {
-			$text = explode(' ', $text);
-			if(count($text) > $excerpt_length) {
-				$l = $excerpt_length;
-				$ellipsis = 1;
-			} else {
-				$l = count($text);
-				$more_link_text = '';
-				$ellipsis = 0;
-			}
-		}
-		for ($i=0; $i<$l; $i++)
-			$output .= $text[$i] . ' ';
-	}
-
-	if('all' != $allowed_tags) {
-		$output = strip_tags($output, $allowedtags);
-	}
-
-	$output = rtrim($output, "\s\n\t\r\0\x0B");
-	$output = ($fix_tags) ? $output : balanceTags($output);
-	$output .= ($showdots && $ellipsis) ? '...' : '';
-
-	switch($more_tag) {
-		case('div') :
-			$tag = 'div';
-			break;
-		case('span') :
-			$tag = 'span';
-			break;
-		case('p') :
-			$tag = 'p';
-			break;
-		default :
-			$tag = 'span';
-			break;
-	}
-
-	if ($use_more_link && $more_link_text) {
-		if($force_more) {
-			$output .= ' <' . $tag . ' class="more-link"><a href="'. get_permalink($post->ID) . '#more-' . $post->ID .'" title="' . $more_link_title . '">' . $more_link_text . '</a></' . $tag . '>' . "\n";
-		} else {
-			$output .= ' <' . $tag . ' class="more-link"><a href="'. get_permalink($post->ID) . '" title="' . $more_link_title . '">' . $more_link_text . '</a></' . $tag . '>' . "\n";
-		}
-	}
-
-	$output = apply_filters($filter_type, $output);
-	return $output;
 }
 
 // Options page JS and CSS injection

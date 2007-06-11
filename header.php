@@ -1,7 +1,7 @@
 <?php @include(TEMPLATEPATH . '/constants.php'); ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" <?php if(defined(WPLANG)) { language_attributes(); } else { echo 'xml:lang="en" lang="en"'; } ?>>
 
-<head><title><?php tarski_title(); ?></title>
+<head><title><?php tarski_doctitle(); ?></title>
 
 	<meta http-equiv="Content-Type" content="<?php echo get_bloginfo('html_type'); ?>; charset=<?php echo get_bloginfo('charset'); ?>" />
 	<meta name="generator" content="WordPress <?php echo get_bloginfo('version'); ?>" />
@@ -29,22 +29,14 @@
 <?php } ?>
 	<link rel="alternate" type="application/rss+xml" title="<?php echo get_bloginfo('name'); ?> feed" href="<?php echo get_bloginfo('rss2_url'); ?>" />
 
-<?php wp_head();
-echo $headerInclude; ?>
+<?php wp_head(); ?>
 </head>
 
 <body class="<?php tarski_bodyclass(); ?>"><div id="wrapper">
 
 <div id="header" class="<?php echo tarski_header_status(); ?>">
 
-	<?php tarski_headerimage(); ?>
-	
-	<?php if(get_tarski_option('display_title') != 'lolno' || get_tarski_option('display_tagline')) { ?>
-	<div id="title">
-		<?php if(get_tarski_option('display_title') != 'lolno') { tarski_title('header'); }
-		if((get_bloginfo('description') != '') && get_tarski_option('display_tagline')) { echo '<p id="tagline">' .  get_bloginfo('description') . '</p>'; } ?>
-	</div>
-	<?php } ?>
+	<?php th_header(); ?>
 
 	<div id="navigation">
 		<ul class="primary">

@@ -55,17 +55,8 @@ if(get_tarski_option('footer_recent')) {
 
 	</div> <!-- /primary -->
 
-
 	<div id="theme-info">
-		<div class="primary content">
-			<p><?php if(detectWPMU()) { $current_site = get_current_site(); } _e('Powered by <a href="http://wordpress.org/">WordPress</a> and <a href="http://tarskitheme.com/">Tarski</a>', 'tarski'); ?><?php if(detectWPMU()) { echo ' | ' . __('Hosted by ', 'tarski') . '<a href="http://' . $current_site->domain . $current_site->path . '">' . $current_site->site_name . '</a>'; } ?></p>
-		</div>
-		<div class="secondary">
-			<p><a class="feed" href="<?php echo get_bloginfo_rss('rss2_url'); ?>"><?php _e('Subscribe to feed', 'tarski'); ?></a></p>
-		</div>
-		<div id="footer-include">
-			<?php @include(TEMPLATEPATH . '/constants.php'); echo $footerInclude; ?>
-		</div>
+		<?php th_footer(); ?>
 	</div> <!-- /theme-info -->
 
 </div> <!-- /footer -->

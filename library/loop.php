@@ -1,5 +1,5 @@
-<?php // loop.php, this file does the heavy lifting
-@include(TEMPLATEPATH . '/constants.php');
+<?php // loop.php - This file does the heavy lifting
+
 $the_author = $wpdb->get_var("SELECT display_name FROM $wpdb->users WHERE ID = '$post->post_author'"); // Author name for author archive pages
 
 
@@ -36,8 +36,8 @@ if($prev_post && $next_post) {
 			<?php // WP 2.2 built-in tagging, commented out for now
 			// if(function_exists('the_tags')) { the_tags('<p class="tagdata"><strong>' . __('Tags','tarski') . '</strong>', ', ', '</p>'); } ?> 
 		</div>
-		<?php link_pages_without_spaces();
-		echo $postEndInclude; ?>
+		<?php link_pages_without_spaces(); ?>
+		<?php th_singleend(); ?>
 	</div>
 <?php } // End entry loop ?>
 </div>
@@ -55,8 +55,8 @@ if($prev_post && $next_post) {
 		<div class="content">
 			<?php the_content(); ?>
 		</div>
-		<?php link_pages_without_spaces();
-		echo $pageEndInclude; ?>
+		<?php link_pages_without_spaces(); ?>
+		<?php th_pageend(); ?>
 	</div>
 <?php } // End entry loop ?>
 </div>
@@ -167,7 +167,7 @@ while (have_posts()) { the_post(); ?>
 		</div>
 		<?php link_pages_without_spaces(); ?>
 	</div>
-<?php } if(is_home() && !$completedBlurb) { $completedBlurb = 1; echo $frontPageInclude; } } // End entry loop
+<?php } th_postend(); } // End entry loop
  
 global $wp_query;
 $wp_query->is_paged = true;
