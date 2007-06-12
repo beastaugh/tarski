@@ -1,4 +1,10 @@
-// tarski.js - external JS for Tarski
+<?php
+
+define('WP_USE_THEMES', false);
+require('../../../../wp-blog-header.php');
+header('Content-type: text/javascript');
+
+?>// tarski.js - external JS for Tarski
 
 // Default search box text
 //-----------------------------------
@@ -23,7 +29,7 @@ var Searchbox = {
 	click : function()
 		{
 		var sBox = document.getElementById('s');
-		if (sBox.value == 'Search this site')
+		if (sBox.value == '<?php _e('Search this site','tarski'); ?>')
 			{
 			sBox.value = '';
 			}
@@ -31,7 +37,7 @@ var Searchbox = {
 	blur : function()
 		{
 		var sBox = document.getElementById('s');
-		if (sBox.value == '' || sBox.value == ' ') {sBox.value = 'Search this site';}
+		if (sBox.value == '' || sBox.value == ' ') {sBox.value = '<?php _e('Search this site','tarski'); ?>';}
 		}
 	};
 

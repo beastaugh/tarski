@@ -18,7 +18,7 @@
 	<link rel="stylesheet" href="<?php echo get_bloginfo('template_directory'); ?>/styles/<?php echo get_tarski_option('style'); ?>" type="text/css" media="screen,projection" />
 <?php } ?>
 
-	<script type="text/javascript" src="<?php echo get_bloginfo('template_directory'); ?>/library/tarski.js"></script>
+	<script type="text/javascript" src="<?php echo get_bloginfo('template_directory'); ?>/library/tarski-js.php"></script>
 
 <?php if(is_single()) { ?>
 	<?php if(get_settings('permalink_structure')) { // Feed link hack ?>
