@@ -286,6 +286,8 @@ function tarski_admin() {
 }
 
 function tarski_get_output($code) {
+	global $comment, $post;
+	
 	ob_start();
 	@eval($code);
 	$return = ob_get_contents();

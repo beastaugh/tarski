@@ -82,7 +82,7 @@ $oddcomment = 'alt';
 		<?php } ?>
 		<div class="secondary">
 			<p class="comment-permalink"><a href="#comment-<?php comment_ID(); ?>" title="<?php _e('Permalink to this comment','tarski'); ?>"><?php comment_date(); _e(' at ','tarski'); comment_time() ?></a></p>
-			<p class="comment-author"><strong><?php comment_author_link(); ?></strong></p>
+			<p class="comment-author"><strong><?php $comment_author = tarski_get_output('comment_author_link();'); $comment_author = str_replace('>http://', '>', $comment_author); $comment_author = str_replace('/</a>', '</a>', $comment_author); echo $comment_author; ?></strong></p>
 			<?php edit_comment_link(__('edit','tarski'), '<p class="comment-permalink">(', ')</p>'); ?> 
 		</div> <!-- /comment meta -->
 		
