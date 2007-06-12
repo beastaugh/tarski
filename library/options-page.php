@@ -112,9 +112,10 @@ if(get_tarski_option('update_notification') == 'true' && !detectWPMU()) { ?>
 					<textarea name="sidebar[custom]" rows="5" cols="30" id="sidebar_custom"><?php echo stripslashes(htmlspecialchars(get_tarski_option('sidebar_custom'))); ?></textarea>
 				</div>
 			
-			
+				
+				<?php if(file_exists(ABSPATH . '/wp-includes/widgets.php')) { $widgetsLink = '/wp-admin/widgets.php'; } else { $widgetsLink = '/wp-admin/themes.php?page=widgets/widgets.php'; } ?>
 				<div id="widgets-sidebar-section" class="insert"<?php if(get_tarski_option('sidebar_type') != 'widgets') { echo ' style="display: none;"'; } ?>>
-					<p><?php echo __('To configure your Sidebar Widgets, go to the ','tarski') . '<a href="' . get_bloginfo('wpurl') . '/wp-admin/themes.php?page=widgets/widgets.php' . '">' . __('Widgets configuration','tarski') . '</a>' . __(' page and select the widgets you&#8217;d like to use.','tarski'); ?></p>
+					<p><?php echo __('To configure your Sidebar Widgets, go to the ','tarski') . '<a href="' . get_bloginfo('wpurl') . $widgetsLink . '">' . __('Widgets configuration','tarski') . '</a>' . __(' page and select the widgets you&#8217;d like to use.','tarski'); ?></p>
 				</div>
 				
 				<?php if(!detectWPMU()) { ?>
