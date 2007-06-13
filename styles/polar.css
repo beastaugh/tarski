@@ -16,7 +16,7 @@ body.polar #wrapper .nav-current:hover { color: #000; }
 
 /* Content
 ----------------------------------------------- */
-body.polar code, body.polar pre { font-family: 'Courier New', Courier, monospace; font-size: 1em; color: #8fafbf; }
+body.polar code, body.polar pre { color: #8fafbf; }
 body.polar abbr, body.polar acronym { border-bottom: 1px solid #5c8499; }
 
 		/* Headers

@@ -16,7 +16,7 @@ body.classic #wrapper .nav-current:hover { color: #e59900; }
 
 /* Content
 ----------------------------------------------- */
-body.classic code, body.classic pre { font-family: 'Courier New', Courier, monospace; font-size: 1em; color: #bf8060; }
+body.classic code, body.classic pre { color: #bf8060; }
 body.classic abbr, body.classic acronym { border-bottom: 1px solid #bf8060; }
 
 		/* Headers

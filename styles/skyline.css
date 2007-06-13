@@ -15,7 +15,7 @@ body.skyline #wrapper .nav-current:hover { color: #a6212c; }
 
 /* Content
 ----------------------------------------------- */
-body.skyline code, body.skyline pre { font-family: 'Courier New', Courier, monospace; font-size: 1em; color: #bf8f93; }
+body.skyline code, body.skyline pre { color: #bf8f93; }
 body.skyline abbr, body.skyline acronym { border-bottom: 1px solid #bf8f93; }
 
 		/* Headers
