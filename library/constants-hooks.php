@@ -1,19 +1,19 @@
 <?php // constants-hooks.php - Tying Tarski's hooks into the legacy constants file
 
 // General constants check
-function tarski_output_constant($constant) {
+function tarski_output_constant($constant,$pre=false,$post=false) {
 	if($constant) {
-		echo $constant;
+		echo $pre . $constant . $post;
 	}
 }
 
-// Output $headerInclude from constants file
+// Output $headerInclude
 function tarski_output_headinclude() {
 	global $headerInclude;
 	tarski_output_constant($headerInclude);
 }
 
-// Output $frontPageInclude from constants file
+// Output $frontPageInclude
 function tarski_output_frontpageinclude() {
 	global $frontPageInclude;
 	global $completedBlurb;
@@ -24,35 +24,85 @@ function tarski_output_frontpageinclude() {
 	}
 }
 
-// Output $postEndInclude from constants file
+// Output $postEndInclude
 function tarski_output_postendinclude() {
 	global $postEndInclude;
-	tarski_output_constant($postEndInclude);
+	if(is_single()) {
+		tarski_output_constant($postEndInclude);
+	}
 }
 
-// Output $pageEndInclude from constants file
+// Output $pageEndInclude
 function tarski_output_pageendinclude() {
 	global $pageEndInclude;
-	tarski_output_constant($pageEndInclude);
+	if(is_page()) {
+		tarski_output_constant($pageEndInclude);
+	}
 }
 
-// Output $footerInclude from constants file
-function tarski_output_footerinclude() {
-	global $footerInclude;
-	if($footerInclude) { ?>
-		<div id="footer-include">
-			<?php echo $footerInclude; ?>
-		</div>
-<?php }
+// Output $pageEndInclude
+function tarski_output_commentsforminclude() {
+	global $commentsFormInclude;
+	tarski_output_constant($commentsFormInclude);
 }
 
-// Output $archivesPageInclude from constants file
+// Output $sidebarTopInclude
+function tarski_output_sidebartopinclude() {
+	global $sidebarTopInclude;
+	global $post;
+	if(get_tarski_option('sidebar_onlyhome')) { // Sidebar only on index pages
+		if(!(is_page() || is_single())) {
+			tarski_output_constant($sidebarTopInclude);
+		}
+	} else { // Sidebar everywhere
+		if(!(is_page() || is_single())) {
+			tarski_output_constant($sidebarTopInclude);
+		} elseif(get_post_meta($post->ID,'_wp_page_template',true) != 'archives.php') {
+			tarski_output_constant($sidebarTopInclude);
+		}
+	}
+}
+
+// Output $noSideBarInclude
+function tarski_output_nosidebarinclude() {
+	global $noSidebarInclude;
+	global $post;
+	if(get_tarski_option('sidebar_onlyhome') && (is_single() || is_page())) {
+		if(get_post_meta($post->ID,'_wp_page_template',true) != 'archives.php') {
+			tarski_output_constant($noSidebarInclude);
+		}
+	}
+}
+
+// Output $archivesPageInclude
 function tarski_output_archivesinclude() {
 	global $archivesPageInclude;
-	tarski_output_constant($archivesPageInclude);
+	global $post;
+	if(get_post_meta($post->ID,'_wp_page_template',true) == 'archives.php') {
+		tarski_output_constant($archivesPageInclude);
+	}
 }
 
-// Output $errorPageInclude from constants file
+// Output $searchTopInclude
+function tarski_output_searchtopinclude() {
+	global $searchTopInclude;
+	tarski_output_constant($searchTopInclude);
+}
+
+// Output $searchBottomInclude
+function tarski_output_searchbottominclude() {
+	global $searchBottomInclude;
+	tarski_output_constant($searchBottomInclude);
+}
+
+// Output $footerInclude
+function tarski_output_footerinclude() {
+	global $footerInclude;
+	tarski_output_constant($footerInclude,'<div id="footer-include">','</div>');
+}
+
+
+// Output $errorPageInclude
 function tarski_output_errorinclude() {
 	global $errorPageInclude;
 	if($errorPageInclude) {
@@ -62,19 +112,17 @@ function tarski_output_errorinclude() {
 	}
 }
 
-// Default header action
 add_action('wp_head','tarski_output_headinclude');
-// Default front page action
 add_action('th_postend','tarski_output_frontpageinclude');
-// Default (single) post end action
-add_action('th_singleend','tarski_output_postendinclude');
-// Default page end action
-add_action('th_pageend','tarski_output_pageendinclude');
-// Default footer action
+add_action('th_postend','tarski_output_postendinclude');
+add_action('th_postend','tarski_output_pageendinclude');
+add_action('th_commentform','tarski_output_commentsforminclude',11);
+add_action('th_sidebar','tarski_output_sidebartopinclude');
+add_action('th_sidebar','tarski_output_nosidebarinclude');
+add_action('th_sidebar','tarski_output_archivesinclude');
+add_action('th_fsidebar','tarski_output_searchtopinclude',9);
+add_action('th_fsidebar','tarski_output_searchbottominclude',11);
 add_action('th_footer','tarski_output_footerinclude');
-// Default archives page action
-add_action('th_archside','tarski_output_archivesinclude');
-// Default error page action
 add_action('th_404','tarski_output_errorinclude');
 
 // ~fin~ ?>

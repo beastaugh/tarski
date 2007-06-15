@@ -20,7 +20,7 @@ if($prev_post && $next_post) {
 } ?>
 <div class="primary">
 <?php while(have_posts()) { the_post(); ?>
-<?php $trackbackLink = trackback_url(FALSE); ?>
+<?php $trackbackLink = trackback_url(false); ?>
 	<div class="entry">
 		<div class="meta">
 			<h1 class="title"><?php the_title(); ?></h1>
@@ -37,7 +37,7 @@ if($prev_post && $next_post) {
 			// if(function_exists('the_tags')) { the_tags('<p class="tagdata"><strong>' . __('Tags','tarski') . '</strong>', ', ', '</p>'); } ?> 
 		</div>
 		<?php link_pages_without_spaces(); ?>
-		<?php th_singleend(); ?>
+		<?php th_postend(); ?>
 	</div>
 <?php } // End entry loop ?>
 </div>
@@ -56,7 +56,7 @@ if($prev_post && $next_post) {
 			<?php the_content(); ?>
 		</div>
 		<?php link_pages_without_spaces(); ?>
-		<?php th_pageend(); ?>
+		<?php th_postend(); ?>
 	</div>
 <?php } // End entry loop ?>
 </div>
@@ -286,5 +286,4 @@ elseif (is_search()) { // No results for search ?>
 
 
 
-<?php // That's all folks!
-} ?>
+<?php } // That's all folks! ?>

@@ -16,7 +16,7 @@ get_header(); ?>
 		<ul class="archivelist">
 		<?php srg_clean_archives(); ?>
 		</ul>
-		<?php th_pageend(); ?>
+		<?php th_postend(); ?>
 	</div> <!-- /primary -->
 <?php } else { ?>
 	<div class="primary">
@@ -25,7 +25,7 @@ get_header(); ?>
 		<ul class="archivelist">
 		<?php get_archives('monthly', '', 'html', '', '', 'TRUE'); ?>
 		</ul>
-		<?php th_pageend(); ?>
+		<?php th_postend(); ?>
 	</div> <!-- /primary -->
 <?php } ?>
 	<div class="secondary">
@@ -35,6 +35,6 @@ get_header(); ?>
 		<?php wp_list_cats('sort_column=name&sort_order=desc'); ?>
 		</ul>
 	<?php } ?>
-	<?php th_archside(); ?>
+	<?php th_sidebar(); ?>
 	</div> <!-- /secondary -->
 <?php get_footer(); ?>

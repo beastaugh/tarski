@@ -148,7 +148,7 @@ function indexOf(array, item) {
 		<div class="content">
 			<p><?php _e('Nothing here, sorry!', 'tarski'); ?></p>
 		</div>
-<?php } echo $pageEndInclude; ?>
+<?php } th_postend(); ?>
 </div> <!-- /primary -->
-<?php get_sidebar();
-get_footer(); ?>
+<?php get_sidebar(); ?>
+<?php get_footer(); ?>

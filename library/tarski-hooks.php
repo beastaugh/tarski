@@ -15,20 +15,20 @@ function th_postend() { // Post end hook
 	do_action('th_postend');
 }
 
-function th_singleend() { // Single post end hook
-	do_action('th_singleend');
+function th_commentform() { // Post end hook
+	do_action('th_commentform');
 }
 
-function th_pageend() { // Page end hook
-	do_action('th_pageend');
+function th_sidebar() { // Sidebar hook
+	do_action('th_sidebar');
 }
 
-function th_footer() { // Archives sidebar hook
+function th_fsidebar() { // Footer sidebar hook
+	do_action('th_fsidebar');
+}
+
+function th_footer() { // Footer hook
 	do_action('th_footer');
-}
-
-function th_archside() { // Archives sidebar hook
-	do_action('th_archside');
 }
 
 function th_404() { // Error page hook
@@ -46,7 +46,13 @@ add_action('th_doctitle','tarski_doctitle');
 add_action('th_header','tarski_headerimage');
 add_action('th_header','tarski_titleandtag');
 
+// Default content actions
+add_action('th_commentform','tarski_livecomments_integration');
+
+// Default sidebar actions
+
 // Default footer actions
+add_action('th_fsidebar','tarski_searchform');
 add_action('th_footer','tarski_feed_and_credit');
 
 // ~fin~ ?>

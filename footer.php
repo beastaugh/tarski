@@ -14,7 +14,7 @@
 	
 	<?php } else { ?>
 
-		<?php if(!is_search()) { include(TEMPLATEPATH . '/searchform.php'); } ?>
+		<?php th_fsidebar(); ?>
 
 	<?php } ?>
 	</div> <!-- /secondary -->

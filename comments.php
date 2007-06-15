@@ -170,8 +170,7 @@ $oddcomment = 'alt';
 				<textarea name="comment" id="comment" cols="60" rows="12" tabindex="4"></textarea>
 				<input name="submit" type="submit" id="submit" tabindex="5" value="<?php _e('Submit Comment','tarski'); ?>" />
 				<input type="hidden" name="comment_post_ID" value="<?php echo $id; ?>" />
-				<?php if (function_exists('live_preview')) { live_preview(); } ?>
-				<?php @include(TEMPLATEPATH . '/constants.php'); echo $commentsFormInclude; ?>
+				<?php th_commentform(); ?>
 			</div>  <!-- /comment input -->
 <?php do_action('comment_form', $post->ID); ?>
 		</fieldset></form>

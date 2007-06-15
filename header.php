@@ -34,7 +34,7 @@
 
 <body class="<?php tarski_bodyclass(); ?>"><div id="wrapper">
 
-<div id="header" class="<?php echo tarski_header_status(); ?>">
+<div id="header" class="<?php tarski_header_status(); ?>">
 
 	<?php th_header(); ?>
 

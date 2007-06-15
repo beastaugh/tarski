@@ -1,17 +1,11 @@
 <?php // template-functions.php - Templating functions for Tarski
 
-// Header image check
-if(get_tarski_option('header') == 'blank.gif') {
-	$noHeaderImage = true;
-}
-
 // Header image status output
 function tarski_header_status() {
-	global $noHeaderImage;
-	if($noHeaderImage) {
-		return 'noheaderimage';
+	if(get_tarski_option('header') == 'blank.gif') {
+		echo 'noheaderimage';
 	} else {
-		return 'headerimage';
+		echo 'headerimage';
 	}
 }
 
@@ -149,9 +143,18 @@ function tarski_bodyclass() {
 	if (is_page() || is_single() || is_404()) { // Is it a single page?
 		echo ' single';
 	}
-	global $headerImageSet;
-	if($headerImageSet == false) { // No header image
-		echo ' noheader';
+}
+
+// Footer sidebar
+function tarski_searchform() {
+	if(!is_search()) {
+		include(TEMPLATEPATH . '/searchform.php');
+	}
+}
+
+function tarski_livecomments_integration() {
+	if (function_exists('live_preview')) {
+		live_preview();
 	}
 }
 
