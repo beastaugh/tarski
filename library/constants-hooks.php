@@ -112,17 +112,19 @@ function tarski_output_errorinclude() {
 	}
 }
 
-add_action('wp_head','tarski_output_headinclude');
-add_action('th_postend','tarski_output_frontpageinclude');
-add_action('th_postend','tarski_output_postendinclude');
-add_action('th_postend','tarski_output_pageendinclude');
-add_action('th_commentform','tarski_output_commentsforminclude',11);
-add_action('th_sidebar','tarski_output_sidebartopinclude');
-add_action('th_sidebar','tarski_output_nosidebarinclude');
-add_action('th_sidebar','tarski_output_archivesinclude');
-add_action('th_fsidebar','tarski_output_searchtopinclude',9);
-add_action('th_fsidebar','tarski_output_searchbottominclude',11);
-add_action('th_footer','tarski_output_footerinclude');
-add_action('th_404','tarski_output_errorinclude');
+if(file_exists(TEMPLATEPATH . '/constants.php')) {
+	add_action('wp_head','tarski_output_headinclude');
+	add_action('th_postend','tarski_output_frontpageinclude');
+	add_action('th_postend','tarski_output_postendinclude');
+	add_action('th_postend','tarski_output_pageendinclude');
+	add_action('th_commentform','tarski_output_commentsforminclude',11);
+	add_action('th_sidebar','tarski_output_sidebartopinclude');
+	add_action('th_sidebar','tarski_output_nosidebarinclude');
+	add_action('th_sidebar','tarski_output_archivesinclude');
+	add_action('th_fsidebar','tarski_output_searchtopinclude',9);
+	add_action('th_fsidebar','tarski_output_searchbottominclude',11);
+	add_action('th_footer','tarski_output_footerinclude');
+	add_action('th_404','tarski_output_errorinclude');
+}
 
 // ~fin~ ?>
