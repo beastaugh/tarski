@@ -31,7 +31,7 @@ body { border: none; padding: 0; text-align: left; font-size: 10pt; line-height:
 		strong { font-weight: bold; }
 		em { font-style: italic; }
 		cite { font-style: italic; }
-		code { font-family: "Courier New", Courier, monospace; }
+		code { font-family: Courier, "Courier New", monospace; }
 
 a img { border: none; }
 

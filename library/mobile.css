@@ -55,7 +55,7 @@ body { text-align: center; font-family: Verdana, Helvetica, Arial, sans-serif; f
 			blockquote { margin: 0 0 1em 0; padding: 0 1em; color: #a8a8a8; }
 			strong { font-weight: bold; }
 			em { font-style: italic; }
-			code, pre { font-family: 'Courier New', Courier, monospace; font-size: 1em; color: #7ca653; }
+			code, pre { font-family: Courier, "Courier New", monospace; font-size: 1em; color: #7ca653; }
 			acronym, abbr { border-bottom: 1px solid #8fb7bf; }
 			small { font-size: 0.8em; }
 			sup, sub { font-size: 75%; }
