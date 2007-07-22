@@ -1,5 +1,8 @@
 <div class="secondary">
-<?php th_sidebar(); ?>
+<?php
+$tarski_remember_id = $id;
+$tarski_remember_post = $post;
+th_sidebar(); ?>
 <?php if (is_search()) { ?>
 	<?php include(TEMPLATEPATH . '/searchform.php'); ?>
 	<?php @include(TEMPLATEPATH . '/constants.php'); tarski_output_constant($sidebarBottomInclude); ?>
@@ -49,5 +52,7 @@
 		<?php wp_meta(); ?>
 		<?php @include(TEMPLATEPATH . '/constants.php'); tarski_output_constant($sidebarBottomInclude); ?>
 	<?php } // end onlyhome if ?>
-<?php } // end search else ?>
+<?php } // end search else
+$post = $tarski_remember_post;
+$id = $tarski_remember_id; ?>
 </div>

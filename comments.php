@@ -17,7 +17,7 @@ $oddcomment = 'alt';
 
 ?>
 
-<?php if($comments) { ?>
+<?php if(have_comments()) { ?>
 <div id="comments">
 <?php if('open' == $post-> comment_status) { ?>
 
