@@ -1,7 +1,5 @@
 <div class="secondary">
 <?php
-$tarski_remember_id = $id;
-$tarski_remember_post = $post;
 th_sidebar(); ?>
 <?php if (is_search()) { ?>
 	<?php include(TEMPLATEPATH . '/searchform.php'); ?>
@@ -53,6 +51,7 @@ th_sidebar(); ?>
 		<?php @include(TEMPLATEPATH . '/constants.php'); tarski_output_constant($sidebarBottomInclude); ?>
 	<?php } // end onlyhome if ?>
 <?php } // end search else
-$post = $tarski_remember_post;
-$id = $tarski_remember_id; ?>
+// Reset the post data incase part of the sidebar code messed it up
+$wp_the_query->current_post--;
+setup_postdata($wp_query->next_post()); ?>
 </div>
