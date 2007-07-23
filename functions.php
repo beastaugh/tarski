@@ -205,8 +205,7 @@ function tarski_inject_scripts() {
 		echo "\n\n";
 		echo '<script src="' . get_bloginfo('wpurl') . '/wp-includes/js/prototype.js' . '" type="text/javascript"></script>' . "\n";
 		echo '<script src="' . get_bloginfo('wpurl') . '/wp-includes/js/scriptaculous/scriptaculous.js' .'" type="text/javascript"></script>' . "\n";
-		// Empty JavaScript file we might have a use for in the future
-		// echo '<script src="' . get_bloginfo('template_directory') . '/js/tarski.js' .'" type="text/javascript"></script>' . "\n";
+		echo '<script src="' . get_bloginfo('template_directory') . '/library/crir.js' .'" type="text/javascript"></script>' . "\n";
 		echo '<link rel="stylesheet" href="' . get_bloginfo('template_directory') . '/library/options.css" type="text/css" media="screen" />' . "\n";
 		echo "\n";
 	}

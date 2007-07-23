@@ -48,9 +48,9 @@ if(get_tarski_option('update_notification') == 'true' && !detectWPMU()) { ?>
 			<fieldset class="secondary">
 				<h3><?php _e('Footer Options','tarski'); ?></h3>
 				<textarea name="about_text" rows="5" cols="30" id="about_text"><?php echo stripslashes(get_tarski_option('blurb')); ?></textarea>
-				<label for="about_text"><?php _e('Write something about yourself here, and it will appear in the footer. Deleting the content disables it.','tarski'); ?></label>
+				<label for="about_text" class=""><?php _e('Write something about yourself here, and it will appear in the footer. Deleting the content disables it.','tarski'); ?></label>
 				
-				<label class="spaced-out" for="opt-footer-recent">
+				<label for="opt-footer-recent" class="spaced-out">
 					<input type="hidden" name="footer[recent]" value="0" />
 					<input type="checkbox" name="footer[recent]" value="1"  id="opt-footer-recent" <?php if(get_tarski_option('footer_recent')) { echo 'checked="checked" '; } ?>/>
 					<?php _e('Show recent articles in the footer','tarski'); ?>
@@ -173,33 +173,33 @@ if(get_tarski_option('update_notification') == 'true' && !detectWPMU()) { ?>
 
 				<h3><?php _e('Header Image','tarski'); ?></h3>
 				<p><?php if(function_exists('add_custom_image_header')) { echo __('You may wish to use one of these stock headers, or upload your own via the ', 'tarski') . '<a href="themes.php?page=custom-header">' . __('Custom Image Header tab', 'tarski') . '</a>.'; } if(get_theme_mod('header_image')) { echo '</p><p class="insert"><strong>' . __('You are currently using a custom header uploaded via WordPress - to use a stock icon instead, go to the Custom Image Header tab and click "Restore Original Header".', 'tarski') . '</strong>'; } ?></p>
-					<?php
-					global $wpdb;
-					$highlightColor = "#b3c7dd";
-					$name = get_tarski_option('header');
 					
-					$header_dir = @ dir(TEMPLATEPATH . '/headers');	
+					<div id="tarski-headers">
+						<?php
+						global $wpdb;
+						$name = get_tarski_option('header');
 
-					if ($header_dir) {
-						while(($file = $header_dir->read()) !== false) {
-							if(!preg_match('|^\.+$|', $file) && preg_match('@\-thumb.(jpg|png|gif)$@', $file)) {
-								$header_images[] = $file;
-							}
-						}
-						if ($header_dir || $header_images) {
-							$count = 0;
-							foreach($header_images as $header_image) {
-								$count++;
-								echo '<img class="header_image" style="padding: 5px;';
-								if(str_replace("-thumb", "", $header_image) == get_tarski_option('header')) {
-									echo " background-color: $highlightColor;";
+						$header_dir = @ dir(TEMPLATEPATH . '/headers');	
+
+						if ($header_dir) {
+							while(($file = $header_dir->read()) !== false) {
+								if(!preg_match('|^\.+$|', $file) && preg_match('@\-thumb.(jpg|png|gif)$@', $file)) {
+									$header_images[] = $file;
 								}
-								echo '" alt="' . $header_image . '" id="img' . $count . '" src="' . get_settings('siteurl') . "/wp-content/themes/" . get_template() . '/headers/' . $header_image . '" onclick="$(\'header_image\').value = \'' . $header_image . "'; new Effect.Highlight(this, {duration: 2.0, startcolor: '#ffffff', endcolor: '$highlightColor', restorecolor: '$highlightColor', beforeStart: function() { a = document.getElementsByClassName('header_image'); for(i = 0; i &lt; a.length; i++) { a[i].style.backgroundColor = '#ffffff' }}});\" />" . "\n";
 							}
-						}
-					} ?>
-					<input type="hidden" name="header_image" id="header_image" value="<?php echo stripslashes(get_tarski_option('header')); ?>" />
-					<label for="header_image"><?php echo __('Choose a header image by clicking on it. The current image is the ','tarski') . '<span style="background: '. $highlightColor . '">' . __('highlighted one','tarski') . '</span>' . __('.','tarski'); ?></label>
+							if ($header_dir || $header_images) {
+								$count = 0;
+								foreach($header_images as $header_image) {
+									$count++;
+									$header_name = str_replace('-thumb', '', $header_image); ?>
+									<label for="header_<?php echo $header_name; ?>"><img class="header_image" alt="<?php echo $header_name; ?>" src="<?php echo get_bloginfo('template_directory') . '/headers/' . $header_image; ?>" /></label>
+									<input id="header_<?php echo $header_name; ?>" name="header_image" class="crirHiddenJS" value="<?php echo $header_name; ?>" type="radio"<?php if(get_tarski_option('header') == $header_name) { echo ' checked="checked"'; } ?> />
+								<?php }
+							}
+						} ?>
+						</div>
+					
+						<p><?php echo __('Choose a header image by clicking on it. The current image is the ','tarski') . '<span class="highlight">' . __('highlighted one','tarski') . '</span>' . __('.','tarski'); ?></p>
 					<?php if(!detectWPMU()) { ?>
 					<div class="insert">
 						<p><?php echo __('You can upload your own header images (.gif, .jpg or .png) to ','tarski') . '<code>wp-content/themes/' . get_template() . '/headers/</code>' . __('.','tarski'); ?></p>

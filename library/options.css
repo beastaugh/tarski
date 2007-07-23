@@ -19,3 +19,37 @@ h3 { color: #000; }
 
 .info { text-align: center; }
 .spaced-out { margin: 1.5em 0 0.5em; }
+
+#tarski-headers label { display: inline; }
+#tarski-headers label img { background: #fff; margin: 5px; font-weight: bold; }
+
+
+/*
+	CRIR - Checkbox & Radio Input Replacement
+	Author: Chris Erwin (me[at]chriserwin.com)
+	www.chriserwin.com/scripts/crir/
+*/
+
+/* Checkboxes */
+label.checkbox_checked {}
+label.checkbox_unchecked  {}
+
+/* Radio Buttons */
+label.radio_checked {}
+	label.radio_checked img { border: 2px solid #cc6677; padding: 3px; }
+label.radio_unchecked  {}
+	label.radio_unchecked img { border: 1px solid #b3c7dd; padding: 4px; }
+label.radio_unchecked:hover {}
+	label.radio_unchecked:hover img { border: 1px solid #cc6677; padding: 4px; }
+
+label.highlighted {
+	border: 1px solid #333;
+}
+
+/* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */
+/* STOP EDITTING - DO NOT CHANGE OR REMOVE        */
+.crirHidden {
+	position: absolute;
+	left: -1000px;
+}
+/* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */
