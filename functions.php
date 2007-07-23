@@ -203,8 +203,9 @@ function update_dashboard() {
 function tarski_inject_scripts() {
 	if(substr($_SERVER['REQUEST_URI'], -39, 39) == 'wp-admin/themes.php?page=tarski-options') { // Ugly
 		echo "\n\n";
-		echo '<script src="' . get_bloginfo('wpurl') . '/wp-includes/js/prototype.js' . '" type="text/javascript"></script>' . "\n";
-		echo '<script src="' . get_bloginfo('wpurl') . '/wp-includes/js/scriptaculous/scriptaculous.js' .'" type="text/javascript"></script>' . "\n";
+		echo '<script src="' . get_bloginfo('wpurl') . '/wp-includes/js/jquery/jquery.js' . '" type="text/javascript"></script>' . "\n";
+//		echo '<script src="' . get_bloginfo('wpurl') . '/wp-includes/js/prototype.js' . '" type="text/javascript"></script>' . "\n";
+//		echo '<script src="' . get_bloginfo('wpurl') . '/wp-includes/js/scriptaculous/scriptaculous.js' .'" type="text/javascript"></script>' . "\n";
 		echo '<script src="' . get_bloginfo('template_directory') . '/library/crir.js' .'" type="text/javascript"></script>' . "\n";
 		echo '<link rel="stylesheet" href="' . get_bloginfo('template_directory') . '/library/options.css" type="text/css" media="screen" />' . "\n";
 		echo "\n";
