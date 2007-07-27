@@ -34,7 +34,7 @@ body { font-family: Verdana, Helvetica, Arial, sans-serif; font-size: 76%; line-
 
 #wrapper { width: 760px; text-align: left; }
 	#content { clear: both; padding: 2em 20px; }
-#footer, #theme-info, #footer-include { clear: both; }
+/* #footer, #theme-info, #footer-include { clear: both; } */
 
 /* Positioning
 ----------------------------------------------- */
@@ -79,11 +79,11 @@ body.left { text-align: left; }
 
 /* Clearfix
 ----------------------------------------------- */
-#navigation:after, .comment:after, .trackback:after, #comments .meta:after, #trackback-link:after, #theme-info:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
-#navigation, .comment, .trackback, #comments .meta, #trackback-link, #theme-info { display: inline-block; }
+#navigation:after, .comment:after, .trackback:after, #comments .meta:after, #trackback-link:after, #footer:after #theme-info:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
+#navigation, .comment, .trackback, #comments .meta, #trackback-link, #footer, #theme-info { display: inline-block; }
 /* Hides from IE-mac \*/
-* html #navigation, * html .comment, * html .trackback, *html #comments .meta, *html #trackback-link, *html #theme-info { height: 1%; }
-#navigation, .comment, .trackback, #comments .meta, #trackback-link, #theme-info { display: block; }
+* html #navigation, * html .comment, * html .trackback, *html #comments .meta, *html #trackback-link, *html #footer, *html #theme-info { height: 1%; }
+#navigation, .comment, .trackback, #comments .meta, #trackback-link, #footer, #theme-info { display: block; }
 /* End hide from IE-mac */
 
 /* Content
