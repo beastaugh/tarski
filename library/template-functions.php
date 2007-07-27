@@ -48,7 +48,7 @@ function tarski_doctitle() {
 			echo ' ' . $titleSep . ' ' . get_bloginfo('description');
 		}
 	} elseif(is_search()) {
-		echo ' ' . $titleSep . ' Search results';
+		echo ' ' . $titleSep . ' ' . __('Search results','tarski');
 	} elseif(is_month()) {
 		echo ' ' . $titleSep . ' '; single_month_title(' ');
 	} else {
