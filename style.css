@@ -34,7 +34,7 @@ body { font-family: Verdana, Helvetica, Arial, sans-serif; font-size: 76%; line-
 
 #wrapper { width: 760px; text-align: left; }
 	#content { clear: both; padding: 2em 20px; }
-/* #footer, #theme-info, #footer-include { clear: both; } */
+#footer, #theme-info, #footer-include { clear: both; }
 
 /* Positioning
 ----------------------------------------------- */
