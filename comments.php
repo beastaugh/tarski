@@ -14,7 +14,7 @@ if(!empty($post->post_password)) { // if there's a password
 	}
 }
 
-if(have_comments() || ($post->comment_status == 'open')) { ?>
+if($comments || ($post->comment_status == 'open')) { ?>
 <div id="comments">
 	
 	<div class="meta">
@@ -30,7 +30,7 @@ if(have_comments() || ($post->comment_status == 'open')) { ?>
 		<?php } ?>
 	</div> <!-- /comments header -->
 	
-	<?php if(have_comments()) { ?>
+	<?php if($comments) { ?>
 	
 		<?php foreach($comments as $comment) { // Run comments loop for track- and pingbacks ?>
 		
