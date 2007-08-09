@@ -79,7 +79,7 @@ body.left { text-align: left; }
 
 /* Clearfix
 ----------------------------------------------- */
-#navigation:after, .comment:after, .trackback:after, #comments .meta:after, #trackback-link:after, #footer:after #theme-info:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
+#navigation:after, .comment:after, .trackback:after, #comments .meta:after, #trackback-link:after, #footer:after, #theme-info:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
 #navigation, .comment, .trackback, #comments .meta, #trackback-link, #footer, #theme-info { display: inline-block; }
 /* Hides from IE-mac \*/
 * html #navigation, * html .comment, * html .trackback, *html #comments .meta, *html #trackback-link, *html #footer, *html #theme-info { height: 1%; }
