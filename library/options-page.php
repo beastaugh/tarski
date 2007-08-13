@@ -66,14 +66,14 @@ if(get_tarski_option('update_notification') == 'true' && !detectWPMU()) { ?>
 				<h3><?php _e('Pick a Sidebar&hellip;','tarski'); ?></h3>
 				<p><?php _e('Choose either Tarski&#8217;s built-in sidebar options, those afforded by WordPress Widgets, or write your own sidebar code.','tarski'); ?></p>
 				
-				<label for="option-ts"><input type="radio" id="option-ts" name="sidebartype" value="tarski" onchange="$('div#tarski-sidebar-section').show(); $('div#widgets-sidebar-section').hide(); $('div#custom-sidebar-section').hide();"<?php if(get_tarski_option('sidebar_type') == 'tarski') { echo " checked=\"checked\""; } ?> /> <?php _e('Tarski sidebar options','tarski'); ?></label>
+				<label for="option-ts"><input type="radio" id="option-ts" name="sidebartype" value="tarski"<?php if(get_tarski_option('sidebar_type') == 'tarski') { echo " checked=\"checked\""; } ?> /> <?php _e('Tarski sidebar options','tarski'); ?></label>
 				<?php if(function_exists('register_sidebar')) { ?>
-					<label for="option-ws"><input type="radio" id="option-ws" name="sidebartype" value="widgets" onchange="$('div#widgets-sidebar-section').show(); $('div#tarski-sidebar-section').hide(); $('div#custom-sidebar-section').hide();"<?php if(get_tarski_option('sidebar_type') == 'widgets') { echo " checked=\"checked\""; } ?> /> <?php _e('WordPress Widgets','tarski'); ?></label>
+					<label for="option-ws"><input type="radio" id="option-ws" name="sidebartype" value="widgets"<?php if(get_tarski_option('sidebar_type') == 'widgets') { echo " checked=\"checked\""; } ?> /> <?php _e('WordPress Widgets','tarski'); ?></label>
 				<?php } else { ?>
 					<label for="option-ws"><input type="radio" id="option-ws" name="sidebartype" value="" disabled="disabled" /> <?php _e('Install (or activate) <a href="http://automattic.com/code/widgets/">WordPress Widgets</a>.','tarski'); ?></label>
 				<?php } ?>
 				<?php if(!detectWPMU()) { // custom sidebar only available in non-WPMU stuff ?>
-				<label for="option-fs"><input type="radio" id="option-fs" name="sidebartype" value="custom" onchange="$('div#custom-sidebar-section').show(); $('div#widgets-sidebar-section').hide(); $('div#tarski-sidebar-section').hide();"<?php if(get_tarski_option('sidebar_type') == 'custom') { echo " checked=\"checked\""; } ?> /> <?php _e('Alternate sidebar file','tarski'); ?></label>
+				<label for="option-fs"><input type="radio" id="option-fs" name="sidebartype" value="custom"<?php if(get_tarski_option('sidebar_type') == 'custom') { echo " checked=\"checked\""; } ?> /> <?php _e('Alternate sidebar file','tarski'); ?></label>
 				<?php } // end non-WPMU-only block ?>
 				
 				<label class="spaced-out" for="opt-sidebar-onlyhome">
