@@ -4,21 +4,10 @@
 	<div id="updated" class="updated fade">
 		<p><?php _e('Tarski Options have been updated','tarski'); ?></p>
 	</div>
-<?php }
-
-$themeData = get_theme_data(TEMPLATEPATH . '/style.css');
-
-$installedVersion = $themeData['Version'];
-
-if(!$installedVersion) {
-	$installedVersion = "unknown";
-}
-
-if(get_tarski_option('update_notification') == 'true' && !detectWPMU()) { ?>
-<script src="http://tarskitheme.com/version.php?version=<?php echo $installedVersion; ?>" type="text/javascript"></script>
 <?php } ?>
 
 
+<?php if(!detectWPMU()) { update_notifier_optionspage(); } ?>
 
 
 <div class="wrap<?php if($text_direction == 'rtl') { echo " rtl"; } ?>"><h2><?php _e('Tarski Options','tarski'); ?></h2>

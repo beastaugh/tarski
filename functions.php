@@ -4,9 +4,12 @@ global $tarski_options;
 flush_tarski_options();
 
 // Version detection
-$themeData = get_theme_data(TEMPLATEPATH . '/style.css');
-$installedVersion = trim($themeData['Version']);
-if(!$installedVersion) {
+function theme_version() {
+	$themeData = get_theme_data(TEMPLATEPATH . '/style.css');
+	return trim($themeData['Version']);
+}
+
+if(theme_version() == false) {
 	$installedVersion = "unknown";
 }
 
@@ -92,13 +95,16 @@ require(TEMPLATEPATH . '/library/template-functions.php');
 require(TEMPLATEPATH . '/library/content-functions.php');
 require(TEMPLATEPATH . '/library/tarski-hooks.php');
 require(TEMPLATEPATH . '/library/constants-hooks.php');
+require(TEMPLATEPATH . '/library/update-notifier.php');
 
 // Localisation
 load_theme_textdomain('tarski');
 
 // Options page and dashboard injections
 add_action('admin_head', 'tarski_inject_scripts');
-add_action('activity_box_end', 'update_dashboard');
+if(!detectWPMU()) {
+	add_action('activity_box_end','update_notifier_dashboard');
+}
 
 // Widgets
 if(function_exists('register_sidebar')) {
@@ -185,18 +191,6 @@ function update_tarski_options($array) {
 // detect WordPress MultiUser - http://mu.wordpress.org/
 function detectWPMU() {
 	return function_exists('is_site_admin');
-}
-
-// Dashboard update notification
-function update_dashboard() {
-	global $installedVersion;
-	
-	if(!detectWPMU()) {
-		echo "<h3>" . __("Tarski Updates", "tarski") . "</h3>\n";
-		if(get_tarski_option('update_notification') == 'true') {
-			echo "<script src=\"http://tarskitheme.com/version.php?version=$installedVersion&verbose=true\" type=\"text/javascript\"></script>\n";
-		}
-	}
 }
 
 // Options page JS and CSS injection
