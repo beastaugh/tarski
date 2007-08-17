@@ -13,7 +13,7 @@ get_header(); ?>
 	<div class="primary">
 		<h3><?php _e('Monthly Archives', 'tarski'); ?></h3>
 
-		<ul class="archivelist">
+		<ul class="archivelist xoxo">
 		<?php srg_clean_archives(); ?>
 		</ul>
 		<?php th_postend(); ?>
@@ -22,7 +22,7 @@ get_header(); ?>
 	<div class="primary">
 		<h3><?php _e('Monthly Archives', 'tarski'); ?></h3>
 
-		<ul class="archivelist">
+		<ul class="archivelist xoxo">
 		<?php get_archives('monthly', '', 'html', '', '', 'TRUE'); ?>
 		</ul>
 		<?php th_postend(); ?>
@@ -31,7 +31,7 @@ get_header(); ?>
 	<div class="secondary">
 	<?php if(!get_tarski_option('hide_categories')) { ?>
 		<h3><?php _e('Category Archives', 'tarski'); ?></h3>
-		<ul class="archivelist">
+		<ul class="archivelist xoxo">
 		<?php wp_list_cats('sort_column=name&sort_order=desc'); ?>
 		</ul>
 	<?php } ?>

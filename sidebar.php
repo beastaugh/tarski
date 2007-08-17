@@ -21,18 +21,18 @@ th_sidebar(); ?>
 			} ?>
 			<?php if(get_tarski_option('sidebar_pages')) { // pages block ?>
 				<h3><?php _e('Pages', 'tarski'); ?></h3>
-				<ul class="navlist">
+				<ul class="navlist xoxo">
 					<?php wp_list_pages('sort_column=post_title&title_li='); ?>
 				</ul>
 			<?php } // end pages block ?>
 			<?php if(get_tarski_option('sidebar_comments') && function_exists('blc_latest_comments')) { // comments block ?>
 				<h3><?php _e('Comments', 'tarski'); ?></h3>
-				<ul class="navlist">
+				<ul class="navlist xoxo">
 					<?php blc_latest_comments(5, 6, false, "<li>", "</li>"); ?>
 				</ul>
 			<?php } ?>
 			<?php if(get_tarski_option('sidebar_links')) { // links block ?>
-				<div class="bookmarks">
+				<div class="bookmarks xoxo">
 				<?php wp_list_bookmarks('category_before=&category_after=&title_before=<h3>&title_after=</h3>&show_images=0&show_description=0'); ?>
 				</div>
 			<?php } // end links block ?>

@@ -39,7 +39,7 @@
 	<?php th_header(); ?>
 
 	<div id="navigation">
-		<ul class="primary">
+		<ul class="primary xoxo">
 			<?php tarski_navbar(); ?>
 		</ul>
 
