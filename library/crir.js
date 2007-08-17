@@ -26,7 +26,7 @@ crir = {
 		//alert("arrLabel length: " + arrLabels.length);
 	
 		searchLabels:
-		for (var i=0; i&ltarrLabels.length; i++) {			
+		for (var i=0; i<arrLabels.length; i++) {			
 			// get the input element based on the for attribute of the label tag
 			if (arrLabels[i].getAttributeNode('for') && arrLabels[i].getAttributeNode('for').value != '') {
 				labelElementFor = arrLabels[i].getAttributeNode('for').value;				
@@ -74,7 +74,7 @@ crir = {
 		//arrLabels = document.getElementsByTagName('label');
 	
 		searchLoop:
-		for (var i=0; i&ltarrLabels.length; i++) {
+		for (var i=0; i<arrLabels.length; i++) {
 			if (arrLabels[i].getAttributeNode('for') && arrLabels[i].getAttributeNode('for').value == inputElementID) {				
 				return arrLabels[i];
 				break searchLoop;				
@@ -86,7 +86,7 @@ crir = {
 	findInput: function (labelElementFor) {
 		arrInputs = document.getElementsByTagName('input');
 		searchLoop:
-		for (var i=0; i&ltarrInputs.length; i++) {
+		for (var i=0; i<arrInputs.length; i++) {
 			if (arrInputs[i].getAttributeNode('id') && arrInputs[i].getAttributeNode('id').value == labelElementFor) {	
 				return arrInputs[i];
 				break searchLoop;				
@@ -119,7 +119,7 @@ crir = {
 		clickedInputElement.checked|=1;
 		
 		// uncheck (label class) all radios in the same group
-		for (var i=0; i&ltarrInputs.length; i++) {			
+		for (var i=0; i<arrInputs.length; i++) {			
 			inputElementType = arrInputs[i].getAttributeNode('type').value;
 			if (inputElementType == 'radio') {
 				inputElementName = arrInputs[i].getAttributeNode('name').value;
