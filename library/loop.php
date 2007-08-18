@@ -1,5 +1,7 @@
 <?php // loop.php - This file does the heavy lifting
 
+global $s;
+
 $the_author = $wpdb->get_var("SELECT display_name FROM $wpdb->users WHERE ID = '$post->post_author'"); // Author name for author archive pages
 
 
@@ -118,7 +120,7 @@ if($prev_post && $next_post) {
 			<h1 class="title"><?php _e('Search Results', 'tarski'); ?></h1>
 		</div>
 		<div class="content">
-			<p><?php _e('Your search for ', 'tarski'); echo '<strong>' . attribute_escape(the_search_query()) . '</strong> '; _e('returned the following results.', 'tarski'); ?></p>
+			<p><?php _e('Your search for ', 'tarski'); echo '<strong>' . attribute_escape(stripslashes($s)) . '</strong> '; _e('returned the following results.', 'tarski'); ?></p>
 		</div>
 	</div>
 <?php } elseif(function_exists('is_tag')) { if(is_tag()) { // Tag archive header ?>
@@ -241,7 +243,7 @@ elseif (is_search()) { // No results for search ?>
 			<h1 class="title"><?php _e('No results', 'tarski'); ?></h1>
 		</div>
 		<div class="content">
-			<p><?php echo __('Your search for ', 'tarski') . '<strong>' . attribute_escape(the_search_query()) . '</strong>' . __(' returned no results. Try returning to the ', 'tarski') . '<a href="' . get_settings('home') . '">' . __('front page', 'tarski') . '</a>' . __('.', 'tarski'); ?></p>
+			<p><?php echo __('Your search for ', 'tarski') . '<strong>' . attribute_escape(stripslashes($s)) . '</strong>' . __(' returned no results. Try returning to the ', 'tarski') . '<a href="' . get_settings('home') . '">' . __('front page', 'tarski') . '</a>' . __('.', 'tarski'); ?></p>
 		</div>
 	</div>
 </div>
