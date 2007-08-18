@@ -762,7 +762,7 @@ class FeedParserURL extends FeedParserCharset {
 
 	function GetURL ($url, $etag = '') {
 
-		if (function_exists('curl_init'))
+		if ((function_exists('curl_init')) && (ini_get('safe_mode') == 'Off'))
 		{
 			$header = array (
 				"Accept: " . $this->accept
