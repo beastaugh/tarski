@@ -228,7 +228,7 @@ function tarskiupdate() {
 			update_tarski_option('header', $header, '','');
 		}
 		
-		$nav_pages = implode(',', $_POST['nav_pages']);
+		$nav_pages = implode(",", $_POST['nav_pages']);
 		
 		update_tarski_options(array(
 			'footer_recent' => $_POST['footer']['recent'],
