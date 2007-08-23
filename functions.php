@@ -9,7 +9,8 @@ function theme_version() {
 	return trim($themeData['Version']);
 }
 
-if(theme_version() == false) {
+$installedVersion = theme_version();
+if($installedVersion == false) {
 	$installedVersion = "unknown";
 }
 
