@@ -253,6 +253,29 @@ function tarskiupdate() {
 	}
 }
 
+// Keeps the navbar order current with the page order
+function tarski_resave_navbar() {
+	global $wpdb;
+	$pages = $wpdb->get_results("SELECT ID, post_title FROM $wpdb->posts WHERE post_type='page' ORDER BY post_parent, menu_order");
+	$selected = explode(',', get_tarski_option("nav_pages"));
+
+	if($pages) {
+		$nav_pages = array();
+		foreach ($pages as $key => $page) {
+			foreach($selected as $key2 => $sel_page) {
+				if ($page->ID == $sel_page) {
+					$nav_pages[$key] = $page->ID;
+				}
+			}
+		}
+		$condensed = implode(",", $nav_pages);
+	}
+	
+	update_tarski_option("nav_pages", $condensed);
+}
+
+add_action("save_post","tarski_resave_navbar");
+
 // if we can't find Tarski installed let's go ahead and install all the options that run Tarski. This should run only one more time for all our existing users, then they will just be getting the upgrade function if it exists.
 if (!get_tarski_option('installed')) {
 	add_tarski_option('installed', theme_version());
