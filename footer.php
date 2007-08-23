@@ -61,9 +61,8 @@ if(get_tarski_option('footer_recent')) {
 	</div> <!-- /theme-info -->
 
 </div> <!-- /footer -->
-<?php global $installedVersion; ?>
 <!--
-This website is powered by WordPress and Tarski <?php echo $installedVersion; ?>
+This website is powered by WordPress and Tarski <?php echo theme_version(); ?>
 
 You can download Tarski from http://tarskitheme.com
 -->
