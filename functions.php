@@ -6,12 +6,12 @@ flush_tarski_options();
 // Version detection
 function theme_version() {
 	$themeData = get_theme_data(TEMPLATEPATH . '/style.css');
-	return trim($themeData['Version']);
-}
-
-$installedVersion = theme_version();
-if($installedVersion == false) {
-	$installedVersion = "unknown";
+	$installedVersion = trim($themeData['Version']);
+	if($installedVersion == false) {
+		return "unknown";
+	} else {
+		return $installedVersion;
+	}
 }
 
 // upgrade to serialised options, implemented in 1.4...
@@ -255,17 +255,17 @@ function tarskiupdate() {
 
 // if we can't find Tarski installed let's go ahead and install all the options that run Tarski. This should run only one more time for all our existing users, then they will just be getting the upgrade function if it exists.
 if (!get_tarski_option('installed')) {
-	add_tarski_option('installed', $installedVersion);
+	add_tarski_option('installed', theme_version());
 	add_tarski_option('header', 'greytree.jpg');
 	add_tarski_option('blurb', __('This is the about text','tarski'));
 }
 
 // Here we handle upgrading our users with new options and such. If tarski_installed is in the DB but the version they are running is lower than our current version, trigger this event.
-elseif (get_tarski_option('installed') < $installedVersion) {
+elseif (get_tarski_option('installed') < theme_version()) {
 	if(get_tarski_option('installed') < 1.1) {
 		add_tarski_option('asidescategory', '0');
 	}
-	update_tarski_option('installed', $installedVersion);
+	update_tarski_option('installed', theme_version());
 }
 
 // This adds the Tarski Options page
