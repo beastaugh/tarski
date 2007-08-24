@@ -275,14 +275,6 @@
 					<input type="checkbox" id="opt-misc-centre" name="centered_theme" value="1" <?php if(get_tarski_option('centered_theme')) { echo 'checked="checked" '; } ?>/>
 					<?php _e('Centre the theme','tarski'); ?>
 				</label>
-				
-				<?php if(function_exists('UTW_ShowTagsForCurrentPost')) { ?>
-				<label for="opt-misc-tagsearch">
-					<input type="hidden" name="ajax_tags" value="0" />
-					<input type="checkbox" id="opt-misc-tagsearch" name="ajax_tags" value="1" <?php if(get_tarski_option('ajax_tags')) { echo 'checked="checked" '; } ?>/>
-					<?php echo '<acronym title="' . __('Asynchronous JavaScript + XML','tarski') . '">AJAX</acronym>' . __(' tag search (requires ','tarski') . '<a href="http://www.neato.co.nz/ultimate-tag-warrior/">UTW 3.1</a>' . __(' or higher)','tarski'); ?>
-				</label>
-				<?php } ?>
 
 				<label for="opt-misc-janus">	
 					<input type="hidden" name="swap_sides" value="0" />

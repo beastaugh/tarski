@@ -39,7 +39,6 @@ if(!get_option('tarski_options')) {
 	$tarski_options['display_tagline'] = get_option('tarski_display_tagline');
 	$tarski_options['hide_categories'] = get_option('tarski_hide_categories');
 	$tarski_options['use_pages'] = get_option('tarski_use_pages');
-	$tarski_options['ajax_tags'] = get_option('tarski_ajax_tags');
 	
 	ksort($tarski_options);
 	$tarski_options = serialize($tarski_options);
@@ -71,6 +70,11 @@ if(!get_option('tarski_options')) {
 	// hopefully bypass errors?
 	echo "<script>window.location.replace('${_SERVER['REQUEST_URI']}');</script>\n";
 	exit;
+}
+
+// 1.7 tags update
+if(get_tarski_option('ajax_tags')) {
+	drop_tarski_option('ajax_tags');
 }
 
 // if no widgets, don't use the widgets sidebar
@@ -165,6 +169,10 @@ function add_tarski_option($name, $value) {
 	update_tarski_option($name, $value);
 }
 
+function drop_tarski_option($name) {
+	update_tarski_option($name, "", true);
+}
+
 // get a specific option
 function get_tarski_option($name) {
 	global $tarski_options;
@@ -172,9 +180,12 @@ function get_tarski_option($name) {
 }
 
 // update a specific option
-function update_tarski_option($name, $value) {
+function update_tarski_option($name, $value, $drop = false) {
 	global $tarski_options;
 	$tarski_options[$name] = $value;
+	if($drop == true) {
+		unset($tarski_options[$name]);
+	}
 	update_option('tarski_options', serialize($tarski_options));
 	flush_tarski_options();
 }
@@ -246,7 +257,6 @@ function tarskiupdate() {
 			'swap_sides' => $_POST['swap_sides'],
 			'asidescategory' => $_POST['asides_category'],
 			'style' => $_POST['alternate_style'],
-			'ajax_tags' => $_POST['ajax_tags'],
 			'nav_pages' => $nav_pages,
 			'sidebar_type' => $_POST['sidebartype']
 		));
