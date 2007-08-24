@@ -1,6 +1,6 @@
 <?php // loop.php - This file does the heavy lifting
 
-global $s;
+global $s; // Search string
 
 $the_author = $wpdb->get_var("SELECT display_name FROM $wpdb->users WHERE ID = '$post->post_author'"); // Author name for author archive pages
 
@@ -33,10 +33,7 @@ if($prev_post && $next_post) {
 		</div>
 		<div class="content">
 			<?php the_content(); ?>
-			<?php if(function_exists('UTW_ShowTagsForCurrentPost')) { // UTW tags
-			echo '<p class="tagdata"><strong>'; _e('Tags:', 'tarski'); echo '</strong> '; UTW_ShowTagsForCurrentPost('commalist'); echo '</p>'; } ?>
-			<?php // WP 2.2 built-in tagging, commented out for now
-			// if(function_exists('the_tags')) { the_tags('<p class="tagdata"><strong>' . __('Tags','tarski') . '</strong>', ', ', '</p>'); } ?> 
+			<?php if(function_exists('the_tags')) { the_tags('<p class="tagdata"><strong>' . __('Tags','tarski') . '</strong>', ', ', '</p>'); } ?> 
 		</div>
 		<?php link_pages_without_spaces(); ?>
 		<?php th_postend(); ?>
