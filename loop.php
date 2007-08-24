@@ -33,7 +33,7 @@ if($prev_post && $next_post) {
 		</div>
 		<div class="content">
 			<?php the_content(); ?>
-			<?php if(function_exists('the_tags')) { the_tags('<p class="tagdata"><strong>' . __('Tags','tarski') . '</strong>', ', ', '</p>'); } ?> 
+			<?php if(function_exists('the_tags')) { the_tags('<p class="tagdata"><strong>' . __('Tags','tarski') . ':</strong> ', ', ', '</p>'); } ?> 
 		</div>
 		<?php link_pages_without_spaces(); ?>
 		<?php th_postend(); ?>
