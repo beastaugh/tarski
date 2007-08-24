@@ -2,7 +2,6 @@
 /*
 Template Name: Archives
 */
-@include(TEMPLATEPATH . '/constants.php');
 get_header(); ?>
 	<div class="primary-span archive">
 		<div class="meta">

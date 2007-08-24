@@ -281,12 +281,16 @@ if (!get_tarski_option('installed')) {
 	add_tarski_option('installed', theme_version());
 	add_tarski_option('header', 'greytree.jpg');
 	add_tarski_option('blurb', __('This is the about text','tarski'));
+	add_tarski_option('update_notification','true');
 }
 
 // Here we handle upgrading our users with new options and such. If tarski_installed is in the DB but the version they are running is lower than our current version, trigger this event.
 elseif (get_tarski_option('installed') < theme_version()) {
 	if(get_tarski_option('installed') < 1.1) {
 		add_tarski_option('asidescategory', '0');
+	}
+	if(!get_tarski_option('update_notification','false') &&!get_tarski_option('update_notification','true')) {
+		add_tarski_option('update_notification','true');
 	}
 	update_tarski_option('installed', theme_version());
 }
