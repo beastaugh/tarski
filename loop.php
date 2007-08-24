@@ -123,20 +123,10 @@ if($prev_post && $next_post) {
 <?php } elseif(function_exists('is_tag')) { if(is_tag()) { // Tag archive header ?>
 	<div class="archive">
 		<div class="meta">
-			<h1 class="title"><?php
-			$format = array(
-				'pre' => '',
-				'single' => '%tagdisplay%',
-				'first' => '%tagdisplay%, ',
-				'default' => '%tagdisplay%, ',
-				'last' => '%tagdisplay%',
-				'none' => '',
-				'post' => ''
-			);
-			UTW_ShowCurrentTagSet('tagsetcommalist', $format); ?></h1>
+			<h1 class="title"><?php single_tag_title(); ?></h1>
 		</div>
 		<div class="content">
-			<p><?php _e('You are currently browsing articles tagged ', 'tarski'); echo '<strong>'; UTW_ShowCurrentTagSet('tagsetcommalist', $format); echo '</strong>'; _e('.', 'tarski');?></p>
+			<p><?php echo __('You are currently browsing articles tagged ', 'tarski') . '<strong>' . single_tag_title('',false) . '</strong>' . __('.', 'tarski'); ?></p>
 		</div>
 	</div>
 <?php } } // Closes headers ?>
@@ -251,20 +241,10 @@ elseif (is_search()) { // No results for search ?>
 <div class="primary">
 	<div class="entry">
 		<div class="meta">
-			<h1 class="title"><?php
-			$format = array(
-				'pre' => '',
-				'single' => '%tagdisplay%',
-				'first' => '%tagdisplay%, ',
-				'default' => '%tagdisplay%, ',
-				'last' => '%tagdisplay%',
-				'none' => '',
-				'post' => ''
-			);
-			UTW_ShowCurrentTagSet('tagsetcommalist', $format); ?></h1>
+			<h1 class="title"><?php single_tag_title(); ?></h1>
 		</div>
 		<div class="content">
-			<p><?php _e('There are no articles tagged ', 'tarski'); echo '<strong>'; UTW_ShowCurrentTagSet('tagsetcommalist', $format); echo '</strong>.'; _e('Try returning to the ', 'tarski'); echo '<a href="' . get_settings('home') . '">'; _e('front page', 'tarski'); echo '</a>'; _e('.', 'tarski'); ?></p>
+			<p><?php echo __('There are no articles tagged ', 'tarski'). '<strong>'. single_tag_title('',false). '</strong>'. __('. Try returning to the ', 'tarski'). '<a href="'. get_settings('home'). '">'. __('front page', 'tarski'). '</a>'. __('.','tarski'); ?></p>
 		</div>
 	</div>
 </div>

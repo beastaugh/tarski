@@ -11,11 +11,17 @@ Template Name: Tags
 		</div> <!-- /meta -->
 		
 		<div class="content">
-			<?php the_content(); ?>
+			<?php if(get_the_content() != "") { ?>
+				<?php the_content(); ?>
+				
+				<h3><?php _e('Tags','tarski'); ?></h3>
 			
-			<h3><?php _e('Tags','tarski'); ?></h3>
-			
-			<?php wp_tag_cloud(); ?>
+			<?php } ?>
+			<?php if(function_exists('wp_tag_cloud')) { ?>
+				<?php wp_tag_cloud(); ?>
+			<?php } else { ?>
+				<p><?php _e('Sorry, this version of WordPress doesn&#8217;t appear to support the tag cloud.','tarski'); ?></p>
+			<?php } ?>
 		</div> <!-- /content -->
 
 		<?php link_pages_without_spaces(); ?>
