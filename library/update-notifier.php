@@ -5,22 +5,46 @@ include(TEMPLATEPATH . '/library/feedparser/lib-entity.php');
 include(TEMPLATEPATH . '/library/feedparser/lib-utf8.php');
 
 function latest_version($option = false) {
+	// Thanks to Simon Willison for the inspiration
+	$cachefile = TEMPLATEPATH . '/library/cache/version.atom';
+	$cachetime = 60 * 60;
+
 	$parser = new FeedParserURL();
-	$result = $parser->Parse('http://tarskitheme.com/version.atom');
-	
-	if($option == 'link') {
-		return wp_specialchars($result['feed']['entries'][0]['id']);
+
+	// Serve from the cache if it is younger than $cachetime
+	if (is_writable($cachefile)
+	&& (time() - $cachetime < filemtime($cachefile))
+	&& !(file_get_contents($cachefile) == "")) {
+		$atomdata = $parser->Parse($cachefile);
+	} elseif(is_writable($cachefile)) {
+		$contents = file_get_contents('http://tarskitheme.com/version.atom');
+		$fp = fopen($cachefile, 'w');
+		fwrite($fp, $contents);
+		fclose($fp);
+		$atomdata = $parser->Parse($cachefile);
 	} else {
-		return wp_specialchars($result['feed']['entries'][0]['title']['value']);
+		$atomdata = $parser->Parse('http://tarskitheme.com/version.atom');
 	}
+	
+	return $atomdata;
+}
+
+function latest_version_number() {
+	$atomdata = latest_version();
+	return wp_specialchars($atomdata['feed']['entries'][0]['title']['value']);
+}
+
+function latest_version_link() {
+	$atomdata = latest_version();
+	return wp_specialchars($atomdata['feed']['entries']['0']['id']);
 }
 
 function version_status() {
-	if(!latest_version()) {
+	if(!latest_version_number()) {
 		return "noconn";
-	} elseif(theme_version() == latest_version()) {
+	} elseif(theme_version() == latest_version_number()) {
 		return "current";
-	} elseif(theme_version() != latest_version()) {
+	} elseif(theme_version() != latest_version_number()) {
 		return "unequal";
 	}
 }
@@ -39,7 +63,7 @@ function update_notifier_dashboard() {
 		} elseif(version_status() == "unequal") {
 			echo '<div class="updated">'."\n";
 			echo '<p>';
-			echo __('A new version of the Tarski theme, version ','tarski'). '<strong>'. latest_version(). '</strong>'. __(', ','tarski'). '<a href="'. latest_version('link'). '">'. __('is now available','tarski'). '</a>'. __('. Your installed version is ','tarski'). '<strong>'. theme_version(). '</strong>'. __('.','tarski');
+			echo __('A new version of the Tarski theme, version ','tarski'). '<strong>'. latest_version_number(). '</strong>'. __(', ','tarski'). '<a href="'. latest_version_link(). '">'. __('is now available','tarski'). '</a>'. __('. Your installed version is ','tarski'). '<strong>'. theme_version(). '</strong>'. __('.','tarski');
 			echo '</p>'."\n";
 			echo '</div>'."\n";
 		}
@@ -55,7 +79,7 @@ function update_notifier_optionspage() {
 	if((version_status() == 'unequal') && (get_tarski_option('update_notification') == 'true')) {
 		echo '<div id="tarski_update_notification" class="updated">'."\n";
 		echo '<p>';
-		echo __('A new version of the Tarski theme, version ','tarski'). '<strong>'. latest_version(). '</strong>'. __(', ','tarski'). '<a href="'. latest_version('link'). '">'. __('is now available','tarski'). '</a>'. __('. Your installed version is ','tarski'). '<strong>'. theme_version(). '</strong>'. __('.','tarski');
+		echo __('A new version of the Tarski theme, version ','tarski'). '<strong>'. latest_version_number(). '</strong>'. __(', ','tarski'). '<a href="'. latest_version_link(). '">'. __('is now available','tarski'). '</a>'. __('. Your installed version is ','tarski'). '<strong>'. theme_version(). '</strong>'. __('.','tarski');
 		echo '</p>'."\n";
 		echo '</div>'."\n";	
 	}

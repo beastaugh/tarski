@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en-GB">
+  <title>Tarski update notification</title>
+  <link href="http://tarskitheme.com/" rel="alternate"/>
+  <link href="http://tarskitheme.com/version.atom" rel="self"/>
+  <id>http://tarskitheme.com/</id>
+  <updated>2007-08-23T15:51:00Z</updated>
+  <author>
+    <name>Benedict Eastaugh</name>
+  </author>
+  <author>
+    <name>Chris Sternal-Johnson</name>
+  </author>
+  <entry>
+    <title>1.6.2</title>
+    <link href="http://tarskitheme.com/2007/08/17/16-release/" rel="alternate"/>
+    <id>http://tarskitheme.com/2007/08/17/16-release/</id>
+    <updated>2007-08-23T15:51:00Z</updated>
+    <summary>
+Tarski 1.6 features a rewritten update notification system and header selector, as well as loads of bug fixes and tweaks.    </summary>
+  </entry>
+</feed>
