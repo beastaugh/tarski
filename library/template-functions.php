@@ -97,12 +97,20 @@ function tarski_titleandtag() {
 	}
 }
 
+function home_link_name() {
+	if(get_tarski_option('home_link_name')) {
+		return get_tarski_option('home_link_name');
+	} else {
+		return __('Home','tarski');
+	}
+}
+
 // Navbar
 function tarski_navbar() {
 	$current = 'class="nav-current" ';
 	if(get_option('show_on_front') != 'page') {
 		if(is_home()) { $homeStatus = $current; }
-		echo '<li><a id="nav-home" ' . $homeStatus . 'href="' . get_settings('home') . '" rel="home">' . __('Home','tarski') . "</a></li>\n";
+		echo '<li><a id="nav-home" ' . $homeStatus . 'href="' . get_settings('home') . '" rel="home">' . home_link_name() . "</a></li>\n";
 	}
 	
 	global $wpdb;

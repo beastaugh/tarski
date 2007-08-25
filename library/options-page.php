@@ -231,12 +231,20 @@
 						echo '<label for="opt-pages-' . $page->ID . '"><input type="checkbox" id="opt-pages-' . $page->ID . '" name="nav_pages[]" value="' . $page->ID . '"';
 						if(in_array($page->ID, $nav_pages)) { echo ' checked="checked"'; }
 						echo " />\n";
-						echo '<a href="' . get_permalink($page->ID) . '">' . $page->post_title . "</a></label>\n";
+						echo $page->post_title. '&nbsp;<a title="'. __('View this page','tarski'). '" href="'. get_permalink($page->ID). '">&#8599;</a></label>'."\n";
 					}
+					echo '<p>' . __('To change the order in which they appear, edit the &#8216;Page Order&#8217; value on each page.','tarski') . "</p>\n";
 				} else {
 					echo '<p>' . __('There are no pages to select navbar items from.','tarski') . "</p>\n";
 				}					
 				?>
+				<h3><?php _e('Navigation Options','tarski'); ?></h3>
+				
+				<label for="opt-nav-homename"><?php _e('Rename your &#8216;Home&#8217; link.','tarski'); ?></label>
+				<input type="hidden" name="home_link_name" value="Home" />
+				<input type="text" id="opt-nav-homename" name="home_link_name" value="<?php if(get_tarski_option('home_link_name')) { echo get_tarski_option('home_link_name'); } else { _e('Home','tarski'); } ?>" />
+				 <p><?php _e('Note that this link is not displayed when you have a static front page.','tarski'); ?></p>
+				
 				<h3><?php _e('Miscellaneous Options','tarski'); ?></h3>
 
 				<label for="opt-misc-title">
