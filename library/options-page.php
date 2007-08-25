@@ -83,13 +83,6 @@
 						<?php _e('Pages list','tarski'); ?>
 					</label>
 	
-	<?php if(function_exists('blc_latest_comments')) { ?>
-					<label for="opt-sidebar-comments">
-						<input type="hidden" name="sidebar[comments]" value="0" />
-						<input type="checkbox" name="sidebar[comments]" value="1" id="opt-sidebar-comments" <?php if(get_tarski_option('sidebar_comments')) { echo 'checked="checked" '; } ?>/>
-						<?php _e('Latest comments','tarski'); ?>
-					</label>
-	<?php } ?>
 					<label for="opt-sidebar-links">
 						<input type="hidden" name="sidebar[links]" value="0" />
 						<input type="checkbox" name="sidebar[links]" value="1" id="opt-sidebar-links" <?php if(get_tarski_option('sidebar_links')) { echo 'checked="checked" '; } ?>/>

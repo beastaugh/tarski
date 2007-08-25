@@ -25,12 +25,6 @@ th_sidebar(); ?>
 					<?php wp_list_pages('sort_column=post_title&title_li='); ?>
 				</ul>
 			<?php } // end pages block ?>
-			<?php if(get_tarski_option('sidebar_comments') && function_exists('blc_latest_comments')) { // comments block ?>
-				<h3><?php _e('Comments', 'tarski'); ?></h3>
-				<ul class="navlist xoxo">
-					<?php blc_latest_comments(5, 6, false, "<li>", "</li>"); ?>
-				</ul>
-			<?php } ?>
 			<?php if(get_tarski_option('sidebar_links')) { // links block ?>
 				<div class="bookmarks xoxo">
 				<?php wp_list_bookmarks('category_before=&category_after=&title_before=<h3>&title_after=</h3>&show_images=0&show_description=0'); ?>
@@ -50,8 +44,8 @@ th_sidebar(); ?>
 		<?php wp_meta(); ?>
 		<?php @include(TEMPLATEPATH . '/constants.php'); tarski_output_constant($sidebarBottomInclude); ?>
 	<?php } // end onlyhome if ?>
-<?php } // end search else
-// Reset the post data incase part of the sidebar code messed it up
+<?php } // end search else ?>
+<?php // Reset the post data incase part of the sidebar code messed it up
 $wp_the_query->current_post--;
 setup_postdata($wp_query->next_post()); ?>
 </div>

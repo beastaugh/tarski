@@ -71,19 +71,6 @@ if($comments || ($post->comment_status == 'open')) { ?>
 					</div> <!-- /comment meta -->
 
 					<div class="primary content">
-						<?php
-						if (function_exists('gravatar')) {
-							if(get_comment_author_url()) {
-								echo "<a href=\"" . get_comment_author_url() . "\">";
-							}
-							echo "<img class=\"gravatar\" src=\"";
-							gravatar($comment->comment_author_email);
-							echo "\" alt=\"\" />";
-							if(get_comment_author_url()) {
-								echo "</a>";
-							}
-						}
-						?>
 						<?php comment_text() ?>
 					</div> <!-- /comment content -->
 				</div> <!-- /comment -->
@@ -114,7 +101,6 @@ if($comments || ($post->comment_status == 'open')) { ?>
 		<div id="info-input" class="secondary content">
 			<p class="userinfo"><?php _e('You are logged in as ','tarski'); ?><a href="<?php echo get_option('siteurl'); ?>/wp-admin/profile.php"><?php echo $user_identity; ?></a>.</p>
 			<p><a href="<?php echo get_option('siteurl'); ?>/wp-login.php?action=logout" title="<?php _e('Log out of this account','tarski') ?>"><?php _e('Logout &raquo;','tarski'); ?></a></p>
-			<?php if(function_exists('show_subscription_checkbox')) { show_subscription_checkbox(); } ?>
 		</div> <!-- /info fields -->
 
 	<?php } else { // if user is not logged in - name, email and website fields ?>
@@ -123,7 +109,6 @@ if($comments || ($post->comment_status == 'open')) { ?>
 			<label for="author"><?php _e('Name','tarski'); ?><input type="text" name="author" id="author" value="<?php echo $comment_author; ?>" size="22" tabindex="1" /></label>
 			<label for="email"><?php _e('Email','tarski'); ?><input type="text" name="email" id="email" value="<?php echo $comment_author_email; ?>" size="22" tabindex="2" /></label>
 			<label for="url"><?php _e('Website','tarski'); ?><input type="text" name="url" id="url" value="<?php echo $comment_author_url; ?>" size="22" tabindex="3" /></label>
-			<?php if(function_exists('show_subscription_checkbox')) { show_subscription_checkbox(); } ?>
 		</div> <!-- /info fields -->
 
 	<?php } // textarea etc. start here ?>

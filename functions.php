@@ -32,7 +32,6 @@ if(!get_option('tarski_options')) {
 	$tarski_options['footer_recent'] = get_option('tarski_footer_recent');
 	$tarski_options['sidebar_pages'] = get_option('tarski_sidebar_pages');
 	$tarski_options['sidebar_links'] = get_option('tarski_sidebar_links');
-	$tarski_options['sidebar_comments'] = get_option('tarski_sidebar_comments');
 	$tarski_options['sidebar_custom'] = get_option('tarski_sidebar_custom');
 	$tarski_options['sidebar_onlyhome'] = get_option('tarski_sidebar_onlyhome');
 	$tarski_options['display_title'] = get_option('tarski_display_title');
@@ -75,6 +74,9 @@ if(!get_option('tarski_options')) {
 // 1.7 tags update
 if(get_tarski_option('ajax_tags')) {
 	drop_tarski_option('ajax_tags');
+}
+if(get_tarski_option('sidebar_comments')) {
+	drop_tarski_option('sidebar_comments');
 }
 
 // if no widgets, don't use the widgets sidebar
@@ -246,7 +248,6 @@ function tarskiupdate() {
 			'footer_recent' => $_POST['footer']['recent'],
 			'sidebar_pages' => $_POST['sidebar']['pages'],
 			'sidebar_links' => $_POST['sidebar']['links'],
-			'sidebar_comments' => $_POST['sidebar']['comments'],
 			'sidebar_custom' => $_POST['sidebar']['custom'],
 			'sidebar_onlyhome' => $_POST['sidebar']['onlyhome'],
 			'display_title' => $_POST['display_title'],
