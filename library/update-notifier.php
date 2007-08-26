@@ -4,7 +4,6 @@ include(TEMPLATEPATH . '/library/feedparser/lib-feedparser.php');
 include(TEMPLATEPATH . '/library/feedparser/lib-entity.php');
 include(TEMPLATEPATH . '/library/feedparser/lib-utf8.php');
 
-
 function latest_version($option = false) {
 	// Thanks to Simon Willison for the inspiration
 	$cachefile = TARSKICACHE . '/version.atom';
@@ -13,11 +12,11 @@ function latest_version($option = false) {
 	$parser = new FeedParserURL();
 
 	// Serve from the cache if it is younger than $cachetime
-	if (is_writable($cachefile)
+	if (file_exists($cachefile)
 	&& (time() - $cachetime < filemtime($cachefile))
 	&& !(file_get_contents($cachefile) == "")) {
 		$atomdata = $parser->Parse($cachefile);
-	} elseif(is_writable($cachefile) || (is_writable(TARSKICACHE) && !file_exists($cachefile))) {
+	} elseif(cache_is_writable("version.atom")) {
 		$contents = file_get_contents('http://tarskitheme.com/version.atom');
 		$fp = fopen($cachefile, 'w+');
 		fwrite($fp, $contents);

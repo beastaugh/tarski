@@ -17,6 +17,18 @@ function theme_version() {
 	}
 }
 
+// Can we write to the cache?
+function cache_is_writable($file = false) {
+	if($file == "") {
+		$cachefile = false;
+	} else {
+		$cachefile = TARSKICACHE. "/". $file;
+	}
+	if(is_writable($cachefile) || (is_writable(TARSKICACHE) && !file_exists($cachefile))) {
+		return true;
+	}
+}
+
 // upgrade to serialised options, implemented in 1.4...
 if(!get_option('tarski_options')) {
 	$tarski_options = array();
