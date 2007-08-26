@@ -1,37 +1,37 @@
 <?php
 /*
 Template Name: Archives
-*/
-get_header(); ?>
-	<div class="primary-span archive">
+*/ ?>
+<?php get_header(); ?>
+<?php if (have_posts()) { while (have_posts()) { the_post(); ?>
+	<div class="primary-span entry">
 		<div class="meta">
-			<h1 class="title"><?php _e('Archives', 'tarski'); ?></h1>
-		</div>
+			<h1 class="title"><?php the_title(); ?></h1>
+			<?php edit_post_link(__('edit page','tarski'), '<p class="metadata">(', ')</p>'); ?>
+		</div> <!-- /meta -->
+		
+	<?php if(get_the_content() != "") { ?>
+		<div class="content">
+			<?php the_content(); ?>
+		</div> <!-- /content -->
+	<?php } ?>
 	</div> <!-- /page header -->
-<?php if(function_exists(srg_clean_archives)) { ?>
+
 	<div class="primary">
 		<h3><?php _e('Monthly Archives', 'tarski'); ?></h3>
 
 		<ul class="archivelist xoxo">
-		<?php srg_clean_archives(); ?>
+			<?php get_archives('monthly', '', 'html', '', '', 'TRUE'); ?>
 		</ul>
 		<?php th_postend(); ?>
 	</div> <!-- /primary -->
-<?php } else { ?>
-	<div class="primary">
-		<h3><?php _e('Monthly Archives', 'tarski'); ?></h3>
+<?php } } ?>
 
-		<ul class="archivelist xoxo">
-		<?php get_archives('monthly', '', 'html', '', '', 'TRUE'); ?>
-		</ul>
-		<?php th_postend(); ?>
-	</div> <!-- /primary -->
-<?php } ?>
 	<div class="secondary">
 	<?php if(!get_tarski_option('hide_categories')) { ?>
 		<h3><?php _e('Category Archives', 'tarski'); ?></h3>
 		<ul class="archivelist xoxo">
-		<?php wp_list_cats('sort_column=name&sort_order=desc'); ?>
+			<?php wp_list_cats('sort_column=name&sort_order=desc'); ?>
 		</ul>
 	<?php } ?>
 	<?php th_sidebar(); ?>
