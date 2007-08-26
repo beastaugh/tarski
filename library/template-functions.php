@@ -69,7 +69,7 @@ function tarski_sitetitle() {
 			$prefix = '<h1 id="blog-title">';
 			$suffix = '</h1>';
 		} else {
-			$prefix = '<p id="blog-title"><a title="' . __('Return to front page','tarski') . '" href="' . get_settings('home') . '" rel="home">';
+			$prefix = '<p id="blog-title"><a title="' . __('Return to front page','tarski') . '" href="' . get_settings('home') . '/" rel="home">';
 			$suffix = '</a></p>';
 		}
 	
@@ -110,7 +110,7 @@ function tarski_navbar() {
 	$current = 'class="nav-current" ';
 	if(get_option('show_on_front') != 'page') {
 		if(is_home()) { $homeStatus = $current; }
-		echo '<li><a id="nav-home" ' . $homeStatus . 'href="' . get_settings('home') . '" rel="home">' . home_link_name() . "</a></li>\n";
+		echo '<li><a id="nav-home" ' . $homeStatus . 'href="' . get_settings('home') . '/" rel="home">' . home_link_name() . "</a></li>\n";
 	}
 	
 	global $wpdb;
