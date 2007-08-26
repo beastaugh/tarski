@@ -3,6 +3,9 @@
 global $tarski_options;
 flush_tarski_options();
 
+// Any constants we need to set
+define('TARSKICACHE', TEMPLATEPATH.'/library/cache');
+
 // Version detection
 function theme_version() {
 	$themeData = get_theme_data(TEMPLATEPATH . '/style.css');
