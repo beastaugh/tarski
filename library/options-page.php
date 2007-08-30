@@ -251,8 +251,8 @@
 				<h3><?php _e('Miscellaneous Options','tarski'); ?></h3>
 
 				<label for="opt-misc-title">
-					<input type="hidden" name="display_title" value="lolno" />
-					<input type="checkbox" id="opt-misc-title" name="display_title" value="1" <?php if(get_tarski_option('display_title') != 'lolno') { echo 'checked="checked" '; } ?>/>
+					<input type="hidden" name="display_title" value="0" />
+					<input type="checkbox" id="opt-misc-title" name="display_title" value="1" <?php if(get_tarski_option('display_title')) { echo 'checked="checked" '; } ?>/>
 					<?php _e('Display site title','tarski'); ?>
 				</label>
 

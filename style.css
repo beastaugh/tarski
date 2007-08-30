@@ -57,6 +57,8 @@ body.left { text-align: left; }
 ----------------------------------------------- */
 #header {}
 .headerimage { padding: 0 20px 0 20px; }
+	.headerimage #header-image a { text-decoration: none; border: none; }
+	.headerimage #header-image a img { border: none; }
 .noheaderimage { padding: 20px 20px 0 20px; }
 	#title { border-bottom: 1px solid #ccc; }
 	#navigation { border-bottom: 1px solid #ccc; }

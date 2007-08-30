@@ -12,26 +12,36 @@ function tarski_header_status() {
 // Header image output
 function tarski_headerimage() {
 	if($_SERVER['HTTP_HOST'] == 'themes.wordpress.net') { // Makes the theme preview work properly
-		$headerImage = 'http://tarskitheme.com/wp-content/themes/tarski/headers/greytree.jpg';
+		$header_img_url = 'http://tarskitheme.com/wp-content/themes/tarski/headers/greytree.jpg';
 	} else {
 		if(get_tarski_option('header')) {
 			if(get_tarski_option('header') != 'blank.gif') {
-				$headerImage = get_bloginfo('template_directory') . '/headers/' . get_tarski_option('header');
+				$header_img_url = get_bloginfo('template_directory') . '/headers/' . get_tarski_option('header');
 			}
 		} else {
-			$headerImage = get_bloginfo('template_directory') . '/headers/greytree.jpg';
+			$header_img_url = get_bloginfo('template_directory') . '/headers/greytree.jpg';
 		}
 	}
 	
-	if($headerImage) {
-		echo '<div id="header-image">' . "\n";
-		if(get_theme_mod('header_image')) {
-			echo '	<img alt="' . __('Header image','tarski') . '" src="';
-			header_image();
-			echo '" />' . "\n";
+	if($header_img_url) {
+		if(!get_tarski_option('display_title')) {
+			$header_img_alt = get_bloginfo('name');
 		} else {
-			echo '	<img alt="' . __('Header image','tarski') . '" src="' . $headerImage . '" />' . "\n";
+			$header_img_alt = __('Header image','tarski');
 		}
+		
+		if(get_theme_mod('header_image')) {
+			$header_img_tag = '<img alt="'. $header_img_alt. '" src="'. get_header_image(). '" />'."\n";
+		} else {
+			$header_img_tag = '<img alt="'. $header_img_alt. '" src="'. $header_img_url. '" />'."\n";
+		}
+
+		echo '<div id="header-image">' . "\n";
+		if(!get_tarski_option('display_title') && !is_home()) {
+			echo '<a title="'. __('Return to front page','tarski'). '" href="'. get_bloginfo('home'). '">'. $header_img_tag. '</a>'."\n";
+		} else {
+			echo $header_img_tag;
+		}		
 		echo "</div>\n";
 	}
 }
@@ -61,7 +71,7 @@ function tarski_sitetitle() {
 	global $wp_query;
 	$frontPageID = get_option('page_on_front');
 	
-	if(get_tarski_option('display_title') != 'lolno') {
+	if(get_tarski_option('display_title')) {
 		if((get_option('show_on_front') == 'page') && ($frontPageID == $wp_query->post->ID)) {
 			$prefix = '<p id="blog-title">';
 			$suffix = '</p>';

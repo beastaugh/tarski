@@ -86,12 +86,15 @@ if(!get_option('tarski_options')) {
 	exit;
 }
 
-// 1.7 tags update
+// 1.7 options update
 if(get_tarski_option('ajax_tags')) {
 	drop_tarski_option('ajax_tags');
 }
 if(get_tarski_option('sidebar_comments')) {
 	drop_tarski_option('sidebar_comments');
+}
+if(get_tarski_option('display_title') == "lolno") {
+	update_tarski_option('display_title',false);
 }
 
 // if no widgets, don't use the widgets sidebar
