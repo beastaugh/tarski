@@ -149,64 +149,8 @@ while (have_posts()) { the_post(); ?>
 		</div>
 		<?php link_pages_without_spaces(); ?>
 	</div>
-<?php } th_postend(); } // End entry loop
- 
-global $wp_query;
-$wp_query->is_paged = true;
-
-/* Experimental code, not currently active (ought to work with WP trunk 2.2+)
-if(is_paged() && get_tarski_option('use_pages')) {
-	echo "<p class=\"pagination\">\n";
-	$prev_page = '';
-	$next_page = '';
-	if(is_search()) {
-		$prev_page = '<a href="' . clean_url(get_previous_posts_page_link()) . '">&laquo; ' . __('Previous results','tarski') . '</a>';
-		$next_page = '<a href="' . clean_url(get_next_posts_page_link()) . '">' . __('More results','tarski') . ' &raquo;</a>';
-	} else {
-		$prev_page = '<a href="' . clean_url(get_previous_posts_page_link()) . '">&laquo; ' . __('Older entries','tarski') . '</a>';
-		$next_page = '<a href="' . clean_url(get_next_posts_page_link()) . '">' . __('Newer entries','tarski') . ' &raquo;</a>';
-	}
-	if(strip_tags($prev_page) && strip_tags($next_page)) {
-		echo $prev_page . " &sect; " . $next_page;
-	} else {
-		echo $prev_page . $next_page;
-	}
-	echo "</p>\n";
-}
-*/
-
-// Current, hackish code
-if(is_paged() && get_tarski_option('use_pages')) {
-	echo '<p class="pagination">'."\n";
-	if(is_search() || $_GET['s']) {
-		$prev_page_text = __('Previous results','tarski');
-		$next_page_text = __('More results','tarski');
-		$prev_page = '';
-		$next_page = '';
-		$prev_page = tarski_get_output("posts_nav_link('','&laquo; $prev_page_text', '');");
-		$next_page = tarski_get_output("posts_nav_link('','','$next_page_text &raquo; ');");
-		
-		if(strip_tags($prev_page) && strip_tags($next_page)) {
-			echo $prev_page . " &sect; " . $next_page;
-		} else {
-			echo $prev_page . $next_page;
-		}
-	} else {
-		$prev_page_text = __('Older entries','tarski');
-		$next_page_text = __('Newer entries','tarski');
-		$prev_page = '';
-		$next_page = '';
-		$prev_page = tarski_get_output("posts_nav_link('','','&laquo; $prev_page_text');");
-		$next_page = tarski_get_output("posts_nav_link('','$next_page_text &raquo;','');");
-		
-		if(strip_tags($prev_page) && strip_tags($next_page)) {
-			echo $prev_page . " &sect; " . $next_page;
-		} else {
-			echo $prev_page . $next_page;
-		}
-
-	} echo "</p>\n";
-} ?>
+<?php } th_postend(); } // End entry loop ?>
+<?php tarski_next_previous(); ?>
 </div> <!-- /primary -->
 <?php } // Closes 'Everything else' section ?>
 

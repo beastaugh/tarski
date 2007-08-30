@@ -16,6 +16,73 @@ function link_pages_without_spaces() {
 	echo $text;
 }
 
+function tarski_next_previous() {
+	global $wp_query;
+	$wp_query->is_paged = true;
+	
+	// Current, hackish code
+	if(is_paged() && get_tarski_option('use_pages')) {
+		echo '<p class="pagination">'."\n";
+		if(is_search() || $_GET['s']) {
+			$prev_page_text = __('Previous results','tarski');
+			$next_page_text = __('More results','tarski');
+			$prev_page = '';
+			$next_page = '';
+			$prev_page = tarski_get_output("posts_nav_link('','&laquo; $prev_page_text', '');");
+			$next_page = tarski_get_output("posts_nav_link('','','$next_page_text &raquo; ');");
+
+			if(strip_tags($prev_page) && strip_tags($next_page)) {
+				echo $prev_page . " &sect; " . $next_page;
+			} else {
+				echo $prev_page . $next_page;
+			}
+		} else {
+			$prev_page_text = __('Older entries','tarski');
+			$next_page_text = __('Newer entries','tarski');
+			$prev_page = '';
+			$next_page = '';
+			$prev_page = tarski_get_output("posts_nav_link('','','&laquo; $prev_page_text');");
+			$next_page = tarski_get_output("posts_nav_link('','$next_page_text &raquo;','');");
+
+			if(strip_tags($prev_page) && strip_tags($next_page)) {
+				echo $prev_page . " &sect; " . $next_page;
+			} else {
+				echo $prev_page . $next_page;
+			}
+
+		} echo "</p>\n";
+	}
+	
+	/* Experimental code, not currently functioning
+	if(is_paged() && get_tarski_option('use_pages')) {
+		$prev_page = false;
+		$next_page = false;
+		if(is_search()) {
+			if(clean_url(get_previous_posts_page_link())) {
+				$prev_page = '<a href="' . clean_url(get_previous_posts_page_link()) . '">&laquo; ' . __('Previous results','tarski') . '</a>';
+			}
+			if(clean_url(get_next_posts_page_link())) {
+				$next_page = '<a href="' . clean_url(get_next_posts_page_link()) . '">' . __('More results','tarski') . ' &raquo;</a>';
+			}
+		} else {
+			if(clean_url(get_previous_posts_page_link())) {
+				$prev_page = '<a href="' . clean_url(get_previous_posts_page_link()) . '">&laquo; ' . __('Older entries','tarski') . '</a>';
+			}
+			if(clean_url(get_next_posts_page_link())) {
+				$next_page = '<a href="' . clean_url(get_next_posts_page_link()) . '">' . __('Newer entries','tarski') . ' &raquo;</a>';
+			}
+		}
+		echo '<p class="pagination">'."\n";
+		if($prev_page && $next_page) {
+			echo $prev_page . " &sect; " . $next_page;
+		} else {
+			echo $prev_page . $next_page;
+		}
+		echo "</p>\n";
+	}
+	*/
+}
+
 // A better the_date() function
 function tarski_date() {
 	global $post;
