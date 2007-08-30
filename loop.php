@@ -2,11 +2,7 @@
 
 global $s; // Search string
 
-// Author name for author archive pages
-$the_author = $wpdb->get_var("SELECT display_name FROM $wpdb->users WHERE ID = '$post->post_author'");
-
 if(have_posts()) { // Gets it all going
-
 
 if(is_single()) { // Single entry ?>
 <?php
@@ -80,10 +76,14 @@ if($prev_post && $next_post) {
 		</div>
 	<?php } elseif(is_author()) { // Author header ?>
 		<div class="meta">
-			<h1 class="title"><?php echo __('Articles by ','tarski'). $the_author; ?></h1>
+			<h1 class="title"><?php echo __('Articles by ','tarski'). the_archive_author_displayname(); ?></h1>
 		</div>
 		<div class="content">
-			<p><?php echo __('You are currently browsing ','tarski'). '<strong>'. $the_author. '</strong>'. __('&#8217;s articles.','tarski'); ?></p>
+			<?php if(the_archive_author_description()) { ?>
+				<?php echo wpautop(wptexturize(stripslashes(the_archive_author_description()))); ?>
+			<?php } else { ?>
+				<p><?php echo __('You are currently browsing ','tarski'). '<strong>'. the_archive_author_displayname(). '</strong>'. __('&#8217;s articles.','tarski'); ?></p>
+			<?php } ?>
 		</div>
 	<?php } elseif(is_day()) { // Daily archive header ?>
 		<div class="meta">

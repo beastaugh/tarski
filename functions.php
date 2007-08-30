@@ -118,6 +118,7 @@ if(!get_tarski_option('sidebar_type')) {
 // Functions and hooks - important!
 require(TEMPLATEPATH . '/library/template-functions.php');
 require(TEMPLATEPATH . '/library/content-functions.php');
+require(TEMPLATEPATH . '/library/author-functions.php');
 require(TEMPLATEPATH . '/library/tarski-hooks.php');
 require(TEMPLATEPATH . '/library/constants-hooks.php');
 require(TEMPLATEPATH . '/library/update-notifier.php');
