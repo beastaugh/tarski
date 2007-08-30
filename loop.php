@@ -5,17 +5,7 @@ global $s; // Search string
 if(have_posts()) { // Gets it all going
 
 if(is_single()) { // Single entry ?>
-<?php
-$prev_post = '';
-$next_post = '';
-$prev_post = tarski_get_output("previous_post_link('&laquo; %link');");
-$next_post = tarski_get_output("next_post_link('%link &raquo;');");
-
-if($prev_post && $next_post) {
-	echo '<p class="articlenav primary-span">' . $prev_post . ' &nbsp;&bull;&nbsp; ' . $next_post . '</p>';
-} elseif($prev_post || $next_post) {
-	echo '<p class="articlenav primary-span">' . $prev_post . $next_post . '</p>';
-} ?>
+<?php tarski_next_prev_posts(); ?>
 <div class="primary">
 <?php while(have_posts()) { the_post(); ?>
 <?php $trackbackLink = trackback_url(false); ?>
@@ -23,9 +13,9 @@ if($prev_post && $next_post) {
 		<div class="meta">
 			<h1 class="title"><?php the_title(); ?></h1>
 			<p class="metadata"><?php echo '<span class="date">'. tarski_date(). '</span>';
-			if(!get_tarski_option('hide_categories')) { echo __(' in ', 'tarski'). '<span class="categories">'; the_category(', '); echo '</span>'; }
-			if($multipleAuthors) { _e(' by ', 'tarski'); the_author_posts_link(); }
-			edit_post_link(__('edit', 'tarski'),' <span class="edit">(',')</span>'); ?></p>
+			if(!get_tarski_option('hide_categories')) { echo __(' in ','tarski'). '<span class="categories">'; the_category(', '); echo '</span>'; }
+			if($multipleAuthors) { _e(' by ','tarski'); the_author_posts_link(); }
+			edit_post_link(__('edit','tarski'),' <span class="edit">(',')</span>'); ?></p>
 		</div>
 		<div class="content">
 			<?php the_content(); ?>
@@ -45,7 +35,7 @@ if($prev_post && $next_post) {
 	<div class="entry">
 		<div class="meta">
 			<h1 class="title"><?php the_title(); ?></h1>
-			<?php edit_post_link(__('edit page', 'tarski'), '<p class="metadata"><span class="edit">(', ')</span></p>'); ?>
+			<?php edit_post_link(__('edit page','tarski'), '<p class="metadata"><span class="edit">(', ')</span></p>'); ?>
 		</div>
 		<div class="content">
 			<?php the_content(); ?>
@@ -111,7 +101,7 @@ if($prev_post && $next_post) {
 			<h1 class="title"><?php _e('Search Results','tarski'); ?></h1>
 		</div>
 		<div class="content">
-			<p><?php echo __('Your search for ', 'tarski'). '<strong>'. attribute_escape(stripslashes($s)). '</strong> '. __('returned the following results.','tarski'); ?></p>
+			<p><?php echo __('Your search for ','tarski'). '<strong>'. attribute_escape(stripslashes($s)). '</strong> '. __('returned the following results.','tarski'); ?></p>
 		</div>
 	<?php } elseif(function_exists('is_tag')) { if(is_tag()) { // Tag archive header ?>
 		<div class="meta">
@@ -131,8 +121,8 @@ if(!is_home() && !get_tarski_option('use_pages')) { $posts = query_posts($query_
 while (have_posts()) { the_post(); ?>
 <?php if(get_tarski_option('asidescategory') != 0 && in_category(get_tarski_option('asidescategory'))) { // Aside loop ?>
 	<div class="aside" id="p-<?php the_ID(); ?>">
-		<div class="content"><?php the_content(__('Read the rest of this entry &raquo;', 'tarski')); ?></div>
-		<p class="meta"><span class="date"><?php echo tarski_date(); ?></span><?php if($multipleAuthors) { _e(' by ', 'tarski'); the_author_posts_link(); } ?> | <a class="comments-link" href="<?php the_permalink(); ?>"><?php if($post->comment_status == 'open' || $post->comment_count > 0) { comments_number(__('No comments', 'tarski'), __('1 comment', 'tarski'), '%' . __(' comments', 'tarski')); } else { _e('Permalink', 'tarski'); } ?></a><?php edit_post_link(__('edit', 'tarski'), ' (', ')'); ?></p>
+		<div class="content"><?php the_content(__('Read the rest of this entry &raquo;','tarski')); ?></div>
+		<p class="meta"><span class="date"><?php echo tarski_date(); ?></span><?php if($multipleAuthors) { _e(' by ','tarski'); the_author_posts_link(); } ?> | <a class="comments-link" href="<?php the_permalink(); ?>"><?php if($post->comment_status == 'open' || $post->comment_count > 0) { comments_number(__('No comments','tarski'), __('1 comment','tarski'), '%' . __(' comments','tarski')); } else { _e('Permalink', 'tarski'); } ?></a><?php edit_post_link(__('edit','tarski'), ' (', ')'); ?></p>
 	</div>
 <?php } else { // Non-Aside loop ?>
 	<div class="entry">
@@ -145,12 +135,12 @@ while (have_posts()) { the_post(); ?>
 			edit_post_link(__('edit', 'tarski'),' <span class="edit">(',')</span>'); ?></p>
 		</div>
 		<div class="content">
-			<?php the_content(__('Read the rest of this entry &raquo;', 'tarski')); ?>
+			<?php the_content(__('Read the rest of this entry &raquo;','tarski')); ?>
 		</div>
 		<?php link_pages_without_spaces(); ?>
 	</div>
 <?php } th_postend(); } // End entry loop ?>
-<?php tarski_next_previous(); ?>
+<?php tarski_next_prev_pages(); ?>
 </div> <!-- /primary -->
 <?php } // Closes 'Everything else' section ?>
 
@@ -164,38 +154,24 @@ elseif (is_search()) { // No results for search ?>
 <div class="primary">
 	<div class="entry">
 		<div class="meta">
-			<h1 class="title"><?php _e('No results', 'tarski'); ?></h1>
+			<h1 class="title"><?php _e('No results','tarski'); ?></h1>
 		</div>
 		<div class="content">
-			<p><?php echo __('Your search for ', 'tarski') . '<strong>' . attribute_escape(stripslashes($s)) . '</strong>' . __(' returned no results. Try returning to the ', 'tarski') . '<a href="' . get_settings('home') . '">' . __('front page', 'tarski') . '</a>' . __('.', 'tarski'); ?></p>
+			<p><?php echo __('Your search for ','tarski'). '<strong>'. attribute_escape(stripslashes($s)). '</strong>'. __(' returned no results. Try returning to the ','tarski'). '<a href="'. get_settings('home'). '">'. __('front page', 'tarski'). '</a>'. __('.','tarski'); ?></p>
 		</div>
 	</div>
 </div>
 
 
 
-<?php } elseif(function_exists('is_tag')) { if(is_tag()) { // No results for tag ?>
+<?php } else { // No dice... ?>
 <div class="primary">
 	<div class="entry">
 		<div class="meta">
-			<h1 class="title"><?php single_tag_title(); ?></h1>
+			<h1 class="title"><?php _e('Sorry','tarski'); ?></h1>
 		</div>
 		<div class="content">
-			<p><?php echo __('There are no articles tagged ', 'tarski'). '<strong>'. single_tag_title('',false). '</strong>'. __('. Try returning to the ', 'tarski'). '<a href="'. get_settings('home'). '">'. __('front page', 'tarski'). '</a>'. __('.','tarski'); ?></p>
-		</div>
-	</div>
-</div>
-
-
-
-<?php } } else { // No dice... ?>
-<div class="primary">
-	<div class="entry">
-		<div class="meta">
-			<h1 class="title"><?php _e('Sorry', 'tarski'); ?></h1>
-		</div>
-		<div class="content">
-			<p><?php _e('Looks like there&#8127;s nothing here, sorry. You might want to try the search function. Alternatively, return to the ', 'tarski'); ?><a href="<?php echo get_settings('home'); ?>"><?php _e('front page', 'tarski'); ?></a><?php _e('.', 'tarski'); ?></p>
+			<p><?php _e('Looks like there&#8127;s nothing here, sorry. You might want to try the search function. Alternatively, return to the ','tarski'); ?><a href="<?php echo get_settings('home'); ?>/"><?php _e('front page','tarski'); ?></a><?php _e('.','tarski'); ?></p>
 		</div>
 	</div>
 </div>

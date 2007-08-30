@@ -4,6 +4,20 @@
 $count_users = $wpdb->get_var("SELECT COUNT(*) FROM $wpdb->usermeta WHERE `meta_key` = '" . $wpdb->prefix . "user_level' AND `meta_value` > 1");
 	if ($count_users > 1) { $multipleAuthors = 1; }
 
+//
+function tarski_next_prev_posts() {
+	$prev_post = '';
+	$next_post = '';
+	$prev_post = tarski_get_output("previous_post_link('&laquo; %link');");
+	$next_post = tarski_get_output("next_post_link('%link &raquo;');");
+
+	if($prev_post && $next_post) {
+		echo '<p class="articlenav primary-span">' . $prev_post . ' &nbsp;&bull;&nbsp; ' . $next_post . '</p>';
+	} elseif($prev_post || $next_post) {
+		echo '<p class="articlenav primary-span">' . $prev_post . $next_post . '</p>';
+	}
+}
+
 // Clean page linkage
 function link_pages_without_spaces() {
 	ob_start();
@@ -16,7 +30,7 @@ function link_pages_without_spaces() {
 	echo $text;
 }
 
-function tarski_next_previous() {
+function tarski_next_prev_pages() {
 	global $wp_query;
 	$wp_query->is_paged = true;
 	
