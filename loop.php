@@ -2,13 +2,13 @@
 
 global $s; // Search string
 
-$the_author = $wpdb->get_var("SELECT display_name FROM $wpdb->users WHERE ID = '$post->post_author'"); // Author name for author archive pages
+// Author name for author archive pages
+$the_author = $wpdb->get_var("SELECT display_name FROM $wpdb->users WHERE ID = '$post->post_author'");
+
+if(have_posts()) { // Gets it all going
 
 
-if (have_posts()) { // Gets it all going
-
-
-if (is_single()) { // Single entry ?>
+if(is_single()) { // Single entry ?>
 <?php
 $prev_post = '';
 $next_post = '';
@@ -26,10 +26,10 @@ if($prev_post && $next_post) {
 	<div class="entry">
 		<div class="meta">
 			<h1 class="title"><?php the_title(); ?></h1>
-			<p class="metadata"><?php echo tarski_date();
-			if(!get_tarski_option('hide_categories')) { _e(' in ', 'tarski'); the_category(', '); }
+			<p class="metadata"><?php echo '<span class="date">'. tarski_date(). '</span>';
+			if(!get_tarski_option('hide_categories')) { echo __(' in ', 'tarski'). '<span class="categories">'; the_category(', '); echo '</span>'; }
 			if($multipleAuthors) { _e(' by ', 'tarski'); the_author_posts_link(); }
-			edit_post_link(__('edit', 'tarski'),' (',')'); ?></p>
+			edit_post_link(__('edit', 'tarski'),' <span class="edit">(',')</span>'); ?></p>
 		</div>
 		<div class="content">
 			<?php the_content(); ?>
@@ -49,7 +49,7 @@ if($prev_post && $next_post) {
 	<div class="entry">
 		<div class="meta">
 			<h1 class="title"><?php the_title(); ?></h1>
-			<?php edit_post_link(__('edit page', 'tarski'), '<p class="metadata">(', ')</p>'); ?>
+			<?php edit_post_link(__('edit page', 'tarski'), '<p class="metadata"><span class="edit">(', ')</span></p>'); ?>
 		</div>
 		<div class="content">
 			<?php the_content(); ?>
@@ -62,74 +62,67 @@ if($prev_post && $next_post) {
 
 
 
-<?php } elseif (is_home() || is_archive() || is_search() || is_tag()) { // Everything else ?>
+<?php } elseif(is_home() || is_archive() || is_search()) { // Everything else ?>
 <div class="primary">
-<?php if(is_home()) { // Home page header
-// For use when you want something at the top of your home page
-} elseif(is_category()) { // Category header ?>
+
+<?php if(is_archive() || is_search()) { ?>
 	<div class="archive">
+	<?php if(is_category()) { // Category header ?>
 		<div class="meta">
 			<h1><?php echo single_cat_title(); ?></h1>
 		</div>
 		<div class="content">
-			<p><?php _e('You are currently browsing the archive for the ', 'tarski'); echo '<strong>'; single_cat_title(); echo '</strong>'; _e(' category.', 'tarski'); ?></p>
+			<p><?php if(category_description()) {
+				echo category_description();
+			} else {
+				echo __('You are currently browsing the archive for the ','tarski'). '<strong>'; single_cat_title(); echo '</strong>'. __(' category.','tarski');
+			} ?></p>
 		</div>
-	</div>
-<?php } elseif(is_author()) { // Author header ?>
-	<div class="archive">
+	<?php } elseif(is_author()) { // Author header ?>
 		<div class="meta">
-			<h1 class="title"><?php echo 'Articles by ' . $the_author; ?></h1>
+			<h1 class="title"><?php echo __('Articles by ','tarski'). $the_author; ?></h1>
 		</div>
 		<div class="content">
-			<p><?php _e('You are currently browsing ', 'tarski'); echo '<strong>' . $the_author . '</strong>'; _e('&#8217;s articles.', 'tarski'); ?></p>
+			<p><?php echo __('You are currently browsing ','tarski'). '<strong>'. $the_author. '</strong>'. __('&#8217;s articles.','tarski'); ?></p>
 		</div>
-	</div>
-<?php } elseif(is_day()) { // Daily archive header ?>
-	<div class="archive">
+	<?php } elseif(is_day()) { // Daily archive header ?>
 		<div class="meta">
 			<h1 class="title"><?php echo tarski_date(); ?></h1>
 		</div>
 		<div class="content">
-			<p><?php _e('You are currently browsing the daily archive for ', 'tarski'); echo '<strong>' . tarski_date() . '</strong>.'; ?></p>
+			<p><?php _e('You are currently browsing the daily archive for ','tarski'); echo '<strong>' . tarski_date() . '</strong>.'; ?></p>
 		</div>
-	</div>
-<?php } elseif(is_month()) { // Monthly archive header ?>
-	<div class="archive">
+	<?php } elseif(is_month()) { // Monthly archive header ?>
 		<div class="meta">
 			<h1 class="title"><?php the_time('F Y'); ?></h1>
 		</div>
 		<div class="content">
-			<p><?php _e('You are currently browsing the monthly archive for ', 'tarski'); echo '<strong>'; the_time('F Y'); echo '</strong>.'; ?></p>
+			<p><?php _e('You are currently browsing the monthly archive for ','tarski'); echo '<strong>'; the_time('F Y'); echo '</strong>.'; ?></p>
 		</div>
-	</div>
-<?php } elseif(is_year()) { // Yearly archive header ?>
-	<div class="archive">
+	<?php } elseif(is_year()) { // Yearly archive header ?>
 		<div class="meta">
 			<h1 class="title"><?php the_time('Y'); ?></h1>
 		</div>
 		<div class="content">
-			<p><?php _e('You are currently browsing the yearly archive for ', 'tarski'); echo '<strong>'; the_time('Y'); echo '</strong>.'; ?></p>
+			<p><?php echo __('You are currently browsing the yearly archive for ','tarski'). '<strong>'; the_time('Y'); echo '</strong>.'; ?></p>
 		</div>
-	</div>
-<?php } elseif(is_search()) { // Search results header ?>
-	<div class="archive">
+	<?php } elseif(is_search()) { // Search results header ?>
 		<div class="meta">
-			<h1 class="title"><?php _e('Search Results', 'tarski'); ?></h1>
+			<h1 class="title"><?php _e('Search Results','tarski'); ?></h1>
 		</div>
 		<div class="content">
-			<p><?php _e('Your search for ', 'tarski'); echo '<strong>' . attribute_escape(stripslashes($s)) . '</strong> '; _e('returned the following results.', 'tarski'); ?></p>
+			<p><?php echo __('Your search for ', 'tarski'). '<strong>'. attribute_escape(stripslashes($s)). '</strong> '. __('returned the following results.','tarski'); ?></p>
 		</div>
-	</div>
-<?php } elseif(function_exists('is_tag')) { if(is_tag()) { // Tag archive header ?>
-	<div class="archive">
+	<?php } elseif(function_exists('is_tag')) { if(is_tag()) { // Tag archive header ?>
 		<div class="meta">
 			<h1 class="title"><?php single_tag_title(); ?></h1>
 		</div>
 		<div class="content">
-			<p><?php echo __('You are currently browsing articles tagged ', 'tarski') . '<strong>' . single_tag_title('',false) . '</strong>' . __('.', 'tarski'); ?></p>
+			<p><?php echo __('You are currently browsing articles tagged ','tarski'). '<strong>'. single_tag_title('',false). '</strong>'. __('.','tarski'); ?></p>
 		</div>
+	<?php } } ?>
 	</div>
-<?php } } // Closes headers ?>
+<?php } // Closes headers ?>
 
 
 
@@ -139,17 +132,17 @@ while (have_posts()) { the_post(); ?>
 <?php if(get_tarski_option('asidescategory') != 0 && in_category(get_tarski_option('asidescategory'))) { // Aside loop ?>
 	<div class="aside" id="p-<?php the_ID(); ?>">
 		<div class="content"><?php the_content(__('Read the rest of this entry &raquo;', 'tarski')); ?></div>
-		<p class="meta"><?php echo tarski_date(); if($multipleAuthors) { _e(' by ', 'tarski'); the_author_posts_link(); } echo ' | '; ?><a href="<?php the_permalink(); ?>"><?php if($post->comment_status == 'open' || $post->comment_count > 0) { comments_number(__('No comments', 'tarski'), __('1 comment', 'tarski'), '%' . __(' comments', 'tarski')); } else { _e('Permalink', 'tarski'); } ?></a><?php edit_post_link(__('edit', 'tarski'), ' (', ')'); ?></p>
+		<p class="meta"><span class="date"><?php echo tarski_date(); ?></span><?php if($multipleAuthors) { _e(' by ', 'tarski'); the_author_posts_link(); } ?> | <a class="comments-link" href="<?php the_permalink(); ?>"><?php if($post->comment_status == 'open' || $post->comment_count > 0) { comments_number(__('No comments', 'tarski'), __('1 comment', 'tarski'), '%' . __(' comments', 'tarski')); } else { _e('Permalink', 'tarski'); } ?></a><?php edit_post_link(__('edit', 'tarski'), ' (', ')'); ?></p>
 	</div>
 <?php } else { // Non-Aside loop ?>
 	<div class="entry">
 		<div class="meta">
-			<h2 class="title" id="post-<?php the_ID(); ?>"><a href="<?php the_permalink(); ?>" rel="bookmark" title="<?php _e('Permanent Link to ', 'tarski'); the_title(); ?>"><?php the_title(); ?></a></h2>
-			<p class="metadata"><?php echo tarski_date();
-			if(!get_tarski_option('hide_categories')) { _e(' in ', 'tarski'); the_category(', '); }
-			if($multipleAuthors) { _e(' by ', 'tarski'); the_author_posts_link(); }
-			if($post->comment_status == 'open' || $post->comment_count > 0) { echo ' | '; comments_popup_link(__('No comments', 'tarski'), __('1 comment', 'tarski'), '%' . __(' comments', 'tarski'), '', __('Comments closed', 'tarski')); }
-			edit_post_link(__('edit', 'tarski'),' (',')'); ?></p>
+			<h2 class="title" id="post-<?php the_ID(); ?>"><a href="<?php the_permalink(); ?>" rel="bookmark" title="<?php _e('Permanent Link to ','tarski'); the_title(); ?>"><?php the_title(); ?></a></h2>
+			<p class="metadata"><?php echo '<span class="date">'. tarski_date(). '</span>';
+			if(!get_tarski_option('hide_categories')) { echo __(' in ','tarski'). '<span class="categories">'; the_category(', '); echo '</span>'; }
+			if($multipleAuthors) { _e(' by ','tarski'); the_author_posts_link(); }
+			if($post->comment_status == 'open' || $post->comment_count > 0) { echo ' | '; comments_popup_link(__('No comments', 'tarski'), __('1 comment', 'tarski'), '%' . __(' comments', 'tarski'), 'comments-link', __('Comments closed', 'tarski')); }
+			edit_post_link(__('edit', 'tarski'),' <span class="edit">(',')</span>'); ?></p>
 		</div>
 		<div class="content">
 			<?php the_content(__('Read the rest of this entry &raquo;', 'tarski')); ?>
@@ -184,7 +177,7 @@ if(is_paged() && get_tarski_option('use_pages')) {
 
 // Current, hackish code
 if(is_paged() && get_tarski_option('use_pages')) {
-	echo "<p class=\"pagination\">\n";
+	echo '<p class="pagination">'."\n";
 	if(is_search() || $_GET['s']) {
 		$prev_page_text = __('Previous results','tarski');
 		$next_page_text = __('More results','tarski');
@@ -214,7 +207,7 @@ if(is_paged() && get_tarski_option('use_pages')) {
 
 	} echo "</p>\n";
 } ?>
-</div>
+</div> <!-- /primary -->
 <?php } // Closes 'Everything else' section ?>
 
 
