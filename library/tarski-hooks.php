@@ -15,10 +15,6 @@ function th_postend() { // Post end hook
 	do_action('th_postend');
 }
 
-function th_commentform() { // Post end hook
-	do_action('th_commentform');
-}
-
 function th_sidebar() { // Sidebar hook
 	do_action('th_sidebar');
 }
