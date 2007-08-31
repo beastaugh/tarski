@@ -1,10 +1,6 @@
 <?php // content-functions.php - Content formatting for Tarski
 
-// Multiple user check
-$count_users = $wpdb->get_var("SELECT COUNT(*) FROM $wpdb->usermeta WHERE `meta_key` = '" . $wpdb->prefix . "user_level' AND `meta_value` > 1");
-	if ($count_users > 1) { $multipleAuthors = 1; }
-
-//
+// Next and previous post links
 function tarski_next_prev_posts() {
 	$prev_post = '';
 	$next_post = '';
@@ -18,7 +14,7 @@ function tarski_next_prev_posts() {
 	} 
 }
 
-// Clean page linkage
+// Clean page split links
 function link_pages_without_spaces() {
 	ob_start();
 	link_pages('<p class="pagelinks"><strong>Pages</strong>', '</p>', 'number', '', '', '%', '');
@@ -30,6 +26,7 @@ function link_pages_without_spaces() {
 	echo $text;
 }
 
+// Older and newer pages of posts links
 function tarski_next_prev_pages() {
 	global $wp_query;
 	$wp_query->is_paged = true;

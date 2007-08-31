@@ -2,12 +2,16 @@
 
 function tarski_author_posts_link() {
 	global $authordata;
-	printf( 
-		'<a href="%1$s" title="%2$s" class="author">%3$s</a>', 
-		get_author_posts_url($authordata->ID, $authordata->user_nicename), 
-		sprintf(__('Articles by %s','tarski'), attribute_escape(get_the_author())), 
-		get_the_author()
-	);
+	global $wpdb;
+	$count_users = $wpdb->get_var("SELECT COUNT(*) FROM $wpdb->usermeta WHERE `meta_key` = '" . $wpdb->prefix . "user_level' AND `meta_value` > 1");
+	if($count_users > 1) {
+		printf(
+			__(' by ','tarski'). '<a href="%1$s" title="%2$s" class="author">%3$s</a>', 
+			get_author_posts_url($authordata->ID, $authordata->user_nicename), 
+			sprintf(__('Articles by %s','tarski'), attribute_escape(get_the_author())), 
+			get_the_author()
+		);
+	}
 }
 
 function the_archive_author() {
