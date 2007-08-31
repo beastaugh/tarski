@@ -146,68 +146,72 @@ function tarski_navbar() {
 }
 
 // Body classes
-function tarski_bodyclass() {
-	if(get_tarski_option('centered_theme')) { // Centred or not
-		echo 'center';
-	} else {
-		echo 'left';
-	}
-	if(get_tarski_option('swap_sides')) { // Swapped or not
-		echo ' janus';
-	}
-	if(get_tarski_option('style')) { // Alternate style
-		echo ' ' . str_replace('.css', '', get_tarski_option('style'));
-	}
-	if (is_page() || is_single() || is_404()) { // Is it a single page?
-		echo ' single';
+if(!function_exists('tarski_bodyclass')) {
+	function tarski_bodyclass() {
+		if(get_tarski_option('centered_theme')) { // Centred or not
+			echo 'center';
+		} else {
+			echo 'left';
+		}
+		if(get_tarski_option('swap_sides')) { // Swapped or not
+			echo ' janus';
+		}
+		if(get_tarski_option('style')) { // Alternate style
+			echo ' ' . str_replace('.css', '', get_tarski_option('style'));
+		}
+		if (is_page() || is_single() || is_404()) { // Is it a single page?
+			echo ' single';
+		}
 	}
 }
 
 // Body ids
-function tarski_bodyid() {
-	global $post, $wp_query;
+if(!function_exists('tarski_bodyid')) {
+	function tarski_bodyid() {
+		global $post, $wp_query;
 	
-	if(is_home()) {
-		return 'home';
-	} elseif(is_search()) {
-		return 'search';
-	} elseif(is_page()) {
-		return 'page-'. $post->slug;
-	} elseif(is_single()) {
-		return 'post-'. $post->slug;
-	} elseif(is_category()) {
-		$cat_ID = get_query_var('cat');
-		$cat_ID = (int) $cat_ID;
-		$category = &get_category($cat_ID);
-		$cat_slug = apply_filters('single_cat_title', $category->category_nicename);
-		return 'cat-'. $cat_slug;
-	} elseif(function_exists('is_tag')) {
-		if(is_tag()) {
-			$tag_ID = get_query_var('tag');
-			$tag_ID = (int) $tag_ID;
-			$tag = &get_term($tag_ID);
-			$tag_slug = apply_filters('single_tag_title', $tag->category_nicename);
-			return 'tag-'. $tag_slug;
+		if(is_home()) {
+			return 'home';
+		} elseif(is_search()) {
+			return 'search';
+		} elseif(is_page()) {
+			return 'page-'. $post->slug;
+		} elseif(is_single()) {
+			return 'post-'. $post->slug;
+		} elseif(is_category()) {
+			$cat_ID = get_query_var('cat');
+			$cat_ID = (int) $cat_ID;
+			$category = &get_category($cat_ID);
+			$cat_slug = apply_filters('single_cat_title', $category->category_nicename);
+			return 'cat-'. $cat_slug;
+		} elseif(function_exists('is_tag')) {
+			if(is_tag()) {
+				$tag_ID = get_query_var('tag');
+				$tag_ID = (int) $tag_ID;
+				$tag = &get_term($tag_ID);
+				$tag_slug = apply_filters('single_tag_title', $tag->category_nicename);
+				return 'tag-'. $tag_slug;
+			}
+		} elseif(is_author()) {
+			$author = the_archive_author();
+			$author_slug = $author->user_login;
+			return 'author-'. $author_slug;
+		} elseif(is_date()) {
+			$year = get_query_var('year');
+			$monthnum = get_query_var('monthnum');
+			$day = get_query_var('day');
+			if(is_year()) {
+				return 'date-'. $year;
+			} elseif(is_month()) {
+				return 'date-'. $year. '-'. $monthnum;
+			} elseif(is_day()) {
+				return 'date-'. $year. '-'. $monthnum. '-'. $day;
+			}
+		} elseif(is_404()) {
+			return '404';
+		} else {
+			return 'unknown';
 		}
-	} elseif(is_author()) {
-		$author = the_archive_author();
-		$author_slug = $author->user_login;
-		return 'author-'. $author_slug;
-	} elseif(is_date()) {
-		$year = get_query_var('year');
-		$monthnum = get_query_var('monthnum');
-		$day = get_query_var('day');
-		if(is_year()) {
-			return 'date-'. $year;
-		} elseif(is_month()) {
-			return 'date-'. $year. '-'. $monthnum;
-		} elseif(is_day()) {
-			return 'date-'. $year. '-'. $monthnum. '-'. $day;
-		}
-	} elseif(is_404()) {
-		return '404';
-	} else {
-		return 'unknown';
 	}
 }
 
