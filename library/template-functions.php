@@ -69,10 +69,10 @@ function tarski_doctitle() {
 // Returns site title in markup
 function tarski_sitetitle() {
 	global $wp_query;
-	$frontPageID = get_option('page_on_front');
+	$front_page_id = get_option('page_on_front');
 	
 	if(get_tarski_option('display_title')) {
-		if((get_option('show_on_front') == 'page') && ($frontPageID == $wp_query->post->ID)) {
+		if((get_option('show_on_front') == 'page') && ($front_page_id == $wp_query->post->ID)) {
 			$prefix = '<p id="blog-title">';
 			$suffix = '</p>';
 		} elseif((get_option('show_on_front') == 'posts') && is_home()) {
@@ -96,14 +96,14 @@ function tarski_tagline() {
 
 // Outputs site title and tagline
 function tarski_titleandtag() {
-	$openingTag = '<div id="title">';
-	$closingTag = '</div>';
+	$opening_tag = '<div id="title">';
+	$closing_tag = '</div>';
 	
 	if(tarski_tagline() || tarski_sitetitle()) {
-		echo $openingTag . "\n";
+		echo $opening_tag . "\n";
 		echo tarski_sitetitle() . "\n";
 		echo tarski_tagline() . "\n";
-		echo $closingTag . "\n";
+		echo $closing_tag . "\n";
 	}
 }
 

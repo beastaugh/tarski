@@ -15,7 +15,7 @@ function tarski_next_prev_posts() {
 		echo '<p class="articlenav primary-span">' . $prev_post . ' &nbsp;&bull;&nbsp; ' . $next_post . '</p>';
 	} elseif($prev_post || $next_post) {
 		echo '<p class="articlenav primary-span">' . $prev_post . $next_post . '</p>';
-	}
+	} 
 }
 
 // Clean page linkage

@@ -14,7 +14,7 @@ Theme URI: http://tarskitheme.com/
 Description: An elegant, flexible theme developed by <a href="http://extralogical.net/">Ben Eastaugh</a> and <a href="http://ceejayoz.com/">Chris Sternal-Johnson</a>
 Author: Benedict Eastaugh and Chris Sternal-Johnson
 Author URI: http://tarskitheme.com/
-Version: 1.7-alpha
+Version: 1.7-alpha2
 .
 Released under the <a href="http://www.opensource.org/licenses/gpl-license.php">GPL</a>.
 .
@@ -171,16 +171,15 @@ body.left { text-align: left; }
 		/* Tags & Tags page
 		--------------------------------------- */
 		.tagdata { font-size: 0.8em; color: #a8a8a8; clear: both; }
-		.tagcloud { margin: 1em 0 2em 0; line-height: 150%; }
-		.tagcloud a { border: none !important; }		
-		#searchselector { margin: 0.5em 0 1em 0; }
+		.tagcloud { line-height: 1.5; }
+		.content .tagcloud a:link, .content .tagcloud a:visited, .content .tagcloud a:hover, .content .tagcloud a:active { border: none; }
 
 		/* Search content
 		--------------------------------------- */
-			.post-brief { margin: 0 0 2em 0; }
-				.post-brief h3 { margin: 0 0 0.2em 0; }
-				.post-brief p.post-metadata { color: #a8a8a8; margin: 0 0 0.2em 0; border: none; padding: 0; }
-				.post-brief p.excerpt { margin: 0; }
+		.post-brief { margin: 0 0 2em 0; }
+			.post-brief h3 { margin: 0 0 0.2em 0; }
+			.post-brief p.post-metadata { color: #a8a8a8; margin: 0 0 0.2em 0; border: none; padding: 0; }
+			.post-brief p.excerpt { margin: 0; }
 			
 		/* Comments
 		--------------------------------------- */
@@ -197,9 +196,6 @@ body.left { text-align: left; }
 		.comment { margin: 0; border-top: 1px solid #ccc; padding: 0.5em 0; }
 			.comment-permalink { font-size: 0.8em; margin: 0; }
 			.comment-author { margin: 0 0 0.5em 0; }
-			.gravatar { border: none; float: right; margin: 0 0 3px 6px; }
-			.comment a:link .gravatar, .comment a:visited .gravatar, .comment a:hover, .gravatar, .comment a:active .gravatar { border: none; }
-			body.janus .gravatar { float: left; margin: 0 6px 3px 0; }
 		.moderated { background: #fcffff; }
 			.moderated .primary-span { border-bottom: 1px dotted #e5e5e5; padding-bottom: 0.5em; background: url('images/moderated.gif') no-repeat 100% 50%; }
 		.author-comment {}
@@ -208,7 +204,6 @@ body.left { text-align: left; }
 		
 		#respond { margin: 0; border-top: 1px solid #ccc; padding: 1em 0 0 0; overflow: auto; clear: both; }
 			.comments-info { font-size: 0.8em; margin: 0.6em 0 1em 220px; border-bottom: 1px solid #ccc; padding: 0 0 1.2em 0; }
-		#commentPreview { margin: 1em 0 0 0; }			
 		
 		/* Lists
 		--------------------------------------- */
@@ -240,6 +235,7 @@ body.left { text-align: left; }
 					p.recent-excerpt { line-height: 1.4; margin: 0 0 1em 0; }
 			#blurb {}
 			#theme-info { margin: 0.5em 0 0 0; border-top: 3px double #ccc; padding: 1em 0 0.5em 0; color: #a8a8a8; }
+			
 /* Forms
 ----------------------------------------------- */
 input { font-family: Verdana, Helvetica, Arial, sans-serif; font-size: 100%; }
@@ -293,7 +289,7 @@ a:hover { color: #a8001c; }
 .widgets .widget_gsearch div { text-align: left !important; margin: 0 0 1em 0; }
 
 .widgets #wp-calendar { width: 100%; }
-	.widget_calendar table, .widget_calendar tr, widget_calendar th { text-align: left; }
+	.widget_calendar table, .widget_calendar tr, .widget_calendar th { text-align: left; }
 	.widgets #wp-calendar caption { text-align: left; font-size: 0.8em; font-weight: normal; color: #8fbf60; text-transform: uppercase; letter-spacing: 0.1em; margin: 0 0 0.8em 0; border-bottom: 1px solid #e5e5e5; padding: 0 0 0.4em 0; }
 
 .widget_search { margin: 0 0 1em 0; }

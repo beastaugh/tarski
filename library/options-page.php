@@ -224,7 +224,7 @@
 				<?php
 				global $wpdb;
 
-				$results = $wpdb->get_results("SELECT ID, post_title from $wpdb->posts WHERE post_type='page' ORDER BY post_parent, menu_order");
+				$results = $wpdb->get_results("SELECT ID, post_title from $wpdb->posts WHERE post_type = 'page' AND post_status = 'publish' ORDER BY post_parent, menu_order");
 					
 				$nav_pages = explode(',', get_tarski_option('nav_pages'));
 					
