@@ -32,7 +32,7 @@
 <?php wp_head(); ?>
 </head>
 
-<body class="<?php tarski_bodyclass(); ?>"><div id="wrapper">
+<body id="<?php echo tarski_bodyid(); ?>" class="<?php tarski_bodyclass(); ?>"><div id="wrapper">
 
 <div id="header" class="<?php tarski_header_status(); ?>">
 

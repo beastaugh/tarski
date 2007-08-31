@@ -105,14 +105,14 @@ function tarski_output_footerinclude() {
 // Output $errorPageInclude
 function tarski_output_errorinclude() {
 	global $errorPageInclude;
-	if($errorPageInclude) {
-		echo $errorPageInclude;
-	} else {
-		echo '<p>' . __('The page you are looking for does not exist; it may have been moved, or removed altogether. You might want to try the search function or return to the ','tarski') . '<a href="' . get_settings('home') . '">' . __('front page','tarski') . '</a>' . __('.','tarski') . "</p>\n";
-	}
+	tarski_output_constant($errorPageInclude);
 }
 
 if(file_exists(TEMPLATEPATH . '/constants.php')) {
+	if($errorPageInclude) {
+		remove_action('th_404_content','tarski_404_default_text');
+	}
+	
 	add_action('wp_head','tarski_output_headinclude');
 	add_action('th_postend','tarski_output_frontpageinclude');
 	add_action('th_postend','tarski_output_postendinclude');
@@ -124,7 +124,7 @@ if(file_exists(TEMPLATEPATH . '/constants.php')) {
 	add_action('th_fsidebar','tarski_output_searchtopinclude',9);
 	add_action('th_fsidebar','tarski_output_searchbottominclude',11);
 	add_action('th_footer','tarski_output_footerinclude');
-	add_action('th_404','tarski_output_errorinclude');
+	add_action('th_404_content','tarski_output_errorinclude');
 }
 
 // ~fin~ ?>

@@ -163,16 +163,58 @@ function tarski_bodyclass() {
 	}
 }
 
+// Body ids
+function tarski_bodyid() {
+	global $post, $wp_query;
+	
+	if(is_home()) {
+		return 'home';
+	} elseif(is_search()) {
+		return 'search';
+	} elseif(is_page()) {
+		return 'page-'. $post->slug;
+	} elseif(is_single()) {
+		return 'post-'. $post->slug;
+	} elseif(is_category()) {
+		$cat_ID = get_query_var('cat');
+		$cat_ID = (int) $cat_ID;
+		$category = &get_category($cat_ID);
+		$cat_slug = apply_filters('single_cat_title', $category->category_nicename);
+		return 'cat-'. $cat_slug;
+	} elseif(function_exists('is_tag')) {
+		if(is_tag()) {
+			$tag_ID = get_query_var('tag');
+			$tag_ID = (int) $tag_ID;
+			$tag = &get_term($tag_ID);
+			$tag_slug = apply_filters('single_tag_title', $tag->category_nicename);
+			return 'tag-'. $tag_slug;
+		}
+	} elseif(is_author()) {
+		$author = the_archive_author();
+		$author_slug = $author->user_login;
+		return 'author-'. $author_slug;
+	} elseif(is_date()) {
+		$year = get_query_var('year');
+		$monthnum = get_query_var('monthnum');
+		$day = get_query_var('day');
+		if(is_year()) {
+			return 'date-'. $year;
+		} elseif(is_month()) {
+			return 'date-'. $year. '-'. $monthnum;
+		} elseif(is_day()) {
+			return 'date-'. $year. '-'. $monthnum. '-'. $day;
+		}
+	} elseif(is_404()) {
+		return '404';
+	} else {
+		return 'unknown';
+	}
+}
+
 // Footer sidebar
 function tarski_searchform() {
 	if(!is_search()) {
 		include(TEMPLATEPATH . '/searchform.php');
-	}
-}
-
-function tarski_livecomments_integration() {
-	if (function_exists('live_preview')) {
-		live_preview();
 	}
 }
 

@@ -31,8 +31,8 @@ function th_footer() { // Footer hook
 	do_action('th_footer');
 }
 
-function th_404() { // Error page hook
-	do_action('th_404');
+function th_404_content() { // Error page hook
+	do_action('th_404_content');
 }
 
 
@@ -47,7 +47,7 @@ add_action('th_header','tarski_headerimage');
 add_action('th_header','tarski_titleandtag');
 
 // Default content actions
-add_action('th_commentform','tarski_livecomments_integration');
+add_action('th_404_content','tarski_404_default_text');
 
 // Default sidebar actions
 
