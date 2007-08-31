@@ -171,8 +171,8 @@ body.left { text-align: left; }
 		/* Tags & Tags page
 		--------------------------------------- */
 		.tagdata { font-size: 0.8em; color: #a8a8a8; clear: both; }
-		.tagcloud { line-height: 1.5; }
-		.content .tagcloud a:link, .content .tagcloud a:visited, .content .tagcloud a:hover, .content .tagcloud a:active { border: none; }
+		.tagcloud {}
+		.tagcloud a { margin: 0 2px 0 0; }
 
 		/* Search content
 		--------------------------------------- */

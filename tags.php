@@ -11,7 +11,7 @@ Template Name: Tags
 		</div> <!-- /meta -->
 		
 		<div class="content">
-			<?php if(get_the_content() != "") { ?>
+			<?php if(get_the_content()) { ?>
 				<?php the_content(); ?>
 				
 				<h3><?php _e('Tags','tarski'); ?></h3>
