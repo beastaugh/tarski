@@ -13,6 +13,15 @@ function tarski_output_headinclude() {
 	tarski_output_constant($headerInclude);
 }
 
+// Output $navbarInclude
+function tarski_output_navbarinclude($input) {
+	global $navbarInclude;
+	if($navbarInclude) {
+		$input .= $navbarInclude."\n";
+	}
+	return $input;
+}
+
 // Output $frontPageInclude
 function tarski_output_frontpageinclude() {
 	global $frontPageInclude;
@@ -112,6 +121,8 @@ if(file_exists(TEMPLATEPATH . '/constants.php')) {
 	if($errorPageInclude) {
 		remove_action('th_404_content','tarski_404_default_text');
 	}
+	
+	add_filter('tarski_navbar','tarski_output_navbarinclude');
 	
 	add_action('wp_head','tarski_output_headinclude');
 	add_action('th_postend','tarski_output_frontpageinclude');

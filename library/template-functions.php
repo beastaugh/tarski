@@ -116,36 +116,50 @@ function home_link_name() {
 }
 
 // Navbar
-function tarski_navbar() {
+function get_tarski_navbar() {
+	global $wpdb;
 	$current = 'class="nav-current" ';
+	
 	if(get_option('show_on_front') != 'page') {
 		if(is_home()) {
-			$homeStatus = $current;
+			$home_status = $current;
 		}
-		
-		echo '<li><a id="nav-home" ' . $homeStatus . 'href="' . get_settings('home') . '/" rel="home">' . home_link_name() . "</a></li>\n";
+		$output = sprintf(
+			'<li><a id="nav-home"'.'%1$s'.'href="%2$s" rel="home">%3$s</a></li>'."\n",
+			$home_status,
+			get_settings('home').'/',
+			home_link_name()
+		);
 	}
 	
-	global $wpdb;
 	$nav_pages = get_tarski_option('nav_pages');
 	if($nav_pages) {
 		$nav_pages = explode(',', $nav_pages);
 		foreach($nav_pages as $page) {
 			if(is_page($page) || ((get_option('show_on_front') == 'page') && (get_option('page_for_posts') == $page) && is_home())) {
-				$pageStatus = $current;
-			} else {
-				$pageStatus = '';
+				$page_status = $current;
 			}
-			echo '			<li><a id="nav-' . $page . '-' . $wpdb->get_var("SELECT post_name from $wpdb->posts WHERE ID = $page") . '" ' . $pageStatus . 'href="' . get_permalink($page) . '">' . $wpdb->get_var("SELECT post_title from $wpdb->posts WHERE ID = $page") . '</a></li>' . "\n";
+						
+			$output .= sprintf(
+				'<li><a id="nav-%1$s" %2$shref="%3$s">%4$s</a></li>'."\n",
+				$page.'-'.$wpdb->get_var("SELECT post_name from $wpdb->posts WHERE ID = $page"),
+				$page_status,
+				get_permalink($page),
+				$wpdb->get_var("SELECT post_title from $wpdb->posts WHERE ID = $page")
+			);
 		}
 	}
-	global $navbarInclude;
-	if($navbarInclude) {
-		echo $navbarInclude . "\n";
-	}
+
 	if(is_user_logged_in()) {
-		echo '<li><a id="nav-admin" href="' . get_option('siteurl') . '/wp-admin/">' . __('Site Admin','tarski') . '</a></li>' . "\n";
+		$output .= '<li><a id="nav-admin" href="' . get_option('siteurl') . '/wp-admin/">' . __('Site Admin','tarski') . '</a></li>' . "\n";
 	}
+	
+	$output = apply_filters('tarski_navbar', $output);
+	return $output;
+}
+
+function tarski_navbar() {
+	echo get_tarski_navbar();
 }
 
 // Body classes
