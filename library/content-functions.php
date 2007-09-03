@@ -31,7 +31,6 @@ function tarski_next_prev_pages() {
 	global $wp_query;
 	$wp_query->is_paged = true;
 	
-	// Current, hackish code
 	if(is_paged() && get_tarski_option('use_pages')) {
 		echo '<p class="pagination">'."\n";
 		if(is_search() || $_GET['s']) {
@@ -61,37 +60,9 @@ function tarski_next_prev_pages() {
 				echo $prev_page . $next_page;
 			}
 
-		} echo "</p>\n";
-	}
-	
-	/* Experimental code, not currently functioning
-	if(is_paged() && get_tarski_option('use_pages')) {
-		$prev_page = false;
-		$next_page = false;
-		if(is_search()) {
-			if(clean_url(get_previous_posts_page_link())) {
-				$prev_page = '<a href="' . clean_url(get_previous_posts_page_link()) . '">&laquo; ' . __('Previous results','tarski') . '</a>';
-			}
-			if(clean_url(get_next_posts_page_link())) {
-				$next_page = '<a href="' . clean_url(get_next_posts_page_link()) . '">' . __('More results','tarski') . ' &raquo;</a>';
-			}
-		} else {
-			if(clean_url(get_previous_posts_page_link())) {
-				$prev_page = '<a href="' . clean_url(get_previous_posts_page_link()) . '">&laquo; ' . __('Older entries','tarski') . '</a>';
-			}
-			if(clean_url(get_next_posts_page_link())) {
-				$next_page = '<a href="' . clean_url(get_next_posts_page_link()) . '">' . __('Newer entries','tarski') . ' &raquo;</a>';
-			}
-		}
-		echo '<p class="pagination">'."\n";
-		if($prev_page && $next_page) {
-			echo $prev_page . " &sect; " . $next_page;
-		} else {
-			echo $prev_page . $next_page;
 		}
 		echo "</p>\n";
 	}
-	*/
 }
 
 // A better the_date() function
