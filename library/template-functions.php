@@ -1,12 +1,16 @@
 <?php // template-functions.php - Templating functions for Tarski
 
 // Header image status output
-function tarski_header_status() {
+function get_tarski_header_status() {
 	if(get_tarski_option('header') == 'blank.gif') {
-		echo 'noheaderimage';
+		return 'noheaderimage';
 	} else {
-		echo 'headerimage';
+		return 'headerimage';
 	}
+}
+
+function tarski_header_status() {
+	echo get_tarski_header_status();
 }
 
 // Header image output
@@ -24,10 +28,10 @@ function tarski_headerimage() {
 	}
 	
 	if($header_img_url) {
-		if(!get_tarski_option('display_title')) {
-			$header_img_alt = get_bloginfo('name');
+		if(get_tarski_option('display_title')) {
+			$header_img_alt = __('Header image','tarski');		
 		} else {
-			$header_img_alt = __('Header image','tarski');
+			$header_img_alt = get_bloginfo('name');
 		}
 		
 		if(get_theme_mod('header_image')) {
@@ -38,7 +42,7 @@ function tarski_headerimage() {
 
 		echo '<div id="header-image">' . "\n";
 		if(!get_tarski_option('display_title') && !is_home()) {
-			echo '<a title="'. __('Return to front page','tarski'). '" href="'. get_bloginfo('home'). '">'. $header_img_tag. '</a>'."\n";
+			echo '<a title="'. __('Return to front page','tarski'). '" rel="home" href="'. get_bloginfo('home'). '">'. $header_img_tag. '</a>'."\n";
 		} else {
 			echo $header_img_tag;
 		}		
@@ -47,23 +51,27 @@ function tarski_headerimage() {
 }
 
 // Site title output
-function tarski_doctitle() {
+function get_tarski_doctitle() {
 	global $wp_query;
-	$titleSep = '&middot;';
-
-	echo get_bloginfo('name');
+	$sep = ' &middot; ';
 
 	if((get_option('show_on_front') == 'posts') && is_home()) {
-		if(get_bloginfo('description') != '') {
-			echo ' ' . $titleSep . ' ' . get_bloginfo('description');
+		if(get_bloginfo('description')) {
+			$content = $sep. get_bloginfo('description');
 		}
 	} elseif(is_search()) {
-		echo ' ' . $titleSep . ' ' . __('Search results','tarski');
+		$content = $sep. __('Search results','tarski');
 	} elseif(is_month()) {
-		echo ' ' . $titleSep . ' '; single_month_title(' ');
+		$content = $sep. single_month_title(' ', false);
 	} else {
-		wp_title($titleSep);
+		$content = wp_title($sep, false);
 	}
+	
+	return get_bloginfo('name'). $content;
+}
+
+function tarski_doctitle() {
+	echo get_tarski_doctitle();
 }
 
 // Returns site title in markup
@@ -89,8 +97,8 @@ function tarski_sitetitle() {
 
 // Returns tagline in markup
 function tarski_tagline() {
-	if((get_tarski_option('display_tagline') && get_bloginfo('description') != '')) {
-		return '<p id="tagline">' .  get_bloginfo('description') . '</p>';
+	if((get_tarski_option('display_tagline') && get_bloginfo('description'))) {
+		return '<p id="tagline">'.  get_bloginfo('description'). '</p>';
 	}
 }
 
@@ -138,6 +146,8 @@ function get_tarski_navbar() {
 		foreach($nav_pages as $page) {
 			if(is_page($page) || ((get_option('show_on_front') == 'page') && (get_option('page_for_posts') == $page) && is_home())) {
 				$page_status = $current;
+			} else {
+				$page_status = false;
 			}
 						
 			$output .= sprintf(
@@ -240,9 +250,15 @@ function tarski_searchform() {
 }
 
 // Default footer stuff including credit
-function tarski_feed_and_credit() { ?>
+function tarski_feed_and_credit() {
+	if(detectWPMU()) {
+		$current_site = get_current_site();
+	} ?>
 	<div class="primary content">
-		<p><?php if(detectWPMU()) { $current_site = get_current_site(); } _e('Powered by <a href="http://wordpress.org/">WordPress</a> and <a href="http://tarskitheme.com/">Tarski</a>', 'tarski'); ?><?php if(detectWPMU()) { echo ' | ' . __('Hosted by ', 'tarski') . '<a href="http://' . $current_site->domain . $current_site->path . '">' . $current_site->site_name . '</a>'; } ?></p>
+		<p><?php _e('Powered by <a href="http://wordpress.org/">WordPress</a> and <a href="http://tarskitheme.com/">Tarski</a>', 'tarski');
+		if(detectWPMU()) {
+			echo ' | '. __('Hosted by ','tarski'). '<a href="http://'. $current_site->domain. $current_site->path. '">'. $current_site->site_name. '</a>';
+		} ?></p>
 	</div>
 	<div class="secondary">
 		<p><a class="feed" href="<?php echo get_bloginfo_rss('rss2_url'); ?>"><?php _e('Subscribe to feed', 'tarski'); ?></a></p>
