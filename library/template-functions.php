@@ -159,10 +159,6 @@ function get_tarski_navbar() {
 			);
 		}
 	}
-
-	if(is_user_logged_in()) {
-		$output .= '<li><a id="nav-admin" href="' . get_option('siteurl') . '/wp-admin/">' . __('Site Admin','tarski') . '</a></li>' . "\n";
-	}
 	
 	$output = apply_filters('tarski_navbar', $output);
 	return $output;
@@ -171,6 +167,14 @@ function get_tarski_navbar() {
 function tarski_navbar() {
 	echo get_tarski_navbar();
 }
+
+function add_admin_link($input) {
+	if(is_user_logged_in()) {
+		$input .= '<li><a id="nav-admin" href="'. get_option('siteurl'). '/wp-admin/">'. __('Site Admin','tarski'). '</a></li>'. "\n";
+	}
+	return $input;
+}
+add_filter('tarski_navbar', 'add_admin_link', 20);
 
 // Body classes
 if(!function_exists('tarski_bodyclass')) {
