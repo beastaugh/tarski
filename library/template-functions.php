@@ -212,15 +212,9 @@ if(!function_exists('tarski_bodyid')) {
 			$cat_ID = intval(get_query_var('cat'));
 			$category = &get_category($cat_ID);
 			return 'cat-'. $category->category_nicename;
-		} elseif(function_exists('is_tag')) {
-			if(is_tag()) {
-				$tag_ID = intval(get_query_var('tag_id'));
-				$tag = &get_term($tag_ID, 'post_tag');
-				return 'tag-'. $tag->slug;
-			}
 		} elseif(is_author()) {
 			$author = the_archive_author();
-			return 'author-'.  $author->user_login;
+			return 'author-'. $author->user_login;
 		} elseif(is_date()) {
 			$year = get_query_var('year');
 			$monthnum = get_query_var('monthnum');
@@ -232,6 +226,12 @@ if(!function_exists('tarski_bodyid')) {
 			} elseif(is_day()) {
 				return 'date-'. $year. '-'. $monthnum. '-'. $day;
 			}
+		} elseif(is_archive() && function_exists('is_tag')) {
+			if(is_tag()) {
+				$tag_ID = intval(get_query_var('tag_id'));
+				$tag = &get_term($tag_ID, 'post_tag');
+				return 'tag-'. $tag->slug;
+			}	
 		} elseif(is_404()) {
 			return '404';
 		} else {
