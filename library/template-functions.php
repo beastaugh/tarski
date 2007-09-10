@@ -174,7 +174,6 @@ function add_admin_link($input) {
 	}
 	return $input;
 }
-add_filter('tarski_navbar', 'add_admin_link', 20);
 
 // Body classes
 if(!function_exists('tarski_bodyclass')) {

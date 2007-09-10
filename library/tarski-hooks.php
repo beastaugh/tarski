@@ -42,6 +42,9 @@ add_action('th_doctitle','tarski_doctitle');
 add_action('th_header','tarski_headerimage');
 add_action('th_header','tarski_titleandtag');
 
+// Default navbar filters
+add_filter('tarski_navbar','add_admin_link',20);
+
 // Default content actions
 add_action('th_404_content','tarski_404_default_text');
 
