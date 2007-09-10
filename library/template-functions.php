@@ -205,27 +205,22 @@ if(!function_exists('tarski_bodyid')) {
 		} elseif(is_search()) {
 			return 'search';
 		} elseif(is_page()) {
-			$post_slug = apply_filters('the_permalink', $post->post_name);
-			return 'page-'. $post_slug;
+			return 'page-'. $post->post_name;
 		} elseif(is_single()) {
-			$post_slug = apply_filters('the_permalink', $post->post_name);
-			return 'post-'. $post_slug;
+			return 'post-'. $post->post_name;
 		} elseif(is_category()) {
 			$cat_ID = intval(get_query_var('cat'));
 			$category = &get_category($cat_ID);
-			$cat_slug = apply_filters('single_cat_title', $category->category_nicename);
-			return 'cat-'. $cat_slug;
+			return 'cat-'. $category->category_nicename;
 		} elseif(function_exists('is_tag')) {
 			if(is_tag()) {
 				$tag_ID = intval(get_query_var('tag_id'));
 				$tag = &get_term($tag_ID, 'post_tag');
-				$tag_slug = apply_filters('single_tag_title', $tag->slug);
-				return 'tag-'. $tag_slug;
+				return 'tag-'. $tag->slug;
 			}
 		} elseif(is_author()) {
 			$author = the_archive_author();
-			$author_slug = $author->user_login;
-			return 'author-'. $author_slug;
+			return 'author-'.  $author->user_login;
 		} elseif(is_date()) {
 			$year = get_query_var('year');
 			$monthnum = get_query_var('monthnum');
