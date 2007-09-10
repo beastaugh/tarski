@@ -1,6 +1,7 @@
 <?php // tarski-hooks.php - Tarski hooks and their default behaviour
 
-/* Tarski theme hooks
+
+/* Actions
 --------------------------------*/
 
 function th_doctitle() { // Document title hook
@@ -27,9 +28,19 @@ function th_footer() { // Footer hook
 	do_action('th_footer');
 }
 
-function th_404_content() { // Error page hook
-	do_action('th_404_content');
-}
+
+/* Filters
+--------------------------------*/
+
+/*
+'tarski_navbar'
+See /library/template-hooks.php
+
+'tarski_404_content'
+See /library/content-hooks.php
+
+I.e., add_filter('tarski_404_content','my_function');
+*/
 
 
 /* Default behaviour
@@ -45,13 +56,11 @@ add_action('th_header','tarski_titleandtag');
 // Default navbar filters
 add_filter('tarski_navbar','add_admin_link',20);
 
-// Default content actions
-add_action('th_404_content','tarski_404_default_text');
-
 // Default sidebar actions
 
 // Default footer actions
 add_action('th_fsidebar','tarski_searchform');
 add_action('th_footer','tarski_feed_and_credit');
+
 
 // ~fin~ ?>

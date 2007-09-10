@@ -1,7 +1,5 @@
 <?php // loop.php - This file does the heavy lifting
 
-global $s; // Search string
-
 if(have_posts()) { // Gets it all going
 
 if(is_single()) { // Single entry ?>
@@ -19,7 +17,7 @@ if(is_single()) { // Single entry ?>
 		</div>
 		<div class="content">
 			<?php the_content(); ?>
-			<?php if(function_exists('the_tags')) { the_tags('<p class="tagdata"><strong>' . __('Tags','tarski') . ':</strong> ', ', ', '</p>'); } ?> 
+			<?php if(function_exists('the_tags')) { the_tags('<p class="tagdata"><strong>'. __('Tags','tarski'). ':</strong> ', ', ', '</p>'); } ?> 
 		</div>
 		<?php link_pages_without_spaces(); ?>
 		<?php th_postend(); ?>
@@ -101,7 +99,7 @@ if(is_single()) { // Single entry ?>
 			<h1 class="title"><?php _e('Search Results','tarski'); ?></h1>
 		</div>
 		<div class="content">
-			<p><?php echo __('Your search for ','tarski'). '<strong>'. attribute_escape(stripslashes($s)). '</strong> '. __('returned the following results.','tarski'); ?></p>
+			<p><?php echo __('Your search for ','tarski'). '<strong>'. attribute_escape(get_search_query()). '</strong> '. __('returned the following results.','tarski'); ?></p>
 		</div>
 	<?php } elseif(function_exists('is_tag')) { if(is_tag()) { // Tag archive header ?>
 		<div class="meta">
@@ -119,7 +117,7 @@ if(is_single()) { // Single entry ?>
 <?php // General loop including Asides goes here
 if(!is_home() && !get_tarski_option('use_pages')) { $posts = query_posts($query_string . '&nopaging=1'); }
 while (have_posts()) { the_post(); ?>
-<?php if(get_tarski_option('asidescategory') != 0 && in_category(get_tarski_option('asidescategory'))) { // Aside loop ?>
+<?php if(get_tarski_option('asidescategory') && in_category(get_tarski_option('asidescategory'))) { // Aside loop ?>
 	<div class="aside" id="p-<?php the_ID(); ?>">
 		<div class="content"><?php the_content(__('Read the rest of this entry &raquo;','tarski')); ?></div>
 		<p class="meta"><span class="date"><?php echo tarski_date(); ?></span><?php tarski_author_posts_link(); ?> | <a class="comments-link" href="<?php the_permalink(); ?>"><?php if($post->comment_status == 'open' || $post->comment_count > 0) { comments_number(__('No comments','tarski'), __('1 comment','tarski'), '%' . __(' comments','tarski')); } else { _e('Permalink', 'tarski'); } ?></a><?php edit_post_link(__('edit','tarski'), ' (', ')'); ?></p>
@@ -157,7 +155,7 @@ elseif (is_search()) { // No results for search ?>
 			<h1 class="title"><?php _e('No results','tarski'); ?></h1>
 		</div>
 		<div class="content">
-			<p><?php echo __('Your search for ','tarski'). '<strong>'. attribute_escape(stripslashes($s)). '</strong>'. __(' returned no results. Try returning to the ','tarski'). '<a href="'. get_settings('home'). '">'. __('front page', 'tarski'). '</a>'. __('.','tarski'); ?></p>
+			<p><?php echo __('Your search for ','tarski'). '<strong>'. attribute_escape(get_search_query()). '</strong>'. __(' returned no results. Try returning to the ','tarski'). '<a href="'. get_settings('home'). '">'. __('front page', 'tarski'). '</a>'. __('.','tarski'); ?></p>
 		</div>
 	</div>
 </div>
