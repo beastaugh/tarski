@@ -160,4 +160,14 @@ function tarski_404_content() {
 	echo $content;
 }
 
+function get_tarski_footer_blurb() {
+	$output = wpautop(wptexturize(stripslashes(get_tarski_option('blurb'))));
+	$output = apply_filters('tarski_footer_blurb', $output);
+	return $output;
+}
+
+function tarski_footer_blurb() {
+	echo get_tarski_footer_blurb();
+}
+
 // ~fin~ ?>

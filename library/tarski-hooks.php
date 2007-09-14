@@ -39,6 +39,9 @@ See /library/template-hooks.php
 'tarski_404_content'
 See /library/content-hooks.php
 
+'tarski_footer_blurb'
+See /library/content-hooks.php
+
 I.e., add_filter('tarski_404_content','my_function');
 */
 

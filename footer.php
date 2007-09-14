@@ -23,7 +23,7 @@
 	<div class="primary">
 <?php if(get_tarski_option('blurb')) { // Footer blurb ?>
 		<div class="content">
-			<?php echo wpautop(wptexturize(stripslashes(get_tarski_option('blurb')))); ?>
+			<?php tarski_footer_blurb(); ?>
 		</div> <!-- /blurb -->
 <?php } // end footer blurb ?>
 		
