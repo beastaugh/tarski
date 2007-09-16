@@ -194,8 +194,8 @@ body.left { text-align: left; }
 				#trackback-link .primary p { margin: 0; padding: 5px 0; }
 
 		.comment { margin: 0; border-top: 1px solid #ccc; padding: 0.5em 0; }
-			.comment-permalink { font-size: 0.8em; margin: 0; }
-			.comment-author { margin: 0 0 0.5em 0; }
+			.comment-permalink, .comment-edit { font-size: 0.8em; margin: 0; }
+			.comment-author { margin: 0 0 0.5em 0; font-weight: bold; }
 		.moderated { background: #fcffff; }
 			.moderated .primary-span { border-bottom: 1px dotted #e5e5e5; padding-bottom: 0.5em; background: url('images/moderated.gif') no-repeat 100% 50%; }
 		.author-comment {}

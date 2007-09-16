@@ -63,8 +63,8 @@ if($comments || ($post->comment_status == 'open')) { ?>
 					<?php } ?>
 					<div class="secondary">
 						<p class="comment-permalink"><a href="#comment-<?php comment_ID(); ?>" title="<?php _e('Permalink to this comment','tarski'); ?>"><?php comment_date(); _e(' at ','tarski'); comment_time() ?></a></p>
-						<p class="comment-author"><strong><?php $comment_author_name = tarski_get_output('comment_author_link();'); $comment_author_name = str_replace('>http://', '>', $comment_author_name); $comment_author_name = str_replace('/</a>', '</a>', $comment_author_name); echo $comment_author_name; ?></strong></p>
-						<?php edit_comment_link(__('edit','tarski'), '<p class="comment-permalink">(', ')</p>'); ?> 
+						<p class="comment-author vcard"><?php echo tarski_comment_author_link(); ?></p>
+						<?php edit_comment_link(__('edit','tarski'), '<p class="comment-edit">(', ')</p>'); ?> 
 					</div> <!-- /comment meta -->
 
 					<div class="primary content">

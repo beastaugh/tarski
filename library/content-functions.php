@@ -77,6 +77,28 @@ function add_post_tags() {
 	}
 }
 
+function tidy_openid_names($comment_author) {
+	global $comment;
+	$comment_author =  str_replace('http://', '', $comment_author);
+	$comment_author = rtrim($comment_author, "/");
+	return $comment_author;
+}
+add_filter('get_comment_author','tidy_openid_names');
+
+function tarski_comment_author_link() {
+	global $comment;
+	$url = get_comment_author_url();
+	$author = get_comment_author();
+
+	if(empty($url) || 'http://' == $url) {
+		$return = '<span class="fn">'. $author. '</span>';
+	} else {
+		$return = '<a class="url fn" href="'. $url. '" rel="external nofollow">'. $author. '</a>';
+	}
+	
+	return apply_filters('get_comment_author_link', $return);
+}
+
 // Tarski excerpts
 // Code shamelessly borrowed from http://guff.szub.net/2005/02/26/the-excerpt-reloaded/
 function tarski_excerpt($excerpt_length = 120, $allowedtags = '', $filter_type = 'none', $use_more_link = 1, $more_link_text = '(more...)', $force_more = 1, $fakeit = 1, $no_more = 0, $more_tag = 'div', $more_link_title = 'Continue reading this entry', $showdots = 1) {
