@@ -14,7 +14,7 @@ Theme URI: http://tarskitheme.com/
 Description: An elegant, flexible theme developed by <a href="http://extralogical.net/">Ben Eastaugh</a> and <a href="http://ceejayoz.com/">Chris Sternal-Johnson</a>
 Author: Benedict Eastaugh and Chris Sternal-Johnson
 Author URI: http://tarskitheme.com/
-Version: 1.7
+Version: 1.8 Alpha
 .
 Released under the <a href="http://www.opensource.org/licenses/gpl-license.php">GPL</a>.
 .
@@ -266,8 +266,8 @@ a { text-decoration: none; }
 a:link, a:visited, a:active { color: #006a80; }
 a:hover { color: #a8001c; }
 
-.content a:link, .content a:active, .content a:visited { border-bottom: 1px solid #cfe2e5; }
-.content a:hover { border-bottom: 1px solid #e5cfd2; }
+.content a:link, .content a:active, .content a:visited, .tagdata a:link, .tagdata a:active, .tagdata a:visited { border-bottom: 1px solid #cfe2e5; }
+.content a:hover, .tagdata a:hover { border-bottom: 1px solid #e5cfd2; }
 	#wrapper .content h2 a:link, #wrapper .content h2 a:visited, #wrapper .content h2 a:hover, #wrapper .content h2 a:active, #wrapper .content h3 a:link, #wrapper .content h3 a:visited, #wrapper .content h3 a:hover, #wrapper .content h3 a:active, #wrapper .content h4 a:link, #wrapper .content h4 a:visited, #wrapper .content h4 a:hover, #wrapper .content h4 a:active { border: none; }
 		
 /* Widgets (I hate these things)

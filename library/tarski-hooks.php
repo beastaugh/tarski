@@ -59,6 +59,10 @@ add_action('th_header','tarski_titleandtag');
 // Default navbar filters
 add_filter('tarski_navbar','add_admin_link',20);
 
+// Default content actions
+add_action('th_postend','add_post_tags');
+add_action('th_postend','link_pages_without_spaces');
+
 // Default sidebar actions
 
 // Default footer actions

@@ -71,6 +71,12 @@ function tarski_date() {
 	return mysql2date(get_settings('date_format'), $post->post_date);
 }
 
+function add_post_tags() {
+	if(is_single() && function_exists('the_tags')) {
+		the_tags('<p class="tagdata"><strong>'. __('Tags','tarski'). ':</strong> ', ', ', '</p>'."\n");
+	}
+}
+
 // Tarski excerpts
 // Code shamelessly borrowed from http://guff.szub.net/2005/02/26/the-excerpt-reloaded/
 function tarski_excerpt($excerpt_length = 120, $allowedtags = '', $filter_type = 'none', $use_more_link = 1, $more_link_text = '(more...)', $force_more = 1, $fakeit = 1, $no_more = 0, $more_tag = 'div', $more_link_title = 'Continue reading this entry', $showdots = 1) {

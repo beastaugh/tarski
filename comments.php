@@ -1,8 +1,5 @@
 <?php // comments.php - Tarski comments file
 
-global $trackbackLink;
-$oddcomment = 'alt'; // var for alternating comment background
-
 if('comments.php' == basename($_SERVER['SCRIPT_FILENAME'])) {
 	die('Please do not load this page directly. Thanks!');
 }
@@ -25,7 +22,7 @@ if($comments || ($post->comment_status == 'open')) { ?>
 		<?php if(pings_open()) { ?>
 		<div id="trackback-link">
 			<div class="secondary"><p><?php _e('Trackback link','tarski'); ?></p></div>
-			<div class="primary"><p><a href="<?php echo $trackbackLink; ?>"><?php echo $trackbackLink; ?></a></p></div>
+			<div class="primary"><p><a href="<?php echo get_trackback_url(); ?>"><?php echo get_trackback_url(); ?></a></p></div>
 		</div>
 		<?php } ?>
 	</div> <!-- /comments header -->
