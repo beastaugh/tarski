@@ -122,36 +122,33 @@
 			<fieldset class="primary">			
 				<h3><?php _e('Alternate Style','tarski'); ?></h3>
 					<?php
-					global $wpdb;
-					$name = get_tarski_option('style');
 					$style_dir = @ dir(TEMPLATEPATH . '/styles');
-					if ($style_dir) {
+					if($style_dir) {
 						while(($file = $style_dir->read()) !== false) {
 							if(!preg_match('|^\.+$|', $file) && preg_match('@.(css)$@', $file)) {
 								$styles[] = $file;
 							}
 						}
-						if ($style_dir || $styles) {
-							echo "<select name=\"alternate_style\" id=\"alternate_style\" size=\"1\">\n";
-							echo "<option value=\"$name\">";
-							if($name) {
-								echo $name;
-							} else {
-								echo "Default Style";
-							}
-							echo "</option>\n";
-							echo "<option value=\"\">----</option>\n";
-							echo "<option value=\"\">Default Style</option>\n";
-							$count = 0;
-							if($styles) {
-								foreach($styles as $style) {
-									$count++;
-									echo "<option value=\"$style\">$style</option>\n";
+					}
+					if($style_dir && $styles) { ?>
+						<select name="alternate_style" id="alternate_style" size="1">
+							<option<?php if(!get_tarski_option('style')) { echo ' selected="selected"'; } ?> value=""><?php _e('Default style','tarski'); ?></option>
+							<?php foreach($styles as $style) {
+								if(get_tarski_option('style') == $style) {
+									$status = ' selected="selected"';
+								} else {
+									$status = false;
 								}
-							}
-							echo "</select>\n";
-						}
-					} ?>
+								printf(
+									'<option%1$s value="%2$s">%3$s</option>'."\n",
+									$status,
+									$style,
+									$style
+								);
+							} ?>
+						</select>
+					<?php } ?>
+
 					<?php if(!detectWPMU()) { // non-WPMU users ?>
 					<p><?php echo __('Tarski allows you to select an alternate style that modifies the default one. Choose from the list above, or upload your own to ','tarski') . '<code>wp-content/themes/' . get_template() . '/styles/</code>' . __('.','tarski'); ?></p>
 					<?php } else { // WPMU users ?>
@@ -199,26 +196,20 @@
 			<fieldset class="secondary">
 
 				<h3><?php _e('Asides Category','tarski'); ?></h3>
-				<?php
-				$id = get_tarski_option('asidescategory');
-				if ($id != 0) {
-					$asides_title = $wpdb->get_var("SELECT cat_name from $wpdb->categories WHERE cat_ID = $id");
-				} else {
-					$asides_title = __('DISABLE ASIDES','tarski');
-				}
-					$asides_cats = $wpdb->get_results("SELECT * from $wpdb->categories");
-				?>
-					<select name="asides_category" id="asides_category">
-						<option value="<?php echo get_tarski_option('asidescategory'); ?>"><?php echo $asides_title; ?></option>
-						<option value="-----">----</option>
-						<option value="0"><?php _e('DISABLE ASIDES','tarski'); ?></option>
-				<?php
-				if($asides_cats) {
-					foreach ($asides_cats as $cat) {
-						echo '					<option value="' . $cat->cat_ID . '">' . $cat->cat_name . '</option>';
-					}
-				} ?>
-					</select>
+				<select name="asides_category" id="asides_category">
+					<option <?php if(!get_tarski_option('asidescategory')) { echo 'selected="selected" '; } ?>value=""><?php _e('Disable asides','tarski'); ?></option>
+					<?php $asides_cats = &get_categories();
+					if($asides_cats) {
+						foreach ($asides_cats as $cat) {
+							if(($cat->cat_ID) == get_tarski_option('asidescategory')) {
+								$status = 'selected ="selected" ';
+							} else {
+								$status = false;
+							}
+							echo '<option '. $status. 'value="'. $cat->cat_ID. '">'. $cat->cat_name. '</option>';
+						}
+					} ?>
+				</select>
 				<p><?php echo __('This option will make Tarski display posts from the selected category in the ','tarski') . '<a href="http://photomatt.net/2004/05/19/asides/">' . __('Asides','tarski') . '</a>' . __(' format. Asides are short posts, usually only a single paragraph, and Tarski displays them in a condensed format without titles.','tarski'); ?></p>
 
 				<h3><?php _e('Navigation Display','tarski'); ?></h3>
@@ -230,9 +221,9 @@
 				$nav_pages = explode(',', get_tarski_option('nav_pages'));
 					
 				if($results) {
-					echo '<p>' . __('Pages selected here will display in your navbar.','tarski') . "</p>\n";
+					echo '<p>'. __('Pages selected here will display in your navbar.','tarski'). "</p>\n";
 					foreach($results as $page) {
-						echo '<label for="opt-pages-' . $page->ID . '"><input type="checkbox" id="opt-pages-' . $page->ID . '" name="nav_pages[]" value="' . $page->ID . '"';
+						echo '<label for="opt-pages-'. $page->ID. '"><input type="checkbox" id="opt-pages-'. $page->ID. '" name="nav_pages[]" value="'. $page->ID. '"';
 						if(in_array($page->ID, $nav_pages)) { echo ' checked="checked"'; }
 						echo " />\n";
 						echo $page->post_title. '&nbsp;<a title="'. __('View this page','tarski'). '" href="'. get_permalink($page->ID). '">&#8599;</a></label>'."\n";
@@ -240,27 +231,29 @@
 					echo '<p>' . __('To change the order in which they appear, edit the &#8216;Page Order&#8217; value on each page.','tarski') . "</p>\n";
 				} else {
 					echo '<p>' . __('There are no pages to select navbar items from.','tarski') . "</p>\n";
-				}					
-				?>
+				} ?>
+				
 				<h3><?php _e('Navigation Options','tarski'); ?></h3>
 				
 				<?php $categories = &get_categories('type=link'); ?>
-				<label for"opt-nav-extlinks"><?php _e('Add external links to the navbar by selecting one of your link categories.','tarski'); ?></label>
+				<label for"opt-nav-extlinkcat"><?php _e('Add external links to the navbar.','tarski'); ?></label>
 				<select name="nav_extlinkcat" id="opt-nav-extlinkcat" size="1">
-					<option value="0"><?php _e('No external links','tarski'); ?></option>
+					<option value=""><?php _e('No external links','tarski'); ?></option>
 					<?php foreach($categories as $link_cat) { ?>
 						<?php if(get_tarski_option('nav_extlinkcat') == $link_cat->cat_ID) {
-							$status = 'selected="selected"';
+							$status = ' selected="selected"';
+						} else {
+							$status = false;
 						}
 						printf(
-							'<option %1$s value="%2$s">%3$s</option>',
+							'<option%1$s value="%2$s">%3$s</option>',
 							$status,
 							$link_cat->cat_ID,
 							$link_cat->cat_name
 						); ?>
 					<?php } ?>
 				</select>
-				<p class="insert"><?php echo __('Add or edit links and link categories on the ','tarski'). '<a href="'. get_bloginfo('wp_url'). '/wp-admin/link-manager.php">'. __('Blogroll','tarski'). '</a>'. __(' page.','tarski'); ?></p>
+				<p class="insert"><?php echo __('You can add or edit links on the  ','tarski'). '<a href="'. get_bloginfo('wpurl'). '/wp-admin/link-manager.php">'. __('Blogroll','tarski'). '</a>'. __(' page. We recommend creating a link category specifically for the links you want displayed in your navbar, but you can use any category.','tarski'); ?></p>
 				
 				<label for="opt-nav-homename"><?php _e('Rename your &#8216;Home&#8217; link.','tarski'); ?></label>
 				<input type="hidden" name="home_link_name" value="Home" />
