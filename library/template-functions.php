@@ -173,24 +173,22 @@ function add_external_links($input) {
 		$extlinks_cat = get_tarski_option('nav_extlinkcat');
 		$extlinks = get_bookmarks("category=$extlinks_cat");
 		foreach($extlinks as $link) {
-			if(($link->link_visible) == 'Y') {
-				if($link->link_rel) {
-					$rel = 'rel="'. $link->link_rel. '" ';
-				}
-				if($link->link_target) {
-					$target = 'target="'. $link->link_target. '" ';
-				}
-				if($link->link_description) {
-					$title = 'title="'. $link->link_description. '" ';
-				}
-				$input .= sprintf(
-					'<li><a id="nav-link-%1$s" %2$s href="%3$s">%4$s</a></li>'."\n",
-					$link->link_id,
-					$rel. $target. $title,
-					$link->link_url,
-					$link->link_name
-				);
+			if($link->link_rel) {
+				$rel = 'rel="'. $link->link_rel. '" ';
 			}
+			if($link->link_target) {
+				$target = 'target="'. $link->link_target. '" ';
+			}
+			if($link->link_description) {
+				$title = 'title="'. $link->link_description. '" ';
+			}
+			$input .= sprintf(
+				'<li><a id="nav-link-%1$s" %2$s href="%3$s">%4$s</a></li>'."\n",
+				$link->link_id,
+				$rel. $target. $title,
+				$link->link_url,
+				$link->link_name
+			);
 		}
 	}
 	return $input;
