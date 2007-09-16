@@ -10,12 +10,12 @@
 		<div class="primary">
 			<?php while(have_posts()) { the_post(); ?>
 				
-				<div class="entry">
+				<div class="entry hentry">
 					
 					<div class="meta">
-						<h1 class="title"><?php the_title(); ?></h1>
+						<h1 class="title entry-title"><?php the_title(); ?></h1>
 						<?php if(is_single()) { ?>
-							<p class="metadata"><?php echo '<span class="date">'. tarski_date(). '</span>';
+							<p class="metadata"><?php echo '<span class="date updated">'. tarski_date(). '</span>';
 							if(!get_tarski_option('hide_categories')) { echo __(' in ','tarski'). '<span class="categories">'; the_category(', '); echo '</span>'; }
 							tarski_author_posts_link();
 							edit_post_link(__('edit','tarski'),' <span class="edit">(',')</span>'); ?></p>
