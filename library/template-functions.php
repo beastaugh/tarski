@@ -42,7 +42,7 @@ function tarski_headerimage() {
 
 		echo '<div id="header-image">' . "\n";
 		if(!get_tarski_option('display_title') && !is_home()) {
-			echo '<a title="'. __('Return to front page','tarski'). '" rel="home" href="'. get_bloginfo('home'). '">'. $header_img_tag. '</a>'."\n";
+			echo '<a title="'. __('Return to front page','tarski'). '" rel="home" href="'. get_bloginfo('url'). '/">'. $header_img_tag. '</a>'."\n";
 		} else {
 			echo $header_img_tag;
 		}		
@@ -87,7 +87,7 @@ function tarski_sitetitle() {
 			$prefix = '<h1 id="blog-title">';
 			$suffix = '</h1>';
 		} else {
-			$prefix = '<p id="blog-title"><a title="' . __('Return to front page','tarski') . '" href="' . get_settings('home') . '/" rel="home">';
+			$prefix = '<p id="blog-title"><a title="' . __('Return to front page','tarski') . '" href="' . get_settings('url') . '/" rel="home">';
 			$suffix = '</a></p>';
 		}
 	
@@ -135,7 +135,7 @@ function get_tarski_navbar() {
 		$output = sprintf(
 			'<li><a id="nav-home"'.'%1$s'.'href="%2$s" rel="home">%3$s</a></li>'."\n",
 			$home_status,
-			get_settings('home').'/',
+			get_bloginfo('url').'/',
 			home_link_name()
 		);
 	}
