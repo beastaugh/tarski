@@ -64,6 +64,7 @@ add_action('th_header','tarski_headerimage');
 add_action('th_header','tarski_titleandtag');
 
 // Default navbar actions and filters
+add_filter('tarski_navbar','add_external_links');
 add_filter('tarski_navbar','add_admin_link',20);
 add_filter('tarski_navbar','wrap_navlist',21);
 add_action('th_navbar','tarski_navbar');

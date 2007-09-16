@@ -1,5 +1,7 @@
 <?php // Tarski Options page starts here ?>
 
+<?php global $wpdb; // Need this for all the navbar jazz ?>
+
 <?php if(isset($_POST['Submit'])) { ?>
 	<div id="updated" class="updated fade">
 		<p><?php _e('Tarski Options have been updated','tarski'); ?></p>
@@ -198,7 +200,6 @@
 
 				<h3><?php _e('Asides Category','tarski'); ?></h3>
 				<?php
-				global $wpdb;
 				$id = get_tarski_option('asidescategory');
 				if ($id != 0) {
 					$asides_title = $wpdb->get_var("SELECT cat_name from $wpdb->categories WHERE cat_ID = $id");
@@ -242,6 +243,24 @@
 				}					
 				?>
 				<h3><?php _e('Navigation Options','tarski'); ?></h3>
+				
+				<?php $categories = &get_categories('type=link'); ?>
+				<label for"opt-nav-extlinks"><?php _e('Add external links to the navbar by selecting one of your link categories.','tarski'); ?></label>
+				<select name="nav_extlinkcat" id="opt-nav-extlinkcat" size="1">
+					<option value="0"><?php _e('No external links','tarski'); ?></option>
+					<?php foreach($categories as $link_cat) { ?>
+						<?php if(get_tarski_option('nav_extlinkcat') == $link_cat->cat_ID) {
+							$status = 'selected="selected"';
+						}
+						printf(
+							'<option %1$s value="%2$s">%3$s</option>',
+							$status,
+							$link_cat->cat_ID,
+							$link_cat->cat_name
+						); ?>
+					<?php } ?>
+				</select>
+				<p class="insert"><?php echo __('Add or edit links and link categories on the ','tarski'). '<a href="'. get_bloginfo('wp_url'). '/wp-admin/link-manager.php">'. __('Blogroll','tarski'). '</a>'. __(' page.','tarski'); ?></p>
 				
 				<label for="opt-nav-homename"><?php _e('Rename your &#8216;Home&#8217; link.','tarski'); ?></label>
 				<input type="hidden" name="home_link_name" value="Home" />

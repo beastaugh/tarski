@@ -278,6 +278,7 @@ function tarskiupdate() {
 			'asidescategory' => $_POST['asides_category'],
 			'style' => $_POST['alternate_style'],
 			'nav_pages' => $nav_pages,
+			'nav_extlinkcat' => $_POST['nav_extlinkcat'],
 			'home_link_name' => $_POST['home_link_name'],
 			'sidebar_type' => $_POST['sidebartype']
 		));
