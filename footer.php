@@ -21,11 +21,8 @@
 
 
 	<div class="primary">
-<?php if(get_tarski_option('blurb')) { // Footer blurb ?>
-		<div class="content">
-			<?php tarski_footer_blurb(); ?>
-		</div> <!-- /blurb -->
-<?php } // end footer blurb ?>
+		
+		<?php tarski_footer_blurb(); ?>
 		
 <?php // Recent articles
 if(get_tarski_option('footer_recent')) {

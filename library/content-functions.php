@@ -176,4 +176,15 @@ function tarski_footer_blurb() {
 	echo get_tarski_footer_blurb();
 }
 
+function tarski_blurb_wrapper($blurb) {
+	$prefix = '<div class="content">'."\n";
+	$suffix = '</div> <!-- /blurb -->'."\n";
+	
+	if(get_tarski_option('blurb')) {
+		$blurb = $prefix. $blurb. $suffix;
+	}
+	
+	return $blurb;
+}
+
 // ~fin~ ?>

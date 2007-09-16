@@ -56,10 +56,10 @@ I.e., add_filter('tarski_404_content','my_function');
 /* Default behaviour
 --------------------------------*/
 
-// Default document title action
+// Default document title actions and filters
 add_action('th_doctitle','tarski_doctitle');
 
-// Default header actions
+// Default header actions and filters
 add_action('th_header','tarski_headerimage');
 add_action('th_header','tarski_titleandtag');
 
@@ -69,13 +69,14 @@ add_filter('tarski_navbar','wrap_navlist',21);
 add_action('th_navbar','tarski_navbar');
 add_action('th_navbar','tarski_navbar_feedlink');
 
-// Default content actions
+// Default content actions and filters
 add_action('th_postend','add_post_tags');
 add_action('th_postend','link_pages_without_spaces');
 
-// Default sidebar actions
+// Default sidebar actions and filters
 
-// Default footer actions
+// Default footer actions and filters
+add_filter('tarski_footer_blurb','tarski_blurb_wrapper');
 add_action('th_fsidebar','tarski_searchform');
 add_action('th_footer','tarski_feed_and_credit');
 
