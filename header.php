@@ -39,15 +39,9 @@
 	<?php th_header(); ?>
 
 	<div id="navigation">
-		<ul class="primary xoxo">
-			<?php tarski_navbar(); ?>
-		</ul>
-
-		<div class="secondary">
-			<p><a class="feed" href="<?php echo get_bloginfo_rss('rss2_url'); ?>"><?php _e('Subscribe to feed', 'tarski'); ?></a></p>
-		</div>
+		<?php th_navbar(); ?>
 	</div>
-
+	
 </div>
 
 <div id="content">

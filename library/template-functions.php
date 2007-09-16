@@ -175,6 +175,24 @@ function add_admin_link($input) {
 	return $input;
 }
 
+function wrap_navlist($input) {
+	$input = '<ul class="primary xoxo">'."\n".$input.'</ul>'."\n";
+	return $input;
+}
+
+function tarski_navbar_feedlink($return = false) {
+	$prefix = '<div class="secondary">'."\n";
+	$feed = '<p><a class="feed" href="'. get_bloginfo_rss('rss2_url'). '">'. __('Subscribe to feed', 'tarski'). '</a></p>'."\n";
+	$suffix = '</div>'."\n";
+	
+	$output = $prefix. $feed. $suffix;
+	if($return) {
+		return $output;
+	} else {
+		echo $output;
+	}
+}
+
 // Body classes
 if(!function_exists('tarski_bodyclass')) {
 	function tarski_bodyclass() {
