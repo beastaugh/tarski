@@ -21,7 +21,7 @@
 	<script type="text/javascript" src="<?php echo get_bloginfo('template_directory'); ?>/library/tarski-js.php"></script>
 
 <?php if(is_single()) { ?>
-	<?php if(get_settings('permalink_structure')) { // Feed link hack ?>
+	<?php if(get_option('permalink_structure')) { // Feed link hack ?>
 	<link rel="alternate" type="application/rss+xml" title="Comments feed" href="<?php the_permalink() ?>feed/" />
 	<?php } else { ?>
 	<link rel="alternate" type="application/rss+xml" title="Comments feed" href="<?php the_permalink() ?>&amp;feed=rss" />

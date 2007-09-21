@@ -68,7 +68,7 @@ function tarski_next_prev_pages() {
 // A better the_date() function
 function tarski_date() {
 	global $post;
-	return mysql2date(get_settings('date_format'), $post->post_date);
+	return mysql2date(get_option('date_format'), $post->post_date);
 }
 
 function add_post_tags() {

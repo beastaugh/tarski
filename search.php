@@ -27,7 +27,7 @@
 				<h1 class="title"><?php _e('No results','tarski'); ?></h1>
 			</div>
 			<div class="content">
-				<p><?php echo __('Your search for ','tarski'). '<strong>'. attribute_escape(get_search_query()). '</strong>'. __(' returned no results. Try returning to the ','tarski'). '<a href="'. get_settings('home'). '">'. __('front page', 'tarski'). '</a>'. __('.','tarski'); ?></p>
+				<p><?php echo __('Your search for ','tarski'). '<strong>'. attribute_escape(get_search_query()). '</strong>'. __(' returned no results. Try returning to the ','tarski'). '<a href="'. get_bloginfo('url'). '">'. __('front page', 'tarski'). '</a>'. __('.','tarski'); ?></p>
 			</div>
 		</div> </div> <!-- /entry -->
 		

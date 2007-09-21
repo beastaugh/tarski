@@ -87,7 +87,7 @@ function tarski_sitetitle() {
 			$prefix = '<h1 id="blog-title">';
 			$suffix = '</h1>';
 		} else {
-			$prefix = '<p id="blog-title"><a title="' . __('Return to front page','tarski') . '" href="' . get_settings('url') . '/" rel="home">';
+			$prefix = '<p id="blog-title"><a title="' . __('Return to front page','tarski') . '" href="' . get_bloginfo('url') . '/" rel="home">';
 			$suffix = '</a></p>';
 		}
 	
