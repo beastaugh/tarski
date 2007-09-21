@@ -133,7 +133,7 @@ function get_tarski_navbar() {
 			$home_status = $current;
 		}
 		$output = sprintf(
-			'<li><a id="nav-home"'.'%1$s'.'href="%2$s" rel="home">%3$s</a></li>'."\n",
+			'<li><a id="nav-home" '.'%1$s'.'href="%2$s" rel="home">%3$s</a></li>'."\n",
 			$home_status,
 			get_bloginfo('url').'/',
 			home_link_name()
@@ -151,7 +151,7 @@ function get_tarski_navbar() {
 			}
 						
 			$output .= sprintf(
-				'<li><a id="nav-%1$s" %2$shref="%3$s">%4$s</a></li>'."\n",
+				'<li><a id="nav-%1$s" '.'%2$s'. 'href="%3$s">%4$s</a></li>'."\n",
 				$page.'-'.$wpdb->get_var("SELECT post_name from $wpdb->posts WHERE ID = $page"),
 				$page_status,
 				get_permalink($page),
