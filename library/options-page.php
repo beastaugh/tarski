@@ -33,7 +33,7 @@
 				<input type="submit" name="tarski_update_notification" value="<?php _e('Turn update notification on?','tarski'); ?>" />
 				<?php } ?>
 				<?php if(!cache_is_writable()) { ?>
-				<p>The version check could not be cached. To enable caching, follow the tutorial on the <a href="http://tarskitheme.com/help/updates/notifier/">update notifier</a> page.</p>
+					<p><?php echo __('The version check could not be cached. To enable caching, follow the tutorial on the ','tarski'). '<a href="http://tarskitheme.com/help/updates/notifier/">'. __('update notifier','tarski'). '</a>'. __('page.','tarski'); ?></p>
 				<?php } ?>
 			</fieldset>
 			<?php } else { // start WPMU-only code ?>
