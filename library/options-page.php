@@ -273,6 +273,10 @@
 					<input type="checkbox" id="opt-misc-tagline" name="display_tagline" value="1" <?php if(get_tarski_option('display_tagline')) { echo 'checked="checked" '; } ?>/>
 					<?php _e('Display site tagline','tarski'); ?>
 				</label>
+				
+				<?php if(!get_bloginfo('description')) { ?>
+					<p class="insert"><?php echo __('Your tagline is currently ','tarski'). '<a href="'. get_bloginfo('wpurl'). '/wp-admin/options-general.php">'. __('blank','tarski'). '</a>'. __(' and won&#8217;t be displayed.')  ?></p>
+				<?php } ?>
 
 				<label for="opt-misc-cats">					
 					<input type="hidden" name="hide_categories" value="0" />
