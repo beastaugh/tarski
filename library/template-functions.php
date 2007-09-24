@@ -241,7 +241,7 @@ if(!function_exists('tarski_bodyclass')) {
 
 // Body ids
 if(!function_exists('tarski_bodyid')) {
-	function tarski_bodyid() {
+	function get_tarski_bodyid() {
 		global $post, $wp_query;
 	
 		if(is_home()) {
@@ -281,6 +281,10 @@ if(!function_exists('tarski_bodyid')) {
 		} else {
 			return 'unknown';
 		}
+	}
+	
+	function tarski_bodyid() {
+		echo get_tarski_bodyid();
 	}
 }
 

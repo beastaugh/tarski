@@ -11,18 +11,18 @@ if(!empty($post->post_password)) { // if there's a password
 	}
 }
 
-if($comments || ($post->comment_status == 'open')) { ?>
+if($comments || comments_open()) { ?>
 <div id="comments">
 	
 	<div class="meta">
-		<h2 class="title"><?php comments_number(__('No comments','tarski'), __('1 comment','tarski'), '%' . __(' comments','tarski')); ?></h2>
-		<?php if($post->comment_status == 'open') { ?>
+		<h2 class="title"><?php comments_number(__('No comments','tarski'), __('1 comment','tarski'), '%'. __(' comments','tarski')); ?></h2>
+		<?php if(comments_open()) { ?>
 		<p class="comments-feed"><?php comments_rss_link(__('Comments feed for this article','tarski')); ?></p>
 		<?php } ?>
 		<?php if(pings_open()) { ?>
 		<div id="trackback-link">
 			<div class="secondary"><p><?php _e('Trackback link','tarski'); ?></p></div>
-			<div class="primary"><p><a href="<?php echo get_trackback_url(); ?>"><?php echo get_trackback_url(); ?></a></p></div>
+			<div class="primary"><p><a href="<?php trackback_url(); ?>"><?php trackback_url(); ?></a></p></div>
 		</div>
 		<?php } ?>
 	</div> <!-- /comments header -->
@@ -78,7 +78,7 @@ if($comments || ($post->comment_status == 'open')) { ?>
 </div>
 
 
-<?php } if($post->comment_status == 'open') { ?>
+<?php } if(comments_open()) { ?>
 
 <div id="respond">
 	
@@ -97,7 +97,7 @@ if($comments || ($post->comment_status == 'open')) { ?>
 		
 		<div id="info-input" class="secondary content">
 			<p class="userinfo"><?php _e('You are logged in as ','tarski'); ?><a href="<?php echo get_option('siteurl'); ?>/wp-admin/profile.php"><?php echo $user_identity; ?></a>.</p>
-			<p><a href="<?php echo get_option('siteurl'); ?>/wp-login.php?action=logout" title="<?php _e('Log out of this account','tarski') ?>"><?php _e('Logout &raquo;','tarski'); ?></a></p>
+			<p><a href="<?php bloginfo('wpurl'); ?>/wp-login.php?action=logout" title="<?php _e('Log out of this account','tarski') ?>"><?php _e('Logout &raquo;','tarski'); ?></a></p>
 		</div> <!-- /info fields -->
 
 	<?php } else { // if user is not logged in - name, email and website fields ?>

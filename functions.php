@@ -200,6 +200,10 @@ function get_tarski_option($name) {
 	return $tarski_options[$name];
 }
 
+function tarski_option($name) {
+	echo get_tarski_option($name);
+}
+
 // update a specific option
 function update_tarski_option($name, $value, $drop = false) {
 	global $tarski_options;
