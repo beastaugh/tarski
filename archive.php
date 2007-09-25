@@ -7,16 +7,15 @@
 
 		<div class="archive">
 			<?php if(is_category()) { // Category header ?>
-				
 				<div class="meta">
 					<h1><?php echo single_cat_title(); ?></h1>
 				</div>
 				<div class="content">
-					<p><?php if(category_description()) {
-						echo category_description();
-					} else {
-						echo __('You are currently browsing the archive for the ','tarski'). '<strong>'; single_cat_title(); echo '</strong>'. __(' category.','tarski');
-					} ?></p>
+					<?php if(trim(strip_tags(category_description()))) { ?>
+						<?php echo category_description(); ?>
+					<?php } else { ?>
+						<p><?php echo __('You are currently browsing the archive for the ','tarski'). '<strong>'; single_cat_title(); echo '</strong>'. __(' category.','tarski'); ?></p>
+					<?php } ?>
 				</div>
 				
 			<?php } elseif(is_author()) { // Author header ?>

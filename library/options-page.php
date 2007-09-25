@@ -163,7 +163,6 @@
 					
 					<div id="tarski-headers">
 						<?php
-						global $wpdb;
 						$name = get_tarski_option('header');
 
 						$header_dir = @ dir(TEMPLATEPATH . '/headers');	
