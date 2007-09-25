@@ -28,7 +28,7 @@ function tarski_output_frontpageinclude() {
 	global $completedBlurb;
 	
 	if(is_home() && !$completedBlurb) {
-		$completedBlurb = 1;
+		$completedBlurb = true;
 		tarski_output_constant($frontPageInclude);
 	}
 }
