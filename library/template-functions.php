@@ -1,5 +1,65 @@
 <?php // template-functions.php - Templating functions for Tarski
 
+function get_tarski_feeds() {
+	if(is_single() || (is_page() && ($comments || comments_open()))) {
+		global $post;
+		$title = __('Commments feed for ','tarski'). get_the_title();
+		$link = get_post_comments_feed_link($post->ID);
+	} elseif(is_archive()) {
+		if(is_category()) {
+			global $category;
+			$title = __('Category feed for ','tarski'). single_cat_title('','',false);
+			$link = get_category_rss_link(false, get_query_var('cat'), $category->category_nicename);
+		} elseif(is_author()) {
+			global $authordata;
+			$title = __('Articles feed for ','tarski'). the_archive_author_displayname();
+			$link = get_author_rss_link(false, get_query_var('author'), $authordata->user_nicename);
+		} elseif(is_date()) {
+			if(is_day()) {
+				$title = __('Daily archive feed for ','tarski'). tarski_date();
+				$link = get_day_link(get_the_time('Y'), get_the_time('m'), get_the_time('d'));
+			} elseif(is_month()) {
+				$title = __('Monthly archive feed for ','tarski'). get_the_time('F Y');
+				$link = get_month_link(get_the_time('Y'), get_the_time('m'));
+			} elseif(is_year()) {
+				$title = __('Yearly archive feed for ','tarski'). get_the_time('Y');
+				$link = get_year_link(get_the_time('Y'));
+			}
+			if(get_settings('permalink_structure')) {
+				$link .= $current_url. 'feed/';
+			} else {
+				$link .= $current_url. '&amp;feed=rss2';
+			}
+		} elseif(function_exists('is_tag')) { if(is_tag()) {
+			$title = __('Tag feed for ','tarski'). single_tag_title('','',false);
+			$link = get_tag_feed_link(get_query_var('tag_id'));
+		} }
+	} elseif(is_search()) {
+		$title = __('Search feed for ','tarski'). attribute_escape(get_search_query());
+		$link = get_bloginfo('url'). '/?s='. attribute_escape(get_search_query()). '&amp;feed=rss2';
+	}
+	if($title && $link) {
+		$feeds = sprintf(
+			'<link rel="alternate" type="application/rss+xml" title="%1$s" href="%2$s" />'."\n",
+			$title,
+			$link
+		);
+	}
+	$feeds .= sprintf(
+		'<link rel="alternate" type="application/rss+xml" title="%1$s" href="%2$s" />'."\n",
+		get_bloginfo('name'). __(' feed','tarski'),
+		get_bloginfo('rss2_url')
+	);
+	$feeds = apply_filters('tarski_feeds', $feeds);
+	return $feeds;
+}
+
+function tarski_feeds() {
+	echo get_tarski_feeds();
+}
+
+add_action('wp_head','tarski_feeds');
+
 // Header image status output
 function get_tarski_header_status() {
 	if(get_tarski_option('header') == 'blank.gif') {

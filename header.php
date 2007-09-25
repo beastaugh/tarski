@@ -20,11 +20,6 @@
 
 	<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/library/tarski-js.php"></script>
 
-<?php if(is_single() || (is_page() && ($comments || ($post->comment_status == 'open')))) { ?>
-	<link rel="alternate" type="application/rss+xml" title="<?php __('Comments feed','tarski'); ?>" href="<?php echo get_post_comments_feed_link($post->ID); ?>" />
-<?php } ?>
-	<link rel="alternate" type="application/rss+xml" title="<?php bloginfo('name'); ?> feed" href="<?php bloginfo('rss2_url'); ?>" />
-
 	<?php wp_head(); ?>
 
 </head>
