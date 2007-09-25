@@ -12,33 +12,36 @@
 <?php if(!detectWPMU()) { update_notifier_optionspage(); } ?>
 
 
-<div class="wrap<?php if($text_direction == 'rtl') { echo " rtl"; } ?>"><h2><?php _e('Tarski Options','tarski'); ?></h2>
-<form name="dofollow" action="" method="post">
+<div class="wrap<?php if($text_direction == 'rtl') { echo " rtl"; } ?>">
+	
+	<h2><?php _e('Tarski Options','tarski'); ?></h2>
 
-	<p class="submit"><input type="submit" name="Submit" value="<?php _e('Update Options','tarski') ?> &raquo;" /></p>
+	<form name="dofollow" action="" method="post">
 
-	<input type="hidden" name="action" value="<?php tarskiupdate(); ?>" />
-	<input type="hidden" name="page_options" value="'dofollow_timeout'" />
+		<p class="submit"><input type="submit" name="Submit" value="<?php _e('Save Options','tarski') ?> &raquo;" /></p>
+		<input type="hidden" name="action" value="<?php tarskiupdate(); ?>" />
+		<input type="hidden" name="page_options" value="'dofollow_timeout'" />
+
 
 		<div class="section">
-			<?php if(!detectWPMU()) { // non-WPMU code ?>
-			<fieldset class="primary">
+
+		<?php if(!detectWPMU()) { ?>
+			<fieldset class="primary radiolist">
 				<h3><?php _e('Update Notification','tarski'); ?></h3>
-				<?php if(get_tarski_option('update_notification') == 'true') { ?>
-				<label for="tarski_update_notification"><?php _e('Tarski is set to notify you when an update is available.','tarski'); ?></label>
-				<input type="submit" id="tarski_update_notification" name="tarski_update_notification" value="<?php _e('Turn update notification off?','tarski'); ?>" />
+				<?php if(get_tarski_option('update_notification')) { ?>
+					<p><?php _e('Tarski is set to notify you when an update is available.','tarski'); ?></p>
 				<?php } else { ?>
-				<?php _e('Tarski can notify you when an update is available. This involves sending a request to our server, so it is disabled by default.','tarski'); ?>
-				
-				<input type="submit" name="tarski_update_notification" value="<?php _e('Turn update notification on?','tarski'); ?>" />
+					<p><?php _e('Tarski can be set to notify you when updates are available.','tarski'); ?></p>
 				<?php } ?>
+				<label for="update-on"><input type="radio" id="update-on" name="update_notification" value ="on" <?php if(get_tarski_option('update_notification')) { echo 'checked="checked" '; } ?>/> <?php _e('Turn update notification on','tarski'); ?></label>
+				<label for="update-off"><input type="radio" id="update-off" name="update_notification" value ="off" <?php if(!get_tarski_option('update_notification')) { echo 'checked="checked" '; } ?>/> <?php _e('Turn update notification off','tarski'); ?></label>
 				<?php if(!cache_is_writable()) { ?>
-					<p><?php echo __('The version check could not be cached. To enable caching, follow the tutorial on the ','tarski'). '<a href="http://tarskitheme.com/help/updates/notifier/">'. __('update notifier','tarski'). '</a>'. __(' page.','tarski'); ?></p>
+					<p class="insert"><?php echo __('The version check could not be cached. To enable caching, follow the tutorial on the ','tarski'). '<a href="http://tarskitheme.com/help/updates/notifier/">'. __('update notifier','tarski'). '</a>'. __(' page.','tarski'); ?></p>
 				<?php } ?>
+				<p class="insert"><strong><?php _e('Privacy notice: ','tarski'); ?></strong><?php _e('The update notifier does not transmit any information about you or your website.'); ?></p>
 			</fieldset>
-			<?php } else { // start WPMU-only code ?>
-				
-			<?php } // end WPMU-only code ?>
+		<?php } ?>
+
 			<fieldset class="secondary">
 				<h3><?php _e('Footer Options','tarski'); ?></h3>
 				<textarea name="about_text" rows="5" cols="30" id="about_text"><?php echo stripslashes(get_tarski_option('blurb')); ?></textarea>
@@ -306,7 +309,7 @@
 			<hr />
 		</div>
 		
-	<p class="submit"><input type="submit" name="Submit" value="<?php _e('Update Options','tarski') ?> &raquo;" /></p>
+	<p class="submit"><input type="submit" name="Submit" value="<?php _e('Save Options','tarski') ?> &raquo;" /></p>
 
 </form>
 </div>

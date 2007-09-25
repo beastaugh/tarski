@@ -1,6 +1,7 @@
 <?php // template-functions.php - Templating functions for Tarski
 
 function get_tarski_feeds() {
+	$type = 'rss2';
 	if(is_single() || (is_page() && ($comments || comments_open()))) {
 		global $post;
 		$title = __('Commments feed for ','tarski'). get_the_title();
@@ -28,7 +29,7 @@ function get_tarski_feeds() {
 			if(get_settings('permalink_structure')) {
 				$link .= $current_url. 'feed/';
 			} else {
-				$link .= $current_url. '&amp;feed=rss2';
+				$link .= $current_url. "&amp;feed=$type";
 			}
 		} elseif(function_exists('is_tag')) { if(is_tag()) {
 			$title = __('Tag feed for ','tarski'). single_tag_title('','',false);
@@ -36,7 +37,7 @@ function get_tarski_feeds() {
 		} }
 	} elseif(is_search()) {
 		$title = __('Search feed for ','tarski'). attribute_escape(get_search_query());
-		$link = get_bloginfo('url'). '/?s='. attribute_escape(get_search_query()). '&amp;feed=rss2';
+		$link = get_bloginfo('url'). '/?s='. attribute_escape(get_search_query()). "&amp;feed=$type";
 	}
 	if($title && $link) {
 		$feeds = sprintf(

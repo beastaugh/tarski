@@ -51,7 +51,7 @@ function version_status() {
 
 function update_notifier_dashboard() {
 	echo '<h3>'. __('Tarski Updates','tarski'). '</h3>'."\n";
-	if(get_tarski_option('update_notification') == 'true') {
+	if(get_tarski_option('update_notification')) {
 		if(version_status() == "noconn") {
 			echo '<p>';
 			echo __('No connection to update server. Your installed version is ','tarski'). '<strong>'. theme_version(). '</strong>'. __('.','tarski');
@@ -76,7 +76,7 @@ function update_notifier_dashboard() {
 }
 
 function update_notifier_optionspage() {
-	if((version_status() == 'unequal') && (get_tarski_option('update_notification') == 'true')) {
+	if((version_status() == 'unequal') && get_tarski_option('update_notification')) {
 		echo '<div id="tarski_update_notification" class="updated">'."\n";
 		echo '<p>';
 		echo __('A new version of the Tarski theme, version ','tarski'). '<strong>'. latest_version_number(). '</strong>'. __(', ','tarski'). '<a href="'. latest_version_link(). '">'. __('is now available','tarski'). '</a>'. __('. Your installed version is ','tarski'). '<strong>'. theme_version(). '</strong>'. __('.','tarski');

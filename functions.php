@@ -97,6 +97,13 @@ if(get_tarski_option('display_title') == "lolno") {
 	update_tarski_option('display_title',false);
 }
 
+// 1.8 options update
+if(get_tarski_option('update_notification') == 'true') {
+	update_tarski_option('update_tarski_option',true);
+} else if(get_tarski_option('update_notification') == 'false') {
+	update_tarski_option('update_tarski_option',false);
+}
+
 // if no widgets, don't use the widgets sidebar
 if(!function_exists('register_sidebar') && get_tarski_option('sidebar_type') == 'widgets') {
 	update_tarski_option('sidebar_type', '');
@@ -249,10 +256,10 @@ function tarskiupdate() {
 	get_currentuserinfo();
 	
 	if ( !empty($_POST) ) {
-		if($_POST['tarski_update_notification'] == __('Turn update notification off?','tarski')) {
-			update_tarski_option('update_notification', 'false');
-		}	elseif($_POST['tarski_update_notification'] == __('Turn update notification on?','tarski')) {
-			update_tarski_option('update_notification', 'true');
+		if($_POST['update_notification'] == 'off') {
+			update_tarski_option('update_notification', false);
+		}	elseif($_POST['update_notification'] == 'on') {
+			update_tarski_option('update_notification', true);
 		}
 		
 		if (isset($_POST['about_text'])) {
