@@ -15,7 +15,7 @@ function tarski_next_prev_posts() {
 }
 
 // Clean page split links
-function link_pages_without_spaces() {
+function link_pages_without_spaces($return = false) {
 	ob_start();
 	link_pages('<p class="pagelinks"><strong>Pages</strong>', '</p>', 'number', '', '', '%', '');
 	$text = ob_get_contents();
@@ -23,7 +23,12 @@ function link_pages_without_spaces() {
 	
 	$text = str_replace(' <a href', '<a href', $text);
 	$text = str_replace('> ', '>', $text);
-	echo $text;
+	apply_filters('link_pages_without_spaces', $text);
+	if($return) {
+		return $text;
+	} else {
+		echo $text;
+	}
 }
 
 // Older and newer pages of posts links
