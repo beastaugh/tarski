@@ -10,15 +10,15 @@
 
 	<link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>" type="text/css" media="screen,projection" />
 <?php if(get_bloginfo('text_direction') == 'rtl') { ?>
-	<link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/library/rtl.css" type="text/css" media="screen,projection" />
+	<link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/library/css/rtl.css" type="text/css" media="screen,projection" />
 <?php } ?>
-	<link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/library/print.css" type="text/css" media="print" />
-	<link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/library/mobile.css" type="text/css" media="handheld" />
+	<link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/library/css/print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/library/css/mobile.css" type="text/css" media="handheld" />
 <?php if(get_tarski_option('style')) { ?>
 	<link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/styles/<?php tarski_option('style'); ?>" type="text/css" media="screen,projection" />
 <?php } ?>
 
-	<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/library/tarski-js.php"></script>
+	<script type="text/javascript" src="<?php bloginfo('template_directory'); ?>/library/js/tarski-js.php"></script>
 
 	<?php wp_head(); ?>
 
