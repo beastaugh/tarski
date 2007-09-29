@@ -283,6 +283,7 @@ function tarskiupdate() {
 			'display_title' => $_POST['display_title'],
 			'display_tagline' => $_POST['display_tagline'],
 			'hide_categories' => $_POST['hide_categories'],
+			'tags_everywhere' => $_POST['tags_everywhere'],
 			'use_pages' => $_POST['use_pages'],
 			'centered_theme' => $_POST['centered_theme'],
 			'swap_sides' => $_POST['swap_sides'],

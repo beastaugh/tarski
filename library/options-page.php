@@ -286,6 +286,12 @@
 					<?php _e('Hide post categories','tarski'); ?>
 				</label>
 				
+				<label for="opt-misc-tags">					
+					<input type="hidden" name="tags_everywhere" value="0" />
+					<input type="checkbox" id="opt-misc-tags" name="tags_everywhere" value="1" <?php if(get_tarski_option('tags_everywhere')) { echo 'checked="checked" '; } ?>/>
+					<?php _e('Show tags everywhere','tarski'); ?>
+				</label>
+				
 				<label for="opt-misc-pagination">
 					<input type="hidden" name="use_pages" value="0" />
 					<input type="checkbox" id="opt-misc-pagination" name="use_pages" value="1" <?php if(get_tarski_option('use_pages')) { echo 'checked="checked" '; } ?>/>

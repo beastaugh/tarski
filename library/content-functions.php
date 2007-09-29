@@ -77,8 +77,10 @@ function tarski_date() {
 }
 
 function add_post_tags() {
-	if(is_single() && function_exists('the_tags')) {
-		the_tags('<p class="tagdata"><strong>'. __('Tags','tarski'). ':</strong> ', ', ', '</p>'."\n");
+	if(function_exists('the_tags')) {
+		if(is_single() || get_tarski_option('tags_everywhere')) {
+			the_tags('<p class="tagdata"><strong>'. __('Tags','tarski'). ':</strong> ', ', ', '</p>'."\n");
+		}
 	}
 }
 
