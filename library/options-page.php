@@ -281,9 +281,9 @@
 				<?php } ?>
 
 				<label for="opt-misc-cats">					
-					<input type="hidden" name="hide_categories" value="0" />
-					<input type="checkbox" id="opt-misc-cats" name="hide_categories" value="1" <?php if(get_tarski_option('hide_categories')) { echo 'checked="checked" '; } ?>/>
-					<?php _e('Hide post categories','tarski'); ?>
+					<input type="hidden" name="show_categories" value="0" />
+					<input type="checkbox" id="opt-misc-cats" name="show_categories" value="1" <?php if(get_tarski_option('hide_categories')) { echo 'checked="checked" '; } ?>/>
+					<?php _e('Show post categories','tarski'); ?>
 				</label>
 				
 				<label for="opt-misc-tags">					

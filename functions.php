@@ -282,7 +282,7 @@ function tarskiupdate() {
 			'sidebar_onlyhome' => $_POST['sidebar']['onlyhome'],
 			'display_title' => $_POST['display_title'],
 			'display_tagline' => $_POST['display_tagline'],
-			'hide_categories' => $_POST['hide_categories'],
+			'show_categories' => $_POST['show_categories'],
 			'tags_everywhere' => $_POST['tags_everywhere'],
 			'use_pages' => $_POST['use_pages'],
 			'centered_theme' => $_POST['centered_theme'],
@@ -330,6 +330,12 @@ if (!get_tarski_option('installed')) {
 
 // Here we handle upgrading our users with new options and such. If tarski_installed is in the DB but the version they are running is lower than our current version, trigger this event.
 elseif (get_tarski_option('installed') < theme_version()) {
+	if(get_tarski_option('installed') < 1.8) {
+		if(!get_tarski_option('hide_categories') || get_tarski_option('hide_categories') == '0') {
+			add_tarski_option('show_categories', '1');
+		}
+		drop_tarski_option('hide_categories');
+	}
 	if(get_tarski_option('installed') < 1.1) {
 		add_tarski_option('asidescategory', '0');
 	}
