@@ -200,7 +200,7 @@
 				<h3><?php _e('Asides Category','tarski'); ?></h3>
 				<select name="asides_category" id="asides_category">
 					<option <?php if(!get_tarski_option('asidescategory')) { echo 'selected="selected" '; } ?>value=""><?php _e('Disable asides','tarski'); ?></option>
-					<?php $asides_cats = &get_categories();
+					<?php $asides_cats = &get_categories('hide_empty=0');
 					if($asides_cats) {
 						foreach ($asides_cats as $cat) {
 							if(($cat->cat_ID) == get_tarski_option('asidescategory')) {
@@ -237,7 +237,7 @@
 				
 				<h3><?php _e('Navigation Options','tarski'); ?></h3>
 				
-				<?php $categories = &get_categories('type=link'); ?>
+				<?php $categories = &get_categories('type=link&hide_empty=0'); ?>
 				<label for"opt-nav-extlinkcat"><?php _e('Add external links to the navbar.','tarski'); ?></label>
 				<select name="nav_extlinkcat" id="opt-nav-extlinkcat" size="1">
 					<option value=""><?php _e('No external links','tarski'); ?></option>
@@ -248,7 +248,7 @@
 							$status = false;
 						}
 						printf(
-							'<option%1$s value="%2$s">%3$s</option>',
+							'<option'. '%1$s'. ' value="%2$s">%3$s</option>',
 							$status,
 							$link_cat->cat_ID,
 							$link_cat->cat_name
