@@ -94,14 +94,14 @@ if(get_tarski_option('sidebar_comments')) {
 	drop_tarski_option('sidebar_comments');
 }
 if(get_tarski_option('display_title') == "lolno") {
-	update_tarski_option('display_title',false);
+	update_tarski_option('display_title', false);
 }
 
 // 1.8 options update
 if(get_tarski_option('update_notification') == 'true') {
-	update_tarski_option('update_tarski_option',true);
-} else if(get_tarski_option('update_notification') == 'false') {
-	update_tarski_option('update_tarski_option',false);
+	update_tarski_option('update_tarski_option', true);
+} elseif(get_tarski_option('update_notification') == 'false') {
+	update_tarski_option('update_tarski_option', false);
 }
 
 // if no widgets, don't use the widgets sidebar
@@ -249,6 +249,25 @@ function tarski_inject_scripts() {
 	}
 }
 
+function install_defaults() {
+	
+	$options = array(
+		'installed' => theme_version(),
+		'update_notification' => 'true',
+		'blurb' => __('This is the about text','tarski'),
+		'sidebar_type' => 'tarski',
+		'sidebar_pages' => true,
+		'sidebar_links' => true,
+		'header' => 'greytree.jpg',
+		'display_title' => true,
+		'display_tagline' => true,
+		'show_categories' => true,
+		'centered_theme' => true
+	);
+	
+	update_tarski_options($options);
+}
+
 // Update function
 // I r serious cat. This r serious function.
 function tarskiupdate() {
@@ -322,10 +341,7 @@ add_action("save_post","tarski_resave_navbar");
 
 // if we can't find Tarski installed let's go ahead and install all the options that run Tarski. This should run only one more time for all our existing users, then they will just be getting the upgrade function if it exists.
 if (!get_tarski_option('installed')) {
-	add_tarski_option('installed', theme_version());
-	add_tarski_option('header', 'greytree.jpg');
-	add_tarski_option('blurb', __('This is the about text','tarski'));
-	add_tarski_option('update_notification','true');
+	install_defaults();
 }
 
 // Here we handle upgrading our users with new options and such. If tarski_installed is in the DB but the version they are running is lower than our current version, trigger this event.

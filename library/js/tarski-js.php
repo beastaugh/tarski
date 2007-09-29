@@ -1,7 +1,7 @@
 <?php
 
 define('WP_USE_THEMES', false);
-require('../../../../wp-blog-header.php');
+require('../../../../../wp-blog-header.php');
 header('Content-type: text/javascript');
 
 ?>// tarski.js - external JS for Tarski
