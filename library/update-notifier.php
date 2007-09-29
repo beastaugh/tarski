@@ -1,8 +1,8 @@
 <?php // Tarski update notifier
 
-include(TEMPLATEPATH . '/library/feedparser/lib-feedparser.php');
-include(TEMPLATEPATH . '/library/feedparser/lib-entity.php');
-include(TEMPLATEPATH . '/library/feedparser/lib-utf8.php');
+include(TEMPLATEPATH . '/library/includes/feedparser/lib-feedparser.php');
+include(TEMPLATEPATH . '/library/includes/feedparser/lib-entity.php');
+include(TEMPLATEPATH . '/library/includes/feedparser/lib-utf8.php');
 
 function latest_version($option = false) {
 	// Thanks to Simon Willison for the inspiration
