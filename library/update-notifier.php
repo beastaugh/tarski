@@ -17,10 +17,22 @@ function latest_version($option = false) {
 	&& !(file_get_contents($cachefile) == "")) {
 		$atomdata = $parser->Parse($cachefile);
 	} elseif(cache_is_writable("version.atom")) {
-		$contents = file_get_contents('http://tarskitheme.com/version.atom');
-		$fp = fopen($cachefile, 'w+');
-		fwrite($fp, $contents);
+		/*
+				$contents = file_get_contents('http://tarskitheme.com/version.atom');
+				$fp = fopen($cachefile, 'w+');
+				fwrite($fp, $contents);
+				fclose($fp);
+		*/
+		// Above code rewritten to work with Dreamhost, where file-access is disabled in the server configuration
+		$file = 'http://tarskitheme.com/version.atom';
+		$ch = curl_init($file);
+		$fp = @fopen($cachefile, "w");
+		curl_setopt($ch, CURLOPT_FILE, $fp);
+		curl_setopt($ch, CURLOPT_HEADER, 0);
+		curl_exec($ch);
+		curl_close($ch);
 		fclose($fp);
+		
 		$atomdata = $parser->Parse($cachefile);
 	} else {
 		$atomdata = $parser->Parse('http://tarskitheme.com/version.atom');
