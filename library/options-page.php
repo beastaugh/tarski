@@ -282,7 +282,7 @@
 
 				<label for="opt-misc-cats">					
 					<input type="hidden" name="show_categories" value="0" />
-					<input type="checkbox" id="opt-misc-cats" name="show_categories" value="1" <?php if(get_tarski_option('hide_categories')) { echo 'checked="checked" '; } ?>/>
+					<input type="checkbox" id="opt-misc-cats" name="show_categories" value="1" <?php if(get_tarski_option('show_categories')) { echo 'checked="checked" '; } ?>/>
 					<?php _e('Show post categories','tarski'); ?>
 				</label>
 				
