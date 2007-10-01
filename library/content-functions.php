@@ -16,18 +16,20 @@ function tarski_next_prev_posts() {
 
 // Clean page split links
 function link_pages_without_spaces($return = false) {
-	ob_start();
-	link_pages('<p class="pagelinks"><strong>Pages</strong>', '</p>', 'number', '', '', '%', '');
-	$text = ob_get_contents();
-	ob_end_clean();
+	if(!in_category(get_tarski_option('asidescategory'))) {
+		ob_start();
+		link_pages('<p class="pagelinks"><strong>Pages</strong>', '</p>', 'number', '', '', '%', '');
+		$text = ob_get_contents();
+		ob_end_clean();
 	
-	$text = str_replace(' <a href', '<a href', $text);
-	$text = str_replace('> ', '>', $text);
-	apply_filters('link_pages_without_spaces', $text);
-	if($return) {
-		return $text;
-	} else {
-		echo $text;
+		$text = str_replace(' <a href', '<a href', $text);
+		$text = str_replace('> ', '>', $text);
+		apply_filters('link_pages_without_spaces', $text);
+		if($return) {
+			return $text;
+		} else {
+			echo $text;
+		}
 	}
 }
 
@@ -78,7 +80,7 @@ function tarski_date() {
 
 function add_post_tags() {
 	if(function_exists('the_tags')) {
-		if(is_single() || get_tarski_option('tags_everywhere')) {
+		if(is_single() || (get_tarski_option('tags_everywhere')) && !in_category(get_tarski_option('asidescategory'))) {
 			the_tags('<p class="tagdata"><strong>'. __('Tags','tarski'). ':</strong> ', ', ', '</p>'."\n");
 		}
 	}
