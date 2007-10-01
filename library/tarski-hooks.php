@@ -36,8 +36,10 @@ function th_footer() { // Footer hook
 /* Default behaviour
 --------------------------------*/
 
-// Default document title actions and filters
+// Default document head actions and filters
 add_action('th_doctitle','tarski_doctitle');
+add_action('wp_head', 'add_robots_meta');
+add_action('wp_head','tarski_feeds');
 
 // Default header actions and filters
 add_action('th_header','tarski_headerimage');

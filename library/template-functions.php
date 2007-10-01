@@ -1,5 +1,11 @@
 <?php // template-functions.php - Templating functions for Tarski
 
+function add_robots_meta() {
+	if(get_option('blog_public') != '0') {
+		echo '<meta name="robots" content="all" />'."\n";
+	}
+}
+
 function get_tarski_feeds() {
 	$type = 'rss2';
 	if(is_single() || (is_page() && ($comments || comments_open()))) {
@@ -58,8 +64,6 @@ function get_tarski_feeds() {
 function tarski_feeds() {
 	echo get_tarski_feeds();
 }
-
-add_action('wp_head','tarski_feeds');
 
 // Header image status output
 function get_tarski_header_status() {
