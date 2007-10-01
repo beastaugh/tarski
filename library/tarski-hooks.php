@@ -33,26 +33,6 @@ function th_footer() { // Footer hook
 }
 
 
-/* Filters
---------------------------------*/
-
-/*
-'th_navbar'
-See /library/template-functions.php
-
-'tarski_navbar'
-See /library/template-functions.php
-
-'tarski_404_content'
-See /library/content-functions.php
-
-'tarski_footer_blurb'
-See /library/content-functions.php
-
-I.e., add_filter('tarski_404_content','my_function');
-*/
-
-
 /* Default behaviour
 --------------------------------*/
 
