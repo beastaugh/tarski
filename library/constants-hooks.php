@@ -3,7 +3,7 @@
 // General constants check
 function tarski_output_constant($constant,$pre=false,$post=false) {
 	if($constant) {
-		echo $pre . $constant . $post;
+		echo $pre. $constant. $post;
 	}
 }
 

@@ -54,7 +54,7 @@
 
 	<div class="primary">
 		
-		<?php include(TEMPLATEPATH.'/library/no_posts.php'); ?>
+		<?php include(TEMPLATEPATH.'/library/partials/no_posts.php'); ?>
 		
 	</div> <!-- /primary -->
 

@@ -9,7 +9,7 @@
 <?php } ?>
 
 
-<?php if(!detectWPMU()) { update_notifier_optionspage(); } ?>
+<?php if(!detectWPMU()) { tarski_update_notifier("options_page"); } ?>
 
 
 <div class="wrap<?php if($text_direction == 'rtl') { echo " rtl"; } ?>">

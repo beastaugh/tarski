@@ -1,5 +1,9 @@
 <?php // functions.php - Tarski functions library
 
+// Warp speed!
+include(TEMPLATEPATH."/library/classes/tarski.php");
+Tarski::engage();
+
 global $tarski_options;
 flush_tarski_options();
 
@@ -128,16 +132,16 @@ require(TEMPLATEPATH . '/library/content-functions.php');
 require(TEMPLATEPATH . '/library/author-functions.php');
 require(TEMPLATEPATH . '/library/tarski-hooks.php');
 require(TEMPLATEPATH . '/library/constants-hooks.php');
-require(TEMPLATEPATH . '/library/update-notifier.php');
+/* require(TEMPLATEPATH . '/library/update-notifier.php'); */
 
 // Localisation
 load_theme_textdomain('tarski');
 
 // Options page and dashboard injections
 add_action('admin_head', 'tarski_inject_scripts');
-if(!detectWPMU()) {
+/* if(!detectWPMU()) {
 	add_action('activity_box_end','update_notifier_dashboard');
-}
+} */
 
 // Widgets
 if(function_exists('register_sidebar')) {
