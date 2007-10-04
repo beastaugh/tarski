@@ -1,5 +1,3 @@
-<?php // Tarski Options page starts here ?>
-
 <?php global $wpdb; // Need this for all the navbar jazz ?>
 
 <?php if(isset($_POST['Submit'])) { ?>
@@ -18,8 +16,8 @@
 
 	<form name="dofollow" action="" method="post">
 
-		<p class="submit"><input type="submit" name="Submit" value="<?php _e('Save Options','tarski') ?> &raquo;" /></p>
-		<input type="hidden" name="action" value="<?php tarskiupdate(); ?>" />
+		<p class="submit"><input type="submit" name="Submit" value="<?php _e('Save Options &raquo;','tarski'); ?>" /></p>
+		<input type="hidden" name="action" value="<?php save_tarski_options(); ?>" />
 		<input type="hidden" name="page_options" value="'dofollow_timeout'" />
 
 
@@ -314,7 +312,7 @@
 			<hr />
 		</div>
 		
-	<p class="submit"><input type="submit" name="Submit" value="<?php _e('Save Options','tarski') ?> &raquo;" /></p>
+	<p class="submit"><input type="submit" name="Submit" value="<?php _e('Save Options &raquo;','tarski'); ?>" /></p>
 
 </form>
 </div>
@@ -322,5 +320,3 @@
 <div class="wrap">
 	<p class="info"><?php echo __('The ','tarski') . '<a href="http://tarskitheme.com/help/">' . __('Tarski documentation','tarski') . '</a>' . __(' is full of useful stuff','tarski') . ' &middot; <a href="http://tarskitheme.com/credits/">' . __('Credits &amp; Thanks','tarski') . '</a>'; ?></p>
 </div>
-
-<?php // Tarski Options page ends here ?>

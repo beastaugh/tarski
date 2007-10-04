@@ -1,5 +1,27 @@
 <?php
 
+if (get_tarski_option('installed') < theme_version()) {
+	if(get_tarski_option('installed') < 1.8) {
+		if(
+			!get_tarski_option('hide_categories')
+			|| get_tarski_option('hide_categories') == '0'
+		) {
+			add_tarski_option('show_categories', '1');
+		}
+		drop_tarski_option('hide_categories');
+	}
+	if(get_tarski_option('installed') < 1.1) {
+		add_tarski_option('asidescategory', '0');
+	}
+	if(
+		!get_tarski_option('update_notification','false')
+		&& !get_tarski_option('update_notification','true')
+	) {
+		add_tarski_option('update_notification','true');
+	}
+	update_tarski_option('installed', theme_version());
+}
+
 // upgrade to serialised options, implemented in 1.4...
 if(!get_option('tarski_options')) {
 	$tarski_options = array();
