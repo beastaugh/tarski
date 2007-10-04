@@ -96,6 +96,16 @@ class Version {
 }
 
 // Version controller
+function theme_version($version = "current") {
+	$tarski_version = new Version;
+	if($version == "latest") {
+		$tarski_version->latest_version_number();
+		return $tarski_version->latest;
+	} else {
+		$tarski_version->current_version_number();
+		return $tarski_version->current;
+	}
+}
 
 function tarski_update_notifier($location = "dashboard") {
 	$tarski_version = new Version;
@@ -111,13 +121,13 @@ function tarski_update_notifier($location = "dashboard") {
 	$status = $tarski_version->status;
 	
 	if($location == "options_page") {
-		include(TEMPLATEPATH."/library/partials/version/options_page.php");
+		include(TEMPLATEPATH."/library/display/version/options_page.php");
 	} else {
-		include(TEMPLATEPATH."/library/partials/version/dashboard.php");
+		include(TEMPLATEPATH."/library/display/version/dashboard.php");
 	}
 }
 
-if(!detectWPMU()) {
+if(!detectWPMU()) { // Adds update notifier to Dashboard
 	add_action('activity_box_end', 'tarski_update_notifier');
 }
 

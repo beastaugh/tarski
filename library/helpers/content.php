@@ -1,5 +1,16 @@
 <?php // content-functions.php - Content formatting for Tarski
 
+// Needed for various nasty hacks
+function tarski_get_output($code) {
+	global $comment, $post;
+	
+	ob_start();
+	@eval($code);
+	$return = ob_get_contents();
+	ob_end_clean();
+	return $return;
+}
+
 // Next and previous post links
 function tarski_next_prev_posts() {
 	$prev_post = '';

@@ -1,37 +1,23 @@
 <?php // functions.php - Tarski functions library
 
-// Warp speed!
-include(TEMPLATEPATH."/library/classes/tarski.php");
-Tarski::engage();
+// Path constants
+define('TARSKILIB', TEMPLATEPATH.'/library');
+define('TARSKICLASSES', TARSKILIB.'/classes');
+define('TARSKIHELPERS', TARSKILIB.'/helpers');
+define('TARSKIINCLUDES', TARSKILIB.'/includes');
+define('TARSKIDISPLAY', TARSKILIB.'/display');
+define('TARSKICACHE', TARSKILIB.'/cache');
 
 global $tarski_options;
 flush_tarski_options();
 
-// Any constants we need to set
-define('TARSKICACHE', TEMPLATEPATH.'/library/cache');
+// Warp speed!
+include(TARSKICLASSES."/tarski.php");
+Tarski::engage();
 
-// Version detection
-function theme_version() {
-	$themeData = get_theme_data(TEMPLATEPATH . '/style.css');
-	$installedVersion = trim($themeData['Version']);
-	if($installedVersion == false) {
-		return "unknown";
-	} else {
-		return $installedVersion;
-	}
-}
+@include(TEMPLATEPATH."/constants.php");
 
-// Can we write to the cache?
-function cache_is_writable($file = false) {
-	if($file == "") {
-		$cachefile = false;
-	} else {
-		$cachefile = TARSKICACHE. "/". $file;
-	}
-	if(is_writable($cachefile) || (is_writable(TARSKICACHE) && !file_exists($cachefile))) {
-		return true;
-	}
-}
+
 
 // upgrade to serialised options, implemented in 1.4...
 if(!get_option('tarski_options')) {
@@ -108,85 +94,6 @@ if(get_tarski_option('update_notification') == 'true') {
 	update_tarski_option('update_tarski_option', false);
 }
 
-// if no widgets, don't use the widgets sidebar
-if(!function_exists('register_sidebar') && get_tarski_option('sidebar_type') == 'widgets') {
-	update_tarski_option('sidebar_type', '');
-}
-
-// set default sidebar type
-if(!get_tarski_option('sidebar_type')) {
-	// default to widgets if available, otherwise use the Tarski sidebar
-	if(function_exists('register_sidebar')) {
-		update_tarski_option('sidebar_type', 'widgets');
-	} else {
-		update_tarski_option('sidebar_type','tarski');
-	}
-}
-
-// Constants file include
-@include(TEMPLATEPATH . '/constants.php');
-
-// Functions and hooks - important!
-require(TEMPLATEPATH . '/library/template-functions.php');
-require(TEMPLATEPATH . '/library/content-functions.php');
-require(TEMPLATEPATH . '/library/author-functions.php');
-require(TEMPLATEPATH . '/library/tarski-hooks.php');
-require(TEMPLATEPATH . '/library/constants-hooks.php');
-/* require(TEMPLATEPATH . '/library/update-notifier.php'); */
-
-// Localisation
-load_theme_textdomain('tarski');
-
-// Options page and dashboard injections
-add_action('admin_head', 'tarski_inject_scripts');
-/* if(!detectWPMU()) {
-	add_action('activity_box_end','update_notifier_dashboard');
-} */
-
-// Widgets
-if(function_exists('register_sidebar')) {
-	register_sidebar(array(
-		'name' => __('Main Sidebar','tarski'),
-		'before_widget' => '<div id="%1$s" class="widget %2$s">',
-		'after_widget' => '</div>',
-		'before_title' => '<h3>',
-		'after_title' => '</h3>'
-	));
-	register_sidebar(array(
-		'name' => __('Footer Widgets','tarski'),
-		'before_widget' => '<div id="%1$s" class="widget %2$s">',
-		'after_widget' => '</div>',
-		'before_title' => '<h3>',
-		'after_title' => '</h3>'
-	));
-}
-
-// custom header API
-if(function_exists('add_custom_image_header')) {
-	define('HEADER_TEXTCOLOR', '');
-	define('HEADER_IMAGE', '%s/headers/' . get_tarski_option('header')); // %s is theme dir uri
-	define('HEADER_IMAGE_WIDTH', 720);
-	define('HEADER_IMAGE_HEIGHT', 180);
-	define('NO_HEADER_TEXT', true );
-	
-	function tarski_admin_header_style() { ?>
-<style type="text/css">
-#headimg {
-	height: <?php echo HEADER_IMAGE_HEIGHT; ?>px;
-	width: <?php echo HEADER_IMAGE_WIDTH; ?>px;
-}
-
-#headimg h1, #headimg #desc {
-	display: none;
-}
-
-</style>
-<?php }
-	
-	add_custom_image_header('', 'tarski_admin_header_style');
-}
-
-
 
 
 // serialisation stuff
@@ -239,18 +146,6 @@ function update_tarski_options($array) {
 // detect WordPress MultiUser - http://mu.wordpress.org/
 function detectWPMU() {
 	return function_exists('is_site_admin');
-}
-
-// Options page JS and CSS injection
-function tarski_inject_scripts() {
-	if(substr($_SERVER['REQUEST_URI'], -39, 39) == 'wp-admin/themes.php?page=tarski-options') { // Ugly
-		echo "\n\n";
-		echo '<link rel="stylesheet" href="' . get_bloginfo('template_directory') . '/library/css/options.css" type="text/css" media="screen" />' . "\n";
-		echo '<script src="' . get_bloginfo('wpurl') . '/wp-includes/js/jquery/jquery.js' . '" type="text/javascript"></script>' . "\n";
-		echo '<script src="' . get_bloginfo('template_directory') . '/library/js/crir.js' .'" type="text/javascript"></script>' . "\n";
-		echo '<script src="' . get_bloginfo('template_directory') . '/library/js/options.js' .'" type="text/javascript"></script>' . "\n";
-		echo "\n";
-	}
 }
 
 function install_defaults() {
@@ -363,27 +258,6 @@ elseif (get_tarski_option('installed') < theme_version()) {
 		add_tarski_option('update_notification','true');
 	}
 	update_tarski_option('installed', theme_version());
-}
-
-// This adds the Tarski Options page
-add_action('admin_menu', 'tarski_addmenu');
-
-function tarski_addmenu() {
-	add_submenu_page('themes.php', __('Tarski Options','tarski'), __('Tarski Options','tarski'), 'edit_themes', 'tarski-options', 'tarski_admin');
-}
-
-function tarski_admin() {
-	require(TEMPLATEPATH . '/library/options-page.php');
-}
-
-function tarski_get_output($code) {
-	global $comment, $post;
-	
-	ob_start();
-	@eval($code);
-	$return = ob_get_contents();
-	ob_end_clean();
-	return $return;
 }
 
 // ~fin~ ?>

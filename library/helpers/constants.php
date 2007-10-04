@@ -1,4 +1,4 @@
-<?php // constants-hooks.php - Tying Tarski's hooks into the legacy constants file
+<?php // Ties Tarski's hooks into the legacy constants file
 
 // General constants check
 function tarski_output_constant($constant,$pre=false,$post=false) {
@@ -122,7 +122,7 @@ function tarski_output_errorinclude($input) {
 	return $output;
 }
 
-if(file_exists(TEMPLATEPATH . '/constants.php')) {
+if(file_exists(TEMPLATEPATH . '/constants.php')) {	
 	add_filter('tarski_navbar','tarski_output_navbarinclude');
 	add_filter('th_404_content','tarski_output_errorinclude');
 	

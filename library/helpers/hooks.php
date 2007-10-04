@@ -1,4 +1,4 @@
-<?php // tarski-hooks.php - Tarski hooks and their default behaviour
+<?php // Tarski hooks and their default behaviour
 
 
 /* Actions

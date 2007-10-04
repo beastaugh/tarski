@@ -1,9 +1,9 @@
 <div class="secondary">
-<?php
-th_sidebar(); ?>
-<?php if (is_search()) { ?>
+<?php @include(TEMPLATEPATH."/constants.php"); ?>
+<?php th_sidebar(); ?>
+<?php if(is_search()) { ?>
 	<?php include(TEMPLATEPATH . '/searchform.php'); ?>
-	<?php @include(TEMPLATEPATH . '/constants.php'); tarski_output_constant($sidebarBottomInclude); ?>
+	<?php tarski_output_constant($sidebarBottomInclude); ?>
 <?php } else { ?>
 
 	<?php if(!get_tarski_option('sidebar_onlyhome') || !(is_single() || is_page())) { ?>
@@ -42,7 +42,7 @@ th_sidebar(); ?>
 		<?php } ?>
 
 		<?php wp_meta(); ?>
-		<?php @include(TEMPLATEPATH . '/constants.php'); tarski_output_constant($sidebarBottomInclude); ?>
+		<?php tarski_output_constant($sidebarBottomInclude); ?>
 	<?php } // end onlyhome if ?>
 <?php } // end search else ?>
 <?php // Reset the post data incase part of the sidebar code messed it up

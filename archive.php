@@ -79,7 +79,7 @@
 		
 	<?php } else { ?>
 		
-		<?php include(TEMPLATEPATH.'/library/partials/no_posts.php'); ?>
+		<?php include(TEMPLATEPATH.'/library/display/no_posts.php'); ?>
 		
 	<?php } // End if posts ?>
 </div> <!-- /primary -->
