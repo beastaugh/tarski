@@ -26,6 +26,7 @@ class Tarski {
 		require_once(TARSKIHELPERS."/hooks.php");
 		require_once(TARSKIHELPERS."/constants.php");
 		require_once(TARSKIHELPERS."/options.php");
+		require_once(TARSKIHELPERS."/upgrade.php");
 		require_once(TARSKIHELPERS."/widgets.php");
 		require_once(TARSKIHELPERS."/cache.php");
 	}

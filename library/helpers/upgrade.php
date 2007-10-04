@@ -1,20 +1,8 @@
-<?php 
+<?php
 
-/*********************************************
- USE THIS ONLY IF THE AUTO-UPDATE DIDN'T WORK!
- *********************************************/
-
-
-// access to WordPress functions, but don't execute/display the theme
-define('WP_USE_THEMES', false);
-require_once('../../../../wp-blog-header.php');
-
-echo "<pre>\n";
-
-echo "upgrade.php:\n\n";
-
+// upgrade to serialised options, implemented in 1.4...
 if(!get_option('tarski_options')) {
-	echo "You have not upgraded your Tarski database yet.\n\n";
+	$tarski_options = array();
 	
 	$tarski_options['sidebar_type'] = get_option('tarski_sidebar_type');
 	$tarski_options['update_notification'] = get_option('tarski_update_notification');
@@ -30,22 +18,16 @@ if(!get_option('tarski_options')) {
 	$tarski_options['footer_recent'] = get_option('tarski_footer_recent');
 	$tarski_options['sidebar_pages'] = get_option('tarski_sidebar_pages');
 	$tarski_options['sidebar_links'] = get_option('tarski_sidebar_links');
-	$tarski_options['sidebar_comments'] = get_option('tarski_sidebar_comments');
 	$tarski_options['sidebar_custom'] = get_option('tarski_sidebar_custom');
 	$tarski_options['sidebar_onlyhome'] = get_option('tarski_sidebar_onlyhome');
 	$tarski_options['display_title'] = get_option('tarski_display_title');
 	$tarski_options['display_tagline'] = get_option('tarski_display_tagline');
 	$tarski_options['hide_categories'] = get_option('tarski_hide_categories');
 	$tarski_options['use_pages'] = get_option('tarski_use_pages');
-	$tarski_options['ajax_tags'] = get_option('tarski_ajax_tags');
-	
-	echo "Transferring " . count($tarski_options) . " options...\n\n";
 	
 	ksort($tarski_options);
 	$tarski_options = serialize($tarski_options);
 	update_option('tarski_options', $tarski_options);
-	
-	echo "Deleting old options...\n\n";
 	
 	delete_option('tarski_sidebar_type');
 	delete_option('tarski_update_notification');
@@ -70,11 +52,27 @@ if(!get_option('tarski_options')) {
 	delete_option('tarski_use_pages');
 	delete_option('tarski_ajax_tags');
 	
-	echo "Done!\n";
-} else {
-	echo "No upgrade required.\n";
+	// hopefully bypass errors?
+	echo "<script>window.location.replace('${_SERVER['REQUEST_URI']}');</script>\n";
+	exit;
 }
 
-echo "</pre>\n";
+// 1.7 options update
+if(get_tarski_option('ajax_tags')) {
+	drop_tarski_option('ajax_tags');
+}
+if(get_tarski_option('sidebar_comments')) {
+	drop_tarski_option('sidebar_comments');
+}
+if(get_tarski_option('display_title') == "lolno") {
+	update_tarski_option('display_title', false);
+}
+
+// 1.8 options update
+if(get_tarski_option('update_notification') == 'true') {
+	update_tarski_option('update_tarski_option', true);
+} elseif(get_tarski_option('update_notification') == 'false') {
+	update_tarski_option('update_tarski_option', false);
+}
 
 ?>
