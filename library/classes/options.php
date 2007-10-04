@@ -26,6 +26,7 @@ class Options {
 	var $use_pages = false;
 	
 	function tarski_options_get() {
+		$this->installed = theme_version("current");
 		$array = unserialize(get_option('tarski_options'));
 		foreach($array as $name => $value) {
 			$this->$name = $value;
