@@ -1,3 +1,7 @@
+<pre>
+<?php print_r($tarski_options); ?>
+</pre>
+
 <?php global $wpdb; // Need this for all the navbar jazz ?>
 
 <?php if(isset($_POST['Submit'])) { ?>
@@ -17,7 +21,6 @@
 	<form name="dofollow" action="" method="post">
 
 		<p class="submit"><input type="submit" name="Submit" value="<?php _e('Save Options &raquo;','tarski'); ?>" /></p>
-		<input type="hidden" name="action" value="<?php save_tarski_options(); ?>" />
 		<input type="hidden" name="page_options" value="'dofollow_timeout'" />
 
 
@@ -197,7 +200,7 @@
 
 				<h3><?php _e('Asides Category','tarski'); ?></h3>
 				<select name="asides_category" id="asides_category">
-					<option <?php if(!get_tarski_option('asidescategory')) { echo 'selected="selected" '; } ?>value=""><?php _e('Disable asides','tarski'); ?></option>
+					<option <?php if(!get_tarski_option('asidescategory')) { echo 'selected="selected" '; } ?>value="0"><?php _e('Disable asides','tarski'); ?></option>
 					<?php $asides_cats = &get_categories('hide_empty=0');
 					if($asides_cats) {
 						foreach ($asides_cats as $cat) {
@@ -238,7 +241,7 @@
 				<?php $categories = &get_categories('type=link&hide_empty=0'); ?>
 				<label for"opt-nav-extlinkcat"><?php _e('Add external links to the navbar.','tarski'); ?></label>
 				<select name="nav_extlinkcat" id="opt-nav-extlinkcat" size="1">
-					<option value=""><?php _e('No external links','tarski'); ?></option>
+					<option value="0"><?php _e('No external links','tarski'); ?></option>
 					<?php foreach($categories as $link_cat) { ?>
 						<?php if(get_tarski_option('nav_extlinkcat') == $link_cat->cat_ID) {
 							$status = ' selected="selected"';

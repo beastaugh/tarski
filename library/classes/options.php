@@ -41,7 +41,7 @@ class Options {
 		$this->nav_pages = false;
 		$this->home_link_name = false;
 		$this->nav_extlinkcat = 0;
-		$this->style = 0;
+		$this->style = false;
 		$this->asidescategory = 0;
 		$this->centered_theme = true;
 		$this->swap_sides = false;
@@ -79,9 +79,10 @@ class Options {
 				$header = @str_replace("-thumb", "", $header);
 				$this->header = $header;
 			}
-
-			$nav_pages = implode(",", $_POST['nav_pages']);
-
+			if(isset($_POST['nav_pages'])) {
+				$nav_pages = implode(",", $_POST['nav_pages']);
+			}
+			
 			$this->footer_recent = $_POST['footer']['recent'];
 			$this->sidebar_pages = $_POST['sidebar']['pages'];
 			$this->sidebar_links = $_POST['sidebar']['links'];
@@ -106,10 +107,12 @@ class Options {
 }
 
 function save_tarski_options() {
-	$tarski_options = new Options;
-	$tarski_options->tarski_options_get();
-	$tarski_options->tarski_options_update();
-	update_option('tarski_options', serialize($tarski_options));
+	if(isset($_POST['Submit'])) {
+		$tarski_options = new Options;
+		$tarski_options->tarski_options_get();
+		$tarski_options->tarski_options_update();
+		update_option('tarski_options', serialize($tarski_options));
+	}
 	flush_tarski_options();
 }
 

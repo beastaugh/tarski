@@ -11,6 +11,7 @@ function tarski_addmenu() {
 }
 
 function tarski_admin() {
+	save_tarski_options();
 	include(TEMPLATEPATH."/library/display/options/main.php");
 }
 
@@ -36,6 +37,6 @@ function tarski_resave_navbar() { // Changing page order changes navbar order
 
 add_action('admin_menu', 'tarski_addmenu');
 add_action('admin_head', 'tarski_inject_scripts');
-add_action("save_post","tarski_resave_navbar");
+add_action("save_post", "tarski_resave_navbar");
 
 ?>
