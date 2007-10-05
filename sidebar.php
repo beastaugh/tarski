@@ -16,9 +16,11 @@
 	
 		<?php } elseif(get_tarski_option('sidebar_type') == 'tarski') { ?>
 	
-			<?php if($sidebar_custom = get_tarski_option('sidebar_custom')) {
-				echo '<div class="content">' .  wpautop(wptexturize(stripslashes($sidebar_custom))) . '</div>';
-			} ?>
+			<?php if(get_tarski_option('sidebar_custom')) { ?>
+				<div class="content">
+					<?php wpautop(wptexturize((stripslashes(get_tarski_option('sidebar_custom'))))); ?>
+				</div>
+			<?php } ?>
 			<?php if(get_tarski_option('sidebar_pages')) { // pages block ?>
 				<h3><?php _e('Pages', 'tarski'); ?></h3>
 				<ul class="navlist xoxo">
