@@ -15,7 +15,7 @@ function tarski_config_custom_header() {
 }
 
 function tarski_admin_header_style() {
-	include(TARSKIDISPLAY."/header/admin_header_style.php");
+	include(TARSKIDISPLAY."/options/admin_header_style.php");
 }
 
 ?>
