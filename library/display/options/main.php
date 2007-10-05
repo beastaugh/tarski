@@ -19,7 +19,9 @@
 	<h2><?php _e('Tarski Options','tarski'); ?></h2>
 
 	<form name="dofollow" action="" method="post">
-
+		
+		<?php wp_nonce_field('update-options') ?>
+		
 		<p class="submit"><input type="submit" name="Submit" value="<?php _e('Save Options &raquo;','tarski'); ?>" /></p>
 		<input type="hidden" name="page_options" value="'dofollow_timeout'" />
 

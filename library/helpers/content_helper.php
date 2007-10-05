@@ -200,7 +200,6 @@ function tarski_excerpt($excerpt_length = 120, $allowedtags = '', $filter_type =
 	return $output;
 }
 
-
 // Default 404 text
 function tarski_404_content() {
 	$content = '<p>'. __('The page you are looking for does not exist; it may have been moved, or removed altogether. You might want to try the search function or return to the ','tarski'). '<a href="'. get_bloginfo('url'). '">'. __('front page','tarski'). '</a>'. __('.','tarski'). "</p>\n";
@@ -209,7 +208,7 @@ function tarski_404_content() {
 }
 
 function get_tarski_footer_blurb() {
-	$output = wpautop(wptexturize(stripslashes(get_tarski_option('blurb'))));
+	$output = wpautop(wptexturize(wp_specialchars(stripslashes(get_tarski_option('blurb')))));
 	$output = apply_filters('tarski_footer_blurb', $output);
 	return $output;
 }
