@@ -8,8 +8,8 @@ define("TARSKIINCLUDES", TARSKILIB . "/include");
 define("TARSKIDISPLAY", TARSKILIB . "/display");
 define("TARSKICACHE", TARSKILIB . "/cache");		
 
-include(TARSKICLASSES."/options.php");
-include(TARSKICLASSES."/version.php");
+require_once(TARSKICLASSES."/options.php");
+require_once(TARSKICLASSES."/version.php");
 
 // Warp speed
 global $tarski_options;

@@ -3,7 +3,7 @@
 class Options {
 	
 	var $installed;
-	var $update_notification = "on";
+	var $update_notification;
 	var $blurb;
 	var $footer_recent = true;
 	var $sidebar_type = "tarski";
@@ -25,11 +25,37 @@ class Options {
 	var $show_categories = true;
 	var $use_pages = false;
 	
-	function tarski_options_get() {
+	function tarski_options_defaults() {
 		$this->installed = theme_version("current");
+		$this->update_notification = true;
+		$this->blurb = __("This is the about text.","tarski");
+		$this->footer_recent = true;
+		$this->sidebar_type = "tarski";
+		$this->sidebar_onlyhome = false;
+		$this->sidebar_pages = true;
+		$this->sidebar_links = true;
+		$this->sidebar_custom = false;
+		$this->header = "greytree.jpg";
+		$this->display_title = true;
+		$this->display_tagline = true;
+		$this->nav_pages = false;
+		$this->home_link_name = false;
+		$this->nav_extlinkcat = 0;
+		$this->style = 0;
+		$this->asidescategory = 0;
+		$this->centered_theme = true;
+		$this->swap_sides = false;
+		$this->tags_everywhere = false;
+		$this->show_categories = true;
+		$this->use_pages = false;
+	}
+	
+	function tarski_options_get() {
 		$array = unserialize(get_option('tarski_options'));
-		foreach($array as $name => $value) {
-			$this->$name = $value;
+		if(!empty($array)) {
+			foreach($array as $name => $value) {
+				$this->$name = $value;
+			}
 		}
 	}
 	
@@ -90,7 +116,11 @@ function save_tarski_options() {
 function flush_tarski_options() {
 	global $tarski_options;
 	$tarski_options = new Options;
-	$tarski_options->tarski_options_get();
+	if(get_option('tarski_options')) {
+		$tarski_options->tarski_options_get();
+	} else {
+		$tarski_options->tarski_options_defaults();
+	}
 }
 
 function update_tarski_option($option, $value, $drop = false) {
