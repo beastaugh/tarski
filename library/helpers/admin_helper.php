@@ -4,6 +4,12 @@ function detectWPMU() {
 	return function_exists('is_site_admin');
 }
 
+function detectWPMUadmin() {
+	if(detectWPMU()) {
+		return is_site_admin();
+	}
+}
+
 function tarski_config_custom_header() {
 	define('HEADER_TEXTCOLOR', '');
 	define('HEADER_IMAGE', '%s/headers/' . get_tarski_option('header'));

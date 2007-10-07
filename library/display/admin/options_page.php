@@ -11,7 +11,7 @@
 <?php } ?>
 
 
-<?php if(!detectWPMU()) { tarski_update_notifier("options_page"); } ?>
+<?php if(!detectWPMU() || detectWPMUadmin()) { tarski_update_notifier("options_page"); } ?>
 
 
 <div class="wrap<?php if($text_direction == 'rtl') { echo " rtl"; } ?>">
@@ -28,7 +28,7 @@
 
 		<div class="section">
 
-		<?php if(!detectWPMU()) { ?>
+		<?php if(!detectWPMU() || detectWPMUadmin()) { ?>
 			<fieldset class="primary radiolist">
 				<h3><?php _e('Update Notification','tarski'); ?></h3>
 				<?php if(get_tarski_option('update_notification')) { ?>
@@ -155,10 +155,10 @@
 						</select>
 					<?php } ?>
 
-					<?php if(!detectWPMU()) { // non-WPMU users ?>
-					<p><?php echo __('Tarski allows you to select an alternate style that modifies the default one. Choose from the list above, or upload your own to ','tarski') . '<code>wp-content/themes/' . get_template() . '/styles/</code>' . __('.','tarski'); ?></p>
-					<?php } else { // WPMU users ?>
-					<p><?php echo __('Tarski allows you to select an alternate style that modifies the default one. Choose from the list above.','tarski'); ?></p>
+					<?php if(detectWPMU()) { // WPMU users ?>
+						<p><?php echo __('Tarski allows you to select an alternate style that modifies the default one. Choose from the list above.','tarski'); ?></p>
+					<?php } else { // non-WPMU users ?>
+						<p><?php echo __('Tarski allows you to select an alternate style that modifies the default one. Choose from the list above, or upload your own to ','tarski') . '<code>wp-content/themes/' . get_template() . '/styles/</code>' . __('.','tarski'); ?></p>
 					<?php } ?>
 
 				<h3><?php _e('Header Image','tarski'); ?></h3>

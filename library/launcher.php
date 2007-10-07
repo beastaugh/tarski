@@ -23,7 +23,7 @@ if(function_exists('register_sidebar')) {
 	));
 }
 
-if(!detectWPMU()) {
+if(!detectWPMU() || detectWPMUadmin()) {
 	add_action('activity_box_end', 'tarski_update_notifier');
 }
 
