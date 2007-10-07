@@ -206,6 +206,12 @@ function tarski_404_content() {
 	echo $content;
 }
 
+function get_tarski_sidebar_custom() {
+	$output = wpautop(convert_chars(wptexturize(stripslashes(get_tarski_option('sidebar_custom')))));
+	$output = apply_filters('tarski_sidebar_custom', $output);
+	return $output;
+}
+
 function get_tarski_footer_blurb() {
 	$output = wpautop(convert_chars(wptexturize(stripslashes(get_tarski_option('blurb')))));
 	$output = apply_filters('tarski_footer_blurb', $output);

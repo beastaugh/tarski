@@ -6,7 +6,7 @@
 
 <?php if(isset($_POST['Submit'])) { ?>
 	<div id="updated" class="updated fade">
-		<p><?php echo __('Tarski Options have been updated.','tarski'). ' | <a href="'. get_bloginfo('url'). '/">'. __('View site &raquo;','tarski'). '</a>'; ?></p>
+		<p><?php echo __('Tarski Options have been updated.','tarski'). ' <a href="'. get_bloginfo('url'). '/">'. __('View site &raquo;','tarski'). '</a>'; ?></p>
 	</div>
 <?php } ?>
 

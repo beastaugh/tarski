@@ -11,18 +11,18 @@
 		<?php if(get_tarski_option('sidebar_type') == 'widgets') { ?>
 	
 			<div class="widgets">
-				<?php dynamic_sidebar(__('Main Sidebar', 'tarski')); ?>
+				<?php dynamic_sidebar(__('Main Sidebar','tarski')); ?>
 			</div>
 	
 		<?php } elseif(get_tarski_option('sidebar_type') == 'tarski') { ?>
 	
 			<?php if(get_tarski_option('sidebar_custom')) { ?>
 				<div class="content">
-					<?php wpautop(convert_chars(wptexturize(stripslashes(get_tarski_option('sidebar_custom'))))); ?>
+					<?php echo get_tarski_sidebar_custom(); ?>
 				</div>
 			<?php } ?>
 			<?php if(get_tarski_option('sidebar_pages')) { // pages block ?>
-				<h3><?php _e('Pages', 'tarski'); ?></h3>
+				<h3><?php _e('Pages','tarski'); ?></h3>
 				<ul class="navlist xoxo">
 					<?php wp_list_pages('sort_column=post_title&title_li='); ?>
 				</ul>
