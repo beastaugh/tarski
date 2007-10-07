@@ -36,7 +36,7 @@
 		<?php } elseif(get_tarski_option('sidebar_type') == 'custom') { ?>
 
 			<?php if(file_exists(TEMPLATEPATH . '/user-sidebar.php')) {
-				@include(TEMPLATEPATH . '/user-sidebar.php');
+				include(TEMPLATEPATH . '/user-sidebar.php');
 			} else {
 				echo '<h3>' . __('Error', 'tarski') . '</h3><p><code>user-sidebar.php</code> ' . __('not found.', 'tarski') . '</p>';
 			} ?>

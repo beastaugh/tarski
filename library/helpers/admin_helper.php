@@ -14,12 +14,12 @@ function tarski_config_custom_header() {
 }
 
 function tarski_admin_header_style() {
-	include(TARSKIDISPLAY."/options/admin_header_style.php");
+	include(TARSKIDISPLAY."/admin/admin_header_style.php");
 }
 
 function tarski_inject_scripts() {
 	if(substr($_SERVER['REQUEST_URI'], -39, 39) == 'wp-admin/themes.php?page=tarski-options') { // Hack detects Tarski Options page
-		include(TEMPLATEPATH."/library/display/options/scripts.php");
+		include(TARSKIDISPLAY . "/admin/options_scripts.php");
 	}
 }
 	
@@ -29,7 +29,7 @@ function tarski_addmenu() {
 
 function tarski_admin() {
 	save_tarski_options();
-	include(TEMPLATEPATH."/library/display/options/main.php");
+	include(TARSKIDISPLAY . "/admin/options_page.php");
 }
 
 function tarski_resave_navbar() { // Changing page order changes navbar order

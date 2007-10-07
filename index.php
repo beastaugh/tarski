@@ -54,7 +54,7 @@
 
 	<div class="primary">
 		
-		<?php include(TEMPLATEPATH.'/library/display/no_posts.php'); ?>
+		<?php include(TARSKIDISPLAY . "/no_posts.php"); ?>
 		
 	</div> <!-- /primary -->
 

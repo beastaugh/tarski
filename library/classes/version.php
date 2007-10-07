@@ -10,8 +10,8 @@ class Version {
 	
 	// Returns current version number
 	function current_version_number() {
-		$themedata = get_theme_data(TEMPLATEPATH . '/style.css');
-		$installed_version = trim($themedata['Version']);
+		$themedata = get_theme_data(TEMPLATEPATH . "/style.css");
+		$installed_version = trim($themedata["Version"]);
 		if($installed_version == false) {
 			$this->current = "unknown";
 		} else {
@@ -24,12 +24,12 @@ class Version {
 		
 		ob_start();
 		
-			require_once(TEMPLATEPATH . '/library/includes/feedparser/lib-feedparser.php');
-			require_once(TEMPLATEPATH . '/library/includes/feedparser/lib-entity.php');
-			require_once(TEMPLATEPATH . '/library/includes/feedparser/lib-utf8.php');
+			require_once(TARSKIINCLUDES . "/feedparser/lib-feedparser.php");
+			require_once(TARSKIINCLUDES . "/feedparser/lib-entity.php");
+			require_once(TARSKIINCLUDES . "/feedparser/lib-utf8.php");
 		
 			// Thanks to Simon Willison for the inspiration
-			$cachefile = TARSKICACHE . '/version.atom';
+			$cachefile = TARSKICACHE . "/version.atom";
 			$cachetime = 60 * 60;
 
 			$parser = new FeedParserURL();
@@ -42,7 +42,7 @@ class Version {
 			) {
 				return $parser->Parse($cachefile);
 			} elseif(cache_is_writable("version.atom")) {
-				$file = 'http://tarskitheme.com/version.atom';
+				$file = TARSKIVERSIONFILE;
 				$ch = curl_init($file);
 				$fp = @fopen($cachefile, "w");
 				curl_setopt($ch, CURLOPT_FILE, $fp);
@@ -53,7 +53,7 @@ class Version {
 
 				return $parser->Parse($cachefile);
 			} else {
-				return $parser->Parse('http://tarskitheme.com/version.atom');
+				return $parser->Parse(TARSKIVERSIONFILE);
 			}
 
 		$atomdata = ob_get_contents();
@@ -121,9 +121,9 @@ function tarski_update_notifier($location = "dashboard") {
 	$status = $tarski_version->status;
 	
 	if($location == "options_page") {
-		include(TEMPLATEPATH."/library/display/version/options_page.php");
+		include(TARSKIDISPLAY . "/admin/version_options.php");
 	} else {
-		include(TEMPLATEPATH."/library/display/version/dashboard.php");
+		include(TARSKIDISPLAY . "/admin/version_dashboard.php");
 	}
 }
 

@@ -6,7 +6,8 @@ define("TARSKICLASSES", TARSKILIB . "/classes");
 define("TARSKIHELPERS", TARSKILIB . "/helpers");
 define("TARSKIINCLUDES", TARSKILIB . "/include");
 define("TARSKIDISPLAY", TARSKILIB . "/display");
-define("TARSKICACHE", TARSKILIB . "/cache");		
+define("TARSKICACHE", TARSKILIB . "/cache");
+define("TARSKIVERSIONFILE", "http://tarskitheme.com/version.atom");		
 
 // Classes
 require_once(TARSKICLASSES."/options.php");
