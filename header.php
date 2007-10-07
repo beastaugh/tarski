@@ -8,7 +8,7 @@
 	<meta name="description" content="<?php bloginfo('description'); ?>" />
 
 	<link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>" type="text/css" media="screen,projection" />
-<?php if(get_bloginfo('text_direction') == 'rtl') { ?>
+<?php if(get_bloginfo('text_direction') == "rtl") { ?>
 	<link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/library/css/rtl.css" type="text/css" media="screen,projection" />
 <?php } ?>
 	<link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/library/css/print.css" type="text/css" media="print" />

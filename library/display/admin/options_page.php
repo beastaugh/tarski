@@ -36,8 +36,8 @@
 				<?php } else { ?>
 					<p><?php _e('Tarski can be set to notify you when updates are available.','tarski'); ?></p>
 				<?php } ?>
-				<label for="update-on"><input type="radio" id="update-on" name="update_notification" value ="on" <?php if(get_tarski_option('update_notification')) { echo 'checked="checked" '; } ?>/> <?php _e('Turn update notification on','tarski'); ?></label>
-				<label for="update-off"><input type="radio" id="update-off" name="update_notification" value ="off" <?php if(!get_tarski_option('update_notification')) { echo 'checked="checked" '; } ?>/> <?php _e('Turn update notification off','tarski'); ?></label>
+				<label for="update-on"><input type="radio" id="update-on" name="update_notification" value ="on" <?php if(get_tarski_option('update_notification')) { echo 'checked="checked" '; } ?>/> <?php _e('Update notification on (recommended)','tarski'); ?></label>
+				<label for="update-off"><input type="radio" id="update-off" name="update_notification" value ="off" <?php if(!get_tarski_option('update_notification')) { echo 'checked="checked" '; } ?>/> <?php _e('Update notification off','tarski'); ?></label>
 				<?php if(!cache_is_writable()) { ?>
 					<p class="insert"><?php echo __('The version check could not be cached. To enable caching, follow the tutorial on the ','tarski'). '<a href="http://tarskitheme.com/help/updates/notifier/">'. __('update notifier','tarski'). '</a>'. __(' page.','tarski'); ?></p>
 				<?php } ?>
@@ -311,6 +311,12 @@
 					<input type="hidden" name="swap_sides" value="0" />
 					<input type="checkbox" id="opt-misc-janus" name="swap_sides" value="1" <?php if(get_tarski_option('swap_sides')) { echo 'checked="checked" '; } ?>/>
 					<?php _e('Switch the column positions (left becomes right, and vice versa)','tarski'); ?>
+				</label>
+				
+				<label for="opt-misc-titleswap">	
+					<input type="hidden" name="swap_sides" value="0" />
+					<input type="checkbox" id="opt-misc-titleswap" name="swap_title_order" value="1" <?php if(get_tarski_option('swap_title_order')) { echo 'checked="checked" '; } ?>/>
+					<?php _e('Reverse document title order (show site name last)','tarski'); ?>
 				</label>
 
 			</fieldset>

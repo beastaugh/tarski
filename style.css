@@ -14,7 +14,7 @@ Theme URI: http://tarskitheme.com/
 Description: An elegant, flexible theme developed by <a href="http://extralogical.net/">Ben Eastaugh</a> and <a href="http://ceejayoz.com/">Chris Sternal-Johnson</a>
 Author: Benedict Eastaugh and Chris Sternal-Johnson
 Author URI: http://tarskitheme.com/
-Version: 1.8 Beta
+Version: 2.0 Beta
 .
 Released under the <a href="http://www.opensource.org/licenses/gpl-license.php">GPL</a>.
 .
@@ -48,6 +48,7 @@ body { font-family: Verdana, Helvetica, Arial, sans-serif; font-size: 76%; line-
 .secondary-span { padding: 0 0 0 520px; clear: both; }
 	body.janus .secondary-span { padding: 0 520px 0 0; }
 
+body.centre #wrapper { margin: 0 auto; }
 body.center #wrapper { margin: 0 auto; }
 body.left #wrapper { margin: 0 auto 0 0; }
 body.center { text-align: center; }

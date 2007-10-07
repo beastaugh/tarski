@@ -49,6 +49,7 @@ class Options {
 		$this->asidescategory = 0;
 		$this->centered_theme = true;
 		$this->swap_sides = false;
+		$this->swap_title_order = false;
 		$this->tags_everywhere = false;
 		$this->show_categories = true;
 		$this->use_pages = false;
@@ -99,6 +100,7 @@ class Options {
 			$this->use_pages = $_POST['use_pages'];
 			$this->centered_theme = $_POST['centered_theme'];
 			$this->swap_sides = $_POST['swap_sides'];
+			$this->swap_title_order = $_POST['swap_title_order'];
 			$this->asidescategory = $_POST['asides_category'];
 			$this->style = $_POST['alternate_style'];
 			$this->nav_pages = $nav_pages;
