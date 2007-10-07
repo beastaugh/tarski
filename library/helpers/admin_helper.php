@@ -1,5 +1,22 @@
 <?php
 
+function detectWPMU() {
+	return function_exists('is_site_admin');
+}
+
+function tarski_config_custom_header() {
+	define('HEADER_TEXTCOLOR', '');
+	define('HEADER_IMAGE', '%s/headers/' . get_tarski_option('header'));
+	// %s is theme dir uri
+	define('HEADER_IMAGE_WIDTH', 720);
+	define('HEADER_IMAGE_HEIGHT', 180);
+	define('NO_HEADER_TEXT', true );
+}
+
+function tarski_admin_header_style() {
+	include(TARSKIDISPLAY."/options/admin_header_style.php");
+}
+
 function tarski_inject_scripts() {
 	if(substr($_SERVER['REQUEST_URI'], -39, 39) == 'wp-admin/themes.php?page=tarski-options') { // Hack detects Tarski Options page
 		include(TEMPLATEPATH."/library/display/options/scripts.php");
@@ -34,9 +51,5 @@ function tarski_resave_navbar() { // Changing page order changes navbar order
 	
 	update_tarski_option("nav_pages", $condensed);
 }
-
-add_action('admin_menu', 'tarski_addmenu');
-add_action('admin_head', 'tarski_inject_scripts');
-add_action("save_post", "tarski_resave_navbar");
 
 ?>

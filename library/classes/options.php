@@ -5,25 +5,25 @@ class Options {
 	var $installed;
 	var $update_notification;
 	var $blurb;
-	var $footer_recent = true;
-	var $sidebar_type = "tarski";
-	var $sidebar_onlyhome = false;
-	var $sidebar_pages = true;
-	var $sidebar_links = true;
+	var $footer_recent;
+	var $sidebar_type;
+	var $sidebar_onlyhome;
+	var $sidebar_pages;
+	var $sidebar_links;
 	var $sidebar_custom;
-	var $header = "greytree.jpg";
-	var $display_title = true;
-	var $display_tagline = true;
+	var $header;
+	var $display_title;
+	var $display_tagline;
 	var $nav_pages;
 	var $home_link_name;
 	var $nav_extlinkcat;
 	var $style;
 	var $asidescategory;
-	var $centered_theme = true;
-	var $swap_sides = false;
-	var $tags_everywhere = false;
-	var $show_categories = true;
-	var $use_pages = false;
+	var $centered_theme;
+	var $swap_sides;
+	var $tags_everywhere;
+	var $show_categories;
+	var $use_pages;
 	
 	function tarski_options_defaults() {
 		$this->installed = theme_version("current");

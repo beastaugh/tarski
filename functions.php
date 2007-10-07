@@ -1,4 +1,4 @@
-<?php // functions.php - Tarski functions library
+<?php
 
 // Path constants
 define("TARSKILIB", TEMPLATEPATH . "/library");
@@ -8,29 +8,27 @@ define("TARSKIINCLUDES", TARSKILIB . "/include");
 define("TARSKIDISPLAY", TARSKILIB . "/display");
 define("TARSKICACHE", TARSKILIB . "/cache");		
 
+// Classes
 require_once(TARSKICLASSES."/options.php");
 require_once(TARSKICLASSES."/version.php");
 
-// Warp speed
-global $tarski_options;
-flush_tarski_options();
-@include(TEMPLATEPATH . "/constants.php");
-load_theme_textdomain('tarski');
-
+// Helpers
 include(TARSKIHELPERS."/hooks.php");
 include(TARSKIHELPERS."/upgrade.php");
-include(TARSKIHELPERS."/header_helper.php");
+include(TARSKIHELPERS."/admin_helper.php");
 include(TARSKIHELPERS."/template_helper.php");
 include(TARSKIHELPERS."/content_helper.php");
 include(TARSKIHELPERS."/author_helper.php");
 include(TARSKIHELPERS."/constants_helper.php");
-include(TARSKIHELPERS."/options_helper.php");
-include(TARSKIHELPERS."/widgets_helper.php");
 include(TARSKIHELPERS."/cache_helper.php");
 
+// Options
+global $tarski_options;
+flush_tarski_options();
+@include(TEMPLATEPATH . "/constants.php");
 
-function detectWPMU() {
-	return function_exists('is_site_admin');
-}
+// Launch
+load_theme_textdomain('tarski');
+require_once(TARSKILIB . "/launcher.php");
 
 ?>

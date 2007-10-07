@@ -127,8 +127,4 @@ function tarski_update_notifier($location = "dashboard") {
 	}
 }
 
-if(!detectWPMU()) { // Adds update notifier to Dashboard
-	add_action('activity_box_end', 'tarski_update_notifier');
-}
-
 ?>

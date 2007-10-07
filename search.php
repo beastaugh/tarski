@@ -29,7 +29,7 @@
 			<div class="content">
 				<p><?php echo __('Your search for ','tarski'). '<strong>'; the_search_query(); echo '</strong>'. __(' returned no results. Try returning to the ','tarski'). '<a href="'. get_bloginfo('url'). '">'. __('front page','tarski'). '</a>'. __('.','tarski'); ?></p>
 			</div>
-		</div> </div> <!-- /entry -->
+		</div> <!-- /entry -->
 		
 		
 	<?php } ?>

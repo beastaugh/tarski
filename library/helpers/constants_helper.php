@@ -122,21 +122,4 @@ function tarski_output_errorinclude($input) {
 	return $output;
 }
 
-if(file_exists(TEMPLATEPATH . '/constants.php')) {	
-	add_filter('tarski_navbar','tarski_output_navbarinclude');
-	add_filter('th_404_content','tarski_output_errorinclude');
-	
-	add_action('wp_head','tarski_output_headinclude');
-	add_action('th_postend','tarski_output_frontpageinclude');
-	add_action('th_postend','tarski_output_postendinclude');
-	add_action('th_postend','tarski_output_pageendinclude');
-	add_action('comment_form','tarski_output_commentsforminclude',11);
-	add_action('th_sidebar','tarski_output_sidebartopinclude');
-	add_action('th_sidebar','tarski_output_nosidebarinclude');
-	add_action('th_sidebar','tarski_output_archivesinclude');
-	add_action('th_fsidebar','tarski_output_searchtopinclude',9);
-	add_action('th_fsidebar','tarski_output_searchbottominclude',11);
-	add_action('th_footer','tarski_output_footerinclude');
-}
-
 // ~fin~ ?>
