@@ -103,7 +103,6 @@ function tidy_openid_names($comment_author) {
 	$comment_author = rtrim($comment_author, "/");
 	return $comment_author;
 }
-add_filter('get_comment_author','tidy_openid_names');
 
 function tarski_comment_author_link() {
 	global $comment;

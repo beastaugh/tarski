@@ -55,6 +55,7 @@ add_action('th_navbar','tarski_navbar_feedlink');
 add_action('th_postend','add_post_tags');
 add_action('th_postend','link_pages_without_spaces');
 
+add_filter('get_comment_author','tidy_openid_names');
 
 // Sidebar
 
