@@ -30,7 +30,11 @@ class Options {
 		$this->update_notification = true;
 		$this->blurb = __("This is the about text.","tarski");
 		$this->footer_recent = true;
-		$this->sidebar_type = "tarski";
+		if(function_exists('register_sidebar')) { 
+			$this->sidebar_type = "widgets";
+		} else {
+			$this->sidebar_type = "tarski";
+		}
 		$this->sidebar_onlyhome = false;
 		$this->sidebar_pages = true;
 		$this->sidebar_links = true;
