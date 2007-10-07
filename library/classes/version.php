@@ -24,9 +24,9 @@ class Version {
 		
 		ob_start();
 		
-			require_once(TARSKIINCLUDES . "/feedparser/lib-feedparser.php");
-			require_once(TARSKIINCLUDES . "/feedparser/lib-entity.php");
-			require_once(TARSKIINCLUDES . "/feedparser/lib-utf8.php");
+			require_once(TEMPLATEPATH . "/library/includes/feedparser/lib-feedparser.php");
+			require_once(TEMPLATEPATH . "/library/includes/feedparser/lib-entity.php");
+			require_once(TEMPLATEPATH . "/library/includes/feedparser/lib-utf8.php");
 		
 			// Thanks to Simon Willison for the inspiration
 			$cachefile = TARSKICACHE . "/version.atom";
