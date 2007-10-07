@@ -14,7 +14,7 @@ require_once(TARSKICLASSES."/version.php");
 
 // Helpers
 include(TARSKIHELPERS."/hooks.php");
-include(TARSKIHELPERS."/upgrade.php");
+// include(TARSKIHELPERS."/upgrade.php");
 include(TARSKIHELPERS."/admin_helper.php");
 include(TARSKIHELPERS."/template_helper.php");
 include(TARSKIHELPERS."/content_helper.php");
