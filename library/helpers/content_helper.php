@@ -207,7 +207,7 @@ function tarski_404_content() {
 }
 
 function get_tarski_footer_blurb() {
-	$output = wpautop(wptexturize(stripslashes(get_tarski_option('blurb'))));
+	$output = wpautop(convert_chars(wptexturize(stripslashes(get_tarski_option('blurb')))));
 	$output = apply_filters('tarski_footer_blurb', $output);
 	return $output;
 }

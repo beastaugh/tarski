@@ -18,7 +18,7 @@
 	
 			<?php if(get_tarski_option('sidebar_custom')) { ?>
 				<div class="content">
-					<?php wpautop(wptexturize(stripslashes(get_tarski_option('sidebar_custom')))); ?>
+					<?php wpautop(convert_chars(wptexturize(stripslashes(get_tarski_option('sidebar_custom'))))); ?>
 				</div>
 			<?php } ?>
 			<?php if(get_tarski_option('sidebar_pages')) { // pages block ?>
