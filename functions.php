@@ -14,7 +14,6 @@ require_once(TARSKICLASSES."/version.php");
 
 // Helpers
 include(TARSKIHELPERS."/hooks.php");
-// include(TARSKIHELPERS."/upgrade.php");
 include(TARSKIHELPERS."/admin_helper.php");
 include(TARSKIHELPERS."/template_helper.php");
 include(TARSKIHELPERS."/content_helper.php");
@@ -28,7 +27,7 @@ flush_tarski_options();
 @include(TEMPLATEPATH . "/constants.php");
 
 // Launch
-load_theme_textdomain('tarski');
+load_theme_textdomain("tarski");
 require_once(TARSKILIB . "/launcher.php");
 
 ?>
