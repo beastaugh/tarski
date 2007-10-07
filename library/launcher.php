@@ -57,6 +57,7 @@ add_action('th_postend','link_pages_without_spaces');
 
 add_filter('get_comment_author','tidy_openid_names');
 
+
 // Sidebar
 
 
