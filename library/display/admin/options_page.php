@@ -22,7 +22,7 @@
 
 
 <?php if(!detectWPMU() || detectWPMUadmin()) { ?>
-	<?php tarski_update_notifier("options_page"); } ?>
+	<?php tarski_update_notifier("options_page"); ?>
 <?php } ?>
 
 <?php if(get_tarski_option('debug')) { global $tarski_options; ?>
