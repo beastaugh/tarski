@@ -3,7 +3,6 @@
 // Needed for various nasty hacks
 function tarski_get_output($code) {
 	global $comment, $post;
-	
 	ob_start();
 	@eval($code);
 	$return = ob_get_contents();
@@ -28,10 +27,7 @@ function tarski_next_prev_posts() {
 // Clean page split links
 function link_pages_without_spaces($return = false) {
 	if(!in_category(get_tarski_option('asidescategory'))) {
-		ob_start();
-		link_pages('<p class="pagelinks"><strong>Pages</strong>', '</p>', 'number', '', '', '%', '');
-		$text = ob_get_contents();
-		ob_end_clean();
+		tarski_get_output(link_pages('<p class="pagelinks"><strong>Pages</strong>', '</p>', 'number', '', '', '%', ''));
 	
 		$text = str_replace(' <a href', '<a href', $text);
 		$text = str_replace('> ', '>', $text);

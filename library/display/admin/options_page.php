@@ -1,17 +1,37 @@
-<pre>
-<?php print_r($tarski_options); ?>
-</pre>
-
 <?php global $wpdb; // Need this for all the navbar jazz ?>
 
-<?php if(isset($_POST['Submit'])) { ?>
+<?php if(isset($_POST['Submit']) && !get_tarski_option('deleted')) { ?>
 	<div id="updated" class="updated fade">
-		<p><?php echo __('Tarski Options have been updated.','tarski'). ' <a href="'. get_bloginfo('url'). '/">'. __('View site &raquo;','tarski'). '</a>'; ?></p>
+		<?php if(isset($_POST['restore_options'])) { ?>
+			<p><?php echo __('Tarski Options have been restored.','tarski'). ' <a href="'. get_bloginfo('url'). '/">'. __('View site &raquo;','tarski'). '</a>'; ?></p>
+		<?php } else { ?>
+			<p><?php echo __('Tarski Options have been updated.','tarski'). ' <a href="'. get_bloginfo('url'). '/">'. __('View site &raquo;','tarski'). '</a>'; ?></p>
+		<?php } ?>
 	</div>
 <?php } ?>
 
 
-<?php if(!detectWPMU() || detectWPMUadmin()) { tarski_update_notifier("options_page"); } ?>
+<?php if(get_tarski_option('deleted')) { ?>
+	<div class="updated fade">
+		<form name="dofollow" action="" method="post">
+			<input type="hidden" name="restore_options" value="1" />
+			<p><?php _e('You have deleted your Tarski options.','tarski'); ?> <input class="options-tidy-submit" type="submit" name="Submit" value="<?php _e('Restore Tarski Options &raquo;','tarski'); ?>"></p>
+		</form>
+	</div>
+<?php } ?>
+
+
+<?php if(!detectWPMU() || detectWPMUadmin()) { ?>
+	<?php tarski_update_notifier("options_page"); } ?>
+<?php } ?>
+
+<?php if(get_tarski_option('debug')) { global $tarski_options; ?>
+	<div class="updated">
+		<pre>
+			<?php print_r($tarski_options); ?>
+		</pre>
+	</div>
+<?php } ?>
 
 
 <div class="wrap<?php if($text_direction == 'rtl') { echo " rtl"; } ?>">
@@ -327,6 +347,15 @@
 
 </form>
 </div>
+
+<?php if(get_option('tarski_options') && !get_tarski_option('deleted')) { ?>
+	<div class="wrap">
+		<form name="dofollow" action="" method="post">
+			<input type="hidden" name="delete_options" value="1" />
+			<p><?php _e('Fed up with your Tarski Options? Want to reset to the defaults? Hit this button!','tarski'); ?> <input type="submit" name="Submit" value="<?php _e('Delete Tarski Options &raquo;','tarski'); ?>"></p>
+		</form>
+	</div>
+<?php } ?>
 
 <div class="wrap">
 	<p class="info"><?php echo __('The ','tarski') . '<a href="http://tarskitheme.com/help/">' . __('Tarski documentation','tarski') . '</a>' . __(' is full of useful stuff','tarski') . ' &middot; <a href="http://tarskitheme.com/credits/">' . __('Credits &amp; Thanks','tarski') . '</a>'; ?></p>

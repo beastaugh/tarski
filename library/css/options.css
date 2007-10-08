@@ -20,6 +20,8 @@ h3 { color: #000; }
 .info { text-align: center; }
 .spaced-out { margin: 1.5em 0 0.5em; }
 
+.options-tidy-submit { }
+
 #tarski-headers label { display: inline; }
 #tarski-headers label img { background: #fff; margin: 5px; font-weight: bold; }
 

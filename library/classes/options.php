@@ -3,6 +3,7 @@
 class Options {
 	
 	var $installed;
+	var $debug = false;
 	var $update_notification;
 	var $blurb;
 	var $footer_recent;
@@ -68,7 +69,11 @@ class Options {
 		global $wpdb, $user_ID;
 		get_currentuserinfo();
 
-		if(!empty($_POST)) {
+		if(($_POST['delete_options'] == 1)) {
+			$this->deleted = time();
+		} elseif($_POST['restore_options'] == 1) {
+			$this->deleted = false;
+		} elseif(isset($_POST['Submit'])) {
 			if($_POST['update_notification'] == 'off') {
 				$this->update_notification = false;
 			} elseif($_POST['update_notification'] == 'on') {
@@ -127,6 +132,12 @@ function flush_tarski_options() {
 	$tarski_options = new Options;
 	if(get_option('tarski_options')) {
 		$tarski_options->tarski_options_get();
+		if(get_tarski_option('deleted')) {
+			if((time() - (int) get_tarski_option('deleted')) > 2 * 60 * 60) {
+				delete_option('tarski_options');
+			}
+			$tarski_options->tarski_options_defaults();
+		}
 	} else {
 		$tarski_options->tarski_options_defaults();
 	}

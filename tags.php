@@ -2,7 +2,7 @@
 Template Name: Tags
 */ ?>
 <?php get_header(); ?>
-<?php if (have_posts()) { while (have_posts()) { the_post(); ?>
+<?php if (have_posts()) { while(have_posts()) { the_post(); ?>
 	
 	<div class="primary entry">
 		<div class="meta">
@@ -24,7 +24,6 @@ Template Name: Tags
 			<?php } ?>
 		</div> <!-- /content -->
 
-		<?php link_pages_without_spaces(); ?>
 		<?php th_postend(); ?>
 	</div> <!-- /primary -->
 

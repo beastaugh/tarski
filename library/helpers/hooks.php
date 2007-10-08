@@ -1,9 +1,5 @@
 <?php
 
-function th_doctitle() { // Document title hook
-	do_action('th_doctitle');
-}
-
 function th_header() { // Header hook
 	do_action('th_header');
 }

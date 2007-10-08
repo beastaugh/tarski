@@ -2,7 +2,7 @@
 Template Name: Links
 */ ?>
 <?php get_header(); ?>
-<?php if (have_posts()) { while (have_posts()) { the_post(); ?>
+<?php if (have_posts()) { while(have_posts()) { the_post(); ?>
 	
 	<div class="primary entry">
 		<div class="meta">
@@ -19,7 +19,6 @@ Template Name: Links
 			<?php wp_list_bookmarks('category_before=&category_after=&title_before=<h3>&title_after=</h3>&show_images=0&show_description=0'); ?>
 		</div> <!-- /bookmarks -->
 
-		<?php link_pages_without_spaces(); ?>
 		<?php th_postend(); ?>
 	</div> <!-- /primary -->
 

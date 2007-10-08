@@ -1,9 +1,8 @@
-<?php // template-functions.php - Templating functions for Tarski
+<?php
 
 // Site title output
-function get_tarski_doctitle() {
+function tarski_doctitle($sep = "&middot;", $swap = false, $return = false) {
 	global $wp_query;
-	$sep = "&middot;";
 	$site_name = get_bloginfo("name");
 
 	if((get_option("show_on_front") == "posts") && is_home()) {
@@ -20,7 +19,7 @@ function get_tarski_doctitle() {
 	
 	if($content) {
 		$elements = array($site_name, $sep, $content);
-		if(get_tarski_option("swap_title_order") && !is_home()) {
+		if((get_tarski_option("swap_title_order") && !is_home()) || $swap) {
 			krsort($elements);
 		}
 		$doctitle = implode(" ", $elements);
@@ -28,12 +27,12 @@ function get_tarski_doctitle() {
 		$doctitle = $site_name;
 	}
 	
-	$doctitle = apply_filters('tarski_doctitle', $doctitle);
-	return $doctitle;
-}
-
-function tarski_doctitle() {
-	echo get_tarski_doctitle();
+	$doctitle = apply_filters("tarski_doctitle", $doctitle);
+	if($return) {
+		return $doctitle;
+	} else {
+		echo $doctitle;
+	}
 }
 
 function add_robots_meta() {
@@ -42,7 +41,7 @@ function add_robots_meta() {
 	}
 }
 
-function get_tarski_feeds() {
+function tarski_feeds($return = false) {
 	$type = 'rss2';
 	if(is_single() || (is_page() && ($comments || comments_open()))) {
 		global $post;
@@ -73,10 +72,12 @@ function get_tarski_feeds() {
 			} else {
 				$link .= $current_url. "&amp;feed=$type";
 			}
-		} elseif(function_exists('is_tag')) { if(is_tag()) {
-			$title = __('Tag feed for ','tarski'). single_tag_title('','',false);
-			$link = get_tag_feed_link(get_query_var('tag_id'));
-		} }
+		} elseif(function_exists('is_tag')) {
+			if(is_tag()) {
+				$title = __('Tag feed for ','tarski'). single_tag_title('','',false);
+				$link = get_tag_feed_link(get_query_var('tag_id'));
+			}
+		}
 	} elseif(is_search()) {
 		$title = __('Search feed for ','tarski'). attribute_escape(get_search_query());
 		$link = get_bloginfo('url'). '/?s='. attribute_escape(get_search_query()). "&amp;feed=$type";
@@ -94,11 +95,12 @@ function get_tarski_feeds() {
 		get_bloginfo('rss2_url')
 	);
 	$feeds = apply_filters('tarski_feeds', $feeds);
-	return $feeds;
-}
-
-function tarski_feeds() {
-	echo get_tarski_feeds();
+	
+	if($return) {
+		return $feeds;
+	} else {
+		echo $feeds;
+	}
 }
 
 // Header image status output

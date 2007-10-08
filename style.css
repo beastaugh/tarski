@@ -49,7 +49,6 @@ body { font-family: Verdana, Helvetica, Arial, sans-serif; font-size: 76%; line-
 	body.janus .secondary-span { padding: 0 520px 0 0; }
 
 body.centre #wrapper { margin: 0 auto; }
-body.center #wrapper { margin: 0 auto; }
 body.left #wrapper { margin: 0 auto 0 0; }
 body.center { text-align: center; }
 body.left { text-align: left; }

@@ -33,8 +33,6 @@ add_action("save_post", "tarski_resave_navbar");
 
 
 // Header
-add_action('th_doctitle','tarski_doctitle');
-
 add_action('wp_head', 'add_robots_meta');
 add_action('wp_head', 'tarski_feeds');
 
@@ -42,8 +40,8 @@ add_action('th_header', 'tarski_headerimage');
 add_action('th_header', 'tarski_titleandtag');
 
 add_filter('tarski_navbar', 'add_external_links');
-add_filter('tarski_navbar', 'add_admin_link',20);
-add_filter('tarski_navbar', 'wrap_navlist',21);
+add_filter('tarski_navbar', 'add_admin_link', 20);
+add_filter('tarski_navbar', 'wrap_navlist', 21);
 
 add_action('th_navbar', 'tarski_navbar');
 add_action('th_navbar', 'tarski_navbar_feedlink');
