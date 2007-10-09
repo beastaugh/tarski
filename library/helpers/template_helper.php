@@ -194,6 +194,14 @@ function tarski_titleandtag() {
 	}
 }
 
+function home_link_name() {
+	if(get_tarski_option('home_link_name')) {
+		return get_tarski_option('home_link_name');
+	} else {
+		return __('Home','tarski');
+	}
+}
+
 // Navbar
 function get_tarski_navbar() {
 	global $wpdb;
@@ -207,7 +215,7 @@ function get_tarski_navbar() {
 			'<li><a id="nav-home" '.'%1$s'.'href="%2$s" rel="home">%3$s</a></li>'."\n",
 			$home_status,
 			get_bloginfo('url').'/',
-			get_tarski_option('home_link_name')
+			home_link_name()
 		);
 	}
 	
