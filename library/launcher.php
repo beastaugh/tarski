@@ -48,8 +48,8 @@ add_action('th_navbar', 'tarski_navbar_feedlink');
 
 
 // Content
-add_action('th_postend', 'add_post_tags');
-add_action('th_postend', 'link_pages_without_spaces');
+add_action('th_postend', 'add_post_tags', 10);
+add_action('th_postend', 'link_pages_without_spaces', 11);
 
 add_filter('get_comment_author', 'tidy_openid_names');
 
@@ -71,14 +71,14 @@ if(file_exists(TEMPLATEPATH . '/constants.php')) {
 	
 	add_action('wp_head', 'tarski_output_headinclude');
 	add_action('th_postend', 'tarski_output_frontpageinclude');
-	add_action('th_postend', 'tarski_output_postendinclude');
-	add_action('th_postend', 'tarski_output_pageendinclude');
-	add_action('comment_form', 'tarski_output_commentsforminclude',11);
+	add_action('th_postend', 'tarski_output_postendinclude', 12);
+	add_action('th_postend', 'tarski_output_pageendinclude', 12);
+	add_action('comment_form', 'tarski_output_commentsforminclude', 11);
 	add_action('th_sidebar', 'tarski_output_sidebartopinclude');
 	add_action('th_sidebar', 'tarski_output_nosidebarinclude');
 	add_action('th_sidebar', 'tarski_output_archivesinclude');
-	add_action('th_fsidebar', 'tarski_output_searchtopinclude',9);
-	add_action('th_fsidebar', 'tarski_output_searchbottominclude',11);
+	add_action('th_fsidebar', 'tarski_output_searchtopinclude', 9);
+	add_action('th_fsidebar', 'tarski_output_searchbottominclude', 11);
 	add_action('th_footer', 'tarski_output_footerinclude');
 }
 

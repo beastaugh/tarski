@@ -94,11 +94,6 @@ class Options {
 			if(isset($_POST['nav_pages'])) {
 				$nav_pages = implode(",", $_POST['nav_pages']);
 			}
-			if($_POST['feed_type'] == "atom") {
-				$this->feed_type = "atom";
-			} else {
-				$this->feed_type = "rss2";
-			}
 			
 			$this->footer_recent = $_POST['footer']['recent'];
 			$this->sidebar_pages = $_POST['sidebar']['pages'];
@@ -119,6 +114,7 @@ class Options {
 			$this->nav_extlinkcat = $_POST['nav_extlinkcat'];
 			$this->home_link_name = $_POST['home_link_name'];
 			$this->sidebar_type = $_POST['sidebartype'];
+			$this->feed_type = $_POST['feed_type'];
 		}
 	}
 
