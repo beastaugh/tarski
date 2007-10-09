@@ -100,7 +100,11 @@ function tarski_feeds($return = false) {
 	if(is_single() || (is_page() && ($comments || comments_open()))) {
 		global $post;
 		$title = sprintf( __('Commments feed for %s','tarski'), get_the_title() );
-		$link = get_post_comments_feed_link($post->ID, $type);
+		if(function_exists('get_post_comments_feed_link')) {
+			$link = get_post_comments_feed_link($post->ID, $type);
+		} elseif(function_exists('comments_rss')) {
+			$link = comments_rss();
+		}
 	} elseif(is_archive()) {
 		if(is_category()) {
 			global $category;
