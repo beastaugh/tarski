@@ -340,7 +340,7 @@
 				</label>
 				
 				<label for="opt-misc-titleswap">	
-					<input type="hidden" name="swap_sides" value="0" />
+					<input type="hidden" name="swap_title_order" value="0" />
 					<input type="checkbox" id="opt-misc-titleswap" name="swap_title_order" value="1" <?php if(get_tarski_option('swap_title_order')) { echo 'checked="checked" '; } ?>/>
 					<?php _e('Reverse document title order (show site name last)','tarski'); ?>
 				</label>
