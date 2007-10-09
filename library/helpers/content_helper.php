@@ -197,7 +197,7 @@ function tarski_excerpt($excerpt_length = 120, $allowedtags = '', $filter_type =
 
 // Default 404 text
 function tarski_404_content() {
-	$content = '<p>'. __('The page you are looking for does not exist; it may have been moved, or removed altogether. You might want to try the search function or return to the ','tarski'). '<a href="'. get_bloginfo('url'). '">'. __('front page','tarski'). '</a>'. __('.','tarski'). "</p>\n";
+	$content = '<p>'. sprintf( __('The page you are looking for does not exist; it may have been moved, or removed altogether. You might want to try the search function or return to the %s.','tarski'), '<a href="'. get_bloginfo('url'). '">'. __('front page','tarski'). '</a>' ) . "</p>\n";
 	$content = apply_filters('th_404_content', $content);
 	echo $content;
 }

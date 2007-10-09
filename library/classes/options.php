@@ -44,7 +44,7 @@ class Options {
 		$this->display_title = true;
 		$this->display_tagline = true;
 		$this->nav_pages = false;
-		$this->home_link_name = false;
+		$this->home_link_name = __("Home","tarski");
 		$this->nav_extlinkcat = 0;
 		$this->style = false;
 		$this->asidescategory = 0;

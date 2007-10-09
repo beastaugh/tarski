@@ -59,7 +59,7 @@
 				<label for="update-on"><input type="radio" id="update-on" name="update_notification" value ="on" <?php if(get_tarski_option('update_notification')) { echo 'checked="checked" '; } ?>/> <?php _e('Update notification on (recommended)','tarski'); ?></label>
 				<label for="update-off"><input type="radio" id="update-off" name="update_notification" value ="off" <?php if(!get_tarski_option('update_notification')) { echo 'checked="checked" '; } ?>/> <?php _e('Update notification off','tarski'); ?></label>
 				<?php if(!cache_is_writable() && get_tarski_option('update_notification')) { ?>
-					<p class="insert"><?php echo __('The version check could not be cached. To enable caching, follow the tutorial on the ','tarski'). '<a href="http://tarskitheme.com/help/updates/notifier/">'. __('update notifier','tarski'). '</a>'. __(' page.','tarski'); ?></p>
+				<p class="insert"><?php echo sprintf( __('The version check could not be cached. To enable caching, follow the tutorial on the %s page.','tarski'), '<a href="http://tarskitheme.com/help/updates/notifier/">'. __('update notifier','tarski'). '</a>' ); ?></p>
 				<?php } ?>
 				<p class="insert"><strong><?php _e('Privacy notice: ','tarski'); ?></strong><?php _e('The update notifier does not transmit any information about you or your website.'); ?></p>
 			</fieldset>
@@ -128,12 +128,12 @@
 				
 				<?php if(file_exists(ABSPATH . '/wp-includes/widgets.php')) { $widgetsLink = '/wp-admin/widgets.php'; } else { $widgetsLink = '/wp-admin/themes.php?page=widgets/widgets.php'; } ?>
 				<div id="widgets-sidebar-section" class="insert"<?php if(get_tarski_option('sidebar_type') != 'widgets') { echo ' style="display: none;"'; } ?>>
-					<p><?php echo __('To configure your Sidebar Widgets, go to the ','tarski') . '<a href="' . get_bloginfo('wpurl') . $widgetsLink . '">' . __('Widgets configuration','tarski') . '</a>' . __(' page and select the widgets you&#8217;d like to use.','tarski'); ?></p>
+					<p><?php echo sprintf( __('To configure your Sidebar Widgets, go to the %s page and select the widgets you&#8217;d like to use.','tarski'), '<a href="' . get_bloginfo('wpurl') . $widgetsLink . '">' . __('Widgets configuration','tarski') . '</a>' ); ?></p>
 				</div>
 				
 				<?php if(!detectWPMU()) { ?>
 				<div id="custom-sidebar-section" class="insert"<?php if(get_tarski_option('sidebar_type') != 'custom') { echo ' style="display: none;"'; } ?>>
-					<p><?php echo __('To use your own custom sidebar code, upload a file named','tarski') . " <code>user-sidebar.php</code> " . __('to your Tarski directory.','tarski'); ?></p>
+					<p><?php echo sprintf( __('To use your own custom sidebar code, upload a file named %s to your Tarski directory.','tarski'), "<code>user-sidebar.php</code>" ); ?></p>
 				</div>
 				<?php } ?>
 				
@@ -178,11 +178,16 @@
 					<?php if(detectWPMU()) { // WPMU users ?>
 						<p><?php echo __('Tarski allows you to select an alternate style that modifies the default one. Choose from the list above.','tarski'); ?></p>
 					<?php } else { // non-WPMU users ?>
-						<p><?php echo __('Tarski allows you to select an alternate style that modifies the default one. Choose from the list above, or upload your own to ','tarski') . '<code>wp-content/themes/' . get_template() . '/styles/</code>' . __('.','tarski'); ?></p>
+						<p><?php printf( __('Tarski allows you to select an alternate style that modifies the default one. Choose from the list above, or upload your own to %s.','tarski'), '<code>wp-content/themes/' . get_template() . '/styles/</code>' ); ?></p>
 					<?php } ?>
 
 				<h3><?php _e('Header Image','tarski'); ?></h3>
-				<p><?php if(function_exists('add_custom_image_header')) { echo __('You may wish to use one of these stock headers, or upload your own via the ', 'tarski') . '<a href="themes.php?page=custom-header">' . __('Custom Image Header tab', 'tarski') . '</a>.'; } if(get_theme_mod('header_image')) { echo '</p><p class="insert"><strong>' . __('You are currently using a custom header uploaded via WordPress - to use a stock icon instead, go to the Custom Image Header tab and click "Restore Original Header".', 'tarski') . '</strong>'; } ?></p>
+				<?php if(function_exists('add_custom_image_header')) { ?>
+					<p><?php printf( __('You may wish to use one of these stock headers, or upload your own via the %s tab.', 'tarski'), '<a href="themes.php?page=custom-header">' . __('Custom Image Header', 'tarski') . '</a>' ); ?></p>
+				<?php } ?>
+				<?php if(get_theme_mod('header_image')) { ?>
+					<p class="insert"><strong><?php printf( __('You are currently using a custom header uploaded via WordPress. To use a stock icon instead, go to the %s tab and click &#8216;Restore Original Header&#8217;.', 'tarski'), '<a href="themes.php?page=custom-header">' . __('Custom Image Header', 'tarski') . '</a>' ); ?></strong></p>
+				<?php } ?>
 					
 					<div id="tarski-headers">
 						<?php
@@ -208,11 +213,11 @@
 						} ?>
 						</div>
 					
-						<p><?php echo __('Choose a header image by clicking on it. The current image is the ','tarski') . '<span class="highlight">' . __('highlighted one','tarski') . '</span>' . __('.','tarski'); ?></p>
+						<p><?php printf( __('Choose a header image by clicking on it. The current image is the %s.','tarski'), '<span class="highlight">' . __('highlighted one','tarski') . '</span>' ); ?></p>
 					<?php if(!detectWPMU()) { ?>
 					<div class="insert">
-						<p><?php echo __('You can upload your own header images (.gif, .jpg or .png) to ','tarski') . '<code>wp-content/themes/' . get_template() . '/headers/</code>' . __('.','tarski'); ?></p>
-						<p><?php _e('Make sure that you upload a thumbnail file as well. If your image is named <code>example.jpg</code>, the corresponding thumbnail file should be named <code>example-thumb.jpg</code>.','tarski'); ?></p>
+						<p><?php printf( __('You can upload your own header images (.gif, .jpg or .png) to %s.','tarski'), '<code>wp-content/themes/' . get_template() . '/headers/</code>' ); ?>
+						<p><?php printf( __('Make sure that you upload a thumbnail file as well. If your image is named %1$s, the corresponding thumbnail file should be named %2$s.','tarski'), '<code>'. __('example','tarski'). '.jpg</code>', '<code>'. __('example','tarski'). '-thumb.jpg</code>'); ?></p>
 					</div>
 					<?php } ?>
 			</fieldset>
@@ -278,7 +283,7 @@
 						); ?>
 					<?php } ?>
 				</select>
-				<p class="insert"><?php echo __('You can add or edit links on the  ','tarski'). '<a href="'. get_bloginfo('wpurl'). '/wp-admin/link-manager.php">'. __('Blogroll','tarski'). '</a>'. __(' page. We recommend creating a link category specifically for the links you want displayed in your navbar, but you can use any category.','tarski'); ?></p>
+				<p class="insert"><?php printf( __('You can add or edit links on the %s page. We recommend creating a link category specifically for the links you want displayed in your navbar, but you can use any category.','tarski'), '<a href="'. get_bloginfo('wpurl'). '/wp-admin/link-manager.php">'. __('Blogroll','tarski'). '</a>' ); ?></p>
 				
 				<label for="opt-nav-homename"><?php _e('Rename your &#8216;Home&#8217; link.','tarski'); ?></label>
 				<input type="hidden" name="home_link_name" value="Home" />
@@ -358,5 +363,5 @@
 <?php } ?>
 
 <div class="wrap">
-	<p class="info"><?php echo __('The ','tarski') . '<a href="http://tarskitheme.com/help/">' . __('Tarski documentation','tarski') . '</a>' . __(' is full of useful stuff','tarski') . ' &middot; <a href="http://tarskitheme.com/credits/">' . __('Credits &amp; Thanks','tarski') . '</a>'; ?></p>
+	<p class="info"><?php printf( __('The %1$s is full of useful stuff &middot; %2$s'), '<a href="http://tarskitheme.com/help/">' . __('Tarski documentation','tarski') . '</a>', '<a href="http://tarskitheme.com/credits/">' . __('Credits &amp; Thanks','tarski') . '</a>'); ?></p>
 </div>

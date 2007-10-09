@@ -2,7 +2,7 @@
 
 
 
-<div class="primary-span entry">
+<div class="primary entry">
 
 	<div class="meta">
 		<h1 class="title"><?php _e('Error 404','tarski'); ?></h1>
@@ -14,7 +14,13 @@
 
 	<?php th_postend(); ?>
 
-</div> <!-- /primary-span -->
+</div> <!-- /primary -->
+
+
+
+<div class="secondary">
+	<?php include(TEMPLATEPATH . "/searchform.php"); ?>
+</div>
 
 
 

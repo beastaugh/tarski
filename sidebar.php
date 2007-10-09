@@ -38,7 +38,7 @@
 			<?php if(file_exists(TEMPLATEPATH . '/user-sidebar.php')) {
 				include(TEMPLATEPATH . '/user-sidebar.php');
 			} else {
-				echo '<h3>' . __('Error', 'tarski') . '</h3><p><code>user-sidebar.php</code> ' . __('not found.', 'tarski') . '</p>';
+				echo '<h3>' . __('Error', 'tarski') . '</h3><p>' . sprintf( __('%s not found.', 'tarski'), '<code>user-sidebar.php</code>' ) .'</p>';
 			} ?>
 
 		<?php } ?>

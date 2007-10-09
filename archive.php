@@ -14,20 +14,20 @@
 					<?php if(trim(strip_tags(category_description()))) { ?>
 						<?php echo category_description(); ?>
 					<?php } else { ?>
-						<p><?php echo __('You are currently browsing the archive for the ','tarski'). '<strong>'; single_cat_title(); echo '</strong>'. __(' category.','tarski'); ?></p>
+						<p><?php printf( __('You are currently browsing the archive for the %s category.','tarski'), '<strong>' . single_cat_title('', false) . '</strong>' ); ?></p>
 					<?php } ?>
 				</div>
 				
 			<?php } elseif(is_author()) { // Author header ?>
 
 				<div class="meta">
-					<h1 class="title"><?php echo __('Articles by ','tarski'). the_archive_author_displayname(); ?></h1>
+					<h1 class="title"><?php printf( __('Articles by %s','tarski'), the_archive_author_displayname() ); ?></h1>
 				</div>
 				<div class="content">
 					<?php if(the_archive_author_description()) { ?>
 						<?php echo wpautop(wptexturize(stripslashes(the_archive_author_description()))); ?>
 					<?php } else { ?>
-						<p><?php echo __('You are currently browsing ','tarski'). '<strong>'. the_archive_author_displayname(). '</strong>'. __('&#8217;s articles.','tarski'); ?></p>
+						<p><?php printf( __('You are currently browsing %s&#8217;s articles.','tarski'), '<strong>'. the_archive_author_displayname(). '</strong>' ); ?></p>
 					<?php } ?>
 				</div>
 
@@ -37,7 +37,7 @@
 					<h1 class="title"><?php echo tarski_date(); ?></h1>
 				</div>
 				<div class="content">
-					<p><?php _e('You are currently browsing the daily archive for ','tarski'); echo '<strong>' . tarski_date() . '</strong>.'; ?></p>
+					<p><?php printf( __('You are currently browsing the daily archive for %s.','tarski'), '<strong>' . tarski_date() . '</strong>' ); ?></p>
 				</div>
 
 			<?php } elseif(is_month()) { // Monthly archive header ?>
@@ -46,7 +46,7 @@
 					<h1 class="title"><?php the_time('F Y'); ?></h1>
 				</div>
 				<div class="content">
-					<p><?php _e('You are currently browsing the monthly archive for ','tarski'); echo '<strong>'; the_time('F Y'); echo '</strong>.'; ?></p>
+					<p><?php printf( __('You are currently browsing the monthly archive for %s.','tarski'), '<strong>' . get_the_time('F Y') . '</strong>' ); ?></p>
 				</div>
 
 			<?php } elseif(is_year()) { // Yearly archive header ?>
@@ -55,7 +55,7 @@
 					<h1 class="title"><?php the_time('Y'); ?></h1>
 				</div>
 				<div class="content">
-					<p><?php echo __('You are currently browsing the yearly archive for ','tarski'). '<strong>'; the_time('Y'); echo '</strong>.'; ?></p>
+					<p><?php printf( __('You are currently browsing the yearly archive for %s.','tarski'), '<strong>' . get_the_time('Y') . '</strong>' ); ?></p>
 				</div>
 
 			<?php } elseif(function_exists('is_tag')) { if(is_tag()) { // Tag archive header ?>
@@ -64,7 +64,7 @@
 					<h1 class="title"><?php single_tag_title(); ?></h1>
 				</div>
 				<div class="content">
-					<p><?php echo __('You are currently browsing articles tagged ','tarski'). '<strong>'. single_tag_title('',false). '</strong>'. __('.','tarski'); ?></p>
+					<p><?php printf( __('You are currently browsing articles tagged %s.','tarski'), '<strong>' . single_tag_title('',false) . '</strong>' ); ?></p>
 				</div>
 
 			<?php } } ?>

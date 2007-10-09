@@ -9,7 +9,7 @@
 				<h1 class="title"><?php _e('Search Results','tarski'); ?></h1>
 			</div>
 			<div class="content">
-				<p><?php echo __('Your search for ','tarski'). '<strong>'; the_search_query(); echo '</strong> '. __('returned the following results.','tarski'); ?></p>
+				<p><?php echo sprintf(__('Your search for %s returned the following results.','tarski'), '<strong>' . get_search_query() . '</strong>'); ?></p>
 			</div>
 		</div> <!-- /archive -->
 		
@@ -27,7 +27,7 @@
 				<h1 class="title"><?php _e('No results','tarski'); ?></h1>
 			</div>
 			<div class="content">
-				<p><?php echo __('Your search for ','tarski'). '<strong>'; the_search_query(); echo '</strong>'. __(' returned no results. Try returning to the ','tarski'). '<a href="'. get_bloginfo('url'). '">'. __('front page','tarski'). '</a>'. __('.','tarski'); ?></p>
+				<p><?php echo sprintf( __('Your search for %1$s returned no results. Try returning to the %2$s.','tarski'), '<strong>'.get_search_query().'</strong>', '<a href="'. get_bloginfo('url'). '">'. __('front page','tarski'). '</a>' ); ?></p>
 			</div>
 		</div> <!-- /entry -->
 		

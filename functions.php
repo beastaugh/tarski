@@ -22,12 +22,12 @@ include(TARSKIHELPERS."/constants_helper.php");
 include(TARSKIHELPERS."/cache_helper.php");
 
 // Options
+load_theme_textdomain("tarski");
 global $tarski_options;
 flush_tarski_options();
 @include(TEMPLATEPATH . "/constants.php");
 
 // Launch
-load_theme_textdomain("tarski");
 require_once(TARSKILIB . "/launcher.php");
 
 ?>
