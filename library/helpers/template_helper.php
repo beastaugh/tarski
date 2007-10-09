@@ -76,7 +76,7 @@ if(!function_exists('get_author_feed_link')) {
 		$permalink_structure = get_option('permalink_structure');
 
 		if ( '' == $permalink_structure ) {
-			$link = get_option('home') . "?feed=$type&amp;author=" . $author_id;
+			$link = get_option('home') . "/?feed=$type&amp;author=" . $author_id;
 		} else {
 			$link = get_author_posts_url($author_id, $author_nicename);
 			$link = trailingslashit($link);
