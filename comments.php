@@ -1,11 +1,17 @@
-<?php // comments.php - Tarski comments file
+<?php
+
+if(get_tarski_option('feed_type') == "atom") {
+	$feed_type = "atom";
+} else {
+	$feed_type = "rss2";
+}
 
 if('comments.php' == basename($_SERVER['SCRIPT_FILENAME'])) {
 	die('Please do not load this page directly. Thanks!');
 }
 
 if(!empty($post->post_password)) { // if there's a password
-	if($_COOKIE['wp-postpass_' . COOKIEHASH] != $post->post_password) {  // and it doesn't match the cookie
+	if($_COOKIE['wp-postpass_' . COOKIEHASH] != $post->post_password) { // and it doesn't match the cookie
 		echo '<p>' . __('This post is password protected. Enter the password to view comments.','tarski') . '</p>' . "\n";
 		return;
 	}
@@ -17,7 +23,7 @@ if($comments || comments_open()) { ?>
 	<div class="meta">
 		<h2 class="title"><?php comments_number(__('No comments','tarski'), __('1 comment','tarski'), '%'. __(' comments','tarski')); ?></h2>
 		<?php if(comments_open()) { ?>
-		<p class="comments-feed"><?php comments_rss_link(__('Comments feed for this article','tarski')); ?></p>
+		<p class="comments-feed"><a href="<?php echo get_post_comments_feed_link($post->ID, $feed_type); ?>"><?php _e('Comments feed for this article','tarski'); ?></a></p>
 		<?php } ?>
 		<?php if(pings_open()) { ?>
 		<div id="trackback-link">

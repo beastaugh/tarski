@@ -25,6 +25,7 @@ class Options {
 	var $tags_everywhere;
 	var $show_categories;
 	var $use_pages;
+	var $feed_type;
 	
 	function tarski_options_defaults() {
 		$this->installed = theme_version("current");
@@ -54,10 +55,11 @@ class Options {
 		$this->tags_everywhere = false;
 		$this->show_categories = true;
 		$this->use_pages = false;
+		$this->feed_type = "rss2";
 	}
 	
 	function tarski_options_get() {
-		$array = unserialize(get_option('tarski_options'));
+		$array = unserialize(get_option("tarski_options"));
 		if(!empty($array)) {
 			foreach($array as $name => $value) {
 				$this->$name = $value;
@@ -91,6 +93,11 @@ class Options {
 			}
 			if(isset($_POST['nav_pages'])) {
 				$nav_pages = implode(",", $_POST['nav_pages']);
+			}
+			if($_POST['feed_type'] == "atom") {
+				$this->feed_type = "atom";
+			} else {
+				$this->feed_type = "rss2";
 			}
 			
 			$this->footer_recent = $_POST['footer']['recent'];

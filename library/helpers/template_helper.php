@@ -41,21 +41,75 @@ function add_robots_meta() {
 	}
 }
 
+if(!function_exists('get_category_feed_link')) {
+	function get_category_feed_link($echo = false, $cat_ID, $category_nicename, $type = "rss2") {
+		$permalink_structure = get_option('permalink_structure');
+
+		if ( '' == $permalink_structure ) {
+			$link = get_option('home') . "?feed=$type&amp;cat=" . $cat_ID;
+		} else {
+			$link = get_category_link($cat_ID);
+			$link = trailingslashit($link);
+			if( $type != "rss2" ) {
+				 $link .= user_trailingslashit("feed/$type", 'feed');
+			} else {
+				$link .= user_trailingslashit('feed', 'feed');
+			}
+		}
+
+		$link = apply_filters('category_feed_link', $link);
+
+		if ( $echo )
+			echo $link;
+		return $link;
+	}
+}
+
+if(!function_exists('get_author_feed_link')) {
+	function get_author_feed_link($echo = false, $author_id, $author_nicename, $type = "rss2") {
+		$auth_ID = (int) $author_id;
+		$permalink_structure = get_option('permalink_structure');
+
+		if ( '' == $permalink_structure ) {
+			$link = get_option('home') . "?feed=$type&amp;author=" . $author_id;
+		} else {
+			$link = get_author_posts_url($author_id, $author_nicename);
+			$link = trailingslashit($link);
+			if( $type != "rss2" ) {
+				 $link .= user_trailingslashit("feed/$type", 'feed');
+			} else {
+				$link .= user_trailingslashit('feed', 'feed');
+			}
+		}
+
+		$link = apply_filters('author_feed_link', $link);
+
+		if ( $echo )
+			echo $link;
+		return $link;
+	}
+}
+
+
 function tarski_feeds($return = false) {
-	$type = 'rss2';
+	if(get_tarski_option("feed_type") == "atom") {
+		$type = "atom";
+	} else {
+		$type = "rss2";
+	}
 	if(is_single() || (is_page() && ($comments || comments_open()))) {
 		global $post;
 		$title = sprintf( __('Commments feed for %s','tarski'), get_the_title() );
-		$link = get_post_comments_feed_link($post->ID);
+		$link = get_post_comments_feed_link($post->ID, $type);
 	} elseif(is_archive()) {
 		if(is_category()) {
 			global $category;
 			$title = sprintf( __('Category feed for %s','tarski'), single_cat_title('','',false));
-			$link = get_category_rss_link(false, get_query_var('cat'), $category->category_nicename);
+			$link = get_category_feed_link(false, get_query_var('cat'), $category->category_nicename, $type);
 		} elseif(is_author()) {
 			global $authordata;
 			$title = sprintf( __('Articles feed for %s','tarski'), the_archive_author_displayname());
-			$link = get_author_rss_link(false, get_query_var('author'), $authordata->user_nicename);
+			$link = get_author_feed_link(false, get_query_var('author'), $authordata->user_nicename, $type);
 		} elseif(is_date()) {
 			if(is_day()) {
 				$title = sprintf( __('Daily archive feed for %s','tarski'), tarski_date());
@@ -68,14 +122,17 @@ function tarski_feeds($return = false) {
 				$link = get_year_link(get_the_time('Y'));
 			}
 			if(get_settings('permalink_structure')) {
-				$link .= $current_url. 'feed/';
+				$link .= "feed/";
+				if($type == "atom") {
+					$link .= "atom/";
+				}
 			} else {
-				$link .= $current_url. "&amp;feed=$type";
+				$link .= "&amp;feed=$type";
 			}
 		} elseif(function_exists('is_tag')) {
 			if(is_tag()) {
 				$title = sprintf( __('Tag feed for %s','tarski'), single_tag_title('','',false));
-				$link = get_tag_feed_link(get_query_var('tag_id'));
+				$link = get_tag_feed_link(get_query_var('tag_id'), $type);
 			}
 		}
 	} elseif(is_search()) {
@@ -287,7 +344,12 @@ function wrap_navlist($input) {
 
 function tarski_navbar_feedlink($return = false) {
 	$prefix = '<div class="secondary">'."\n";
-	$feed = '<p><a class="feed" href="'. get_bloginfo_rss('rss2_url'). '">'. __('Subscribe to feed', 'tarski'). '</a></p>'."\n";
+	if(get_tarski_option("feed_type") == "atom") {
+		$feed_url = "atom_url";
+	} else {
+		$feed_url = "rss2_url";
+	}
+	$feed = '<p><a class="feed" href="'. get_bloginfo($feed_url). '">'. __('Subscribe to feed', 'tarski'). '</a></p>'."\n";
 	$suffix = '</div>'."\n";
 	
 	$output = $prefix. $feed. $suffix;
@@ -386,6 +448,11 @@ function tarski_searchform() {
 
 // Default footer stuff including credit
 function tarski_feed_and_credit() {
+	if(get_tarski_option("feed_type") == "atom") {
+		$feed_url = "atom_url";
+	} else {
+		$feed_url = "rss2_url";
+	}
 	if(detectWPMU()) {
 		$current_site = get_current_site();
 	}
