@@ -19,7 +19,7 @@ function tarski_doctitle($sep = "&middot;", $swap = false, $return = false) {
 	
 	if($content) {
 		$elements = array($site_name, $sep, $content);
-		if((get_tarski_option("swap_title_order") && !is_home()) || $swap) {
+		if((get_tarski_option("swap_title_order")) || $swap) {
 			krsort($elements);
 		}
 		$doctitle = implode(" ", $elements);
