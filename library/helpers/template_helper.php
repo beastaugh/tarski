@@ -108,6 +108,7 @@ function tarski_feeds($return = false) {
 		if(function_exists('get_post_comments_feed_link')) {
 			$link = get_post_comments_feed_link($post->ID, $type);
 		} elseif(function_exists('comments_rss')) {
+			$id = $post->ID;
 			global $id;
 			$link = comments_rss();
 		}
