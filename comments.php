@@ -23,7 +23,7 @@ if($comments || comments_open()) { ?>
 	<div class="meta">
 		<h2 class="title"><?php comments_number(__('No comments','tarski'), __('1 comment','tarski'), '%'. __(' comments','tarski')); ?></h2>
 		<?php if(comments_open()) { ?>
-		<p class="comments-feed"><a href="<?php echo get_post_comments_feed_link($post->ID, $feed_type); ?>"><?php _e('Comments feed for this article','tarski'); ?></a></p>
+		<p class="comments-feed"><a href="<?php if(function_exists('get_post_comments_feed_link')) { echo get_post_comments_feed_link($post->ID, $feed_type); } elseif(function_exists('comments_rss')) { echo comments_rss(); } ?>"><?php _e('Comments feed for this article','tarski'); ?></a></p>
 		<?php } ?>
 		<?php if(pings_open()) { ?>
 		<div id="trackback-link">
