@@ -11,7 +11,7 @@ Using this method will preserve your changes when you upgrade to a newer version
 /*
 Theme Name: Tarski
 Theme URI: http://tarskitheme.com/
-Description: An elegant, flexible theme developed by <a href="http://extralogical.net/">Ben Eastaugh</a> and <a href="http://ceejayoz.com/">Chris Sternal-Johnson</a>
+Description: An elegant, flexible theme developed by <a href="http://extralogical.net/">Ben Eastaugh</a> and <a href="http://ceejayoz.com/">Chris Sternal-Johnson</a>.
 Author: Benedict Eastaugh and Chris Sternal-Johnson
 Author URI: http://tarskitheme.com/
 Version: 2.0 Beta
@@ -33,7 +33,7 @@ input, select, textarea { font-size: 100%; }
 body { font-family: Verdana, Helvetica, Arial, sans-serif; font-size: 76%; line-height: 120%; color: #545454; background: #fff; min-width: 760px; }
 
 #wrapper { width: 760px; text-align: left; }
-	#content { clear: both; padding: 2em 20px; }
+	#content { clear: both; margin: 2em 0; padding: 0 20px; }
 #footer, #theme-info, #footer-include { clear: both; }
 
 /* Positioning
@@ -42,6 +42,10 @@ body { font-family: Verdana, Helvetica, Arial, sans-serif; font-size: 76%; line-
 	body.janus .primary { float: left; }
 .primary-span { padding: 0 0 0 220px; clear: both; }
 	body.janus .primary-span { padding: 0 220px 0 0; }
+	
+	/* Fixes last .entry's bottom margin */
+	#content > div.primary { margin: 0 0 -2em 0; }
+	body.single #content > div.primary { margin: 0; }
 
 .secondary { width: 200px; float: left; }
 	body.janus .secondary { float: right; }
@@ -81,11 +85,11 @@ body.left { text-align: left; }
 
 /* Clearfix
 ----------------------------------------------- */
-#navigation:after, .comment:after, .trackback:after, #comments .meta:after, #trackback-link:after, #footer:after, #theme-info:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
-#navigation, .comment, .trackback, #comments .meta, #trackback-link, #footer, #theme-info { display: inline-block; }
+#navigation:after, #content:after, .comment:after, .trackback:after, #comments .meta:after, #trackback-link:after, #footer:after, #theme-info:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
+#navigation, #content, .comment, .trackback, #comments .meta, #trackback-link, #footer, #theme-info { display: inline-block; }
 /* Hides from IE-mac \*/
-* html #navigation, * html .comment, * html .trackback, *html #comments .meta, *html #trackback-link, *html #footer, *html #theme-info { height: 1%; }
-#navigation, .comment, .trackback, #comments .meta, #trackback-link, #footer, #theme-info { display: block; }
+*html #navigation, *html #content, *html .comment, * html .trackback, *html #comments .meta, *html #trackback-link, *html #footer, *html #theme-info { height: 1%; }
+#navigation, #content, .comment, .trackback, #comments .meta, #trackback-link, #footer, #theme-info { display: block; }
 /* End hide from IE-mac */
 
 /* Content
@@ -143,7 +147,7 @@ body.left { text-align: left; }
 		.pagelinks { clear: both; margin: 2.5em 0; font-size: 0.8em; font-weight: bold; }
 			.pagelinks strong { color: #a8a8a8; margin: 0 0.6em 0 0; border: 1px solid #e5e5e5; padding: 0.3em 0.6em; }
 			.pagelinks a { margin: 0 0.6em; border: 1px solid; padding: 0.3em 0.6em; }
-		.pagination { margin: -3em 0 0 0; padding: 2em 0; font-family: 'Times New Roman', Times, serif; font-size: 1.5em; font-weight: normal; line-height: 120%; color: #a8a8a8; clear: both; }
+		.pagination { margin: 0 0 3em 0; font-family: 'Times New Roman', Times, serif; font-size: 1.5em; font-weight: normal; line-height: 120%; color: #a8a8a8; clear: both; }
 		
 		/* Inserts
 		--------------------------------------- */
@@ -227,7 +231,7 @@ body.left { text-align: left; }
 
 		/* Footer
 		--------------------------------------- */
-		#footer { margin: 1em 20px 0 20px; border-top: 3px double #ccc; padding: 1em 0 0 0; }
+		#footer { margin: 0 20px 0 20px; border-top: 3px double #ccc; padding: 1em 0 0 0; }
 			#recent {}
 				#recent ul { list-style: none; margin: 0; }
 					#recent li { margin: 0; }
