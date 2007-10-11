@@ -150,9 +150,14 @@
 				<h3><?php _e('Alternate Style','tarski'); ?></h3>
 					<?php
 					$style_dir = @ dir(TEMPLATEPATH . '/styles');
+					$illegal_names = '/^janus.css$|^single.css$|^centre.css$|^left.css$/';
 					if($style_dir) {
 						while(($file = $style_dir->read()) !== false) {
-							if(!preg_match('|^\.+$|', $file) && preg_match('@.(css)$@', $file)) {
+							if(
+								!preg_match('|^\.+$|', $file)
+								&& preg_match('@.(css)$@', $file)
+								&& !preg_match($illegal_names, $file)
+							) {
 								$styles[] = $file;
 							}
 						}
