@@ -95,6 +95,13 @@ class Options {
 				$nav_pages = implode(",", $_POST['nav_pages']);
 			}
 			
+			$stylefile = $_POST['alternate_style'];
+			$illegal_names = '/^janus.css$|^single.css$|^centre.css$|^left.css$/';
+			if(!preg_match($illegal_names, $stylefile)) {
+				$this->style = $stylefile;
+			}
+			
+			
 			$this->footer_recent = $_POST['footer']['recent'];
 			$this->sidebar_pages = $_POST['sidebar']['pages'];
 			$this->sidebar_links = $_POST['sidebar']['links'];
@@ -109,7 +116,6 @@ class Options {
 			$this->swap_sides = $_POST['swap_sides'];
 			$this->swap_title_order = $_POST['swap_title_order'];
 			$this->asidescategory = $_POST['asides_category'];
-			$this->style = $_POST['alternate_style'];
 			$this->nav_pages = $nav_pages;
 			$this->nav_extlinkcat = $_POST['nav_extlinkcat'];
 			$this->home_link_name = $_POST['home_link_name'];

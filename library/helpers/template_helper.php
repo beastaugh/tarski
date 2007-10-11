@@ -391,7 +391,10 @@ function get_tarski_bodyclass() {
 	}
 	if(get_tarski_option("style")) { // Alternate style
 		$stylename = str_replace(".css", "", get_tarski_option("style"));
-		array_push($classes, $stylename);
+		$illegal_names = '/^janus$|^single$|^centre$|^left$/';
+		if(!preg_match($illegal_names, $stylename)) {
+			array_push($classes, $stylename);
+		}
 	}
 	if (is_page() || is_single() || is_404()) { // Is it a single page?
 		array_push($classes, "single");
