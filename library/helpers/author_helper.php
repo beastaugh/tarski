@@ -1,5 +1,8 @@
-<?php // WordPress' own author functions don't work for author archive pages, so this file provides a few replacements.
+<?php
 
+/**
+ * If the blog has more than one author, it prints a link to that author's archive page.
+ */
 function tarski_author_posts_link() {
 	global $authordata;
 	global $wpdb;
@@ -14,17 +17,26 @@ function tarski_author_posts_link() {
 	}
 }
 
+/**
+ * Returns the author object associated with an author archive page.
+ */
 function the_archive_author() {
 	global $wp_query;
 	$current_author = $wp_query->get_queried_object();
 	return $current_author;
 }
 
+/**
+ * Returns the display name of the author associated with a given archive page.
+ */
 function the_archive_author_displayname() {
 	$current_author = the_archive_author();
 	return $current_author->display_name;
 }
 
+/**
+ * Returns the author description of the author associated with a given archive page.
+ */
 function the_archive_author_description() {
 	$current_author = the_archive_author();
 	return $current_author->user_description;
