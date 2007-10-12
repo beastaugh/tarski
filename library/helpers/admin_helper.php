@@ -2,14 +2,17 @@
 
 /**
  * Detects whether WordPress Multi-User is in use.
+ * 
+ * @return boolean
  */
 function detectWPMU() {
 	return function_exists('is_site_admin');
 }
 
 /**
- * If WordPress Multi-User is in use, detect whether
- * the current user is the site administrator.
+ * Detect whether the current user is a WPMU site administrator.
+ * 
+ * @return boolean
  */
 function detectWPMUadmin() {
 	if(detectWPMU()) {
@@ -18,12 +21,12 @@ function detectWPMUadmin() {
 }
 
 /**
- * Checks whether a given file name is permitted as a
- * Tarski alternate style name.
+ * Checks whether a given file name is permitted as a Tarski alternate style name.
  * 
- * It must be a valid CSS identifier, followed by the
- * .css file extension, and it cannot have a name that
- * is already taken by Tarski's CSS namepsace.
+ * It must be a valid CSS identifier, followed by the .css file extension,
+ * and it cannot have a name that is already taken by Tarski's CSS namepsace.
+ * @param string $file
+ * @return boolean
  */
 function is_tarski_style($file) {
 	return (bool) (
@@ -34,8 +37,7 @@ function is_tarski_style($file) {
 }
 
 /**
- * Sets the parameters for using WordPress's custom
- * header image functionality with Tarski.
+ * Sets the parameters for using WordPress's custom header image functionality with Tarski.
  */
 function tarski_config_custom_header() {
 	define('HEADER_TEXTCOLOR', '');
@@ -47,8 +49,7 @@ function tarski_config_custom_header() {
 }
 
 /**
- * Styles the custom header image admin page for use
- * with Tarski.
+ * Styles the custom header image admin page for use with Tarski.
  */
 function tarski_admin_header_style() {
 	include(TARSKIDISPLAY."/admin/admin_header_style.php");
@@ -81,10 +82,9 @@ function tarski_admin() {
 /**
  * Re-saves Tarski's navbar order whenever a page is edited.
  * 
- * This means that if the page order changes, the navbar order
- * will change too.
+ * This means that if the page order changes, the navbar order will change too.
  */
-function tarski_resave_navbar() { // Changing page order changes navbar order
+function tarski_resave_navbar() {
 	global $wpdb;
 	$pages = $wpdb->get_results("SELECT ID, post_title FROM $wpdb->posts WHERE post_type='page' ORDER BY post_parent, menu_order");
 	$selected = explode(',', get_tarski_option("nav_pages"));

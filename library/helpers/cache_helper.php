@@ -5,11 +5,11 @@
  * 
  * If $file isn't given, the function checks to see if new files can 
  * be written to the cache directory.
+ * @param string $file
+ * @return boolean
  */
 function cache_is_writable($file = false) {
-	if($file == "") {
-		$cachefile = false;
-	} else {
+	if($file) {
 		$cachefile = TARSKICACHE. "/". $file;
 	}
 	if(

@@ -1,6 +1,15 @@
 <?php
 
-// Site title output
+/**
+ * Returns or echoes the document title.
+ * 
+ * The order--site name first or last-- can be set on the
+ * Tarski Options page.
+ * @param string $sep
+ * @param boolean $swap title first or last?
+ * @param boolean $return return or echo?
+ * @return string $doctitle
+ */
 function tarski_doctitle($sep = "&middot;", $swap = false, $return = false) {
 	global $wp_query;
 	$site_name = get_bloginfo("name");
@@ -35,12 +44,25 @@ function tarski_doctitle($sep = "&middot;", $swap = false, $return = false) {
 	}
 }
 
+/**
+ * Adds robots meta element if blog is public.
+ * 
+ * @return string
+ */
 function add_robots_meta() {
 	if(get_option('blog_public') != '0') {
 		echo '<meta name="robots" content="all" />'."\n";
 	}
 }
 
+/**
+ * Gets the feed link for a given category.
+ * 
+ * Can be set to return Atom, RSS or RSS2.
+ * @param integer $cat_id
+ * @param string $feed
+ * @return string $link
+ */
 if(!function_exists('get_category_feed_link')) {
 	function get_category_feed_link($cat_id, $feed = 'rss2') {
 		$cat_id = (int) $cat_id;
@@ -70,6 +92,14 @@ if(!function_exists('get_category_feed_link')) {
 	}
 }
 
+/**
+ * Gets the feed link for a given author.
+ * 
+ * Can be set to return Atom, RSS or RSS2.
+ * @param integer $author_id
+ * @param string $feed
+ * @return string $link
+ */
 if(!function_exists('get_author_feed_link')) {
 	function get_author_feed_link($echo = false, $author_id, $author_nicename, $type = "rss2") {
 		$auth_ID = (int) $author_id;
@@ -95,7 +125,18 @@ if(!function_exists('get_author_feed_link')) {
 	}
 }
 
-
+/**
+ * Outputs feed links for the page.
+ * 
+ * Can be set to return Atom, RSS or RSS2. Will always return
+ * the main site feed, but will additionally return an archive,
+ * search or comments feed depending on the page type.
+ * @param boolean $return return or echo?
+ * @global object $post
+ * @global integer $id
+ * @global object $authordata
+ * @return string $link
+ */
 function tarski_feeds($return = false) {
 	if(get_tarski_option("feed_type") == "atom") {
 		$type = "atom";
@@ -177,7 +218,13 @@ function tarski_feeds($return = false) {
 	}
 }
 
-// Header image status output
+/**
+ * Returns current header status.
+ * 
+ * Output is currently used to set an HTML class, which allows
+ * the way the theme displays to be tweaked through CSS.
+ * @return string
+ */
 function get_tarski_header_status() {
 	if(get_tarski_option('header') == 'blank.gif') {
 		return 'noheaderimage';
@@ -186,11 +233,22 @@ function get_tarski_header_status() {
 	}
 }
 
+/**
+ * Echoes current header status.
+ * 
+ * Output is currently used to set an HTML class, which allows
+ * the way the theme displays to be tweaked through CSS.
+ * @return string
+ */
 function tarski_header_status() {
 	echo get_tarski_header_status();
 }
 
-// Header image output
+/**
+ * Outputs header image.
+ * 
+ * @return string
+ */
 function tarski_headerimage() {
 	if($_SERVER['HTTP_HOST'] == 'themes.wordpress.net') { // Makes the theme preview work properly
 		$header_img_url = 'http://tarskitheme.com/wp-content/themes/tarski/headers/greytree.jpg';
@@ -227,7 +285,15 @@ function tarski_headerimage() {
 	}
 }
 
-// Returns site title in markup
+/**
+ * Returns site title, wrapped in appropriate markup.
+ * 
+ * The title on the home page will appear inside an h1 element,
+ * whereas on other pages it will be a link (to the home page),
+ * wrapped in a p (paragraph) element.
+ * @global object $wp_query
+ * @return string
+ */
 function tarski_sitetitle() {
 	global $wp_query;
 	$front_page_id = get_option('page_on_front');
@@ -248,14 +314,22 @@ function tarski_sitetitle() {
 	}
 }
 
-// Returns tagline in markup
+/**
+ * Returns site tagline, wrapped in appropriate markup.
+ * 
+ * @return string
+ */
 function tarski_tagline() {
 	if((get_tarski_option('display_tagline') && get_bloginfo('description'))) {
 		return '<p id="tagline">'.  get_bloginfo('description'). '</p>';
 	}
 }
 
-// Outputs site title and tagline
+/**
+ * Outputs site title and tagline.
+ * 
+ * @return string
+ */
 function tarski_titleandtag() {
 	$opening_tag = '<div id="title">';
 	$closing_tag = '</div>';
@@ -268,6 +342,13 @@ function tarski_titleandtag() {
 	}
 }
 
+/**
+ * Returns the name for the navbar 'Home' link.
+ * 
+ * The option 'home_link_name' can be set in the Tarski Options page;
+ * if it's not set, it defaults to 'Home'.
+ * @return string
+ */
 function home_link_name() {
 	if(get_tarski_option('home_link_name')) {
 		return get_tarski_option('home_link_name');
@@ -276,7 +357,12 @@ function home_link_name() {
 	}
 }
 
-// Navbar
+/**
+ * Returns the Tarski navbar.
+ * 
+ * @global object $wpdb
+ * @return string $navbar
+ */
 function get_tarski_navbar() {
 	global $wpdb;
 	$current = 'class="nav-current" ';
@@ -285,10 +371,10 @@ function get_tarski_navbar() {
 		if(is_home()) {
 			$home_status = $current;
 		}
-		$output = sprintf(
+		$navbar = sprintf(
 			'<li><a id="nav-home" '.'%1$s'.'href="%2$s" rel="home">%3$s</a></li>'."\n",
 			$home_status,
-			get_bloginfo('url').'/',
+			user_trailingslashit(get_bloginfo('url')),
 			home_link_name()
 		);
 	}
@@ -303,7 +389,7 @@ function get_tarski_navbar() {
 				$page_status = false;
 			}
 						
-			$output .= sprintf(
+			$navbar .= sprintf(
 				'<li><a id="nav-%1$s" '.'%2$s'. 'href="%3$s">%4$s</a></li>'."\n",
 				$page.'-'.$wpdb->get_var("SELECT post_name from $wpdb->posts WHERE ID = $page"),
 				$page_status,
@@ -313,15 +399,26 @@ function get_tarski_navbar() {
 		}
 	}
 	
-	$output = apply_filters('tarski_navbar', $output);
-	return $output;
+	$navbar = apply_filters('tarski_navbar', $navbar);
+	return $navbar;
 }
 
+/**
+ * Outputs the Tarski navbar.
+ * 
+ * @return string
+ */
 function tarski_navbar() {
 	echo get_tarski_navbar();
 }
 
-function add_external_links($input) {
+/**
+ * Adds external links to the Tarski navbar.
+ * 
+ * @param string $navbar
+ * @return string $navbar
+ */
+function add_external_links($navbar) {
 	if(get_tarski_option('nav_extlinkcat')) {
 		$extlinks_cat = get_tarski_option('nav_extlinkcat');
 		$extlinks = get_bookmarks("category=$extlinks_cat");
@@ -335,7 +432,7 @@ function add_external_links($input) {
 			if($link->link_description) {
 				$title = 'title="'. $link->link_description. '" ';
 			}
-			$input .= sprintf(
+			$navbar .= sprintf(
 				'<li><a id="nav-link-%1$s" %2$s href="%3$s">%4$s</a></li>'."\n",
 				$link->link_id,
 				$rel. $target. $title,
@@ -344,21 +441,39 @@ function add_external_links($input) {
 			);
 		}
 	}
-	return $input;
+	return $navbar;
 }
 
-function add_admin_link($input) {
+/**
+ * Adds a WordPress site admin link to the Tarski navbar.
+ * 
+ * @param string $navbar
+ * @return string $navbar
+ */
+function add_admin_link($navbar) {
 	if(is_user_logged_in()) {
-		$input .= '<li><a id="nav-admin" href="'. get_option('siteurl'). '/wp-admin/">'. __('Site Admin','tarski'). '</a></li>'. "\n";
+		$navbar .= '<li><a id="nav-admin" href="'. get_option('siteurl'). '/wp-admin/">'. __('Site Admin','tarski'). '</a></li>'. "\n";
 	}
-	return $input;
+	return $navbar;
 }
 
-function wrap_navlist($input) {
-	$input = '<ul class="primary xoxo">'."\n".$input.'</ul>'."\n";
-	return $input;
+/**
+ * Wraps the Tarski navbar in an unordered list element.
+ * 
+ * @param string $navbar
+ * @return string $navbar
+ */
+function wrap_navlist($navbar) {
+	$navbar = '<ul class="primary xoxo">'."\n".$navbar.'</ul>'."\n";
+	return $navbar;
 }
 
+/**
+ * Adds the site feed link to the site navigation.
+ * 
+ * @param boolean $return echo or return?
+ * @return string $output
+ */
 function tarski_navbar_feedlink($return = false) {
 	$prefix = '<div class="secondary">'."\n";
 	if(get_tarski_option("feed_type") == "atom") {
@@ -377,7 +492,11 @@ function tarski_navbar_feedlink($return = false) {
 	}
 }
 
-// Body classes
+/**
+ * Returns the classes that should be applied to the document body.
+ * 
+ * @return string $body_class
+ */
 function get_tarski_bodyclass() {
 	$classes = array();
 	
@@ -408,11 +527,22 @@ function get_tarski_bodyclass() {
 	return $body_class;
 }
 
+/**
+ * Outputs the classes that should be applied to the document body.
+ * 
+ * @return string
+ */
 function tarski_bodyclass() {
 	echo get_tarski_bodyclass();
 }
 
-// Body ids
+/**
+ * Returns the id that should be applied to the document body.
+ * 
+ * @global object $post
+ * @global object $wp_query
+ * @return string $body_id
+ */
 function get_tarski_bodyid() {
 	global $post, $wp_query;
 
@@ -458,18 +588,32 @@ function get_tarski_bodyid() {
 	return $body_id;
 }	
 
+/**
+ * Outputs the id that should be applied to the document body.
+ * 
+ * @return string
+ */
 function tarski_bodyid() {
 	echo get_tarski_bodyid();
 }
 
-// Footer sidebar
+/**
+ * Outputs the WordPress search form.
+ * 
+ * Will only output the search form on pages that aren't a search
+ * page or a 404, as these pages include the search form earlier
+ * in the document and the search form relies on the 's' id value,
+ * which as an HTML id must be unique within the document.
+ */
 function tarski_searchform() {
 	if(!is_search() && !is_404()) {
 		include(TEMPLATEPATH . "/searchform.php");
 	}
 }
 
-// Default footer stuff including credit
+/**
+ * Outputs the site feed and Tarski credits.
+ */
 function tarski_feed_and_credit() {
 	if(get_tarski_option("feed_type") == "atom") {
 		$feed_url = "atom_url";
