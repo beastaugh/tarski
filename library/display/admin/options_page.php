@@ -35,7 +35,7 @@
 <?php } ?>
 
 
-<div class="wrap<?php if($text_direction == 'rtl') { echo " rtl"; } ?>">
+<div class="wrap<?php if(get_bloginfo("text_direction") == "rtl") { echo " rtl"; } ?>">
 	
 	<h2><?php _e('Tarski Options','tarski'); ?></h2>
 
@@ -150,14 +150,9 @@
 				<h3><?php _e('Alternate Style','tarski'); ?></h3>
 					<?php
 					$style_dir = @ dir(TEMPLATEPATH . '/styles');
-					$illegal_names = '/^janus.css$|^single.css$|^centre.css$|^left.css$/';
 					if($style_dir) {
 						while(($file = $style_dir->read()) !== false) {
-							if(
-								!preg_match('|^\.+$|', $file)
-								&& preg_match('@.(css)$@', $file)
-								&& !preg_match($illegal_names, $file)
-							) {
+							if(is_tarski_style($file)) {
 								$styles[] = $file;
 							}
 						}
@@ -182,9 +177,9 @@
 					<?php } ?>
 
 					<?php if(detectWPMU()) { // WPMU users ?>
-						<p><?php echo __('Tarski allows you to select an alternate style that modifies the default one. Choose from the list above.','tarski'); ?></p>
+						<p><?php echo __('Tarski allows you to select an %s that modifies the default one. Choose from the list above.','tarski'); ?></p>
 					<?php } else { // non-WPMU users ?>
-						<p><?php printf( __('Tarski allows you to select an alternate style that modifies the default one. Choose from the list above, or upload your own to %s.','tarski'), '<code>wp-content/themes/' . get_template() . '/styles/</code>' ); ?></p>
+						<p><?php printf( __('Tarski allows you to select an %1$s that modifies the default one. Choose from the list above, or upload your own to %2$s.','tarski'), '<a href="http://tarskitheme.com/help/styles/">'. __('alternate style','tarski'). '</a>', '<code>wp-content/themes/' . get_template() . '/styles/</code>' ); ?></p>
 					<?php } ?>
 
 				<h3><?php _e('Header Image','tarski'); ?></h3>

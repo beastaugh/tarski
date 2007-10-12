@@ -85,11 +85,11 @@ body .noheaderimage { padding: 20px 20px 0 20px; }
 
 /* Clearfix
 ----------------------------------------------- */
-#navigation:after, #content:after, .comment:after, .trackback:after, #comments .meta:after, #trackback-link:after, #footer:after, #theme-info:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
-#navigation, #content, .comment, .trackback, #comments .meta, #trackback-link, #footer, #theme-info { display: inline-block; }
+#navigation:after, #content:after, body .comment:after, body .trackback:after, #comments .meta:after, #trackback-link:after, #footer:after, #theme-info:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
+#navigation, #content, body .comment, body .trackback, #comments .meta, #trackback-link, #footer, #theme-info { display: inline-block; }
 /* Hides from IE-mac \*/
-*html #navigation, *html #content, *html .comment, * html .trackback, *html #comments .meta, *html #trackback-link, *html #footer, *html #theme-info { height: 1%; }
-#navigation, #content, .comment, .trackback, #comments .meta, #trackback-link, #footer, #theme-info { display: block; }
+* html #navigation, * html #content, * html body .comment, * html body .trackback, * html #comments .meta, * html #trackback-link, * html #footer, * html #theme-info { height: 1%; }
+#navigation, #content, body .comment, body .trackback, #comments .meta, #trackback-link, #footer, #theme-info { display: block; }
 /* End hide from IE-mac */
 
 /* Content
@@ -198,7 +198,7 @@ body .noheaderimage { padding: 20px 20px 0 20px; }
 				#trackback-link .primary p { margin: 0; padding: 5px 0; }
 
 		body .comment { margin: 0; border-top: 1px solid #ccc; padding: 0.5em 0; }
-			body .comment-permalink, .comment-edit { font-size: 0.8em; margin: 0; }
+			body .comment-permalink, body .comment-edit { font-size: 0.8em; margin: 0; }
 			body .comment-author { margin: 0 0 0.5em 0; font-weight: bold; }
 		body .moderated { background: #fcffff; }
 			body .moderated .primary-span { border-bottom: 1px dotted #e5e5e5; padding-bottom: 0.5em; background: url('images/moderated.gif') no-repeat 100% 50%; }

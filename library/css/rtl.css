@@ -26,7 +26,7 @@ body #wrapper { text-align: right; direction: rtl; }
 
 		/* Post content
 		--------------------------------------- */
-		.articlenav { margin: -2em 0 2em 0; border-bottom: 1px solid #e5e5e5; padding-top: 0.75em; padding-bottom: 0.75em; background: #fcffff; color: #a8a8a8; text-align: left; }
+		body .articlenav { margin: -2em 0 2em 0; border-bottom: 1px solid #e5e5e5; padding-top: 0.75em; padding-bottom: 0.75em; background: #fcffff; color: #a8a8a8; text-align: left; }
 
 		
 		/* Comments

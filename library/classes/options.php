@@ -96,8 +96,7 @@ class Options {
 			}
 			
 			$stylefile = $_POST['alternate_style'];
-			$illegal_names = '/^janus.css$|^single.css$|^centre.css$|^left.css$/';
-			if(!preg_match($illegal_names, $stylefile)) {
+			if(is_tarski_style($stylefile)) {
 				$this->style = $stylefile;
 			}
 			

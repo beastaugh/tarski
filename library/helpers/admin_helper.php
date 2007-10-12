@@ -10,6 +10,14 @@ function detectWPMUadmin() {
 	}
 }
 
+function is_tarski_style($file) {
+	return (bool) (
+		!preg_match('/^\.+$/', $file)
+		&& preg_match('/^[A-Za-z][A-Za-z0-9\-]*.css$/', $file)
+		&& !preg_match('/^janus.css$|^single.css$|^centre.css$|^left.css$|^rtl.css$/', $file)
+	);
+}
+
 function tarski_config_custom_header() {
 	define('HEADER_TEXTCOLOR', '');
 	define('HEADER_IMAGE', '%s/headers/' . get_tarski_option('header'));

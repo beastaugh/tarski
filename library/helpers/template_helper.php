@@ -390,14 +390,17 @@ function get_tarski_bodyclass() {
 		array_push($classes, "janus");
 	}
 	if(get_tarski_option("style")) { // Alternate style
-		$stylename = str_replace(".css", "", get_tarski_option("style"));
-		$illegal_names = '/^janus$|^single$|^centre$|^left$/';
-		if(!preg_match($illegal_names, $stylename)) {
+		$stylefile = get_tarski_option("style");
+		$stylename = str_replace(".css", "", $stylefile);
+		if(is_tarski_style($stylefile)) {
 			array_push($classes, $stylename);
 		}
 	}
 	if (is_page() || is_single() || is_404()) { // Is it a single page?
 		array_push($classes, "single");
+	}
+	if(get_bloginfo("text_direction") == "rtl") {
+		array_push($classes, "rtl");
 	}
 	
 	$body_class = implode(" ", $classes);
