@@ -83,7 +83,7 @@ if(!function_exists('get_category_feed_link')) {
 			else
 				$feed_link = "feed/$feed";
 
-			$link = $link . user_trailingslashit($feed_link, 'feed');
+			$link = trailingslashit($link) . user_trailingslashit($feed_link, 'feed');
 		}
 
 		$link = apply_filters('category_feed_link', $link, $feed);
@@ -101,26 +101,30 @@ if(!function_exists('get_category_feed_link')) {
  * @return string $link
  */
 if(!function_exists('get_author_feed_link')) {
-	function get_author_feed_link($echo = false, $author_id, $author_nicename, $type = "rss2") {
-		$auth_ID = (int) $author_id;
+	function get_author_feed_link($author_id, $feed = 'rss2') {
+		$auth_id = (int) $author_id;
+		
+		$author = the_archive_author();
+		
+		if ( empty($author) || is_wp_error($author) )
+			return false;
+
 		$permalink_structure = get_option('permalink_structure');
 
 		if ( '' == $permalink_structure ) {
-			$link = get_option('home') . "/?feed=$type&amp;author=" . $author_id;
+			$link = get_option('home') . "?feed=$feed&amp;author=" . $auth_id;
 		} else {
-			$link = get_author_posts_url($author_id, $author_nicename);
-			$link = trailingslashit($link);
-			if( $type != "rss2" ) {
-				 $link .= user_trailingslashit("feed/$type", 'feed');
-			} else {
-				$link .= user_trailingslashit('feed', 'feed');
-			}
+			$link = get_author_posts_url($auth_id);
+			if( 'rss2' == $feed )
+				$feed_link = 'feed';
+			else
+				$feed_link = "feed/$feed";
+
+			$link = trailingslashit($link) . user_trailingslashit($feed_link, 'feed');
 		}
 
-		$link = apply_filters('author_feed_link', $link);
+		$link = apply_filters('author_feed_link', $link, $feed);
 
-		if ( $echo )
-			echo $link;
 		return $link;
 	}
 }
@@ -160,7 +164,7 @@ function tarski_feeds($return = false) {
 		} elseif(is_author()) {
 			global $authordata;
 			$title = sprintf( __('Articles feed for %s','tarski'), the_archive_author_displayname());
-			$link = get_author_feed_link(false, get_query_var('author'), $authordata->user_nicename, $type);
+			$link = get_author_feed_link(get_query_var('author'), $type);
 		} elseif(is_date()) {
 			if(is_day()) {
 				$title = sprintf( __('Daily archive feed for %s','tarski'), tarski_date());
