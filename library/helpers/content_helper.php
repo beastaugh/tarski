@@ -1,6 +1,14 @@
-<?php // content-functions.php - Content formatting for Tarski
+<?php
 
-// Needed for various nasty hacks
+/**
+ * Returns the output of functions that only echo.
+ * 
+ * This output-buffering function is a horrible hack and
+ * in the future hopefully it can be deprecated. For the
+ * moment, though, it's an unfortunate necessity.
+ * @global object $comment
+ * @global object $post
+ */
 function tarski_get_output($code) {
 	global $comment, $post;
 	ob_start();
@@ -10,7 +18,14 @@ function tarski_get_output($code) {
 	return $return;
 }
 
-// Next and previous post links
+/**
+ * Outputs links to the next and previous posts.
+ * 
+ * WordPress has this functionality, but the built-in
+ * formatting isn't to Tarski's tastes, so this function
+ * builds its own.
+ * @return string
+ */
 function tarski_next_prev_posts() {
 	$prev_post = '';
 	$next_post = '';
@@ -24,7 +39,11 @@ function tarski_next_prev_posts() {
 	} 
 }
 
-// Clean page split links
+/**
+ * Returns page links without the spaces WordPress seems to love.
+ * 
+ * @return string
+ */
 function link_pages_without_spaces($return = false) {
 	if(!in_category(get_tarski_option('asidescategory'))) {
 		tarski_get_output(link_pages('<p class="pagelinks"><strong>Pages</strong>', '</p>', 'number', '', '', '%', ''));
@@ -40,7 +59,12 @@ function link_pages_without_spaces($return = false) {
 	}
 }
 
-// Older and newer pages of posts links
+/**
+ * Outputs next / previous index page links.
+ * 
+ * @global object $wp_query
+ * @return string
+ */
 function tarski_next_prev_pages() {
 	global $wp_query;
 	$wp_query->is_paged = true;
@@ -79,12 +103,25 @@ function tarski_next_prev_pages() {
 	}
 }
 
-// A better the_date() function
+/**
+ * WordPress date function that shows up on every post.
+ * 
+ * The WP function the_date only shows up on the first post
+ * of that day. This one displays on every post, regardless
+ * of how many posts are made that day.
+ * @global object $post
+ * @return string
+ */
 function tarski_date() {
 	global $post;
 	return mysql2date(get_option('date_format'), $post->post_date);
 }
 
+/**
+ * Appends tags to posts.
+ * 
+ * @return string
+ */
 function add_post_tags() {
 	if(function_exists('the_tags')) {
 		if(is_single() || (get_tarski_option('tags_everywhere')) && !in_category(get_tarski_option('asidescategory'))) {
@@ -93,6 +130,12 @@ function add_post_tags() {
 	}
 }
 
+/**
+ * Strips the http:// prefix from OpenID names.
+ * 
+ * @global object $comment_author
+ * @return string $comment_author
+ */
 function tidy_openid_names($comment_author) {
 	global $comment;
 	$comment_author =  str_replace('http://', '', $comment_author);
@@ -100,6 +143,14 @@ function tidy_openid_names($comment_author) {
 	return $comment_author;
 }
 
+/**
+ * Returns a comment author's name, wrapped in a link if present.
+ * 
+ * It also includes hCard microformat markup.
+ * @link http://microformats.org/wiki/hcard
+ * @global object $comment
+ * @return string
+ */
 function tarski_comment_author_link() {
 	global $comment;
 	$url = get_comment_author_url();
@@ -114,8 +165,26 @@ function tarski_comment_author_link() {
 	return apply_filters('get_comment_author_link', $return);
 }
 
-// Tarski excerpts
-// Code shamelessly borrowed from http://guff.szub.net/2005/02/26/the-excerpt-reloaded/
+/**
+ * Tarski excerpts, improving on the core WordPress code.
+ * 
+ * Code shamelessly borrowed from Kaf Oseo's 'the_excerpt Reloaded' plugin.
+ * @link http://guff.szub.net/2005/02/26/the-excerpt-reloaded/
+ * @param string $excerpt_length
+ * @param string $allowedtags
+ * @param string $filter_type
+ * @param integer $use_more_link
+ * @param string $more_link_text
+ * @param integer $force_more
+ * @param integer $fakeit
+ * @param integer $no_more
+ * @param string $more_tag
+ * @param string $more_link_title
+ * @param integer $showdots
+ * @param string $allowedtags
+ * @global object $post
+ * @return string
+ */
 function tarski_excerpt($excerpt_length = 120, $allowedtags = '', $filter_type = 'none', $use_more_link = 1, $more_link_text = '(more...)', $force_more = 1, $fakeit = 1, $no_more = 0, $more_tag = 'div', $more_link_title = 'Continue reading this entry', $showdots = 1) {
 	global $post;
 
@@ -195,29 +264,64 @@ function tarski_excerpt($excerpt_length = 120, $allowedtags = '', $filter_type =
 	return $output;
 }
 
-// Default 404 text
+/**
+ * Outputs default text for 404 error pages.
+ *
+ * @return string
+ */
 function tarski_404_content() {
 	$content = '<p>'. sprintf( __('The page you are looking for does not exist; it may have been moved, or removed altogether. You might want to try the search function or return to the %s.','tarski'), '<a href="'. get_bloginfo('url'). '">'. __('front page','tarski'). '</a>' ) . "</p>\n";
 	$content = apply_filters('th_404_content', $content);
 	echo $content;
 }
 
+/**
+ * Returns custom sidebar content, appropriately formatted.
+ *
+ * Gets the database value; strips slashes; prettifies the quotes
+ * and other typographical nuances; converts ampersands and other
+ * characters in need of encoding as HTML entities; applies
+ * automatic paragaphing; and finally applies filters and returns
+ * the output.
+ * @return string
+ */
 function get_tarski_sidebar_custom() {
 	$output = wpautop(convert_chars(wptexturize(stripslashes(get_tarski_option('sidebar_custom')))));
 	$output = apply_filters('tarski_sidebar_custom', $output);
 	return $output;
 }
 
+/**
+ * Returns custom footer content, appropriately formatted.
+ *
+ * Gets the database value; strips slashes; prettifies the quotes
+ * and other typographical nuances; converts ampersands and other
+ * characters in need of encoding as HTML entities; applies
+ * automatic paragaphing; and finally applies filters and returns
+ * the output.
+ * @return string
+ */
 function get_tarski_footer_blurb() {
 	$output = wpautop(convert_chars(wptexturize(stripslashes(get_tarski_option('blurb')))));
 	$output = apply_filters('tarski_footer_blurb', $output);
 	return $output;
 }
 
+/**
+ * Outputs custom sidebar text.
+ *
+ * @return string
+ */
 function tarski_footer_blurb() {
 	echo get_tarski_footer_blurb();
 }
 
+/**
+ * Wraps footer blurb in div element.
+ *
+ * @param string $blurb
+ * @return string
+ */
 function tarski_blurb_wrapper($blurb) {
 	$prefix = '<div class="content">'."\n";
 	$suffix = '</div> <!-- /blurb -->'."\n";
@@ -229,4 +333,4 @@ function tarski_blurb_wrapper($blurb) {
 	return $blurb;
 }
 
-// ~fin~ ?>
+?>
