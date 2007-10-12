@@ -203,11 +203,12 @@ function tarski_feeds($return = false) {
 			$link
 		);
 	}
+	$feed_type_url = $type . "_url";
 	$feeds .= sprintf(
 		'<link rel="alternate" type="%1$s" title="%2$s" href="%3$s" />'."\n",
 		$feed_link_type,
 		get_bloginfo('name'). __(' feed','tarski'),
-		get_bloginfo('rss2_url')
+		get_bloginfo($feed_type_url)
 	);
 	$feeds = apply_filters('tarski_feeds', $feeds);
 	
