@@ -135,7 +135,6 @@ body .noheaderimage { padding: 20px 20px 0 20px; }
 		body .articlenav { margin: -2em 0 2em 0; border-bottom: 1px solid #e5e5e5; padding-top: 0.75em; padding-bottom: 0.75em; background: #fcffff; color: #a8a8a8; }
 			body.janus .articlenav { padding-top: 0.75em; padding-bottom: 0.75em; text-align: right; }
 		body .entry { margin: 0 0 4em 0; clear: both; }
-		body.single .entry { margin: 0 0 2em 0; }
 			body .entry .meta { margin: 0 0 1em 0; }
 				body .entry .metadata { font-size: 0.8em; color: #a8a8a8; margin: 0; padding: 0; }
 				body .entry .meta .metadata { margin: 0; padding: 0.3em 0 0 0; }
@@ -187,7 +186,7 @@ body .noheaderimage { padding: 20px 20px 0 20px; }
 			
 		/* Comments
 		--------------------------------------- */
-		#comments { clear: both; padding: 2em 0 0 0; }
+		#comments { clear: both; }
 		body.janus #comments .secondary { text-align: right; }
 		#comments .meta {}
 			#comments .meta .title { width: 350px; float: left; margin: 0; border: none; padding: 0.1em 0 0 0; }
