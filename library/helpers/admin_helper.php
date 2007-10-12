@@ -28,7 +28,7 @@ function detectWPMUadmin() {
  * @param string $file
  * @return boolean
  */
-function is_tarski_style($file) {
+function is_valid_tarski_style($file) {
 	return (bool) (
 		!preg_match('/^\.+$/', $file)
 		&& preg_match('/^[A-Za-z][A-Za-z0-9\-]*.css$/', $file)

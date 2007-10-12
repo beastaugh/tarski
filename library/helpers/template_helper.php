@@ -516,7 +516,7 @@ function get_tarski_bodyclass() {
 	if(get_tarski_option("style")) { // Alternate style
 		$stylefile = get_tarski_option("style");
 		$stylename = str_replace(".css", "", $stylefile);
-		if(is_tarski_style($stylefile)) {
+		if(is_valid_tarski_style($stylefile)) {
 			array_push($classes, $stylename);
 		}
 	}

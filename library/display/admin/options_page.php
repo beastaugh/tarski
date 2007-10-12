@@ -152,7 +152,7 @@
 					$style_dir = @ dir(TEMPLATEPATH . '/styles');
 					if($style_dir) {
 						while(($file = $style_dir->read()) !== false) {
-							if(is_tarski_style($file)) {
+							if(is_valid_tarski_style($file)) {
 								$styles[] = $file;
 							}
 						}

@@ -96,7 +96,7 @@ class Options {
 			}
 			
 			$stylefile = $_POST['alternate_style'];
-			if(is_tarski_style($stylefile) || !$stylefile) {
+			if(is_valid_tarski_style($stylefile) || !$stylefile) {
 				$this->style = $stylefile;
 			}
 			
