@@ -143,9 +143,7 @@ body .noheaderimage { padding: 20px 20px 0 20px; }
 		body .archive {}
 			body .archive .meta { margin: 0 0 1em 0; }
 			body .archive .content { margin: 0 0 2em 0; }
-		body .pagelinks { clear: both; margin: 2.5em 0; font-size: 0.8em; font-weight: bold; }
-			body .pagelinks strong { color: #a8a8a8; margin: 0 0.6em 0 0; border: 1px solid #e5e5e5; padding: 0.3em 0.6em; }
-			body .pagelinks a { margin: 0 0.6em; border: 1px solid; padding: 0.3em 0.6em; }
+		body .link-pages { font-size: 0.8em; color: #a8a8a8; clear: both; }
 		body .pagination { margin: 0 0 3em 0; font-family: 'Times New Roman', Times, serif; font-size: 1.5em; font-weight: normal; line-height: 120%; color: #a8a8a8; clear: both; }
 		
 		/* Inserts
@@ -270,8 +268,8 @@ a { text-decoration: none; }
 a:link, a:visited, a:active { color: #006a80; }
 a:hover { color: #a8001c; }
 
-body .content a:link, body .content a:active, body .content a:visited, body .tagdata a:link, body .tagdata a:active, body .tagdata a:visited { border-bottom: 1px solid #cfe2e5; }
-body .content a:hover, body .tagdata a:hover { border-bottom: 1px solid #e5cfd2; }
+body .content a:link, body .content a:active, body .content a:visited, body .link-pages a:link, body .link-pages a:active, body .link-pages a:visited, body .tagdata a:link, body .tagdata a:active, body .tagdata a:visited { border-bottom: 1px solid #cfe2e5; }
+body .content a:hover, body .link-pages a:hover, body .tagdata a:hover { border-bottom: 1px solid #e5cfd2; }
 	#wrapper .content h2 a:link, #wrapper .content h2 a:visited, #wrapper .content h2 a:hover, #wrapper .content h2 a:active, #wrapper .content h3 a:link, #wrapper .content h3 a:visited, #wrapper .content h3 a:hover, #wrapper .content h3 a:active, #wrapper .content h4 a:link, #wrapper .content h4 a:visited, #wrapper .content h4 a:hover, #wrapper .content h4 a:active { border: none; }
 		
 /* Widgets (I hate these things)

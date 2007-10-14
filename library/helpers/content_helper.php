@@ -27,35 +27,41 @@ function tarski_get_output($code) {
  * @return string
  */
 function tarski_next_prev_posts() {
-	$prev_post = '';
-	$next_post = '';
-	$prev_post = tarski_get_output("previous_post_link('&laquo; %link');");
-	$next_post = tarski_get_output("next_post_link('%link &raquo;');");
-
-	if($prev_post && $next_post) {
-		echo '<p class="articlenav primary-span">' . $prev_post . ' &nbsp;&bull;&nbsp; ' . $next_post . '</p>';
-	} elseif($prev_post || $next_post) {
-		echo '<p class="articlenav primary-span">' . $prev_post . $next_post . '</p>';
-	} 
+	if(get_previous_post() || get_next_post()) {
+		$prefix = '<p class="primary-span articlenav">';
+		$suffix = "</p>\n";
+	}
+	if(get_previous_post() && get_next_post()) {
+		$separator = ' &nbsp;&bull;&nbsp; ';
+	}
+	
+	echo $prefix;
+	previous_post_link('%link','&lsaquo; %title');
+	echo $separator;
+	next_post_link('%link','%title &rsaquo;');
+	echo $suffix;
 }
 
 /**
- * link_pages_without_spaces() - Returns page links without the spaces WordPress seems to love.
+ * tarski_link_pages() - Tarski wrapper around wp_link_pages().
  * 
+ * @since 2.0
  * @return string
  */
-function link_pages_without_spaces($return = false) {
-	if(!in_category(get_tarski_option('asidescategory'))) {
-		tarski_get_output(link_pages('<p class="pagelinks"><strong>Pages</strong>', '</p>', 'number', '', '', '%', ''));
+function tarski_link_pages() {
+	$arguments = array(
+		'before' => '<p class="link-pages"><strong>' . __('Pages:','tarski') . '</strong>',
+		'after' => '</p>',
+		'next_or_number' => 'number',
+		'nextpagelink' => __('Next page','tarski'),
+		'previouspagelink' => __('Previous page','tarski'),
+		'pagelink' => '%',
+		'more_file' => '',
+		'echo' => 1
+	);
 	
-		$text = str_replace(' <a href', '<a href', $text);
-		$text = str_replace('> ', '>', $text);
-		apply_filters('link_pages_without_spaces', $text);
-		if($return) {
-			return $text;
-		} else {
-			echo $text;
-		}
+	if(!in_category(get_tarski_option('asidescategory'))) {
+		wp_link_pages($arguments);
 	}
 }
 

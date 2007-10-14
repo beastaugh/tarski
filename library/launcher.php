@@ -49,7 +49,7 @@ add_action('th_navbar', 'tarski_feedlink');
 
 // Content
 add_action('th_postend', 'add_post_tags', 10);
-add_action('th_postend', 'link_pages_without_spaces', 11);
+add_action('th_postend', 'tarski_link_pages', 11);
 
 add_filter('get_comment_author', 'tidy_openid_names');
 

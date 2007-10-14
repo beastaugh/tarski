@@ -63,6 +63,28 @@ function get_tarski_bodyid() {
 }
 
 /**
+ * link_pages_without_spaces() - Returns page links without the spaces WordPress seems to love.
+ * 
+ * @deprecated since 2.0
+ * @see tarski_link_pages()
+ * @return string
+ */
+function link_pages_without_spaces($return = false) {
+	if(!in_category(get_tarski_option('asidescategory'))) {
+		tarski_get_output(link_pages('<p class="pagelinks"><strong>Pages</strong>', '</p>', 'number', '', '', '%', ''));
+	
+		$text = str_replace(' <a href', '<a href', $text);
+		$text = str_replace('> ', '>', $text);
+		apply_filters('link_pages_without_spaces', $text);
+		if($return) {
+			return $text;
+		} else {
+			echo $text;
+		}
+	}
+}
+
+/**
  * get_tarski_footer_blurb() - Outputs custom sidebar text.
  *
  * @deprecated since 2.0
