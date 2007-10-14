@@ -629,9 +629,7 @@ function tarski_bodyid() {
  * which as an HTML id must be unique within the document.
  */
 function tarski_searchform() {
-	if(!is_search() && !is_404()) {
-		include(TEMPLATEPATH . "/searchform.php");
-	}
+	include_once(TEMPLATEPATH . "/searchform.php");
 }
 
 /**

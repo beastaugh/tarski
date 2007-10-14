@@ -19,7 +19,7 @@
 
 
 <div class="secondary">
-	<?php include(TEMPLATEPATH . "/searchform.php"); ?>
+	<?php tarski_searchform(); ?>
 </div>
 
 

@@ -2,7 +2,7 @@
 <?php @include(TEMPLATEPATH."/constants.php"); ?>
 <?php th_sidebar(); ?>
 <?php if(is_search()) { ?>
-	<?php include(TEMPLATEPATH . '/searchform.php'); ?>
+	<?php tarski_searchform(); ?>
 	<?php tarski_output_constant($sidebarBottomInclude); ?>
 <?php } else { ?>
 
