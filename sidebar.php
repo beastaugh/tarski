@@ -1,53 +1,51 @@
 <div class="secondary">
-<?php @include(TEMPLATEPATH."/constants.php"); ?>
+
 <?php th_sidebar(); ?>
-<?php if(is_search()) { ?>
-	<?php tarski_searchform(); ?>
-	<?php tarski_output_constant($sidebarBottomInclude); ?>
-<?php } else { ?>
 
-	<?php if(!get_tarski_option('sidebar_onlyhome') || !(is_single() || is_page())) { ?>
+<?php if(!get_tarski_option('sidebar_onlyhome') || !(is_single() || is_page())) { ?>
+
+	<?php if(get_tarski_option('sidebar_type') == 'widgets') { // Widgets sidebar ?>
+
+		<div class="widgets">
+			<?php dynamic_sidebar(__('Main Sidebar','tarski')); ?>
+		</div>
 	
-		<?php if(get_tarski_option('sidebar_type') == 'widgets') { ?>
-	
-			<div class="widgets">
-				<?php dynamic_sidebar(__('Main Sidebar','tarski')); ?>
+	<?php } elseif(get_tarski_option('sidebar_type') == 'tarski') { // Tarski sidebar ?>
+
+		<?php if(get_tarski_option('sidebar_custom')) { // Blurb ?>
+			<div class="content">
+				<?php get_tarski_sidebar_custom(); ?>
 			</div>
+		<?php } if(get_tarski_option('sidebar_pages')) { // Pages ?>
+			<h3><?php _e('Pages','tarski'); ?></h3>
+			<ul class="navlist xoxo">
+				<?php wp_list_pages('sort_column=post_title&title_li='); ?>
+			</ul>
+		<?php } if(get_tarski_option('sidebar_links')) { // Links ?>
+			<div class="bookmarks xoxo">
+				<?php wp_list_bookmarks(tarski_sidebar_links()); ?>
+			</div>
+		<?php } ?>
 	
-		<?php } elseif(get_tarski_option('sidebar_type') == 'tarski') { ?>
-	
-			<?php if(get_tarski_option('sidebar_custom')) { ?>
-				<div class="content">
-					<?php get_tarski_sidebar_custom(); ?>
-				</div>
-			<?php } ?>
-			<?php if(get_tarski_option('sidebar_pages')) { // pages block ?>
-				<h3><?php _e('Pages','tarski'); ?></h3>
-				<ul class="navlist xoxo">
-					<?php wp_list_pages('sort_column=post_title&title_li='); ?>
-				</ul>
-			<?php } // end pages block ?>
-			<?php if(get_tarski_option('sidebar_links')) { // links block ?>
-				<div class="bookmarks xoxo">
-					<?php wp_list_bookmarks(tarski_sidebar_links()); ?>
-				</div>
-			<?php } // end links block ?>
-	
-		<?php } elseif(get_tarski_option('sidebar_type') == 'custom') { ?>
+	<?php } elseif(get_tarski_option('sidebar_type') == 'custom') { // Custom sidebar ?>
 
-			<?php if(file_exists(TEMPLATEPATH . '/user-sidebar.php')) {
-				include(TEMPLATEPATH . '/user-sidebar.php');
-			} else {
-				echo '<h3>' . __('Error', 'tarski') . '</h3><p>' . sprintf( __('%s not found.', 'tarski'), '<code>user-sidebar.php</code>' ) .'</p>';
-			} ?>
-
+		<?php if(file_exists(TEMPLATEPATH . '/user-sidebar.php')) { ?>
+			<?php include(TEMPLATEPATH . '/user-sidebar.php'); ?>
+		<?php } else { ?>
+			<h3><?php _e('Error', 'tarski'); ?></h3>
+			<p><?php sprintf( __('%s not found.', 'tarski'), '<code>user-sidebar.php</code>' ); ?></p>
 		<?php } ?>
 
-		<?php wp_meta(); ?>
-		<?php tarski_output_constant($sidebarBottomInclude); ?>
-	<?php } // end onlyhome if ?>
-<?php } // end search else ?>
-<?php // Reset the post data incase part of the sidebar code messed it up
-$wp_the_query->current_post--;
-setup_postdata($wp_query->next_post()); ?>
+	<?php } ?>
+
+	<?php wp_meta(); ?>
+	<?php @include(TEMPLATEPATH."/constants.php"); ?>
+	<?php tarski_output_constant($sidebarBottomInclude); ?>
+	
+<?php } ?>
+
 </div>
+<?php // Reset post data
+$wp_the_query->current_post--;
+setup_postdata($wp_query->next_post());
+?>

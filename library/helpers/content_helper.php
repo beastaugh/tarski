@@ -58,7 +58,7 @@ function tarski_posts_nav_link() {
 	$wp_query->is_paged = true;
 	
 	if(is_paged() && get_tarski_option('use_pages')) {
-		if(is_search() || $_GET['s']) {
+		if(is_search()) {
 			$prev_text = __('Previous results','tarski');
 			$next_text = __('More results','tarski');
 		} else {

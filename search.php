@@ -37,7 +37,9 @@
 
 
 
-<?php get_sidebar(); ?>
+<div class="secondary">
+	<?php tarski_searchform(); ?>
+</div>
 
 
 
