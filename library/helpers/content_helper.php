@@ -86,6 +86,15 @@ function tarski_date() {
 	return mysql2date(get_option('date_format'), $post->post_date);
 }
 
+function tarski_post_categories_link() {
+	if(get_tarski_option('show_categories')) {
+		printf(
+			__(' in %s','tarski'),
+			'<span class="categories">' . get_the_category_list(', ') . '</span>'
+		);
+	}
+}
+
 /**
  * tarski_sidebar_links() - Returns an array for use with wp_list_bookmarks().
  * 
@@ -255,7 +264,11 @@ function tarski_excerpt($excerpt_length = 120, $allowedtags = '', $filter_type =
  * @return string
  */
 function tarski_404_content() {
-	$content = '<p>'. sprintf( __('The page you are looking for does not exist; it may have been moved, or removed altogether. You might want to try the search function or return to the %s.','tarski'), '<a href="'. get_bloginfo('url'). '">'. __('front page','tarski'). '</a>' ) . "</p>\n";
+	$content = sprintf(
+		__('The page you are looking for does not exist; it may have been moved, or removed altogether. You might want to try the search function or return to the %s.','tarski'),
+		'<a href="'. user_trailingslashit(get_bloginfo('url')). '">'. __('front page','tarski'). '</a>'
+	);
+	$content = wpautop($content);
 	$content = apply_filters('th_404_content', $content);
 	echo $content;
 }

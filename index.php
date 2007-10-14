@@ -16,7 +16,7 @@
 						<h1 class="title entry-title"><?php the_title(); ?></h1>
 						<?php if(is_single()) { ?>
 							<p class="metadata"><?php echo '<span class="date updated">'. tarski_date(). '</span>';
-							if(!get_tarski_option('hide_categories')) { echo __(' in ','tarski'). '<span class="categories">'; the_category(', '); echo '</span>'; }
+							tarski_post_categories_link();
 							tarski_author_posts_link();
 							edit_post_link(__('edit','tarski'),' <span class="edit">(',')</span>'); ?></p>
 						<?php } else { ?>

@@ -1,6 +1,23 @@
 <?php
 
 /**
+ * is_wp_front_page() - Returns true when current page is the WP front page.
+ * 
+ * Very useful, since is_home() doesn't return true for the
+ * front page if it's displaying a static page rather than
+ * the usual posts page.
+ * @since 2.0
+ * @return boolean
+ */
+function is_wp_front_page() {
+	if(get_option('show_on_front') == 'page') {
+		return is_page(get_option('page_on_front'));
+	} else {
+		return is_home();
+	}
+}
+
+/**
  * tarski_doctitle() - Returns or echoes the document title.
  * 
  * The order (site name first or last) can be set on the
@@ -11,7 +28,6 @@
  * @return string $doctitle
  */
 function tarski_doctitle($sep = "&middot;", $swap = false, $return = false) {
-	global $wp_query;
 	$site_name = get_bloginfo("name");
 
 	if((get_option("show_on_front") == "posts") && is_home()) {
@@ -256,10 +272,12 @@ function tarski_header_status($return = false) {
  * @return string
  */
 function tarski_headerimage() {
-	if($_SERVER['HTTP_HOST'] == 'themes.wordpress.net') { // Makes the theme preview work properly
-		$header_img_url = 'http://tarskitheme.com/wp-content/themes/tarski/headers/greytree.jpg';
+	if($_SERVER['HTTP_HOST'] == 'themes.wordpress.net') { // Theme preview hack
+		$header_img_url = 'http://tarskitheme.com/headers/greytree.jpg';
 	} else {
-		if(get_tarski_option('header')) {
+		if(get_theme_mod('header_image')) {
+			$header_img_url = get_header_image();
+		} elseif(get_tarski_option('header')) {
 			if(get_tarski_option('header') != 'blank.gif') {
 				$header_img_url = get_bloginfo('template_directory') . '/headers/' . get_tarski_option('header');
 			}
@@ -274,20 +292,23 @@ function tarski_headerimage() {
 		} else {
 			$header_img_alt = get_bloginfo('name');
 		}
-		
-		if(get_theme_mod('header_image')) {
-			$header_img_tag = '<img alt="'. $header_img_alt. '" src="'. get_header_image(). '" />'."\n";
-		} else {
-			$header_img_tag = '<img alt="'. $header_img_alt. '" src="'. $header_img_url. '" />'."\n";
-		}
 
-		echo '<div id="header-image">' . "\n";
+		$header_img_tag = sprintf(
+			'<img alt="%1$s" src="%2$s" />',
+			$header_img_alt,
+			$header_img_url
+		);
+
 		if(!get_tarski_option('display_title') && !is_home()) {
-			echo '<a title="'. __('Return to front page','tarski'). '" rel="home" href="'. get_bloginfo('url'). '/">'. $header_img_tag. '</a>'."\n";
-		} else {
-			echo $header_img_tag;
-		}		
-		echo "</div>\n";
+			$header_img_tag = sprintf(
+				'<a title="%1$s" rel="home" href="%2$s">%3$s</a>',
+				__('Return to front page','tarski'),
+				user_trailingslashit(get_bloginfo('url')),
+				$header_img_tag
+			);
+		}
+		
+		echo "<div id=\"header-image\">$header_img_tag</div>\n";
 	}
 }
 
@@ -298,26 +319,27 @@ function tarski_headerimage() {
  * whereas on other pages it will be a link (to the home page),
  * wrapped in a p (paragraph) element.
  * @since 1.5
- * @global object $wp_query
  * @return string
  */
 function tarski_sitetitle() {
-	global $wp_query;
-	$front_page_id = get_option('page_on_front');
-	
 	if(get_tarski_option('display_title')) {
-		if((get_option('show_on_front') == 'page') && ($front_page_id == $wp_query->post->ID)) {
-			$prefix = '<p id="blog-title">';
-			$suffix = '</p>';
-		} elseif((get_option('show_on_front') == 'posts') && is_home()) {
-			$prefix = '<h1 id="blog-title">';
-			$suffix = '</h1>';
-		} else {
-			$prefix = '<p id="blog-title"><a title="' . __('Return to front page','tarski') . '" href="' . get_bloginfo('url') . '/" rel="home">';
-			$suffix = '</a></p>';
+		$site_title = get_bloginfo('name');
+		
+		if(!is_wp_front_page()) {
+			$site_title = sprintf(
+				'<a title="%1$s" href="%2$s" rel="home">%3$s</a>',
+				__('Return to front page','tarski'),
+				user_trailingslashit(get_bloginfo('url')),
+				$site_title
+			);
 		}
-	
-		$site_title = $prefix . get_bloginfo('name') . $suffix;
+		
+		if((get_option('show_on_front') == 'posts') && is_home()) {
+			$site_title = sprintf('<h1 id="blog-title">%s</h1>', $site_title);
+		} else {
+			$site_title = sprintf('<p id="blog-title">%s</p>', $site_title);
+		}
+		
 		$site_title = apply_filters('tarski_sitetitle', $site_title);
 		return $site_title;
 	}
