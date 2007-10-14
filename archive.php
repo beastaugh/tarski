@@ -74,7 +74,7 @@
 		<?php include(TEMPLATEPATH.'/loop.php'); ?>
 
 
-		<?php tarski_next_prev_pages(); ?>
+		<?php tarski_posts_nav_link(); ?>
 		
 		
 	<?php } else { ?>

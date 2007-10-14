@@ -103,6 +103,18 @@ function link_pages_without_spaces($return = false) {
 }
 
 /**
+ * tarski_next_prev_pages() - Links to next and previous index pages.
+ * 
+ * @deprecated since 2.0
+ * @see
+ * @return string
+ */
+function tarski_next_prev_pages() {
+	tarski_posts_nav_link();
+}
+
+
+/**
  * get_tarski_footer_blurb() - Outputs custom sidebar text.
  *
  * @deprecated since 2.0
