@@ -242,7 +242,7 @@ function tarski_header_status($return = false) {
 	} else {
 		$status = 'headerimage';
 	}
-	if($return = true) {
+	if($return) {
 		return $status;
 	} else {
 		echo $status;
