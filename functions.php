@@ -13,13 +13,14 @@ require_once(TARSKICLASSES."/options.php");
 require_once(TARSKICLASSES."/version.php");
 
 // Helpers
-include(TARSKIHELPERS."/hooks.php");
-include(TARSKIHELPERS."/admin_helper.php");
-include(TARSKIHELPERS."/template_helper.php");
-include(TARSKIHELPERS."/content_helper.php");
-include(TARSKIHELPERS."/author_helper.php");
-include(TARSKIHELPERS."/constants_helper.php");
-include(TARSKIHELPERS."/cache_helper.php");
+include_once(TARSKIHELPERS."/hooks.php");
+include_once(TARSKIHELPERS."/admin_helper.php");
+include_once(TARSKIHELPERS."/template_helper.php");
+include_once(TARSKIHELPERS."/content_helper.php");
+include_once(TARSKIHELPERS."/author_helper.php");
+include_once(TARSKIHELPERS."/constants_helper.php");
+include_once(TARSKIHELPERS."/cache_helper.php");
+include_once(TARSKIHELPERS."/deprecated.php");
 
 // Options
 load_theme_textdomain("tarski");

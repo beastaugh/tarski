@@ -276,45 +276,45 @@ function tarski_404_content() {
 }
 
 /**
- * get_tarski_sidebar_custom() - Returns custom sidebar content, appropriately formatted.
+ * tarski_sidebar_custom() - Returns custom sidebar content, appropriately formatted.
  *
  * Gets the database value; strips slashes; prettifies the quotes
  * and other typographical nuances; converts ampersands and other
  * characters in need of encoding as HTML entities; applies
  * automatic paragaphing; and finally applies filters and returns
  * the output.
+ * @since 2.0
  * @return string
  */
-function get_tarski_sidebar_custom() {
+function tarski_sidebar_custom($return = false) {
 	$output = wpautop(convert_chars(wptexturize(stripslashes(get_tarski_option('sidebar_custom')))));
 	$output = apply_filters('tarski_sidebar_custom', $output);
-	return $output;
+	if($return) {
+		return $output;
+	} else {
+		echo $output;
+	}
 }
 
 /**
- * get_tarski_footer_blurb() - Returns custom footer content, appropriately formatted.
+ * tarski_footer_blurb() - Outputs custom footer content, appropriately formatted.
  *
  * Gets the database value; strips slashes; prettifies the quotes
  * and other typographical nuances; converts ampersands and other
  * characters in need of encoding as HTML entities; applies
  * automatic paragaphing; and finally applies filters and returns
  * the output.
+ * @param boolean $return
  * @return string
  */
-function get_tarski_footer_blurb() {
+function tarski_footer_blurb($return = false) {
 	$output = wpautop(convert_chars(wptexturize(stripslashes(get_tarski_option('blurb')))));
 	$output = apply_filters('tarski_footer_blurb', $output);
-	return $output;
-}
-
-/**
- * tarski_footer_blurb() - Outputs custom sidebar text.
- *
- * @see get_tarski_footer_blurb()
- * @return string
- */
-function tarski_footer_blurb() {
-	echo get_tarski_footer_blurb();
+	if($return) {
+		return $output;
+	} else {
+		echo $output;
+	}
 }
 
 /**

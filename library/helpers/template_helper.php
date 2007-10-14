@@ -228,32 +228,25 @@ function tarski_feeds($return = false) {
 }
 
 /**
- * get_tarski_header_status() - Returns current header status.
- * 
- * Output is currently used to set an HTML class, which allows
- * the way the theme displays to be tweaked through CSS.
- * @since 1.7
- * @return string
- */
-function get_tarski_header_status() {
-	if(get_tarski_option('header') == 'blank.gif') {
-		return 'noheaderimage';
-	} else {
-		return 'headerimage';
-	}
-}
-
-/**
  * tarski_header_status() - Outputs current header status.
  * 
  * Output is currently used to set an HTML class, which allows
  * the way the theme displays to be tweaked through CSS.
  * @since 1.2
- * @see get_tarski_header_status()
+ * @param boolean $return
  * @return string
  */
-function tarski_header_status() {
-	echo get_tarski_header_status();
+function tarski_header_status($return = false) {
+	if(get_tarski_option('header') == 'blank.gif') {
+		$status = 'noheaderimage';
+	} else {
+		$status = 'headerimage';
+	}
+	if($return = true) {
+		return $status;
+	} else {
+		echo $status;
+	}
 }
 
 /**
@@ -375,12 +368,13 @@ function home_link_name() {
 }
 
 /**
- * get_tarski_navbar() - Returns the Tarski navbar.
+ * tarski_navbar() - Outputs the Tarski navbar.
  * 
+ * @param boolean $return
  * @global object $wpdb
  * @return string $navbar
  */
-function get_tarski_navbar() {
+function tarski_navbar($return = false) {
 	global $wpdb;
 	$current = 'class="nav-current" ';
 	
@@ -417,17 +411,11 @@ function get_tarski_navbar() {
 	}
 	
 	$navbar = apply_filters('tarski_navbar', $navbar);
-	return $navbar;
-}
-
-/**
- * tarski_navbar() - Outputs the Tarski navbar.
- * 
- * @see get_tarski_navbar()
- * @return string
- */
-function tarski_navbar() {
-	echo get_tarski_navbar();
+	if($return) {
+		return $navbar;
+	} else {
+		echo $navbar;
+	}
 }
 
 /**
@@ -514,11 +502,12 @@ function tarski_navbar_feedlink($return = false) {
 }
 
 /**
- * get_tarski_bodyclass() - Returns the classes that should be applied to the document body.
+ * tarski_bodyclass() - Returns the classes that should be applied to the document body.
  * 
+ * @param boolean $return
  * @return string $body_class
  */
-function get_tarski_bodyclass() {
+function tarski_bodyclass($return = false) {
 	$classes = array();
 	
 	if(get_tarski_option("centered_theme")) { // Centred or not
@@ -543,29 +532,25 @@ function get_tarski_bodyclass() {
 		array_push($classes, "rtl");
 	}
 	
-	$body_class = implode(" ", $classes);
-	$body_class = apply_filters("tarski_bodyclass", $body_class);
-	return $body_class;
+	$body_classes = implode(" ", $classes);
+	$body_classes = apply_filters("tarski_bodyclass", $body_classes);
+	
+	if($return) {
+		return $body_classes;
+	} else {
+		echo $body_classes;
+	}
 }
 
 /**
- * tarski_bodyclass() - Outputs the classes that should be applied to the document body.
+ * tarski_bodyid() - Outputs the id that should be applied to the document body.
  * 
- * @see get_tarski_bodyclass()
- * @return string
- */
-function tarski_bodyclass() {
-	echo get_tarski_bodyclass();
-}
-
-/**
- * get_tarski_bodyid() - Returns the id that should be applied to the document body.
- * 
+ * @param boolean $return
  * @global object $post
  * @global object $wp_query
  * @return string $body_id
  */
-function get_tarski_bodyid() {
+function tarski_bodyid($return = false) {
 	global $post, $wp_query;
 
 	if(is_home()) {
@@ -607,17 +592,11 @@ function get_tarski_bodyid() {
 		$body_id = 'unknown';
 	}
 	$body_id = apply_filters('tarski_bodyid', $body_id);
-	return $body_id;
-}	
-
-/**
- * tarski_bodyid() - Outputs the id that should be applied to the document body.
- * 
- * @see get_tarski_bodyid()
- * @return string
- */
-function tarski_bodyid() {
-	echo get_tarski_bodyid();
+	if($return) {
+		return $body_id;
+	} else {
+		echo $body_id;
+	}
 }
 
 /**

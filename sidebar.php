@@ -18,7 +18,7 @@
 	
 			<?php if(get_tarski_option('sidebar_custom')) { ?>
 				<div class="content">
-					<?php echo get_tarski_sidebar_custom(); ?>
+					<?php get_tarski_sidebar_custom(); ?>
 				</div>
 			<?php } ?>
 			<?php if(get_tarski_option('sidebar_pages')) { // pages block ?>
