@@ -1,24 +1,6 @@
 <?php
 
 /**
- * tarski_get_output() - Returns the output of functions that only echo.
- * 
- * This output-buffering function is a horrible hack and
- * in the future hopefully it can be deprecated. For the
- * moment, though, it's an unfortunate necessity.
- * @global object $comment
- * @global object $post
- */
-function tarski_get_output($code) {
-	global $comment, $post;
-	ob_start();
-	@eval($code);
-	$return = ob_get_contents();
-	ob_end_clean();
-	return $return;
-}
-
-/**
  * tarski_next_prev_posts() - Outputs links to the next and previous posts.
  * 
  * WordPress has this functionality, but the built-in

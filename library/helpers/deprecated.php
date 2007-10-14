@@ -63,6 +63,24 @@ function get_tarski_bodyid() {
 }
 
 /**
+ * tarski_get_output() - Returns the output of functions that only echo.
+ * 
+ * This output-buffering function is a horrible hack and fortunately
+ * can now (2.0) be deprecated.
+ * @deprecated since 2.0
+ * @global object $comment
+ * @global object $post
+ */
+function tarski_get_output($code) {
+	global $comment, $post;
+	ob_start();
+	@eval($code);
+	$return = ob_get_contents();
+	ob_end_clean();
+	return $return;
+}
+
+/**
  * link_pages_without_spaces() - Returns page links without the spaces WordPress seems to love.
  * 
  * @deprecated since 2.0
