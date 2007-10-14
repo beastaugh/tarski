@@ -611,7 +611,7 @@ function tarski_credits() {
 		$current_site = get_current_site();
 	}
 	
-	include(TARSKIDISPLAY . "/credit.php");
+	include(TARSKIDISPLAY . "/credits.php");
 }
 
 ?>
