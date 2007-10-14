@@ -317,7 +317,9 @@ function tarski_sitetitle() {
 			$suffix = '</a></p>';
 		}
 	
-		return $prefix . get_bloginfo('name') . $suffix;
+		$site_title = $prefix . get_bloginfo('name') . $suffix;
+		$site_title = apply_filters('tarski_sitetitle', $site_title);
+		return $site_title;
 	}
 }
 
@@ -329,8 +331,11 @@ function tarski_sitetitle() {
  */
 function tarski_tagline() {
 	if((get_tarski_option('display_tagline') && get_bloginfo('description'))) {
-		return '<p id="tagline">'.  get_bloginfo('description'). '</p>';
+		$tagline = '<p id="tagline">'.  get_bloginfo('description'). '</p>';
 	}
+	
+	$tagline = apply_filters('tarski_tagline', $tagline);
+	return $tagline;
 }
 
 /**
@@ -340,14 +345,11 @@ function tarski_tagline() {
  * @return string
  */
 function tarski_titleandtag() {
-	$opening_tag = '<div id="title">';
-	$closing_tag = '</div>';
-	
 	if(tarski_tagline() || tarski_sitetitle()) {
-		echo $opening_tag . "\n";
+		echo '<div id="title">'."\n";
 		echo tarski_sitetitle() . "\n";
 		echo tarski_tagline() . "\n";
-		echo $closing_tag . "\n";
+		echo '</div>'."\n";
 	}
 }
 

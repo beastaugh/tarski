@@ -29,7 +29,7 @@
 			<?php } // end pages block ?>
 			<?php if(get_tarski_option('sidebar_links')) { // links block ?>
 				<div class="bookmarks xoxo">
-				<?php wp_list_bookmarks('category_before=&category_after=&title_before=<h3>&title_after=</h3>&show_images=0&show_description=0'); ?>
+					<?php wp_list_bookmarks(tarski_sidebar_links()); ?>
 				</div>
 			<?php } // end links block ?>
 	

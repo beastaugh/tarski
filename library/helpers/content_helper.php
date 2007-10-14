@@ -87,6 +87,22 @@ function tarski_date() {
 }
 
 /**
+ * tarski_sidebar_links() - Returns an array for use with wp_list_bookmarks().
+ * 
+ * @return array
+ */
+function tarski_sidebar_links() {
+	return array(
+		'category_before' => '',
+		'category_after' => '',
+		'title_before' => '<h3>',
+		'title_after' => '</h3>',
+		'show_images' => 0,
+		'show_description' => 0
+	);
+}
+
+/**
  * add_post_tags() - Appends tags to posts.
  * 
  * @return string
