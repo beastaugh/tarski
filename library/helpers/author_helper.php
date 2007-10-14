@@ -1,7 +1,7 @@
 <?php
 
 /**
- * If the blog has more than one author, it prints a link to that author's archive page.
+ * tarski_author_posts_link() - If the blog has more than one author, it outputs a link to that author's archive page.
  * 
  * @global object $authordata
  * @global object $wpdb
@@ -21,7 +21,7 @@ function tarski_author_posts_link() {
 }
 
 /**
- * Returns the author object associated with an author archive page.
+ * the_archive_author() - Returns the author object associated with an author archive page.
  * 
  * @global object $wp_query
  * @return object $current_author
@@ -33,7 +33,7 @@ function the_archive_author() {
 }
 
 /**
- * Returns the display name of the author associated with a given archive page.
+ * the_archive_author_displayname() - Returns the display name of the author associated with a given archive page.
  * 
  * @return string
  */
@@ -43,7 +43,7 @@ function the_archive_author_displayname() {
 }
 
 /**
- * Returns the author description of the author associated with a given archive page.
+ * the_archive_author_description() - Returns the author description of the author associated with a given archive page.
  * 
  * @return string
  */

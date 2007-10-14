@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Returns or echoes the document title.
+ * tarski_doctitle() - Returns or echoes the document title.
  * 
- * The order--site name first or last-- can be set on the
+ * The order (site name first or last) can be set on the
  * Tarski Options page.
  * @param string $sep
  * @param boolean $swap title first or last?
@@ -45,8 +45,9 @@ function tarski_doctitle($sep = "&middot;", $swap = false, $return = false) {
 }
 
 /**
- * Adds robots meta element if blog is public.
+ * add_robots_meta() - Adds robots meta element if blog is public.
  * 
+ * @since 2.0
  * @return string
  */
 function add_robots_meta() {
@@ -56,9 +57,10 @@ function add_robots_meta() {
 }
 
 /**
- * Gets the feed link for a given category.
+ * get_category_feed_link() - Gets the feed link for a given category.
  * 
  * Can be set to return Atom, RSS or RSS2.
+ * @since 2.0
  * @param integer $cat_id
  * @param string $feed
  * @return string $link
@@ -93,9 +95,10 @@ if(!function_exists('get_category_feed_link')) {
 }
 
 /**
- * Gets the feed link for a given author.
+ * get_author_feed_link() - Gets the feed link for a given author.
  * 
  * Can be set to return Atom, RSS or RSS2.
+ * @since 2.0
  * @param integer $author_id
  * @param string $feed
  * @return string $link
@@ -130,11 +133,12 @@ if(!function_exists('get_author_feed_link')) {
 }
 
 /**
- * Outputs feed links for the page.
+ * tarski_feeds() - Outputs feed links for the page.
  * 
  * Can be set to return Atom, RSS or RSS2. Will always return
  * the main site feed, but will additionally return an archive,
  * search or comments feed depending on the page type.
+ * @since 2.0
  * @param boolean $return return or echo?
  * @global object $post
  * @global integer $id
@@ -224,10 +228,11 @@ function tarski_feeds($return = false) {
 }
 
 /**
- * Returns current header status.
+ * get_tarski_header_status() - Returns current header status.
  * 
  * Output is currently used to set an HTML class, which allows
  * the way the theme displays to be tweaked through CSS.
+ * @since 1.7
  * @return string
  */
 function get_tarski_header_status() {
@@ -239,10 +244,12 @@ function get_tarski_header_status() {
 }
 
 /**
- * Echoes current header status.
+ * tarski_header_status() - Outputs current header status.
  * 
  * Output is currently used to set an HTML class, which allows
  * the way the theme displays to be tweaked through CSS.
+ * @since 1.2
+ * @see get_tarski_header_status()
  * @return string
  */
 function tarski_header_status() {
@@ -250,8 +257,9 @@ function tarski_header_status() {
 }
 
 /**
- * Outputs header image.
+ * tarski_headerimage() - Outputs header image.
  * 
+ * @since 1.0
  * @return string
  */
 function tarski_headerimage() {
@@ -291,11 +299,12 @@ function tarski_headerimage() {
 }
 
 /**
- * Returns site title, wrapped in appropriate markup.
+ * tarski_sitetitle() - Returns site title, wrapped in appropriate markup.
  * 
  * The title on the home page will appear inside an h1 element,
  * whereas on other pages it will be a link (to the home page),
  * wrapped in a p (paragraph) element.
+ * @since 1.5
  * @global object $wp_query
  * @return string
  */
@@ -320,8 +329,9 @@ function tarski_sitetitle() {
 }
 
 /**
- * Returns site tagline, wrapped in appropriate markup.
+ * tarski_tagline() - Returns site tagline, wrapped in appropriate markup.
  * 
+ * @since 1.5
  * @return string
  */
 function tarski_tagline() {
@@ -331,8 +341,9 @@ function tarski_tagline() {
 }
 
 /**
- * Outputs site title and tagline.
+ * tarski_titleandtag() - Outputs site title and tagline.
  * 
+ * @since 1.5
  * @return string
  */
 function tarski_titleandtag() {
@@ -348,10 +359,11 @@ function tarski_titleandtag() {
 }
 
 /**
- * Returns the name for the navbar 'Home' link.
+ * home_link_name() - Returns the name for the navbar 'Home' link.
  * 
  * The option 'home_link_name' can be set in the Tarski Options page;
  * if it's not set, it defaults to 'Home'.
+ * @since 1.7
  * @return string
  */
 function home_link_name() {
@@ -363,7 +375,7 @@ function home_link_name() {
 }
 
 /**
- * Returns the Tarski navbar.
+ * get_tarski_navbar() - Returns the Tarski navbar.
  * 
  * @global object $wpdb
  * @return string $navbar
@@ -409,8 +421,9 @@ function get_tarski_navbar() {
 }
 
 /**
- * Outputs the Tarski navbar.
+ * tarski_navbar() - Outputs the Tarski navbar.
  * 
+ * @see get_tarski_navbar()
  * @return string
  */
 function tarski_navbar() {
@@ -418,8 +431,9 @@ function tarski_navbar() {
 }
 
 /**
- * Adds external links to the Tarski navbar.
+ * add_external_links() - Adds external links to the Tarski navbar.
  * 
+ * @see get_tarski_navbar()
  * @param string $navbar
  * @return string $navbar
  */
@@ -450,8 +464,9 @@ function add_external_links($navbar) {
 }
 
 /**
- * Adds a WordPress site admin link to the Tarski navbar.
+ * add_admin_link() - Adds a WordPress site admin link to the Tarski navbar.
  * 
+ * @see get_tarski_navbar()
  * @param string $navbar
  * @return string $navbar
  */
@@ -463,8 +478,9 @@ function add_admin_link($navbar) {
 }
 
 /**
- * Wraps the Tarski navbar in an unordered list element.
+ * wrap_navlist() - Wraps the Tarski navbar in an unordered list element.
  * 
+ * @see get_tarski_navbar()
  * @param string $navbar
  * @return string $navbar
  */
@@ -474,7 +490,7 @@ function wrap_navlist($navbar) {
 }
 
 /**
- * Adds the site feed link to the site navigation.
+ * tarski_navbar_feedlink() - Adds the site feed link to the site navigation.
  * 
  * @param boolean $return echo or return?
  * @return string $output
@@ -498,7 +514,7 @@ function tarski_navbar_feedlink($return = false) {
 }
 
 /**
- * Returns the classes that should be applied to the document body.
+ * get_tarski_bodyclass() - Returns the classes that should be applied to the document body.
  * 
  * @return string $body_class
  */
@@ -533,8 +549,9 @@ function get_tarski_bodyclass() {
 }
 
 /**
- * Outputs the classes that should be applied to the document body.
+ * tarski_bodyclass() - Outputs the classes that should be applied to the document body.
  * 
+ * @see get_tarski_bodyclass()
  * @return string
  */
 function tarski_bodyclass() {
@@ -542,7 +559,7 @@ function tarski_bodyclass() {
 }
 
 /**
- * Returns the id that should be applied to the document body.
+ * get_tarski_bodyid() - Returns the id that should be applied to the document body.
  * 
  * @global object $post
  * @global object $wp_query
@@ -594,8 +611,9 @@ function get_tarski_bodyid() {
 }	
 
 /**
- * Outputs the id that should be applied to the document body.
+ * tarski_bodyid() - Outputs the id that should be applied to the document body.
  * 
+ * @see get_tarski_bodyid()
  * @return string
  */
 function tarski_bodyid() {
@@ -603,7 +621,7 @@ function tarski_bodyid() {
 }
 
 /**
- * Outputs the WordPress search form.
+ * tarski_searchform() - Outputs the WordPress search form.
  * 
  * Will only output the search form on pages that aren't a search
  * page or a 404, as these pages include the search form earlier
@@ -617,7 +635,7 @@ function tarski_searchform() {
 }
 
 /**
- * Outputs the site feed and Tarski credits.
+ * tarski_feed_and_credit() - Outputs the site feed and Tarski credits.
  */
 function tarski_feed_and_credit() {
 	if(get_tarski_option("feed_type") == "atom") {

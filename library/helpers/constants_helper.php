@@ -1,19 +1,43 @@
-<?php // Ties Tarski's hooks into the legacy constants file
+<?php
 
-// General constants check
-function tarski_output_constant($constant,$pre=false,$post=false) {
+/**
+ * tarski_output_constant() - Checks if constant exists and outputs it if it does.
+ * 
+ * This function must always either be wrapped by another
+ * constants output function, as in the other functions in
+ * this file, or have constants.php @included and the variable
+ * the $constant parameter is set to declared global.
+ * @since 1.5
+ * @param string $constant
+ * @param boolean|string $pre
+ * @param boolean|string $post
+ * @return string
+ */
+function tarski_output_constant($constant, $pre=false, $post=false) {
 	if($constant) {
 		echo $pre. $constant. $post;
 	}
 }
 
-// Output $headerInclude
+/**
+ * tarski_output_headinclude() - Outputs $headerInclude variable from constants.php.
+ * 
+ * @since 1.5
+ * @global string $headerInclude
+ * @return string $headerInclude
+ */
 function tarski_output_headinclude() {
 	global $headerInclude;
 	tarski_output_constant($headerInclude);
 }
 
-// Output $navbarInclude
+/**
+ * tarski_output_navbarinclude() - Outputs $navbarInclude variable from constants.php.
+ * 
+ * @since 1.5
+ * @global string $navbarInclude
+ * @return string $navbarInclude
+ */
 function tarski_output_navbarinclude($input) {
 	global $navbarInclude;
 	if($navbarInclude) {
@@ -22,18 +46,30 @@ function tarski_output_navbarinclude($input) {
 	return $input;
 }
 
-// Output $frontPageInclude
+/**
+ * tarski_output_frontpageinclude() - Outputs $frontPageInclude variable from constants.php.
+ * 
+ * @since 1.5
+ * @global string $frontPageInclude
+ * @global string $completedBlurb
+ * @return string $frontPageInclude
+ */
 function tarski_output_frontpageinclude() {
 	global $frontPageInclude;
 	global $completedBlurb;
-	
 	if(is_home() && !$completedBlurb) {
 		$completedBlurb = true;
 		tarski_output_constant($frontPageInclude);
 	}
 }
 
-// Output $postEndInclude
+/**
+ * tarski_output_postendinclude() - Outputs $postEndInclude variable from constants.php.
+ * 
+ * @since 1.5
+ * @global string $postEndInclude
+ * @return string $postEndInclude
+ */
 function tarski_output_postendinclude() {
 	global $postEndInclude;
 	if(is_single()) {
@@ -41,7 +77,13 @@ function tarski_output_postendinclude() {
 	}
 }
 
-// Output $pageEndInclude
+/**
+ * tarski_output_pageendinclude() - Outputs $pageEndInclude variable from constants.php.
+ * 
+ * @since 1.5
+ * @global string $pageEndInclude
+ * @return string $pageEndInclude
+ */
 function tarski_output_pageendinclude() {
 	global $pageEndInclude;
 	if(is_page()) {
@@ -49,16 +91,28 @@ function tarski_output_pageendinclude() {
 	}
 }
 
-// Output $pageEndInclude
+/**
+ * tarski_output_commentsforminclude() - Outputs $commentsFormInclude variable from constants.php.
+ * 
+ * @since 1.5
+ * @global string $commentsFormInclude
+ * @return string $commentsFormInclude
+ */
 function tarski_output_commentsforminclude() {
 	global $commentsFormInclude;
 	tarski_output_constant($commentsFormInclude);
 }
 
-// Output $sidebarTopInclude
+/**
+ * tarski_output_sidebartopinclude() - Outputs $sidebarTopInclude variable from constants.php.
+ * 
+ * @since 1.5
+ * @global string $sidebarTopInclude
+ * @global object $post
+ * @return string $sidebarTopInclude
+ */
 function tarski_output_sidebartopinclude() {
-	global $sidebarTopInclude;
-	global $post;
+	global $sidebarTopInclude, $post;
 	if(get_tarski_option('sidebar_onlyhome')) { // Sidebar only on index pages
 		if(!(is_page() || is_single())) {
 			tarski_output_constant($sidebarTopInclude);
@@ -72,10 +126,16 @@ function tarski_output_sidebartopinclude() {
 	}
 }
 
-// Output $noSideBarInclude
+/**
+ * tarski_output_nosidebarinclude() - Outputs $noSidebarInclude variable from constants.php.
+ * 
+ * @since 1.5
+ * @global string $noSidebarInclude
+ * @global object $post
+ * @return string $noSidebarInclude
+ */
 function tarski_output_nosidebarinclude() {
-	global $noSidebarInclude;
-	global $post;
+	global $noSidebarInclude, $post;
 	if(get_tarski_option('sidebar_onlyhome') && (is_single() || is_page())) {
 		if(get_post_meta($post->ID,'_wp_page_template',true) != 'archives.php') {
 			tarski_output_constant($noSidebarInclude);
@@ -83,35 +143,66 @@ function tarski_output_nosidebarinclude() {
 	}
 }
 
-// Output $archivesPageInclude
+/**
+ * tarski_output_archivesinclude() - Outputs $archivesPageInclude variable from constants.php.
+ * 
+ * @since 1.5
+ * @global string $archivesPageInclude
+ * @global object $post
+ * @return string $archivesPageInclude
+ */
 function tarski_output_archivesinclude() {
-	global $archivesPageInclude;
-	global $post;
+	global $archivesPageInclude, $post;
 	if(get_post_meta($post->ID,'_wp_page_template',true) == 'archives.php') {
 		tarski_output_constant($archivesPageInclude);
 	}
 }
 
-// Output $searchTopInclude
+/**
+ * tarski_output_searchtopinclude() - Outputs $searchTopInclude variable from constants.php.
+ * 
+ * @since 1.5
+ * @global string $searchTopInclude
+ * @return string $searchTopInclude
+ */
 function tarski_output_searchtopinclude() {
 	global $searchTopInclude;
 	tarski_output_constant($searchTopInclude);
 }
 
-// Output $searchBottomInclude
+/**
+ * tarski_output_searchbottominclude() - Outputs $searchBottomInclude variable from constants.php.
+ * 
+ * @since 1.5
+ * @global string $searchBottomInclude
+ * @return string $searchBottomInclude
+ */
 function tarski_output_searchbottominclude() {
 	global $searchBottomInclude;
 	tarski_output_constant($searchBottomInclude);
 }
 
-// Output $footerInclude
+/**
+ * tarski_output_footerinclude() - Outputs $footerInclude variable from constants.php.
+ * 
+ * @since 1.5
+ * @global string $footerInclude
+ * @return string $footerInclude
+ */
 function tarski_output_footerinclude() {
 	global $footerInclude;
 	tarski_output_constant($footerInclude,'<div id="footer-include">','</div>');
 }
 
 
-// Output $errorPageInclude
+/**
+ * tarski_output_errorinclude() - Outputs $errorPageInclude variable from constants.php.
+ * 
+ * @since 1.5
+ * @param string $input
+ * @global string $errorPageInclude
+ * @return string $output equal to $errorPageInclude or $input
+ */
 function tarski_output_errorinclude($input) {
 	global $errorPageInclude;
 	if($errorPageInclude) {
@@ -122,4 +213,4 @@ function tarski_output_errorinclude($input) {
 	return $output;
 }
 
-// ~fin~ ?>
+?>

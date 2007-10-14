@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Returns the output of functions that only echo.
+ * tarski_get_output() - Returns the output of functions that only echo.
  * 
  * This output-buffering function is a horrible hack and
  * in the future hopefully it can be deprecated. For the
@@ -19,7 +19,7 @@ function tarski_get_output($code) {
 }
 
 /**
- * Outputs links to the next and previous posts.
+ * tarski_next_prev_posts() - Outputs links to the next and previous posts.
  * 
  * WordPress has this functionality, but the built-in
  * formatting isn't to Tarski's tastes, so this function
@@ -40,7 +40,7 @@ function tarski_next_prev_posts() {
 }
 
 /**
- * Returns page links without the spaces WordPress seems to love.
+ * link_pages_without_spaces() - Returns page links without the spaces WordPress seems to love.
  * 
  * @return string
  */
@@ -60,7 +60,7 @@ function link_pages_without_spaces($return = false) {
 }
 
 /**
- * Outputs next / previous index page links.
+ * tarski_next_prev_pages() - Outputs next / previous index page links.
  * 
  * @global object $wp_query
  * @return string
@@ -104,7 +104,7 @@ function tarski_next_prev_pages() {
 }
 
 /**
- * WordPress date function that shows up on every post.
+ * tarski_date() - Tweaked WordPress date function that shows up on every post.
  * 
  * The WP function the_date only shows up on the first post
  * of that day. This one displays on every post, regardless
@@ -118,7 +118,7 @@ function tarski_date() {
 }
 
 /**
- * Appends tags to posts.
+ * add_post_tags() - Appends tags to posts.
  * 
  * @return string
  */
@@ -131,7 +131,7 @@ function add_post_tags() {
 }
 
 /**
- * Strips the http:// prefix from OpenID names.
+ * tidy_openid_names() - Strips the http:// prefix from OpenID names.
  * 
  * @global object $comment_author
  * @return string $comment_author
@@ -144,7 +144,7 @@ function tidy_openid_names($comment_author) {
 }
 
 /**
- * Returns a comment author's name, wrapped in a link if present.
+ * tarski_comment_author_link() - Returns a comment author's name, wrapped in a link if present.
  * 
  * It also includes hCard microformat markup.
  * @link http://microformats.org/wiki/hcard
@@ -166,7 +166,7 @@ function tarski_comment_author_link() {
 }
 
 /**
- * Tarski excerpts, improving on the core WordPress code.
+ * tarski_excerpt() - Tarski excerpts, improving on the core WordPress code.
  * 
  * Code shamelessly borrowed from Kaf Oseo's 'the_excerpt Reloaded' plugin.
  * @link http://guff.szub.net/2005/02/26/the-excerpt-reloaded/
@@ -265,7 +265,7 @@ function tarski_excerpt($excerpt_length = 120, $allowedtags = '', $filter_type =
 }
 
 /**
- * Outputs default text for 404 error pages.
+ * tarski_404_content() - Outputs default text for 404 error pages.
  *
  * @return string
  */
@@ -276,7 +276,7 @@ function tarski_404_content() {
 }
 
 /**
- * Returns custom sidebar content, appropriately formatted.
+ * get_tarski_sidebar_custom() - Returns custom sidebar content, appropriately formatted.
  *
  * Gets the database value; strips slashes; prettifies the quotes
  * and other typographical nuances; converts ampersands and other
@@ -292,7 +292,7 @@ function get_tarski_sidebar_custom() {
 }
 
 /**
- * Returns custom footer content, appropriately formatted.
+ * get_tarski_footer_blurb() - Returns custom footer content, appropriately formatted.
  *
  * Gets the database value; strips slashes; prettifies the quotes
  * and other typographical nuances; converts ampersands and other
@@ -308,8 +308,9 @@ function get_tarski_footer_blurb() {
 }
 
 /**
- * Outputs custom sidebar text.
+ * tarski_footer_blurb() - Outputs custom sidebar text.
  *
+ * @see get_tarski_footer_blurb()
  * @return string
  */
 function tarski_footer_blurb() {
@@ -317,7 +318,7 @@ function tarski_footer_blurb() {
 }
 
 /**
- * Wraps footer blurb in div element.
+ * tarski_blurb_wrapper() - Wraps footer blurb in div element.
  *
  * @param string $blurb
  * @return string
