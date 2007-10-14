@@ -98,10 +98,10 @@ function tarski_post_categories_link() {
 /**
  * tarski_sidebar_links() - Returns an array for use with wp_list_bookmarks().
  * 
- * @return array
+ * @return array $options
  */
 function tarski_sidebar_links() {
-	return array(
+	$options = array(
 		'category_before' => '',
 		'category_after' => '',
 		'title_before' => '<h3>',
@@ -109,6 +109,8 @@ function tarski_sidebar_links() {
 		'show_images' => 0,
 		'show_description' => 0
 	);
+	$options = apply_filters('tarski_sidebar_links', $options);
+	return $options;
 }
 
 /**

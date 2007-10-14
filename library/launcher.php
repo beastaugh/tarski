@@ -29,7 +29,7 @@ if(!detectWPMU() || detectWPMUadmin()) {
 
 add_action('admin_menu', 'tarski_addmenu');
 add_action('admin_head', 'tarski_inject_scripts');
-add_action("save_post", "tarski_resave_navbar");
+add_action('save_post', 'tarski_resave_navbar');
 
 
 // Header
@@ -69,7 +69,7 @@ add_action('th_footer', 'tarski_credits');
 if(file_exists(TEMPLATEPATH . '/constants.php')) {	
 	add_filter('tarski_navbar', 'tarski_output_navbarinclude');
 	add_filter('th_404_content', 'tarski_output_errorinclude');
-	
+
 	add_action('wp_head', 'tarski_output_headinclude');
 	add_action('th_postend', 'tarski_output_frontpageinclude');
 	add_action('th_postend', 'tarski_output_postendinclude', 12);
