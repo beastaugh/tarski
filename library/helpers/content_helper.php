@@ -56,17 +56,18 @@ function tarski_link_pages() {
 function tarski_posts_nav_link() {
 	global $wp_query;
 	$wp_query->is_paged = true;
-	$separator = ' &sect; ';
 	
 	if(is_paged() && get_tarski_option('use_pages')) {
-		echo '<p class="pagination">';
-		
 		if(is_search() || $_GET['s']) {
-			posts_nav_link($separator, '&laquo; '. __('Previous results','tarski'), __('More results','tarski') . '&raquo; ');
+			$prev_text = __('Previous results','tarski');
+			$next_text = __('More results','tarski');
 		} else {
-			posts_nav_link($separator, '&laquo; ' . __('Newer entries','tarski'), __('Older entries','tarski') . ' &raquo;');
+			$prev_text = __('Newer entries','tarski');
+			$next_text = __('Older entries','tarski');
 		}
-		
+
+		echo '<p class="pagination">';
+		posts_nav_link(" &sect; ", "&laquo; $prev_text", "$next_text &raquo;");
 		echo "</p>\n";
 	}
 }
