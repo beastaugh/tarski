@@ -44,7 +44,7 @@ add_filter('tarski_navbar', 'add_admin_link', 20);
 add_filter('tarski_navbar', 'wrap_navlist', 21);
 
 add_action('th_navbar', 'tarski_navbar');
-add_action('th_navbar', 'tarski_navbar_feedlink');
+add_action('th_navbar', 'tarski_feedlink');
 
 
 // Content
@@ -61,7 +61,8 @@ add_filter('get_comment_author', 'tidy_openid_names');
 add_filter('tarski_footer_blurb', 'tarski_blurb_wrapper');
 
 add_action('th_fsidebar', 'tarski_searchform');
-add_action('th_footer', 'tarski_feed_and_credit');
+add_action('th_footer', 'tarski_feedlink');
+add_action('th_footer', 'tarski_credits');
 
 
 // Constants

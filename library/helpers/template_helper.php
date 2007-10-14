@@ -478,27 +478,19 @@ function wrap_navlist($navbar) {
 }
 
 /**
- * tarski_navbar_feedlink() - Adds the site feed link to the site navigation.
+ * tarski_feedlink() - Adds the site feed link to the site navigation.
  * 
  * @param boolean $return echo or return?
  * @return string $output
  */
-function tarski_navbar_feedlink($return = false) {
-	$prefix = '<div class="secondary">'."\n";
+function tarski_feedlink() {
 	if(get_tarski_option("feed_type") == "atom") {
 		$feed_url = "atom_url";
 	} else {
 		$feed_url = "rss2_url";
 	}
-	$feed = '<p><a class="feed" href="'. get_bloginfo($feed_url). '">'. __('Subscribe to feed', 'tarski'). '</a></p>'."\n";
-	$suffix = '</div>'."\n";
 	
-	$output = $prefix. $feed. $suffix;
-	if($return) {
-		return $output;
-	} else {
-		echo $output;
-	}
+	include(TARSKIDISPLAY . "/feed_link.php");
 }
 
 /**
@@ -612,18 +604,14 @@ function tarski_searchform() {
 }
 
 /**
- * tarski_feed_and_credit() - Outputs the site feed and Tarski credits.
+ * tarski_credits() - Outputs the site feed and Tarski credits.
  */
-function tarski_feed_and_credit() {
-	if(get_tarski_option("feed_type") == "atom") {
-		$feed_url = "atom_url";
-	} else {
-		$feed_url = "rss2_url";
-	}
+function tarski_credits() {
 	if(detectWPMU()) {
 		$current_site = get_current_site();
 	}
-	include(TARSKIDISPLAY . "/footer/feed_and_credit.php");
+	
+	include(TARSKIDISPLAY . "/credit.php");
 }
 
 ?>

@@ -31,6 +31,17 @@ function get_tarski_navbar() {
 }
 
 /**
+ * tarski_navbar_feedlink() - Outputs feed link for the Tarski navbar.
+ * 
+ * @deprecated since 2.0
+ * @see tarski_feedlink()
+ * @return string
+ */
+function tarski_navbar_feedlink($return = false) {
+	tarski_feedlink();
+}
+
+/**
  * get_tarski_bodyclass() - Outputs the classes that should be applied to the document body.
  * 
  * @see tarski_bodyclass()
@@ -60,6 +71,19 @@ function get_tarski_bodyid() {
  */
 function get_tarski_footer_blurb() {
 	tarski_footer_blurb(true);
+}
+
+/**
+ * tarski_feed_and_credit() - Outputs feed link and Tarski credits
+ * 
+ * @deprecated since 2.0
+ * @since 1.5
+ * @see tarski_feedlink()
+ * @see tarski_credits()
+ */
+function tarski_feed_and_credit() {
+	tarski_feedlink();
+	tarski_credits();
 }
 
 ?>
