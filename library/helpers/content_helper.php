@@ -327,6 +327,17 @@ function tarski_blurb_wrapper($blurb) {
 	$prefix = '<div class="content">'."\n";
 	$suffix = '</div> <!-- /blurb -->'."\n";
 	
+	if(is_user_logged_in()) {
+		$edit_link = sprintf(
+			'<p class="edit-link">(<a title="%1$s" id="edit-footer-blurb" href="%2$s">%3$s</a>)</p>',
+			__('Edit the footer content area'),
+			get_bloginfo('wpurl') . '/wp-admin/themes.php?page=tarski-options#footer_blurb',
+			__('edit','tarski')
+		);
+		$suffix = $edit_link . $suffix;
+	}
+	
+	
 	if(get_tarski_option('blurb')) {
 		$blurb = $prefix. $blurb. $suffix;
 	}

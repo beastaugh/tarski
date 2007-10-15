@@ -68,8 +68,8 @@
 
 			<fieldset class="secondary">
 				<h3><?php _e('Footer Options','tarski'); ?></h3>
-				<textarea name="about_text" rows="5" cols="30" id="about_text"><?php echo stripslashes(get_tarski_option('blurb')); ?></textarea>
-				<label for="about_text" class=""><?php _e('Write something about yourself here, and it will appear in the footer. Deleting the content disables it.','tarski'); ?></label>
+				<textarea name="about_text" rows="5" cols="30" id="footer_blurb"><?php echo stripslashes(get_tarski_option('blurb')); ?></textarea>
+				<label for="footer_blurb" class=""><?php _e('Write something about yourself here, and it will appear in the footer. Deleting the content disables it.','tarski'); ?></label>
 				
 				<label for="opt-footer-recent" class="spaced-out">
 					<input type="hidden" name="footer[recent]" value="0" />

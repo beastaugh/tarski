@@ -16,7 +16,7 @@ function detectWPMU() {
  */
 function detectWPMUadmin() {
 	if(detectWPMU()) {
-		is_site_admin();
+		return is_site_admin();
 	}
 }
 

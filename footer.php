@@ -24,32 +24,21 @@
 		
 		<?php tarski_footer_blurb(); ?>
 		
-<?php // Recent articles
-if(get_tarski_option('footer_recent')) {
-	
-	if (is_page('archives')) {
-	
-	} else {
-		if (is_home()) {
-			$posts = get_posts('numberposts=5&offset=' . count($posts));
-			// offset the homepage by # of posts already displayed
-		} else {
-			$posts = get_posts('numberposts=5&offset=0');
-		}
-		
-		if($posts) { ?>
-		<div id="recent"><h3><?php _e('Recent Articles', 'tarski'); ?></h3>
-			<ul>
-<?php foreach ($posts as $post) { ?>
-				<li><h4 class="recent-title"><a title="<?php _e('View this post', 'tarski'); ?>" href="<?php the_permalink(); ?>"><?php the_title() ?></a></h4>
-				<p class="recent-metadata"><?php echo tarski_date(); if(!get_tarski_option('hide_categories')) { _e(' in ', 'tarski'); the_category(', '); } ?></p>
-				<p class="recent-excerpt content"><?php
-				$excerpt = tarski_excerpt(35, '', 'the_content', false, '', false, 1, true);
-				echo strip_tags($excerpt); ?></p></li>
-<?php } ?>
-			</ul>
-		</div> <!-- /recent -->
-<?php } } } // end recent articles ?>
+		<?php if(get_tarski_option('footer_recent') && !is_page('archives')) {
+			if (is_home()) {
+				$post_options = array('numberposts' => 5, 'offset' => count($posts));
+				// offset the homepage by # of posts already displayed
+			} else {
+				$post_options = array('numberposts' => 5, 'offset' => 0);
+			}
+
+			$posts = get_posts($post_options);
+			$excerpt = strip_tags(tarski_excerpt(35, '', 'the_content', false, '', false, 1, true));
+
+			if($posts) {
+				include(TARSKIDISPLAY . '/recent_articles.php');
+			}
+		} ?>
 
 	</div> <!-- /primary -->
 
