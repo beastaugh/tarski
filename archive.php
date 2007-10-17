@@ -17,7 +17,16 @@
 						<p><?php printf( __('You are currently browsing the archive for the %s category.','tarski'), '<strong>' . single_cat_title('', false) . '</strong>' ); ?></p>
 					<?php } ?>
 				</div>
-				
+			
+			<?php } elseif(is_tag()) { // Tag archive header ?>
+
+				<div class="meta">
+					<h1 class="title"><?php single_tag_title(); ?></h1>
+				</div>
+				<div class="content">
+					<p><?php printf( __('You are currently browsing articles tagged %s.','tarski'), '<strong>' . single_tag_title('',false) . '</strong>' ); ?></p>
+				</div>
+					
 			<?php } elseif(is_author()) { // Author header ?>
 
 				<div class="meta">
@@ -58,16 +67,7 @@
 					<p><?php printf( __('You are currently browsing the yearly archive for %s.','tarski'), '<strong>' . get_the_time('Y') . '</strong>' ); ?></p>
 				</div>
 
-			<?php } elseif(function_exists('is_tag')) { if(is_tag()) { // Tag archive header ?>
-
-				<div class="meta">
-					<h1 class="title"><?php single_tag_title(); ?></h1>
-				</div>
-				<div class="content">
-					<p><?php printf( __('You are currently browsing articles tagged %s.','tarski'), '<strong>' . single_tag_title('',false) . '</strong>' ); ?></p>
-				</div>
-
-			<?php } } ?>
+			<?php } ?>
 		</div> <!-- /archive -->
 		
 		

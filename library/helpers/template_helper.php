@@ -111,44 +111,6 @@ if(!function_exists('get_category_feed_link')) {
 }
 
 /**
- * get_author_feed_link() - Gets the feed link for a given author.
- * 
- * Can be set to return Atom, RSS or RSS2.
- * @since 2.0
- * @param integer $author_id
- * @param string $feed
- * @return string $link
- */
-if(!function_exists('get_author_feed_link')) {
-	function get_author_feed_link($author_id, $feed = 'rss2') {
-		$auth_id = (int) $author_id;
-		
-		$author = the_archive_author();
-		
-		if ( empty($author) || is_wp_error($author) )
-			return false;
-
-		$permalink_structure = get_option('permalink_structure');
-
-		if ( '' == $permalink_structure ) {
-			$link = get_option('home') . "?feed=$feed&amp;author=" . $auth_id;
-		} else {
-			$link = get_author_posts_url($auth_id);
-			if( 'rss2' == $feed )
-				$feed_link = 'feed';
-			else
-				$feed_link = "feed/$feed";
-
-			$link = trailingslashit($link) . user_trailingslashit($feed_link, 'feed');
-		}
-
-		$link = apply_filters('author_feed_link', $link, $feed);
-
-		return $link;
-	}
-}
-
-/**
  * tarski_feeds() - Outputs feed links for the page.
  * 
  * Can be set to return Atom, RSS or RSS2. Will always return
@@ -175,8 +137,10 @@ function tarski_feeds($return = false) {
 		if(is_category()) {
 			$title = sprintf( __('Category feed for %s','tarski'), single_cat_title('','',false) );
 			$link = get_category_feed_link( get_query_var('cat'), $type );
+		} elseif(is_tag()) {
+			$title = sprintf( __('Tag feed for %s','tarski'), single_tag_title('','',false));
+			$link = get_tag_feed_link(get_query_var('tag_id'), $type);
 		} elseif(is_author()) {
-			global $authordata;
 			$title = sprintf( __('Articles feed for %s','tarski'), the_archive_author_displayname());
 			$link = get_author_feed_link(get_query_var('author'), $type);
 		} elseif(is_date()) {
@@ -197,11 +161,6 @@ function tarski_feeds($return = false) {
 				}
 			} else {
 				$link .= "&amp;feed=$type";
-			}
-		} elseif(function_exists('is_tag')) {
-			if(is_tag()) {
-				$title = sprintf( __('Tag feed for %s','tarski'), single_tag_title('','',false));
-				$link = get_tag_feed_link(get_query_var('tag_id'), $type);
 			}
 		}
 	} elseif(is_search()) {
@@ -571,6 +530,10 @@ function tarski_bodyid($return = false) {
 		$cat_ID = intval(get_query_var('cat'));
 		$category = &get_category($cat_ID);
 		$body_id = 'cat-'. $category->category_nicename;
+	} elseif(is_tag()) {
+		$tag_ID = intval(get_query_var('tag_id'));
+		$tag = &get_term($tag_ID, 'post_tag');
+		$body_id = 'tag-'. $tag->slug;
 	} elseif(is_author()) {
 		$author = the_archive_author();
 		$body_id = 'author-'. $author->user_login;
@@ -586,12 +549,6 @@ function tarski_bodyid($return = false) {
 		} elseif(is_day()) {
 			$body_id .= '-'. $year. '-'. $monthnum. '-'. $day;
 		}
-	} elseif(is_archive() && function_exists('is_tag')) {
-		if(is_tag()) {
-			$tag_ID = intval(get_query_var('tag_id'));
-			$tag = &get_term($tag_ID, 'post_tag');
-			$body_id = 'tag-'. $tag->slug;
-		}	
 	} elseif(is_404()) {
 		$body_id = '404';
 	} else {
