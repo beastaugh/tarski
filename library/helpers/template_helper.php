@@ -159,7 +159,7 @@ if(!function_exists('get_author_feed_link')) {
  * @global object $post
  * @global integer $id
  * @global object $authordata
- * @return string $link
+ * @return string $feeds
  */
 function tarski_feeds($return = false) {
 	if(get_tarski_option("feed_type") == "atom") {
@@ -170,13 +170,7 @@ function tarski_feeds($return = false) {
 	if(is_single() || (is_page() && ($comments || comments_open()))) {
 		global $post;
 		$title = sprintf( __('Commments feed for %s','tarski'), get_the_title() );
-		if(function_exists('get_post_comments_feed_link')) {
-			$link = get_post_comments_feed_link($post->ID, $type);
-		} elseif(function_exists('comments_rss')) {
-			$id = $post->ID;
-			global $id;
-			$link = comments_rss();
-		}
+		$link = get_post_comments_feed_link($post->ID, $type);
 	} elseif(is_archive()) {
 		if(is_category()) {
 			$title = sprintf( __('Category feed for %s','tarski'), single_cat_title('','',false) );
@@ -214,11 +208,7 @@ function tarski_feeds($return = false) {
 		$title = sprintf( __('Search feed for %s','tarski'), attribute_escape(get_search_query()));
 		$link = get_bloginfo('url'). '/?s='. attribute_escape(get_search_query()). "&amp;feed=$type";
 	}
-	if(get_tarski_option('feed_type') == 'atom') {
-		$feed_link_type = 'application/atom+xml';
-	} else {
-		$feed_link_type = 'application/rss+xml';
-	}
+	$feed_link_type = "application/$type+xml";
 	if($title && $link) {
 		$feeds = sprintf(
 			'<link rel="alternate" type="%1$s" title="%2$s" href="%3$s" />'."\n",
@@ -231,7 +221,7 @@ function tarski_feeds($return = false) {
 	$feeds .= sprintf(
 		'<link rel="alternate" type="%1$s" title="%2$s" href="%3$s" />'."\n",
 		$feed_link_type,
-		get_bloginfo('name'). __(' feed','tarski'),
+		get_bloginfo('name') . __(' feed','tarski'),
 		get_bloginfo($feed_type_url)
 	);
 	$feeds = apply_filters('tarski_feeds', $feeds);
