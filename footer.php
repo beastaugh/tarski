@@ -33,7 +33,6 @@
 			}
 
 			$posts = get_posts($post_options);
-			$excerpt = strip_tags(tarski_excerpt(35, '', 'the_content', false, '', false, 1, true));
 
 			if($posts) {
 				include(TARSKIDISPLAY . '/recent_articles.php');
