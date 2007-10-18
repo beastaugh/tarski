@@ -14,7 +14,7 @@
 
 		<?php if(get_tarski_option('sidebar_custom')) { // Blurb ?>
 			<div class="content">
-				<?php get_tarski_sidebar_custom(); ?>
+				<?php tarski_sidebar_custom(); ?>
 			</div>
 		<?php } if(get_tarski_option('sidebar_pages')) { // Pages ?>
 			<h3><?php _e('Pages','tarski'); ?></h3>
