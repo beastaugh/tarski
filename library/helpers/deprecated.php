@@ -10,7 +10,7 @@
  * 
  * Output is currently used to set an HTML class, which allows
  * the way the theme displays to be tweaked through CSS.
- * @deprecated since 2.0
+ * @deprecated 2.0
  * @since 1.7
  * @see tarski_header_status()
  * @return string
@@ -22,7 +22,7 @@ function get_tarski_header_status() {
 /**
  * get_tarski_navbar() - Returns the Tarski navbar.
  * 
- * @deprecated since 2.0
+ * @deprecated 2.0
  * @see tarski_navbar()
  * @return string
  */
@@ -33,7 +33,7 @@ function get_tarski_navbar() {
 /**
  * tarski_navbar_feedlink() - Outputs feed link for the Tarski navbar.
  * 
- * @deprecated since 2.0
+ * @deprecated 2.0
  * @see tarski_feedlink()
  * @return string
  */
@@ -54,7 +54,7 @@ function get_tarski_bodyclass() {
 /**
  * get_tarski_bodyid() - Returns the id that should be applied to the document body.
  * 
- * @deprecated since 2.0
+ * @deprecated 2.0
  * @see tarski_bodyid()
  * @return string
  */
@@ -67,7 +67,7 @@ function get_tarski_bodyid() {
  * 
  * This output-buffering function is a horrible hack and fortunately
  * can now (2.0) be deprecated.
- * @deprecated since 2.0
+ * @deprecated 2.0
  * @global object $comment
  * @global object $post
  */
@@ -83,7 +83,7 @@ function tarski_get_output($code) {
 /**
  * link_pages_without_spaces() - Returns page links without the spaces WordPress seems to love.
  * 
- * @deprecated since 2.0
+ * @deprecated 2.0
  * @see tarski_link_pages()
  * @return string
  */
@@ -105,7 +105,7 @@ function link_pages_without_spaces($return = false) {
 /**
  * tarski_next_prev_pages() - Links to next and previous index pages.
  * 
- * @deprecated since 2.0
+ * @deprecated 2.0
  * @see
  * @return string
  */
@@ -117,7 +117,7 @@ function tarski_next_prev_pages() {
 /**
  * get_tarski_footer_blurb() - Outputs custom sidebar text.
  *
- * @deprecated since 2.0
+ * @deprecated 2.0
  * @see get_tarski_footer_blurb()
  * @return string
  */
@@ -128,7 +128,7 @@ function get_tarski_footer_blurb() {
 /**
  * tarski_feed_and_credit() - Outputs feed link and Tarski credits
  * 
- * @deprecated since 2.0
+ * @deprecated 2.0
  * @since 1.5
  * @see tarski_feedlink()
  * @see tarski_credits()
