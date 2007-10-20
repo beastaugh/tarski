@@ -236,7 +236,7 @@ body .noheaderimage { padding: 20px 20px 0 20px; }
 					p.recent-metadata { font-size: 0.8em; color: #a8a8a8; margin: 0; }
 					p.recent-excerpt { line-height: 1.4; margin: 0 0 1em 0; }
 			#blurb {}
-				.edit-link { clear: both; margin: 0; text-align: right; font-size: 0.8em; color: #a8a8a8; }
+				.edit-link { clear: both; margin: 0 0 1em 0; text-align: right; font-size: 0.8em; color: #a8a8a8; }
 			#theme-info { margin: 0.5em 0 0 0; border-top: 3px double #ccc; padding: 1em 0 0.5em 0; color: #a8a8a8; }
 			
 /* Forms

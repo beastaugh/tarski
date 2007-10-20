@@ -1,11 +1,12 @@
 <?php
 
-// Admin
+// Custom header image
 if(function_exists('add_custom_image_header')) {
 	tarski_config_custom_header();
 	add_custom_image_header('', 'tarski_admin_header_style');
 }
 
+// Widgets
 if(function_exists('register_sidebar')) {
 	register_sidebar(array(
 		'name' => __('Main Sidebar','tarski'),
@@ -23,10 +24,12 @@ if(function_exists('register_sidebar')) {
 	));
 }
 
+// Dashboard Tarski update notifier
 if(!detectWPMU() || detectWPMUadmin()) {
 	add_action('activity_box_end', 'tarski_update_notifier');
 }
 
+// Tarski Options page
 add_action('admin_menu', 'tarski_addmenu');
 add_action('admin_head', 'tarski_inject_scripts');
 add_action('save_post', 'tarski_resave_navbar');
@@ -47,10 +50,11 @@ add_action('th_navbar', 'tarski_navbar');
 add_action('th_navbar', 'tarski_feedlink');
 
 
-// Content
+// Posts
 add_action('th_postend', 'add_post_tags', 10);
 add_action('th_postend', 'tarski_link_pages', 11);
 
+// Comments
 add_filter('get_comment_author', 'tidy_openid_names');
 
 
@@ -65,7 +69,7 @@ add_action('th_footer', 'tarski_feedlink');
 add_action('th_footer', 'tarski_credits');
 
 
-// Constants
+// Constants output
 if(file_exists(TEMPLATEPATH . '/constants.php')) {	
 	add_filter('tarski_navbar', 'tarski_output_navbarinclude');
 	add_filter('th_404_content', 'tarski_output_errorinclude');

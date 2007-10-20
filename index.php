@@ -18,6 +18,7 @@
 							<p class="metadata"><?php echo '<span class="date updated">'. tarski_date(). '</span>';
 							tarski_post_categories_link();
 							tarski_author_posts_link();
+							if($post->comment_status == 'open' || $post->comment_count > 0) { echo ' | <a class="comments-link" href="#comments">'; comments_number(__('No comments', 'tarski'), __('1 comment', 'tarski'), '%' . __(' comments', 'tarski')); echo '</a>'; }
 							edit_post_link(__('edit','tarski'),' <span class="edit">(',')</span>'); ?></p>
 						<?php } else { ?>
 							<?php edit_post_link(__('edit page','tarski'), '<p class="metadata"><span class="edit">(', ')</span></p>'); ?>

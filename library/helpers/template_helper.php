@@ -257,7 +257,7 @@ function tarski_headerimage() {
 			);
 		}
 		
-		echo "<div id=\"header-image\">$header_img_tag</div>\n";
+		echo "<div id=\"header-image\">$header_img_tag</div>\n\n";
 	}
 }
 
