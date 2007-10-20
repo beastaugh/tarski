@@ -4,6 +4,28 @@
  * The scrapyard: deprecated functions that haven't yet been removed
  */
 
+/**
+ * tarski_header_status() - Outputs current header status.
+ * 
+ * Output is currently used to set an HTML class, which allows
+ * the way the theme displays to be tweaked through CSS.
+ * @deprecated 2.0
+ * @since 1.2
+ * @param boolean $return
+ * @return string
+ */
+function tarski_header_status($return = false) {
+	if(get_tarski_option('header') == 'blank.gif') {
+		$status = 'noheaderimage';
+	} else {
+		$status = 'headerimage';
+	}
+	if($return) {
+		return $status;
+	} else {
+		echo $status;
+	}
+}
 
 /**
  * get_tarski_header_status() - Returns current header status.

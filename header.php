@@ -25,7 +25,7 @@
 
 <body id="<?php tarski_bodyid(); ?>" class="<?php tarski_bodyclass(); ?>"><div id="wrapper">
 
-<div id="header" class="<?php tarski_header_status(); ?>">
+<div id="header">
 
 	<?php th_header(); ?>
 

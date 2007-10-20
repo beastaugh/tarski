@@ -193,28 +193,6 @@ function tarski_feeds($return = false) {
 }
 
 /**
- * tarski_header_status() - Outputs current header status.
- * 
- * Output is currently used to set an HTML class, which allows
- * the way the theme displays to be tweaked through CSS.
- * @since 1.2
- * @param boolean $return
- * @return string
- */
-function tarski_header_status($return = false) {
-	if(get_tarski_option('header') == 'blank.gif') {
-		$status = 'noheaderimage';
-	} else {
-		$status = 'headerimage';
-	}
-	if($return) {
-		return $status;
-	} else {
-		echo $status;
-	}
-}
-
-/**
  * tarski_headerimage() - Outputs header image.
  * 
  * @since 1.0

@@ -59,12 +59,11 @@ body.left { text-align: left; }
 
 /* Header
 ----------------------------------------------- */
-#header {}
-body .headerimage { padding: 0 20px 0 20px; }
-	body .headerimage #header-image a { text-decoration: none; border: none; }
-	body .headerimage #header-image a img { border: none; }
-body .noheaderimage { padding: 20px 20px 0 20px; }
-	#title { border-bottom: 1px solid #ccc; }
+#header { padding: 0 20px; }
+	#header-image { margin: 0 0 -20px 0; }
+	#header-image a { text-decoration: none; border: none; }
+	#header-image a img { border: none; }
+	#title { margin: 20px 0 0 0; border-bottom: 1px solid #ccc; }
 	#navigation { border-bottom: 1px solid #ccc; }
 
 /* Navigation
