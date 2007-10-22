@@ -29,8 +29,10 @@ function is_wp_front_page() {
  */
 function tarski_doctitle($sep = "&middot;", $swap = false, $return = false) {
 	$site_name = get_bloginfo("name");
-
-	if((get_option("show_on_front") == "posts") && is_home()) {
+	
+	if(is_404()) {
+		$content = __(sprintf('Error %s','404'),'tarski');
+	} elseif((get_option("show_on_front") == "posts") && is_home()) {
 		if(get_bloginfo("description")) {
 			$content = get_bloginfo("description");
 		}

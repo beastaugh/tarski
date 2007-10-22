@@ -111,7 +111,7 @@ function multiple_tag_titles($return = false, $tag_wrapper = '') {
 	foreach ( $tag_ids as $tag_id ) {
 		$tag = &get_term($tag_id, 'post_tag', OBJECT, 'display');
 		if ( empty($tag) || is_wp_error($tag) )
-			return;
+			continue;
 		else
 			array_push($tags, $tag->name);
 	}
