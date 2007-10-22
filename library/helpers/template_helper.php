@@ -38,6 +38,8 @@ function tarski_doctitle($sep = "&middot;", $swap = false, $return = false) {
 		$content = __("Search results","tarski");
 	} elseif(is_month()) {
 		$content = single_month_title(" ", false);
+	} elseif(is_tag()) {
+		$content = multiple_tag_titles(true);
 	} else {
 		$content = trim(wp_title("", false));
 	}
