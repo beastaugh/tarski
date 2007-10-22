@@ -70,40 +70,41 @@ function multiple_tag_titles($return = false, $tag_wrapper = '') {
 	
 	// Start horrible hack
 	$tag_slugs = array();
-	if( get_query_var('tag_slug__and') ) {
-		$tag_slugs = get_query_var('tag_slug__and');
+	if( $tag_slugs = get_query_var('tag_slug__and') ) {
 		$connective = __('and','tarski');
-	} elseif( get_query_var('tag_slug__in') ) {
-		$tag_slugs = get_query_var('tag_slug__in');
+	} elseif( $tag_slugs = get_query_var('tag_slug__in') ) {
 		$connective = __('or','tarski');
+	} elseif( $single_tag = get_query_var('tag_id') ) {
+		$tag_ids = array($single_tag);
 	} else {
 		return;
 	}
-
-	$tag_ids = array();
-
-	foreach ($tag_slugs as $tag_slug) {
-		$tag_id = $wpdb->get_var("SELECT term_id FROM $wpdb->terms WHERE slug = \"$tag_slug\"");
-		array_push($tag_ids, $tag_id);
+	
+	if($tag_slugs) {
+		$tag_ids = array();
+		foreach ($tag_slugs as $tag_slug) {
+			$tag_id = $wpdb->get_var("SELECT term_id FROM $wpdb->terms WHERE slug = \"$tag_slug\"");
+			array_push($tag_ids, $tag_id);
+		}
 	}
 	// End horrible hack
 	
 	
 	/*
-	This doesn't work; tag__and and tag__in are empty for tag intersections and unions
-	
+	// This doesn't work; tag__and and tag__in are empty for tag intersections and unions
 	$tag_ids = array();
 	
-	if( get_query_var('tag__and') ) {
-		$tag_ids = get_query_var('tag__and');
+	if( $tag_ids = get_query_var('tag__and') ) {
 		$connective = __('and','tarski');
-	} elseif( get_query_var('tag__in') ) {
-		$tag_ids = get_query_var('tag__in');
+	} elseif( $tag_ids = get_query_var('tag__in') ) {
 		$connective = __('or','tarski');
+	} elseif( $single_tag = get_query_var('tag_id') ) {
+		$tag_ids = array($single_tag);
 	} else {
 		return;
 	}
 	*/
+
 	
 	$tags = array();
 	
