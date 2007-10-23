@@ -15,9 +15,8 @@ function detectWPMU() {
  * @return boolean
  */
 function detectWPMUadmin() {
-	if(detectWPMU()) {
+	if(detectWPMU())
 		return is_site_admin();
-	}
 }
 
 /**
@@ -59,9 +58,8 @@ function tarski_admin_header_style() {
  * tarski_inject_scripts() - Adds JavaScript and CSS to the Tarski Options page.
 */
 function tarski_inject_scripts() {
-	if(substr($_SERVER['REQUEST_URI'], -39, 39) == 'wp-admin/themes.php?page=tarski-options') { // Hack detects Tarski Options page
+	if(substr($_SERVER['REQUEST_URI'], -39, 39) == 'wp-admin/themes.php?page=tarski-options')
 		include(TARSKIDISPLAY . "/admin/options_scripts.php");
-	}
 }
 
 /**

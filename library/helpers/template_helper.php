@@ -10,11 +10,10 @@
  * @return boolean
  */
 function is_wp_front_page() {
-	if(get_option('show_on_front') == 'page') {
+	if(get_option('show_on_front') == 'page')
 		return is_page(get_option('page_on_front'));
-	} else {
+	else
 		return is_home();
-	}
 }
 
 /**
@@ -71,9 +70,8 @@ function tarski_doctitle($sep = "&middot;", $swap = false, $return = false) {
  * @return string
  */
 function add_robots_meta() {
-	if(get_option('blog_public') != '0') {
+	if(get_option('blog_public') != '0')
 		echo '<meta name="robots" content="all" />'."\n";
-	}
 }
 
 /**
@@ -128,11 +126,11 @@ if(!function_exists('get_category_feed_link')) {
  * @return string $feeds
  */
 function tarski_feeds($return = false) {
-	if(get_tarski_option("feed_type") == "atom") {
+	if(get_tarski_option("feed_type") == "atom")
 		$type = "atom";
-	} else {
+	else
 		$type = "rss2";
-	}
+	
 	if(is_single() || (is_page() && ($comments || comments_open()))) {
 		global $post;
 		$title = sprintf( __('Commments feed for %s','tarski'), get_the_title() );
@@ -189,11 +187,10 @@ function tarski_feeds($return = false) {
 	);
 	$feeds = apply_filters('tarski_feeds', $feeds);
 	
-	if($return) {
+	if($return)
 		return $feeds;
-	} else {
+	else
 		echo $feeds;
-	}
 }
 
 /**
@@ -283,9 +280,8 @@ function tarski_sitetitle() {
  * @return string
  */
 function tarski_tagline() {
-	if((get_tarski_option('display_tagline') && get_bloginfo('description'))) {
+	if((get_tarski_option('display_tagline') && get_bloginfo('description')))
 		$tagline = '<p id="tagline">'.  get_bloginfo('description'). '</p>';
-	}
 	
 	$tagline = apply_filters('tarski_tagline', $tagline);
 	return $tagline;
@@ -315,11 +311,10 @@ function tarski_titleandtag() {
  * @return string
  */
 function home_link_name() {
-	if(get_tarski_option('home_link_name')) {
+	if(get_tarski_option('home_link_name'))
 		return get_tarski_option('home_link_name');
-	} else {
+	else
 		return __('Home','tarski');
-	}
 }
 
 /**
@@ -414,9 +409,9 @@ function add_external_links($navbar) {
  * @return string $navbar
  */
 function add_admin_link($navbar) {
-	if(is_user_logged_in()) {
+	if(is_user_logged_in())
 		$navbar .= '<li><a id="nav-admin" href="'. get_option('siteurl'). '/wp-admin/">'. __('Site Admin','tarski'). '</a></li>'. "\n";
-	}
+	
 	return $navbar;
 }
 
@@ -439,11 +434,10 @@ function wrap_navlist($navbar) {
  * @return string $output
  */
 function tarski_feedlink() {
-	if(get_tarski_option("feed_type") == "atom") {
+	if(get_tarski_option("feed_type") == "atom")
 		$feed_url = "atom_url";
-	} else {
+	else
 		$feed_url = "rss2_url";
-	}
 	
 	include(TARSKIDISPLAY . "/feed_link.php");
 }
@@ -482,11 +476,10 @@ function tarski_bodyclass($return = false) {
 	$body_classes = implode(" ", $classes);
 	$body_classes = apply_filters("tarski_bodyclass", $body_classes);
 	
-	if($return) {
+	if($return)
 		return $body_classes;
-	} else {
+	else
 		echo $body_classes;
-	}
 }
 
 /**
@@ -536,12 +529,13 @@ function tarski_bodyid($return = false) {
 	} else {
 		$body_id = 'unknown';
 	}
+	
 	$body_id = apply_filters('tarski_bodyid', $body_id);
-	if($return) {
+	
+	if($return)
 		return $body_id;
-	} else {
+	else
 		echo $body_id;
-	}
 }
 
 /**
@@ -560,9 +554,8 @@ function tarski_searchform() {
  * tarski_credits() - Outputs the site feed and Tarski credits.
  */
 function tarski_credits() {
-	if(detectWPMU()) {
+	if(detectWPMU())
 		$current_site = get_current_site();
-	}
 	
 	include(TARSKIDISPLAY . "/credits.php");
 }

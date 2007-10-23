@@ -41,7 +41,7 @@ class Options {
 	var $feed_type;
 	
 	/**
-	 * tarski_options_defaults() - Sets the Options object's properties to their default values.
+	 * tarski_options_defaults() - Sets Options object's properties to their default values.
 	 * 
 	 * @since 2.0
 	 */
@@ -77,7 +77,7 @@ class Options {
 	}
 	
 	/**
-	 * tarski_options_get() - Sets the Options object properties to the values retrieved from the database.
+	 * tarski_options_get() - Sets Options properties to the values retrieved from the database.
 	 * 
 	 * @since 2.0
 	 */
@@ -91,7 +91,7 @@ class Options {
 	}
 	
 	/**
-	 * tarski_options_update() - Sets the Options object properties to the values set on the Options page.
+	 * tarski_options_update() - Sets Options properties to the values set on the Options page.
 	 * 
 	 * Note that this function doesn't save anything to the database, that's the
 	 * preserve of save_tarski_options().
@@ -106,31 +106,34 @@ class Options {
 			$this->deleted = time();
 		} elseif($_POST['restore_options'] == 1) {
 			$this->deleted = false;
-		} elseif(isset($_POST['Submit'])) {
-			if($_POST['update_notification'] == 'off') {
+		} else {
+			if($_POST['update_notification'] == 'off')
 				$this->update_notification = false;
-			} elseif($_POST['update_notification'] == 'on') {
+			elseif($_POST['update_notification'] == 'on')
 				$this->update_notification = true;
-			}
-
-			if (isset($_POST['about_text'])) {
-				$about = $_POST['about_text'];
-				$this->blurb = $about;
-			}
-			if (isset($_POST['header_image'])) {
-				$header = $_POST['header_image'];
-				$header = @str_replace("-thumb", "", $header);
+			
+			if(isset($_POST['about_text']))
+				$this->blurb = $_POST['about_text'];
+			
+			$header = $_POST['header_image'];
+			if(isset($header)) {
+				$header = @str_replace('-thumb', '', $header);
 				$this->header = $header;
 			}
-			if(isset($_POST['nav_pages'])) {
-				$nav_pages = implode(",", $_POST['nav_pages']);
+			
+			$nav_pages = $_POST['nav_pages'];
+			if(isset($nav_pages)) {
+				$nav_pages = implode(',', $nav_pages);
+				$this->nav_pages = $nav_pages;
+			} else {
+				$this->nav_pages = false;
 			}
 			
 			$stylefile = $_POST['alternate_style'];
-			if(is_valid_tarski_style($stylefile) || !$stylefile) {
+			if(is_valid_tarski_style($stylefile))
 				$this->style = $stylefile;
-			}
-			
+			elseif(!$stylefile)
+				$this->style = false;
 			
 			$this->footer_recent = $_POST['footer']['recent'];
 			$this->sidebar_pages = $_POST['sidebar']['pages'];
@@ -146,7 +149,6 @@ class Options {
 			$this->swap_sides = $_POST['swap_sides'];
 			$this->swap_title_order = $_POST['swap_title_order'];
 			$this->asidescategory = $_POST['asides_category'];
-			$this->nav_pages = $nav_pages;
 			$this->nav_extlinkcat = $_POST['nav_extlinkcat'];
 			$this->home_link_name = $_POST['home_link_name'];
 			$this->sidebar_type = $_POST['sidebartype'];
@@ -199,9 +201,9 @@ function flush_tarski_options() {
 	if(get_option('tarski_options')) {
 		$tarski_options->tarski_options_get();
 		if(get_tarski_option('deleted')) {
-			if((time() - (int) get_tarski_option('deleted')) > 2 * 60 * 60) {
+			if((time() - (int) get_tarski_option('deleted')) > 2 * 60 * 60)
 				delete_option('tarski_options');
-			}
+
 			$tarski_options->tarski_options_defaults();
 		}
 	} else {
@@ -225,9 +227,10 @@ function flush_tarski_options() {
 function update_tarski_option($option, $value, $drop = false) {
 	global $tarski_options;
 	$tarski_options->$option = $value;
-	if($drop == true) {
+	
+	if($drop == true)
 		unset($tarski_options->$name);
-	}
+	
 	update_option('tarski_options', serialize($tarski_options));
 	flush_tarski_options();
 }

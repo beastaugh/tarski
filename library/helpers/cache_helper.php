@@ -10,15 +10,11 @@
  * @return boolean
  */
 function cache_is_writable($file = false) {
-	if($file) {
-		$cachefile = TARSKICACHE. "/". $file;
-	}
-	if(
-		is_writable($cachefile)
-		|| (is_writable(TARSKICACHE) && !file_exists($cachefile))
-	) {
+	if($file)
+		$cachefile = TARSKICACHE. '/'. $file;
+	
+	if(is_writable($cachefile) || (is_writable(TARSKICACHE) && !file_exists($cachefile)))
 		return true;
-	}
 }
 
 ?>
