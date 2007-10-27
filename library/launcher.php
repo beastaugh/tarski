@@ -1,10 +1,7 @@
 <?php
 
 // Custom header image
-if(function_exists('add_custom_image_header')) {
-	tarski_config_custom_header();
-	add_custom_image_header('', 'tarski_admin_header_style');
-}
+add_custom_image_header('', 'tarski_admin_header_style');
 
 // Widgets
 register_sidebar( // Main sidebar

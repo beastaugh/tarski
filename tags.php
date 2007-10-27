@@ -17,11 +17,9 @@ Template Name: Tags
 				<h3><?php _e('Tags','tarski'); ?></h3>
 			
 			<?php } ?>
-			<?php if(function_exists('wp_tag_cloud')) { ?>
-				<p class="tagcloud"><?php wp_tag_cloud(); ?></p>
-			<?php } else { ?>
-				<p><?php _e('Sorry, this version of WordPress doesn&#8217;t appear to support the tag cloud.','tarski'); ?></p>
-			<?php } ?>
+
+			<p class="tagcloud"><?php wp_tag_cloud(); ?></p>
+
 		</div> <!-- /content -->
 
 		<?php th_postend(); ?>

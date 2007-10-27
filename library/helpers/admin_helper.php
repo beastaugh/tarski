@@ -3,6 +3,7 @@
 /**
  * detectWPMU() - Detects whether WordPress Multi-User is in use.
  * 
+ * @since 1.4
  * @return boolean
  */
 function detectWPMU() {
@@ -12,6 +13,7 @@ function detectWPMU() {
 /**
  * detectWPMUadmin() - Detect whether the current user is a WPMU site administrator.
  * 
+ * @since 2.0
  * @return boolean
  */
 function detectWPMUadmin() {
@@ -24,6 +26,7 @@ function detectWPMUadmin() {
  * 
  * It must be a valid CSS identifier, followed by the .css file extension,
  * and it cannot have a name that is already taken by Tarski's CSS namepsace.
+ * @since 2.0
  * @param string $file
  * @return boolean
  */
@@ -36,19 +39,8 @@ function is_valid_tarski_style($file) {
 }
 
 /**
- * tarski_config_custom_header() - Sets the parameters for using WordPress's custom header image functionality with Tarski.
- */
-function tarski_config_custom_header() {
-	define('HEADER_TEXTCOLOR', '');
-	define('HEADER_IMAGE', '%s/headers/' . get_tarski_option('header'));
-	// %s is theme dir uri
-	define('HEADER_IMAGE_WIDTH', 720);
-	define('HEADER_IMAGE_HEIGHT', 180);
-	define('NO_HEADER_TEXT', true );
-}
-
-/**
  * tarski_admin_header_style() - Styles the custom header image admin page for use with Tarski.
+ * @since 1.4
  */
 function tarski_admin_header_style() {
 	include(TARSKIDISPLAY."/admin/admin_header_style.php");
@@ -56,6 +48,7 @@ function tarski_admin_header_style() {
 
 /**
  * tarski_inject_scripts() - Adds JavaScript and CSS to the Tarski Options page.
+ * @since 1.4
 */
 function tarski_inject_scripts() {
 	if(substr($_SERVER['REQUEST_URI'], -39, 39) == 'wp-admin/themes.php?page=tarski-options')
@@ -64,6 +57,7 @@ function tarski_inject_scripts() {
 
 /**
  * tarski_addmenu() - Adds the Tarski Options page to the WordPress admin panel.
+ * @since 1.0
  */
 function tarski_addmenu() {
 	add_submenu_page('themes.php', __('Tarski Options','tarski'), __('Tarski Options','tarski'), 'edit_themes', 'tarski-options', 'tarski_admin');
@@ -71,6 +65,7 @@ function tarski_addmenu() {
 
 /**
  * tarski_admin() - Saves Tarski's options, and displays the Options page.
+ * @since 1.0
  */
 function tarski_admin() {
 	save_tarski_options();
@@ -82,6 +77,7 @@ function tarski_admin() {
  * tarski_resave_navbar() - Re-saves Tarski's navbar order whenever a page is edited.
  * 
  * This means that if the page order changes, the navbar order will change too.
+ * @since 1.7
  */
 function tarski_resave_navbar() {
 	global $wpdb;

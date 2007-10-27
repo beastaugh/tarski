@@ -6,7 +6,14 @@ define('TARSKICLASSES', TARSKILIB . '/classes');
 define('TARSKIHELPERS', TARSKILIB . '/helpers');
 define('TARSKIDISPLAY', TARSKILIB . '/display');
 define('TARSKICACHE', TARSKILIB . '/cache');
-define('TARSKIVERSIONFILE', 'http://tarskitheme.com/version.atom');		
+define('TARSKIVERSIONFILE', 'http://tarskitheme.com/version.atom');
+
+// Custom header constants
+define('HEADER_TEXTCOLOR', '');
+define('HEADER_IMAGE', '%s/headers/' . get_tarski_option('header')); // %s is theme directory URI
+define('HEADER_IMAGE_WIDTH', 720);
+define('HEADER_IMAGE_HEIGHT', 180);
+define('NO_HEADER_TEXT', true );	
 
 // Classes
 require_once(TARSKICLASSES . '/options.php');

@@ -178,9 +178,8 @@
 					<?php } ?>
 
 				<h3><?php _e('Header Image','tarski'); ?></h3>
-				<?php if(function_exists('add_custom_image_header')) { ?>
-					<p><?php printf( __('You may wish to use one of these stock headers, or upload your own via the %s tab.', 'tarski'), '<a href="themes.php?page=custom-header">' . __('Custom Image Header', 'tarski') . '</a>' ); ?></p>
-				<?php } ?>
+				<p><?php printf( __('You may wish to use one of these stock headers, or upload your own via the %s tab.', 'tarski'), '<a href="themes.php?page=custom-header">' . __('Custom Image Header', 'tarski') . '</a>' ); ?></p>
+
 				<?php if(get_theme_mod('header_image')) { ?>
 					<p class="insert"><strong><?php printf( __('You are currently using a custom header uploaded via WordPress. To use a stock icon instead, go to the %s tab and click &#8216;Restore Original Header&#8217;.', 'tarski'), '<a href="themes.php?page=custom-header">' . __('Custom Image Header', 'tarski') . '</a>' ); ?></strong></p>
 				<?php } ?>

@@ -5,18 +5,17 @@
 <div id="footer">
 	
 	<div class="secondary">
-	<?php if(get_tarski_option('sidebar_type') == 'widgets') { ?>
-		
-		<?php if(function_exists('dynamic_sidebar')) { echo "<div class=\"widgets\">\n"; } ?>
-		<?php if(!function_exists('dynamic_sidebar') || !dynamic_sidebar(__('Footer Widgets', 'tarski')) ) :  // Footer widgets ?>
-		<?php endif; // end widgets if ?>
-		<?php if(function_exists('dynamic_sidebar')) { echo "</div>\n"; } ?>
-	
-	<?php } else { ?>
+		<?php if((get_tarski_option('sidebar_type') == 'widgets') && dynamic_sidebar(__('Footer Widgets', 'tarski')) { ?>
 
-		<?php th_fsidebar(); ?>
+			<div class="widgets">
+				<?php dynamic_sidebar(__('Footer Widgets', 'tarski')); ?>
+			</div>
 
-	<?php } ?>
+		<?php } else { ?>
+
+			<?php th_fsidebar(); ?>
+
+		<?php } ?>
 	</div> <!-- /secondary -->
 
 
