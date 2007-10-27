@@ -127,6 +127,29 @@ function tarski_output_sidebartopinclude() {
 }
 
 /**
+ * tarski_output_sidebarbottominclude() - Outputs $sidebarBottomInclude variable from constants.php.
+ * 
+ * @since 2.0
+ * @global string $sidebarBottomInclude
+ * @global object $post
+ * @return string $sidebarBottomInclude
+ */
+function tarski_output_sidebarbottominclude() {
+	global $sidebarBottomInclude, $post;
+	if(get_tarski_option('sidebar_onlyhome')) { // Sidebar only on index pages
+		if(!(is_page() || is_single())) {
+			tarski_output_constant($sidebarBottomInclude);
+		}
+	} else { // Sidebar everywhere
+		if(!(is_page() || is_single())) {
+			tarski_output_constant($sidebarBottomInclude);
+		} elseif(get_post_meta($post->ID,'_wp_page_template',true) != 'archives.php') {
+			tarski_output_constant($sidebarBottomInclude);
+		}
+	}
+}
+
+/**
  * tarski_output_nosidebarinclude() - Outputs $noSidebarInclude variable from constants.php.
  * 
  * @since 1.5

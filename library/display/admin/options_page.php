@@ -87,22 +87,18 @@
 				<h3><?php _e('Pick a Sidebar&hellip;','tarski'); ?></h3>
 				<p><?php _e('Choose either Tarski&#8217;s built-in sidebar options, those afforded by WordPress Widgets, or write your own sidebar code.','tarski'); ?></p>
 				
-				<label for="option-ts"><input type="radio" id="option-ts" name="sidebartype" value="tarski"<?php if(get_tarski_option('sidebar_type') == 'tarski') { echo " checked=\"checked\""; } ?> /> <?php _e('Tarski sidebar options','tarski'); ?></label>
-				<?php if(function_exists('register_sidebar')) { ?>
-					<label for="option-ws"><input type="radio" id="option-ws" name="sidebartype" value="widgets"<?php if(get_tarski_option('sidebar_type') == 'widgets') { echo " checked=\"checked\""; } ?> /> <?php _e('WordPress Widgets','tarski'); ?></label>
-				<?php } else { ?>
-					<label for="option-ws"><input type="radio" id="option-ws" name="sidebartype" value="" disabled="disabled" /> <?php _e('Install (or activate) <a href="http://automattic.com/code/widgets/">WordPress Widgets</a>.','tarski'); ?></label>
-				<?php } ?>
+				<label for="option-ts"><input type="radio" id="option-ts" name="sidebar_type" value="tarski"<?php if(get_tarski_option('sidebar_type') == 'tarski') { echo ' checked="checked"'; } ?> /> <?php _e('Tarski sidebar options','tarski'); ?></label>
+				<label for="option-ws"><input type="radio" id="option-ws" name="sidebar_type" value="widgets"<?php if(get_tarski_option('sidebar_type') == 'widgets') { echo ' checked="checked"'; } ?> /> <?php _e('WordPress Widgets','tarski'); ?></label>
 				<?php if(!detectWPMU()) { // custom sidebar only available in non-WPMU stuff ?>
-				<label for="option-fs"><input type="radio" id="option-fs" name="sidebartype" value="custom"<?php if(get_tarski_option('sidebar_type') == 'custom') { echo " checked=\"checked\""; } ?> /> <?php _e('Alternate sidebar file','tarski'); ?></label>
+				<label for="option-fs"><input type="radio" id="option-fs" name="sidebar_type" value="custom"<?php if(get_tarski_option('sidebar_type') == 'custom') { echo ' checked="checked"'; } ?> /> <?php _e('Alternate sidebar file','tarski'); ?></label>
 				<?php } // end non-WPMU-only block ?>
 				
-				<label class="spaced-out" for="opt-sidebar-onlyhome">
-					<input type="hidden" name="sidebar[onlyhome]" value="0" />
-					<input type="checkbox" name="sidebar[onlyhome]" value="1"  id="opt-sidebar-onlyhome" <?php if(get_tarski_option('sidebar_onlyhome')) { echo 'checked="checked" '; } ?>/>
-					<?php _e('Only display the sidebar on index pages','tarski'); ?>
-				</label>
-				<p><?php _e('The home, archive and search pages are index pages; this option is good for people with long sidebars.','tarski')?></p>
+				<h3><?php _e('Post and Page Sidebar','tarski'); ?></h3>
+				<p><?php printf( __('The sidebar displayed on single posts and pages can be the same as on the rest of the site, a different set of %1$s, or you can choose not to display it at all.'),  '<a href="' . $widgets_link . '">' . __('widgets','tarski') . '</a>'); ?></p>
+				
+				<label for="option-pp-ms"><input type="radio" id="option-pp-ms" name="sidebar_pp_type" value="main"<?php if(get_tarski_option('sidebar_pp_type') == 'main') { echo ' checked="checked"'; } ?> /> <?php _e('Same as the main sidebar','tarski'); ?></label>
+				<label for="option-pp-ws"><input type="radio" id="option-pp-ws" name="sidebar_pp_type" value="widgets"<?php if(get_tarski_option('sidebar_pp_type') == 'widgets') { echo ' checked="checked"'; } ?> /> <?php _e('Different widgets','tarski'); ?></label>				
+				<label for="option-pp-none"><input type="radio" id="option-pp-none" name="sidebar_pp_type" value="none"<?php if(get_tarski_option('sidebar_pp_type') == 'none') { echo ' checked="checked"'; } ?> /> <?php _e('Don&#8217;t display a sidebar on individual posts and pages','tarski'); ?></label>
 			</fieldset>
 
 			<fieldset class="secondary">
@@ -127,9 +123,8 @@
 				</div>
 			
 				
-				<?php if(file_exists(ABSPATH . '/wp-includes/widgets.php')) { $widgetsLink = '/wp-admin/widgets.php'; } else { $widgetsLink = '/wp-admin/themes.php?page=widgets/widgets.php'; } ?>
 				<div id="widgets-sidebar-section" class="insert"<?php if(get_tarski_option('sidebar_type') != 'widgets') { echo ' style="display: none;"'; } ?>>
-					<p><?php echo sprintf( __('To configure your Sidebar Widgets, go to the %s page and select the widgets you&#8217;d like to use.','tarski'), '<a href="' . get_bloginfo('wpurl') . $widgetsLink . '">' . __('Widgets configuration','tarski') . '</a>' ); ?></p>
+					<p><?php echo sprintf( __('To configure your Sidebar Widgets, go to the %s page and select the widgets you&#8217;d like to use.','tarski'), '<a href="' . $widgets_link . '">' . __('Widgets configuration','tarski') . '</a>' ); ?></p>
 				</div>
 				
 				<?php if(!detectWPMU()) { ?>

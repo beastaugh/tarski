@@ -209,7 +209,7 @@ function tarski_update_notifier($location = "dashboard") {
 	
 	if($location == "options_page") {
 		include(TARSKIDISPLAY . "/admin/version_options.php");
-	} else {
+	} elseif(!detectWPMU() || detectWPMUadmin()) {
 		include(TARSKIDISPLAY . "/admin/version_dashboard.php");
 	}
 }

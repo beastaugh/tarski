@@ -21,7 +21,7 @@ class Options {
 	var $blurb;
 	var $footer_recent;
 	var $sidebar_type;
-	var $sidebar_onlyhome;
+	var $sidebar_pp_type;
 	var $sidebar_pages;
 	var $sidebar_links;
 	var $sidebar_custom;
@@ -50,12 +50,8 @@ class Options {
 		$this->update_notification = true;
 		$this->blurb = __("This is the about text.","tarski");
 		$this->footer_recent = true;
-		if(function_exists('register_sidebar')) { 
-			$this->sidebar_type = "widgets";
-		} else {
-			$this->sidebar_type = "tarski";
-		}
-		$this->sidebar_onlyhome = false;
+		$this->sidebar_type = "tarski";
+		$this->sidebar_pp_type = "main";
 		$this->sidebar_pages = true;
 		$this->sidebar_links = true;
 		$this->sidebar_custom = false;
@@ -139,7 +135,6 @@ class Options {
 			$this->sidebar_pages = $_POST['sidebar']['pages'];
 			$this->sidebar_links = $_POST['sidebar']['links'];
 			$this->sidebar_custom = $_POST['sidebar']['custom'];
-			$this->sidebar_onlyhome = $_POST['sidebar']['onlyhome'];
 			$this->display_title = $_POST['display_title'];
 			$this->display_tagline = $_POST['display_tagline'];
 			$this->show_categories = $_POST['show_categories'];
@@ -151,7 +146,8 @@ class Options {
 			$this->asidescategory = $_POST['asides_category'];
 			$this->nav_extlinkcat = $_POST['nav_extlinkcat'];
 			$this->home_link_name = $_POST['home_link_name'];
-			$this->sidebar_type = $_POST['sidebartype'];
+			$this->sidebar_type = $_POST['sidebar_type'];
+			$this->sidebar_pp_type = $_POST['sidebar_pp_type'];
 			$this->feed_type = $_POST['feed_type'];
 		}
 	}

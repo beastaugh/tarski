@@ -1,6 +1,8 @@
 <?php get_header(); ?>
 
-<div class="primary">
+
+
+<div class="primary posts">
 	<?php if(have_posts()) { // Gets it all going ?>
 		
 		
@@ -16,7 +18,6 @@
 		<?php include(TEMPLATEPATH.'/loop.php'); ?>
 		
 		<?php tarski_posts_nav_link(); ?>
-		
 		
 		
 	<?php } else { ?>

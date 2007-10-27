@@ -58,10 +58,10 @@ function implode_proper($array, $glue = ', ', $last_connective = 'and') {
  * function. This provides one.
  * @since 2.0
  * @global $wpdb object
- * @param $return boolean
+ * @param $tag_wrapper string
  * @return string
  */
-function multiple_tag_titles($return = false, $tag_wrapper = '') {
+function multiple_tag_titles($tag_wrapper = '') {
 	global $wpdb;
 	
 	if ( !is_tag() )
@@ -122,10 +122,7 @@ function multiple_tag_titles($return = false, $tag_wrapper = '') {
 	$tags = implode_proper($tags, ', ', $connective);
 	$tags = apply_filters('multiple_tag_titles', $tags);
 
-	if ( $return )
-		return $tags;
-	else
-		echo $tags;
+	return $tags;
 }
 
 /**

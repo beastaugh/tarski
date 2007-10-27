@@ -44,8 +44,7 @@ body .primary-span { padding: 0 0 0 220px; clear: both; }
 	body.janus .primary-span { padding: 0 220px 0 0; }
 	
 	/* Fixes last .entry's bottom margin */
-	#content > div.primary { margin: 0 0 -2em 0; }
-	body.single #content > div.primary { margin: 0; }
+	.posts { margin: 0 0 -2em 0; }
 
 body .secondary { width: 200px; float: left; }
 	body.janus .secondary { float: right; }
@@ -133,15 +132,15 @@ body.left { text-align: left; }
 		--------------------------------------- */
 		body .articlenav { margin: -2em 0 2em 0; border-bottom: 1px solid #e5e5e5; padding-top: 0.75em; padding-bottom: 0.75em; background: #fcffff; color: #a8a8a8; }
 			body.janus .articlenav { padding-top: 0.75em; padding-bottom: 0.75em; text-align: right; }
-		body .entry { margin: 0 0 4em 0; clear: both; }
+		body .entry { margin: 0 0 2em 0; clear: both; }
+		body .posts .entry { margin: 0 0 4em 0; }
 			body .entry .meta { margin: 0 0 1em 0; }
 				body .entry .metadata { font-size: 0.8em; color: #a8a8a8; margin: 0; padding: 0; }
 				body .entry .meta .metadata { margin: 0; padding: 0.3em 0 0 0; }
 		body .aside { margin: 0 0 4em 0; }
 			body .aside .meta { margin: -0.8em 0 0 0; border-top: 1px dotted #d9d9d9; padding: 0.2em 0 0 0; color: #a8a8a8; font-size: 0.8em; text-align: right; clear: both; }
-		body .archive {}
+		body .archive { margin: 0 0 2em 0; }
 			body .archive .meta { margin: 0 0 1em 0; }
-			body .archive .content { margin: 0 0 2em 0; }
 		body .link-pages { font-size: 0.8em; color: #a8a8a8; clear: both; }
 		body .pagination { margin: 0 0 3em 0; font-family: 'Times New Roman', Times, serif; font-size: 1.5em; font-weight: normal; line-height: 120%; color: #a8a8a8; clear: both; }
 		
@@ -183,7 +182,7 @@ body.left { text-align: left; }
 			
 		/* Comments
 		--------------------------------------- */
-		#comments { clear: both; }
+		#comments { padding: 2em 0 0 0; clear: both; }
 		body.janus #comments .secondary { text-align: right; }
 		#comments .meta {}
 			#comments .meta .title { width: 350px; float: left; margin: 0; border: none; padding: 0.1em 0 0 0; }

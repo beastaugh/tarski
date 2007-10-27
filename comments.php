@@ -56,7 +56,7 @@ if($comments || comments_open()) { ?>
 		
 			<?php } ?>
 			
-		<?php } foreach($comments as $comment) { // Run comments loop again for normal comments ?>
+		<?php } $comment_count = 0; foreach($comments as $comment) { // Run comments loop again for normal comments ?>
 
 			<?php if($comment->comment_type != "trackback" && $comment->comment_type != "pingback" && !ereg("<pingback />", $comment->comment_content) && !ereg("<trackback />", $comment->comment_content)) { $comment_count++; ?>
 
@@ -68,13 +68,13 @@ if($comments || comments_open()) { ?>
 					<p class="primary-span"><strong><?php _e('Your comment is awaiting moderation.','tarski'); ?></strong></p>
 					<?php } ?>
 					<div class="secondary">
-						<p class="comment-permalink"><a href="#comment-<?php comment_ID(); ?>" title="<?php _e('Permalink to this comment','tarski'); ?>"><?php comment_date(); _e(' at ','tarski'); comment_time() ?></a></p>
+						<p class="comment-permalink"><a href="#comment-<?php comment_ID(); ?>" title="<?php _e('Permalink to this comment','tarski'); ?>"><?php echo tarski_comment_datetime(); ?></a></p>
 						<p class="comment-author vcard"><?php echo tarski_comment_author_link(); ?></p>
 						<?php edit_comment_link(__('edit','tarski'), '<p class="comment-edit">(', ')</p>'); ?> 
 					</div> <!-- /comment meta -->
 
 					<div class="primary content">
-						<?php comment_text() ?>
+						<?php comment_text(); ?>
 					</div> <!-- /comment content -->
 				</div> <!-- /comment -->
 		

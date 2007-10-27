@@ -1,6 +1,31 @@
 <?php
 
 /**
+ * tarski_sidebar() - Outputs Tarski's sidebar
+ * @since 2.0
+ * @return mixed
+ */
+function tarski_sidebar() {
+	if(!(is_single() || is_page()) || get_tarski_option('sidebar_pp_type') == 'main') {
+		if(get_tarski_option('sidebar_type') == 'widgets') {
+			include(TARSKIDISPLAY . '/sidebar/widgets_sidebar.php');
+		} elseif(get_tarski_option('sidebar_type') == 'custom') {
+			if(file_exists(TEMPLATEPATH . '/user-sidebar.php')) {
+				include(TEMPLATEPATH . '/user-sidebar.php');
+			} elseif(is_user_logged_in()) {
+				include(TARSKIDISPLAY . '/sidebar/user_sidebar_error.php');
+			} else {
+				include(TARSKIDISPLAY . '/sidebar/tarski_sidebar.php');
+			}
+		} else {
+			include(TARSKIDISPLAY . '/sidebar/tarski_sidebar.php');
+		}
+	} elseif(get_tarski_option('sidebar_pp_type') == 'widgets') {
+		include(TARSKIDISPLAY . '/sidebar/widgets_pp_sidebar.php');
+	}
+}
+
+/**
  * tarski_next_prev_posts() - Outputs links to the next and previous posts.
  * 
  * WordPress has this functionality, but the built-in formatting isn't
@@ -140,6 +165,23 @@ function tarski_sidebar_links() {
 	
 	$options = apply_filters('tarski_sidebar_links', $options);
 	return $options;
+}
+
+/**
+ * tarski_comment_datetime() - Ties the date and time together.
+ * 
+ * Makes the comment date and time output more translateable.
+ * @since 2.0
+ * @return string
+ */
+function tarski_comment_datetime() {
+	$datetime = sprintf(
+		__('%1$s at %2$s','tarski'),
+		get_comment_date(),
+		get_comment_time()
+	);
+	$datetime = apply_filters('tarski_comment_datetime', $datetime);
+	echo $datetime;
 }
 
 /**

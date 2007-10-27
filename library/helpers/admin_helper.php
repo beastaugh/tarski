@@ -74,6 +74,7 @@ function tarski_addmenu() {
  */
 function tarski_admin() {
 	save_tarski_options();
+	$widgets_link = get_bloginfo('wpurl') . '/wp-admin/widgets.php';
 	include(TARSKIDISPLAY . "/admin/options_page.php");
 }
 
