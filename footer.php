@@ -5,17 +5,9 @@
 <div id="footer">
 	
 	<div class="secondary">
-		<?php if((get_tarski_option('sidebar_type') == 'widgets') && dynamic_sidebar(__('Footer Widgets', 'tarski'))) { ?>
 
-			<div class="widgets">
-				<?php dynamic_sidebar(__('Footer Widgets', 'tarski')); ?>
-			</div>
+		<?php th_fsidebar(); ?>
 
-		<?php } else { ?>
-
-			<?php th_fsidebar(); ?>
-
-		<?php } ?>
 	</div> <!-- /secondary -->
 
 

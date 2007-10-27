@@ -1,3 +1,3 @@
 <div class="widgets">
-	<?php dynamic_sidebar(__('Main Sidebar','tarski')); ?>
+	<?php dynamic_sidebar('sidebar-1'); ?>
 </div>

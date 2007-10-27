@@ -77,7 +77,9 @@ function add_robots_meta() {
 /**
  * get_category_feed_link() - Gets the feed link for a given category.
  * 
- * Can be set to return Atom, RSS or RSS2.
+ * Can be set to return Atom, RSS or RSS2. Currently being considered
+ * for core inclusion, hence the conditional definiton.
+ * @link http://trac.wordpress.org/ticket/5173
  * @since 2.0
  * @param integer $cat_id
  * @param string $feed

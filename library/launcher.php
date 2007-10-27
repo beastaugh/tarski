@@ -6,6 +6,7 @@ add_custom_image_header('', 'tarski_admin_header_style');
 // Widgets
 register_sidebar( // Main sidebar
 	array(
+		'id' => 'sidebar-1',
 		'name' => __('Main Sidebar','tarski'),
 		'before_widget' => '<div id="%1$s" class="widget %2$s">',
 		'after_widget' => '</div>',
@@ -15,6 +16,7 @@ register_sidebar( // Main sidebar
 );
 register_sidebar( // Post and page sidebar
 	array(
+		'id' => 'sidebar-post-and-page',
 		'name' => __('Post and Page Sidebar','tarski'),
 		'before_widget' => '<div id="%1$s" class="widget %2$s">',
 		'after_widget' => '</div>',
@@ -24,6 +26,7 @@ register_sidebar( // Post and page sidebar
 );
 register_sidebar( // Footer sidebar
 	array(
+		'id' => 'sidebar-2',
 		'name' => __('Footer Widgets','tarski'),
 		'before_widget' => '<div id="%1$s" class="widget %2$s">',
 		'after_widget' => '</div>',
@@ -67,7 +70,7 @@ add_filter('get_comment_author', 'tidy_openid_names');
 // Footer
 add_filter('tarski_footer_blurb', 'tarski_blurb_wrapper');
 
-add_action('th_fsidebar', 'tarski_searchform');
+add_action('th_fsidebar', 'tarski_footer_sidebar');
 add_action('th_footer', 'tarski_feedlink');
 add_action('th_footer', 'tarski_credits');
 

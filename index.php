@@ -39,7 +39,7 @@
 	
 	<?php } else { ?>
 		
-		
+
 		<div class="primary posts">
 			
 			<?php include(TEMPLATEPATH.'/loop.php'); ?>

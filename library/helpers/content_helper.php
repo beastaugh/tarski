@@ -1,28 +1,55 @@
 <?php
 
 /**
- * tarski_sidebar() - Outputs Tarski's sidebar
+ * is_active_sidebar() - Checks to see whether a particular sidebar has widgets.
+ * 
+ * Stolen from ticket #4594 on Trac, hence the conditional definition.
+ * @link http://trac.wordpress.org/ticket/4594
+ * @since 2.0
+ * @return mixed
+ */
+if(!function_exists('is_active_sidebar')) {
+	function is_active_sidebar( $index ) {
+		$index = ( is_int($index) ) ? "sidebar-$index" : sanitize_title($index);
+		$sidebars_widgets = (array) get_option('sidebars_widgets');	
+		if ( isset( $sidebars_widgets[$index] ) ) 
+			return true;
+		else
+			return false;
+	}
+}
+
+/**
+ * tarski_sidebar() - Outputs Tarski's sidebar.
+ * 
  * @since 2.0
  * @return mixed
  */
 function tarski_sidebar() {
-	if(!(is_single() || is_page()) || get_tarski_option('sidebar_pp_type') == 'main') {
-		if(get_tarski_option('sidebar_type') == 'widgets') {
-			include(TARSKIDISPLAY . '/sidebar/widgets_sidebar.php');
-		} elseif(get_tarski_option('sidebar_type') == 'custom') {
-			if(file_exists(TEMPLATEPATH . '/user-sidebar.php')) {
-				include(TEMPLATEPATH . '/user-sidebar.php');
-			} elseif(is_user_logged_in()) {
-				include(TARSKIDISPLAY . '/sidebar/user_sidebar_error.php');
-			} else {
-				include(TARSKIDISPLAY . '/sidebar/tarski_sidebar.php');
-			}
-		} else {
-			include(TARSKIDISPLAY . '/sidebar/tarski_sidebar.php');
-		}
-	} elseif(get_tarski_option('sidebar_pp_type') == 'widgets') {
-		include(TARSKIDISPLAY . '/sidebar/widgets_pp_sidebar.php');
+
+	// Default Tarski sidebar
+	$sidebar_file = TARSKIDISPLAY . '/sidebar/tarski_sidebar.php';
+	
+	// Normal sidebar
+	if(get_tarski_option('sidebar_type') == 'widgets') {
+		$sidebar_file = TARSKIDISPLAY . '/sidebar/widgets_sidebar.php';
+	} elseif(get_tarski_option('sidebar_type') == 'custom') {
+		if(file_exists(TEMPLATEPATH . '/user-sidebar.php'))
+			$sidebar_file = TEMPLATEPATH . '/user-sidebar.php';
+		elseif(is_user_logged_in())
+			$sidebar_file = TARSKIDISPLAY . '/sidebar/user_sidebar_error.php';
 	}
+	
+	// Single post and page sidebar
+	if(is_single() || is_page()) {
+		if(get_tarski_option('sidebar_pp_type') == 'widgets')
+			$sidebar_file = TARSKIDISPLAY . '/sidebar/widgets_pp_sidebar.php';
+		elseif(get_tarski_option('sidebar_pp_type') == 'none')
+			return;
+	}
+	
+	$sidebar_file = apply_filters('tarski_sidebar', $sidebar_file);
+	include($sidebar_file);
 }
 
 /**
@@ -362,6 +389,22 @@ function tarski_blurb_wrapper($blurb) {
 	}
 	
 	return $blurb;
+}
+
+/**
+ * tarski_footer_sidebar() - Outputs the footer sidebar.
+ * 
+ * Will output widgets if any have been added to that sidebar,
+ * otherwise it adds the default search form.
+ * @since 2.0
+ * @return mixed
+ */
+function tarski_footer_sidebar() {
+	if(is_active_sidebar('sidebar-2')) {
+		include(TARSKIDISPLAY . '/sidebar/widgets_footer_sidebar.php');
+	} else {
+		tarski_searchform();
+	}
 }
 
 ?>

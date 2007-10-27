@@ -1,3 +1,3 @@
 <div class="widgets">
-	<?php dynamic_sidebar(__('Post and Page Sidebar','tarski')); ?>
+	<?php dynamic_sidebar('sidebar-post-and-page'); ?>
 </div>
