@@ -1,8 +1,12 @@
 <?php
 /*
 Template Name: Archives
-*/ ?>
+*/
+?>
 <?php get_header(); ?>
+
+
+
 <?php if (have_posts()) { while (have_posts()) { the_post(); ?>
 	<div class="primary-span entry">
 		<div class="meta">
@@ -36,4 +40,7 @@ Template Name: Archives
 	<?php } ?>
 	<?php th_sidebar(); ?>
 	</div> <!-- /secondary -->
+	
+	
+
 <?php get_footer(); ?>

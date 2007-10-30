@@ -1,7 +1,12 @@
-<?php /*
+<?php
+/*
 Template Name: Tags
-*/ ?>
+*/
+?>
 <?php get_header(); ?>
+
+
+
 <?php if (have_posts()) { while(have_posts()) { the_post(); ?>
 	
 	<div class="primary entry">
@@ -26,5 +31,11 @@ Template Name: Tags
 	</div> <!-- /primary -->
 
 <?php } } ?>
+
+
+
 <?php get_sidebar(); ?>
+
+
+
 <?php get_footer(); ?>

@@ -1,9 +1,14 @@
-<?php /*
+<?php
+/*
 Template Name: Links
-*/ ?>
+*/
+?>
 <?php get_header(); ?>
+
+
+
 <?php if (have_posts()) { while(have_posts()) { the_post(); ?>
-	
+
 	<div class="primary entry">
 		<div class="meta">
 			<h1 class="title"><?php the_title(); ?></h1>
@@ -21,7 +26,13 @@ Template Name: Links
 
 		<?php th_postend(); ?>
 	</div> <!-- /primary -->
-
+	
 <?php } } ?>
+
+
+
 <?php get_sidebar(); ?>
+
+
+
 <?php get_footer(); ?>
