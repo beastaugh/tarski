@@ -13,7 +13,7 @@
 
 <?php if(get_tarski_option('deleted')) { ?>
 	<div class="updated fade">
-		<form name="dofollow" action="" method="post">
+		<form name="dofollow" action="<?php echo $tarski_options_link; ?>" method="post">
 			<?php wp_nonce_field('update-options') ?>
 			<input type="hidden" name="restore_options" value="1" />
 			<p><?php _e('You have deleted your Tarski options.','tarski'); ?> <input class="options-tidy-submit" type="submit" name="Submit" value="<?php _e('Restore Tarski Options &raquo;','tarski'); ?>"></p>
@@ -23,7 +23,7 @@
 
 
 <?php if(!detectWPMU() || detectWPMUadmin()) { ?>
-	<?php tarski_update_notifier("options_page"); ?>
+	<?php tarski_update_notifier('options_page'); ?>
 <?php } ?>
 
 <?php if(get_tarski_option('debug')) { global $tarski_options; ?>
@@ -39,7 +39,7 @@
 	
 	<h2><?php _e('Tarski Options','tarski'); ?></h2>
 
-	<form name="dofollow" action="" method="post">
+	<form name="dofollow" action="<?php echo $tarski_options_link; ?>" method="post">
 		
 		<?php wp_nonce_field('update-options') ?>
 		
@@ -358,7 +358,7 @@
 
 <?php if(get_option('tarski_options') && !get_tarski_option('deleted')) { ?>
 	<div class="wrap">
-		<form name="dofollow" action="" method="post">
+		<form name="dofollow" action="<?php echo $tarski_options_link; ?>" method="post">
 			<?php wp_nonce_field('update-options') ?>
 			<input type="hidden" name="delete_options" value="1" />
 			<p><?php _e('Fed up with your Tarski Options? Want to reset to the defaults? Hit this button!','tarski'); ?> <input type="submit" name="Submit" value="<?php _e('Delete Tarski Options &raquo;','tarski'); ?>"></p>

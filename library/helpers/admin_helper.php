@@ -22,7 +22,7 @@ function detectWPMUadmin() {
 }
 
 /**
- * is_valid_tarski_style() - Checks whether a given file name is permitted as a Tarski alternate style name.
+ * is_valid_tarski_style() - Checks whether a given file name is a valid Tarski stylesheet name.
  * 
  * It must be a valid CSS identifier, followed by the .css file extension,
  * and it cannot have a name that is already taken by Tarski's CSS namepsace.
@@ -40,6 +40,7 @@ function is_valid_tarski_style($file) {
 
 /**
  * tarski_admin_header_style() - Styles the custom header image admin page for use with Tarski.
+ * 
  * @since 1.4
  */
 function tarski_admin_header_style() {
@@ -48,6 +49,7 @@ function tarski_admin_header_style() {
 
 /**
  * tarski_inject_scripts() - Adds JavaScript and CSS to the Tarski Options page.
+ * 
  * @since 1.4
 */
 function tarski_inject_scripts() {
@@ -57,6 +59,7 @@ function tarski_inject_scripts() {
 
 /**
  * tarski_addmenu() - Adds the Tarski Options page to the WordPress admin panel.
+ * 
  * @since 1.0
  */
 function tarski_addmenu() {
@@ -65,11 +68,13 @@ function tarski_addmenu() {
 
 /**
  * tarski_admin() - Saves Tarski's options, and displays the Options page.
+ * 
  * @since 1.0
  */
 function tarski_admin() {
 	save_tarski_options();
 	$widgets_link = get_bloginfo('wpurl') . '/wp-admin/widgets.php';
+	$tarski_options_link = get_bloginfo('wpurl') . '/wp-admin/themes.php?page=tarski-options';
 	include(TARSKIDISPLAY . "/admin/options_page.php");
 }
 
