@@ -322,8 +322,8 @@
 				</label>
 
 				<label for="opt-misc-centre">						
-					<input type="hidden" name="centered_theme" value="0" />
-					<input type="checkbox" id="opt-misc-centre" name="centered_theme" value="1" <?php if(get_tarski_option('centered_theme')) { echo 'checked="checked" '; } ?>/>
+					<input type="hidden" name="centred_theme" value="0" />
+					<input type="checkbox" id="opt-misc-centre" name="centred_theme" value="1" <?php if(get_tarski_option('centred_theme')) { echo 'checked="checked" '; } ?>/>
 					<?php _e('Centre the theme','tarski'); ?>
 				</label>
 

@@ -33,7 +33,7 @@ class Options {
 	var $nav_extlinkcat;
 	var $style;
 	var $asidescategory;
-	var $centered_theme;
+	var $centred_theme;
 	var $swap_sides;
 	var $tags_everywhere;
 	var $show_categories;
@@ -63,7 +63,7 @@ class Options {
 		$this->nav_extlinkcat = 0;
 		$this->style = false;
 		$this->asidescategory = 0;
-		$this->centered_theme = true;
+		$this->centred_theme = true;
 		$this->swap_sides = false;
 		$this->swap_title_order = false;
 		$this->tags_everywhere = false;
@@ -82,6 +82,54 @@ class Options {
 		if(!empty($array)) {
 			foreach($array as $name => $value) {
 				$this->$name = $value;
+			}
+
+			if(empty($this->installed) || ($this->installed != theme_version("current"))) {
+				// We had some Tarski preferences, but the preferences were from a different version, so we need to update them
+				
+				// Get our defaults, so we can merge them in
+				$defaults = new Options;
+				$defaults->tarski_options_defaults();
+
+				// Handle special cases first
+				
+				// Update the options version so we don't run this code more than once
+				$this->installed = $defaults->installed;
+				
+				// If they had hidden the sidebar previously for non-index pages, preserve that setting
+				if(empty($this->sidebar_pp_type) && isset($this->sidebar_onlyhome) && $this->sidebar_onlyhome == 1) {
+					$this->sidebar_pp_type = "none";
+				}
+				
+				// If update notification was off, leave it off, otherwise turn it on
+				if($this->update_notification == 'false') {
+					$this->update_notification = false;
+				} else {
+					$this->update_notification = true;
+				}
+				
+				// If categories are hidden, respect that option
+				if(empty($this->show_categories) && isset($this->hide_categories) && ($this->hide_categories == 1)) {
+					$this->show_categories = false;
+				} else {
+					$this->show_categories = true;
+				}
+				
+				// Change American English to British English, sorry Chris
+				if(empty($this->centred_theme) && isset($this->centered_theme)) {
+					$this->centred_theme = true;
+				}
+				
+				// Whatever is left that is not set, assign the default to if we have one
+				foreach($this as $name => $value) {
+					if(!isset($this->$name) && isset($defaults->$name)) {
+						$this->$name = $defaults->$name;
+					}
+				}
+
+				// Save our updated options
+				update_option('tarski_options', serialize($this));
+				flush_tarski_options();
 			}
 		}
 	}
@@ -131,18 +179,18 @@ class Options {
 			elseif(!$stylefile)
 				$this->style = false;
 			
-			$this->footer_recent = $_POST['footer']['recent'];
-			$this->sidebar_pages = $_POST['sidebar']['pages'];
-			$this->sidebar_links = $_POST['sidebar']['links'];
+			$this->footer_recent = (bool) $_POST['footer']['recent'];
+			$this->sidebar_pages = (bool) $_POST['sidebar']['pages'];
+			$this->sidebar_links = (bool) $_POST['sidebar']['links'];
 			$this->sidebar_custom = $_POST['sidebar']['custom'];
-			$this->display_title = $_POST['display_title'];
-			$this->display_tagline = $_POST['display_tagline'];
-			$this->show_categories = $_POST['show_categories'];
-			$this->tags_everywhere = $_POST['tags_everywhere'];
-			$this->use_pages = $_POST['use_pages'];
-			$this->centered_theme = $_POST['centered_theme'];
-			$this->swap_sides = $_POST['swap_sides'];
-			$this->swap_title_order = $_POST['swap_title_order'];
+			$this->display_title = (bool) $_POST['display_title'];
+			$this->display_tagline = (bool) $_POST['display_tagline'];
+			$this->show_categories = (bool) $_POST['show_categories'];
+			$this->tags_everywhere = (bool) $_POST['tags_everywhere'];
+			$this->use_pages = (bool) $_POST['use_pages'];
+			$this->centred_theme = (bool) $_POST['centred_theme'];
+			$this->swap_sides = (bool) $_POST['swap_sides'];
+			$this->swap_title_order = (bool) $_POST['swap_title_order'];
 			$this->asidescategory = $_POST['asides_category'];
 			$this->nav_extlinkcat = $_POST['nav_extlinkcat'];
 			$this->home_link_name = $_POST['home_link_name'];
@@ -197,9 +245,9 @@ function flush_tarski_options() {
 	if(get_option('tarski_options')) {
 		$tarski_options->tarski_options_get();
 		if(get_tarski_option('deleted')) {
-			if((time() - (int) get_tarski_option('deleted')) > 2 * 60 * 60)
+			if((time() - (int) get_tarski_option('deleted')) > 2 * 60 * 60) {
 				delete_option('tarski_options');
-
+			}
 			$tarski_options->tarski_options_defaults();
 		}
 	} else {
