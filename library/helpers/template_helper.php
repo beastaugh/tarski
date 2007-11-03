@@ -17,45 +17,54 @@ function is_wp_front_page() {
 }
 
 /**
- * tarski_doctitle() - Returns or echoes the document title.
+ * tarski_doctitle() - Returns the document title.
  * 
- * The order (site name first or last) can be set on the
- * Tarski Options page.
+ * The order (site name first or last) can be set on the Tarski Options page.
  * @param string $sep
  * @param boolean $swap title first or last?
- * @param boolean $return return or echo?
  * @return string $doctitle
  */
-function tarski_doctitle($sep = "&middot;", $swap = false, $return = false) {
-	$site_name = get_bloginfo("name");
+function tarski_doctitle($sep = '&middot;', $swap = false) {
+	$site_name = get_bloginfo('name');
 	
 	if(is_404()) {
 		$content = __(sprintf('Error %s','404'),'tarski');
-	} elseif((get_option("show_on_front") == "posts") && is_home()) {
-		if(get_bloginfo("description")) {
-			$content = get_bloginfo("description");
+	} elseif((get_option('show_on_front') == 'posts') && is_home()) {
+		if(get_bloginfo('description')) {
+			$content = get_bloginfo('description');
 		}
 	} elseif(is_search()) {
-		$content = __("Search results","tarski");
+		$content = __('Search results','tarski');
 	} elseif(is_month()) {
-		$content = single_month_title(" ", false);
+		$content = single_month_title(' ', false);
 	} elseif(is_tag()) {
 		$content = multiple_tag_titles();
 	} else {
-		$content = trim(wp_title("", false));
+		$content = trim(wp_title('', false));
 	}
 	
 	if($content) {
-		$elements = array($site_name, $sep, $content);
-		if((get_tarski_option("swap_title_order")) || $swap) {
-			krsort($elements);
-		}
-		$doctitle = implode(" ", $elements);
+		$elements = array(
+			'site_name' => $site_name,
+			'separator' => $sep,
+			'content' => $content
+		);
 	} else {
-		$doctitle = $site_name;
+		$elements = array(
+			'site_name' => $site_name
+		);
 	}
 	
-	$doctitle = apply_filters("tarski_doctitle", $doctitle);
+	if((get_tarski_option('swap_title_order')) || $swap) {
+		$elements = array_reverse($elements, true);
+	}
+	
+	// Filters should return an array
+	$elements = apply_filters('tarski_doctitle', $elements);
+	// But if they don't, it won't try to implode
+	if(is_array($elements))
+		$doctitle = implode(' ', $elements);
+	
 	if($return) {
 		return $doctitle;
 	} else {
