@@ -3,9 +3,8 @@
 /**
  * is_wp_front_page() - Returns true when current page is the WP front page.
  * 
- * Very useful, since is_home() doesn't return true for the
- * front page if it's displaying a static page rather than
- * the usual posts page.
+ * Very useful, since is_home() doesn't return true for the front page
+ * if it's displaying a static page rather than the usual posts page.
  * @since 2.0
  * @return boolean
  */
@@ -20,11 +19,13 @@ function is_wp_front_page() {
  * tarski_doctitle() - Returns the document title.
  * 
  * The order (site name first or last) can be set on the Tarski Options page.
+ * While the function ultimately returns a string, please note that filters
+ * are applied to an array! This allows plugins to easily alter any aspect
+ * of the title. For example, one might write a plugin to change the separator.
  * @param string $sep
- * @param boolean $swap title first or last?
  * @return string $doctitle
  */
-function tarski_doctitle($sep = '&middot;', $swap = false) {
+function tarski_doctitle($sep = '&middot;') {
 	$site_name = get_bloginfo('name');
 	
 	if(is_404()) {
@@ -55,12 +56,13 @@ function tarski_doctitle($sep = '&middot;', $swap = false) {
 		);
 	}
 	
-	if((get_tarski_option('swap_title_order')) || $swap) {
+	if(get_tarski_option('swap_title_order')) {
 		$elements = array_reverse($elements, true);
 	}
 	
 	// Filters should return an array
 	$elements = apply_filters('tarski_doctitle', $elements);
+	
 	// But if they don't, it won't try to implode
 	if(is_array($elements))
 		$doctitle = implode(' ', $elements);
@@ -75,19 +77,21 @@ function tarski_doctitle($sep = '&middot;', $swap = false) {
 /**
  * add_robots_meta() - Adds robots meta element if blog is public.
  * 
+ * WordPress adds a meta element denying robots access if the site is set
+ * to private, but it doesn't add one allowing them if it's set to public.
  * @since 2.0
  * @return string
  */
 function add_robots_meta() {
 	if(get_option('blog_public') != '0')
-		echo '<meta name="robots" content="all" />'."\n";
+		echo '<meta name="robots" content="all" />' . "\n";
 }
 
 /**
  * get_category_feed_link() - Gets the feed link for a given category.
  * 
  * Can be set to return Atom, RSS or RSS2. Currently being considered
- * for core inclusion, hence the conditional definiton.
+ * for core inclusion, hence the conditional definition.
  * @link http://trac.wordpress.org/ticket/5173
  * @since 2.0
  * @param integer $cat_id
@@ -126,9 +130,9 @@ if(!function_exists('get_category_feed_link')) {
 /**
  * tarski_feeds() - Outputs feed links for the page.
  * 
- * Can be set to return Atom, RSS or RSS2. Will always return
- * the main site feed, but will additionally return an archive,
- * search or comments feed depending on the page type.
+ * Can be set to return Atom, RSS or RSS2. Will always return the
+ * main site feed, but will additionally return an archive, search
+ * or comments feed depending on the page type.
  * @since 2.0
  * @param boolean $return return or echo?
  * @global object $post
@@ -211,18 +215,14 @@ function tarski_feeds($return = false) {
  * @return string
  */
 function tarski_headerimage() {
-	if($_SERVER['HTTP_HOST'] == 'themes.wordpress.net') { // Theme preview hack
-		$header_img_url = 'http://tarskitheme.com/headers/greytree.jpg';
-	} else {
-		if(get_theme_mod('header_image')) {
-			$header_img_url = get_header_image();
-		} elseif(get_tarski_option('header')) {
-			if(get_tarski_option('header') != 'blank.gif') {
-				$header_img_url = get_bloginfo('template_directory') . '/headers/' . get_tarski_option('header');
-			}
-		} else {
-			$header_img_url = get_bloginfo('template_directory') . '/headers/greytree.jpg';
+	if(get_theme_mod('header_image')) {
+		$header_img_url = get_header_image();
+	} elseif(get_tarski_option('header')) {
+		if(get_tarski_option('header') != 'blank.gif') {
+			$header_img_url = get_bloginfo('template_directory') . '/headers/' . get_tarski_option('header');
 		}
+	} else {
+		$header_img_url = get_bloginfo('template_directory') . '/headers/greytree.jpg';
 	}
 	
 	if($header_img_url) {
@@ -238,7 +238,7 @@ function tarski_headerimage() {
 			$header_img_url
 		);
 
-		if(!get_tarski_option('display_title') && !is_home()) {
+		if(!get_tarski_option('display_title') && !is_wp_front_page()) {
 			$header_img_tag = sprintf(
 				'<a title="%1$s" rel="home" href="%2$s">%3$s</a>',
 				__('Return to front page','tarski'),
