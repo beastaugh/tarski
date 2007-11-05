@@ -62,8 +62,8 @@ body.centre #wrapper { margin: 0 auto; }
 	#header-image { margin: 0 0 -20px 0; }
 	#header-image a { text-decoration: none; border: none; }
 	#header-image a img { border: none; }
-	#title { margin: 20px 0 0 0; border-bottom: 1px solid #ccc; }
-	#navigation { border-bottom: 1px solid #ccc; }
+	#title { margin: 20px 0 -20px; border-bottom: 1px solid #ccc; }
+	#navigation { margin: 20px 0 0 0; border-bottom: 1px solid #ccc; }
 
 /* Navigation
 ----------------------------------------------- */

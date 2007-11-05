@@ -3,7 +3,7 @@
 <?php if(get_tarski_option('update_notification')) { ?>		
 	<?php if($status == "current") { ?>
 		
-		<p><?php _e('Your version of Tarski is up to date.','tarski'); ?></p>
+		<p><?php printf( __('Your version of Tarski (%s) is up to date.','tarski'), '<strong>' . $current . '</strong>'); ?></p>
 		
 	<?php } elseif($status == "not_current") { ?>
 		
