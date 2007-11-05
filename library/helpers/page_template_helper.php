@@ -15,7 +15,6 @@ function is_archives_template() {
 	} else {
 		global $post;
 		$template = get_post_meta($post->ID, '_wp_page_template', true);
-	
 		return ($template == 'archives.php');
 	}
 }
@@ -24,16 +23,11 @@ function is_archives_template() {
  * hide_sidebar_for_archives() - Hides the sidebar on pages using the Archives template
  * 
  * @since 2.0
- * @global object $post
- * @return string $sidebar_file
+ * @return string|boolean $sidebar_file
  */
-function hide_sidebar_for_archives($sidebar_file) {
-	global $post;
-	
-	if(is_archives_template()) {
+function hide_sidebar_for_archives($sidebar_file) {	
+	if(is_archives_template())
 		$sidebar_file = false;
-	}
-	
 	return $sidebar_file;
 }
 
