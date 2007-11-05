@@ -15,7 +15,7 @@
 					<div class="meta">
 						<h1 class="title entry-title"><?php the_title(); ?></h1>
 						<?php if(is_single()) { ?>
-							<p class="metadata"><?php echo '<span class="date updated">'. tarski_date(). '</span>';
+							<p class="metadata"><?php echo '<span class="date updated">' . tarski_date() . '</span>';
 							tarski_post_categories_link();
 							tarski_author_posts_link();
 							if($post->comment_status == 'open' || $post->comment_count > 0) { echo ' | <a class="comments-link" href="#comments">'; comments_number(__('No comments', 'tarski'), __('1 comment', 'tarski'), '%' . __(' comments', 'tarski')); echo '</a>'; }

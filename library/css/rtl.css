@@ -6,29 +6,29 @@ Tarski's stylesheet for right-to-left languages
 
 /* Main structure
 ----------------------------------------------- */
-body #wrapper { text-align: right; direction: rtl; }
+body.rtl #wrapper { text-align: right; direction: rtl; }
 
 /* Navigation
 ----------------------------------------------- */
-	body #navigation ul.primary { direction: ltr; }
-		body #navigation ul.primary li { display: inline; margin: 0 0 0 1em; }
+	body.rtl #navigation ul.primary { direction: ltr; }
+		body.rtl #navigation ul.primary li { display: inline; margin: 0 0 0 1em; }
 
 	/* Feed icon
 	------------------------------------------- */
-	#wrapper .feed { padding: 5px 20px 5px 0; font-size: 0.8em; background: url('../images/feed-add.gif') no-repeat 100% 50%; }
+	body.rtl #wrapper .feed { padding: 5px 20px 5px 0; font-size: 0.8em; background: url('../images/feed-add.gif') no-repeat 100% 50%; }
 
 /* Content
 ----------------------------------------------- */
 		
 		/* HTML element control
 		--------------------------------------- */
-		body ul, body ol { margin: 0 30px 1em 0; padding: 0; }
+		body.rtl ul, body.rtl ol { margin: 0 30px 1em 0; padding: 0; }
 
 		/* Post content
 		--------------------------------------- */
-		body .articlenav { margin: -2em 0 2em 0; border-bottom: 1px solid #e5e5e5; padding-top: 0.75em; padding-bottom: 0.75em; background: #fcffff; color: #a8a8a8; text-align: left; }
+		body.rtl .articlenav { margin: -2em 0 2em 0; border-bottom: 1px solid #e5e5e5; padding-top: 0.75em; padding-bottom: 0.75em; background: #fcffff; color: #a8a8a8; text-align: left; }
 
 		
 		/* Comments
 		--------------------------------------- */
-			#wrapper #trackback-link { margin: 0; border-top: 1px solid #ccc; padding: 0.5em 20px 0.5em 0; background: url('../images/trackback.gif') no-repeat 100% 60%; font-size: 0.8em; color: #a8a8a8; clear: both; }
+		body.rtl #wrapper #trackback-link { margin: 0; border-top: 1px solid #ccc; padding: 0.5em 20px 0.5em 0; background: url('../images/trackback.gif') no-repeat 100% 60%; font-size: 0.8em; color: #a8a8a8; clear: both; }

@@ -445,12 +445,12 @@ function wrap_navlist($navbar) {
  * @return string $output
  */
 function tarski_feedlink() {
-	if(get_tarski_option("feed_type") == "atom")
-		$feed_url = "atom_url";
+	if(get_tarski_option('feed_type') == 'atom')
+		$feed_url = 'atom_url';
 	else
-		$feed_url = "rss2_url";
+		$feed_url = 'rss2_url';
 	
-	include(TARSKIDISPLAY . "/feed_link.php");
+	include(TARSKIDISPLAY . '/feed_link.php');
 }
 
 /**
@@ -462,30 +462,29 @@ function tarski_feedlink() {
 function tarski_bodyclass($return = false) {
 	$classes = array();
 	
-	if(get_tarski_option("centered_theme")) { // Centred or not
-		array_push($classes, "centre");
-	} else {
-		array_push($classes, "left");
+	if(get_tarski_option('centred_theme')) { // Centred or not
+		array_push($classes, 'centre');
 	}
-	if(get_tarski_option("swap_sides")) { // Swapped or not
-		array_push($classes, "janus");
+	if(get_tarski_option('swap_sides')) { // Swapped or not
+		array_push($classes, 'janus');
 	}
-	if(get_tarski_option("style")) { // Alternate style
-		$stylefile = get_tarski_option("style");
-		$stylename = str_replace(".css", "", $stylefile);
+	if(get_tarski_option('style')) { // Alternate style
+		$stylefile = get_tarski_option('style');
+		$stylename = str_replace('.css', '', $stylefile);
 		if(is_valid_tarski_style($stylefile)) {
 			array_push($classes, $stylename);
 		}
 	}
-	if (is_page() || is_single() || is_404()) { // Is it a single page?
-		array_push($classes, "single");
-	}
-	if(get_bloginfo("text_direction") == "rtl") {
-		array_push($classes, "rtl");
+	if(get_bloginfo('text_direction') == 'rtl') {
+		array_push($classes, 'rtl');
 	}
 	
-	$body_classes = implode(" ", $classes);
-	$body_classes = apply_filters("tarski_bodyclass", $body_classes);
+	// Filters should return an array
+	$body_classes = apply_filters('tarski_bodyclass', $classes);
+	
+	// But if they don't, it won't implode
+	if(is_array($body_classes))
+		$body_classes = implode(' ', $body_classes);
 	
 	if($return)
 		return $body_classes;

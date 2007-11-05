@@ -81,7 +81,7 @@ class Version {
 			if (
 				file_exists($cachefile)
 				&& (time() - $cachetime < filemtime($cachefile))
-				&& !(file_get_contents($cachefile) == "")
+				&& file_get_contents($cachefile)
 			) {
 				return $parser->Parse($cachefile);
 			} elseif(cache_is_writable("version.atom")) {

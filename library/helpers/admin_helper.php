@@ -34,7 +34,7 @@ function is_valid_tarski_style($file) {
 	return (bool) (
 		!preg_match('/^\.+$/', $file)
 		&& preg_match('/^[A-Za-z][A-Za-z0-9\-]*.css$/', $file)
-		&& !preg_match('/^janus.css$|^single.css$|^centre.css$|^left.css$|^rtl.css$/', $file)
+		&& !preg_match('/^janus.css$|^centre.css$|^rtl.css$/', $file)
 	);
 }
 
