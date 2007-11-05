@@ -34,18 +34,20 @@ function tarski_sidebar() {
 	if(get_tarski_option('sidebar_type') == 'widgets') {
 		$sidebar_file = TARSKIDISPLAY . '/sidebar/widgets_sidebar.php';
 	} elseif(get_tarski_option('sidebar_type') == 'custom') {
-		if(file_exists(TEMPLATEPATH . '/user-sidebar.php'))
+		if(file_exists(TEMPLATEPATH . '/user-sidebar.php')) {
 			$sidebar_file = TEMPLATEPATH . '/user-sidebar.php';
-		elseif(is_user_logged_in())
+		} elseif(is_user_logged_in()) {
 			$sidebar_file = TARSKIDISPLAY . '/sidebar/user_sidebar_error.php';
+		}
 	}
 	
 	// Single post and page sidebar
 	if(is_single() || is_page()) {
-		if(get_tarski_option('sidebar_pp_type') == 'widgets')
+		if(get_tarski_option('sidebar_pp_type') == 'widgets') {
 			$sidebar_file = TARSKIDISPLAY . '/sidebar/widgets_pp_sidebar.php';
-		elseif(get_tarski_option('sidebar_pp_type') == 'none')
+		} elseif(get_tarski_option('sidebar_pp_type') == 'none') {
 			return;
+		}
 	}
 	
 	$sidebar_file = apply_filters('tarski_sidebar', $sidebar_file);
@@ -57,7 +59,7 @@ function tarski_sidebar() {
  * 
  * WordPress has this functionality, but the built-in formatting isn't
  * to Tarski's tastes, so this function builds its own.
- * @since ?
+ * @since 1.2
  * @return string
  */
 function tarski_next_prev_posts() {
@@ -101,7 +103,7 @@ function tarski_link_pages() {
 /**
  * tarski_posts_nav_link() - Outputs next / previous index page links.
  * 
- * @since ?
+ * @since 1.2
  * @global object $wp_query
  * @return string
  */
@@ -221,7 +223,7 @@ function tarski_comment_datetime() {
 function tidy_openid_names($comment_author) {
 	global $comment;
 	$comment_author =  str_replace('http://', '', $comment_author);
-	$comment_author = rtrim($comment_author, "/");
+	$comment_author = rtrim($comment_author, '/');
 	return $comment_author;
 }
 
@@ -312,7 +314,7 @@ function tarski_excerpt($return = false, $excerpt_length = 35) {
 function tarski_404_content() {
 	$content = sprintf(
 		__('The page you are looking for does not exist; it may have been moved, or removed altogether. You might want to try the search function or return to the %s.','tarski'),
-		'<a href="'. user_trailingslashit(get_bloginfo('url')). '">'. __('front page','tarski'). '</a>'
+		'<a href="' . user_trailingslashit(get_bloginfo('url')) . '">' . __('front page','tarski') . '</a>'
 	);
 	$content = wpautop($content);
 	$content = apply_filters('th_404_content', $content);
@@ -385,7 +387,7 @@ function tarski_blurb_wrapper($blurb) {
 	
 	
 	if(get_tarski_option('blurb')) {
-		$blurb = $prefix. $blurb. $suffix;
+		$blurb = $prefix . $blurb . $suffix;
 	}
 	
 	return $blurb;

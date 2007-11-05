@@ -13,9 +13,9 @@
  * @param boolean|string $post
  * @return string
  */
-function tarski_output_constant($constant, $pre=false, $post=false) {
+function tarski_output_constant($constant, $pre = false, $post = false) {
 	if($constant) {
-		echo $pre. $constant. $post;
+		echo $pre . $constant . $post;
 	}
 }
 
@@ -120,7 +120,7 @@ function tarski_output_sidebartopinclude() {
 	} else { // Sidebar everywhere
 		if(!(is_page() || is_single())) {
 			tarski_output_constant($sidebarTopInclude);
-		} elseif(get_post_meta($post->ID,'_wp_page_template',true) != 'archives.php') {
+		} elseif(get_post_meta($post->ID, '_wp_page_template', true) != 'archives.php') {
 			tarski_output_constant($sidebarTopInclude);
 		}
 	}
@@ -143,7 +143,7 @@ function tarski_output_sidebarbottominclude() {
 	} else { // Sidebar everywhere
 		if(!(is_page() || is_single())) {
 			tarski_output_constant($sidebarBottomInclude);
-		} elseif(get_post_meta($post->ID,'_wp_page_template',true) != 'archives.php') {
+		} elseif(get_post_meta($post->ID, '_wp_page_template', true) != 'archives.php') {
 			tarski_output_constant($sidebarBottomInclude);
 		}
 	}
@@ -160,7 +160,7 @@ function tarski_output_sidebarbottominclude() {
 function tarski_output_nosidebarinclude() {
 	global $noSidebarInclude, $post;
 	if(get_tarski_option('sidebar_onlyhome') && (is_single() || is_page())) {
-		if(get_post_meta($post->ID,'_wp_page_template',true) != 'archives.php') {
+		if(get_post_meta($post->ID, '_wp_page_template', true) != 'archives.php') {
 			tarski_output_constant($noSidebarInclude);
 		}
 	}
@@ -176,7 +176,7 @@ function tarski_output_nosidebarinclude() {
  */
 function tarski_output_archivesinclude() {
 	global $archivesPageInclude, $post;
-	if(get_post_meta($post->ID,'_wp_page_template',true) == 'archives.php') {
+	if(get_post_meta($post->ID, '_wp_page_template', true) == 'archives.php') {
 		tarski_output_constant($archivesPageInclude);
 	}
 }
@@ -214,7 +214,7 @@ function tarski_output_searchbottominclude() {
  */
 function tarski_output_footerinclude() {
 	global $footerInclude;
-	tarski_output_constant($footerInclude,'<div id="footer-include">','</div>');
+	tarski_output_constant($footerInclude, '<div id="footer-include">', '</div>');
 }
 
 

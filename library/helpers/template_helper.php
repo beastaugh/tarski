@@ -22,6 +22,7 @@ function is_wp_front_page() {
  * While the function ultimately returns a string, please note that filters
  * are applied to an array! This allows plugins to easily alter any aspect
  * of the title. For example, one might write a plugin to change the separator.
+ * @since 1.5
  * @param string $sep
  * @return string $doctitle
  */
@@ -331,6 +332,7 @@ function home_link_name() {
 /**
  * tarski_navbar() - Outputs the Tarski navbar.
  * 
+ * @since 1.2
  * @param boolean $return
  * @global object $wpdb
  * @return string $navbar
@@ -382,6 +384,7 @@ function tarski_navbar($return = false) {
 /**
  * add_external_links() - Adds external links to the Tarski navbar.
  * 
+ * @since 2.0
  * @see get_tarski_navbar()
  * @param string $navbar
  * @return string $navbar
@@ -415,6 +418,7 @@ function add_external_links($navbar) {
 /**
  * add_admin_link() - Adds a WordPress site admin link to the Tarski navbar.
  * 
+ * @since 2.0
  * @see get_tarski_navbar()
  * @param string $navbar
  * @return string $navbar
@@ -429,18 +433,20 @@ function add_admin_link($navbar) {
 /**
  * wrap_navlist() - Wraps the Tarski navbar in an unordered list element.
  * 
+ * @since 2.0
  * @see get_tarski_navbar()
  * @param string $navbar
  * @return string $navbar
  */
 function wrap_navlist($navbar) {
-	$navbar = '<ul class="primary xoxo">'."\n".$navbar.'</ul>'."\n";
+	$navbar = '<ul class="primary xoxo">' . "\n" . $navbar . '</ul>' . "\n";
 	return $navbar;
 }
 
 /**
  * tarski_feedlink() - Adds the site feed link to the site navigation.
  * 
+ * @since 2.0
  * @param boolean $return echo or return?
  * @return string $output
  */
@@ -456,6 +462,7 @@ function tarski_feedlink() {
 /**
  * tarski_bodyclass() - Returns the classes that should be applied to the document body.
  * 
+ * @since 1.2
  * @param boolean $return
  * @return string $body_class
  */
@@ -495,6 +502,7 @@ function tarski_bodyclass($return = false) {
 /**
  * tarski_bodyid() - Outputs the id that should be applied to the document body.
  * 
+ * @since 1.7
  * @param boolean $return
  * @global object $post
  * @global object $wp_query
@@ -555,6 +563,7 @@ function tarski_bodyid($return = false) {
  * page or a 404, as these pages include the search form earlier
  * in the document and the search form relies on the 's' id value,
  * which as an HTML id must be unique within the document.
+ * @since 2.0
  */
 function tarski_searchform() {
 	include_once(TEMPLATEPATH . "/searchform.php");
@@ -562,6 +571,8 @@ function tarski_searchform() {
 
 /**
  * tarski_credits() - Outputs the site feed and Tarski credits.
+ * 
+ * @since 1.5
  */
 function tarski_credits() {
 	if(detectWPMU())
