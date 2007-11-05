@@ -17,6 +17,7 @@ include_once(TARSKIHELPERS . '/hooks.php');
 include_once(TARSKIHELPERS . '/admin_helper.php');
 include_once(TARSKIHELPERS . '/template_helper.php');
 include_once(TARSKIHELPERS . '/content_helper.php');
+include_once(TARSKIHELPERS . '/page_template_helper.php');
 include_once(TARSKIHELPERS . '/author_helper.php');
 include_once(TARSKIHELPERS . '/tag_helper.php');
 include_once(TARSKIHELPERS . '/constants_helper.php');

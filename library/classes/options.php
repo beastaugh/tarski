@@ -46,20 +46,20 @@ class Options {
 	 * @since 2.0
 	 */
 	function tarski_options_defaults() {
-		$this->installed = theme_version("current");
+		$this->installed = theme_version('current');
 		$this->update_notification = true;
-		$this->blurb = __("This is the about text.","tarski");
+		$this->blurb = __('This is the default Tarski blurb: you can edit or remove it on the Tarski Options page.','tarski');
 		$this->footer_recent = true;
-		$this->sidebar_type = "tarski";
-		$this->sidebar_pp_type = "main";
+		$this->sidebar_type = 'tarski';
+		$this->sidebar_pp_type = 'main';
 		$this->sidebar_pages = true;
 		$this->sidebar_links = true;
 		$this->sidebar_custom = false;
-		$this->header = "greytree.jpg";
+		$this->header = 'greytree.jpg';
 		$this->display_title = true;
 		$this->display_tagline = true;
 		$this->nav_pages = false;
-		$this->home_link_name = __("Home","tarski");
+		$this->home_link_name = __('Home','tarski');
 		$this->nav_extlinkcat = 0;
 		$this->style = false;
 		$this->asidescategory = 0;
@@ -69,7 +69,7 @@ class Options {
 		$this->tags_everywhere = false;
 		$this->show_categories = true;
 		$this->use_pages = false;
-		$this->feed_type = "rss2";
+		$this->feed_type = 'rss2';
 	}
 	
 	/**
@@ -78,13 +78,13 @@ class Options {
 	 * @since 2.0
 	 */
 	function tarski_options_get() {
-		$array = unserialize(get_option("tarski_options"));
+		$array = unserialize(get_option('tarski_options'));
 		if(!empty($array)) {
 			foreach($array as $name => $value) {
 				$this->$name = $value;
 			}
 
-			if(empty($this->installed) || ($this->installed != theme_version("current"))) {
+			if(empty($this->installed) || ($this->installed != theme_version('current'))) {
 				// We had some Tarski preferences, but the preferences were from a different version, so we need to update them
 				
 				// Get our defaults, so we can merge them in
@@ -98,7 +98,7 @@ class Options {
 				
 				// If they had hidden the sidebar previously for non-index pages, preserve that setting
 				if(empty($this->sidebar_pp_type) && isset($this->sidebar_onlyhome) && $this->sidebar_onlyhome == 1) {
-					$this->sidebar_pp_type = "none";
+					$this->sidebar_pp_type = 'none';
 				}
 				
 				// If update notification was off, leave it off, otherwise turn it on

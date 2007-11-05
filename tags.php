@@ -2,8 +2,8 @@
 /*
 Template Name: Tags
 */
-?>
-<?php get_header(); ?>
+
+get_header(); ?>
 
 
 

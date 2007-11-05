@@ -62,6 +62,8 @@ add_action('th_postend', 'add_post_tags', 10);
 add_action('th_postend', 'tarski_link_pages', 11);
 
 // Sidebar
+add_filter('tarski_sidebar', 'hide_sidebar_for_archives');
+
 add_action('th_sidebar', 'tarski_sidebar', 10);
 
 // Comments

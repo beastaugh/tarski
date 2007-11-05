@@ -23,9 +23,11 @@ if(!function_exists('is_active_sidebar')) {
  * tarski_sidebar() - Outputs Tarski's sidebar.
  * 
  * @since 2.0
+ * @global object $post
  * @return mixed
  */
 function tarski_sidebar() {
+	global $post;
 
 	// Default Tarski sidebar
 	$sidebar_file = TARSKIDISPLAY . '/sidebar/tarski_sidebar.php';
@@ -51,7 +53,9 @@ function tarski_sidebar() {
 	}
 	
 	$sidebar_file = apply_filters('tarski_sidebar', $sidebar_file);
-	include($sidebar_file);
+	
+	if(is_string($sidebar_file))
+		include($sidebar_file);
 }
 
 /**

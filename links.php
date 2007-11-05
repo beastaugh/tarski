@@ -2,8 +2,8 @@
 /*
 Template Name: Links
 */
-?>
-<?php get_header(); ?>
+
+get_header(); ?>
 
 
 

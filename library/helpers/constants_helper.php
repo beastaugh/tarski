@@ -32,7 +32,7 @@ function tarski_output_headinclude() {
 }
 
 /**
- * tarski_output_navbarinclude() - Outputs $navbarInclude variable from constants.php.
+ * tarski_output_navbarinclude() - Adds $navbarInclude variable from constants.php to navbar.
  * 
  * @since 1.5
  * @global string $navbarInclude
@@ -108,11 +108,10 @@ function tarski_output_commentsforminclude() {
  * 
  * @since 1.5
  * @global string $sidebarTopInclude
- * @global object $post
  * @return string $sidebarTopInclude
  */
 function tarski_output_sidebartopinclude() {
-	global $sidebarTopInclude, $post;
+	global $sidebarTopInclude;
 	if(get_tarski_option('sidebar_onlyhome')) { // Sidebar only on index pages
 		if(!(is_page() || is_single())) {
 			tarski_output_constant($sidebarTopInclude);
@@ -120,7 +119,7 @@ function tarski_output_sidebartopinclude() {
 	} else { // Sidebar everywhere
 		if(!(is_page() || is_single())) {
 			tarski_output_constant($sidebarTopInclude);
-		} elseif(get_post_meta($post->ID, '_wp_page_template', true) != 'archives.php') {
+		} elseif(is_archives_template()) {
 			tarski_output_constant($sidebarTopInclude);
 		}
 	}
@@ -131,11 +130,10 @@ function tarski_output_sidebartopinclude() {
  * 
  * @since 2.0
  * @global string $sidebarBottomInclude
- * @global object $post
  * @return string $sidebarBottomInclude
  */
 function tarski_output_sidebarbottominclude() {
-	global $sidebarBottomInclude, $post;
+	global $sidebarBottomInclude;
 	if(get_tarski_option('sidebar_onlyhome')) { // Sidebar only on index pages
 		if(!(is_page() || is_single())) {
 			tarski_output_constant($sidebarBottomInclude);
@@ -143,7 +141,7 @@ function tarski_output_sidebarbottominclude() {
 	} else { // Sidebar everywhere
 		if(!(is_page() || is_single())) {
 			tarski_output_constant($sidebarBottomInclude);
-		} elseif(get_post_meta($post->ID, '_wp_page_template', true) != 'archives.php') {
+		} elseif(is_archives_template()) {
 			tarski_output_constant($sidebarBottomInclude);
 		}
 	}
@@ -154,13 +152,12 @@ function tarski_output_sidebarbottominclude() {
  * 
  * @since 1.5
  * @global string $noSidebarInclude
- * @global object $post
  * @return string $noSidebarInclude
  */
 function tarski_output_nosidebarinclude() {
-	global $noSidebarInclude, $post;
+	global $noSidebarInclude;
 	if(get_tarski_option('sidebar_onlyhome') && (is_single() || is_page())) {
-		if(get_post_meta($post->ID, '_wp_page_template', true) != 'archives.php') {
+		if(is_archives_template()) {
 			tarski_output_constant($noSidebarInclude);
 		}
 	}
@@ -171,12 +168,11 @@ function tarski_output_nosidebarinclude() {
  * 
  * @since 1.5
  * @global string $archivesPageInclude
- * @global object $post
  * @return string $archivesPageInclude
  */
 function tarski_output_archivesinclude() {
-	global $archivesPageInclude, $post;
-	if(get_post_meta($post->ID, '_wp_page_template', true) == 'archives.php') {
+	global $archivesPageInclude;
+	if(is_archives_template()) {
 		tarski_output_constant($archivesPageInclude);
 	}
 }
