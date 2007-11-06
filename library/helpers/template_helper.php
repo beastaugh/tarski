@@ -16,6 +16,25 @@ function is_wp_front_page() {
 }
 
 /**
+ * is_archives_template() - Returns true if the current page uses the Archives template
+ * 
+ * This function exists for backwards-compatibility with WordPress 2.3,
+ * which does not include the is_page_template() function.
+ * @since 2.0
+ * @global object $post
+ * @return boolean
+ */
+function is_archives_template() {
+	if(function_exists('is_page_template')) {
+		return is_page_template('archives.php');
+	} else {
+		global $post;
+		$template = get_post_meta($post->ID, '_wp_page_template', true);
+		return ($template == 'archives.php');
+	}
+}
+
+/**
  * tarski_doctitle() - Returns the document title.
  * 
  * The order (site name first or last) can be set on the Tarski Options page.

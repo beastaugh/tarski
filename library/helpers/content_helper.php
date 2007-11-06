@@ -59,6 +59,18 @@ function tarski_sidebar() {
 }
 
 /**
+ * hide_sidebar_for_archives() - Hides the sidebar on pages using the Archives template
+ * 
+ * @since 2.0
+ * @return string|boolean $sidebar_file
+ */
+function hide_sidebar_for_archives($sidebar_file) {	
+	if(is_archives_template())
+		$sidebar_file = false;
+	return $sidebar_file;
+}
+
+/**
  * tarski_next_prev_posts() - Outputs links to the next and previous posts.
  * 
  * WordPress has this functionality, but the built-in formatting isn't
