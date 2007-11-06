@@ -33,6 +33,7 @@ input, select, textarea { font-size: 100%; }
 body { font-family: Verdana, Helvetica, Arial, sans-serif; font-size: 76%; line-height: 120%; color: #545454; background: #fff; min-width: 760px; }
 
 #wrapper { width: 760px; text-align: left; }
+body.rtl #wrapper { text-align: right; direction: rtl; }
 	#content { clear: both; margin: 2em 0; padding: 0 20px; }
 #footer, #theme-info, #footer-include { clear: both; }
 
@@ -68,7 +69,9 @@ body.centre #wrapper { margin: 0 auto; }
 /* Navigation
 ----------------------------------------------- */
 #navigation ul.primary { list-style: none; margin: 0; padding: 0.5em 0; }
+body.rtl #navigation ul.primary { direction: ltr; }
 	#navigation ul.primary li { display: inline; margin: 0 1em 0 0; }
+	body.rtl #navigation ul.primary li { display: inline; margin: 0 0 0 1em; }
 #navigation div.secondary { padding: 0.5em 0 0.2em 0; }
 	#navigation div.secondary p { margin: 0; }
 	body.janus #navigation .secondary p, body.janus #theme-info .secondary p { text-align: right; }
@@ -80,6 +83,7 @@ body.centre #wrapper { margin: 0 auto; }
 	------------------------------------------- */
 	body .feed { padding: 5px 0 5px 20px; font-size: 0.8em; background: url('images/feed-add.gif') no-repeat 0 50%; }
 	body.janus #wrapper .feed { padding: 5px 20px 5px 0; background: url('images/feed-add.gif') no-repeat 100% 50%; }
+	body.rtl #wrapper .feed { padding: 5px 20px 5px 0; font-size: 0.8em; background: url('../images/feed-add.gif') no-repeat 100% 50%; }
 
 /* Clearfix
 ----------------------------------------------- */
@@ -107,6 +111,7 @@ body.centre #wrapper { margin: 0 auto; }
 		ul, ol { margin: 0 0 1em 30px; padding: 0; }
 		ul { list-style: disc; }
 			li { margin: 0 0 0.25em 0; }
+			body.rtl ul, body.rtl ol { margin: 0 30px 1em 0; padding: 0; }
 		pre { overflow: scroll; margin: 0 0 1em 0; padding: 0 0 0.5em 0; }
 		body .primary pre { width: 500px; }
 		body .secondary pre { width: 200px; }
@@ -132,6 +137,7 @@ body.centre #wrapper { margin: 0 auto; }
 		--------------------------------------- */
 		body .articlenav { margin: -2em 0 2em 0; border-bottom: 1px solid #e5e5e5; padding-top: 0.75em; padding-bottom: 0.75em; background: #fcffff; color: #a8a8a8; }
 			body.janus .articlenav { padding-top: 0.75em; padding-bottom: 0.75em; text-align: right; }
+			body.rtl .articlenav { margin: -2em 0 2em 0; border-bottom: 1px solid #e5e5e5; padding-top: 0.75em; padding-bottom: 0.75em; background: #fcffff; color: #a8a8a8; text-align: left; }
 		body .entry { margin: 0 0 2em 0; clear: both; }
 		body .posts .entry { margin: 0 0 4em 0; }
 			body .entry .meta { margin: 0 0 1em 0; }
@@ -189,6 +195,7 @@ body.centre #wrapper { margin: 0 auto; }
 			body .meta .comments-feed { width: 350px; float: right; text-align: right; padding: 0.75em 0 0 0; }
 				body .meta .comments-feed a { padding: 5px 20px 5px 0; background: url('images/feed.gif') no-repeat 100% 50%; font-size: 0.8em; }
 			#trackback-link { margin: 0; border-top: 1px solid #ccc; font-size: 0.8em; color: #a8a8a8; background: url('images/trackback.gif') no-repeat 100% 60%; clear: both; }
+			body.rtl #wrapper #trackback-link { margin: 0; border-top: 1px solid #ccc; padding: 0.5em 20px 0.5em 0; background: url('../images/trackback.gif') no-repeat 100% 60%; font-size: 0.8em; color: #a8a8a8; clear: both; }
 				#trackback-link .secondary p { font-weight: bold; margin: 0; padding: 5px 24px 5px 0; }
 				#trackback-link .primary p { margin: 0; padding: 5px 0; }
 

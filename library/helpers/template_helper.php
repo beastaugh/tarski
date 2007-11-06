@@ -340,13 +340,14 @@ function home_link_name() {
 function tarski_navbar($return = false) {
 	global $wpdb;
 	$current = 'class="nav-current" ';
+	$navbar = array();
 	
 	if(get_option('show_on_front') != 'page') {
 		if(is_home()) {
 			$home_status = $current;
 		}
-		$navbar = sprintf(
-			'<li><a id="nav-home" '.'%1$s'.'href="%2$s" rel="home">%3$s</a></li>'."\n",
+		$navbar['home'] = sprintf(
+			'<li><a id="nav-home" '.'%1$s'.'href="%2$s" rel="home">%3$s</a></li>',
 			$home_status,
 			user_trailingslashit(get_bloginfo('url')),
 			home_link_name()
@@ -363,9 +364,9 @@ function tarski_navbar($return = false) {
 				$page_status = false;
 			}
 						
-			$navbar .= sprintf(
-				'<li><a id="nav-%1$s" '.'%2$s'. 'href="%3$s">%4$s</a></li>'."\n",
-				$page.'-'.$wpdb->get_var("SELECT post_name from $wpdb->posts WHERE ID = $page"),
+			$navbar[] = sprintf(
+				'<li><a id="nav-%1$s" ' . '%2$s' . 'href="%3$s">%4$s</a></li>',
+				$page . '-' . $wpdb->get_var("SELECT post_name from $wpdb->posts WHERE ID = $page"),
 				$page_status,
 				get_permalink($page),
 				$wpdb->get_var("SELECT post_title from $wpdb->posts WHERE ID = $page")
@@ -373,7 +374,13 @@ function tarski_navbar($return = false) {
 		}
 	}
 	
+	// Filters should return an array
 	$navbar = apply_filters('tarski_navbar', $navbar);
+
+	// But if they don't, the navbar won't be imploded
+	if(is_array($navbar))
+		$navbar = "\n" . implode("\n", $navbar) . "\n\n";
+	
 	if($return) {
 		return $navbar;
 	} else {
@@ -385,7 +392,7 @@ function tarski_navbar($return = false) {
  * add_external_links() - Adds external links to the Tarski navbar.
  * 
  * @since 2.0
- * @see get_tarski_navbar()
+ * @see tarski_navbar()
  * @param string $navbar
  * @return string $navbar
  */
@@ -395,18 +402,18 @@ function add_external_links($navbar) {
 		$extlinks = get_bookmarks("category=$extlinks_cat");
 		foreach($extlinks as $link) {
 			if($link->link_rel) {
-				$rel = 'rel="'. $link->link_rel. '" ';
+				$rel = 'rel="' . $link->link_rel . '" ';
 			}
 			if($link->link_target) {
-				$target = 'target="'. $link->link_target. '" ';
+				$target = 'target="' . $link->link_target . '" ';
 			}
 			if($link->link_description) {
-				$title = 'title="'. $link->link_description. '" ';
+				$title = 'title="'. $link->link_description . '" ';
 			}
-			$navbar .= sprintf(
-				'<li><a id="nav-link-%1$s" %2$s href="%3$s">%4$s</a></li>'."\n",
+			$navbar[] = sprintf(
+				'<li><a id="nav-link-%1$s" %2$s href="%3$s">%4$s</a></li>',
 				$link->link_id,
-				$rel. $target. $title,
+				$rel . $target . $title,
 				$link->link_url,
 				$link->link_name
 			);
@@ -419,13 +426,17 @@ function add_external_links($navbar) {
  * add_admin_link() - Adds a WordPress site admin link to the Tarski navbar.
  * 
  * @since 2.0
- * @see get_tarski_navbar()
+ * @see tarski_navbar()
  * @param string $navbar
  * @return string $navbar
  */
 function add_admin_link($navbar) {
 	if(is_user_logged_in())
-		$navbar .= '<li><a id="nav-admin" href="'. get_option('siteurl'). '/wp-admin/">'. __('Site Admin','tarski'). '</a></li>'. "\n";
+		$navbar['admin'] = sprintf(
+			'<li><a id="nav-admin" href="%1$s">%2$s</a></li>',
+			 get_option('siteurl') . '/wp-admin/',
+			__('Site Admin','tarski')
+		);	
 	
 	return $navbar;
 }
@@ -434,12 +445,13 @@ function add_admin_link($navbar) {
  * wrap_navlist() - Wraps the Tarski navbar in an unordered list element.
  * 
  * @since 2.0
- * @see get_tarski_navbar()
+ * @see tarski_navbar()
  * @param string $navbar
  * @return string $navbar
  */
 function wrap_navlist($navbar) {
-	$navbar = '<ul class="primary xoxo">' . "\n" . $navbar . '</ul>' . "\n";
+	array_unshift($navbar, '<ul class="primary xoxo">');
+	array_push($navbar, '</ul>');
 	return $navbar;
 }
 
