@@ -1,6 +1,4 @@
-<?php if(!is_home() && !get_tarski_option('use_pages')) {
-	$posts = query_posts($query_string . '&nopaging=1');
-} ?>
+<?php if(!is_home() && !get_tarski_option('use_pages')) { $posts = query_posts($query_string . '&nopaging=1'); } ?>
 
 <?php while(have_posts()) { the_post(); ?>
 	

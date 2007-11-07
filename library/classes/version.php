@@ -47,10 +47,10 @@ class Version {
 	 * @since 2.0
 	 */
 	function current_version_number() {
-		$themedata = get_theme_data(TEMPLATEPATH . "/style.css");
-		$installed_version = trim($themedata["Version"]);
+		$themedata = get_theme_data(TEMPLATEPATH . '/style.css');
+		$installed_version = trim($themedata['Version']);
 		if($installed_version == false) {
-			$this->current = "unknown";
+			$this->current = 'unknown';
 		} else {
 			$this->current = $installed_version;
 		}
@@ -67,12 +67,12 @@ class Version {
 		
 		ob_start();
 		
-			require_once(TEMPLATEPATH . "/library/includes/feedparser/lib-feedparser.php");
-			require_once(TEMPLATEPATH . "/library/includes/feedparser/lib-entity.php");
-			require_once(TEMPLATEPATH . "/library/includes/feedparser/lib-utf8.php");
+			require_once(TEMPLATEPATH . '/library/includes/feedparser/lib-feedparser.php');
+			require_once(TEMPLATEPATH . '/library/includes/feedparser/lib-entity.php');
+			require_once(TEMPLATEPATH . '/library/includes/feedparser/lib-utf8.php');
 		
 			// Thanks to Simon Willison for the inspiration
-			$cachefile = TARSKICACHE . "/version.atom";
+			$cachefile = TARSKICACHE . '/version.atom';
 			$cachetime = 60 * 60;
 
 			$parser = new FeedParserURL();
@@ -84,10 +84,10 @@ class Version {
 				&& file_get_contents($cachefile)
 			) {
 				return $parser->Parse($cachefile);
-			} elseif(cache_is_writable("version.atom")) {
+			} elseif(cache_is_writable('version.atom')) {
 				$file = TARSKIVERSIONFILE;
 				$ch = curl_init($file);
-				$fp = @fopen($cachefile, "w");
+				$fp = @fopen($cachefile, 'w');
 				curl_setopt($ch, CURLOPT_FILE, $fp);
 				curl_setopt($ch, CURLOPT_HEADER, 0);
 				curl_exec($ch);
@@ -150,11 +150,11 @@ class Version {
 		$latest_version = $this->latest;
 
 		if(!$latest_version) {
-			$version_status = "no_connection";
+			$version_status = 'no_connection';
 		} elseif($current_version == $latest_version) {
-			$version_status = "current";
+			$version_status = 'current';
 		} elseif($current_version != $latest_version) {
-			$version_status = "not_current";
+			$version_status = 'not_current';
 		}
 		
 		$this->status = $version_status;
@@ -172,9 +172,9 @@ class Version {
  * @param string $version
  * @return string
  */
-function theme_version($version = "current") {
+function theme_version($version = 'current') {
 	$tarski_version = new Version;
-	if($version == "latest") {
+	if($version == 'latest') {
 		$tarski_version->latest_version_number();
 		return $tarski_version->latest;
 	} else {
@@ -194,23 +194,28 @@ function theme_version($version = "current") {
  * @param string $location
  * @return string
  */
-function tarski_update_notifier($location = "dashboard") {
+function tarski_update_notifier($location = 'dashboard') {
+	
 	$tarski_version = new Version;
 	
 	$tarski_version->current_version_number();
-	$tarski_version->latest_version_number();
-	$tarski_version->latest_version_link();
-	$tarski_version->version_status();
+	
+	// Only performs the update check when notification is enabled
+	if(get_tarski_option('update_notification')) {
+		$tarski_version->latest_version_number();
+		$tarski_version->latest_version_link();
+		$tarski_version->version_status();
+	}
 	
 	$current = $tarski_version->current;
 	$latest = $tarski_version->latest;
 	$latest_link = $tarski_version->latest_link;
 	$status = $tarski_version->status;
 	
-	if($location == "options_page") {
-		include(TARSKIDISPLAY . "/admin/version_options.php");
+	if($location == 'options_page') {
+		include(TARSKIDISPLAY . '/admin/version_options.php');
 	} elseif(!detectWPMU() || detectWPMUadmin()) {
-		include(TARSKIDISPLAY . "/admin/version_dashboard.php");
+		include(TARSKIDISPLAY . '/admin/version_dashboard.php');
 	}
 }
 
