@@ -61,46 +61,40 @@ class Version {
 	 * 
 	 * @link http://tarskitheme.com/version.atom
 	 * @since 2.0
-	 * @return array $atomdata
+	 * @return string $atomdata
 	 */
 	function version_feed_data() {
-		
-		ob_start();
-		
-			require_once(TEMPLATEPATH . '/library/includes/feedparser/lib-feedparser.php');
-			require_once(TEMPLATEPATH . '/library/includes/feedparser/lib-entity.php');
-			require_once(TEMPLATEPATH . '/library/includes/feedparser/lib-utf8.php');
-		
-			// Thanks to Simon Willison for the inspiration
-			$cachefile = TARSKICACHE . '/version.atom';
-			$cachetime = 60 * 60;
 
-			$parser = new FeedParserURL();
-		
-			// Serve from the cache if it is younger than $cachetime
-			if (
-				file_exists($cachefile)
-				&& (time() - $cachetime < filemtime($cachefile))
-				&& file_get_contents($cachefile)
-			) {
-				return $parser->Parse($cachefile);
-			} elseif(cache_is_writable('version.atom')) {
-				$file = TARSKIVERSIONFILE;
-				$ch = curl_init($file);
-				$fp = @fopen($cachefile, 'w');
-				curl_setopt($ch, CURLOPT_FILE, $fp);
-				curl_setopt($ch, CURLOPT_HEADER, 0);
-				curl_exec($ch);
-				curl_close($ch);
-				fclose($fp);
+		// Thanks to Simon Willison for the inspiration
+		$cachefile = TARSKICACHE . "/version.atom";
+		$cachetime = 60 * 60;
 
-				return $parser->Parse($cachefile);
-			} else {
-				return $parser->Parse(TARSKIVERSIONFILE);
+		// Serve from the cache if it is younger than $cachetime
+		if (
+		file_exists($cachefile)
+		&& (time() - $cachetime < filemtime($cachefile))
+		&& file_get_contents($cachefile)
+		) {
+			$atomdata = file_get_contents($cachefile);
+		} else {
+			$ch = curl_init(TARSKIVERSIONFILE);
+			curl_setopt($ch, CURLOPT_FAILONERROR, 1);
+			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+			curl_setopt($ch, CURLOPT_HEADER, 0);
+			$atomdata = curl_exec($ch);
+			curl_close($ch);
+
+			if(!empty($atomdata) && cache_is_writable("version.atom")) {
+				$fp = @fopen($cachefile, "w");
+				if($fp)
+				{
+					fwrite($fp, $atomdata);
+					fclose($fp);
+				}
 			}
+		}
 
-		$atomdata = ob_get_contents();
-		ob_end_clean();
 		return $atomdata;
 	}
 	
@@ -111,10 +105,9 @@ class Version {
 	 * @return string
 	 */
 	function latest_version_number() {
-		$atomdata = Version::version_feed_data();
-		$latest_version_number = wp_specialchars($atomdata['feed']['entries'][0]['title']['value']);
-		
-		$this->latest = $latest_version_number;
+		if(preg_match('/<entry>.*?<title>(.+?)<\/title>.*?<\/entry>/is', Version::version_feed_data(), $matches)) {
+			$this->latest = wp_specialchars($matches[1]);
+		}
 	}
 	
 	/**
@@ -127,10 +120,9 @@ class Version {
 	 * @return string
 	 */
 	function latest_version_link() {
-		$atomdata = Version::version_feed_data();
-		$latest_version_link = wp_specialchars($atomdata['feed']['entries']['0']['id']);
-		
-		$this->latest_link = $latest_version_link;
+		if(preg_match('/<entry>.*?<id>(.+?)<\/id>.*?<\/entry>/is', Version::version_feed_data(), $matches)) {
+			$this->latest_link = wp_specialchars($matches[1]);
+		}
 	}
 
 	/**
