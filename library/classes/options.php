@@ -79,7 +79,7 @@ class Options {
 	 */
 	function tarski_options_get() {
 		$array = unserialize(get_option('tarski_options'));
-		if(!empty($array)) {
+		if(!empty($array) && is_object($array)) {
 			foreach($array as $name => $value) {
 				$this->$name = $value;
 			}
@@ -120,10 +120,20 @@ class Options {
 					$this->centred_theme = true;
 				}
 				
-				// Whatever is left that is not set, assign the default to if we have one
+				// Conform our options to the expected values, types, and defaults
 				foreach($this as $name => $value) {
-					if(!isset($this->$name) && isset($defaults->$name)) {
+					if(!isset($defaults->$name)) {
+						// Get rid of options which no longer exist
+						unset($this->$name);
+					} else if(!isset($this->$name)) {
+						// Use the default if we don't have this option
 						$this->$name = $defaults->$name;
+					} else if(is_array($this->$name) && !is_array($defaults->$name)) {
+						// If our option is an array and the default is not, implode using " " as a separator
+						$this->$name = implode(" ", $this->$name);
+					} else if(!is_array($this->$name) && is_array($defaults->$name)) {
+						// If our option is a scalar and the default is an array, wrap our option in an array
+						$this->$name = array($this->$name);
 					}
 				}
 
