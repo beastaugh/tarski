@@ -108,6 +108,67 @@ function add_robots_meta() {
 }
 
 /**
+ * tarski_stylesheets() - Adds Tarski's stylesheets to the document head.
+ * 
+ * @since 2.0.1
+ * @return string
+ */
+function tarski_stylesheets() {
+	
+	// Default stylesheets
+	$style_array = array(
+		'main' => array(
+			'url' => get_bloginfo('stylesheet_url'),
+		),
+		'print' => array(
+			'url' => get_bloginfo('template_directory') . '/library/css/print.css',
+			'media' => 'print'
+		),
+		'mobile' => array(
+			'url' => get_bloginfo('template_directory') . '/library/css/mobile.css',
+			'media' => 'handheld'
+		)
+	);
+	
+	// Adds the alternate style, if one is selected
+	if(get_tarski_option('style')) {
+		$style_array['alternate'] = array(
+			'url' => get_bloginfo('template_directory') . '/styles/' . get_tarski_option('style')
+		);
+	}
+	
+	// The more complex array can be filtered if desired
+	$style_array = apply_filters('tarski_style_array', $style_array);
+	$stylesheets = array();
+	
+	// The business end of the function
+	if(is_array($style_array)) {
+		foreach($style_array as $type => $values) {
+			if(is_array($values)) {
+				if(!($media = $values['media'])) {
+					$media = 'screen,projection';
+				}
+				$stylesheets[$type] = sprintf(
+					'<link rel="stylesheet" href="%1$s" type="text/css" media="%2$s" />',
+					$values['url'] . '?v=' . theme_version(),
+					$media
+				);
+			}
+		}
+	}
+	
+	// But usually the simpler one should be sufficient
+	$stylesheets = apply_filters('tarski_stylesheets', $stylesheets);
+	
+	// Filters should return an array
+	if(is_array($stylesheets))
+		$stylesheets = "\n" . implode("\n", $stylesheets) . "\n\n";
+	
+	if(!empty($stylesheets))
+		echo $stylesheets;
+}
+
+/**
  * get_category_feed_link() - Gets the feed link for a given category.
  * 
  * Can be set to return Atom, RSS or RSS2. Currently being considered
