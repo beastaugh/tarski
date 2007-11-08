@@ -184,7 +184,7 @@ function add_version_to_styles($style_array) {
 	if(is_array($style_array)) {
 		foreach($style_array as $type => $values) {
 			if(is_array($values) && $values['url']) {
-				$style_array[$type]['url'] = $values['url'] . '?v=' . theme_version();
+				$style_array[$type]['url'] .= '?v=' . theme_version();
 			}
 		}
 	}
