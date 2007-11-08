@@ -62,7 +62,7 @@
 				<?php if(!cache_is_writable() && get_tarski_option('update_notification')) { ?>
 				<p class="insert"><?php printf( __('The version check could not be cached. To enable caching, follow the tutorial on the %s page.','tarski'), '<a href="http://tarskitheme.com/help/updates/notifier/">'. __('update notifier','tarski'). '</a>' ); ?></p>
 				<?php } ?>
-				<p class="insert"><strong><?php _e('Privacy notice: ','tarski'); ?></strong><?php _e('The update notifier does not transmit any information about you or your website.'); ?></p>
+				<p class="insert"><strong><?php _e('Privacy notice: ','tarski'); ?></strong><?php _e('The update notifier does not transmit any information about you or your website.','tarski'); ?></p>
 			</fieldset>
 		<?php } ?>
 
@@ -172,7 +172,7 @@
 					<?php } ?>
 
 					<?php if(detectWPMU()) { // WPMU users ?>
-						<p><?php echo __('Tarski allows you to select an %s that modifies the default one. Choose from the list above.','tarski'); ?></p>
+						<p><?php _e('Tarski allows you to select an alternate style that modifies the default one. Choose from the list above.','tarski'); ?></p>
 					<?php } else { // non-WPMU users ?>
 						<p><?php printf( __('Tarski allows you to select an %1$s that modifies the default one. Choose from the list above, or upload your own to %2$s.','tarski'), '<a href="http://tarskitheme.com/help/styles/">'. __('alternate style','tarski'). '</a>', '<code>wp-content/themes/' . get_template() . '/styles/</code>' ); ?></p>
 					<?php } ?>
@@ -367,5 +367,5 @@
 <?php } ?>
 
 <div class="wrap">
-	<p class="info"><?php printf( __('The %1$s is full of useful stuff &middot; %2$s'), '<a href="http://tarskitheme.com/help/">' . __('Tarski documentation','tarski') . '</a>', '<a href="http://tarskitheme.com/credits/">' . __('Credits &amp; Thanks','tarski') . '</a>'); ?></p>
+	<p class="info"><?php printf( __('The %1$s is full of useful stuff &middot; %2$s','tarski'), '<a href="http://tarskitheme.com/help/">' . __('Tarski documentation','tarski') . '</a>', '<a href="http://tarskitheme.com/credits/">' . __('Credits &amp; Thanks','tarski') . '</a>'); ?></p>
 </div>
