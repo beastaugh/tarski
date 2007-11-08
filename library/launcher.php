@@ -44,6 +44,8 @@ add_action('admin_head', 'tarski_inject_scripts');
 add_action('save_post', 'tarski_resave_navbar');
 
 // Header
+add_filter('tarski_style_array', 'add_version_to_styles');
+
 add_action('wp_head', 'add_robots_meta');
 add_action('wp_head', 'tarski_stylesheets');
 add_action('wp_head', 'tarski_feeds');

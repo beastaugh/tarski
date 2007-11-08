@@ -144,13 +144,14 @@ function tarski_stylesheets() {
 	// The business end of the function
 	if(is_array($style_array)) {
 		foreach($style_array as $type => $values) {
-			if(is_array($values)) {
+			// URL is required
+			if(is_array($values) && $values['url']) {
 				if(!($media = $values['media'])) {
 					$media = 'screen,projection';
 				}
 				$stylesheets[$type] = sprintf(
 					'<link rel="stylesheet" href="%1$s" type="text/css" media="%2$s" />',
-					$values['url'] . '?v=' . theme_version(),
+					$values['url'],
 					$media
 				);
 			}
@@ -166,6 +167,28 @@ function tarski_stylesheets() {
 	
 	if(!empty($stylesheets))
 		echo $stylesheets;
+}
+
+/**
+ * add_version_to_styles() - Adds version number to style links.
+ * 
+ * This makes browsers re-download the CSS file when the version
+ * number changes, reducing problems that may occur when markup
+ * changes but the corresponding new CSS is not downloaded.
+ * @since 2.0.1
+ * @see tarski_stylesheets()
+ * @param array $style_array
+ * @return array $style_array
+ */
+function add_version_to_styles($style_array) {
+	if(is_array($style_array)) {
+		foreach($style_array as $type => $values) {
+			if(is_array($values) && $values['url']) {
+				$style_array[$type]['url'] = $values['url'] . '?v=' . theme_version();
+			}
+		}
+	}
+	return $style_array;
 }
 
 /**
