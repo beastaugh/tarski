@@ -163,7 +163,7 @@ function tarski_stylesheets() {
 	
 	// Filters should return an array
 	if(is_array($stylesheets))
-		$stylesheets = "\n" . implode("\n", $stylesheets) . "\n\n";
+		$stylesheets = implode("\n", $stylesheets) . "\n\n";
 	
 	if(!empty($stylesheets))
 		echo $stylesheets;
@@ -189,6 +189,36 @@ function add_version_to_styles($style_array) {
 		}
 	}
 	return $style_array;
+}
+
+/**
+ * tarski_javascript() - Adds Tarski JavaScript to the document head.
+ * 
+ * @since 2.0.1
+ * @return string
+ */
+function tarski_javascript() {
+	$scripts = array(
+		'tarski-js' => get_bloginfo('template_directory') . '/library/js/tarski-js.php'
+	);
+	
+	$javascript = array();
+	
+	foreach($scripts as $name => $url) {
+		$javascript[$name] =  sprintf(
+			'<script type="text/javascript" src="%s"></script>',
+			$url
+		);
+	}
+	
+	$javascript = apply_filters('tarski_javascript', $javascript);
+	
+	// Filters should return an array
+	if(is_array($javascript))
+		$javascript = implode("\n", $javascript) . "\n\n";
+	
+	if(!empty($javascript))
+		echo $javascript;
 }
 
 /**

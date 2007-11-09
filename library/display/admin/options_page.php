@@ -94,7 +94,7 @@
 				<?php } // end non-WPMU-only block ?>
 				
 				<h3><?php _e('Post and Page Sidebar','tarski'); ?></h3>
-				<p><?php printf( __('The sidebar displayed on single posts and pages can be the same as on the rest of the site, a different set of %1$s, or you can choose not to display it at all.'),  '<a href="' . $widgets_link . '">' . __('widgets','tarski') . '</a>'); ?></p>
+				<p><?php printf( __('The sidebar displayed on single posts and pages can be the same as on the rest of the site, a different set of %1$s, or you can choose not to display it at all.','tarski'),  '<a href="' . $widgets_link . '">' . __('widgets','tarski') . '</a>'); ?></p>
 				
 				<label for="option-pp-ms"><input type="radio" id="option-pp-ms" name="sidebar_pp_type" value="main"<?php if(get_tarski_option('sidebar_pp_type') == 'main') { echo ' checked="checked"'; } ?> /> <?php _e('Same as the main sidebar','tarski'); ?></label>
 				<label for="option-pp-ws"><input type="radio" id="option-pp-ws" name="sidebar_pp_type" value="widgets"<?php if(get_tarski_option('sidebar_pp_type') == 'widgets') { echo ' checked="checked"'; } ?> /> <?php _e('Different widgets','tarski'); ?></label>				
