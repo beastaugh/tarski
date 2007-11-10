@@ -224,9 +224,11 @@ function tarski_javascript() {
 /**
  * get_category_feed_link() - Gets the feed link for a given category.
  * 
- * Can be set to return Atom, RSS or RSS2. Currently being considered
- * for core inclusion, hence the conditional definition.
- * @link http://trac.wordpress.org/ticket/5173
+ * Can be set to return Atom, RSS or RSS2. Now in WP trunk, but
+ * conditionally defined here for backwards compatibility with 2.3.
+ * Will be deprecated when WP 2.4 is released, and removed at some
+ * point thereafter.
+ * @link http://trac.wordpress.org/changeset/6327
  * @since 2.0
  * @param integer $cat_id
  * @param string $feed
