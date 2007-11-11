@@ -499,7 +499,7 @@ function tarski_navbar($return = false) {
 				$page_status = false;
 			}
 						
-			$navbar[] = sprintf(
+			$navbar[$page] = sprintf(
 				'<li><a id="nav-%1$s" ' . '%2$s' . 'href="%3$s">%4$s</a></li>',
 				$page . '-' . $wpdb->get_var("SELECT post_name from $wpdb->posts WHERE ID = $page"),
 				$page_status,

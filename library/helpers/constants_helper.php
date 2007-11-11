@@ -35,15 +35,16 @@ function tarski_output_headinclude() {
  * tarski_output_navbarinclude() - Adds $navbarInclude variable from constants.php to navbar.
  * 
  * @since 1.5
+ * @param array $input
  * @global string $navbarInclude
- * @return string $navbarInclude
+ * @return array $navbarInclude
  */
 function tarski_output_navbarinclude($input) {
 	global $navbarInclude;
 	if($navbarInclude) {
-		$input .= $navbarInclude."\n";
-	}
-	return $input;
+		$navbar['constants_include'] = $navbarInclude;
+	}	
+	return $navbar;
 }
 
 /**
