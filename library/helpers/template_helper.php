@@ -528,8 +528,8 @@ function tarski_navbar($return = false) {
  * 
  * @since 2.0
  * @see tarski_navbar()
- * @param string $navbar
- * @return string $navbar
+ * @param array $navbar
+ * @return array $navbar
  */
 function add_external_links($navbar) {
 	if(get_tarski_option('nav_extlinkcat')) {
