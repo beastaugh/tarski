@@ -109,8 +109,6 @@ class Options {
 				// If categories are hidden, respect that option
 				if(empty($this->show_categories) && isset($this->hide_categories) && ($this->hide_categories == 1)) {
 					$this->show_categories = false;
-				} else {
-					$this->show_categories = true;
 				}
 				
 				// Change American English to British English, sorry Chris
