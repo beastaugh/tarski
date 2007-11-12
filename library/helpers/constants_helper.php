@@ -39,10 +39,10 @@ function tarski_output_headinclude() {
  * @global string $navbarInclude
  * @return array $navbarInclude
  */
-function tarski_output_navbarinclude($input) {
+function tarski_output_navbarinclude($navbar) {
 	global $navbarInclude;
 	if($navbarInclude) {
-		$navbar['constants_include'] = $navbarInclude;
+		$navbar['navbarinclude'] = $navbarInclude;
 	}	
 	return $navbar;
 }
