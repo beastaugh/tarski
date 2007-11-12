@@ -320,7 +320,12 @@ function tarski_feeds($return = false) {
 		$title = sprintf( __('Search feed for %s','tarski'), attribute_escape(get_search_query()));
 		$link = get_bloginfo('url'). '/?s='. attribute_escape(get_search_query()). "&amp;feed=$type";
 	}
-	$feed_link_type = "application/$type+xml";
+	if($type == 'atom') {
+		$type_fixed = 'atom';
+	} else {
+		$type_fixed = 'rss';
+	}
+	$feed_link_type = "application/$type_fixed+xml";
 	if($title && $link) {
 		$feeds = sprintf(
 			'<link rel="alternate" type="%1$s" title="%2$s" href="%3$s" />'."\n",
