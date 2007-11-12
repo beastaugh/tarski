@@ -104,8 +104,6 @@ class Options {
 				// If update notification was off, leave it off, otherwise turn it on
 				if($this->update_notification == 'false') {
 					$this->update_notification = false;
-				} else {
-					$this->update_notification = true;
 				}
 				
 				// If categories are hidden, respect that option

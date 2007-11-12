@@ -70,16 +70,12 @@ class Version {
 		$cachetime = 60 * 60;
 
 		// Serve from the cache if it is younger than $cachetime
-		if (
-		file_exists($cachefile)
-		&& (time() - $cachetime < filemtime($cachefile))
-		&& file_get_contents($cachefile)
-		) {
+		if(file_exists($cachefile) && (time() - $cachetime < filemtime($cachefile)) && file_get_contents($cachefile)) {
 			$atomdata = file_get_contents($cachefile);
 		} else {
 			$ch = curl_init(TARSKIVERSIONFILE);
 			curl_setopt($ch, CURLOPT_FAILONERROR, 1);
-			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+//			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 			curl_setopt($ch, CURLOPT_HEADER, 0);
 			$atomdata = curl_exec($ch);
@@ -187,9 +183,7 @@ function theme_version($version = 'current') {
  * @return string
  */
 function tarski_update_notifier($location = 'dashboard') {
-	
 	$tarski_version = new Version;
-	
 	$tarski_version->current_version_number();
 	
 	// Only performs the update check when notification is enabled
@@ -198,8 +192,8 @@ function tarski_update_notifier($location = 'dashboard') {
 		$tarski_version->latest_version_link();
 		$tarski_version->version_status();
 	}
-	
-	$current = $tarski_version->current;
+
+	$current = $tarski_version->current;	
 	$latest = $tarski_version->latest;
 	$latest_link = $tarski_version->latest_link;
 	$status = $tarski_version->status;
