@@ -72,14 +72,18 @@ class Version {
 		// Serve from the cache if it is younger than $cachetime
 		if(file_exists($cachefile) && (time() - $cachetime < filemtime($cachefile)) && file_get_contents($cachefile)) {
 			$atomdata = file_get_contents($cachefile);
-		} elseif(function_exists('curl_init')) {
-			$ch = curl_init(TARSKIVERSIONFILE);
-			curl_setopt($ch, CURLOPT_FAILONERROR, 1);
-//			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-			curl_setopt($ch, CURLOPT_HEADER, 0);
-			$atomdata = curl_exec($ch);
-			curl_close($ch);
+		} else {
+			if(function_exists('curl_init')) { // If libcurl is installed, use that
+				$ch = curl_init(TARSKIVERSIONFILE);
+				curl_setopt($ch, CURLOPT_FAILONERROR, 1);
+//				curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+				curl_setopt($ch, CURLOPT_HEADER, 0);
+				$atomdata = curl_exec($ch);
+				curl_close($ch);
+			} elseif(ini_get('allow_url_fopen')) { // Otherwise try file_get_contents()
+				$atomdata = file_get_contents('http://tarskitheme.com/version.atom');
+			}
 
 			if(!empty($atomdata) && cache_is_writable("version.atom")) {
 				$fp = @fopen($cachefile, "w");
