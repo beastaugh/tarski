@@ -50,20 +50,22 @@
 		<div class="section">
 
 		<?php if(!detectWPMU() || detectWPMUadmin()) { ?>
-			<fieldset class="primary radiolist">
-				<h3><?php _e('Update Notification','tarski'); ?></h3>
-				<?php if(get_tarski_option('update_notification')) { ?>
-					<p><?php _e('Tarski is set to notify you when an update is available.','tarski'); ?></p>
-				<?php } else { ?>
-					<p><?php _e('Tarski can be set to notify you when updates are available.','tarski'); ?></p>
-				<?php } ?>
-				<label for="update-on"><input type="radio" id="update-on" name="update_notification" value ="on" <?php if(get_tarski_option('update_notification')) { echo 'checked="checked" '; } ?>/> <?php _e('Update notification on (recommended)','tarski'); ?></label>
-				<label for="update-off"><input type="radio" id="update-off" name="update_notification" value ="off" <?php if(!get_tarski_option('update_notification')) { echo 'checked="checked" '; } ?>/> <?php _e('Update notification off','tarski'); ?></label>
-				<?php if(!cache_is_writable() && get_tarski_option('update_notification')) { ?>
-				<p class="insert"><?php printf( __('The version check could not be cached. To enable caching, follow the tutorial on the %s page.','tarski'), '<a href="http://tarskitheme.com/help/updates/notifier/">'. __('update notifier','tarski'). '</a>' ); ?></p>
-				<?php } ?>
-				<p class="insert"><strong><?php _e('Privacy notice: ','tarski'); ?></strong><?php _e('The update notifier does not transmit any information about you or your website.','tarski'); ?></p>
-			</fieldset>
+			<?php if(can_get_remote()) { ?>
+				<fieldset class="primary radiolist">
+					<h3><?php _e('Update Notification','tarski'); ?></h3>
+					<?php if(get_tarski_option('update_notification')) { ?>
+						<p><?php _e('Tarski is set to notify you when an update is available.','tarski'); ?></p>
+					<?php } else { ?>
+						<p><?php _e('Tarski can be set to notify you when updates are available.','tarski'); ?></p>
+					<?php } ?>
+					<label for="update-on"><input type="radio" id="update-on" name="update_notification" value ="on" <?php if(get_tarski_option('update_notification')) { echo 'checked="checked" '; } ?>/> <?php _e('Update notification on (recommended)','tarski'); ?></label>
+					<label for="update-off"><input type="radio" id="update-off" name="update_notification" value ="off" <?php if(!get_tarski_option('update_notification')) { echo 'checked="checked" '; } ?>/> <?php _e('Update notification off','tarski'); ?></label>
+					<?php if(!cache_is_writable() && get_tarski_option('update_notification')) { ?>
+					<p class="insert"><?php printf( __('The version check could not be cached. To enable caching, follow the tutorial on the %s page.','tarski'), '<a href="http://tarskitheme.com/help/updates/notifier/">' . __('update notifier','tarski') . '</a>' ); ?></p>
+					<?php } ?>
+					<p class="insert"><strong><?php _e('Privacy notice: ','tarski'); ?></strong><?php _e('The update notifier does not transmit any information about you or your website.','tarski'); ?></p>
+				</fieldset>
+			<?php } // An 'else' with some explanatory text will go here in a future version ?>
 		<?php } ?>
 
 			<fieldset class="secondary">

@@ -72,7 +72,7 @@ class Version {
 		// Serve from the cache if it is younger than $cachetime
 		if(file_exists($cachefile) && (time() - $cachetime < filemtime($cachefile)) && file_get_contents($cachefile)) {
 			$atomdata = file_get_contents($cachefile);
-		} else {
+		} elseif(function_exists('curl_init')) {
 			$ch = curl_init(TARSKIVERSIONFILE);
 			curl_setopt($ch, CURLOPT_FAILONERROR, 1);
 //			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
@@ -83,8 +83,7 @@ class Version {
 
 			if(!empty($atomdata) && cache_is_writable("version.atom")) {
 				$fp = @fopen($cachefile, "w");
-				if($fp)
-				{
+				if($fp) {
 					fwrite($fp, $atomdata);
 					fclose($fp);
 				}
@@ -185,23 +184,26 @@ function theme_version($version = 'current') {
 function tarski_update_notifier($location = 'dashboard') {
 	$tarski_version = new Version;
 	$tarski_version->current_version_number();
+	$current = $tarski_version->current;
 	
-	// Only performs the update check when notification is enabled
-	if(get_tarski_option('update_notification')) {
-		$tarski_version->latest_version_number();
-		$tarski_version->latest_version_link();
-		$tarski_version->version_status();
-	}
-
-	$current = $tarski_version->current;	
-	$latest = $tarski_version->latest;
-	$latest_link = $tarski_version->latest_link;
-	$status = $tarski_version->status;
+	// Update checking only performed when remote files can be accessed
+	if(can_get_remote()) {
+		// Only performs the update check when notification is enabled
+		if(get_tarski_option('update_notification')) {
+			$tarski_version->latest_version_number();
+			$tarski_version->latest_version_link();
+			$tarski_version->version_status();
+		}
 	
-	if($location == 'options_page') {
-		include(TARSKIDISPLAY . '/admin/version_options.php');
-	} elseif(!detectWPMU() || detectWPMUadmin()) {
-		include(TARSKIDISPLAY . '/admin/version_dashboard.php');
+		$latest = $tarski_version->latest;
+		$latest_link = $tarski_version->latest_link;
+		$status = $tarski_version->status;
+	
+		if($location == 'options_page') {
+			include(TARSKIDISPLAY . '/admin/version_options.php');
+		} elseif(!detectWPMU() || detectWPMUadmin()) {
+			include(TARSKIDISPLAY . '/admin/version_dashboard.php');
+		}
 	}
 }
 

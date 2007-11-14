@@ -1,6 +1,6 @@
 <h3><?php _e('Tarski Updates','tarski'); ?></h3>
 
-<?php if(get_tarski_option('update_notification')) { ?>		
+<?php if(get_tarski_option('update_notification')) { ?>
 	<?php if($status == "current") { ?>
 		
 		<p><?php printf( __('Your version of Tarski (%s) is up to date.','tarski'), "<strong>$current</strong>"); ?></p>
