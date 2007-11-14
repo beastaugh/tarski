@@ -41,7 +41,10 @@ add_action('activity_box_end', 'tarski_update_notifier');
 // Tarski Options page
 add_action('admin_menu', 'tarski_addmenu');
 add_action('admin_head', 'tarski_inject_scripts');
+
+// Options
 add_action('save_post', 'tarski_resave_navbar');
+add_action('admin_head', 'tarski_resave_show_authors');
 
 // Header
 add_filter('tarski_style_array', 'add_version_to_styles');

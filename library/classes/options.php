@@ -68,6 +68,7 @@ class Options {
 		$this->swap_title_order = false;
 		$this->tags_everywhere = false;
 		$this->show_categories = true;
+		$this->show_authors = tarski_should_show_authors();
 		$this->use_pages = false;
 		$this->feed_type = 'rss2';
 	}
@@ -101,9 +102,14 @@ class Options {
 					$this->sidebar_pp_type = 'none';
 				}
 				
-				// If update notification was off, leave it off, otherwise turn it on
+				// If update notification was off, leave it off
 				if($this->update_notification == 'false') {
 					$this->update_notification = false;
+				}
+				
+				// If there's more than one author, show authors
+				if(tarski_should_show_authors()) {
+					$this->show_authors = true;
 				}
 				
 				// If categories are hidden, respect that option
@@ -203,6 +209,8 @@ class Options {
 			$this->sidebar_type = $_POST['sidebar_type'];
 			$this->sidebar_pp_type = $_POST['sidebar_pp_type'];
 			$this->feed_type = $_POST['feed_type'];
+			
+			$this->show_authors = tarski_should_show_authors();
 		}
 	}
 

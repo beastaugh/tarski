@@ -87,7 +87,7 @@ function tarski_admin() {
 function tarski_resave_navbar() {
 	global $wpdb;
 	$pages = $wpdb->get_results("SELECT ID, post_title FROM $wpdb->posts WHERE post_type='page' ORDER BY post_parent, menu_order");
-	$selected = explode(',', get_tarski_option("nav_pages"));
+	$selected = explode(',', get_tarski_option('nav_pages'));
 
 	if($pages) {
 		$nav_pages = array();
@@ -98,10 +98,48 @@ function tarski_resave_navbar() {
 				}
 			}
 		}
-		$condensed = implode(",", $nav_pages);
+		$condensed = implode(',', $nav_pages);
 	}
 	
-	update_tarski_option("nav_pages", $condensed);
+	update_tarski_option('nav_pages', $condensed);
+}
+
+/**
+ * tarski_count_authors() - Returns the number of authors on a site.
+ * 
+ * This function returns the number of users on a site with a user
+ * level of greater than 1, i.e. Authors, Editors and Administrators.
+ * @since 2.0.3
+ * @global object $wpdb
+ * @return integer
+ */
+function tarski_count_authors() {
+	global $wpdb;
+	$count_users = $wpdb->get_var("SELECT COUNT(*) FROM $wpdb->usermeta WHERE `meta_key` = '" . $wpdb->prefix . "user_level' AND `meta_value` > 1");
+	return (int) $count_users;
+}
+
+/**
+ * tarski_should_show_authors() - Determines whether Tarski should show authors.
+ * 
+ * @since 2.0.3
+ * @global object $wpdb
+ * @return boolean
+ */
+function tarski_should_show_authors() {
+	return (bool) (tarski_count_authors() > 1);
+}
+
+/**
+ * tarski_resave_show_authors() - Re-saves Tarski's 'show_authors' option.
+ * 
+ * If more than one author is detected, it will turn the 'show_authors'
+ * option on; otherwise it will turn it off.
+ * @since 2.0.3
+ * @see tarski_should_show_authors()
+ */
+function tarski_resave_show_authors() {
+	update_tarski_option('show_authors', tarski_should_show_authors());
 }
 
 ?>
