@@ -102,11 +102,6 @@ class Options {
 					$this->sidebar_pp_type = 'none';
 				}
 				
-				// If update notification was off, leave it off
-				if($this->update_notification == 'false') {
-					$this->update_notification = false;
-				}
-				
 				// If there's more than one author, show authors
 				if(tarski_should_show_authors()) {
 					$this->show_authors = true;
