@@ -135,21 +135,33 @@ function tarski_link_pages() {
  * @return string
  */
 function tarski_posts_nav_link() {
-	global $wp_query;
-	$wp_query->is_paged = true;
-	
-	if(is_paged() && get_tarski_option('use_pages')) {
-		if(is_search()) {
-			$prev_text = __('Previous results','tarski');
-			$next_text = __('More results','tarski');
-		} else {
-			$prev_text = __('Newer entries','tarski');
-			$next_text = __('Older entries','tarski');
+	if(get_tarski_option('use_pages')) {
+		global $wp_query;
+				
+		if ( !is_singular() ) {
+			$max_num_pages = $wp_query->max_num_pages;
+			$paged = get_query_var('paged');
+			$sep = ' &sect; ';
+			
+			//only have sep if there's both prev and next results
+			if ($paged < 2 || $paged >= $max_num_pages) {
+				$sep = '';
+			}
+		
+			if($max_num_pages > 1) {
+				echo '<p class="pagination">';
+				if(is_search()) {
+					previous_posts_link('&laquo; ' . __('Previous results','tarski'));
+					echo $sep;
+					next_posts_link(__('More results','tarski') . ' &raquo;');
+				} else {
+					next_posts_link('&laquo; ' . __('Older entries','tarski'));
+					echo $sep;
+					previous_posts_link(__('Newer entries','tarski') . ' &raquo;');
+				}
+				echo "</p>\n";				
+			}
 		}
-
-		echo '<p class="pagination">';
-		posts_nav_link(" &sect; ", "&laquo; $prev_text", "$next_text &raquo;");
-		echo "</p>\n";
 	}
 }
 
