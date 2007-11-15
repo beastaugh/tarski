@@ -64,7 +64,8 @@ class Version {
 	 * @return string $atomdata
 	 */
 	function version_feed_data() {
-
+		ob_start();
+		
 		// Thanks to Simon Willison for the inspiration
 		$cachefile = TARSKICACHE . "/version.atom";
 		$cachetime = 60 * 60;
@@ -93,6 +94,10 @@ class Version {
 				}
 			}
 		}
+		
+		return $atomdata;
+		$atomdata = ob_get_contents();
+		ob_end_clean();
 
 		return $atomdata;
 	}
