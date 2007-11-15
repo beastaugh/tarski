@@ -17,8 +17,9 @@ function detectWPMU() {
  * @return boolean
  */
 function detectWPMUadmin() {
-	if(detectWPMU())
+	if(detectWPMU()) {
 		return is_site_admin();
+	}
 }
 
 /**
@@ -57,7 +58,7 @@ function is_valid_tarski_style($file) {
  * @since 1.4
  */
 function tarski_admin_header_style() {
-	include(TARSKIDISPLAY."/admin/admin_header_style.php");
+	include(TARSKIDISPLAY . '/admin/admin_header_style.php');
 }
 
 /**
@@ -67,7 +68,7 @@ function tarski_admin_header_style() {
 */
 function tarski_inject_scripts() {
 	if(substr($_SERVER['REQUEST_URI'], -39, 39) == 'wp-admin/themes.php?page=tarski-options')
-		include(TARSKIDISPLAY . "/admin/options_scripts.php");
+		include(TARSKIDISPLAY . '/admin/options_scripts.php');
 }
 
 /**
@@ -88,7 +89,7 @@ function tarski_admin() {
 	save_tarski_options();
 	$widgets_link = get_bloginfo('wpurl') . '/wp-admin/widgets.php';
 	$tarski_options_link = get_bloginfo('wpurl') . '/wp-admin/themes.php?page=tarski-options';
-	include(TARSKIDISPLAY . "/admin/options_page.php");
+	include(TARSKIDISPLAY . '/admin/options_page.php');
 }
 
 /**

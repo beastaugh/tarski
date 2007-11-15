@@ -79,18 +79,29 @@ function hide_sidebar_for_archives($sidebar_file) {
  * @return string
  */
 function tarski_next_prev_posts() {
-	if(get_previous_post() || get_next_post()) {
-		$prefix = '<p class="primary-span articlenav">';
-		$suffix = "</p>\n";
+	$prev_post = get_previous_post();
+	$next_post = get_next_post();
+	if($prev_post || $next_post) {
+		echo '<p class="primary-span articlenav">';
+
+		if($prev_post) {
+			echo '<span class="previous-entry">';
+			previous_post_link('%link','&lsaquo; %title');
+			echo '</span>';
+
+			if($next_post) {
+				echo ' <span class="separator">&nbsp;&bull;&nbsp;</span> ';
+			}
+		}
+
+		if($next_post) {
+			echo '<span class="next-entry">';
+			next_post_link('%link','%title &rsaquo;');
+			echo '</span>';
+		}
+
+		echo "</p>\n";
 	}
-	if(get_previous_post() && get_next_post())
-		$separator = ' &nbsp;&bull;&nbsp; ';
-	
-	echo $prefix;
-	previous_post_link('%link','&lsaquo; %title');
-	echo $separator;
-	next_post_link('%link','%title &rsaquo;');
-	echo $suffix;
 }
 
 /**
