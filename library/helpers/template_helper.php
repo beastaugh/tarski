@@ -382,7 +382,7 @@ function tarski_headerimage() {
 		if(!get_tarski_option('display_title') && !is_wp_front_page()) {
 			$header_img_tag = sprintf(
 				'<a title="%1$s" rel="home" href="%2$s">%3$s</a>',
-				__('Return to front page','tarski'),
+				__('Return to main page','tarski'),
 				user_trailingslashit(get_bloginfo('url')),
 				$header_img_tag
 			);
@@ -408,7 +408,7 @@ function tarski_sitetitle() {
 		if(!is_wp_front_page()) {
 			$site_title = sprintf(
 				'<a title="%1$s" href="%2$s" rel="home">%3$s</a>',
-				__('Return to front page','tarski'),
+				__('Return to main page','tarski'),
 				user_trailingslashit(get_bloginfo('url')),
 				$site_title
 			);
