@@ -138,12 +138,12 @@ function tarski_posts_nav_link() {
 	if(get_tarski_option('use_pages')) {
 		global $wp_query;
 				
-		if ( !is_singular() ) {
+		if(!is_singular()) {
 			$max_num_pages = $wp_query->max_num_pages;
 			$paged = get_query_var('paged');
 			$sep = ' &sect; ';
 			
-			//only have sep if there's both prev and next results
+			// Only have sep if there's both prev and next results
 			if ($paged < 2 || $paged >= $max_num_pages) {
 				$sep = '';
 			}

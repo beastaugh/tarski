@@ -65,7 +65,22 @@
 					<?php } ?>
 					<p class="insert"><strong><?php _e('Privacy notice: ','tarski'); ?></strong><?php _e('The update notifier does not transmit any information about you or your website.','tarski'); ?></p>
 				</fieldset>
-			<?php } // An 'else' with some explanatory text will go here in a future version ?>
+			<?php } else { ?>
+				<div class="primary">
+					<h3><?php _e('Update Notification','tarski'); ?></h3>
+					<p><?php printf(
+						__('Your server appears to have %1$s disabled and %2$s not installed. This means that the update notifier will not work.','tarski'),
+						'<a href="http://uk.php.net/manual/en/ref.filesystem.php"><code>allow_url_fopen</code></a>',
+						'<a href="http://uk.php.net/manual/en/ref.curl.php"><code>libcurl</code></a>'
+					); ?></p>
+					<p><?php printf(
+						__('You can read our %1$s on how to fix your server setup, but if you are unable to change it we recommend subscribing to either the %2$s or the %3$s in your feed reader, so that you can be alerted when new Tarski versions become available.','tarski'),
+						'<a href="http://tarskitheme.com/help/updates/notifier/">' . __('documentation','tarski') . '</a>',
+						'<a href="' . TARSKIVERSIONFILE . '">' . __('Tarski version feed','tarski') . '</a>',
+						'<a href="http://tarskitheme.com/feed/">' . __('Tarski website feed','tarski') . '</a>'
+					); ?></p>
+				</div>
+			<?php } ?>
 		<?php } ?>
 
 			<fieldset class="secondary">
