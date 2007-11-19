@@ -137,30 +137,44 @@ function tarski_admin() {
 }
 
 /**
+ * tarski_get_pages() - Retrieves a list of WordPress pages from the database.
+ * 
+ * @since 2.0.3
+ * @global object $wpdb
+ * @return array $pages
+ */
+function tarski_get_pages() {
+	global $wpdb;
+	$pages = $wpdb->get_results("SELECT ID, post_title FROM $wpdb->posts WHERE post_type='page' ORDER BY post_parent, menu_order");
+	if(!empty($pages)) {
+		return $pages;
+	}
+}
+
+/**
  * tarski_resave_navbar() - Re-saves Tarski's navbar order whenever a page is edited.
  * 
  * This means that if the page order changes, the navbar order will change too.
  * @since 1.7
+ * @see tarski_get_pages()
  */
 function tarski_resave_navbar() {
 	if(get_option('tarski_options')) {
-		global $wpdb;
-		$pages = $wpdb->get_results("SELECT ID, post_title FROM $wpdb->posts WHERE post_type='page' ORDER BY post_parent, menu_order");
+		$pages = tarski_get_pages();
 		$selected = explode(',', get_tarski_option('nav_pages'));
-
-		if($pages) {
-			$nav_pages = array();
-			foreach ($pages as $key => $page) {
-				foreach($selected as $key2 => $sel_page) {
-					if ($page->ID == $sel_page) {
+		
+		if($pages && $selected) {
+			foreach($pages as $key => $page) {
+				foreach($selected as $sel_page) {
+					if($page->ID == $sel_page) {
 						$nav_pages[$key] = $page->ID;
 					}
 				}
 			}
+
 			$condensed = implode(',', $nav_pages);
+			update_tarski_option('nav_pages', $condensed);
 		}
-	
-		update_tarski_option('nav_pages', $condensed);
 	}
 }
 
@@ -183,6 +197,7 @@ function tarski_count_authors() {
  * tarski_should_show_authors() - Determines whether Tarski should show authors.
  * 
  * @since 2.0.3
+ * @see tarski_count_authors()
  * @global object $wpdb
  * @return boolean
  */

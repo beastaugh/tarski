@@ -279,9 +279,13 @@ function flush_tarski_options() {
  */
 function update_tarski_option($option, $value, $drop = false) {
 	global $tarski_options;
+	
+	if(!$tarski_options)
+		flush_tarski_options();
+	
 	$tarski_options->$option = $value;
 	
-	if($drop == true)
+	if($drop)
 		unset($tarski_options->$name);
 	
 	update_option('tarski_options', serialize($tarski_options));
@@ -326,6 +330,10 @@ function drop_tarski_option($option) {
  */
 function get_tarski_option($name) {
 	global $tarski_options;
+	
+	if(empty($tarski_options))
+		flush_tarski_options();
+	
 	return $tarski_options->$name;
 }
 
