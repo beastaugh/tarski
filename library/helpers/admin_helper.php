@@ -143,23 +143,25 @@ function tarski_admin() {
  * @since 1.7
  */
 function tarski_resave_navbar() {
-	global $wpdb;
-	$pages = $wpdb->get_results("SELECT ID, post_title FROM $wpdb->posts WHERE post_type='page' ORDER BY post_parent, menu_order");
-	$selected = explode(',', get_tarski_option('nav_pages'));
+	if(get_option('tarski_options')) {
+		global $wpdb;
+		$pages = $wpdb->get_results("SELECT ID, post_title FROM $wpdb->posts WHERE post_type='page' ORDER BY post_parent, menu_order");
+		$selected = explode(',', get_tarski_option('nav_pages'));
 
-	if($pages) {
-		$nav_pages = array();
-		foreach ($pages as $key => $page) {
-			foreach($selected as $key2 => $sel_page) {
-				if ($page->ID == $sel_page) {
-					$nav_pages[$key] = $page->ID;
+		if($pages) {
+			$nav_pages = array();
+			foreach ($pages as $key => $page) {
+				foreach($selected as $key2 => $sel_page) {
+					if ($page->ID == $sel_page) {
+						$nav_pages[$key] = $page->ID;
+					}
 				}
 			}
+			$condensed = implode(',', $nav_pages);
 		}
-		$condensed = implode(',', $nav_pages);
-	}
 	
-	update_tarski_option('nav_pages', $condensed);
+		update_tarski_option('nav_pages', $condensed);
+	}
 }
 
 /**
@@ -197,7 +199,9 @@ function tarski_should_show_authors() {
  * @see tarski_should_show_authors()
  */
 function tarski_resave_show_authors() {
-	update_tarski_option('show_authors', tarski_should_show_authors());
+	if(get_option('tarski_options')) {
+		update_tarski_option('show_authors', tarski_should_show_authors());
+	}
 }
 
 ?>
