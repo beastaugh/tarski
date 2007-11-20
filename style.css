@@ -72,7 +72,7 @@ body.centre #wrapper { margin: 0 auto; }
 body.rtl #navigation ul.primary { direction: ltr; }
 	#navigation ul.primary li { display: inline; margin: 0 1em 0 0; }
 	body.rtl #navigation ul.primary li { display: inline; margin: 0 0 0 1em; }
-#navigation div.secondary { padding: 0.5em 0 0.2em 0; }
+#navigation div.secondary { padding: 0.5em 0; }
 	#navigation div.secondary p { margin: 0; }
 	body.janus #navigation .secondary p, body.janus #theme-info .secondary p { text-align: right; }
 

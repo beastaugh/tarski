@@ -494,33 +494,39 @@ function tarski_navbar($return = false) {
 		);
 	}
 	
-	$nav_pages = get_tarski_option('nav_pages');
-	if($nav_pages) {
-		$nav_pages = explode(',', $nav_pages);
-		foreach($nav_pages as $page) {
-			if(is_page($page) || ((get_option('show_on_front') == 'page') && (get_option('page_for_posts') == $page) && is_home())) {
-				$page_status = $current;
-			} else {
-				$page_status = false;
+	$pages = get_pages();
+	$nav_pages = explode(',', get_tarski_option('nav_pages'));
+	
+	if(!empty($nav_pages) && !empty($pages)) {
+		foreach($pages as $page) {
+			if(in_array($page->ID, $nav_pages)) {
+				if(is_page($page->ID) || ((get_option('show_on_front') == 'page') && (get_option('page_for_posts') == $page->ID) && is_home())) {
+					$page_status = $current;
+				} else {
+					$page_status = false;
+				}
+				
+				$navbar[$page->ID] = sprintf(
+					'<li><a id="nav-%1$s" ' . '%2$s' . 'href="%3$s">%4$s</a></li>',
+					$page->ID . '-' . $page->post_name,
+					$page_status,
+					get_permalink($page),
+					$page->post_title
+				);
 			}
-						
-			$navbar[$page] = sprintf(
-				'<li><a id="nav-%1$s" ' . '%2$s' . 'href="%3$s">%4$s</a></li>',
-				$page . '-' . $wpdb->get_var("SELECT post_name from $wpdb->posts WHERE ID = $page"),
-				$page_status,
-				get_permalink($page),
-				$wpdb->get_var("SELECT post_title from $wpdb->posts WHERE ID = $page")
-			);
 		}
 	}
 	
 	// Filters should return an array
 	$navbar = apply_filters('tarski_navbar', $navbar);
 
-	// But if they don't, the navbar won't be imploded
-	if(is_array($navbar))
+	// But if they don't, the function will return false
+	if(is_array($navbar) && !empty($navbar)) {
 		$navbar = "\n" . implode("\n", $navbar) . "\n\n";
-	
+	} else {
+		$navbar = false;
+	}
+
 	if($return) {
 		return $navbar;
 	} else {
@@ -537,6 +543,9 @@ function tarski_navbar($return = false) {
  * @return array $navbar
  */
 function add_external_links($navbar) {
+	if(!is_array($navbar))
+		$navbar = array();
+	
 	if(get_tarski_option('nav_extlinkcat')) {
 		$extlinks_cat = get_tarski_option('nav_extlinkcat');
 		$extlinks = get_bookmarks("category=$extlinks_cat");
@@ -571,6 +580,9 @@ function add_external_links($navbar) {
  * @return string $navbar
  */
 function add_admin_link($navbar) {
+	if(!is_array($navbar))
+		$navbar = array();
+	
 	if(is_user_logged_in())
 		$navbar['admin'] = sprintf(
 			'<li><a id="nav-admin" href="%1$s">%2$s</a></li>',
@@ -590,6 +602,9 @@ function add_admin_link($navbar) {
  * @return string $navbar
  */
 function wrap_navlist($navbar) {
+	if(!is_array($navbar))
+		$navbar = array();
+	
 	array_unshift($navbar, '<ul class="primary xoxo">');
 	array_push($navbar, '</ul>');
 	return $navbar;
