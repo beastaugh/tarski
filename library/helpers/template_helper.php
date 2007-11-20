@@ -479,7 +479,7 @@ function home_link_name() {
  */
 function tarski_navbar($return = false) {
 	global $wpdb;
-	$current = 'class="nav-current" ';
+	$current = ' class="nav-current"';
 	$navbar = array();
 	
 	if(get_option('show_on_front') != 'page') {
@@ -487,7 +487,7 @@ function tarski_navbar($return = false) {
 			$home_status = $current;
 		}
 		$navbar['home'] = sprintf(
-			'<li><a id="nav-home" '.'%1$s'.'href="%2$s" rel="home">%3$s</a></li>',
+			'<li><a id="nav-home"%1$s href="%2$s" rel="home">%3$s</a></li>',
 			$home_status,
 			user_trailingslashit(get_bloginfo('url')),
 			home_link_name()
@@ -507,7 +507,7 @@ function tarski_navbar($return = false) {
 				}
 				
 				$navbar[$page->ID] = sprintf(
-					'<li><a id="nav-%1$s" ' . '%2$s' . 'href="%3$s">%4$s</a></li>',
+					'<li><a id="nav-%1$s"%2$s href="%3$s">%4$s</a></li>',
 					$page->ID . '-' . $page->post_name,
 					$page_status,
 					get_permalink($page),
