@@ -165,4 +165,22 @@ function tarski_feed_and_credit() {
 	tarski_credits();
 }
 
+/**
+ * tarski_get_pages() - Retrieves a list of WordPress pages from the database.
+ * 
+ * Deprecated when it was realised that the get_pages() WP function was available.
+ * @deprecated 2.0.4
+ * @since 2.0.3
+ * @see get_pages()
+ * @global object $wpdb
+ * @return array $pages
+ */
+function tarski_get_pages() {
+	global $wpdb;
+	$pages = $wpdb->get_results("SELECT ID, post_title FROM $wpdb->posts WHERE post_type='page' ORDER BY post_parent, menu_order");
+	if(!empty($pages)) {
+		return $pages;
+	}
+}
+
 ?>

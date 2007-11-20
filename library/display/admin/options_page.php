@@ -258,15 +258,17 @@
 				<?php
 				global $wpdb;
 
-				$results = $wpdb->get_results("SELECT ID, post_title from $wpdb->posts WHERE post_type = 'page' AND post_status = 'publish' ORDER BY post_parent, menu_order");
+				$pages = get_pages();
 					
 				$nav_pages = explode(',', get_tarski_option('nav_pages'));
 					
 				if($results) {
 					echo '<p>'. __('Pages selected here will display in your navbar.','tarski'). "</p>\n";
-					foreach($results as $page) {
+					foreach($pages as $page) {
 						echo '<label for="opt-pages-'. $page->ID. '"><input type="checkbox" id="opt-pages-'. $page->ID. '" name="nav_pages[]" value="'. $page->ID. '"';
-						if(in_array($page->ID, $nav_pages)) { echo ' checked="checked"'; }
+						if(in_array($page->ID, $nav_pages)) {
+							echo ' checked="checked"';
+						}
 						echo " />\n";
 						echo $page->post_title. '&nbsp;<a title="'. __('View this page','tarski'). '" href="'. get_permalink($page->ID). '">&#8599;</a></label>'."\n";
 					}

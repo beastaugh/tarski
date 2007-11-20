@@ -137,21 +137,6 @@ function tarski_admin() {
 }
 
 /**
- * tarski_get_pages() - Retrieves a list of WordPress pages from the database.
- * 
- * @since 2.0.3
- * @global object $wpdb
- * @return array $pages
- */
-function tarski_get_pages() {
-	global $wpdb;
-	$pages = $wpdb->get_results("SELECT ID, post_title FROM $wpdb->posts WHERE post_type='page' ORDER BY post_parent, menu_order");
-	if(!empty($pages)) {
-		return $pages;
-	}
-}
-
-/**
  * tarski_resave_navbar() - Re-saves Tarski's navbar order whenever a page is edited.
  * 
  * This means that if the page order changes, the navbar order will change too.
@@ -160,7 +145,7 @@ function tarski_get_pages() {
  */
 function tarski_resave_navbar() {
 	if(get_option('tarski_options')) {
-		$pages = tarski_get_pages();
+		$pages = get_pages();
 		$selected = explode(',', get_tarski_option('nav_pages'));
 		
 		if($pages && $selected) {
