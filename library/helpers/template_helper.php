@@ -510,7 +510,7 @@ function tarski_navbar($return = false) {
 					'<li><a id="nav-%1$s"%2$s href="%3$s">%4$s</a></li>',
 					$page->ID . '-' . $page->post_name,
 					$page_status,
-					get_permalink($page),
+					get_permalink($page->ID),
 					$page->post_title
 				);
 			}
