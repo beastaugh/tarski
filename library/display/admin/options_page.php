@@ -259,10 +259,10 @@
 				global $wpdb;
 
 				$pages = get_pages();
-					
+				
 				$nav_pages = explode(',', get_tarski_option('nav_pages'));
 					
-				if($results) {
+				if($pages) {
 					echo '<p>'. __('Pages selected here will display in your navbar.','tarski'). "</p>\n";
 					foreach($pages as $page) {
 						echo '<label for="opt-pages-'. $page->ID. '"><input type="checkbox" id="opt-pages-'. $page->ID. '" name="nav_pages[]" value="'. $page->ID. '"';
