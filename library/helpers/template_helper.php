@@ -596,18 +596,22 @@ function add_admin_link($navbar) {
 /**
  * wrap_navlist() - Wraps the Tarski navbar in an unordered list element.
  * 
+ * Unlike other navbar filters, wrap_navlist() doesn't make $navbar an array
+ * if it isn't one, since that would result in it outputting an empty
+ * unordered list. Instead, it simply returns false.
  * @since 2.0
  * @see tarski_navbar()
  * @param string $navbar
  * @return string $navbar
  */
 function wrap_navlist($navbar) {
-	if(!is_array($navbar))
-		$navbar = array();
-	
-	array_unshift($navbar, '<ul class="primary xoxo">');
-	array_push($navbar, '</ul>');
-	return $navbar;
+	if(is_array($navbar)) {
+		array_unshift($navbar, '<ul class="primary xoxo">');
+		array_push($navbar, '</ul>');
+		return $navbar;
+	} else {
+		return false;
+	}
 }
 
 /**
