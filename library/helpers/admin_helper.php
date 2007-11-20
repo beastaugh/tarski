@@ -149,6 +149,7 @@ function tarski_resave_navbar() {
 		$selected = explode(',', get_tarski_option('nav_pages'));
 		
 		if($pages && $selected) {
+			$nav_pages = array();
 			foreach($pages as $key => $page) {
 				foreach($selected as $sel_page) {
 					if($page->ID == $sel_page) {
