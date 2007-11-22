@@ -258,8 +258,7 @@
 				<?php
 				global $wpdb;
 
-				$pages = get_pages();
-				
+				$pages = &get_pages('sort_column=post_parent,menu_order');
 				$nav_pages = explode(',', get_tarski_option('nav_pages'));
 					
 				if($pages) {

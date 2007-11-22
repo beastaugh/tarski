@@ -137,34 +137,6 @@ function tarski_admin() {
 }
 
 /**
- * tarski_resave_navbar() - Re-saves Tarski's navbar order whenever a page is edited.
- * 
- * This means that if the page order changes, the navbar order will change too.
- * @since 1.7
- * @see tarski_get_pages()
- */
-function tarski_resave_navbar() {
-	if(get_option('tarski_options')) {
-		$pages = get_pages();
-		$selected = explode(',', get_tarski_option('nav_pages'));
-		
-		if($pages && $selected) {
-			$nav_pages = array();
-			foreach($pages as $key => $page) {
-				foreach($selected as $sel_page) {
-					if($page->ID == $sel_page) {
-						$nav_pages[$key] = $page->ID;
-					}
-				}
-			}
-
-			$condensed = implode(',', $nav_pages);
-			update_tarski_option('nav_pages', $condensed);
-		}
-	}
-}
-
-/**
  * tarski_count_authors() - Returns the number of authors on a site.
  * 
  * This function returns the number of users on a site with a user
