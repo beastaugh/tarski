@@ -394,8 +394,14 @@ function tarski_sidebar_custom($return = false) {
  * @return string
  */
 function tarski_footer_blurb($return = false) {
-	$output = wpautop(convert_chars(wptexturize(stripslashes(get_tarski_option('blurb')))));
+	$output = get_tarski_option('blurb');
+	
+	if(!empty($output)) {
+		$output = wpautop(convert_chars(wptexturize(stripslashes($output))));
+	}
+	
 	$output = apply_filters('tarski_footer_blurb', $output);
+	
 	if($return) {
 		return $output;
 	} else {
@@ -410,23 +416,19 @@ function tarski_footer_blurb($return = false) {
  * @param string $blurb
  * @return string
  */
-function tarski_blurb_wrapper($blurb) {
-	$prefix = '<div class="content">'."\n";
-	$suffix = '</div> <!-- /blurb -->'."\n";
-	
+function tarski_blurb_wrapper($blurb) {	
 	if(is_user_logged_in()) {
 		$edit_link = sprintf(
-			'<p class="edit-link">(<a title="%1$s" id="edit-footer-blurb" href="%2$s">%3$s</a>)</p>',
+			'<p class="edit-link">(<a title="%1$s" id="edit-footer-blurb" href="%2$s">%3$s</a>)</p>' . "\n",
 			__('Edit the footer content area'),
 			get_bloginfo('wpurl') . '/wp-admin/themes.php?page=tarski-options#footer_blurb',
 			__('edit','tarski')
 		);
-		$suffix = $edit_link . $suffix;
 	}
 	
-	
 	if(get_tarski_option('blurb')) {
-		$blurb = $prefix . $blurb . $suffix;
+		$blurb = "<div class=\"content\">\n$blurb</div>\n$edit_link";
+		$blurb = "<div id=\"blurb\">\n$blurb</div> <!-- /blurb -->\n";
 	}
 	
 	return $blurb;
