@@ -68,6 +68,7 @@ add_action('th_postend', 'add_post_tags', 10);
 add_action('th_postend', 'tarski_link_pages', 11);
 
 // Sidebar
+add_filter('tarski_sidebar_custom', 'tarski_content_massage', 9);
 add_filter('tarski_sidebar', 'hide_sidebar_for_archives');
 
 add_action('th_sidebar', 'tarski_sidebar', 10);
@@ -76,7 +77,8 @@ add_action('th_sidebar', 'tarski_sidebar', 10);
 add_filter('get_comment_author', 'tidy_openid_names');
 
 // Footer
-add_filter('tarski_footer_blurb', 'tarski_blurb_wrapper');
+add_filter('tarski_footer_blurb', 'tarski_content_massage', 9);
+add_filter('tarski_footer_blurb', 'tarski_blurb_wrapper', 10);
 
 add_action('th_fsidebar', 'tarski_footer_sidebar');
 add_action('th_footer', 'tarski_feedlink');

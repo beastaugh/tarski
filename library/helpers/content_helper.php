@@ -361,6 +361,25 @@ function tarski_404_content() {
 }
 
 /**
+ * tarski_content_massage() - Filter adding smart quotes, auto-paragraphs etc.
+ * 
+ * This function strips slashes, adds smart quotes and other typographical
+ * niceties, converts characters such as ampersands to their HTML equivalent,
+ * adds automatic paragraphing and line breaks, and finally returns the
+ * altered content.
+ * @since 2.0.5
+ * @param string $input
+ * @return string $output
+ *
+ */
+function tarski_content_massage($input) {
+	if(!empty($input)) {
+		$output = wpautop(convert_chars(wptexturize(stripslashes($input))));
+	}
+	return $output;
+}
+
+/**
  * tarski_sidebar_custom() - Returns custom sidebar content, appropriately formatted.
  *
  * Gets the database value; strips slashes; prettifies the quotes
@@ -372,8 +391,8 @@ function tarski_404_content() {
  * @return string
  */
 function tarski_sidebar_custom($return = false) {
-	$output = wpautop(convert_chars(wptexturize(stripslashes(get_tarski_option('sidebar_custom')))));
-	$output = apply_filters('tarski_sidebar_custom', $output);
+	$content = get_tarski_option('sidebar_custom');
+	$output = apply_filters('tarski_sidebar_custom', $content);
 	if($return) {
 		return $output;
 	} else {
@@ -394,13 +413,8 @@ function tarski_sidebar_custom($return = false) {
  * @return string
  */
 function tarski_footer_blurb($return = false) {
-	$output = get_tarski_option('blurb');
-	
-	if(!empty($output)) {
-		$output = wpautop(convert_chars(wptexturize(stripslashes($output))));
-	}
-	
-	$output = apply_filters('tarski_footer_blurb', $output);
+	$content = get_tarski_option('blurb');	
+	$output = apply_filters('tarski_footer_blurb', $content);
 	
 	if($return) {
 		return $output;
@@ -413,6 +427,7 @@ function tarski_footer_blurb($return = false) {
  * tarski_blurb_wrapper() - Wraps footer blurb in div element.
  *
  * @since 2.0
+ * @see tarski_footer_blurb()
  * @param string $blurb
  * @return string
  */
