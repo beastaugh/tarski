@@ -281,12 +281,21 @@ function tarski_comment_author_link() {
 	$author = get_comment_author();
 
 	if(empty($url) || 'http://' == $url) {
-		$return = '<span class="fn">'. $author. '</span>';
+		$return = sprintf(
+			'<span class="fn">%s</span>',
+			$author
+		);
 	} else {
-		$return = '<a class="url fn" href="'. $url. '" rel="external nofollow">'. $author. '</a>';
+		$return = sprintf(
+			'<a class="url fn" href="%1$s" rel="external nofollow">%2$s</a>',
+			$url,
+			$author
+		);
 	}
-	
-	return apply_filters('tarski_comment_author_link', $return);
+
+	$return =  apply_filters('get_comment_author_link', $return);
+	$return = apply_filters('tarski_comment_author_link', $return);
+	return $return;
 }
 
 /**

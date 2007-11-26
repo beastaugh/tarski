@@ -111,8 +111,9 @@ function tarski_admin_header_style() {
  * @since 1.4
 */
 function tarski_inject_scripts() {
-	if(substr($_SERVER['REQUEST_URI'], -39, 39) == 'wp-admin/themes.php?page=tarski-options')
+	if(substr($_SERVER['REQUEST_URI'], -39, 39) == 'wp-admin/themes.php?page=tarski-options') {
 		include(TARSKIDISPLAY . '/admin/options_scripts.php');
+	}
 }
 
 /**
