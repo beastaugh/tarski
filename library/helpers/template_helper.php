@@ -54,7 +54,7 @@ function tarski_language_attributes() {
 		$output = "dir=\"$dir\" ";
 	}
 	
-	$output .= "lang=\"$lang\"" "xml:lang=\"$lang\"";
+	$output .= "lang=\"$lang\" xml:lang=\"$lang\"";
 
 	echo $output;
 }
