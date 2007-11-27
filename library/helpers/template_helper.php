@@ -52,7 +52,6 @@ function tarski_language_attributes() {
 		$lang = $def_lang;
 	if ( $dir = get_bloginfo('text_direction') )
 		$output = "dir=\"$dir\" ";
-	}
 	
 	$output .= "lang=\"$lang\" xml:lang=\"$lang\"";
 
