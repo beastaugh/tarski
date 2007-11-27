@@ -35,6 +35,31 @@ function is_archives_template() {
 }
 
 /**
+ * tarski_language_attributes() - Outputs lang and xml:lang attributes
+ * 
+ * Replaces WP's language_attributes() function until that is improved.
+ * @link http://trac.wordpress.org/ticket/5393
+ * @see language_attributes()
+ * @since 2.0.5
+ * @return string
+ */
+function tarski_language_attributes() {
+	$output = '';
+	$def_lang = get_bloginfo('language');
+	$lang = 'en';
+	
+	if( $def_lang )
+		$lang = $def_lang;
+	if ( $dir = get_bloginfo('text_direction') )
+		$output = "dir=\"$dir\" ";
+	}
+	
+	$output .= "lang=\"$lang\"" "xml:lang=\"$lang\"";
+
+	echo $output;
+}
+
+/**
  * tarski_doctitle() - Returns the document title.
  * 
  * The order (site name first or last) can be set on the Tarski Options page.
