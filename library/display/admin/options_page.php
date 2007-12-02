@@ -26,8 +26,14 @@
 	<?php tarski_update_notifier('options_page'); ?>
 <?php } ?>
 
-<?php if(get_tarski_option('debug')) { global $tarski_options; ?>
+<?php if(get_tarski_var('debug')) { global $tarski_options; ?>
 	<div class="updated">
+		<h4>$_POST</h4>
+		<pre>
+			<?php print_r($_POST); ?>
+		</pre>
+		
+		<h4>$tarski_options</h4>
 		<pre>
 			<?php print_r($tarski_options); ?>
 		</pre>

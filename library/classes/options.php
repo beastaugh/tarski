@@ -16,7 +16,6 @@ class Options extends Tarski {
 	
 	var $installed;
 	var $deleted;
-	var $debug = false;
 	var $update_notification;
 	var $blurb;
 	var $footer_recent;

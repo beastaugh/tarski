@@ -7,9 +7,11 @@
  */
 class Tarski {
 
+	var $debug;
 	var $files;
 	
 	function set_defaults() {
+		$this->debug = false;
 		$this->files = array();
 	}
 	
