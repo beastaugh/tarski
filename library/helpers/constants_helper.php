@@ -45,9 +45,9 @@ function tarski_output_navbarinclude($navbar) {
 	if(!is_array($navbar))
 		$navbar = array();
 	
-	if($navbarInclude) {
+	if($navbarInclude)
 		$navbar['navbarinclude'] = $navbarInclude;
-	}	
+	
 	return $navbar;
 }
 
@@ -124,8 +124,6 @@ function tarski_output_sidebartopinclude() {
 	} else { // Sidebar everywhere
 		if(!(is_page() || is_single())) {
 			tarski_output_constant($sidebarTopInclude);
-		} elseif(is_archives_template()) {
-			tarski_output_constant($sidebarTopInclude);
 		}
 	}
 }
@@ -146,8 +144,6 @@ function tarski_output_sidebarbottominclude() {
 	} else { // Sidebar everywhere
 		if(!(is_page() || is_single())) {
 			tarski_output_constant($sidebarBottomInclude);
-		} elseif(is_archives_template()) {
-			tarski_output_constant($sidebarBottomInclude);
 		}
 	}
 }
@@ -161,8 +157,8 @@ function tarski_output_sidebarbottominclude() {
  */
 function tarski_output_nosidebarinclude() {
 	global $noSidebarInclude;
-	if(get_tarski_option('sidebar_onlyhome') && (is_single() || is_page())) {
-		if(is_archives_template()) {
+	if((get_tarski_option('sidebar_pp_type') == 'none') && (is_single() || is_page())) {
+		if(!is_archives_template()) {
 			tarski_output_constant($noSidebarInclude);
 		}
 	}

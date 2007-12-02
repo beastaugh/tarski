@@ -9,10 +9,10 @@
  * set on the Tarski Options page, which can be found in the WP admin panel:
  * Presentation > Tarski Options, or /wp-admin/themes.php?page=tarski-options
  * in your WordPress directory.
- * @package tarski_options
+ * @package Tarski
  * @since 2.0
  */
-class Options {
+class Options extends Tarski {
 	
 	var $installed;
 	var $deleted;
@@ -150,9 +150,6 @@ class Options {
 	 * @see save_tarski_options()
 	 */
 	function tarski_options_update() {
-		global $wpdb, $user_ID;
-		get_currentuserinfo();
-
 		if(($_POST['delete_options'] == 1)) {
 			$this->deleted = time();
 		} elseif($_POST['restore_options'] == 1) {
@@ -280,7 +277,7 @@ function flush_tarski_options() {
 function update_tarski_option($option, $value, $drop = false) {
 	global $tarski_options;
 	
-	if(!$tarski_options)
+	if(!is_object($tarski_options) || empty($tarski_options))
 		flush_tarski_options();
 	
 	$tarski_options->$option = $value;
@@ -331,22 +328,10 @@ function drop_tarski_option($option) {
 function get_tarski_option($name) {
 	global $tarski_options;
 	
-	if(empty($tarski_options))
+	if(!is_object($tarski_options))
 		flush_tarski_options();
 	
-	return $tarski_options->$name;
-}
-
-/**
- * tarski_option() - Outputs the given Tarski option.
- * 
- * Basically just echoes the value returned by the complementary
- * function get_tarski_option().
- * @since 1.4
- * @see get_tarski_option()
- */
-function tarski_option($name) {
-	echo get_tarski_option($name);
+	return $tarski_options->get_var($name);
 }
 
 ?>

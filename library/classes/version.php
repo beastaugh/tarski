@@ -12,10 +12,10 @@
  * version, and the version status, i.e. whether the currently
  * installed version equal to the latest version, and hence whether
  * the theme is in need of updating.
- * @package tarski_version
+ * @package Tarski
  * @since 2.0
  */
-class Version {
+class Version extends Tarski {
 	
 	/**
 	 * The version number of the currently installed theme.
@@ -142,15 +142,17 @@ class Version {
 		$this->current_version_number();
 		$this->latest_version_number();
 		
-		$current_version = $this->current;
-		$latest_version = $this->latest;
+		$current_version = version_to_integer($this->current);
+		$latest_version = version_to_integer($this->latest);
 
-		if(!$latest_version) {
-			$version_status = 'no_connection';
-		} elseif($current_version == $latest_version) {
+		if($current_version === $latest_version) {
 			$version_status = 'current';
-		} elseif($current_version != $latest_version) {
-			$version_status = 'not_current';
+		} elseif($current_version < $latest_version) {
+			$version_status = 'older';
+		} elseif($current_version > $latest_version) {
+				$version_status = 'newer';
+		} else {
+			$version_status = 'no_connection';
 		}
 		
 		$this->status = $version_status;
@@ -194,6 +196,7 @@ function tarski_update_notifier($location = 'dashboard') {
 	$tarski_version = new Version;
 	$tarski_version->current_version_number();
 	$current = $tarski_version->current;
+	$svn_link = 'http://tarskitheme.com/help/updates/svn/';
 	
 	// Update checking only performed when remote files can be accessed
 	if(can_get_remote()) {

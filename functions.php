@@ -9,6 +9,7 @@ define('TARSKICACHE', TARSKILIB . '/cache');
 define('TARSKIVERSIONFILE', 'http://tarskitheme.com/version.atom');
 
 // Classes
+require_once(TARSKICLASSES . '/tarski.php');
 require_once(TARSKICLASSES . '/options.php');
 require_once(TARSKICLASSES . '/version.php');
 
@@ -20,14 +21,7 @@ include_once(TARSKIHELPERS . '/content_helper.php');
 include_once(TARSKIHELPERS . '/author_helper.php');
 include_once(TARSKIHELPERS . '/tag_helper.php');
 include_once(TARSKIHELPERS . '/constants_helper.php');
-include_once(TARSKIHELPERS . '/cache_helper.php');
 include_once(TARSKIHELPERS . '/deprecated.php');
-
-// Options
-load_theme_textdomain('tarski');
-global $tarski_options;
-flush_tarski_options();
-@include(TEMPLATEPATH . '/constants.php');
 
 // Custom header constants
 define('HEADER_TEXTCOLOR', '');

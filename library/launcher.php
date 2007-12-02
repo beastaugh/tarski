@@ -1,5 +1,8 @@
 <?php
 
+// Localisation
+load_theme_textdomain('tarski');
+
 // Custom header image
 add_custom_image_header('', 'tarski_admin_header_style');
 
@@ -85,7 +88,9 @@ add_action('th_footer', 'tarski_feedlink');
 add_action('th_footer', 'tarski_credits');
 
 // Constants output
-if(file_exists(TEMPLATEPATH . '/constants.php')) {	
+if(file_exists(TEMPLATEPATH . '/constants.php')) {
+	include_once(TEMPLATEPATH . '/constants.php');
+	
 	add_filter('tarski_navbar', 'tarski_output_navbarinclude');
 	add_filter('th_404_content', 'tarski_output_errorinclude');
 

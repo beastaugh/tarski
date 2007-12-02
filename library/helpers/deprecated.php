@@ -10,6 +10,19 @@
  */
 
 /**
+ * tarski_option() - Outputs the given Tarski option.
+ * 
+ * Basically just echoes the value returned by the complementary
+ * function get_tarski_option().
+ * @deprecated 2.0.5
+ * @since 1.4
+ * @see get_tarski_option()
+ */
+function tarski_option($name) {
+	echo get_tarski_option($name);
+}
+
+/**
  * tarski_header_status() - Outputs current header status.
  * 
  * Output is currently used to set an HTML class, which allows
