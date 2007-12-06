@@ -95,7 +95,7 @@ class Options extends Tarski {
 				// Handle special cases first
 				
 				// Update the options version so we don't run this code more than once
-				$this->installed = $defaults->installed;
+				$this->installed = theme_version('current');
 				
 				// If they had hidden the sidebar previously for non-index pages, preserve that setting
 				if(empty($this->sidebar_pp_type) && isset($this->sidebar_onlyhome) && $this->sidebar_onlyhome == 1) {
