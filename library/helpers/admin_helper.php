@@ -114,6 +114,22 @@ function is_valid_tarski_style($file) {
 }
 
 /**
+ * ready_to_delete_options() - Returns true if Tarski is ready to delete its options.
+ * 
+ * When options are deleted, the time of deletion is saved in Tarski's
+ * options. This function checks that time against the current time:
+ * if the current time minus the saved time is greater than three hours
+ * (i.e. if more than two hours have elapsed since the options were
+ * deleted) then this function will return true.
+ */
+function ready_to_delete_options($del_time) {
+	if(!empty($del_time)) {
+		$del_time = (int) $del_time;
+		return (bool) (time() - $del_time) > (3 * 3600);
+	}
+}
+
+/**
  * tarski_admin_header_style() - Styles the custom header image admin page for use with Tarski.
  * 
  * @since 1.4

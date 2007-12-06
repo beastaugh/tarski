@@ -3,9 +3,9 @@
 <?php if(isset($_POST['Submit']) && !get_tarski_option('deleted')) { ?>
 	<div id="updated" class="updated fade">
 		<?php if(isset($_POST['restore_options'])) { ?>
-			<p><?php echo __('Tarski Options have been restored.','tarski'). ' <a href="'. get_bloginfo('url'). '/">'. __('View site &raquo;','tarski'). '</a>'; ?></p>
+			<p><?php echo __('Tarski Options have been restored.','tarski') . ' <a href="' . get_bloginfo('url') . '/">' . __('View site &raquo;','tarski') . '</a>'; ?></p>
 		<?php } else { ?>
-			<p><?php echo __('Tarski Options have been updated.','tarski'). ' <a href="'. get_bloginfo('url'). '/">'. __('View site &raquo;','tarski'). '</a>'; ?></p>
+			<p><?php echo __('Tarski Options have been updated.','tarski') . ' <a href="' . get_bloginfo('url') . '/">' . __('View site &raquo;','tarski') . '</a>'; ?></p>
 		<?php } ?>
 	</div>
 <?php } ?>

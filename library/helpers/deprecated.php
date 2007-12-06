@@ -10,6 +10,36 @@
  */
 
 /**
+ * add_tarski_option() - Adds a new Tarski option.
+ * 
+ * This function is an alias for update_tarski_option().
+ * @deprecated 2.0.5
+ * @since 1.6
+ * @see update_tarski_option()
+ * @param string $name
+ * @param string $value
+ * @return object $tarski_options
+ */
+function add_tarski_option($name, $value) {
+	update_tarski_option($name, $value);
+}
+
+/**
+ * drop_tarski_option() - Drops the given Tarski option.
+ * 
+ * This function is just an alias for update_tarski_option(), but
+ * with a more restricted set of parameters.
+ * @deprecated 2.0.5
+ * @since 1.6
+ * @see update_tarski_option()
+ * @param string $name
+ * @return object $tarski_options
+ */
+function drop_tarski_option($option) {
+	update_tarski_option($option, false);
+}
+
+/**
  * tarski_option() - Outputs the given Tarski option.
  * 
  * Basically just echoes the value returned by the complementary

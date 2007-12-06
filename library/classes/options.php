@@ -78,14 +78,15 @@ class Options extends Tarski {
 	 * @since 2.0
 	 */
 	function tarski_options_get() {
-		$array = unserialize(get_option('tarski_options'));
-		if(!empty($array) && is_object($array)) {
-			foreach($array as $name => $value) {
+		$saved_options = unserialize(get_option('tarski_options'));
+		
+		if(!empty($saved_options) && is_object($saved_options)) {
+			foreach($saved_options as $name => $value) {
 				$this->$name = $value;
 			}
-
-			if(empty($this->installed) || ($this->installed != theme_version('current'))) {
-				// We had some Tarski preferences, but the preferences were from a different version, so we need to update them
+						
+			if(empty($this->installed) || (version_to_integer($this->installed) < version_to_integer(theme_version('current')))) {
+				// We had some Tarski preferences, but the preferences were from an older version, so we need to update them
 				
 				// Get our defaults, so we can merge them in
 				$defaults = new Options;
@@ -121,13 +122,13 @@ class Options extends Tarski {
 					if(!isset($defaults->$name)) {
 						// Get rid of options which no longer exist
 						unset($this->$name);
-					} else if(!isset($this->$name)) {
+					} elseif(!isset($this->$name)) {
 						// Use the default if we don't have this option
 						$this->$name = $defaults->$name;
-					} else if(is_array($this->$name) && !is_array($defaults->$name)) {
+					} elseif(is_array($this->$name) && !is_array($defaults->$name)) {
 						// If our option is an array and the default is not, implode using " " as a separator
 						$this->$name = implode(" ", $this->$name);
-					} else if(!is_array($this->$name) && is_array($defaults->$name)) {
+					} elseif(!is_array($this->$name) && is_array($defaults->$name)) {
 						// If our option is a scalar and the default is an array, wrap our option in an array
 						$this->$name = array($this->$name);
 					}
@@ -152,7 +153,7 @@ class Options extends Tarski {
 		if(($_POST['delete_options'] == 1)) {
 			$this->deleted = time();
 		} elseif($_POST['restore_options'] == 1) {
-			$this->deleted = false;
+			unset($this->deleted);
 		} else {
 			if($_POST['update_notification'] == 'off')
 				$this->update_notification = false;
@@ -202,6 +203,7 @@ class Options extends Tarski {
 			$this->feed_type = $_POST['feed_type'];
 			
 			$this->show_authors = tarski_should_show_authors();
+			unset($this->deleted);
 		}
 	}
 
@@ -225,8 +227,13 @@ function save_tarski_options() {
 		$tarski_options = new Options;
 		$tarski_options->tarski_options_get();
 		$tarski_options->tarski_options_update();
-		update_option('tarski_options', serialize($tarski_options));
+		
+		if(ready_to_delete_options($tarski_options->deleted))
+			delete_option('tarski_options');
+		else
+			update_option('tarski_options', serialize($tarski_options));
 	}
+	
 	flush_tarski_options();
 }
 
@@ -247,17 +254,10 @@ function save_tarski_options() {
 function flush_tarski_options() {
 	global $tarski_options;
 	$tarski_options = new Options;
-	if(get_option('tarski_options')) {
-		$tarski_options->tarski_options_get();
-		if(get_tarski_option('deleted')) {
-			if((time() - (int) get_tarski_option('deleted')) > 2 * 60 * 60) {
-				delete_option('tarski_options');
-			}
-			$tarski_options->tarski_options_defaults();
-		}
-	} else {
+	$tarski_options->tarski_options_get();
+	
+	if(!get_option('tarski_options') || isset($tarski_options->deleted))
 		$tarski_options->tarski_options_defaults();
-	}
 }
 
 /**
@@ -271,50 +271,18 @@ function flush_tarski_options() {
  * @param string $value
  * @param boolean $drop
  * @global object $tarski_options
- * @return object $tarski_options
  */
-function update_tarski_option($option, $value, $drop = false) {
-	global $tarski_options;
-	
-	if(!is_object($tarski_options) || empty($tarski_options))
-		flush_tarski_options();
-	
-	$tarski_options->$option = $value;
-	
-	if($drop)
-		unset($tarski_options->$name);
-	
+function update_tarski_option($option, $value) {
+	$tarski_options = new Options;
+	$tarski_options->tarski_options_get();
+		
+	if(empty($value))
+		unset($tarski_options->$option);
+	else
+		$tarski_options->$option = $value;
+		
 	update_option('tarski_options', serialize($tarski_options));
 	flush_tarski_options();
-}
-
-/**
- * add_tarski_option() - Adds a new Tarski option.
- * 
- * This function is just an alias for update_tarski_option(), but
- * with a more restricted set of parameters.
- * @since 1.6
- * @see update_tarski_option()
- * @param string $name
- * @param string $value
- * @return object $tarski_options
- */
-function add_tarski_option($name, $value) {
-	update_tarski_option($name, $value);
-}
-
-/**
- * drop_tarski_option() - Drops the given Tarski option.
- * 
- * This function is just an alias for update_tarski_option(), but
- * with a more restricted set of parameters.
- * @since 1.6
- * @see update_tarski_option()
- * @param string $name
- * @return object $tarski_options
- */
-function drop_tarski_option($option) {
-	update_tarski_option($option, false, true);
 }
 
 /**
