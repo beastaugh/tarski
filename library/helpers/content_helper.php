@@ -6,16 +6,13 @@
  * Stolen from ticket #4594 on Trac, hence the conditional definition.
  * @link http://trac.wordpress.org/ticket/4594
  * @since 2.0
- * @return mixed
+ * @return boolean
  */
 if(!function_exists('is_active_sidebar')) {
 	function is_active_sidebar( $index ) {
 		$index = ( is_int($index) ) ? "sidebar-$index" : sanitize_title($index);
 		$sidebars_widgets = (array) get_option('sidebars_widgets');	
-		if ( isset( $sidebars_widgets[$index] ) ) 
-			return true;
-		else
-			return false;
+		return (bool) ( isset( $sidebars_widgets[$index] ) );
 	}
 }
 
