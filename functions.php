@@ -14,13 +14,13 @@ require_once(TARSKICLASSES . '/options.php');
 require_once(TARSKICLASSES . '/version.php');
 
 // Helpers
-include_once(TARSKIHELPERS . '/hooks.php');
-include_once(TARSKIHELPERS . '/admin_helper.php');
-include_once(TARSKIHELPERS . '/template_helper.php');
-include_once(TARSKIHELPERS . '/content_helper.php');
-include_once(TARSKIHELPERS . '/author_helper.php');
-include_once(TARSKIHELPERS . '/tag_helper.php');
-include_once(TARSKIHELPERS . '/constants_helper.php');
+require_once(TARSKIHELPERS . '/hooks.php');
+require_once(TARSKIHELPERS . '/admin_helper.php');
+require_once(TARSKIHELPERS . '/template_helper.php');
+require_once(TARSKIHELPERS . '/content_helper.php');
+require_once(TARSKIHELPERS . '/author_helper.php');
+require_once(TARSKIHELPERS . '/tag_helper.php');
+require_once(TARSKIHELPERS . '/constants_helper.php');
 include_once(TARSKIHELPERS . '/deprecated.php');
 
 // Custom header constants

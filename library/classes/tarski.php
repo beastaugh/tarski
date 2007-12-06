@@ -9,10 +9,12 @@ class Tarski {
 
 	var $debug;
 	var $files;
+	var $private;
 	
 	function set_defaults() {
 		$this->debug = false;
 		$this->files = array();
+		$this->private = array();
 	}
 	
 	function get_var($var) {
@@ -47,7 +49,8 @@ function get_tarski_var($var) {
 		$tarski->set_defaults();
 	}
 	
-	return $tarski->get_var($var);
+	if(!is_array($tarski->private) || !in_array($var, $tarski->private))
+		return $tarski->get_var($var);
 }
 
 ?>
