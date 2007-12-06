@@ -298,7 +298,7 @@ function get_tarski_option($name) {
 	if(!is_object($tarski_options))
 		flush_tarski_options();
 	
-	return $tarski_options->get_var($name);
+	return $tarski_options->$name;
 }
 
 ?>
