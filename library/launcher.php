@@ -47,6 +47,8 @@ add_action('admin_head', 'tarski_inject_scripts');
 
 // Options
 add_action('admin_head', 'tarski_resave_show_authors');
+add_action('save_post', 'flush_tarski_recent_entries');
+add_action('deleted_post', 'flush_tarski_recent_entries');
 
 // Header
 add_filter('tarski_style_array', 'add_version_to_styles');
@@ -84,6 +86,8 @@ add_filter('tarski_footer_blurb', 'tarski_content_massage', 9);
 add_filter('tarski_footer_blurb', 'tarski_blurb_wrapper', 10);
 
 add_action('th_fsidebar', 'tarski_footer_sidebar');
+add_action('th_fmain', 'tarski_footer_blurb');
+add_action('th_fmain', 'tarski_recent_entries');
 add_action('th_footer', 'tarski_feedlink');
 add_action('th_footer', 'tarski_credits');
 

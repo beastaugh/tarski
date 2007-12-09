@@ -68,6 +68,19 @@ function th_fsidebar() {
 }
 
 /**
+ * th_fmain() - Tarski footer main section hook
+ *
+ * Template function appearing in footer.php, allows actions
+ * to be executed at that point in the template. By default
+ * used to add the footer blurb and recent entries
+ * @example add_action('th_fmain', 'my_function');
+ * @since 2.0.5
+ **/
+function th_fmain() {
+	do_action('th_fmain');
+}
+
+/**
  * th_footer() - Tarski footer hook
  *
  * Template function appearing in footer.php, allows actions

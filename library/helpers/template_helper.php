@@ -313,7 +313,7 @@ function tarski_feeds($return = false) {
 	} elseif(is_archive()) {
 		if(is_category()) {
 			$title = sprintf( __('Category feed for %s','tarski'), single_cat_title('','',false) );
-			$link = get_category_feed_link( get_query_var('cat'), $type );
+			$link = get_category_feed_link(get_query_var('cat'), $type);
 		} elseif(is_tag()) {
 			$title = sprintf( __('Tag feed for %s','tarski'), single_tag_title('','',false));
 			$link = get_tag_feed_link(get_query_var('tag_id'), $type);
@@ -342,7 +342,7 @@ function tarski_feeds($return = false) {
 		}
 	} elseif(is_search()) {
 		$title = sprintf( __('Search feed for %s','tarski'), attribute_escape(get_search_query()));
-		$link = get_bloginfo('url'). '/?s='. attribute_escape(get_search_query()). "&amp;feed=$type";
+		$link = get_bloginfo('url') . '/?s=' . attribute_escape(get_search_query()) . "&amp;feed=$type";
 	}
 	if($type == 'atom') {
 		$type_fixed = 'atom';
