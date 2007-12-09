@@ -57,9 +57,8 @@ function tarski_option($name) {
  * 
  * Can be set to return Atom, RSS or RSS2. Now in WP trunk, but
  * conditionally defined here for backwards compatibility with 2.3.
- * Will be deprecated when WP 2.4 is released, and removed at some
- * point thereafter.
  * @link http://trac.wordpress.org/changeset/6327
+ * @deprecated 2.1
  * @since 2.0
  * @param integer $cat_id
  * @param string $feed
@@ -89,6 +88,45 @@ if(!function_exists('get_category_feed_link')) {
 		}
 
 		$link = apply_filters('category_feed_link', $link, $feed);
+
+		return $link;
+	}
+}
+
+/**
+ * get_author_feed_link() - Gets the feed link for a given author.
+ * 
+ * Can be set to return Atom, RSS or RSS2.
+ * @deprecated 2.1
+ * @since 2.0
+ * @param integer $author_id
+ * @param string $feed
+ * @return string $link
+ */
+if(!function_exists('get_author_feed_link')) {
+	function get_author_feed_link($author_id, $feed = 'rss2') {
+		$auth_id = (int) $author_id;
+
+		$author = get_userdata($auth_id);
+		
+		if ( empty($author) || is_wp_error($author) )
+			return false;
+
+		$permalink_structure = get_option('permalink_structure');
+
+		if ( '' == $permalink_structure ) {
+			$link = get_option('home') . "?feed=$feed&amp;author=" . $auth_id;
+		} else {
+			$link = get_author_posts_url($auth_id);
+			if ( 'rss2' == $feed )
+				$feed_link = 'feed';
+			else
+				$feed_link = "feed/$feed";
+
+			$link = trailingslashit($link) . user_trailingslashit($feed_link, 'feed');
+		}
+
+		$link = apply_filters('author_feed_link', $link, $feed);
 
 		return $link;
 	}

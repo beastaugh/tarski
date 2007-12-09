@@ -53,42 +53,4 @@ function the_archive_author_description() {
 	return $current_author->user_description;
 }
 
-/**
- * get_author_feed_link() - Gets the feed link for a given author.
- * 
- * Can be set to return Atom, RSS or RSS2.
- * @since 2.0
- * @param integer $author_id
- * @param string $feed
- * @return string $link
- */
-if(!function_exists('get_author_feed_link')) {
-	function get_author_feed_link($author_id, $feed = 'rss2') {
-		$auth_id = (int) $author_id;
-
-		$author = get_userdata($auth_id);
-		
-		if ( empty($author) || is_wp_error($author) )
-			return false;
-
-		$permalink_structure = get_option('permalink_structure');
-
-		if ( '' == $permalink_structure ) {
-			$link = get_option('home') . "?feed=$feed&amp;author=" . $auth_id;
-		} else {
-			$link = get_author_posts_url($auth_id);
-			if ( 'rss2' == $feed )
-				$feed_link = 'feed';
-			else
-				$feed_link = "feed/$feed";
-
-			$link = trailingslashit($link) . user_trailingslashit($feed_link, 'feed');
-		}
-
-		$link = apply_filters('author_feed_link', $link, $feed);
-
-		return $link;
-	}
-}
-
 ?>
