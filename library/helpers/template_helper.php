@@ -246,48 +246,6 @@ function tarski_javascript() {
 }
 
 /**
- * get_category_feed_link() - Gets the feed link for a given category.
- * 
- * Can be set to return Atom, RSS or RSS2. Now in WP trunk, but
- * conditionally defined here for backwards compatibility with 2.3.
- * Will be deprecated when WP 2.4 is released, and removed at some
- * point thereafter.
- * @link http://trac.wordpress.org/changeset/6327
- * @since 2.0
- * @param integer $cat_id
- * @param string $feed
- * @return string $link
- */
-if(!function_exists('get_category_feed_link')) {
-	function get_category_feed_link($cat_id, $feed = 'rss2') {
-		$cat_id = (int) $cat_id;
-
-		$category = get_category($cat_id);
-
-		if ( empty($category) || is_wp_error($category) )
-			return false;
-
-		$permalink_structure = get_option('permalink_structure');
-
-		if ( '' == $permalink_structure ) {
-			$link = get_option('home') . "?feed=$feed&amp;cat=" . $cat_id;
-		} else {
-			$link = get_category_link($cat_id);
-			if( 'rss2' == $feed )
-				$feed_link = 'feed';
-			else
-				$feed_link = "feed/$feed";
-
-			$link = trailingslashit($link) . user_trailingslashit($feed_link, 'feed');
-		}
-
-		$link = apply_filters('category_feed_link', $link, $feed);
-
-		return $link;
-	}
-}
-
-/**
  * tarski_feeds() - Outputs feed links for the page.
  * 
  * Can be set to return Atom, RSS or RSS2. Will always return the
