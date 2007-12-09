@@ -4,6 +4,11 @@
 load_theme_textdomain('tarski');
 
 // Custom header image
+define('HEADER_TEXTCOLOR', '');
+define('HEADER_IMAGE', '%s/headers/' . get_tarski_option('header')); // %s is theme directory URI
+define('HEADER_IMAGE_WIDTH', 720);
+define('HEADER_IMAGE_HEIGHT', 180);
+define('NO_HEADER_TEXT', true);
 add_custom_image_header('', 'tarski_admin_header_style');
 
 // Widgets

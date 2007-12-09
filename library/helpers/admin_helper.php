@@ -121,6 +121,8 @@ function is_valid_tarski_style($file) {
  * if the current time minus the saved time is greater than three hours
  * (i.e. if more than two hours have elapsed since the options were
  * deleted) then this function will return true.
+ * @since 2.0.5
+ * @return boolean
  */
 function ready_to_delete_options($del_time) {
 	if(!empty($del_time)) {
@@ -130,12 +132,92 @@ function ready_to_delete_options($del_time) {
 }
 
 /**
+ * tarski_upgrade_needed() - Returns true if Tarski needs upgrading.
+ * 
+ * 'Needs upgrading' is defined as having either no installed version,
+ * or having an installed version with a lower version number than the
+ * version number extracted from the main stylesheet.
+ * @since 2.0.6
+ * @return boolean
+ */
+function tarski_upgrade_needed() {
+	if ( get_option('tarski_options') ) {
+		$version = get_tarski_option('installed');
+		$current = theme_version('current');
+		return (bool) empty($version) || (version_to_integer($version) < version_to_integer($current));
+	}
+}
+
+/* function tarski_upgrade() - Upgrades Tarski's options where appropriate.
+ * 
+ * Tarski preferences sometimes change between versions, and need to
+ * be updated. This function does not determine whether an update is
+ * needed, it merely perfoms it. It's also self-contained, so it
+ * won't update the global $tarski_options object either.
+ * @since 2.0.6
+ */
+function tarski_upgrade() {
+	// Get existing options
+	$options = new Options;
+	$options->tarski_options_get();
+	
+	// Get our defaults, so we can merge them in
+	$defaults = new Options;
+	$defaults->tarski_options_defaults();
+
+	// Handle special cases first
+	
+	// Update the options version so we don't run this code more than once
+	$options->installed = theme_version('current');
+	
+	// If they had hidden the sidebar previously for non-index pages, preserve that setting
+	if(empty($options->sidebar_pp_type) && isset($options->sidebar_onlyhome) && $options->sidebar_onlyhome == 1) {
+		$options->sidebar_pp_type = 'none';
+	}
+	
+	// If there's more than one author, show authors
+	if(tarski_should_show_authors()) {
+		$options->show_authors = true;
+	}
+	
+	// If categories are hidden, respect that option
+	if(empty($options->show_categories) && isset($options->hide_categories) && ($options->hide_categories == 1)) {
+		$options->show_categories = false;
+	}
+	
+	// Change American English to British English, sorry Chris
+	if(empty($options->centred_theme) && isset($options->centered_theme)) {
+		$options->centred_theme = true;
+	}
+	
+	// Conform our options to the expected values, types, and defaults
+	foreach($options as $name => $value) {
+		if(!isset($defaults->$name)) {
+			// Get rid of options which no longer exist
+			unset($options->$name);
+		} elseif(!isset($options->$name)) {
+			// Use the default if we don't have this option
+			$options->$name = $defaults->$name;
+		} elseif(is_array($options->$name) && !is_array($defaults->$name)) {
+			// If our option is an array and the default is not, implode using " " as a separator
+			$options->$name = implode(" ", $options->$name);
+		} elseif(!is_array($options->$name) && is_array($defaults->$name)) {
+			// If our option is a scalar and the default is an array, wrap our option in an array
+			$options->$name = array($options->$name);
+		}
+	}
+
+	// Save our updated options
+	update_option('tarski_options', serialize($options));
+}
+
+/**
  * tarski_admin_header_style() - Styles the custom header image admin page for use with Tarski.
  * 
  * @since 1.4
  */
 function tarski_admin_header_style() {
-	include(TARSKIDISPLAY . '/admin/admin_header_style.php');
+	include_once(TARSKIDISPLAY . '/admin/admin_header_style.php');
 }
 
 /**
@@ -145,7 +227,7 @@ function tarski_admin_header_style() {
 */
 function tarski_inject_scripts() {
 	if(substr($_SERVER['REQUEST_URI'], -39, 39) == 'wp-admin/themes.php?page=tarski-options') {
-		include(TARSKIDISPLAY . '/admin/options_scripts.php');
+		include_once(TARSKIDISPLAY . '/admin/options_scripts.php');
 	}
 }
 

@@ -84,60 +84,6 @@ class Options extends Tarski {
 			foreach($saved_options as $name => $value) {
 				$this->$name = $value;
 			}
-						
-			if(empty($this->installed) || (version_to_integer($this->installed) < version_to_integer(theme_version('current')))) {
-				// We had some Tarski preferences, but the preferences were from an older version, so we need to update them
-				
-				// Get our defaults, so we can merge them in
-				$defaults = new Options;
-				$defaults->tarski_options_defaults();
-
-				// Handle special cases first
-				
-				// Update the options version so we don't run this code more than once
-				$this->installed = theme_version('current');
-				
-				// If they had hidden the sidebar previously for non-index pages, preserve that setting
-				if(empty($this->sidebar_pp_type) && isset($this->sidebar_onlyhome) && $this->sidebar_onlyhome == 1) {
-					$this->sidebar_pp_type = 'none';
-				}
-				
-				// If there's more than one author, show authors
-				if(tarski_should_show_authors()) {
-					$this->show_authors = true;
-				}
-				
-				// If categories are hidden, respect that option
-				if(empty($this->show_categories) && isset($this->hide_categories) && ($this->hide_categories == 1)) {
-					$this->show_categories = false;
-				}
-				
-				// Change American English to British English, sorry Chris
-				if(empty($this->centred_theme) && isset($this->centered_theme)) {
-					$this->centred_theme = true;
-				}
-				
-				// Conform our options to the expected values, types, and defaults
-				foreach($this as $name => $value) {
-					if(!isset($defaults->$name)) {
-						// Get rid of options which no longer exist
-						unset($this->$name);
-					} elseif(!isset($this->$name)) {
-						// Use the default if we don't have this option
-						$this->$name = $defaults->$name;
-					} elseif(is_array($this->$name) && !is_array($defaults->$name)) {
-						// If our option is an array and the default is not, implode using " " as a separator
-						$this->$name = implode(" ", $this->$name);
-					} elseif(!is_array($this->$name) && is_array($defaults->$name)) {
-						// If our option is a scalar and the default is an array, wrap our option in an array
-						$this->$name = array($this->$name);
-					}
-				}
-
-				// Save our updated options
-				update_option('tarski_options', serialize($this));
-				flush_tarski_options();
-			}
 		}
 	}
 	
@@ -223,15 +169,24 @@ class Options extends Tarski {
  * @since 2.0
  */
 function save_tarski_options() {
-	if(isset($_POST['Submit'])) {
+	$tarski_options = new Options;
+	$tarski_options->tarski_options_get();
+	
+	if(ready_to_delete_options($tarski_options->deleted)) {
+		delete_option('tarski_options');
+		flush_tarski_options();
+		return;
+	}
+	
+	if(tarski_upgrade_needed()) {
+		tarski_upgrade();
 		$tarski_options = new Options;
 		$tarski_options->tarski_options_get();
+	}
+	
+	if(isset($_POST['Submit'])) {
 		$tarski_options->tarski_options_update();
-		
-		if(ready_to_delete_options($tarski_options->deleted))
-			delete_option('tarski_options');
-		else
-			update_option('tarski_options', serialize($tarski_options));
+		update_option('tarski_options', serialize($tarski_options));
 	}
 	
 	flush_tarski_options();
