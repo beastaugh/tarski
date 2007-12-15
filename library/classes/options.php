@@ -69,7 +69,10 @@ class Options extends Tarski {
 		$this->show_categories = true;
 		$this->show_authors = tarski_should_show_authors();
 		$this->use_pages = false;
-		$this->feed_type = 'rss2';
+		if(function_exists('get_default_feed'))
+			$this->feed_type = get_default_feed();
+		else
+			$this->feed_type = 'rss2';
 	}
 	
 	/**
@@ -146,7 +149,11 @@ class Options extends Tarski {
 			$this->home_link_name = $_POST['home_link_name'];
 			$this->sidebar_type = $_POST['sidebar_type'];
 			$this->sidebar_pp_type = $_POST['sidebar_pp_type'];
-			$this->feed_type = $_POST['feed_type'];
+			
+			if(function_exists('get_default_feed'))
+				$this->feed_type = get_default_feed();
+			else
+				$this->feed_type = $_POST['feed_type'];
 			
 			$this->show_authors = tarski_should_show_authors();
 			unset($this->deleted);
