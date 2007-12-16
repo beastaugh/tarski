@@ -6,7 +6,6 @@
 	<meta http-equiv="Content-Type" content="<?php echo get_bloginfo('html_type') .'; charset=' . get_bloginfo('charset'); ?>" />
 	<meta name="generator" content="WordPress <?php bloginfo('version'); ?>" />
 	<meta name="wp_theme" content="Tarski <?php echo theme_version(); ?>" />
-	<?php if(get_bloginfo('description')) { ?><meta name="description" content="<?php bloginfo('description'); ?>" /><?php } ?>
 	
 	<?php wp_head(); ?>
 

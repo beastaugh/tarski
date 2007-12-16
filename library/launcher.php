@@ -58,6 +58,7 @@ add_action('deleted_post', 'flush_tarski_recent_entries');
 // Header
 add_filter('tarski_style_array', 'add_version_to_styles');
 
+add_action('wp_head', 'add_page_description_meta');
 add_action('wp_head', 'add_robots_meta');
 add_action('wp_head', 'tarski_stylesheets');
 add_action('wp_head', 'tarski_javascript');

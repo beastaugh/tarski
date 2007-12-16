@@ -137,7 +137,7 @@ function ready_to_delete_options($del_time) {
  * 'Needs upgrading' is defined as having either no installed version,
  * or having an installed version with a lower version number than the
  * version number extracted from the main stylesheet.
- * @since 2.0.6
+ * @since 2.1
  * @return boolean
  */
 function tarski_upgrade_needed() {
@@ -154,7 +154,7 @@ function tarski_upgrade_needed() {
  * be updated. This function does not determine whether an update is
  * needed, it merely perfoms it. It's also self-contained, so it
  * won't update the global $tarski_options object either.
- * @since 2.0.6
+ * @since 2.1
  */
 function tarski_upgrade() {
 	// Get existing options

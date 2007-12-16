@@ -119,6 +119,28 @@ function tarski_doctitle($sep = '&middot;') {
 }
 
 /**
+ * add_page_description_meta() - Adds description meta element where description is available.
+ * 
+ * On single posts it will attempt to use the excerpt, but if that's
+ * not available it will default to the site description.
+ * @since 2.1
+ * @global object $wp_query
+ * @return string
+ */
+function add_page_description_meta() {
+	global $wp_query;
+	$excerpt = strip_tags(wp_specialchars($wp_query->post->post_excerpt));
+	
+	if(is_single() && !empty($excerpt))
+		$description = $excerpt;
+	else
+		$description = get_bloginfo('description');
+	
+	if(!empty($description))
+		echo "<meta name=\"description\" content=\"$description\" />\n";
+}
+
+/**
  * add_robots_meta() - Adds robots meta element if blog is public.
  * 
  * WordPress adds a meta element denying robots access if the site is set
