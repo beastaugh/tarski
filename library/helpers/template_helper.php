@@ -131,7 +131,7 @@ function add_page_description_meta() {
 	global $wp_query;
 	$excerpt = strip_tags(wp_specialchars($wp_query->post->post_excerpt));
 	
-	if(is_single() && !empty($excerpt))
+	if((is_single() || is_page()) && !empty($excerpt))
 		$description = $excerpt;
 	else
 		$description = get_bloginfo('description');
