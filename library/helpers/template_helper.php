@@ -79,7 +79,7 @@ function tarski_doctitle($sep = '&middot;') {
 			$content = get_bloginfo('description');
 		}
 	} elseif(is_search()) {
-		$content = __('Search results for ' . attribute_escape(get_search_query()),'tarski');
+		$content = sprintf( __('Search results for %s','tarski'), attribute_escape(get_search_query()) );
 	} elseif(is_month()) {
 		$content = single_month_title(' ', false);
 	} elseif(is_tag()) {
