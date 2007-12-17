@@ -281,55 +281,101 @@ function tarski_javascript() {
  * @return string $feeds
  */
 function tarski_feeds($return = false) {
-	if(get_tarski_option("feed_type") == "atom")
-		$type = "atom";
-	else
-		$type = "rss2";
-	
-	if(is_single() || (is_page() && ($comments || comments_open()))) {
-		global $post;
-		$title = sprintf( __('Commments feed for %s','tarski'), get_the_title() );
-		$link = get_post_comments_feed_link($post->ID, $type);
-	} elseif(is_archive()) {
-		if(is_category()) {
-			$title = sprintf( __('Category feed for %s','tarski'), single_cat_title('','',false) );
-			$link = get_category_feed_link(get_query_var('cat'), $type);
-		} elseif(is_tag()) {
-			$title = sprintf( __('Tag feed for %s','tarski'), single_tag_title('','',false));
-			$link = get_tag_feed_link(get_query_var('tag_id'), $type);
-		} elseif(is_author()) {
-			$title = sprintf( __('Articles feed for %s','tarski'), the_archive_author_displayname());
-			$link = get_author_feed_link(get_query_var('author'), $type);
-		} elseif(is_date()) {
-			if(is_day()) {
-				$title = sprintf( __('Daily archive feed for %s','tarski'), tarski_date());
-				$link = get_day_link(get_the_time('Y'), get_the_time('m'), get_the_time('d'));
-			} elseif(is_month()) {
-				$title = sprintf( __('Monthly archive feed for %s','tarski'), get_the_time('F Y'));
-				$link = get_month_link(get_the_time('Y'), get_the_time('m'));
-			} elseif(is_year()) {
-				$title = sprintf( __('Yearly archive feed for %s','tarski'), get_the_time('Y'));
-				$link = get_year_link(get_the_time('Y'));
-			}
-			if(get_settings('permalink_structure')) {
-				$link .= "feed/";
-				if($type == "atom") {
-					$link .= "atom/";
+	if(function_exists('get_default_feed')) {
+		$type = get_default_feed();
+		
+		if(is_single() || (is_page() && ($comments || comments_open()))) {
+			global $post;
+			$title = sprintf( __('Commments feed for %s','tarski'), get_the_title() );
+			$link = get_post_comments_feed_link($post->ID);
+		} elseif(is_archive()) {
+			if(is_category()) {
+				$title = sprintf( __('Category feed for %s','tarski'), single_cat_title('','',false) );
+				$link = get_category_feed_link(get_query_var('cat'));
+			} elseif(is_tag()) {
+				$title = sprintf( __('Tag feed for %s','tarski'), single_tag_title('','',false));
+				$link = get_tag_feed_link(get_query_var('tag_id'));
+			} elseif(is_author()) {
+				$title = sprintf( __('Articles feed for %s','tarski'), the_archive_author_displayname());
+				$link = get_author_feed_link(get_query_var('author'));
+			} elseif(is_date()) {
+				if(is_day()) {
+					$title = sprintf( __('Daily archive feed for %s','tarski'), tarski_date());
+					$link = get_day_link(get_the_time('Y'), get_the_time('m'), get_the_time('d'));
+				} elseif(is_month()) {
+					$title = sprintf( __('Monthly archive feed for %s','tarski'), get_the_time('F Y'));
+					$link = get_month_link(get_the_time('Y'), get_the_time('m'));
+				} elseif(is_year()) {
+					$title = sprintf( __('Yearly archive feed for %s','tarski'), get_the_time('Y'));
+					$link = get_year_link(get_the_time('Y'));
 				}
-			} else {
-				$link .= "&amp;feed=$type";
+				if(get_settings('permalink_structure')) {
+					$link .= "feed/";
+				} else {
+					$link .= "&amp;feed=$type";
+				}
 			}
+		} elseif(is_search()) {
+			$title = sprintf( __('Search feed for %s','tarski'), attribute_escape(get_search_query()));
+			if(function_exists('get_search_feed_link'))
+				$link = get_search_feed_link();
+			else
+				$link = get_bloginfo('url') . '/?s=' . attribute_escape(get_search_query()) . "&amp;feed=$type";
 		}
-	} elseif(is_search()) {
-		$title = sprintf( __('Search feed for %s','tarski'), attribute_escape(get_search_query()));
-		$link = get_bloginfo('url') . '/?s=' . attribute_escape(get_search_query()) . "&amp;feed=$type";
+	} else {
+		if(get_tarski_option("feed_type") == "atom")
+			$type = "atom";
+		else
+			$type = "rss2";
+	
+		if(is_single() || (is_page() && ($comments || comments_open()))) {
+			global $post;
+			$title = sprintf( __('Commments feed for %s','tarski'), get_the_title() );
+			$link = get_post_comments_feed_link($post->ID, $type);
+		} elseif(is_archive()) {
+			if(is_category()) {
+				$title = sprintf( __('Category feed for %s','tarski'), single_cat_title('','',false) );
+				$link = get_category_feed_link(get_query_var('cat'), $type);
+			} elseif(is_tag()) {
+				$title = sprintf( __('Tag feed for %s','tarski'), single_tag_title('','',false));
+				$link = get_tag_feed_link(get_query_var('tag_id'), $type);
+			} elseif(is_author()) {
+				$title = sprintf( __('Articles feed for %s','tarski'), the_archive_author_displayname());
+				$link = get_author_feed_link(get_query_var('author'), $type);
+			} elseif(is_date()) {
+				if(is_day()) {
+					$title = sprintf( __('Daily archive feed for %s','tarski'), tarski_date());
+					$link = get_day_link(get_the_time('Y'), get_the_time('m'), get_the_time('d'));
+				} elseif(is_month()) {
+					$title = sprintf( __('Monthly archive feed for %s','tarski'), get_the_time('F Y'));
+					$link = get_month_link(get_the_time('Y'), get_the_time('m'));
+				} elseif(is_year()) {
+					$title = sprintf( __('Yearly archive feed for %s','tarski'), get_the_time('Y'));
+					$link = get_year_link(get_the_time('Y'));
+				}
+				if(get_settings('permalink_structure')) {
+					$link .= "feed/";
+					if($type == "atom") {
+						$link .= "atom/";
+					}
+				} else {
+					$link .= "&amp;feed=$type";
+				}
+			}
+		} elseif(is_search()) {
+			$title = sprintf( __('Search feed for %s','tarski'), attribute_escape(get_search_query()));
+			$link = get_bloginfo('url') . '/?s=' . attribute_escape(get_search_query()) . "&amp;feed=$type";
+		}
 	}
+	
 	if($type == 'atom') {
 		$type_fixed = 'atom';
 	} else {
 		$type_fixed = 'rss';
 	}
+	
 	$feed_link_type = "application/$type_fixed+xml";
+	
 	if($title && $link) {
 		$feeds = sprintf(
 			'<link rel="alternate" type="%1$s" title="%2$s" href="%3$s" />'."\n",
@@ -338,6 +384,7 @@ function tarski_feeds($return = false) {
 			$link
 		);
 	}
+	
 	$feed_type_url = $type . "_url";
 	$feeds .= sprintf(
 		'<link rel="alternate" type="%1$s" title="%2$s" href="%3$s" />'."\n",
