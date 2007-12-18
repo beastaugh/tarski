@@ -9,7 +9,7 @@
 				if(!get_tarski_option('hide_categories')) {
 					_e(' in ', 'tarski'); the_category(', ');
 				} ?></p>
-				<p class="recent-excerpt content"><?php tarski_excerpt(); ?></p>
+				<div class="recent-excerpt content"><?php tarski_excerpt(); ?></div>
 			</li>
 		<?php endwhile; ?>
 	</ul>
