@@ -210,6 +210,8 @@ function tarski_stylesheets() {
 	// Filters should return an array
 	if(is_array($stylesheets))
 		$stylesheets = implode("\n", $stylesheets) . "\n\n";
+	else
+		return;
 	
 	if(!empty($stylesheets))
 		echo $stylesheets;
@@ -283,31 +285,40 @@ function tarski_javascript() {
 function tarski_feeds($return = false) {
 	if(function_exists('get_default_feed')) {
 		$type = get_default_feed();
+		$feeds_array = array();
 		
 		if(is_single() || (is_page() && ($comments || comments_open()))) {
 			global $post;
-			$title = sprintf( __('Commments feed for %s','tarski'), get_the_title() );
-			$link = get_post_comments_feed_link($post->ID);
+			$feeds_array['post_comments'] = array(
+				'title' => sprintf( __('Commments feed for %s','tarski'), get_the_title() ),
+				'link' => get_post_comments_feed_link($post->ID)
+			);
 		} elseif(is_archive()) {
 			if(is_category()) {
 				$title = sprintf( __('Category feed for %s','tarski'), single_cat_title('','',false) );
 				$link = get_category_feed_link(get_query_var('cat'));
+				$source = 'category';
 			} elseif(is_tag()) {
 				$title = sprintf( __('Tag feed for %s','tarski'), single_tag_title('','',false));
 				$link = get_tag_feed_link(get_query_var('tag_id'));
+				$source = 'tag';
 			} elseif(is_author()) {
 				$title = sprintf( __('Articles feed for %s','tarski'), the_archive_author_displayname());
 				$link = get_author_feed_link(get_query_var('author'));
+				$source = 'author';
 			} elseif(is_date()) {
 				if(is_day()) {
 					$title = sprintf( __('Daily archive feed for %s','tarski'), tarski_date());
 					$link = get_day_link(get_the_time('Y'), get_the_time('m'), get_the_time('d'));
+					$source = 'day';
 				} elseif(is_month()) {
 					$title = sprintf( __('Monthly archive feed for %s','tarski'), get_the_time('F Y'));
 					$link = get_month_link(get_the_time('Y'), get_the_time('m'));
+					$source = 'month';
 				} elseif(is_year()) {
 					$title = sprintf( __('Yearly archive feed for %s','tarski'), get_the_time('Y'));
 					$link = get_year_link(get_the_time('Y'));
+					$source = 'year';
 				}
 				if(get_settings('permalink_structure')) {
 					$link .= "feed/";
@@ -315,89 +326,167 @@ function tarski_feeds($return = false) {
 					$link .= "&amp;feed=$type";
 				}
 			}
+			
+			$feeds_array[$source] = array(
+				'title' => $title,
+				'link' => $link
+			);
 		} elseif(is_search()) {
-			$title = sprintf( __('Search feed for %s','tarski'), attribute_escape(get_search_query()));
-			if(function_exists('get_search_feed_link'))
-				$link = get_search_feed_link();
-			else
-				$link = get_bloginfo('url') . '/?s=' . attribute_escape(get_search_query()) . "&amp;feed=$type";
+			$feeds_array['search'] = array(
+				'title' => sprintf( __('Search feed for %s','tarski'), attribute_escape(get_search_query())),
+				'link' => get_search_feed_link()
+			);
+			$feeds_array['search_comments'] = array(
+				'title' => sprintf( __('Search comments feed for %s','tarski'), attribute_escape(get_search_query())),
+				'link' => get_search_comments_feed_link()
+			);
 		}
 	} else {
-		if(get_tarski_option("feed_type") == "atom")
-			$type = "atom";
-		else
-			$type = "rss2";
+		$feeds_array['legacy'] = tarski_legacy_feeds();
+	}	
 	
-		if(is_single() || (is_page() && ($comments || comments_open()))) {
-			global $post;
-			$title = sprintf( __('Commments feed for %s','tarski'), get_the_title() );
-			$link = get_post_comments_feed_link($post->ID, $type);
-		} elseif(is_archive()) {
-			if(is_category()) {
-				$title = sprintf( __('Category feed for %s','tarski'), single_cat_title('','',false) );
-				$link = get_category_feed_link(get_query_var('cat'), $type);
-			} elseif(is_tag()) {
-				$title = sprintf( __('Tag feed for %s','tarski'), single_tag_title('','',false));
-				$link = get_tag_feed_link(get_query_var('tag_id'), $type);
-			} elseif(is_author()) {
-				$title = sprintf( __('Articles feed for %s','tarski'), the_archive_author_displayname());
-				$link = get_author_feed_link(get_query_var('author'), $type);
-			} elseif(is_date()) {
-				if(is_day()) {
-					$title = sprintf( __('Daily archive feed for %s','tarski'), tarski_date());
-					$link = get_day_link(get_the_time('Y'), get_the_time('m'), get_the_time('d'));
-				} elseif(is_month()) {
-					$title = sprintf( __('Monthly archive feed for %s','tarski'), get_the_time('F Y'));
-					$link = get_month_link(get_the_time('Y'), get_the_time('m'));
-				} elseif(is_year()) {
-					$title = sprintf( __('Yearly archive feed for %s','tarski'), get_the_time('Y'));
-					$link = get_year_link(get_the_time('Y'));
-				}
-				if(get_settings('permalink_structure')) {
-					$link .= "feed/";
-					if($type == "atom") {
-						$link .= "atom/";
-					}
-				} else {
-					$link .= "&amp;feed=$type";
-				}
-			}
-		} elseif(is_search()) {
-			$title = sprintf( __('Search feed for %s','tarski'), attribute_escape(get_search_query()));
-			$link = get_bloginfo('url') . '/?s=' . attribute_escape(get_search_query()) . "&amp;feed=$type";
-		}
-	}
-	
-	if($type == 'atom') {
-		$type_fixed = 'atom';
-	} else {
-		$type_fixed = 'rss';
-	}
-	
-	$feed_link_type = "application/$type_fixed+xml";
-	
-	if($title && $link) {
-		$feeds = sprintf(
-			'<link rel="alternate" type="%1$s" title="%2$s" href="%3$s" />'."\n",
-			$feed_link_type,
-			$title,
-			$link
-		);
-	}
-	
-	$feed_type_url = $type . "_url";
-	$feeds .= sprintf(
-		'<link rel="alternate" type="%1$s" title="%2$s" href="%3$s" />'."\n",
-		$feed_link_type,
-		get_bloginfo('name') . __(' feed','tarski'),
-		get_bloginfo($feed_type_url)
+	$feeds_array['site'] = array(
+		'title' => sprintf( __('%s feed','tarski'), get_bloginfo('name') ),
+		'link' => get_feed_link()
 	);
+	
+	// The more complex array can be filtered if desired
+	$feeds_array = apply_filters('tarski_feeds_array', $feeds_array);
+	$feeds = tarski_feeds_printable($feeds_array);
 	$feeds = apply_filters('tarski_feeds', $feeds);
+	
+	// Filters should return an array
+	if(is_array($feeds))
+		$feeds = implode("\n", $feeds) . "\n\n";
+	else
+		return;
 	
 	if($return)
 		return $feeds;
 	else
 		echo $feeds;
+}
+
+function tarski_feeds_printable($feeds_array) {
+	if(!is_array($feeds_array))
+		return false;
+		
+	$feeds = array();
+	$feed_type = feed_link_type();
+	
+	foreach($feeds_array as $source => $values) {
+		if(isset($values['title']) && isset($values['link'])) {
+			if(empty($values['type']))
+				$type = $feed_type;
+			else
+				$type = $values['type'];
+				
+			$feeds[$source] = sprintf(
+				'<link rel="alternate" type="%1$s" title="%2$s" href="%3$s" />',
+				$type,
+				$values['title'],
+				$values['link']
+			);
+		} else {
+			continue;
+		}
+	}
+	
+	return $feeds;
+}
+
+function feed_link_type($type = '') {
+	if(empty($type))
+		$type = get_default_feed();
+	
+	if($type == 'atom')
+		return 'application/atom+xml';
+	else
+		return 'application/rss+xml';
+}
+
+function tarski_legacy_feeds() {
+	if(get_tarski_option("feed_type") == "atom")
+		$type = "atom";
+	else
+		$type = "rss2";
+
+	if(is_single() || (is_page() && ($comments || comments_open()))) {
+		global $post;
+		$title = sprintf( __('Commments feed for %s','tarski'), get_the_title() );
+		$link = get_post_comments_feed_link($post->ID, $type);
+	} elseif(is_archive()) {
+		if(is_category()) {
+			$title = sprintf( __('Category feed for %s','tarski'), single_cat_title('','',false) );
+			$link = get_category_feed_link(get_query_var('cat'), $type);
+		} elseif(is_tag()) {
+			$title = sprintf( __('Tag feed for %s','tarski'), single_tag_title('','',false));
+			$link = get_tag_feed_link(get_query_var('tag_id'), $type);
+		} elseif(is_author()) {
+			$title = sprintf( __('Articles feed for %s','tarski'), the_archive_author_displayname());
+			$link = get_author_feed_link(get_query_var('author'), $type);
+		} elseif(is_date()) {
+			if(is_day()) {
+				$title = sprintf( __('Daily archive feed for %s','tarski'), tarski_date());
+				$link = get_day_link(get_the_time('Y'), get_the_time('m'), get_the_time('d'));
+			} elseif(is_month()) {
+				$title = sprintf( __('Monthly archive feed for %s','tarski'), get_the_time('F Y'));
+				$link = get_month_link(get_the_time('Y'), get_the_time('m'));
+			} elseif(is_year()) {
+				$title = sprintf( __('Yearly archive feed for %s','tarski'), get_the_time('Y'));
+				$link = get_year_link(get_the_time('Y'));
+			}
+			if(get_settings('permalink_structure')) {
+				$link .= "feed/";
+				if($type == "atom") {
+					$link .= "atom/";
+				}
+			} else {
+				$link .= "&amp;feed=$type";
+			}
+		}
+	} elseif(is_search()) {
+		$title = sprintf( __('Search feed for %s','tarski'), attribute_escape(get_search_query()));
+		$link = get_bloginfo('url') . '/?s=' . attribute_escape(get_search_query()) . "&amp;feed=$type";
+	}
+	
+	return array('title' => $title, 'link' => $link);
+}
+
+if(!function_exists('get_search_feed_link')) {
+	function get_search_feed_link($search_query = '', $feed = '') {
+		if ( empty($search_query) )
+			$search = attribute_escape(get_search_query());
+		else
+			$search = attribute_escape(stripslashes($search_query));
+	
+		if ( empty($feed) )
+			$feed = get_default_feed();
+	
+		$link = get_option('home') . "?s=$search&amp;feed=$feed";
+	
+		$link = apply_filters('search_feed_link', $link);
+	
+		return $link;
+	}
+}
+
+if(!function_exists('get_search_comments_feed_link')) {
+	function get_search_comments_feed_link($search_query = '', $feed = '') {
+		if ( empty($search_query) )
+			$search = attribute_escape(get_search_query());
+		else
+			$search = attribute_escape(stripslashes($search_query));
+	
+		if ( empty($feed) )
+			$feed = get_default_feed();
+	
+		$link = get_option('home') . "?s=$search&amp;feed=comments-$feed";
+	
+		$link = apply_filters('search_feed_link', $link);
+	
+		return $link;
+	}
 }
 
 /**
