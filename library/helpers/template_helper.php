@@ -427,7 +427,7 @@ function tarski_feeds() {
 		}
 	} elseif(is_search()) {
 		$search_query = attribute_escape(get_search_query());
-		$feeds['search'] = generate_feed_link( sprintf(__('Search feed for %s','tarski'), $search_query), get_search_feed_link('', $type) );
+		$feeds['search'] = generate_feed_link( sprintf(__('Search feed for %s','tarski'), $search_query), get_search_feed_link('', $type), feed_link_type($type) );
 		$title = sprintf(__('Search comments feed for %s','tarski'), $search_query);
 		$link = get_search_comments_feed_link('', $type);
 		$source = 'search_comments';
