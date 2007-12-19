@@ -436,7 +436,7 @@ function tarski_feeds() {
 	if($title && $link)
 		$feeds[$source] = generate_feed_link($title, $link, $type);
 	
-	$feeds['site'] = generate_feed_link( sprintf(__('%s feed','tarski'), get_bloginfo('name')), get_feed_link(), $type );
+	$feeds['site'] = generate_feed_link( sprintf(__('%s feed','tarski'), get_bloginfo('name')), get_feed_link(), feed_link_type($type) );
 	$feeds = apply_filters('tarski_feeds', $feeds);
 	
 	// Filters should return an array
