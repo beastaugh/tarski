@@ -413,7 +413,7 @@ function tarski_feeds() {
 				$source = 'year';
 			}	
 			if(get_settings('permalink_structure')) {
-				if(function_exists('get_default_feed')) {
+				if( function_exists('get_default_feed') || ($type == 'rss2') ) {
 					$link .= 'feed/';
 				} else {
 					$link .= "feed/$type/";
