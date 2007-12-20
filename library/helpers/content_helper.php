@@ -195,6 +195,41 @@ function tarski_post_categories_link() {
 }
 
 /**
+ * tarski_comments_link() - Outputs comments links.
+ *
+ * @since 2.1
+ * @global object $post
+ * @return string
+ */
+function tarski_comments_link() {
+	global $post;
+	if($post->comment_status == 'open' || $post->comment_count > 0) {
+		if(is_single() || is_page()) {
+			echo ' | <a class="comments-link" href="#comments">'; comments_number(__('No comments', 'tarski'), __('1 comment', 'tarski'), '%' . __(' comments', 'tarski')); echo '</a>';
+		} else {
+			echo ' | ';
+			comments_popup_link(__('No comments', 'tarski'), __('1 comment', 'tarski'), '%' . __(' comments', 'tarski'), 'comments-link', __('Comments closed', 'tarski'));
+		}
+	}
+}
+
+/**
+ * tarski_asides_permalink() - Outputs permalink text for asides.
+ *
+ * @since 2.1
+ * @global object $post
+ * @return string
+ */
+function tarski_asides_permalink_text() {
+	global $post;
+	if($post->comment_status == 'open' || $post->comment_count > 0) {
+		comments_number(__('No comments','tarski'), __('1 comment','tarski'), '%' . __(' comments','tarski'));
+	} else {
+		_e('Permalink', 'tarski');
+	}
+}
+
+/**
  * tarski_sidebar_links() - Returns an array for use with wp_list_bookmarks().
  * 
  * If a link category has been selected as external links in the navbar,
