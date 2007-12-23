@@ -88,79 +88,11 @@
 				</div>
 			<?php } ?>
 		<?php } ?>
-
-			<fieldset class="secondary">
-				<h3><?php _e('Footer Options','tarski'); ?></h3>
-				<textarea name="about_text" rows="5" cols="30" id="footer_blurb"><?php echo stripslashes(get_tarski_option('blurb')); ?></textarea>
-				<label for="footer_blurb" class=""><?php _e('Write something about yourself here, and it will appear in the footer. Deleting the content disables it.','tarski'); ?></label>
-				
-				<label for="opt-footer-recent" class="spaced-out">
-					<input type="hidden" name="footer[recent]" value="0" />
-					<input type="checkbox" name="footer[recent]" value="1"  id="opt-footer-recent" <?php if(get_tarski_option('footer_recent')) { echo 'checked="checked" '; } ?>/>
-					<?php _e('Show recent articles in the footer','tarski'); ?>
-				</label>
-			</fieldset>
+		
+		
 			<hr />
 		</div>
-
-
-
-		<div class="section">
-			<fieldset class="primary radiolist">
-				<h3><?php _e('Pick a Sidebar&hellip;','tarski'); ?></h3>
-				<p><?php _e('Choose either Tarski&#8217;s built-in sidebar options, those afforded by WordPress Widgets, or write your own sidebar code.','tarski'); ?></p>
-				
-				<label for="option-ts"><input type="radio" id="option-ts" name="sidebar_type" value="tarski"<?php if(get_tarski_option('sidebar_type') == 'tarski') { echo ' checked="checked"'; } ?> /> <?php _e('Tarski sidebar options','tarski'); ?></label>
-				<label for="option-ws"><input type="radio" id="option-ws" name="sidebar_type" value="widgets"<?php if(get_tarski_option('sidebar_type') == 'widgets') { echo ' checked="checked"'; } ?> /> <?php _e('WordPress Widgets','tarski'); ?></label>
-				<?php if(!detectWPMU()) { // custom sidebar only available in non-WPMU stuff ?>
-				<label for="option-fs"><input type="radio" id="option-fs" name="sidebar_type" value="custom"<?php if(get_tarski_option('sidebar_type') == 'custom') { echo ' checked="checked"'; } ?> /> <?php _e('Alternate sidebar file','tarski'); ?></label>
-				<?php } // end non-WPMU-only block ?>
-				
-				<h3><?php _e('Post and Page Sidebar','tarski'); ?></h3>
-				<p><?php printf( __('The sidebar displayed on single posts and pages can be the same as on the rest of the site, a different set of %1$s, or you can choose not to display it at all.','tarski'),  '<a href="' . $widgets_link . '">' . __('widgets','tarski') . '</a>'); ?></p>
-				
-				<label for="option-pp-ms"><input type="radio" id="option-pp-ms" name="sidebar_pp_type" value="main"<?php if(get_tarski_option('sidebar_pp_type') == 'main') { echo ' checked="checked"'; } ?> /> <?php _e('Same as the main sidebar','tarski'); ?></label>
-				<label for="option-pp-ws"><input type="radio" id="option-pp-ws" name="sidebar_pp_type" value="widgets"<?php if(get_tarski_option('sidebar_pp_type') == 'widgets') { echo ' checked="checked"'; } ?> /> <?php _e('Different widgets','tarski'); ?></label>				
-				<label for="option-pp-none"><input type="radio" id="option-pp-none" name="sidebar_pp_type" value="none"<?php if(get_tarski_option('sidebar_pp_type') == 'none') { echo ' checked="checked"'; } ?> /> <?php _e('Don&#8217;t display a sidebar on individual posts and pages','tarski'); ?></label>
-			</fieldset>
-
-			<fieldset class="secondary">
-			<h3><?php _e('&hellip;and configure it.','tarski'); ?></h3>
-			
-				<div id="tarski-sidebar-section" class="insert"<?php if(get_tarski_option('sidebar_type') != 'tarski') { echo ' style="display: none;"'; } ?>>
-					<label for="opt-sidebar-pages">
-						<input type="hidden" name="sidebar[pages]" value="0" />
-						<input type="checkbox" name="sidebar[pages]" value="1" id="opt-sidebar-pages" <?php if(get_tarski_option('sidebar_pages')) { echo 'checked="checked" '; } ?>/>
-						<?php _e('Pages list','tarski'); ?>
-					</label>
-	
-					<label for="opt-sidebar-links">
-						<input type="hidden" name="sidebar[links]" value="0" />
-						<input type="checkbox" name="sidebar[links]" value="1" id="opt-sidebar-links" <?php if(get_tarski_option('sidebar_links')) { echo 'checked="checked" '; } ?>/>
-						<?php _e('Links list','tarski'); ?>
-					</label>
-
-					<p><?php _e('Anything you put into this custom content area, like text, images etc. will show up in the sidebar below the options above. Leaving the field blank disables it.','tarski'); ?></p>
-					
-					<textarea name="sidebar[custom]" rows="5" cols="30" id="sidebar_custom"><?php echo stripslashes(htmlspecialchars(get_tarski_option('sidebar_custom'))); ?></textarea>
-				</div>
-			
-				
-				<div id="widgets-sidebar-section" class="insert"<?php if(get_tarski_option('sidebar_type') != 'widgets') { echo ' style="display: none;"'; } ?>>
-					<p><?php printf( __('To configure your Sidebar Widgets, go to the %s page and select the widgets you&#8217;d like to use.','tarski'), '<a href="' . $widgets_link . '">' . __('Widgets configuration','tarski') . '</a>' ); ?></p>
-				</div>
-				
-				<?php if(!detectWPMU()) { ?>
-				<div id="custom-sidebar-section" class="insert"<?php if(get_tarski_option('sidebar_type') != 'custom') { echo ' style="display: none;"'; } ?>>
-					<p><?php printf( __('To use your own custom sidebar code, upload a file named %s to your Tarski directory.','tarski'), "<code>user-sidebar.php</code>" ); ?></p>
-				</div>
-				<?php } ?>
-				
-				
-			</fieldset>
-			<hr />
-		</div>
-
+		
 
 
 		<div class="section">
