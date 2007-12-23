@@ -100,17 +100,8 @@ function flush_tarski_recent_entries() {
  * @return string
  */
 function tarski_widget_text_wrapper($text) {
-	if ( is_user_logged_in() ) {
-		$edit_link = sprintf(
-			'<p class="edit-link">(<a title="%1$s" id="edit-footer-blurb" href="%2$s">%3$s</a>)</p>' . "\n",
-			__('Change this text on the widgets page','tarski'),
-			get_bloginfo('wpurl') . '/wp-admin/widgets.php',
-			__('edit','tarski')
-		);
-	}
-	
 	if ( strlen(trim($text)) )
-		$text = "<div class=\"content\">\n$text</div>\n$edit_link";
+		$text = "<div class=\"content\">\n$text</div>\n";
 	
 	return $text;
 }
