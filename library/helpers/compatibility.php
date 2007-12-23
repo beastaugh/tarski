@@ -1,6 +1,41 @@
 <?php
 
 /**
+ * is_page_template() - Determine whether or not we are in a page template
+ *
+ * This template tag allows you to determine whether or not you are in a page template.
+ * You can optionally provide a template name and then the check will be specific to
+ * that template.
+ *
+ * @global object $wp_query
+ * @param string $template The specific template name if specific matching is required
+ */
+if(!function_exists('is_page_template')) {
+	function is_page_template($template = '') {
+		if (!is_page()) {
+			return false;
+		}
+
+		global $wp_query;
+
+		$page = $wp_query->get_queried_object();
+		$custom_fields = get_post_custom_values('_wp_page_template',$page->ID);
+		$page_template = $custom_fields[0];
+
+		// We have no argument passed so just see if a page_template has been specified
+		if ( empty( $template ) ) {
+			if (!empty( $page_template ) ) {
+				return true;
+			}
+		} elseif ( $template == $page_template) {
+			return true;
+		}
+
+		return false;
+	}
+}
+
+/**
  * get_category_feed_link() - Gets the feed link for a given category.
  * 
  * Can be set to return Atom, RSS or RSS2. Now in WP trunk, but

@@ -53,7 +53,13 @@ register_sidebar( // Footer sidebar widgets
 	)
 );
 
+// Tarski widgets
 register_sidebar_widget('Recent Articles', 'tarski_recent_entries');
+
+
+// Widget filters
+add_filter('widget_text', 'tarski_content_massage');
+add_filter('widget_text', 'tarski_blurb_wrapper');
 
 // Dashboard Tarski update notifier
 add_action('activity_box_end', 'tarski_update_notifier');

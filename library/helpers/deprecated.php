@@ -286,4 +286,91 @@ if(!function_exists('is_active_sidebar')) {
 	}
 }
 
+/**
+ * tarski_sidebar_custom() - Returns custom sidebar content, appropriately formatted.
+ *
+ * Gets the database value; strips slashes; prettifies the quotes
+ * and other typographical nuances; converts ampersands and other
+ * characters in need of encoding as HTML entities; applies
+ * automatic paragaphing; and finally applies filters and returns
+ * the output.
+ * @deprecated 2.1
+ * @since 2.0
+ * @return string
+ */
+function tarski_sidebar_custom($return = false) {
+	$content = get_tarski_option('sidebar_custom');
+	$output = apply_filters('tarski_sidebar_custom', $content);
+	if($return) {
+		return $output;
+	} else {
+		echo $output;
+	}
+}
+
+/**
+ * tarski_footer_blurb() - Outputs custom footer content, appropriately formatted.
+ *
+ * Gets the database value; strips slashes; prettifies the quotes
+ * and other typographical nuances; converts ampersands and other
+ * characters in need of encoding as HTML entities; applies
+ * automatic paragaphing; and finally applies filters and returns
+ * the output.
+ * @deprecated 2.1
+ * @since 2.0
+ * @param boolean $return
+ * @return string
+ */
+function tarski_footer_blurb($return = false) {
+	$content = get_tarski_option('blurb');	
+	$output = apply_filters('tarski_footer_blurb', $content);
+	
+	if($return) {
+		return $output;
+	} else {
+		echo $output;
+	}
+}
+
+/**
+ * tarski_blurb_wrapper() - Wraps footer blurb in div element.
+ *
+ * @deprecated 2.1
+ * @since 2.0
+ * @see tarski_footer_blurb()
+ * @param string $blurb
+ * @return string
+ */
+function tarski_blurb_wrapper($blurb) {	
+	if(is_user_logged_in()) {
+		$edit_link = sprintf(
+			'<p class="edit-link">(<a title="%1$s" id="edit-footer-blurb" href="%2$s">%3$s</a>)</p>' . "\n",
+			__('Edit the footer content area'),
+			get_bloginfo('wpurl') . '/wp-admin/themes.php?page=tarski-options#footer_blurb',
+			__('edit','tarski')
+		);
+	}
+	
+	if(get_tarski_option('blurb')) {
+		$blurb = "<div class=\"content\">\n$blurb</div>\n$edit_link";
+		$blurb = "<div id=\"blurb\">\n$blurb</div> <!-- /blurb -->\n";
+	}
+	
+	return $blurb;
+}
+
+/**
+ * is_archives_template() - Returns true if the current page uses the Archives template
+ * 
+ * This function exists for backwards-compatibility with WordPress 2.3,
+ * which does not include the is_page_template() function.
+ * @deprecated 2.1
+ * @since 2.0
+ * @global object $post
+ * @return boolean
+ */
+function is_archives_template() {
+	return is_page_template('archives.php');
+}
+
 ?>

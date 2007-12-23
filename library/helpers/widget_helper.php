@@ -76,9 +76,8 @@ function tarski_recent_entries() {
 
 	$r = new WP_Query("showposts=$number&what_to_show=posts&nopaging=0&post_status=publish&offset=$offset");
 	
-	if ( $r->have_posts() ) {
+	if ( $r->have_posts() )
 		include(TARSKIDISPLAY . '/recent_articles.php');
-	}
 	
 	wp_cache_add('tarski_recent_entries', ob_get_flush());
 }
@@ -91,6 +90,29 @@ function tarski_recent_entries() {
  */
 function flush_tarski_recent_entries() {
 	wp_cache_delete('tarski_recent_entries');
+}
+
+/**
+ * tarski_widget_text_wrapper() - Wraps text widgets in content div with edit link.
+ *
+ * @since 2.1
+ * @param string $text
+ * @return string
+ */
+function tarski_widget_text_wrapper($text) {
+	if ( is_user_logged_in() ) {
+		$edit_link = sprintf(
+			'<p class="edit-link">(<a title="%1$s" id="edit-footer-blurb" href="%2$s">%3$s</a>)</p>' . "\n",
+			__('Change this text on the widgets page','tarski'),
+			get_bloginfo('wpurl') . '/wp-admin/widgets.php',
+			__('edit','tarski')
+		);
+	}
+	
+	if ( strlen(trim($text)) )
+		$text = "<div class=\"content\">\n$text</div>\n$edit_link";
+	
+	return $text;
 }
 
 ?>
