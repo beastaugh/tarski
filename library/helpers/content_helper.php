@@ -1,45 +1,6 @@
 <?php
 
 /**
- * tarski_sidebar() - Outputs Tarski's sidebar.
- * 
- * @since 2.0
- * @global object $post
- * @return mixed
- */
-function tarski_sidebar() {
-	global $post;
-
-	// Default Tarski sidebar
-	$sidebar_file = TARSKIDISPLAY . '/sidebar/tarski_sidebar.php';
-	
-	// Normal sidebar
-	if(get_tarski_option('sidebar_type') == 'widgets') {
-		$sidebar_file = TARSKIDISPLAY . '/sidebar/widgets_sidebar.php';
-	} elseif(get_tarski_option('sidebar_type') == 'custom') {
-		if(file_exists(TEMPLATEPATH . '/user-sidebar.php')) {
-			$sidebar_file = TEMPLATEPATH . '/user-sidebar.php';
-		} elseif(is_user_logged_in()) {
-			$sidebar_file = TARSKIDISPLAY . '/sidebar/user_sidebar_error.php';
-		}
-	}
-	
-	// Single post and page sidebar
-	if(is_single() || is_page()) {
-		if(get_tarski_option('sidebar_pp_type') == 'widgets') {
-			$sidebar_file = TARSKIDISPLAY . '/sidebar/widgets_pp_sidebar.php';
-		} elseif(get_tarski_option('sidebar_pp_type') == 'none') {
-			return;
-		}
-	}
-	
-	$sidebar_file = apply_filters('tarski_sidebar', $sidebar_file);
-	
-	if(is_string($sidebar_file))
-		include($sidebar_file);
-}
-
-/**
  * hide_sidebar_for_archives() - Hides the sidebar on pages using the Archives template
  * 
  * @since 2.0

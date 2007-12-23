@@ -17,7 +17,33 @@ if(!function_exists('is_active_sidebar')) {
 }
 
 /**
- * tarski_footer_sidebar() - Outputs footer main widgets field.
+ * tarski_sidebar() - Outputs Tarski's sidebar.
+ * 
+ * @since 2.0
+ * @global object $post
+ * @return mixed
+ */
+function tarski_sidebar() {
+	global $post;
+	
+	$user_sidebar = TEMPLATEPATH . '/user-sidebar.php';
+	
+	if(file_exists($user_sidebar)) {
+		include($user_sidebar);
+	} elseif(is_archives_template()) {
+		return;
+	} else {
+		echo "<div class=\"widgets\">\n";
+		if(is_single() || is_page())
+			dynamic_sidebar('sidebar-post-and-page');
+		else
+			dynamic_sidebar('sidebar-1');
+		echo "</div>\n";
+	}
+}
+
+/**
+ * tarski_footer_main() - Outputs footer main widgets field.
  * 
  * @since 2.1
  * @return mixed
