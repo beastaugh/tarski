@@ -318,14 +318,14 @@ if(!function_exists('get_search_feed_link')) {
 			$search = attribute_escape(get_search_query());
 		else
 			$search = attribute_escape(stripslashes($search_query));
-	
+		
 		if ( empty($feed) )
 			$feed = get_default_feed();
-	
+		
 		$link = get_option('home') . "?s=$search&amp;feed=$feed";
-	
+		
 		$link = apply_filters('search_feed_link', $link);
-	
+		
 		return $link;
 	}
 }
@@ -346,14 +346,14 @@ if(!function_exists('get_search_comments_feed_link')) {
 			$search = attribute_escape(get_search_query());
 		else
 			$search = attribute_escape(stripslashes($search_query));
-	
+		
 		if ( empty($feed) )
 			$feed = get_default_feed();
-	
+		
 		$link = get_option('home') . "?s=$search&amp;feed=comments-$feed";
-	
+		
 		$link = apply_filters('search_feed_link', $link);
-	
+		
 		return $link;
 	}
 }
@@ -365,10 +365,7 @@ if(!function_exists('get_search_comments_feed_link')) {
  * main site feed, but will additionally return an archive, search
  * or comments feed depending on the page type.
  * @since 2.0
- * @param boolean $return return or echo?
  * @global object $post
- * @global integer $id
- * @global object $authordata
  * @return string $feeds
  */
 function tarski_feeds() {
