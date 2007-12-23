@@ -305,8 +305,8 @@ function feed_link_type($type = '') {
 /**
  * get_search_feed_link() - Returns the feed link for a given search query
  *
- * Conditionally defined since it has been suggested as a possible core inclusion.
- * @link http://trac.wordpress.org/ticket/5442
+ * Conditionally defined since it is now included in WordPress 2.4.
+ * @link http://trac.wordpress.org/changeset/6413
  * @since 2.1
  * @param string $search_query
  * @param string $feed
@@ -333,8 +333,8 @@ if(!function_exists('get_search_feed_link')) {
 /**
  * get_search_comments_feed_link() - Returns the feed link for the comments on posts matching a given search query
  *
- * Conditionally defined since it has been suggested as a possible core inclusion.
- * @link http://trac.wordpress.org/ticket/5442
+ * Conditionally defined since it is now included in WordPress 2.4.
+ * @link http://trac.wordpress.org/changeset/6413
  * @since 2.1
  * @param string $search_query
  * @param string $feed
