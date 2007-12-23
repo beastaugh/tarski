@@ -303,62 +303,6 @@ function feed_link_type($type = '') {
 }
 
 /**
- * get_search_feed_link() - Returns the feed link for a given search query
- *
- * Conditionally defined since it is now included in WordPress 2.4.
- * @link http://trac.wordpress.org/changeset/6413
- * @since 2.1
- * @param string $search_query
- * @param string $feed
- * @return string
- */
-if(!function_exists('get_search_feed_link')) {
-	function get_search_feed_link($search_query = '', $feed = '') {
-		if ( empty($search_query) )
-			$search = attribute_escape(get_search_query());
-		else
-			$search = attribute_escape(stripslashes($search_query));
-		
-		if ( empty($feed) )
-			$feed = get_default_feed();
-		
-		$link = get_option('home') . "?s=$search&amp;feed=$feed";
-		
-		$link = apply_filters('search_feed_link', $link);
-		
-		return $link;
-	}
-}
-
-/**
- * get_search_comments_feed_link() - Returns the feed link for the comments on posts matching a given search query
- *
- * Conditionally defined since it is now included in WordPress 2.4.
- * @link http://trac.wordpress.org/changeset/6413
- * @since 2.1
- * @param string $search_query
- * @param string $feed
- * @return string
- */
-if(!function_exists('get_search_comments_feed_link')) {
-	function get_search_comments_feed_link($search_query = '', $feed = '') {
-		if ( empty($search_query) )
-			$search = attribute_escape(get_search_query());
-		else
-			$search = attribute_escape(stripslashes($search_query));
-		
-		if ( empty($feed) )
-			$feed = get_default_feed();
-		
-		$link = get_option('home') . "?s=$search&amp;feed=comments-$feed";
-		
-		$link = apply_filters('search_feed_link', $link);
-		
-		return $link;
-	}
-}
-
-/**
  * tarski_feeds() - Outputs feed links for the page.
  * 
  * Can be set to return Atom, RSS or RSS2. Will always return the
