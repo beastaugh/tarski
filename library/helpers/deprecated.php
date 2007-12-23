@@ -183,6 +183,18 @@ function tarski_next_prev_pages() {
 	tarski_posts_nav_link();
 }
 
+/**
+ * hide_sidebar_for_archives() - Hides the sidebar on pages using the Archives template.
+ * 
+ * @deprecated 2.1
+ * @since 2.0
+ * @return string|boolean $sidebar_file
+ */
+function hide_sidebar_for_archives($sidebar_file) {	
+	if(is_archives_template())
+		$sidebar_file = false;
+	return $sidebar_file;
+}
 
 /**
  * get_tarski_footer_blurb() - Outputs custom sidebar text.
@@ -196,7 +208,7 @@ function get_tarski_footer_blurb() {
 }
 
 /**
- * tarski_feed_and_credit() - Outputs feed link and Tarski credits
+ * tarski_feed_and_credit() - Outputs feed link and Tarski credits.
  * 
  * @deprecated 2.0
  * @since 1.5
