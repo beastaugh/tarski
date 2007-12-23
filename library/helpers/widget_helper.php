@@ -1,22 +1,6 @@
 <?php
 
 /**
- * is_active_sidebar() - Checks to see whether a particular sidebar has widgets.
- * 
- * Stolen from ticket #4594 on Trac, hence the conditional definition.
- * @link http://trac.wordpress.org/ticket/4594
- * @since 2.0
- * @return boolean
- */
-if(!function_exists('is_active_sidebar')) {
-	function is_active_sidebar( $index ) {
-		$index = ( is_int($index) ) ? "sidebar-$index" : sanitize_title($index);
-		$sidebars_widgets = (array) get_option('sidebars_widgets');	
-		return (bool) ( isset( $sidebars_widgets[$index] ) );
-	}
-}
-
-/**
  * tarski_sidebar() - Outputs Tarski's sidebar.
  * 
  * @since 2.0
@@ -60,6 +44,53 @@ function tarski_footer_main() {
  */
 function tarski_footer_sidebar() {
 	dynamic_sidebar('sidebar-2');
+}
+
+/**
+ * tarski_recent_entries() - Recent entries á la Tarski.
+ *
+ * Basically a ripoff of the WP widget function wp_widget_recent_entries().
+ * @since 2.0.5
+ * @see wp_widget_recent_entries()
+ * @global object $posts
+ * @return string
+ */
+function tarski_recent_entries() {
+	global $posts;
+	
+	if ( $output = wp_cache_get('tarski_recent_entries') )
+		return print($output);
+
+	ob_start();
+	if ( !$number = (int) $options['number'] )
+		$number = 5;
+	elseif ( $number < 1 )
+		$number = 1;
+	elseif ( $number > 10 )
+		$number = 10;
+	
+	if ( is_home() )
+		$offset = count($posts);
+	else
+		$offset = 0;
+
+	$r = new WP_Query("showposts=$number&what_to_show=posts&nopaging=0&post_status=publish&offset=$offset");
+	
+	if ( $r->have_posts() ) {
+		include(TARSKIDISPLAY . '/recent_articles.php');
+	}
+	
+	wp_cache_add('tarski_recent_entries', ob_get_flush());
+}
+
+/**
+ * flush_tarski_recent_entries() - Deletes tarski_recent_entries() from the cache. 
+ *
+ * @since 2.0.5
+ * @see tarski_recent_entries()
+ */
+function flush_tarski_recent_entries() {
+	wp_cache_delete('tarski_recent_entries');
 }
 
 ?>

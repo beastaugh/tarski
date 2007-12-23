@@ -53,6 +53,8 @@ register_sidebar( // Footer sidebar widgets
 	)
 );
 
+register_sidebar_widget('Recent Articles', 'tarski_recent_entries');
+
 // Dashboard Tarski update notifier
 add_action('activity_box_end', 'tarski_update_notifier');
 
