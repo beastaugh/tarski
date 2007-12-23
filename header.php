@@ -17,10 +17,6 @@
 
 	<?php th_header(); ?>
 
-	<div id="navigation">
-		<?php th_navbar(); ?>
-	</div>
-
 </div>
 
 <div id="content">

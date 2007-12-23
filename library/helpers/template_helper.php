@@ -528,7 +528,7 @@ function tarski_sitetitle() {
  */
 function tarski_tagline() {
 	if((get_tarski_option('display_tagline') && get_bloginfo('description')))
-		$tagline = '<p id="tagline">'.  get_bloginfo('description'). '</p>';
+		$tagline = '<p id="tagline">' .  get_bloginfo('description') . '</p>';
 	
 	$tagline = apply_filters('tarski_tagline', $tagline);
 	return $tagline;
@@ -547,6 +547,19 @@ function tarski_titleandtag() {
 		echo tarski_tagline() . "\n";
 		echo '</div>'."\n";
 	}
+}
+
+/**
+ * navbar_wrapper() - Outputs navigation section.
+ * 
+ * @see th_navbar()
+ * @since 2.1
+ * @return string
+ */
+function navbar_wrapper() {
+	echo '<div id="navigation">';
+	th_navbar();
+	echo '</div>';
 }
 
 /**

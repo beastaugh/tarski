@@ -66,6 +66,7 @@ add_action('wp_head', 'tarski_feeds');
 
 add_action('th_header', 'tarski_headerimage');
 add_action('th_header', 'tarski_titleandtag');
+add_action('th_header', 'navbar_wrapper');
 
 add_filter('tarski_navbar', 'add_external_links');
 add_filter('tarski_navbar', 'add_admin_link', 20);
