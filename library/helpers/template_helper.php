@@ -37,8 +37,9 @@ function is_archives_template() {
 /**
  * tarski_language_attributes() - Outputs lang and xml:lang attributes
  * 
- * Replaces WP's language_attributes() function until that is improved.
- * @link http://trac.wordpress.org/ticket/5393
+ * Replaces WP's language_attributes() function until WordPress 2.3
+ * compatibility is no longer a consideration.
+ * @link http://trac.wordpress.org/changeset/6408
  * @see language_attributes()
  * @since 2.0.5
  * @return string
