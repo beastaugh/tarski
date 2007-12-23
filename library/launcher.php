@@ -12,30 +12,40 @@ define('NO_HEADER_TEXT', true);
 add_custom_image_header('', 'tarski_admin_header_style');
 
 // Widgets
-register_sidebar( // Main sidebar
+register_sidebar( // Main sidebar widgets
 	array(
 		'id' => 'sidebar-1',
-		'name' => __('Main Sidebar','tarski'),
+		'name' => __('Main sidebar','tarski'),
 		'before_widget' => '<div id="%1$s" class="widget %2$s">',
 		'after_widget' => '</div>',
 		'before_title' => '<h3>',
 		'after_title' => '</h3>'
 	)
 );
-register_sidebar( // Post and page sidebar
+register_sidebar( // Post and page sidebar widgets
 	array(
 		'id' => 'sidebar-post-and-page',
-		'name' => __('Post and Page Sidebar','tarski'),
+		'name' => __('Post and page sidebar','tarski'),
 		'before_widget' => '<div id="%1$s" class="widget %2$s">',
 		'after_widget' => '</div>',
 		'before_title' => '<h3>',
 		'after_title' => '</h3>'
 	)
 );
-register_sidebar( // Footer sidebar
+register_sidebar( // Footer main widgets
+	array(
+		'id' => 'footer-main',
+		'name' => __('Footer main widgets','tarski'),
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'after_widget' => '</div>',
+		'before_title' => '<h3>',
+		'after_title' => '</h3>'
+	)
+);
+register_sidebar( // Footer sidebar widgets
 	array(
 		'id' => 'sidebar-2',
-		'name' => __('Footer Widgets','tarski'),
+		'name' => __('Footer sidebar widgets','tarski'),
 		'before_widget' => '<div id="%1$s" class="widget %2$s">',
 		'after_widget' => '</div>',
 		'before_title' => '<h3>',
@@ -89,12 +99,8 @@ add_action('th_sidebar', 'tarski_sidebar', 10);
 add_filter('get_comment_author', 'tidy_openid_names');
 
 // Footer
-add_filter('tarski_footer_blurb', 'tarski_content_massage', 9);
-add_filter('tarski_footer_blurb', 'tarski_blurb_wrapper', 10);
-
 add_action('th_fsidebar', 'tarski_footer_sidebar');
-add_action('th_fmain', 'tarski_footer_blurb');
-add_action('th_fmain', 'tarski_recent_entries');
+add_action('th_fmain', 'tarski_footer_main');
 add_action('th_footer', 'tarski_feedlink');
 add_action('th_footer', 'tarski_credits');
 
