@@ -307,7 +307,7 @@ function tarski_excerpt($return = false, $excerpt_length = 35) {
 			$output .= $text[$i] . ' ';
 	}
 
-	$output = rtrim($output, " \s\n\t\r\0\x0B");
+	$output = rtrim($output, " \n\t\r\0\x0B");
 	$output = strip_tags($output);
 	$output .= $ellipsis;
 	$output = apply_filters('get_the_excerpt', $output);
