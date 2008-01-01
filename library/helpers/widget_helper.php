@@ -106,4 +106,20 @@ function tarski_widget_text_wrapper($text) {
 	return $text;
 }
 
+/**
+ * tarski_widget_links() - Tarski links widget.
+ *
+ * Doesn't display links from the category being used in the navbar,
+ * if one is set.
+ * @since 2.1
+ * @see wp_widget_links()
+ * @param array $args
+ * @return string
+ */
+function tarski_widget_links($args) {
+	// $args in case we want them in future
+	// extract($args, EXTR_SKIP);
+	wp_list_bookmarks(tarski_sidebar_links());
+}
+
 ?>

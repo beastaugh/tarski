@@ -45,7 +45,7 @@ body .primary-span { padding: 0 0 0 220px; clear: both; }
 	body.janus .primary-span { padding: 0 220px 0 0; }
 	
 	/* Fixes last .entry's bottom margin */
-	.posts { margin: 0 0 -2em 0; }
+	body .posts { margin: 0 0 -2em 0; }
 
 body .secondary { width: 200px; float: left; }
 	body.janus .secondary { float: right; }
