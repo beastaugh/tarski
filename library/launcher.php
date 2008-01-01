@@ -59,7 +59,7 @@ register_sidebar_widget(__('Links'), 'tarski_widget_links');
 
 // Widget filters
 add_filter('widget_text', 'tarski_content_massage');
-add_filter('widget_text', 'tarski_blurb_wrapper');
+add_filter('widget_text', 'tarski_widget_text_wrapper');
 
 // Dashboard Tarski update notifier
 add_action('activity_box_end', 'tarski_update_notifier');
