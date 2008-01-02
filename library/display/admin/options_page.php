@@ -19,25 +19,7 @@
 	</div>
 <?php } ?>
 
-
-<?php if(!detectWPMU() || detectWPMUadmin()) { ?>
-	<?php tarski_update_notifier('options_page'); ?>
-<?php } ?>
-
-<?php if(get_tarski_var('debug')) { global $tarski_options; ?>
-	<div class="updated">
-		<h4>$_POST</h4>
-		<pre>
-			<?php print_r($_POST); ?>
-		</pre>
-		
-		<h4>$tarski_options</h4>
-		<pre>
-			<?php print_r($tarski_options); ?>
-		</pre>
-	</div>
-<?php } ?>
-
+<?php do_action('tarski_admin_header'); ?>
 
 <div class="wrap<?php if(get_bloginfo("text_direction") == "rtl") { echo " rtl"; } ?>">
 	

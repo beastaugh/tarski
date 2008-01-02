@@ -247,9 +247,22 @@ function tarski_addmenu() {
  */
 function tarski_admin() {
 	save_tarski_options();
+	tarski_update_notifier('options_page');
 	$widgets_link = get_bloginfo('wpurl') . '/wp-admin/widgets.php';
 	$tarski_options_link = get_bloginfo('wpurl') . '/wp-admin/themes.php?page=tarski-options';
 	include(TARSKIDISPLAY . '/admin/options_page.php');
+}
+
+function tarski_messages() {
+	global $messages;
+	
+	if(!is_object($messages)) {
+		$messages = new Message;
+	}
+	
+	$messages = tarski_update_notifier();
+	$messages->output();
+	$messages->clean();
 }
 
 /**
