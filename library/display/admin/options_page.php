@@ -1,5 +1,3 @@
-<?php global $wpdb; // Need this for all the navbar jazz ?>
-
 <?php if(isset($_POST['Submit']) && !get_tarski_option('deleted')) { ?>
 	<div id="updated" class="updated fade">
 		<?php if(isset($_POST['restore_options'])) { ?>
@@ -194,8 +192,6 @@
 
 				<h3><?php _e('Navigation Display','tarski'); ?></h3>
 				<?php
-				global $wpdb;
-
 				$pages = &get_pages('sort_column=post_parent,menu_order');
 				$nav_pages = explode(',', get_tarski_option('nav_pages'));
 					
