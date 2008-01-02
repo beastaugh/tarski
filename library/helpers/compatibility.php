@@ -1,6 +1,23 @@
 <?php
 
 /**
+ * _deprecated_function() - Marks a function as deprecated and informs when it has been used.
+ *
+ * This function doesn't actually do anything, it's just here so the theme doesn't break
+ * in versions of WordPress prior to 2.4 when this functionality was introduced.
+ * 
+ * @link http://trac.wordpress.org/changeset/6514
+ * @param string $function The function that was called
+ * @param string $version The version of WordPress that depreceated the function
+ * @param string $replacement Optional. The function that should have been called
+ */
+if(!function_exists('_deprecated_function')) {
+	function _deprecated_function($function, $version, $replacement=null) {
+		return;
+	}
+}
+
+/**
  * is_page_template() - Determine whether or not we are in a page template
  *
  * This template tag allows you to determine whether or not you are in a page template.
