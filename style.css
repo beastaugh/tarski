@@ -103,19 +103,20 @@ body.rtl #navigation ul.primary { direction: ltr; }
 		blockquote { margin: 0 0 1em 0; padding: 0 30px; color: #a8a8a8; }
 		strong { font-weight: bold; }
 		em { font-style: italic; }
-		code, pre { font-family: Courier, "Courier New", monospace; font-size: 1em; color: #7ca653; }
-		html>body code, html>body pre { font-size:12px; }
 		acronym, abbr { border-bottom: 1px solid #8fb7bf; }
 		small { font-size: 0.8em; }
 		sup, sub { font-size: 75%; }
 		hr { width: 100%; height: 1px; background: #ccc; color: #ccc; margin: 1em 0; border: none; padding: none; }
+	pre, code { font-family: Courier, "Courier New", monospace; font-size: 1em; }
+		pre { overflow: scroll; margin: 0 0 1em 0; padding: 0 0 0.5em 0; }
+		body .primary pre { width: 500px; }
+		body .secondary pre { width: 200px; }
+		code { color: #7ca653; }
+		html>body code, html>body pre { font-size:12px; }
 	ul, ol { margin: 0 0 1em 30px; padding: 0; }
 	ul { list-style: disc; }
 		li { margin: 0 0 0.25em 0; }
 		body.rtl ul, body.rtl ol { margin: 0 30px 1em 0; padding: 0; }
-	pre { overflow: scroll; margin: 0 0 1em 0; padding: 0 0 0.5em 0; }
-	body .primary pre { width: 500px; }
-	body .secondary pre { width: 200px; }
 	
 	/* Global content control
 	--------------------------------------- */
