@@ -14,7 +14,7 @@ add_custom_image_header('', 'tarski_admin_header_style');
 // Widgets
 register_sidebar( // Main sidebar widgets
 	array(
-		'id' => 'sidebar-1',
+		'id' => 'sidebar-main',
 		'name' => __('Main sidebar','tarski'),
 		'before_widget' => '<div id="%1$s" class="widget %2$s">',
 		'after_widget' => '</div>',
@@ -44,7 +44,7 @@ register_sidebar( // Footer main widgets
 );
 register_sidebar( // Footer sidebar widgets
 	array(
-		'id' => 'sidebar-2',
+		'id' => 'footer-sidebar',
 		'name' => __('Footer sidebar widgets','tarski'),
 		'before_widget' => '<div id="%1$s" class="widget %2$s">',
 		'after_widget' => '</div>',

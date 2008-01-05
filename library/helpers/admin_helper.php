@@ -190,6 +190,75 @@ function tarski_upgrade() {
 		$options->centred_theme = true;
 	}
 	
+	// Upgrade old display options to use widgets instead
+	
+	// Get current widgets settings
+	$widgets = wp_get_sidebars_widgets();
+	
+	// Change sidebar names
+	$widgets['sidebar-main'] = $widgets['sidebar-1'];
+	$widgets['footer-sidebar'] = $widgets['sidebar-2'];
+	
+	$widgets['footer-main'] = array();
+	
+	// Footer blurb
+	if ( strlen(trim($options->blurb)) ) {
+		$wt_options = get_option('widget_text');
+		$wt_options[] = array(
+			'title' => '',
+			'text' => $options->blurb
+		);
+		$wt_num = count($wt_options);
+		update_option('widget_text', $wt_options);
+		unset($wt_options);
+		$widgets['footer-main'][] = "text-$wt_num";
+	}
+	
+	// Recent articles
+	if ( $options->footer_recent ) {
+		$widgets['footer-main'][] = 'recent-articles';
+	}
+	
+	// Footer sidebar default
+	if ( empty($widgets['footer-sidebar']) ) {
+		$widgets['footer-sidebar'] = array('search');
+	}
+		
+	// Main sidebar
+	if ( $options->sidebar_type == 'tarski' && empty($widgets['sidebar-main']) ) {
+		$widgets['sidebar-main'] = array();
+		
+		if( strlen(trim($options->sidebar_custom)) ) {
+			$wt_options = get_option('widget_text');
+			$wt_options[] = array(
+				'title' => '',
+				'text' => $options->sidebar_custom
+			);
+			$wt_num = count($wt_options);
+			update_option('widget_text', $wt_options);
+			unset($wt_options);
+			$widgets['sidebar-main'][] = "text-$wt_num";
+		}
+		
+		if($options->sidebar_pages) {
+			$widgets['sidebar-main'][] = 'pages';
+		}
+		
+		if($options->sidebar_links) {
+			$widgets['sidebar-main'][] = 'links';
+		}
+	}
+	
+	// Post and page sidebar
+	if ( $options->sidebar_pp_type == 'main' && empty($widgets['sidebar-post-and-page']) ) {
+		$widgets['sidebar-post-and-page'] = $widgets['sidebar-main'];
+	}
+	
+	// Unset defunct values, and save new widget options
+	unset($widgets['sidebar-1'], $widgets['sidebar-2']);
+	unset($options->blurb, $options->footer_recent);
+	wp_set_sidebars_widgets($widgets);
+	
 	// Conform our options to the expected values, types, and defaults
 	foreach($options as $name => $value) {
 		if(!isset($defaults->$name)) {

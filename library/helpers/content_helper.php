@@ -147,7 +147,7 @@ function tarski_comments_link() {
 }
 
 /**
- * tarski_asides_permalink() - Outputs permalink text for asides.
+ * tarski_asides_permalink_text() - Outputs permalink text for asides.
  *
  * @since 2.1
  * @global object $post
