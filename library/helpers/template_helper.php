@@ -388,7 +388,7 @@ function tarski_headerimage() {
 			$header_img_alt = get_bloginfo('name');
 		}
 
-		$header_img_tag = "<img alt="$header_img_alt" src="$header_img_url" />";
+		$header_img_tag = "<img alt=\"$header_img_alt\" src=\"$header_img_url\" />";
 
 		if(!get_tarski_option('display_title') && !is_wp_front_page()) {
 			$header_img_tag = sprintf(
