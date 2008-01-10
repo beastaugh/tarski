@@ -61,8 +61,8 @@ register_sidebar_widget(__('Links'), 'tarski_widget_links');
 add_filter('widget_text', 'tarski_content_massage');
 add_filter('widget_text', 'tarski_widget_text_wrapper');
 
-// Dashboard Tarski update notifier
-add_action('activity_box_end', 'tarski_update_notifier');
+// Generate messages
+add_filter('tarski_messages', 'tarski_update_notifier');
 
 // Output messages on dashboard and options page
 add_action('activity_box_end', 'tarski_messages');

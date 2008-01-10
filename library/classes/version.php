@@ -192,7 +192,9 @@ function theme_version($version = 'current') {
  * @param string $location
  * @return string
  */
-function tarski_update_notifier($location = 'dashboard') {
+function tarski_update_notifier($messages) {
+	global $pagenow;
+	
 	$version = new Version;
 	$version->current_version_number();
 	$svn_link = 'http://tarskitheme.com/help/updates/svn/';
@@ -211,7 +213,7 @@ function tarski_update_notifier($location = 'dashboard') {
 						
 			if ( $version->status == 'older' ) {
 				$messages->add( 'update', sprintf(__('A new version of the Tarski theme, version %1$s %2$s. Your installed version is %3$s.','tarski'), "<strong>$version->latest</strong>", '<a href="' . $version->latest_link . '">' . __('is now available','tarski') . '</a>', "<strong>$version->current</strong>") );
-			} elseif ( $location != 'options_page' ) {
+			} elseif ( $pagenow == 'index.php' ) {
 				switch($version->status) {
 					case 'current':
 						$messages->add( 'update', sprintf(__('Your version of Tarski (%s) is up to date.','tarski'), "<strong>$version->current</strong>") );
@@ -227,9 +229,9 @@ function tarski_update_notifier($location = 'dashboard') {
 		} else {
 			$messages->add( 'update', sprintf( __('Update notification for Tarski is disabled. You can enable it on the %1$s page. Your installed version is %2$s.','tarski'), '<a href="' . get_bloginfo('wpurl') . '/wp-admin/themes.php?page=tarski-options">' . __('Tarski Options','tarski') . '</a>', "<strong>$version->current</strong>" ) );
 		}
-		
-		return $messages;
 	}
+	
+	return $messages;
 }
 
 ?>

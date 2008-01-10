@@ -340,15 +340,14 @@ function tarski_inject_scripts() {
 }
 
 function tarski_messages() {
-	global $messages;
+	$messages = new Message;
 	
-	if(!is_object($messages)) {
-		$messages = new Message;
+	apply_filters('tarski_messages', $messages);
+	
+	if ( is_a($messages, 'Message') ) {
+		$messages->output();
+		$messages->clean();
 	}
-	
-	$messages = tarski_update_notifier();
-	$messages->output();
-	$messages->clean();
 }
 
 /**

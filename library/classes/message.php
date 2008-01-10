@@ -27,7 +27,7 @@ class Message {
 	
 	function output() {
 		foreach ( $this as $name => $message ) {
-			echo "<p id=\"message-$name\" class=\"message\">$message</p>";
+			echo "<p id=\"tarski-message-$name\" class=\"tarski-message\">$message</p>";
 		}
 		
 		$this->clean();
