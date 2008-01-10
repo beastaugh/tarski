@@ -21,6 +21,8 @@
  * @return object $tarski_options
  */
 function add_tarski_option($name, $value) {
+	_deprecated_function(__FUNCTION__, '2.0.5', update_tarski_option($name, $value));
+	
 	update_tarski_option($name, $value);
 }
 
@@ -36,6 +38,8 @@ function add_tarski_option($name, $value) {
  * @return object $tarski_options
  */
 function drop_tarski_option($option) {
+	_deprecated_function(__FUNCTION__, '2.0.5', update_tarski_option($name, false));
+	
 	update_tarski_option($option, false);
 }
 
@@ -49,6 +53,8 @@ function drop_tarski_option($option) {
  * @see get_tarski_option()
  */
 function tarski_option($name) {
+	_deprecated_function(__FUNCTION__, '2.0.5', get_tarski_option($name));
+	
 	echo get_tarski_option($name);
 }
 
@@ -63,6 +69,8 @@ function tarski_option($name) {
  * @return string
  */
 function tarski_header_status($return = false) {
+	_deprecated_function(__FUNCTION__, '2.0');
+	
 	if(get_tarski_option('header') == 'blank.gif') {
 		$status = 'noheaderimage';
 	} else {
@@ -86,6 +94,8 @@ function tarski_header_status($return = false) {
  * @return string
  */
 function get_tarski_header_status() {
+	_deprecated_function(__FUNCTION__, '2.0', tarski_header_status(true));
+	
 	tarski_header_status(true);
 }
 
@@ -97,6 +107,8 @@ function get_tarski_header_status() {
  * @return string
  */
 function get_tarski_navbar() {
+	_deprecated_function(__FUNCTION__, '2.0', tarski_navbar(true));
+	
 	tarski_navbar(true);
 }
 
@@ -108,16 +120,21 @@ function get_tarski_navbar() {
  * @return string
  */
 function tarski_navbar_feedlink($return = false) {
+	_deprecated_function(__FUNCTION__, '2.0', tarski_feedlink());
+	
 	tarski_feedlink();
 }
 
 /**
  * get_tarski_bodyclass() - Outputs the classes that should be applied to the document body.
  * 
+ * @deprecated 2.0
  * @see tarski_bodyclass()
  * @return string
  */
 function get_tarski_bodyclass() {
+	_deprecated_function(__FUNCTION__, '2.0', tarski_bodyclass(true));
+	
 	tarski_bodyclass(true);
 }
 
@@ -129,6 +146,8 @@ function get_tarski_bodyclass() {
  * @return string
  */
 function get_tarski_bodyid() {
+	_deprecated_function(__FUNCTION__, '2.0', tarski_bodyid(true));
+	
 	tarski_bodyid(true);
 }
 
@@ -142,6 +161,8 @@ function get_tarski_bodyid() {
  * @global object $post
  */
 function tarski_get_output($code) {
+	_deprecated_function(__FUNCTION__, '2.0');
+	
 	global $comment, $post;
 	ob_start();
 	@eval($code);
@@ -158,6 +179,8 @@ function tarski_get_output($code) {
  * @return string
  */
 function link_pages_without_spaces($return = false) {
+	_deprecated_function(__FUNCTION__, '2.0');
+	
 	if(!in_category(get_tarski_option('asidescategory'))) {
 		tarski_get_output(link_pages('<p class="pagelinks"><strong>Pages</strong>', '</p>', 'number', '', '', '%', ''));
 	
@@ -180,6 +203,8 @@ function link_pages_without_spaces($return = false) {
  * @return string
  */
 function tarski_next_prev_pages() {
+	_deprecated_function(__FUNCTION__, '2.0', tarski_posts_nav_link());
+	
 	tarski_posts_nav_link();
 }
 
@@ -190,7 +215,9 @@ function tarski_next_prev_pages() {
  * @since 2.0
  * @return string|boolean $sidebar_file
  */
-function hide_sidebar_for_archives($sidebar_file) {	
+function hide_sidebar_for_archives($sidebar_file) {
+	_deprecated_function(__FUNCTION__, '2.1');
+	
 	if(is_archives_template())
 		$sidebar_file = false;
 	return $sidebar_file;
@@ -204,6 +231,8 @@ function hide_sidebar_for_archives($sidebar_file) {
  * @return string
  */
 function get_tarski_footer_blurb() {
+	_deprecated_function(__FUNCTION__, '2.0', tarski_footer_blurb(true));
+	
 	tarski_footer_blurb(true);
 }
 
@@ -216,6 +245,8 @@ function get_tarski_footer_blurb() {
  * @see tarski_credits()
  */
 function tarski_feed_and_credit() {
+	_deprecated_function(__FUNCTION__, '2.0', tarski_feedlink() . tarski_credits());
+	
 	tarski_feedlink();
 	tarski_credits();
 }
@@ -231,6 +262,8 @@ function tarski_feed_and_credit() {
  * @return array $pages
  */
 function tarski_get_pages() {
+	_deprecated_function(__FUNCTION__, '2.0.4');
+
 	global $wpdb;
 	$pages = $wpdb->get_results("SELECT ID, post_title FROM $wpdb->posts WHERE post_type='page' ORDER BY post_parent, menu_order");
 	if(!empty($pages)) {
@@ -247,6 +280,8 @@ function tarski_get_pages() {
  * @see tarski_get_pages()
  */
 function tarski_resave_navbar() {
+	_deprecated_function(__FUNCTION__, '2.0.5');
+	
 	if(get_option('tarski_options')) {
 		$pages = get_pages();
 		$selected = explode(',', get_tarski_option('nav_pages'));
@@ -280,6 +315,8 @@ function tarski_resave_navbar() {
  */
 if(!function_exists('is_active_sidebar')) {
 	function is_active_sidebar( $index ) {
+		_deprecated_function(__FUNCTION__, '2.1');
+		
 		$index = ( is_int($index) ) ? "sidebar-$index" : sanitize_title($index);
 		$sidebars_widgets = (array) get_option('sidebars_widgets');	
 		return (bool) ( isset( $sidebars_widgets[$index] ) );
@@ -299,6 +336,8 @@ if(!function_exists('is_active_sidebar')) {
  * @return string
  */
 function tarski_sidebar_custom($return = false) {
+	_deprecated_function(__FUNCTION__, '2.1');
+	
 	$content = get_tarski_option('sidebar_custom');
 	$output = apply_filters('tarski_sidebar_custom', $content);
 	if($return) {
@@ -322,6 +361,8 @@ function tarski_sidebar_custom($return = false) {
  * @return string
  */
 function tarski_footer_blurb($return = false) {
+	_deprecated_function(__FUNCTION__, '2.1');
+	
 	$content = get_tarski_option('blurb');	
 	$output = apply_filters('tarski_footer_blurb', $content);
 	
@@ -341,7 +382,9 @@ function tarski_footer_blurb($return = false) {
  * @param string $blurb
  * @return string
  */
-function tarski_blurb_wrapper($blurb) {	
+function tarski_blurb_wrapper($blurb) {
+	_deprecated_function(__FUNCTION__, '2.1');
+	
 	if(is_user_logged_in()) {
 		$edit_link = sprintf(
 			'<p class="edit-link">(<a title="%1$s" id="edit-footer-blurb" href="%2$s">%3$s</a>)</p>' . "\n",
@@ -370,6 +413,8 @@ function tarski_blurb_wrapper($blurb) {
  * @return boolean
  */
 function is_archives_template() {
+	_deprecated_function(__FUNCTION__, '2.1', is_page_template('archives.php'));
+	
 	return is_page_template('archives.php');
 }
 
