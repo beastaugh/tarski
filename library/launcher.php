@@ -69,8 +69,9 @@ add_action('activity_box_end', 'tarski_messages');
 add_action('tarski_admin_header', 'tarski_messages');
 
 // Tarski Options page
+add_action('admin_print_scripts-design_page_tarski-options', 'tarski_inject_scripts');
+add_action('admin_head-design_page_tarski-options', 'tarski_inject_styles');
 add_action('admin_menu', 'tarski_addmenu');
-add_action('admin_head', 'tarski_inject_scripts');
 
 // Options
 add_action('admin_head', 'tarski_resave_show_authors');

@@ -281,32 +281,12 @@ function tarski_upgrade() {
 }
 
 /**
- * tarski_admin_header_style() - Styles the custom header image admin page for use with Tarski.
- * 
- * @since 1.4
- */
-function tarski_admin_header_style() {
-	include_once(TARSKIDISPLAY . '/admin/admin_header_style.php');
-}
-
-/**
- * tarski_inject_scripts() - Adds JavaScript and CSS to the Tarski Options page.
- * 
- * @since 1.4
-*/
-function tarski_inject_scripts() {
-	if(substr($_SERVER['REQUEST_URI'], -39, 39) == 'wp-admin/themes.php?page=tarski-options') {
-		include_once(TARSKIDISPLAY . '/admin/options_scripts.php');
-	}
-}
-
-/**
  * tarski_addmenu() - Adds the Tarski Options page to the WordPress admin panel.
  * 
  * @since 1.0
  */
 function tarski_addmenu() {
-	add_submenu_page('themes.php', __('Tarski Options','tarski'), __('Tarski Options','tarski'), 'edit_themes', 'tarski-options', 'tarski_admin');
+	add_theme_page(__('Tarski Options','tarski'), __('Tarski Options','tarski'), 'edit_themes', 'tarski-options', 'tarski_admin');
 }
 
 /**
@@ -320,6 +300,43 @@ function tarski_admin() {
 	$widgets_link = get_bloginfo('wpurl') . '/wp-admin/widgets.php';
 	$tarski_options_link = get_bloginfo('wpurl') . '/wp-admin/themes.php?page=tarski-options';
 	include(TARSKIDISPLAY . '/admin/options_page.php');
+}
+
+/**
+ * tarski_admin_header_style() - Styles the custom header image admin page for use with Tarski.
+ * 
+ * @since 1.4
+ */
+function tarski_admin_header_style() { ?>
+	<style type="text/css">
+	#headimg {
+		height: <?php echo HEADER_IMAGE_HEIGHT; ?>px;
+		width: <?php echo HEADER_IMAGE_WIDTH; ?>px;
+	}
+	#headimg h1, #headimg #desc {
+		display: none;
+	}
+	</style>
+<?php }
+
+/**
+ * tarski_inject_styles() - Adds CSS to the Tarski Options page.
+ * 
+ * @since 2.1
+*/
+function tarski_inject_styles() {
+	echo '<link rel="stylesheet" href="' . get_bloginfo('template_directory'). '/library/css/options.css" type="text/css" media="screen" />';
+}
+
+/**
+ * tarski_inject_scripts() - Adds JavaScript to the Tarski Options page.
+ * 
+ * @since 1.4
+*/
+function tarski_inject_scripts() {
+	$js_dir = get_bloginfo('template_directory') . '/library/js';
+	wp_enqueue_script('crir', $js_dir . '/crir.js');
+	wp_enqueue_script('tarski_options', $js_dir . '/options.js');
 }
 
 function tarski_messages() {
