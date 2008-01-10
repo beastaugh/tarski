@@ -235,10 +235,7 @@ function tarski_javascript() {
 	$javascript = array();
 	
 	foreach($scripts as $name => $url) {
-		$javascript[$name] =  sprintf(
-			'<script type="text/javascript" src="%s"></script>',
-			$url
-		);
+		$javascript[$name] = "<script type=\"text/javascript\" src=\"$url\"></script>";
 	}
 	
 	$javascript = apply_filters('tarski_javascript', $javascript);
@@ -391,11 +388,7 @@ function tarski_headerimage() {
 			$header_img_alt = get_bloginfo('name');
 		}
 
-		$header_img_tag = sprintf(
-			'<img alt="%1$s" src="%2$s" />',
-			$header_img_alt,
-			$header_img_url
-		);
+		$header_img_tag = "<img alt="$header_img_alt" src="$header_img_url" />";
 
 		if(!get_tarski_option('display_title') && !is_wp_front_page()) {
 			$header_img_tag = sprintf(
