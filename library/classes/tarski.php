@@ -12,7 +12,7 @@ class Tarski {
 	var $private;
 	
 	function set_defaults() {
-		$this->debug = false;
+		$this->debug = WP_DEBUG;
 		$this->files = array();
 		$this->private = array();
 	}

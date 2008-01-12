@@ -204,10 +204,7 @@ function tarski_upgrade() {
 	// Footer blurb
 	if ( strlen(trim($options->blurb)) ) {
 		$wt_options = get_option('widget_text');
-		$wt_options[] = array(
-			'title' => '',
-			'text' => $options->blurb
-		);
+		$wt_options[] = array( 'title' => '', 'text' => $options->blurb );
 		$wt_num = count($wt_options);
 		update_option('widget_text', $wt_options);
 		unset($wt_options);
@@ -230,10 +227,7 @@ function tarski_upgrade() {
 		
 		if( strlen(trim($options->sidebar_custom)) ) {
 			$wt_options = get_option('widget_text');
-			$wt_options[] = array(
-				'title' => '',
-				'text' => $options->sidebar_custom
-			);
+			$wt_options[] = array( 'title' => '', 'text' => $options->sidebar_custom );
 			$wt_num = count($wt_options);
 			update_option('widget_text', $wt_options);
 			unset($wt_options);
@@ -256,7 +250,6 @@ function tarski_upgrade() {
 	
 	// Unset defunct values, and save new widget options
 	unset($widgets['sidebar-1'], $widgets['sidebar-2']);
-	unset($options->blurb, $options->footer_recent);
 	wp_set_sidebars_widgets($widgets);
 	
 	// Conform our options to the expected values, types, and defaults
@@ -276,7 +269,7 @@ function tarski_upgrade() {
 		}
 	}
 
-	// Save our updated options
+	// Save our upgraded options
 	update_option('tarski_options', serialize($options));
 }
 
@@ -374,7 +367,8 @@ function tarski_count_authors() {
  * @return boolean
  */
 function tarski_should_show_authors() {
-	return (bool) (tarski_count_authors() > 1);
+	$show_authors = tarski_count_authors() > 1;
+	return (bool) apply_filters('tarski_show_authors', $show_authors);
 }
 
 /**
