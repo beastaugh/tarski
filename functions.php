@@ -12,6 +12,7 @@ define('TARSKIVERSIONFILE', 'http://tarskitheme.com/version.atom');
 require_once(TARSKICLASSES . '/tarski.php');
 require_once(TARSKICLASSES . '/options.php');
 require_once(TARSKICLASSES . '/version.php');
+require_once(TARSKICLASSES . '/asset.php');
 require_once(TARSKICLASSES . '/message.php');
 
 // Helpers

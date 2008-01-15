@@ -1,4 +1,5 @@
 <?php
+
 /**
  * check_input() - Checks input is of correct type
  * 
