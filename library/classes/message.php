@@ -7,13 +7,14 @@
  */
 class Message {
 	
-	function Message($name=false, $message=false) {
-		if ( $name && $message ) {
-			$this->add($name, $message);
-		}
-		
-		if ( WP_DEBUG ) {
-			$this->add('debug', array('file' => 'debug.php'));
+	function init() {
+		$messages = new Message;
+
+		apply_filters('tarski_messages', $messages);
+
+		if ( is_a($messages, 'Message') ) {
+			$messages->output();
+			$messages->clean();
 		}
 	}
 	
@@ -30,8 +31,6 @@ class Message {
 		foreach ( $this as $name => $message ) {
 			echo "<p id=\"tarski-message-$name\" class=\"tarski-message\">$message</p>";
 		}
-		
-		$this->clean();
 	}
 	
 	function clean() {

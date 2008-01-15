@@ -332,17 +332,6 @@ function tarski_inject_scripts() {
 	wp_enqueue_script('tarski_options', $js_dir . '/options.js');
 }
 
-function tarski_messages() {
-	$messages = new Message;
-	
-	apply_filters('tarski_messages', $messages);
-	
-	if ( is_a($messages, 'Message') ) {
-		$messages->output();
-		$messages->clean();
-	}
-}
-
 /**
  * tarski_count_authors() - Returns the number of authors on a site.
  * 
