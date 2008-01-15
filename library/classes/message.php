@@ -12,7 +12,7 @@ class Message {
 
 		apply_filters('tarski_messages', $messages);
 
-		if ( is_a($messages, 'Message') ) {
+		if ( check_input($messages, 'object', 'Message') ) {
 			$messages->output();
 			$messages->clean();
 		}

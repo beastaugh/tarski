@@ -1,4 +1,27 @@
 <?php
+/**
+ * check_input() - Checks input is of correct type
+ * 
+ * Always returns true when WP_DEBUG is true, to allow for easier debugging
+ * in the development environment while handling erroneous input more
+ * robustly in the production environment.
+ * @see http://uk3.php.net/manual/en/function.gettype.php
+ * @since 2.1
+ * @param mixed $input
+ * @param string $type
+ * @param string $name
+ * @return boolean
+ *
+ */
+function check_input($input, $type, $name = '') {
+	if ( WP_DEBUG === true )
+		return true;
+
+	if ( $type == 'object' && strlen($name) > 0 )
+		return is_a($input, $name);
+	else
+		return gettype($input) == $type;
+}
 
 /**
  * detectWPMU() - Detects whether WordPress Multi-User is in use.

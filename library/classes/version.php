@@ -201,7 +201,7 @@ function tarski_update_notifier($messages) {
 	
 	// Update checking only performed when remote files can be accessed
 	if ( can_get_remote() ) {
-		if ( !is_object($messages) ) {
+		if ( !is_a($messages, 'Message') ) {
 			$messages = new Message;
 		}
 		
@@ -230,8 +230,6 @@ function tarski_update_notifier($messages) {
 			$messages->add( 'update', sprintf( __('Update notification for Tarski is disabled. You can enable it on the %1$s page. Your installed version is %2$s.','tarski'), '<a href="' . get_bloginfo('wpurl') . '/wp-admin/themes.php?page=tarski-options">' . __('Tarski Options','tarski') . '</a>', "<strong>$version->current</strong>" ) );
 		}
 	}
-	
-	return $messages;
 }
 
 ?>
