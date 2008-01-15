@@ -78,7 +78,8 @@ add_action('admin_head', 'tarski_resave_show_authors');
 add_action('save_post', 'flush_tarski_recent_entries');
 add_action('deleted_post', 'flush_tarski_recent_entries');
 
-// Header
+// Header:
+// Links with query strings are not cached by the browser
 // add_filter('tarski_style_array', 'add_version_to_styles');
 
 add_action('wp_head', 'add_page_description_meta');

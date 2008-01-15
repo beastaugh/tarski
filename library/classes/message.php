@@ -8,10 +8,11 @@
 class Message {
 	
 	function Message($name=false, $message=false) {
-		if($name && $message) {
+		if ( $name && $message ) {
 			$this->add($name, $message);
 		}
-		if(get_tarski_var('debug')) {
+		
+		if ( WP_DEBUG ) {
 			$this->add('debug', array('file' => 'debug.php'));
 		}
 	}

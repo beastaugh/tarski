@@ -42,7 +42,7 @@
 
 		<div class="primary posts">
 			
-			<?php include(TEMPLATEPATH.'/loop.php'); ?>
+			<?php include(TEMPLATEPATH . '/loop.php'); ?>
 			
 			<?php tarski_posts_nav_link(); ?>
 			
