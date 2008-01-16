@@ -21,7 +21,7 @@ function tarski_sidebar() {
 		if(is_single() || is_page())
 			dynamic_sidebar('sidebar-post-and-page');
 		else
-			dynamic_sidebar('sidebar-1');
+			dynamic_sidebar('sidebar-main');
 		echo "</div>\n";
 	}
 }
@@ -43,7 +43,7 @@ function tarski_footer_main() {
  * @return mixed
  */
 function tarski_footer_sidebar() {
-	dynamic_sidebar('sidebar-2');
+	dynamic_sidebar('footer-sidebar');
 }
 
 /**
