@@ -21,7 +21,7 @@
 		<div class="entry hentry">
 			
 			<div class="meta">
-				<h2 class="title entry-title" id="post-<?php the_ID(); ?>"><a href="<?php the_permalink(); ?>" rel="bookmark" title="<?php _e('Permanent Link to ','tarski'); the_title(); ?>"><?php the_title(); ?></a></h2>
+				<h2 class="title entry-title" id="post-<?php the_ID(); ?>"><a href="<?php the_permalink(); ?>" rel="bookmark" title="<?php _e('Permanent link to ','tarski'); the_title(); ?>"><?php the_title(); ?></a></h2>
 				<p class="metadata"><?php echo '<span class="date updated">'. tarski_date(). '</span>';
 				tarski_post_categories_link();
 				tarski_author_posts_link();
