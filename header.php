@@ -3,9 +3,7 @@
 
 <head><title><?php echo tarski_doctitle(); ?></title>
 
-	<meta http-equiv="Content-Type" content="<?php echo get_bloginfo('html_type') .'; charset=' . get_bloginfo('charset'); ?>" />
-	<meta name="wp_theme" content="Tarski <?php echo theme_version(); ?>" />
-	
+	<meta http-equiv="Content-Type" content="<?php echo get_bloginfo('html_type') .'; charset=' . get_bloginfo('charset'); ?>" />	
 	<?php wp_head(); ?>
 
 </head>

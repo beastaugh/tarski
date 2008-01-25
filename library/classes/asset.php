@@ -19,7 +19,9 @@ class Asset {
 	}
 	
 	function meta() {
-		$meta = array();
+		// Theme name and version
+		$themeversion = theme_version();
+		$meta = array("<meta name=\"wp_theme\" content=\"Tarski $themeversion\" />");
 		
 		// Description
 		global $wp_query;
