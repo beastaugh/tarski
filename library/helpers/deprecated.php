@@ -59,6 +59,24 @@ function tarski_option($name) {
 }
 
 /**
+ * add_robots_meta() - Adds robots meta element if blog is public.
+ * 
+ * WordPress adds a meta element denying robots access if the site is set
+ * to private, but it doesn't add one allowing them if it's set to public.
+ * @since 2.0
+ * @deprecated 2.1
+ * @see Asset::meta()
+ * @return string
+ */
+function add_robots_meta() {
+	_deprecated_function(__FUNCTION__, '2.1', Asset::meta());
+	
+	if(get_option('blog_public') != '0')
+		echo '<meta name="robots" content="all" />' . "\n";
+}
+
+
+/**
  * tarski_feeds() - Outputs feed links for the page.
  * 
  * Can be set to return Atom, RSS or RSS2. Will always return the
