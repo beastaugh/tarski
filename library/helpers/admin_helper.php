@@ -21,7 +21,7 @@ function check_input($input, $type, $name = '') {
 	if ( $type == 'object' && strlen($name) > 0 )
 		return is_a($input, $name);
 	else
-		return gettype($input) == $type;
+		return call_user_func("is_$type", $input);
 }
 
 /**
