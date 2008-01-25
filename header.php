@@ -4,7 +4,6 @@
 <head><title><?php echo tarski_doctitle(); ?></title>
 
 	<meta http-equiv="Content-Type" content="<?php echo get_bloginfo('html_type') .'; charset=' . get_bloginfo('charset'); ?>" />
-	<meta name="generator" content="WordPress <?php bloginfo('version'); ?>" />
 	<meta name="wp_theme" content="Tarski <?php echo theme_version(); ?>" />
 	
 	<?php wp_head(); ?>
