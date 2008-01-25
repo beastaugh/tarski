@@ -90,7 +90,7 @@ function tarski_doctitle($sep = '&middot;') {
 	$elements = apply_filters('tarski_doctitle', $elements);
 	
 	// But if they don't, it won't try to implode
-	if(is_array($elements))
+	if(check_input($elements, 'array'))
 		$doctitle = implode(' ', $elements);
 	
 	if($return) {
@@ -112,7 +112,7 @@ function tarski_doctitle($sep = '&middot;') {
  * @return array $style_array
  */
 function add_version_to_styles($style_array) {
-	if(is_array($style_array)) {
+	if(check_input($style_array, 'array')) {
 		foreach($style_array as $type => $values) {
 			if(is_array($values) && $values['url']) {
 				$style_array[$type]['url'] .= '?v=' . theme_version();
@@ -336,7 +336,7 @@ function tarski_navbar($return = false) {
 	$navbar = apply_filters('tarski_navbar', $navbar);
 
 	// But if they don't, the function will return false
-	if(is_array($navbar) && !empty($navbar)) {
+	if(check_input($navbar, 'array') && !empty($navbar)) {
 		$navbar = "\n" . implode("\n", $navbar) . "\n\n";
 	} else {
 		$navbar = false;
@@ -358,7 +358,7 @@ function tarski_navbar($return = false) {
  * @return array $navbar
  */
 function add_external_links($navbar) {
-	if(!is_array($navbar))
+	if(!check_input($navbar, 'array'))
 		$navbar = array();
 	
 	if(get_tarski_option('nav_extlinkcat')) {
@@ -383,6 +383,7 @@ function add_external_links($navbar) {
 			);
 		}
 	}
+	
 	return $navbar;
 }
 
@@ -395,7 +396,7 @@ function add_external_links($navbar) {
  * @return string $navbar
  */
 function add_admin_link($navbar) {
-	if(!is_array($navbar))
+	if(!check_input($navbar, 'array'))
 		$navbar = array();
 	
 	if(is_user_logged_in())
@@ -420,7 +421,7 @@ function add_admin_link($navbar) {
  * @return string $navbar
  */
 function wrap_navlist($navbar) {
-	if(is_array($navbar)) {
+	if(check_input($navbar, 'array')) {
 		array_unshift($navbar, '<ul class="primary xoxo">');
 		array_push($navbar, '</ul>');
 		return $navbar;
