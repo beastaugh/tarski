@@ -75,6 +75,20 @@ function add_robots_meta() {
 		echo '<meta name="robots" content="all" />' . "\n";
 }
 
+/**
+ * tarski_stylesheets() - Adds Tarski's stylesheets to the document head.
+ * 
+ * @deprecated 2.1
+ * @since 2.0.1
+ * @return string
+ */
+function tarski_stylesheets() {
+	_deprecated_function(__FUNCTION__, '2.1', Asset::stylesheets());
+	
+	$assets = new Asset;
+	$assets->stylesheets();
+	$assets->output();
+}
 
 /**
  * tarski_feeds() - Outputs feed links for the page.
