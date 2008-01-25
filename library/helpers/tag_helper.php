@@ -12,7 +12,7 @@
  * @return array
  */
 function wrap_values_in_element($array, $element) {
-	if(!is_array($array) || empty($array))
+	if(!check_input($array, 'array') || empty($array))
 		return;
 	
 	$output = array();
@@ -37,7 +37,7 @@ function wrap_values_in_element($array, $element) {
  * @return string
  */
 function implode_proper($array, $glue = ', ', $last_connective = 'and') {
-	if( !is_array($array) || count($array) == 0 )
+	if( !check_input($array, 'array') || count($array) == 0 )
 		return;
 	
 	$last_value = array_pop($array);

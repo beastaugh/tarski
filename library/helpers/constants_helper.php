@@ -42,10 +42,10 @@ function tarski_output_headinclude() {
 function tarski_output_navbarinclude($navbar) {
 	global $navbarInclude;
 	
-	if(!is_array($navbar))
+	if ( !check_input($navbar, 'array') )
 		$navbar = array();
 	
-	if($navbarInclude)
+	if ( $navbarInclude )
 		$navbar['navbarinclude'] = $navbarInclude;
 	
 	return $navbar;
