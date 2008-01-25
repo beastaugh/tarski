@@ -96,6 +96,21 @@ function tarski_feeds() {
 }
 
 /**
+ * tarski_javascript() - Adds Tarski JavaScript to the document head.
+ * 
+ * @deprecated 2.1
+ * @since 2.0.1
+ * @return string
+ */
+function tarski_javascript() {
+	_deprecated_function(__FUNCTION__, '2.1', Asset::javascript());
+	
+	$assets = new Asset;
+	$assets->javascript();
+	$assets->output();
+}
+
+/**
  * tarski_header_status() - Outputs current header status.
  * 
  * Output is currently used to set an HTML class, which allows
