@@ -59,6 +59,25 @@ function tarski_option($name) {
 }
 
 /**
+ * tarski_feeds() - Outputs feed links for the page.
+ * 
+ * Can be set to return Atom, RSS or RSS2. Will always return the
+ * main site feed, but will additionally return an archive, search
+ * or comments feed depending on the page type.
+ * @deprecated 2.1
+ * @since 2.0
+ * @see Asset::feeds()
+ * @return string
+ */
+function tarski_feeds() {
+	_deprecated_function(__FUNCTION__, '2.1', Asset::feeds());
+	
+	$assets = new Asset;
+	$assets->feeds();
+	$assets->output();
+}
+
+/**
  * tarski_header_status() - Outputs current header status.
  * 
  * Output is currently used to set an HTML class, which allows
