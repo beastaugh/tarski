@@ -156,7 +156,7 @@ function tarski_comments_link() {
 function tarski_asides_permalink_text() {
 	global $post;
 	if($post->comment_status == 'open' || $post->comment_count > 0) {
-		comments_number(__('No comments','tarski'), __('1 comment','tarski'), '%' . __(' comments','tarski'));
+		comments_number(__('No comments','tarski'), __('1 comment','tarski'), __('% comments','tarski'));
 	} else {
 		_e('Permalink', 'tarski');
 	}
