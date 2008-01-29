@@ -67,7 +67,6 @@ class Asset {
 
 		// The more complex array can be filtered if desired
 		$style_array = apply_filters('tarski_style_array', $style_array);
-		$stylesheets = array();
 
 		// The business end of the function
 		if(is_array($style_array)) {
@@ -93,8 +92,6 @@ class Asset {
 		$scripts = array(
 			'tarski-js' => get_bloginfo('template_directory') . '/library/js/tarski-js.php'
 		);
-
-		$javascript = array();
 
 		foreach($scripts as $name => $url) {
 			$javascript[$name] = "<script type=\"text/javascript\" src=\"$url\"></script>";
