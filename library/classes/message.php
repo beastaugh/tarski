@@ -8,13 +8,19 @@
 class Message {
 	
 	function init() {
-		$messages = new Message;
+		global $plugin_page, $pagenow;
+		
+		if ( $pagenow == 'index.php' || $plugin_page == 'tarski-options' ) {
+			$messages = new Message;
 
-		apply_filters('tarski_messages', $messages);
+			apply_filters('tarski_messages', $messages);
 
-		if ( check_input($messages, 'object', 'Message') ) {
-			$messages->output();
-			$messages->clean();
+			if ( check_input($messages, 'object', 'Message') ) {
+				$messages->output();
+				$messages->clean();
+			}
+		} else {
+			return;		
 		}
 	}
 	

@@ -193,7 +193,7 @@ function theme_version($version = 'current') {
  * @return string
  */
 function tarski_update_notifier($messages) {
-	global $pagenow;
+	global $plugin_page;
 	
 	$version = new Version;
 	$version->current_version_number();
@@ -213,7 +213,7 @@ function tarski_update_notifier($messages) {
 						
 			if ( $version->status == 'older' ) {
 				$messages->add( 'update', sprintf(__('A new version of the Tarski theme, version %1$s %2$s. Your installed version is %3$s.','tarski'), "<strong>$version->latest</strong>", '<a href="' . $version->latest_link . '">' . __('is now available','tarski') . '</a>', "<strong>$version->current</strong>") );
-			} elseif ( $pagenow == 'index.php' ) {
+			} elseif ( $plugin_page == 'tarski-options' ) {
 				switch($version->status) {
 					case 'current':
 						$messages->add( 'update', sprintf(__('Your version of Tarski (%s) is up to date.','tarski'), "<strong>$version->current</strong>") );
