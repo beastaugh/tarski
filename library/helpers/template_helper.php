@@ -450,39 +450,37 @@ function tarski_feedlink() {
  * 
  * @since 1.2
  * @param boolean $return
- * @return string $body_class
+ * @return string $classes
  */
 function tarski_bodyclass($return = false) {
-	$classes = array();
-	
 	if(get_tarski_option('centred_theme')) { // Centred or not
-		array_push($classes, 'centre');
+		$classes[] = 'centre';
 	}
 	if(get_tarski_option('swap_sides')) { // Swapped or not
-		array_push($classes, 'janus');
+		$classes[] = 'janus';
 	}
 	if(get_tarski_option('style')) { // Alternate style
 		$stylefile = get_tarski_option('style');
 		$stylename = str_replace('.css', '', $stylefile);
 		if(is_valid_tarski_style($stylefile)) {
-			array_push($classes, $stylename);
+			$classes[] = $stylename;
 		}
 	}
 	if(get_bloginfo('text_direction') == 'rtl') {
-		array_push($classes, 'rtl');
+		$classes[] = 'rtl';
 	}
 	
 	// Filters should return an array
-	$body_classes = apply_filters('tarski_bodyclass', $classes);
+	$classes = apply_filters('tarski_bodyclass', $classes);
 	
 	// But if they don't, it won't implode
-	if(is_array($body_classes))
-		$body_classes = implode(' ', $body_classes);
+	if(is_array($classes))
+		$classes = implode(' ', $classes);
 	
 	if($return)
-		return $body_classes;
+		return $classes;
 	else
-		echo $body_classes;
+		echo $classes;
 }
 
 /**

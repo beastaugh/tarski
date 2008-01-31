@@ -179,10 +179,8 @@ function tarski_sidebar_links() {
 	
 	$link_categories = &get_terms('link_category', $link_cat_args);
 	
-	$link_cats = array();
-	
 	foreach($link_categories as $link_cat)
-		array_push($link_cats, $link_cat->term_id);
+		$link_cats[] = $link_cat->term_id;
 	
 	$link_cats = implode(',', $link_cats);
 	

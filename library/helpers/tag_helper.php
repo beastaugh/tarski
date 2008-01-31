@@ -15,12 +15,8 @@ function wrap_values_in_element($array, $element) {
 	if(!check_input($array, 'array') || empty($array))
 		return;
 	
-	$output = array();
-	
-	foreach($array as $value) {
-		$output_value = "<$element>$value</$element>";
-		array_push($output, $output_value);
-	}
+	foreach($array as $value)
+		$output[] = "<$element>$value</$element>";
 	
 	return $output;
 }
@@ -81,10 +77,8 @@ function multiple_tag_titles($tag_wrapper = '') {
 	}
 	
 	if($tag_slugs) {
-		$tag_ids = array();
 		foreach ($tag_slugs as $tag_slug) {
-			$tag_id = $wpdb->get_var("SELECT term_id FROM $wpdb->terms WHERE slug = \"$tag_slug\"");
-			array_push($tag_ids, $tag_id);
+			$tag_ids[] = $wpdb->get_var("SELECT term_id FROM $wpdb->terms WHERE slug = \"$tag_slug\"");
 		}
 	}
 	// End horrible hack
@@ -105,15 +99,12 @@ function multiple_tag_titles($tag_wrapper = '') {
 	}
 	*/
 
-	
-	$tags = array();
-	
 	foreach ( $tag_ids as $tag_id ) {
 		$tag = &get_term($tag_id, 'post_tag', OBJECT, 'display');
 		if ( empty($tag) || is_wp_error($tag) )
 			continue;
 		else
-			array_push($tags, $tag->name);
+			$tags[] = $tag->name;
 	}
 	
 	if ( $tag_wrapper )
