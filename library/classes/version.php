@@ -15,7 +15,7 @@
  * @package Tarski
  * @since 2.0
  */
-class Version extends Tarski {
+class Version {
 	
 	/**
 	 * The version number of the currently installed theme.

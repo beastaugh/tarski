@@ -12,7 +12,7 @@
  * @package Tarski
  * @since 2.0
  */
-class Options extends Tarski {
+class Options {
 	
 	var $installed;
 	var $deleted;

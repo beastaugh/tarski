@@ -272,9 +272,8 @@ function tarski_upgrade() {
 		$widgets['sidebar-post-and-page'] = $widgets['sidebar-main'];
 	}
 	
-	// Unset defunct values, and save new widget options
+	// Unset defunct values
 	unset($widgets['sidebar-1'], $widgets['sidebar-2']);
-	wp_set_sidebars_widgets($widgets);
 	
 	// Conform our options to the expected values, types, and defaults
 	foreach($options as $name => $value) {
@@ -294,6 +293,7 @@ function tarski_upgrade() {
 	}
 
 	// Save our upgraded options
+	wp_set_sidebars_widgets($widgets);
 	update_option('tarski_options', serialize($options));
 }
 

@@ -9,7 +9,6 @@ define('TARSKICACHE', TARSKILIB . '/cache');
 define('TARSKIVERSIONFILE', 'http://tarskitheme.com/version.atom');
 
 // Classes
-require_once(TARSKICLASSES . '/tarski.php');
 require_once(TARSKICLASSES . '/options.php');
 require_once(TARSKICLASSES . '/version.php');
 require_once(TARSKICLASSES . '/asset.php');
