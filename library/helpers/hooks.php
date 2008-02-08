@@ -41,6 +41,18 @@ function th_postend() {
 }
 
 /**
+ * th_posts_nav - Tarski posts navigation hook
+ * 
+ * Template function appearing at the end of the loop,
+ * to be executed at that point in the template. By default
+ * used to add next and previous posts navigation on index pages.
+ * @since 2.1
+ */
+function th_posts_nav() {
+	do_action('th_posts_nav');
+}
+
+/**
  * th_sidebar() - Tarski sidebar hook
  *
  * Template function appearing in sidebar.php, allows actions

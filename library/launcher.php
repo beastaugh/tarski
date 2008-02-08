@@ -98,6 +98,8 @@ add_action('th_navbar', 'tarski_feedlink');
 add_action('th_postend', 'add_post_tags', 10);
 add_action('th_postend', 'tarski_link_pages', 11);
 
+add_action('th_posts_nav', 'tarski_posts_nav_link');
+
 // Sidebar
 add_filter('tarski_sidebar_custom', 'tarski_content_massage', 9);
 add_filter('tarski_sidebar', 'hide_sidebar_for_archives');

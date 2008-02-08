@@ -17,8 +17,6 @@
 		
 		<?php include(TEMPLATEPATH.'/loop.php'); ?>
 		
-		<?php tarski_posts_nav_link(); ?>
-		
 		
 	<?php } else { ?>
 		

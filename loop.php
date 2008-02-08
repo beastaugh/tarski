@@ -41,3 +41,5 @@
 	<?php } ?>
 	
 <?php } // End entry loop ?>
+
+<?php th_posts_nav(); ?>
