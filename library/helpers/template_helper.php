@@ -437,11 +437,6 @@ function wrap_navlist($navbar) {
  * @return string $output
  */
 function tarski_feedlink() {
-	if(get_tarski_option('feed_type') == 'atom')
-		$feed_url = 'atom_url';
-	else
-		$feed_url = 'rss2_url';
-	
 	include(TARSKIDISPLAY . '/feed_link.php');
 }
 

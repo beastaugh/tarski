@@ -101,14 +101,6 @@ class Asset {
 	}
 	
 	function feeds() {
-		if(function_exists('get_default_feed')) {
-			$type = '';	
-		} elseif(get_tarski_option('feed_type') == 'atom') {
-			$type = 'atom';
-		} else {
-			$type = 'rss2';
-		}
-
 		if(is_single() || (is_page() && ($comments || comments_open()))) {
 			global $post;
 			$title = sprintf(__('Commments feed for %s','tarski'), get_the_title());
@@ -148,10 +140,7 @@ class Asset {
 						$link .= "feed/$type/";
 					}
 				} else {
-					if(empty($type))
-						$type = get_default_feed();
-
-					$link .= "&amp;feed=$type";
+					$link .= '&amp;feed=' . get_default_feed();
 				}
 			}
 		} elseif(is_search()) {

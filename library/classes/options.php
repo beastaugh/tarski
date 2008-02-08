@@ -39,7 +39,6 @@ class Options {
 	var $tags_everywhere;
 	var $show_categories;
 	var $use_pages;
-	var $feed_type;
 	
 	/**
 	 * tarski_options_defaults() - Sets Options object's properties to their default values.
@@ -73,10 +72,6 @@ class Options {
 		$this->show_categories = true;
 		$this->show_authors = tarski_should_show_authors();
 		$this->use_pages = false;
-		if(function_exists('get_default_feed'))
-			$this->feed_type = get_default_feed();
-		else
-			$this->feed_type = 'rss2';
 	}
 	
 	/**
@@ -157,13 +152,7 @@ class Options {
 			$this->nav_extlinkcat = $_POST['nav_extlinkcat'];
 			$this->home_link_name = $_POST['home_link_name'];
 			$this->sidebar_type = $_POST['sidebar_type'];
-			$this->sidebar_pp_type = $_POST['sidebar_pp_type'];
-			
-			if(function_exists('get_default_feed'))
-				$this->feed_type = get_default_feed();
-			else
-				$this->feed_type = $_POST['feed_type'];
-			
+			$this->sidebar_pp_type = $_POST['sidebar_pp_type'];			
 			$this->show_authors = tarski_should_show_authors();
 			unset($this->deleted);
 		}

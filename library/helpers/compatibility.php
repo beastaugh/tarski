@@ -53,9 +53,24 @@ if(!function_exists('is_page_template')) {
 }
 
 /**
+ * get_default_feed() - Gets the default site feed type.
+ *
+ * Filtered so that it can be altered by a plugin. Added in WP 2.5,
+ * conditionally defined here for backwards compatibility with 2.3.
+ * @link http://trac.wordpress.org/changeset/6365
+ * @since 2.1
+ * @return string
+ */
+if(!function_exists('get_default_feed')) {
+	function get_default_feed() {
+		return apply_filters('default_feed', 'rss2');
+	}
+}
+
+/**
  * get_category_feed_link() - Gets the feed link for a given category.
  * 
- * Can be set to return Atom, RSS or RSS2. Now in WP trunk, but
+ * Can be set to return Atom, RSS or RSS2. Now in WP 2.5, but
  * conditionally defined here for backwards compatibility with 2.3.
  * @link http://trac.wordpress.org/changeset/6327
  * @since 2.0
@@ -96,7 +111,7 @@ if(!function_exists('get_category_feed_link')) {
  * get_author_feed_link() - Gets the feed link for a given author.
  * 
  * Can be set to return Atom, RSS or RSS2. Conditionally defined
- * since this function is now in WordPress 2.4.
+ * since this function is now in WordPress 2.5.
  * @since 2.0
  * @param integer $author_id
  * @param string $feed

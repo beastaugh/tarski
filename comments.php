@@ -1,11 +1,5 @@
 <?php
 
-if(get_tarski_option('feed_type') == "atom") {
-	$feed_type = "atom";
-} else {
-	$feed_type = "rss2";
-}
-
 if('comments.php' == basename($_SERVER['SCRIPT_FILENAME'])) {
 	die('Please do not load this page directly. Thanks!');
 }
@@ -23,7 +17,7 @@ if($comments || comments_open()) { ?>
 	<div class="meta">
 		<h2 class="title"><?php comments_number(__('No comments','tarski'), __('1 comment','tarski'), '%'. __(' comments','tarski')); ?></h2>
 		<?php if(comments_open()) { ?>
-		<p class="comments-feed"><a href="<?php echo get_post_comments_feed_link($post->ID, $feed_type); ?>"><?php _e('Comments feed for this article','tarski'); ?></a></p>
+		<p class="comments-feed"><a href="<?php echo get_post_comments_feed_link($post->ID); ?>"><?php _e('Comments feed for this article','tarski'); ?></a></p>
 		<?php } ?>
 		<?php if(pings_open()) { ?>
 		<div id="trackback-link">

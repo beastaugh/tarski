@@ -271,16 +271,7 @@
 					<input type="hidden" name="swap_title_order" value="0" />
 					<input type="checkbox" id="opt-misc-titleswap" name="swap_title_order" value="1" <?php if(get_tarski_option('swap_title_order')) { echo 'checked="checked" '; } ?>/>
 					<?php _e('Reverse document title order (show site name last)','tarski'); ?>
-				</label>
-				
-			<?php if(!function_exists('get_default_feed')) { ?>
-				<h3><?php _e('Feed Options','tarski'); ?></h3>
-				<p><?php printf(__('Tarski can be set to link to either %s or Atom feeds.','tarski'), '<acronym title="' . __('Really Simple Syndication','tarski') . '">RSS</acronym>'); ?></p>
-					
-				<label for="feed-atom"><input type="radio" id="feed-atom" name="feed_type" value ="atom" <?php if(get_tarski_option("feed_type") == "atom") { echo 'checked="checked" '; } ?>/> <?php _e('Atom','tarski'); ?></label>
-				<label for="feed-rss2"><input type="radio" id="feed-rss2" name="feed_type" value ="rss2" <?php if(get_tarski_option("feed_type") != "atom") { echo 'checked="checked" '; } ?>/> <?php printf('<acronym title="%s">RSS</acronym>', __('Really Simple Syndication','tarski')); ?></label>
-			<?php } ?>
-				
+				</label>				
 
 			</fieldset>
 			<hr />
