@@ -90,7 +90,7 @@ class Asset {
 	
 	function javascript() {
 		$scripts = array(
-			'tarski-js' => get_bloginfo('template_directory') . '/library/js/tarski-js.php'
+			'tarski-js' => get_bloginfo('template_directory') . '/library/js/tarski.js'
 		);
 
 		foreach($scripts as $name => $url) {

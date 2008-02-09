@@ -122,4 +122,26 @@ function tarski_widget_links($args) {
 	wp_list_bookmarks(tarski_sidebar_links());
 }
 
+/**
+ * tarski_widget_search() - Replaces the default search widget.
+ *
+ * Hopefully temporary, a patch has been proposed for WP 2.5
+ * which does the same thing. If that happens this function
+ * will be moved into compatibility.php.
+ * @since 2.1
+ * @link http://trac.wordpress.org/ticket/5567
+ */
+function tarski_widget_search($args) {
+	// $args in case we want them in future
+	// extract($args, EXTR_SKIP);
+	$searchform_template = get_template_directory() . '/searchform.php';
+
+	if ( !file_exists($searchform_template) )
+		$searchform_template = get_theme_root() . '/default/searchform.php';
+
+	echo $before_widget;
+	include_once($searchform_template);
+	echo $after_widget;
+}
+
 ?>
