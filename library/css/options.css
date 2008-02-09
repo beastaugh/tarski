@@ -1,5 +1,5 @@
 /*
-CSS file for the Tarski Options page
+Tarski options page stylesheet
 */
 
 .rtl { text-align: right; direction: rtl; }
@@ -25,18 +25,13 @@ h3 { color: #000; }
 #tarski-headers label { display: inline; }
 #tarski-headers label img { background: #fff; margin: 5px; font-weight: bold; }
 
-
-/*
-	CRIR - Checkbox & Radio Input Replacement
-	Author: Chris Erwin (me[at]chriserwin.com)
-	www.chriserwin.com/scripts/crir/
-*/
-
-/* Checkboxes */
+/* Checkboxes
+----------------------------------------------- */
 label.checkbox_checked {}
 label.checkbox_unchecked  {}
 
-/* Radio Buttons */
+/* Radio buttons
+----------------------------------------------- */
 label.radio_checked {}
 	label.radio_checked img { border: 2px solid #cc6677; padding: 3px; }
 label.radio_unchecked  {}
@@ -48,10 +43,7 @@ label.highlighted {
 	border: 1px solid #333;
 }
 
-/* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */
-/* STOP EDITING - DO NOT CHANGE OR REMOVE         */
 .crirHidden {
 	position: absolute;
-	left: -1000px;
+	left: -9999em;
 }
-/* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */

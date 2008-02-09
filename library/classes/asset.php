@@ -48,13 +48,13 @@ class Asset {
 			'main' => array(
 				'url' => get_bloginfo('stylesheet_url'),
 			),
+			'screen' => array(
+				'url' => get_bloginfo('template_directory') . '/library/css/screen.css',
+				'media' => 'screen,projection'
+			),
 			'print' => array(
 				'url' => get_bloginfo('template_directory') . '/library/css/print.css',
 				'media' => 'print'
-			),
-			'mobile' => array(
-				'url' => get_bloginfo('template_directory') . '/library/css/mobile.css',
-				'media' => 'handheld'
 			)
 		);
 
@@ -74,7 +74,7 @@ class Asset {
 				// URL is required
 				if(is_array($values) && $values['url']) {
 					if(!($media = $values['media'])) {
-						$media = 'screen,projection';
+						$media = 'all';
 					}
 					$stylesheets[$type] = sprintf(
 						'<link rel="stylesheet" href="%1$s" type="text/css" media="%2$s" />',
