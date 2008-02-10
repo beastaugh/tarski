@@ -81,12 +81,10 @@ add_action('deleted_post', 'flush_tarski_recent_entries');
 // Header
 add_action('wp_head', array('Asset', 'init'));
 
-// Links with query strings are not cached by the browser
-// add_filter('tarski_style_array', 'add_version_to_styles');
-
 add_action('th_header', 'tarski_headerimage');
 add_action('th_header', 'tarski_titleandtag');
 add_action('th_header', 'navbar_wrapper');
+add_action('th_header', 'tarski_next_prev_posts');
 
 add_filter('tarski_navbar', 'add_external_links');
 add_filter('tarski_navbar', 'add_admin_link', 20);

@@ -6,7 +6,6 @@
 	<?php if(is_single() || is_page()) { // Single entries and pages ?>
 		
 		
-		<?php tarski_next_prev_posts(); ?>
 		<div class="primary">
 			<?php while(have_posts()) { the_post(); ?>
 				

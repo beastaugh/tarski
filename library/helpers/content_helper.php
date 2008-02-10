@@ -9,28 +9,30 @@
  * @return string
  */
 function tarski_next_prev_posts() {
-	$prev_post = get_previous_post();
-	$next_post = get_next_post();
-	if($prev_post || $next_post) {
-		echo '<p class="primary-span articlenav">';
+	if ( is_single() ) {
+		$prev_post = get_previous_post();
+		$next_post = get_next_post();
+		if($prev_post || $next_post) {
+			echo '<p class="primary-span articlenav">';
 
-		if($prev_post) {
-			echo '<span class="previous-entry">';
-			previous_post_link('%link','&lsaquo; %title');
-			echo '</span>';
+			if($prev_post) {
+				echo '<span class="previous-entry">';
+				previous_post_link('%link','&lsaquo; %title');
+				echo '</span>';
+
+				if($next_post) {
+					echo ' <span class="separator">&nbsp;&bull;&nbsp;</span> ';
+				}
+			}
 
 			if($next_post) {
-				echo ' <span class="separator">&nbsp;&bull;&nbsp;</span> ';
+				echo '<span class="next-entry">';
+				next_post_link('%link','%title &rsaquo;');
+				echo '</span>';
 			}
-		}
 
-		if($next_post) {
-			echo '<span class="next-entry">';
-			next_post_link('%link','%title &rsaquo;');
-			echo '</span>';
+			echo "</p>\n";
 		}
-
-		echo "</p>\n";
 	}
 }
 
