@@ -66,8 +66,8 @@ body.rtl #navigation ul.primary { direction: ltr; }
 
 	/* Feed icon
 	------------------------------------------- */
-	body .feed { display: block; padding: 5px 0 5px 20px; font-size: 0.8em; background: url('images/feed-add.gif') no-repeat 0 50%; }
-	body.janus .feed, body.rtl .feed { padding: 5px 20px 5px 0; background-position: 100% 50%; }
+	body .feed { display: block; padding: 1px 0 1px 20px; font-size: 0.8em; background: url('images/feed-add.gif') no-repeat 0 50%; }
+	body.janus .feed, body.rtl .feed { padding: 1px 20px 1px 0; background-position: 100% 50%; }
 
 /* Content
 ----------------------------------------------- */
@@ -167,10 +167,10 @@ body.rtl #navigation ul.primary { direction: ltr; }
 	--------------------------------------- */
 	#comments { padding: 2em 0 0 0; clear: both; }
 	body.janus #comments .secondary { text-align: right; }
-	#comments .meta {}
-		#comments .meta .title { width: 50%; float: left; margin: 0; border: none; padding: 0.1em 0 0 0; }
-		body .meta .comments-feed { width: 50%; float: right; text-align: right; padding: 0.75em 0 0 0; }
-			body .meta .comments-feed a { display: block; padding: 5px 20px 5px 0; background: url('images/feed.gif') no-repeat 100% 50%; font-size: 0.8em; }
+	#comments .meta { margin: 0 0 0.2em 0; }
+		#comments .meta .title { width: 50%; float: left; margin: 0; border: none; }
+		body .meta .comments-feed { width: 50%; float: right; text-align: right; margin:0; padding: 0.75em 0 0 0; }
+			body .meta .comments-feed a { display: block; padding: 1px 20px 1px 0; background: url('images/feed.gif') no-repeat 100% 50%; font-size: 0.8em; }
 		#trackback-link { margin: 0; border-top: 1px solid #ccc; font-size: 0.8em; color: #a8a8a8; background: url('images/trackback.gif') no-repeat 100% 60%; clear: both; }
 		body.rtl #wrapper #trackback-link { margin: 0; border-top: 1px solid #ccc; padding: 0.5em 20px 0.5em 0; background: url('../images/trackback.gif') no-repeat 100% 60%; font-size: 0.8em; color: #a8a8a8; clear: both; }
 			#trackback-link .secondary p { font-weight: bold; margin: 0; padding: 5px 24px 5px 0; }
