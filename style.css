@@ -38,10 +38,14 @@ body { font-family: Verdana, Helvetica, Arial, sans-serif; font-size: 76%; line-
 body.rtl #wrapper { text-align: right; direction: rtl; }
 	#header, #content { margin: 0 0 2em 0; padding: 0 20px; }
 	#footer, #theme-info, #footer-include { clear: both; }
+	
+/* Fix floats
+----------------------------------------------- */
+#navigation, #content, body .comment, body .trackback, #comments .meta, #trackback-link, #footer, #theme-info { clear: both; overflow: auto; }
 
 /* Header
 ----------------------------------------------- */
-#header-image { margin: 0 0 -20px 0; }
+#header-image { overflow: hidden; margin: 0 0 -20px 0; }
 	#header-image a { text-decoration: none; border: none; }
 	#header-image a img { border: none; }
 #title { margin: 20px 0 -20px; border-bottom: 1px solid #ccc; }
@@ -62,7 +66,7 @@ body.rtl #navigation ul.primary { direction: ltr; }
 
 	/* Feed icon
 	------------------------------------------- */
-	body .feed { padding: 5px 0 5px 20px; font-size: 0.8em; background: url('images/feed-add.gif') no-repeat 0 50%; }
+	body .feed { display: block; padding: 5px 0 5px 20px; font-size: 0.8em; background: url('images/feed-add.gif') no-repeat 0 50%; }
 	body.janus .feed, body.rtl .feed { padding: 5px 20px 5px 0; background-position: 100% 50%; }
 
 /* Content
@@ -144,7 +148,7 @@ body.rtl #navigation ul.primary { direction: ltr; }
 		body .imageleft { float: left; margin: 0 10px 10px 0; }
 		body .imageright { float: right; margin: 0 0 10px 10px; }
 		body .imageblock { display: block; margin: 0 0 1em 0; }
-		body .imagecentre, body .imagecenter /* For the colonists amongst you... */ { display: block; text-align: center; margin: 0 auto 1em auto; }
+		body .imagecentre, body .imagecenter { display: block; text-align: center; margin: 0 auto 1em auto; }
 
 	/* Tags & Tags page
 	--------------------------------------- */
@@ -166,7 +170,7 @@ body.rtl #navigation ul.primary { direction: ltr; }
 	#comments .meta {}
 		#comments .meta .title { width: 50%; float: left; margin: 0; border: none; padding: 0.1em 0 0 0; }
 		body .meta .comments-feed { width: 50%; float: right; text-align: right; padding: 0.75em 0 0 0; }
-			body .meta .comments-feed a { padding: 5px 20px 5px 0; background: url('images/feed.gif') no-repeat 100% 50%; font-size: 0.8em; }
+			body .meta .comments-feed a { display: block; padding: 5px 20px 5px 0; background: url('images/feed.gif') no-repeat 100% 50%; font-size: 0.8em; }
 		#trackback-link { margin: 0; border-top: 1px solid #ccc; font-size: 0.8em; color: #a8a8a8; background: url('images/trackback.gif') no-repeat 100% 60%; clear: both; }
 		body.rtl #wrapper #trackback-link { margin: 0; border-top: 1px solid #ccc; padding: 0.5em 20px 0.5em 0; background: url('../images/trackback.gif') no-repeat 100% 60%; font-size: 0.8em; color: #a8a8a8; clear: both; }
 			#trackback-link .secondary p { font-weight: bold; margin: 0; padding: 5px 24px 5px 0; }
@@ -233,13 +237,13 @@ input { font-family: Verdana, Helvetica, Arial, sans-serif; font-size: 100%; }
 	#info-input {}
 		body .userinfo { color: #a8a8a8; }
 		#info-input label { display: block; margin: 0 0 1.2em 0; color: #a8a8a8; }
-		#author, #email, #url { display: block; width: 194px; margin: 0.2em 0 0 0; border: 1px solid #ccc; padding: 2px; background: #fafafa; color: #545454; }
+		#author, #email, #url { display: block; width: 48%; margin: 0.2em 0 0 0; border: 1px solid #ccc; padding: 2px; background: #fafafa; color: #545454; }
 	#comment-input {}
 		#comment-input label { display: block; margin: 0 0 0.2em 0; color: #a8a8a8; }
-		#comment-input textarea { width: 494px; font-family: Verdana, Arial, Helvetica, sans-serif; margin: 0 0 1.2em 0; border: 1px solid #ccc; padding: 2px; background: #fafafa; color: #545454; }
+		#comment-input textarea { width: 98%; font-family: Verdana, Arial, Helvetica, sans-serif; margin: 0 0 1.2em 0; border: 1px solid #ccc; padding: 2px; background: #fafafa; color: #545454; }
 		
 	#author:focus, #email:focus, #url:focus, #comment:focus { background: #fff; }
-	#submit { margin: 0 0 1em 0; }
+	#submit { display:block; margin: 0 0 1em 0; }
 
 /* Links
 ----------------------------------------------- */

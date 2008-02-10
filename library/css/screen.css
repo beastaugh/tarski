@@ -24,6 +24,7 @@ body.centre { text-align: center; }
 body #wrapper { margin: 0 auto 0 0; }
 body.centre #wrapper { margin: 0 auto; }
 
-/* Fix floats
------------------------------------------------ */
-#navigation, #content, body .comment, body .trackback, #comments .meta, #trackback-link, #footer, #theme-info { clear: both; overflow: auto; }
+/* Comment form
+--------------------------------------- */
+body #author, body #email, body #url { width: 194px; }
+body #comment-input textarea { width: 494px; }
