@@ -38,6 +38,7 @@ class Options {
 	var $swap_sides;
 	var $tags_everywhere;
 	var $show_categories;
+	var $show_authors;
 	var $use_pages;
 	
 	/**

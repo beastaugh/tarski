@@ -299,6 +299,8 @@ function tarski_navbar($return = false) {
 	if(get_option('show_on_front') != 'page') {
 		if(is_home()) {
 			$home_status = $current;
+		} else {
+			$home_status = false;
 		}
 		$navbar['home'] = sprintf(
 			'<li><a id="nav-home"%1$s href="%2$s" rel="home">%3$s</a></li>',

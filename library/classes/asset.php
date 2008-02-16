@@ -73,13 +73,13 @@ class Asset {
 			foreach($style_array as $type => $values) {
 				// URL is required
 				if(is_array($values) && $values['url']) {
-					if(!($media = $values['media'])) {
-						$media = 'all';
+					if(empty($values['media'])) {
+						$values['media'] = 'all';
 					}
 					$stylesheets[$type] = sprintf(
 						'<link rel="stylesheet" href="%1$s" type="text/css" media="%2$s" />',
 						$values['url'],
-						$media
+						$values['media']
 					);
 				}
 			}
@@ -101,23 +101,24 @@ class Asset {
 	}
 	
 	function feeds() {
+		global $comments;
 		if(is_single() || (is_page() && ($comments || comments_open()))) {
 			global $post;
 			$title = sprintf(__('Commments feed for %s','tarski'), get_the_title());
-			$link = get_post_comments_feed_link($post->ID, $type);
+			$link = get_post_comments_feed_link($post->ID);
 			$source = 'post_comments';
 		} elseif(is_archive()) {
 			if(is_category()) {
 				$title = sprintf( __('Category feed for %s','tarski'), single_cat_title('','',false) );
-				$link = get_category_feed_link(get_query_var('cat'), $type);
+				$link = get_category_feed_link(get_query_var('cat'));
 				$source = 'category';
 			} elseif(is_tag()) {
 				$title = sprintf( __('Tag feed for %s','tarski'), single_tag_title('','',false));
-				$link = get_tag_feed_link(get_query_var('tag_id'), $type);
+				$link = get_tag_feed_link(get_query_var('tag_id'));
 				$source = 'tag';
 			} elseif(is_author()) {
 				$title = sprintf( __('Articles feed for %s','tarski'), the_archive_author_displayname());
-				$link = get_author_feed_link(get_query_var('author'), $type);
+				$link = get_author_feed_link(get_query_var('author'));
 				$source = 'author';
 			} elseif(is_date()) {
 				if(is_day()) {
@@ -134,11 +135,7 @@ class Asset {
 					$source = 'year';
 				}	
 				if(get_settings('permalink_structure')) {
-					if( function_exists('get_default_feed') || ($type == 'rss2') ) {
-						$link .= 'feed/';
-					} else {
-						$link .= "feed/$type/";
-					}
+					$link .= 'feed/';
 				} else {
 					$link .= '&amp;feed=' . get_default_feed();
 				}
@@ -152,9 +149,9 @@ class Asset {
 		}
 
 		if($title && $link)
-			$feeds[$source] = generate_feed_link($title, $link, feed_link_type($type));
+			$feeds[$source] = generate_feed_link($title, $link, feed_link_type(get_default_feed()));
 
-		$feeds['site'] = generate_feed_link( sprintf(__('%s feed','tarski'), get_bloginfo('name')), get_feed_link(), feed_link_type($type) );
+		$feeds['site'] = generate_feed_link( sprintf(__('%s feed','tarski'), get_bloginfo('name')), get_feed_link(), feed_link_type(get_default_feed()) );
 		
 		$this->feeds = apply_filters('tarski_feeds', $feeds);
 	}

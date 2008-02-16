@@ -158,7 +158,7 @@ function tarski_output_sidebarbottominclude() {
 function tarski_output_nosidebarinclude() {
 	global $noSidebarInclude;
 	if((get_tarski_option('sidebar_pp_type') == 'none') && (is_single() || is_page())) {
-		if(!is_archives_template()) {
+		if(!is_page_template('archives.php')) {
 			tarski_output_constant($noSidebarInclude);
 		}
 	}
@@ -173,7 +173,7 @@ function tarski_output_nosidebarinclude() {
  */
 function tarski_output_archivesinclude() {
 	global $archivesPageInclude;
-	if(is_archives_template()) {
+	if(is_page_template('archives.php')) {
 		tarski_output_constant($archivesPageInclude);
 	}
 }

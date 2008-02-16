@@ -14,7 +14,7 @@ function tarski_sidebar() {
 	
 	if(file_exists($user_sidebar)) {
 		include($user_sidebar);
-	} elseif(is_archives_template()) {
+	} elseif(is_page_template('archives.php')) {
 		return;
 	} else {
 		echo "<div class=\"widgets\">\n";
@@ -57,6 +57,7 @@ function tarski_footer_sidebar() {
  */
 function tarski_recent_entries() {
 	global $posts;
+	$options['number'] = 5;
 	
 	if ( $output = wp_cache_get('tarski_recent_entries') )
 		return print($output);
