@@ -55,8 +55,7 @@ if($comments || comments_open()) { ?>
 			<?php if($comment->comment_type != "trackback" && $comment->comment_type != "pingback" && !ereg("<pingback />", $comment->comment_content) && !ereg("<trackback />", $comment->comment_content)) { $comment_count++; ?>
 
 				<div class="comment<?php
-				// Style differently if comment author is blog author
-				if ($comment->comment_author_email == get_the_author_email()) { echo ' author-comment'; }
+				if ( get_comment_author_email() == get_the_author_email() ) { echo ' author-comment'; }
 				if ($comment->comment_approved == '0') { echo ' moderated'; } ?>" id="comment-<?php comment_ID() ?>">
 					<?php if ($comment->comment_approved == '0') { ?>
 					<p class="primary-span"><strong><?php _e('Your comment is awaiting moderation.','tarski'); ?></strong></p>
@@ -64,7 +63,10 @@ if($comments || comments_open()) { ?>
 					<div class="secondary">
 						<p class="comment-permalink"><a href="#comment-<?php comment_ID(); ?>" title="<?php _e('Permalink to this comment','tarski'); ?>"><?php echo tarski_comment_datetime(); ?></a></p>
 						<p class="comment-author vcard"><?php echo tarski_comment_author_link(); ?></p>
-						<?php edit_comment_link(__('edit','tarski'), '<p class="comment-edit">(', ')</p>'); ?> 
+					<?php if(get_option('show_avatars')) { ?>
+						<p class="avatar"><?php echo get_avatar(get_comment_author_email(), '50', get_bloginfo('template_directory') . '/images/avatar.gif'); ?></p>
+					<?php } ?>
+						<?php edit_comment_link(__('edit','tarski'), '<p class="comment-edit">(', ')</p>'); ?>
 					</div> <!-- /comment meta -->
 
 					<div class="primary content">
