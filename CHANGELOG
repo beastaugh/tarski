@@ -1,5 +1,47 @@
 # Changelog
 
+### Version 2.1 [&sect;][36]
+
+   [36]: http://tarskitheme.com/
+
+#### New features
+
+  * Added avatar support (r500)
+  * Added action hook `th_posts_nav` (r493)
+  * Asset class now handles `wp_head` assets (r471)
+  * Type checking on filter returns disabled when `WP_DEBUG` is true (r470)
+  * All custom content areas are now widgets (various)
+  * Showing authors is now pluggable (r466)
+  * New links widget which overrides default one (r449)
+  * Main footer area is now a widget field (r439)
+  * Feed link for comments on search results (r427)
+  * Search query now displays in search page title (r425)
+  * Content of `code` elements now resizes in <acronym title="Internet Explorer">IE</acronym> (r423)
+  * 'Description' `meta` element now uses excerpts where available (r421)
+
+#### Tweaks
+
+  * Changes to Tarski are now tracked in the CHANGELOG file (r502)
+  * Search form JavaScript substantially improved (r495, r501)
+  * Mobile stylesheet replaced by unified base stylesheet (r494)
+  * Removed feed type selection in favour of `get_default_feed` (r492)
+  * Removed `Tarski` class (r491)
+  * Only update needed messages now appear on the Dashboard (r486)
+  * Tarski's various notices now added via the `admin_notices` hook (r486)
+  * Sidebar reset posts hack removed as this bug is now fixed in WP trunk (r476)
+  * Moved `head` theme data to `Asset` class (r475)
+  * Removed 'generator' `meta` element as WP now provides it (r474)
+  * Options page scripts now added via WP script loader (r460)
+  * Edit links have been removed from footer blurb (r447, r450)
+  * Navbar is now added via `th_header` hook (r435)
+  * Default feed type now used in preference to choosing a feed type (r420, r427)
+  * `get_author_feed_link` deprecated (r418)
+  * `get_category_feed_link` deprecated (r417)
+  * Removed Feedparser library (r416)
+  * Upgrade script moved to function `tarski_upgrade` (r415)
+
+#### Bug fixes
+
 ### Version 2.0.5 [&sect;][37]
 
    [37]: http://tarskitheme.com/2007/12/09/205-release/
