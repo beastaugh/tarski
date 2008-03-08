@@ -81,7 +81,7 @@
 
 #### Bug fixes
 
-  * Update notifier now compatible with PHP safe mode (r357)
+  * Update notifier now compatible with <acronym title="PHP: Hypertext Preprocessor">PHP</acronym> safe mode (r357)
   * Update notification remains off when theme updated (r357)
   * Fixed `type` attribute for feed links (r356)
   * Constants file no longer breaks the navbar (r353, 355)
@@ -104,7 +104,7 @@
   * Version is only checked when update notification is enabled (r341)
   * `page_template_helper.php` removed (r337)
   * `tarski_navbar` filter now returns an array (r336)
-  * RTL rules moved to main stylesheet and `rtl.css` removed (r336)
+  * <acronym title="Right to Left">RTL</acronym> rules moved to main stylesheet and `rtl.css` removed (r336)
 
 #### Bug fixes
 
@@ -147,7 +147,7 @@
   * Footer widgets now display iff widgets have been added there (r316)
   * Sidebar content moved to separate display files (r311)
   * Improved error handling for missing custom sidebar file (r311)
-  * Header status check deprecated and replaced by pure CSS rules (r304, r311)
+  * Header status check deprecated and replaced by pure <acronym title="Cascading Stylesheets">CSS</acronym> rules (r304, r311)
   * The external navbar links category will not be shown in the sidebar (r303)
   * Added 'edit' link to footer blurb (r292)
   * Filter added to `tarski_sidebar_links` (r291)
@@ -157,13 +157,13 @@
   * Post page links tweaked to mirror tag styling (r282)
   * Reduced duplication of feed link code (r280, r281)
   * Search form now always wrapped in `tarski_searchform` function (r276)
-  * Stylesheet file names that are invalid CSS identifiers excluded (r266)
+  * Stylesheet file names that are invalid <acronym title="Cascading Stylesheets">CSS</acronym> identifiers excluded (r266)
   * Stylesheet file names matching Tarski's `body` classes excluded (r265, r266)
   * Bottom margin of `primary` column reduced on index pages (r263)
   * `gettext` with included code now uses `printf` for easier localisation (r250)
   * `tarski_doctitle`, `tarski_bodyclass` and `tarski_bodyid` filters added (r246)
   * `tarski_bodyclass` and `tarski_bodyid` functions no longer re-definable (r246)
-  * WPMU site admins now see update notifications (r245)
+  * <acronym title="WordPress Multi-User"><acronym title="WordPress Multi-User">WPMU</acronym></acronym> site admins now see update notifications (r245)
   * Default options updated (r210, r244)
   * All actions and filters moved to `library/launcher.php` (r234)
   * Nonce field added to Options page for increased security (r230)
@@ -173,7 +173,7 @@
   * Moved upgrade code to helper file (r223)
   * Moved display files to `library/display` (r220)
   * Moved helper functions to `library/helpers` (r219)
-  * Tarski now respects WP's robots option (r217)
+  * Tarski now respects <acronym title="WordPress">WP</acronym>'s robots option (r217)
   * `th_postend` now executes after asides as well as normal posts (r213)
   * Hide categories option replaced with show categories option (r209)
   * Feedparser library moved into `library/includes` (r206)
@@ -190,7 +190,7 @@
 
 #### Bug fixes
 
-  * Custom styles no longer corrupt CSS namespace (r265, r266)
+  * Custom styles no longer corrupt <acronym title="Cascading Stylesheets">CSS</acronym> namespace (r265, r266)
   * Special characters now escaped for blurb and sidebar text fields (r241)
 
 ### Version 1.7.3
@@ -216,8 +216,8 @@
 
 #### Bug fixes
 
-  * References to WP 2.3-only function `get_search_query` removed
-  * Asides category selection made compatible with WP 2.3 database schema
+  * References to <acronym title="WordPress">WP</acronym> 2.3-only function `get_search_query` removed
+  * Asides category selection made compatible with <acronym title="WordPress">WP</acronym> 2.3 database schema
 
 ### Version 1.7 [&sect;][48]
 
@@ -278,7 +278,7 @@
 
   * Incorrect function references on search pages fixed (r92)
   * Search field output bug fixed (r92)
-  * Update notifier issue with some PHP versions fixed (r88)
+  * Update notifier issue with some <acronym title="PHP: Hypertext Preprocessor">PHP</acronym> versions fixed (r88)
 
 ### Version 1.6 [&sect;][51]
 
@@ -322,7 +322,7 @@
   * [OpenID comments][56] support (r36)
   * Improved support for static front pages (r25)
   * Default search text hidden by JS when search field selected (r27)
-  * Tarski Options page is now displayed in RTL format when appropriate (r32)
+  * Tarski Options page is now displayed in <acronym title="Right to Left">RTL</acronym> format when appropriate (r32)
 
    [56]: http://verselogic.net/projects/wordpress/wordpress-openid-plugin/
 
@@ -344,7 +344,7 @@
   * Trackback link text unobscured when columns swapped (r22)
   * Pagination links text made translatable (r18)
   * Various `gettext` omissions corrected (r17, r19)
-  * `imagecenter` image class CSS fix (r23)
+  * `imagecenter` image class <acronym title="Cascading Stylesheets">CSS</acronym> fix (r23)
   * Potential XSS issue in `searchform.php` fixed (r23)
   * Footer widgets now correctly obey sidebar options (r37)
   * Tarski Options page now correctly links to core widget controls (r38)
@@ -370,8 +370,8 @@
   * Footer options copy tweaked
   * Comment markup tweaked
   * New installations now default to having the theme be centred in the browser window.
-  * Certain configuration options are now hidden from WPMU end-users, such as upgrade notification and upload locations for styles, images, and custom sidebars.
-  * Footer displays hosting site link alongside the Tarski and WordPress credit links for WPMU users.
+  * Certain configuration options are now hidden from <acronym title="WordPress Multi-User">WPMU</acronym> end-users, such as upgrade notification and upload locations for styles, images, and custom sidebars.
+  * Footer displays hosting site link alongside the Tarski and WordPress credit links for <acronym title="WordPress Multi-User">WPMU</acronym> users.
 
 #### Bug fixes
 
@@ -384,11 +384,11 @@
 
 #### New features
 
-  * Third sidebar option: a custom sidebar file so users can write their own PHP and HTML
+  * Third sidebar option: a custom sidebar file so users can write their own <acronym title="PHP: Hypertext Preprocessor">PHP</acronym> and <acronym title="Hypertext Markup Language">HTML</acronym>
 
 #### Tweaks
 
-  * Legacy WP 2.0.x branch-compatible code removed
+  * Legacy <acronym title="WordPress">WP</acronym> 2.0.x branch-compatible code removed
   * Tarski now employs WordPress' included JavaScript libraries
   * Additional scripts and styles now only injected on the Tarski Options page
   * Current page highlighting markup tweaked
@@ -420,8 +420,8 @@
 
 #### New features
 
-  * New header image, Orbits
-  * Stylesheet for RTL languages
+  * New header image, <cite>Orbits</cite>
+  * Stylesheet for <acronym title="Right to Left">RTL</acronym> languages
 
 #### Tweaks
 
@@ -454,10 +454,10 @@
 
 #### Bug fixes
 
-  * Page creation database queries made compatible with WP 2.1
+  * Page creation database queries made compatible with <acronym title="WordPress">WP</acronym> 2.1
   * Comments number and edit links added to `gettext` framework
   * `include` paths changed to work round a problem on some servers
-  * `blockquote`, `ol` and `ul` margins changed to solve IE list display issue
+  * `blockquote`, `ol` and `ul` margins changed to solve <acronym title="Internet Explorer">IE</acronym> list display issue
 
 ### Version 1.2.2 [&sect;][65]
 
@@ -474,15 +474,15 @@
   * Dutch translation updated
   * Swedish translation updated
   * German translation updated
-  * Links listing made compatible with WP 2.1
-  * Top navigation made compatible with WP 2.1
+  * Links listing made compatible with <acronym title="WordPress">WP</acronym> 2.1
+  * Top navigation made compatible with <acronym title="WordPress">WP</acronym> 2.1
   * Top navigation turned into a function and placed in `functions.php`
   * Date formatting turned into a function and placed in `functions.php`
   * Body class generation turned into a function and placed in `functions.php`
   * Instances of `$table_prefix` replaced with `wpdb-&gt;$prefix`
   * `h2` link display adjusted
   * `pre` element display improved
-  * Tarski now uses the `prototype.js` and `scriptaculous.js` files bundled with WP 2.1 when available
+  * Tarski now uses the `prototype.js` and `scriptaculous.js` files bundled with <acronym title="WordPress">WP</acronym> 2.1 when available
 
 #### Bug fixes
 
@@ -552,7 +552,7 @@
   * `loop.php` file cleaned up
   * Comment links for normal entries only display if comments are open or the post has comments
   * Comment links for asides display as 'Permalink' if comments are closed and the entry has no comments
-  * Major rewrite of Tarski's CSS
+  * Major rewrite of Tarski's <acronym title="Cascading Stylesheets">CSS</acronym>
   * Next/previous post and page navigation should now only display page nav if there is more than one post or page
 
    [69]: http://tarskitheme.com/
@@ -568,7 +568,7 @@
 
 #### New Features
 
-  * New header image, Spots
+  * New header image, <cite>Spots</cite>
   * Added option to display site tagline below title
 
 #### Tweaks
@@ -593,7 +593,7 @@
 #### New features
 
   * New links page template for those with longer blogrolls
-  * `imagelink`, `imageleft`, `imageright` and `imageblock` CSS classes added
+  * `imagelink`, `imageleft`, `imageright` and `imageblock` <acronym title="Cascading Stylesheets">CSS</acronym> classes added
   * Comments can now be enabled for pages, not just posts
   * Print stylesheet added
 
@@ -615,17 +615,17 @@
 
   * Navigation links are now selected from the list of top-level pages
   * New variant style, 'Skyline'
-  * New header by Martin Koza, Thoughtwind
+  * New header by Martin Koza, <cite>Thoughtwind</cite>
   * Column swap option added
   * Comment editing links added
 
 #### Plugin Support
 
-  * UTW live tag search added to tags page - requires UTW 3.1 and can be activated in the Tarski Options pane
+  * UTW live tag search added to tags page - requires UTW 3.1 and can be activated in the Tarski Options panel
 
 #### Tweaks
 
-  * Revised float clearing method so the layout works in IE7 Beta 2
+  * Revised float clearing method so the layout works in <acronym title="Internet Explorer 7">IE7</acronym> Beta 2
   * Blog title `line-height` increased
   * Entry header `line-height`s increased and padding tweaked so as to make post titles of that are more than one line less clunky
   * 'Asides' comment number link changed from `comments_link` to `the_permalink`
@@ -638,7 +638,7 @@
   * Link border removed from `h3` and `h4` elements within the post content `div`
   * Comments title and feed link margins and padding adjusted
   * Site and comments feed links should now use the correct permalinks intead of hard coded ones.
-  * "Tarski Options have been updated" notice now fades like other WP admin notices
+  * "Tarski Options have been updated" notice now fades like other <acronym title="WordPress">WP</acronym> admin notices
   * Custom sidebar content is now styled like posts (link underlining, increased line-height for paragraphs)
 
 ### Version 1.1 [&sect;][74]
@@ -647,8 +647,8 @@
 
 #### Bug Fixes
 
-  * Theme info vanishing in IE fixed
-  * Fixed IE CSS bug (list bullets showing up when they weren't meant to)
+  * Theme info vanishing in <acronym title="Internet Explorer">IE</acronym> fixed
+  * Fixed <acronym title="Internet Explorer">IE</acronym> <acronym title="Cascading Stylesheets">CSS</acronym> bug (list bullets showing up when they weren't meant to)
   * Incorrectly referring `.blurb` code was changed to refer instead to `#blurb`
   * Fixed missing closing `div` tag in `comments.php`
   * Fixed tiny bug for non-logged-in users when 'Subscribe To Comments' is not installed
@@ -661,7 +661,7 @@
   * Incorporated the code in `single.php` into `index.php`
   * Added borders to header thumbnails
   * Tweaked header selection colour
-  * Moved positioning CSS to `style.css`
+  * Moved positioning <acronym title="Cascading Stylesheets">CSS</acronym> to `style.css`
   * Tarski updates now display in the WordPress dashboard as well as in the theme options page
   * `line-height` for the tag cloud tweaked a little
 
@@ -676,7 +676,7 @@
 
   * Style switcher allows additional `.css` files to be uploaded to `wp-content/themes/tarski/styles/` and selected via the Tarski Options pane.
   * Added 'Classic' and 'Polar' styles
-  * New header image, Coffee Rings
+  * New header image, <cite>Coffee Rings</cite>
   * Blank header option
   * Added `constants.php` file to allow for persistent includes across Tarski upgrades. See [the documentation][76] for more info.
   * Added option to only display sidebar on the front page
@@ -691,7 +691,7 @@
 
   * Default header image will now be displayed if `tarski_header` hasn't been set via the options pane
   * Archives pages now displays correctly for installations without Ultimate Tag Warrior
-  * Fixed IE PNG issues
+  * Fixed <acronym title="Internet Explorer">IE</acronym> <acronym title="Portable Network Graphics">PNG</acronym> issues
   * Removed extraneous markup
 
 #### Plugin Support

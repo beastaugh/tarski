@@ -5,6 +5,7 @@ define('TARSKILIB', TEMPLATEPATH . '/library');
 define('TARSKICLASSES', TARSKILIB . '/classes');
 define('TARSKIHELPERS', TARSKILIB . '/helpers');
 define('TARSKIDISPLAY', TARSKILIB . '/display');
+define('TARSKIWIDGETS', TARSKILIB . '/widgets');
 define('TARSKICACHE', TARSKILIB . '/cache');
 define('TARSKIVERSIONFILE', 'http://tarskitheme.com/version.atom');
 
@@ -25,6 +26,9 @@ require_once(TARSKIHELPERS . '/widget_helper.php');
 require_once(TARSKIHELPERS . '/constants_helper.php');
 include_once(TARSKIHELPERS . '/compatibility.php');
 include_once(TARSKIHELPERS . '/deprecated.php');
+
+// Widgets
+require_once(TARSKIWIDGETS . '/recent_articles.php');
 
 // Launch
 require_once(TARSKILIB . '/launcher.php');
