@@ -27,7 +27,6 @@
   * Removed `Tarski` class (r491)
   * Only update needed messages now appear on the Dashboard (r486)
   * Tarski's various notices now added via the `admin_notices` hook (r486)
-  * Sidebar reset posts hack removed as this bug is now fixed in WP trunk (r476)
   * Moved `head` theme data to `Asset` class (r475)
   * Removed 'generator' `meta` element as WP now provides it (r474)
   * Options page scripts now added via WP script loader (r460)
