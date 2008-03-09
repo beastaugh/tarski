@@ -316,7 +316,7 @@ function tarski_admin() {
 	tarski_update_notifier('options_page');
 	$widgets_link = get_bloginfo('wpurl') . '/wp-admin/widgets.php';
 	$tarski_options_link = get_bloginfo('wpurl') . '/wp-admin/themes.php?page=tarski-options';
-	include(TARSKIDISPLAY . '/admin/options_page.php');
+	include(TARSKIDISPLAY . '/options_page.php');
 }
 
 /**
