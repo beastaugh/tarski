@@ -231,6 +231,13 @@ function tidy_openid_names($comment_author) {
 	return $comment_author;
 }
 
+function remove_default_avatars($avatar, $id_or_email, $size, $default) {
+	if ( $avatar == "<img alt='' src='{$default}' />" )
+		return false;
+	else
+		return $avatar;
+}
+
 /**
  * tarski_comment_author_link() - Returns a comment author's name, wrapped in a link if present.
  * 

@@ -77,6 +77,7 @@ add_action('admin_menu', 'tarski_addmenu');
 add_action('admin_head', 'tarski_resave_show_authors');
 add_action('save_post', 'flush_tarski_recent_entries');
 add_action('deleted_post', 'flush_tarski_recent_entries');
+add_action('switch_theme', 'flush_tarski_recent_entries');
 
 // Header
 add_action('wp_head', array('Asset', 'init'));
@@ -107,6 +108,7 @@ add_action('th_sidebar', 'tarski_sidebar', 10);
 
 // Comments
 add_filter('get_comment_author', 'tidy_openid_names');
+add_filter('get_avatar', 'remove_default_avatars', 10, 4);
 
 // Footer
 add_action('th_fsidebar', 'tarski_footer_sidebar');

@@ -33,10 +33,11 @@ function tarski_recent_entries() {
 	
 	if ( $r->have_posts() ) {
 		include(TARSKIWIDGETS . '/recent_articles_display.php');
+		unset($r);
 		wp_reset_query();  // Restore global post data stomped by the_post().
 	}
 	
-	wp_cache_add('tarski_recent_entries', ob_get_flush());
+	wp_cache_add('tarski_recent_entries', ob_get_flush(), 'widget');
 }
 
 /**

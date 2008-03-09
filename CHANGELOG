@@ -16,7 +16,6 @@
   * Main footer area is now a widget field (r439)
   * Feed link for comments on search results (r427)
   * Search query now displays in search page title (r425)
-  * Content of `code` elements now resizes in <acronym title="Internet Explorer">IE</acronym> (r423)
   * 'Description' `meta` element now uses excerpts where available (r421)
 
 #### Tweaks
@@ -34,6 +33,7 @@
   * Options page scripts now added via WP script loader (r460)
   * Edit links have been removed from footer blurb (r447, r450)
   * Navbar is now added via `th_header` hook (r435)
+  * Content of `code` elements now resizes in <acronym title="Internet Explorer">IE</acronym> (r423)
   * Default feed type now used in preference to choosing a feed type (r420, r427)
   * `get_author_feed_link` deprecated (r418)
   * `get_category_feed_link` deprecated (r417)
