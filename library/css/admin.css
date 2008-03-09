@@ -1,0 +1,10 @@
+/**
+ * Tarski stylesheet for WordPress admin pages
+ * 
+ * Styles the few cross-admin-page elements Tarski has, like messages.
+ */
+
+/**
+ * Messages
+ */
+.tarski-message { max-width:958px; margin: 0 15px 1em 15px; border: 1px solid #c6d9e9; padding: 10px; background: #eaf3fa; }

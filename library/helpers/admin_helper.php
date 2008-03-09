@@ -337,6 +337,15 @@ function tarski_admin_header_style() { ?>
 <?php }
 
 /**
+ * tarski_admin_style() - Tarski CSS for the WordPress admin panel.
+ * 
+ * @since 2.1
+*/
+function tarski_admin_style() {
+	echo '<link rel="stylesheet" href="' . get_bloginfo('template_directory'). '/library/css/admin.css" type="text/css" media="all" />';
+}
+
+/**
  * tarski_inject_styles() - Adds CSS to the Tarski Options page.
  * 
  * @since 2.1
@@ -353,7 +362,6 @@ function tarski_inject_styles() {
 function tarski_inject_scripts() {
 	$js_dir = get_bloginfo('template_directory') . '/library/js';
 	wp_enqueue_script('crir', $js_dir . '/crir.js');
-	wp_enqueue_script('tarski_options', $js_dir . '/options.js');
 }
 
 /**

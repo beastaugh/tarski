@@ -69,6 +69,7 @@ add_filter('tarski_messages', 'tarski_update_notifier');
 add_action('admin_notices', array('Message', 'init'));
 
 // Tarski Options page
+add_action('admin_head', 'tarski_admin_style');
 add_action('admin_print_scripts-design_page_tarski-options', 'tarski_inject_scripts');
 add_action('admin_head-design_page_tarski-options', 'tarski_inject_styles');
 add_action('admin_menu', 'tarski_addmenu');
