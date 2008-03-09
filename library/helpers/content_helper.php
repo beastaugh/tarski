@@ -231,6 +231,16 @@ function tidy_openid_names($comment_author) {
 	return $comment_author;
 }
 
+/**
+ * remove_default_avatars - Filter to stop default avatar images from displaying.
+ * 
+ * @since 2.1
+ * @param string $avatar
+ * @param string $id_or_email
+ * @param string $size
+ * @param string $default
+ * @return mixed
+ */
 function remove_default_avatars($avatar, $id_or_email, $size, $default) {
 	if ( $avatar == "<img alt='' src='{$default}' />" )
 		return false;
