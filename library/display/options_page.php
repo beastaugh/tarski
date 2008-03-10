@@ -1,12 +1,4 @@
 <div id="tarski-options" class="wrap tarski-options<?php if(get_bloginfo("text_direction") == "rtl") { echo " rtl"; } ?>">
-	
-	<div id="tarski-options-header">
-		<h2><?php _e('Tarski Options', 'tarski'); ?></h2>
-		<p class="tarski-save-options">
-			<input type="submit" class="button-secondary" name="submit" value="<?php _e('Save Options &raquo;','tarski'); ?>" />
-			<input type="hidden" name="page_options" value="'dofollow_timeout'" />
-		</p>
-	</div>
 
 	<?php if(isset($_POST['submit']) && !get_tarski_option('deleted')) { ?>
 	<div id="updated" class="updated fade">
@@ -29,6 +21,14 @@
 	<?php } ?>
 		
 <form name="dofollow" action="<?php echo $tarski_options_link; ?>" method="post">
+	
+	<div id="tarski-options-header">
+		<h2><?php _e('Tarski Options', 'tarski'); ?></h2>
+		<p class="tarski-save-options">
+			<input type="submit" class="button-secondary" name="submit" value="<?php _e('Save Options &raquo;','tarski'); ?>" />
+			<input type="hidden" name="page_options" value="'dofollow_timeout'" />
+		</p>
+	</div>
 	
 	<div id="tarski-update-notifier" class="secondary"><div class="section">
 	<?php if ( (!detectWPMU() || detectWPMUadmin()) ) { ?>
@@ -259,6 +259,8 @@
 		</label>
 	</div></div>
 	
+</form>
+	
 	<?php if(get_option('tarski_options') && !get_tarski_option('deleted')) { ?>
 	<div class="secondary">
 		<div class="section">
@@ -273,7 +275,7 @@
 	</div>
 	<?php } ?>
 	
-</form></div>
+</div>
 
 <div id="tarski-info">
 	<p class="wrap"><?php printf( __('The %1$s is full of useful stuff &middot; %2$s','tarski'), '<a href="http://tarskitheme.com/help/">' . __('Tarski documentation','tarski') . '</a>', '<a href="http://tarskitheme.com/credits/">' . __('Credits &amp; Thanks','tarski') . '</a>'); ?></p>
