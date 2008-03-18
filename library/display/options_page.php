@@ -25,7 +25,7 @@
 	<div id="tarski-options-header">
 		<h2><?php _e('Tarski Options', 'tarski'); ?></h2>
 		<p class="tarski-save-options">
-			<input type="submit" class="button-secondary" name="submit" value="<?php _e('Save Options &raquo;','tarski'); ?>" />
+			<input type="submit" class="button-secondary" name="submit" value="<?php _e('Save Options','tarski'); ?>" />
 			<input type="hidden" name="page_options" value="'dofollow_timeout'" />
 		</p>
 	</div>
