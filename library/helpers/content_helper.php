@@ -109,7 +109,8 @@ function tarski_posts_nav_link() {
  */
 function tarski_date() {
 	global $post;
-	return mysql2date(get_option('date_format'), $post->post_date);
+	$date = mysql2date(get_option('date_format'), $post->post_date);
+	return apply_filters('tarski_date', $date);
 }
 
 /**
