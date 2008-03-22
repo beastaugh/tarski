@@ -6,6 +6,7 @@
 
 #### New features
 
+  * Added filter to `tarski_date` (r515)
   * New options page design (r508)
   * Added avatar support (r500)
   * Added action hook `th_posts_nav` (r493)
