@@ -44,6 +44,8 @@
 
 #### Bug fixes
 
+  * Navbar link text is now properly escaped (r520)
+
 ### Version 2.0.5 [&sect;][37]
 
    [37]: http://tarskitheme.com/2007/12/09/205-release/
