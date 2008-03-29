@@ -302,7 +302,7 @@ function tarski_navbar($return = false) {
 					$page->ID . '-' . $page->post_name,
 					$page_status,
 					get_permalink($page->ID),
-					$page->post_title
+					htmlentities2($page->post_title)
 				);
 			}
 		}
