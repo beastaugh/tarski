@@ -68,11 +68,7 @@ function tarski_doctitle($sep = '&middot;') {
 	if(check_input($elements, 'array'))
 		$doctitle = implode(' ', $elements);
 	
-	if($return) {
-		return $doctitle;
-	} else {
-		echo $doctitle;
-	}
+	echo $doctitle;
 }
 
 /**
