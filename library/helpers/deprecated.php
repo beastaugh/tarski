@@ -59,6 +59,35 @@ function tarski_option($name) {
 }
 
 /**
+ * tarski_language_attributes() - Outputs lang and xml:lang attributes
+ * 
+ * Replaced WP's language_attributes() function because its output was
+ * not XHTML compatible; now deprecated because backwards compatibility
+ * is no longer a concern.
+ * @link http://trac.wordpress.org/changeset/6408
+ * @see language_attributes()
+ * @since 2.0.5
+ * @deprecated 2.1
+ * @return string
+ */
+function tarski_language_attributes() {
+	_deprecated_function(__FUNCTION__, '2.1', language_attributes());
+	
+	$output = '';
+	$def_lang = get_bloginfo('language');
+	$lang = 'en';
+	
+	if( $def_lang )
+		$lang = $def_lang;
+	if ( $dir = get_bloginfo('text_direction') )
+		$output = "dir=\"$dir\" ";
+	
+	$output .= "lang=\"$lang\" xml:lang=\"$lang\"";
+
+	echo $output;
+}
+
+/**
  * add_robots_meta() - Adds robots meta element if blog is public.
  * 
  * WordPress adds a meta element denying robots access if the site is set
