@@ -146,6 +146,8 @@ class Asset {
 			$title = sprintf(__('Search comments feed for %s','tarski'), $search_query);
 			$link = get_search_comments_feed_link('', $type);
 			$source = 'search_comments';
+		} else {
+			$title = false;
 		}
 
 		if($title && $link)

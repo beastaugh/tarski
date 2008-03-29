@@ -22,6 +22,7 @@
 
 #### Tweaks
 
+  * Use <acronym title="WordPress">WP</acronym> native `language_attributes` function now it produces valid <acronym title="Extensible Hypertext Markup Language">XHTML</acronym> (r518)
   * Changes to Tarski are now tracked in the CHANGELOG file (r502)
   * Search form JavaScript substantially improved (r495, r501)
   * Mobile stylesheet replaced by unified base stylesheet (r494)
