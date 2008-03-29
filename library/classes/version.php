@@ -87,7 +87,7 @@ class Version {
 			}
 
 			if(!empty($atomdata) && cache_is_writable("version.atom")) {
-				$fp = @fopen($cachefile, "w");
+				$fp = fopen($cachefile, "w");
 				if($fp) {
 					fwrite($fp, $atomdata);
 					fclose($fp);

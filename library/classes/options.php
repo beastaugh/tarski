@@ -116,7 +116,7 @@ class Options {
 			
 			$header = $_POST['header_image'];
 			if(isset($header)) {
-				$header = @str_replace('-thumb', '', $header);
+				$header = str_replace('-thumb', '', $header);
 				$this->header = $header;
 			}
 			

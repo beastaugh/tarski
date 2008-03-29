@@ -113,7 +113,7 @@
 		<div class="section">
 			<h3><?php _e('Alternate Style','tarski'); ?></h3>
 		<?php
-		$style_dir = @ dir(TEMPLATEPATH . '/styles');
+		$style_dir = dir(TEMPLATEPATH . '/styles');
 		if($style_dir) {
 			while(($file = $style_dir->read()) !== false) {
 				if(is_valid_tarski_style($file)) {
@@ -173,10 +173,7 @@
 		<div id="tarski-headers">
 			<?php
 			$name = get_tarski_option('header');
-
-			$header_dir = @ dir(TEMPLATEPATH . '/headers');	
-
-			if ($header_dir) {
+			if ( $header_dir = dir(TEMPLATEPATH . '/headers' ) ) {
 				while(($file = $header_dir->read()) !== false) {
 					if(!preg_match('|^\.+$|', $file) && preg_match('@\-thumb.(jpg|png|gif)$@', $file)) {
 						$header_images[] = $file;
