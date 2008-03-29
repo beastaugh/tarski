@@ -86,8 +86,7 @@ function tarski_widget_links($args) {
  * @link http://trac.wordpress.org/ticket/5567
  */
 function tarski_widget_search($args) {
-	// $args in case we want them in future
-	// extract($args, EXTR_SKIP);
+	extract($args, EXTR_SKIP);
 	$searchform_template = get_template_directory() . '/searchform.php';
 
 	if ( !file_exists($searchform_template) )
