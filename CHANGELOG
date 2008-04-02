@@ -22,6 +22,7 @@
 
 #### Tweaks
 
+  * Added XFN profile attribute to `head` (r525)
   * Use native <acronym title="WordPress">WP</acronym> `language_attributes` function (r518)
   * Changes to Tarski are now tracked in the CHANGELOG file (r502)
   * Search form JavaScript substantially improved (r495, r501)
