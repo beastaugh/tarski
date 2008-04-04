@@ -45,6 +45,7 @@
 
 #### Bug fixes
 
+  * Changed erroneous padding properties in the main stylesheet (r528)
   * Navbar link text is now properly escaped (r520)
 
 ### Version 2.0.5 [&sect;][37]
