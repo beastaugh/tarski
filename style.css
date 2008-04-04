@@ -81,7 +81,7 @@ body.rtl #navigation ul.primary { direction: ltr; }
 		acronym, abbr { border-bottom: 1px solid #8fb7bf; }
 		small { font-size: 0.8em; }
 		sup, sub { font-size: 75%; }
-		hr { width: 100%; height: 1px; background: #ccc; color: #ccc; margin: 1em 0; border: none; padding: none; }
+		hr { width: 100%; height: 1px; background: #ccc; color: #ccc; margin: 1em 0; border: none; padding: 0; }
 	pre, code { font-family: Courier, "Courier New", monospace; font-size: 1em; }
 		pre { overflow: scroll; margin: 0 0 1em 0; padding: 0 0 0.5em 0; }
 		body .primary pre { width: 500px; }
@@ -107,8 +107,8 @@ body.rtl #navigation ul.primary { direction: ltr; }
 	h2 { font-family: 'Times New Roman', Times, serif; font-size: 2em; font-weight: normal; line-height: 120%; margin: 0 0 0.5em 0; }
 	h3 { font-size: 0.8em; font-weight: normal; color: #8fbf60; text-transform: uppercase; letter-spacing: 0.1em; margin: 0 0 0.8em 0; border-bottom: 1px solid #e5e5e5; padding: 0 0 0.4em 0; }
 	h4 { font-family: 'Times New Roman', Times, serif; font-size: 1.5em; font-weight: normal; line-height: 120%; margin: 0 0 0.3em 0; }
-	h5 { font-size: 1em; font-weight: bold; line-height: 120%; margin: 0 0 0.3em 0; padding: none; }
-	h6 { font-size: 0.8em; font-weight: bold; line-height: 120%; margin: 0 0 0.3em 0; padding: none; }
+	h5 { font-size: 1em; font-weight: bold; line-height: 120%; margin: 0 0 0.3em 0; padding: 0; }
+	h6 { font-size: 0.8em; font-weight: bold; line-height: 120%; margin: 0 0 0.3em 0; padding: 0; }
 
 	/* Post content
 	--------------------------------------- */
