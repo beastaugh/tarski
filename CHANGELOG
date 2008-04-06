@@ -8,6 +8,7 @@
 
   * Added filter to `tarski_date` (r515)
   * New options page design (r508)
+  * Tarski search form used for widgets (r505)
   * Added avatar support (r500)
   * Added action hook `th_posts_nav` (r493)
   * Asset class now handles `wp_head` assets (r471)
@@ -158,7 +159,7 @@
 
   * Memory-hogging feed parsing removed (r345)
   * Added robustness to the Options updater (r344)
-  * XSS vulnerability in `search.php` fixed (r342)
+  * <acronym title="Cross-site scripting">XSS</acronym> vulnerability in `search.php` fixed (r342)
   * `gettext` omissions fixed (r342)
   * Next/previous article navigation fixed in Internet Explorer (r340)
   * Disappearing navbar bug fixed (r333)
