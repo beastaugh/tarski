@@ -248,10 +248,15 @@ function tidy_openid_names($comment_author) {
  * @return mixed
  */
 function tidy_avatars($avatar, $id_or_email, $size, $default) {
+	$url = get_comment_author_url();
 	$author_alt = sprintf( __('%s&#8217;s avatar'), get_comment_author() );
 	$avatar = preg_replace("/height='[\d]+' width='[\d]+'/", '', $avatar);
 	$avatar = preg_replace("/'/", '"', $avatar);
-	$avatar = preg_replace('/alt=""/', "alt=\"$author_alt\"", $avatar);	
+	$avatar = preg_replace('/alt=""/', "alt=\"$author_alt\"", $avatar);
+	
+	if( !empty($url) && 'http://' != $url )
+		$avatar = "<a href=\"$url\">$avatar</a>";
+		
 	return $avatar;
 }
 
