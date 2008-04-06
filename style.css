@@ -144,7 +144,7 @@ body.rtl #navigation ul.primary { direction: ltr; }
 	--------------------------------------- */
 	a img { border: 1px solid #006a80; }
 	a:hover img { border: 1px solid #a8001c; }
-		#wrapper a.imagelink2 img, #wrapper a.imagelink2:hover img, #wrapper a.imagelink:link, #wrapper a.imagelink:visited, #wrapper a.imagelink:hover, #wrapper a.imagelink:active, #wrapper a.imagelink2:link, #wrapper a.imagelink2:visited, #wrapper a.imagelink2:hover, #wrapper a.imagelink2:active { border: none; }
+		#wrapper .gallery a:link, #wrapper .gallery-item a:visited, #wrapper .gallery-item a:hover, #wrapper .gallery-item a:active, #wrapper a.imagelink2 img, #wrapper a.imagelink2:hover img, #wrapper a.imagelink:link, #wrapper a.imagelink:visited, #wrapper a.imagelink:hover, #wrapper a.imagelink:active, #wrapper a.imagelink2:link, #wrapper a.imagelink2:visited, #wrapper a.imagelink2:hover, #wrapper a.imagelink2:active { border: none; }
 		body .imageleft { float: left; margin: 0 10px 10px 0; }
 		body .imageright { float: right; margin: 0 0 10px 10px; }
 		body .imageblock { display: block; margin: 0 0 1em 0; }
