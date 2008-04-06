@@ -8,7 +8,6 @@
 
   * Added filter to `tarski_date` (r515)
   * New options page design (r508)
-  * Tarski search form used for widgets (r505)
   * Added avatar support (r500)
   * Added action hook `th_posts_nav` (r493)
   * Asset class now handles `wp_head` assets (r471)
@@ -25,6 +24,7 @@
 
   * Added <acronym title="XHTML Friends Network">XFN</acronym> profile attribute to `head` (r525)
   * Use native <acronym title="WordPress">WP</acronym> `language_attributes` function (r518)
+  * Tarski search form used for widgets (r505)
   * Changes to Tarski are now tracked in the CHANGELOG file (r502)
   * Search form JavaScript substantially improved (r495, r501)
   * Mobile stylesheet replaced by unified base stylesheet (r494)
