@@ -354,7 +354,7 @@
 
 #### Bug fixes
 
-  * Potential XSS vulnerability closed (r73)
+  * Potential <acronym title="Cross-site scripting">XSS</acronym> vulnerability closed (r73)
   * Footer floats now clear properly (r63, r65, r66)
   * Search results `title` added to `gettext` (r64)
   * Comment author form field bug fixed (r58)
@@ -394,7 +394,7 @@
   * Pagination links text made translatable (r18)
   * Various `gettext` omissions corrected (r17, r19)
   * `imagecenter` image class <acronym title="Cascading Stylesheets">CSS</acronym> fix (r23)
-  * Potential XSS issue in `searchform.php` fixed (r23)
+  * Potential <acronym title="Cross-site scripting">XSS</acronym> issue in `searchform.php` fixed (r23)
   * Footer widgets now correctly obey sidebar options (r37)
   * Tarski Options page now correctly links to core widget controls (r38)
 
