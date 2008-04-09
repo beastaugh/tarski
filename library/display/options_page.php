@@ -1,5 +1,5 @@
 <div id="tarski-options" class="wrap tarski-options<?php if(get_bloginfo("text_direction") == "rtl") { echo " rtl"; } ?>">
-
+	
 	<?php if(isset($_POST['submit']) && !get_tarski_option('deleted')) { ?>
 	<div id="updated" class="updated fade">
 		<?php if(isset($_POST['restore_options'])) { ?>
@@ -9,7 +9,7 @@
 		<?php } ?>
 	</div>
 	<?php } ?>
-
+	
 	<?php if(get_tarski_option('deleted')) { ?>
 	<div class="updated fade">
 		<form name="dofollow" action="<?php echo $tarski_options_link; ?>" method="post">
@@ -19,17 +19,23 @@
 		</form>
 	</div>
 	<?php } ?>
-		
+	
 <form name="dofollow" action="<?php echo $tarski_options_link; ?>" method="post">
 	
 	<div id="tarski-options-header">
 		<h2><?php _e('Tarski Options', 'tarski'); ?></h2>
-		<p class="tarski-save-options">
+		<p id="tarski-save-options">
 			<input type="submit" class="button-secondary" name="submit" value="<?php _e('Save Options','tarski'); ?>" />
 			<input type="hidden" name="page_options" value="'dofollow_timeout'" />
 		</p>
+		
+		<p id="tarski-info">
+			<a href="http://tarskitheme.com/help/"><?php _e('Tarski documentation','tarski'); ?></a>
+			| <a href="http://tarskitheme.com/credits/"><?php _e('Credits &amp; Thanks','tarski'); ?></a>
+			| <a href="http://tarskitheme.com/forum/"><?php _e('Forum'); ?></a>
+		</p>
 	</div>
-	
+		
 	<div id="tarski-update-notifier" class="secondary"><div class="section">
 	<?php if ( (!detectWPMU() || detectWPMUadmin()) ) { ?>
 	<?php if(can_get_remote()) { ?>
@@ -101,12 +107,12 @@
 				); ?>
 			<?php } ?>
 		</select>
-		<p class="tip"><?php printf( __('You can add or edit links on the %s page. We recommend creating a link category specifically for the links you want displayed in your navbar, but you can use any category.','tarski'), '<a href="'. get_bloginfo('wpurl'). '/wp-admin/link-manager.php">'. __('Blogroll','tarski'). '</a>' ); ?></p>
+		<p class="tip"><?php printf( __('You can add or edit links on the %s page. We recommend creating a link category specifically for the links you want displayed in your navbar, but you can use any category.','tarski'), '<a href="'. get_bloginfo('wpurl'). '/wp-admin/link-manager.php">'. __('Manage Links','tarski'). '</a>' ); ?></p>
 		
 		<label for="opt-nav-homename"><?php _e('Rename your &#8216;Home&#8217; link.','tarski'); ?></label>
 		<input type="hidden" name="home_link_name" value="Home" />
 		<input type="text" id="opt-nav-homename" name="home_link_name" value="<?php if(get_tarski_option('home_link_name')) { echo get_tarski_option('home_link_name'); } else { _e('Home','tarski'); } ?>" />
-		 <p class="tip"><?php _e('Note that this link is not displayed when you have a static front page.','tarski'); ?></p>
+		 <p class="tip"><?php _e('This link is not displayed when you have a static front page.','tarski'); ?></p>
 	</div></div>
 	
 	<div class="secondary">
@@ -139,7 +145,7 @@
 				} ?>
 			</select>
 		<?php } ?>
-
+		
 		<?php if(detectWPMU()) { // WPMU users ?>
 			<p><?php _e('Tarski allows you to select an alternate style that modifies the default one. Choose from the list above.','tarski'); ?></p>
 		<?php } else { // non-WPMU users ?>
@@ -190,7 +196,7 @@
 				}
 			} ?>
 			</div>
-		
+			
 			<p><?php printf( __('Choose a header image by clicking on it. The current image is the %s one.','tarski'), '<span class="highlight">' . __('highlighted','tarski') . '</span>' ); ?></p>
 		<?php if(!detectWPMU()) { ?>
 		<div class="tip">
@@ -202,13 +208,13 @@
 	
 	<div class="primary"><div id="tarski-miscellaneous-options" class="section">
 		<h3><?php _e('Miscellaneous Options','tarski'); ?></h3>
-
+		
 		<label for="opt-misc-title">
 			<input type="hidden" name="display_title" value="0" />
 			<input type="checkbox" id="opt-misc-title" name="display_title" value="1" <?php if(get_tarski_option('display_title')) { echo 'checked="checked" '; } ?>/>
 			<?php _e('Display site title','tarski'); ?>
 		</label>
-
+		
 		<label for="opt-misc-tagline">
 			<input type="hidden" name="display_tagline" value="0" />
 			<input type="checkbox" id="opt-misc-tagline" name="display_tagline" value="1" <?php if(get_tarski_option('display_tagline')) { echo 'checked="checked" '; } ?>/>
@@ -218,7 +224,7 @@
 		<?php if(!get_bloginfo('description')) { ?>
 			<p class="tip"><?php echo __('Your tagline is currently ','tarski'). '<a href="'. get_bloginfo('wpurl'). '/wp-admin/options-general.php">'. __('blank','tarski'). '</a>'. __(' and won&#8217;t be displayed.')  ?></p>
 		<?php } ?>
-
+		
 		<label for="opt-misc-cats">					
 			<input type="hidden" name="show_categories" value="0" />
 			<input type="checkbox" id="opt-misc-cats" name="show_categories" value="1" <?php if(get_tarski_option('show_categories')) { echo 'checked="checked" '; } ?>/>
@@ -236,13 +242,13 @@
 			<input type="checkbox" id="opt-misc-pagination" name="use_pages" value="1" <?php if(get_tarski_option('use_pages')) { echo 'checked="checked" '; } ?>/>
 			<?php _e('Paginate index pages (such as the front page or monthly archives)','tarski'); ?>
 		</label>
-
+		
 		<label for="opt-misc-centre">						
 			<input type="hidden" name="centred_theme" value="0" />
 			<input type="checkbox" id="opt-misc-centre" name="centred_theme" value="1" <?php if(get_tarski_option('centred_theme')) { echo 'checked="checked" '; } ?>/>
 			<?php _e('Centre the theme','tarski'); ?>
 		</label>
-
+		
 		<label for="opt-misc-janus">	
 			<input type="hidden" name="swap_sides" value="0" />
 			<input type="checkbox" id="opt-misc-janus" name="swap_sides" value="1" <?php if(get_tarski_option('swap_sides')) { echo 'checked="checked" '; } ?>/>
@@ -272,8 +278,4 @@
 	</div>
 	<?php } ?>
 	
-</div>
-
-<div id="tarski-info">
-	<p class="wrap"><?php printf( __('The %1$s is full of useful stuff &middot; %2$s','tarski'), '<a href="http://tarskitheme.com/help/">' . __('Tarski documentation','tarski') . '</a>', '<a href="http://tarskitheme.com/credits/">' . __('Credits &amp; Thanks','tarski') . '</a>'); ?></p>
 </div>

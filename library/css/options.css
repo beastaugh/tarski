@@ -15,11 +15,12 @@
  */
 #tarski-options { overflow: auto; }
 #tarski-options .updated {margin: 0 0 1em 0;}
-#tarski-options-header { clear: both; overflow: auto; margin: 0.8em 0.2em; }
-#tarski-options-header h2 { float: left; margin: 0 0.6em 0 0; border: none; padding: 0; }
-#tarski-options-header .tarski-save-options { display: block; float: left; margin: 0; padding: 0; } 
+#tarski-options-header { clear: both; overflow: auto; margin: 0.4em 0 0.8em 0; border-bottom: 1px solid #dadada; padding: 0.4em; }
+#tarski-options-header h2 { float: left; margin: 0 0.8em 0 0; border: none; padding: 0; }
+#tarski-save-options, #tarski-info { display: block; padding: 0; }
+#tarski-save-options { float: left; margin: 0; }
+#tarski-info { float: right; margin: 0.8em 0 0 0; }
 .rtl { text-align: right; direction: rtl; }
-#tarski-info { margin: 1em 0 0 0; text-align: center; }
 
 /**
  * Positioning
@@ -41,7 +42,7 @@
  * precisely than the WordPress defaults do how things should appear.
  */
 .section label, .section select, #opt-nav-homename { display: block; margin: 0.8em 0; }
-.section { margin: 0 0 0.8em 0; padding: 0.8em; background: #eaf3fa; }
+.section { margin: 0 0 0.8em 0; padding: 0.8em 0.8em 0.4em 0.8em; background: #eaf3fa; }
 .section h3, .section p { margin: 0 0 0.8em 0; }
 .tip { margin: 0.8em 0; border: 1px solid #c6d9e9; border-left-width: 3px; padding: 0.4em; background: #f7fafd; }
 #tarski-options .highlight { background: none; color: #d54e21; }
@@ -58,7 +59,7 @@
  * important classes are listed for possible future reference.
  */
 label.checkbox_checked {}
-label.checkbox_unchecked  {}
+label.checkbox_unchecked {}
 label.radio_checked {}
 label.radio_checked img { border: 2px solid #d54e21; padding: 3px; }
 label.radio_unchecked  {}
