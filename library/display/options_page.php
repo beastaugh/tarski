@@ -13,9 +13,9 @@
 	<?php if(get_tarski_option('deleted')) { ?>
 	<div class="updated fade">
 		<form name="dofollow" action="<?php echo $tarski_options_link; ?>" method="post">
-			<?php wp_nonce_field('update-options') ?>
+			<?php wp_nonce_field('update-options'); ?>
 			<input type="hidden" name="restore_options" value="1" />
-			<p><?php _e('You have deleted your Tarski options.','tarski'); ?> <input class="button" type="submit" name="submit" value="<?php _e('Restore Tarski Options &raquo;','tarski'); ?>"></p>
+			<p><?php _e('You have deleted your Tarski options.','tarski'); ?> <input class="button" type="submit" name="submit" value="<?php _e('Restore Tarski Options &raquo;','tarski'); ?>" /></p>
 		</form>
 	</div>
 	<?php } ?>
@@ -84,7 +84,7 @@
 		<h3><?php _e('Navigation Options','tarski'); ?></h3>
 		
 		<?php $categories = &get_categories('type=link&hide_empty=0'); ?>
-		<label for"opt-nav-extlinkcat"><?php _e('Add external links to the navbar.','tarski'); ?></label>
+		<label for="opt-nav-extlinkcat"><?php _e('Add external links to the navbar.','tarski'); ?></label>
 		<select name="nav_extlinkcat" id="opt-nav-extlinkcat" size="1">
 			<option value="0"><?php _e('No external links','tarski'); ?></option>
 			<?php foreach($categories as $link_cat) { ?>
@@ -194,7 +194,7 @@
 			<p><?php printf( __('Choose a header image by clicking on it. The current image is the %s one.','tarski'), '<span class="highlight">' . __('highlighted','tarski') . '</span>' ); ?></p>
 		<?php if(!detectWPMU()) { ?>
 		<div class="tip">
-			<p><?php printf( __('You can upload your own header images (.gif, .jpg or .png) to %s.','tarski'), '<code>wp-content/themes/' . get_template() . '/headers/</code>' ); ?>
+			<p><?php printf( __('You can upload your own header images (.gif, .jpg or .png) to %s.','tarski'), '<code>wp-content/themes/' . get_template() . '/headers/</code>' ); ?></p>
 			<p><?php printf( __('Make sure that you upload a thumbnail file as well. If your image is named %1$s, the corresponding thumbnail file should be named %2$s.','tarski'), '<code>'. __('example','tarski'). '.jpg</code>', '<code>'. __('example','tarski'). '-thumb.jpg</code>'); ?></p>
 		</div>
 		<?php } ?>
@@ -262,9 +262,9 @@
 	<div class="secondary">
 		<div class="section">
 			<h3><?php _e('Reset Options', 'tarski'); ?></h3>
-			<form name="dofollow" action="<?php echo $tarski_options_link; ?>" method="post">
-				<p><input class="button" type="submit" name="submit" value="<?php _e('Reset Tarski&#8217;s options to their default values','tarski'); ?>"></p>
-				<?php wp_nonce_field('update-options') ?>
+			<form action="<?php echo $tarski_options_link; ?>" method="post">
+				<p><input class="button" type="submit" name="submit" value="<?php _e('Reset Tarski&#8217;s options to their default values','tarski'); ?>" /></p>
+				<?php wp_nonce_field('update-options'); ?>
 				<input type="hidden" name="delete_options" value="1" />
 			</form>
 			<p class="tip"><?php _e('If you change your mind, you&#8217;ll have three hours to restore your options before they&#8217;re removed for good.','tarski'); ?></p>
