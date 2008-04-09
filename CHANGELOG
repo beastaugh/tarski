@@ -7,7 +7,7 @@
 #### New features
 
   * Added filter to `tarski_date` (r515)
-  * New options page design (r508)
+  * New options page design (r508, r539, r540)
   * Added avatar support (r500)
   * Added action hook `th_posts_nav` (r493)
   * Asset class now handles `wp_head` assets (r471)
