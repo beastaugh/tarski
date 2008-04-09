@@ -263,7 +263,7 @@
 		<div class="section">
 			<h3><?php _e('Reset Options', 'tarski'); ?></h3>
 			<form action="<?php echo $tarski_options_link; ?>" method="post">
-				<p><input class="button" type="submit" name="submit" value="<?php _e('Reset Tarski&#8217;s options to their default values','tarski'); ?>" /></p>
+				<p><input class="button-secondary" type="submit" name="submit" value="<?php _e('Reset Tarski&#8217;s options to their default values','tarski'); ?>" /></p>
 				<?php wp_nonce_field('update-options'); ?>
 				<input type="hidden" name="delete_options" value="1" />
 			</form>
