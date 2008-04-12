@@ -79,6 +79,7 @@ add_action('admin_head', 'tarski_resave_show_authors');
 add_action('save_post', 'flush_tarski_recent_entries');
 add_action('deleted_post', 'flush_tarski_recent_entries');
 add_action('switch_theme', 'flush_tarski_recent_entries');
+add_action('switch_theme', 'tarski_upgrade_and_flush_options');
 
 // Header
 add_action('wp_head', array('Asset', 'init'));

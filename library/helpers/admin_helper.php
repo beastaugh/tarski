@@ -172,7 +172,23 @@ function tarski_upgrade_needed() {
 	}
 }
 
-/* function tarski_upgrade() - Upgrades Tarski's options where appropriate.
+/**
+ * tarski_upgrade_and_flush_options() - Upgrades Tarski if needed and flushes options.
+ * 
+ * @since 2.1
+ * @see tarski_upgrade_needed()
+ * @see tarski_upgrade()
+ */
+function tarski_upgrade_and_flush_options() {
+	if ( tarski_upgrade_needed() ) {
+		tarski_upgrade();
+		$tarski_options = new Options;
+		$tarski_options->tarski_options_get();
+	}
+}
+
+/**
+ * function tarski_upgrade() - Upgrades Tarski's options where appropriate.
  * 
  * Tarski preferences sometimes change between versions, and need to
  * be updated. This function does not determine whether an update is

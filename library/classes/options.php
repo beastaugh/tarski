@@ -184,11 +184,7 @@ function save_tarski_options() {
 		return;
 	}
 	
-	if(tarski_upgrade_needed()) {
-		tarski_upgrade();
-		$tarski_options = new Options;
-		$tarski_options->tarski_options_get();
-	}
+	tarski_upgrade_and_flush_options();
 	
 	if(isset($_POST['submit'])) {
 		$tarski_options->tarski_options_update();
