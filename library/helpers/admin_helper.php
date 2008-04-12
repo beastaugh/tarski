@@ -218,20 +218,17 @@ function tarski_upgrade() {
 	
 	// Get current widgets settings
 	$widgets = wp_get_sidebars_widgets();
+	$widget_text = get_option('widget_text');
 	
-	// Change sidebar names
+	// Change sidebar names and initialise new sidebars
 	$widgets['sidebar-main'] = $widgets['sidebar-1'];
 	$widgets['footer-sidebar'] = $widgets['sidebar-2'];
-	
 	$widgets['footer-main'] = array();
 	
 	// Footer blurb
 	if ( strlen(trim($options->blurb)) ) {
-		$wt_options = get_option('widget_text');
-		$wt_options[] = array( 'title' => '', 'text' => $options->blurb );
-		$wt_num = count($wt_options);
-		update_option('widget_text', $wt_options);
-		unset($wt_options);
+		$widget_text[] = array( 'title' => '', 'text' => $options->blurb );
+		$wt_num = (int) end(array_keys($widget_text));
 		$widgets['footer-main'][] = "text-$wt_num";
 	}
 	
@@ -246,22 +243,23 @@ function tarski_upgrade() {
 	}
 		
 	// Main sidebar
-	if ( $options->sidebar_type == 'tarski' && empty($widgets['sidebar-main']) ) {
-		$widgets['sidebar-main'] = array();
+	if ( $options->sidebar_type == 'tarski' ) {
+		if ( empty($widgets['sidebar-main']) )
+			$widgets['sidebar-main'] = array();
 		
+		// Custom text -> text widget
 		if( strlen(trim($options->sidebar_custom)) ) {
-			$wt_options = get_option('widget_text');
-			$wt_options[] = array( 'title' => '', 'text' => $options->sidebar_custom );
-			$wt_num = count($wt_options);
-			update_option('widget_text', $wt_options);
-			unset($wt_options);
+			$widget_text[] = array( 'title' => '', 'text' => $options->sidebar_custom );
+			$wt_num = (int) end(array_keys($widget_text));
 			$widgets['sidebar-main'][] = "text-$wt_num";
 		}
 		
+		// Pages list -> pages widget
 		if($options->sidebar_pages) {
 			$widgets['sidebar-main'][] = 'pages';
 		}
 		
+		// Links list -> links widget
 		if($options->sidebar_links) {
 			$widgets['sidebar-main'][] = 'links';
 		}
@@ -293,6 +291,7 @@ function tarski_upgrade() {
 	}
 
 	// Save our upgraded options
+	update_option('widget_text', $widget_text);
 	wp_set_sidebars_widgets($widgets);
 	update_option('tarski_options', serialize($options));
 }
