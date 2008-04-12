@@ -280,12 +280,7 @@ function tarski_upgrade() {
 			$widgets['sidebar-main'][] = 'links';
 		}
 	}
-	
-	// Post and page sidebar
-	if ( $options->sidebar_pp_type == 'main' && empty($widgets['sidebar-post-and-page']) ) {
-		$widgets['sidebar-post-and-page'] = $widgets['sidebar-main'];
-	}
-	
+		
 	// Unset defunct values
 	unset($widgets['sidebar-1'], $widgets['sidebar-2']);
 	

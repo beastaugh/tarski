@@ -17,15 +17,7 @@ class Options {
 	var $installed;
 	var $deleted;
 	var $update_notification;
-	/*
-	var $blurb;
-	var $footer_recent;
-	var $sidebar_type;
 	var $sidebar_pp_type;
-	var $sidebar_pages;
-	var $sidebar_links;
-	var $sidebar_custom;
-	*/
 	var $header;
 	var $display_title;
 	var $display_tagline;
@@ -49,15 +41,7 @@ class Options {
 	function tarski_options_defaults() {
 		$this->installed = theme_version('current');
 		$this->update_notification = true;
-		/*
-		$this->blurb = __('This is the default Tarski blurb: you can edit or remove it on the Tarski Options page.','tarski');
-		$this->footer_recent = true;
-		$this->sidebar_type = 'tarski';
 		$this->sidebar_pp_type = 'main';
-		$this->sidebar_pages = true;
-		$this->sidebar_links = true;
-		$this->sidebar_custom = false;
-		*/
 		$this->header = 'greytree.jpg';
 		$this->display_title = true;
 		$this->display_tagline = true;
@@ -109,11 +93,6 @@ class Options {
 			elseif($_POST['update_notification'] == 'on')
 				$this->update_notification = true;
 			
-			/*
-			if(isset($_POST['about_text']))
-				$this->blurb = $_POST['about_text'];
-			*/
-			
 			$header = $_POST['header_image'];
 			if(isset($header)) {
 				$header = str_replace('-thumb', '', $header);
@@ -133,13 +112,6 @@ class Options {
 				$this->style = $stylefile;
 			elseif(!$stylefile)
 				$this->style = false;
-			
-			/*
-			$this->footer_recent = (bool) $_POST['footer']['recent'];
-			$this->sidebar_pages = (bool) $_POST['sidebar']['pages'];
-			$this->sidebar_links = (bool) $_POST['sidebar']['links'];
-			$this->sidebar_custom = $_POST['sidebar']['custom'];
-			*/
 			
 			$this->display_title = (bool) $_POST['display_title'];
 			$this->display_tagline = (bool) $_POST['display_tagline'];

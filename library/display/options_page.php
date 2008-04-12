@@ -171,6 +171,18 @@
 			</select>
 			<p><?php echo __('This option will make Tarski display posts from the selected category in the ','tarski') . '<a href="http://photomatt.net/2004/05/19/asides/">' . __('Asides','tarski') . '</a>' . __(' format. Asides are short posts, usually only a single paragraph, and Tarski displays them in a condensed format without titles.','tarski'); ?></p>
 		</div>
+		
+		<div class="section">
+			<h3><?php _e('Sidebar','tarski'); ?></h3>
+			
+			<p><?php _e('The sidebar for posts and pages can be the same as that for index pages, or use its own set of widgets.','tarski'); ?></p>
+				
+			<label for="sidebar-pp-type">
+				<input type="hidden" name="sidebar_pp_type" value="0" />
+				<input type="checkbox" id="sidebar-pp-type" name="sidebar_pp_type" value="main" <?php if(get_tarski_option('sidebar_pp_type') == 'main') { echo 'checked="checked" '; } ?>/>
+				<?php _e('Same content as main sidebar?','tarski'); ?>
+			</label>
+		</div>
 	</div>
 	
 	<div class="span"><div class="section">

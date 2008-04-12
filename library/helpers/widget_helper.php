@@ -9,20 +9,17 @@
  */
 function tarski_sidebar() {
 	global $post;
-	
 	$user_sidebar = TEMPLATEPATH . '/user-sidebar.php';
 	
-	if(file_exists($user_sidebar)) {
+	if ( file_exists($user_sidebar) ) {
 		include($user_sidebar);
-	} elseif(is_page_template('archives.php')) {
+	} elseif ( is_page_template('archives.php') ) {
 		return;
 	} else {
-		echo "<div class=\"widgets\">\n";
-		if(is_single() || is_page())
+		if ( (is_single() || is_page()) && (get_tarski_option('sidebar_pp_type') != 'main') )
 			dynamic_sidebar('sidebar-post-and-page');
 		else
 			dynamic_sidebar('sidebar-main');
-		echo "</div>\n";
 	}
 }
 
