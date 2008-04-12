@@ -22,6 +22,7 @@
 
 #### Tweaks
 
+  * Now requires WordPress 2.5 (r545)
   * Added <acronym title="XHTML Friends Network">XFN</acronym> profile attribute to `head` (r525)
   * Use native <acronym title="WordPress">WP</acronym> `language_attributes` function (r518)
   * Tarski search form used for widgets (r505)

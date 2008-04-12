@@ -24,7 +24,6 @@ require_once(TARSKIHELPERS . '/author_helper.php');
 require_once(TARSKIHELPERS . '/tag_helper.php');
 require_once(TARSKIHELPERS . '/widget_helper.php');
 require_once(TARSKIHELPERS . '/constants_helper.php');
-include_once(TARSKIHELPERS . '/compatibility.php');
 include_once(TARSKIHELPERS . '/deprecated.php');
 
 // Widgets
