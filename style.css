@@ -33,7 +33,7 @@ input, select, textarea { font-size: 100%; }
 
 /* Main structure
 ----------------------------------------------- */
-body { font-family: Verdana, Helvetica, Arial, sans-serif; font-size: 76%; line-height: 120%; color: #545454; background: #fff; }
+body { font-family: Verdana, Helvetica, Arial, sans-serif; font-size: 76%; line-height: 120%; color: #404040; background: #fff; }
 #wrapper { text-align: left; }
 body.rtl #wrapper { text-align: right; direction: rtl; }
 	#header, #content { margin: 0 0 2em 0; padding: 0 20px; }
@@ -75,7 +75,7 @@ body.rtl #navigation ul.primary { direction: ltr; }
 	/* HTML element control
 	--------------------------------------- */
 	p { margin: 0 0 1em 0; }
-		blockquote { margin: 0 0 1em 0; padding: 0 30px; color: #a8a8a8; }
+		blockquote { margin: 0 0 1em 0; padding: 0 30px; color: #808080; }
 		strong { font-weight: bold; }
 		em { font-style: italic; }
 		acronym, abbr { border-bottom: 1px solid #8fb7bf; }
@@ -103,7 +103,7 @@ body.rtl #navigation ul.primary { direction: ltr; }
 	/* Headers
 	--------------------------------------- */
 	#blog-title { font-family: 'Times New Roman', Times, serif; font-size: 2.5em; font-weight: normal; margin: 0; border: none; padding: 0; line-height: 120%; }
-	#tagline { font-family: 'Times New Roman', Times, serif; font-size: 1.5em; font-weight: normal; font-style: italic; color: #a8a8a8; margin: 0.1em 0 0.3em 0; border: none; padding: 0; line-height: 120%; }
+	#tagline { font-family: 'Times New Roman', Times, serif; font-size: 1.5em; font-weight: normal; font-style: italic; color: #808080; margin: 0.1em 0 0.3em 0; border: none; padding: 0; line-height: 120%; }
 
 	h1, body .entry .title { font-family: 'Times New Roman', Times, serif; font-size: 2em; font-weight: normal; line-height: 120%; margin: 0; border-bottom: 1px solid #ccc; padding: 0 0 0.1em 0; }
 	h2 { font-family: 'Times New Roman', Times, serif; font-size: 2em; font-weight: normal; line-height: 120%; margin: 0 0 0.5em 0; }
@@ -114,20 +114,20 @@ body.rtl #navigation ul.primary { direction: ltr; }
 
 	/* Post content
 	--------------------------------------- */
-	body .articlenav { margin: 0 0 2em 0; border-bottom: 1px solid #e5e5e5; padding-top: 0.75em; padding-bottom: 0.75em; background: #fcffff; color: #a8a8a8; }
+	body .articlenav { margin: 0 0 2em 0; border-bottom: 1px solid #e5e5e5; padding-top: 0.75em; padding-bottom: 0.75em; background: #fcffff; color: #808080; }
 		body.janus .articlenav { text-align: right; }
 	body.rtl .articlenav { border-bottom: 1px solid #e5e5e5; }
 	body .entry { margin: 0 0 2em 0; clear: both; }
 	body .posts .entry { margin: 0 0 4em 0; }
 		body .entry .meta { margin: 0 0 1em 0; }
-			body .entry .metadata { font-size: 0.8em; color: #a8a8a8; margin: 0; padding: 0; }
+			body .entry .metadata { font-size: 0.8em; color: #808080; margin: 0; padding: 0; }
 			body .entry .meta .metadata { margin: 0; padding: 0.3em 0 0 0; }
 	body .aside { margin: 0 0 4em 0; }
-		body .aside .meta { margin: -0.8em 0 0 0; border-top: 1px dotted #d9d9d9; padding: 0.2em 0 0 0; color: #a8a8a8; font-size: 0.8em; text-align: right; clear: both; }
+		body .aside .meta { margin: -0.8em 0 0 0; border-top: 1px dotted #d9d9d9; padding: 0.2em 0 0 0; color: #808080; font-size: 0.8em; text-align: right; clear: both; }
 	body .archive { margin: 0 0 2em 0; }
 		body .archive .meta { margin: 0 0 1em 0; }
-	body .link-pages { font-size: 0.8em; color: #a8a8a8; clear: both; }
-	body .pagination { margin: 0; font-family: 'Times New Roman', Times, serif; font-size: 1.5em; font-weight: normal; line-height: 120%; color: #a8a8a8; clear: both; }
+	body .link-pages { font-size: 0.8em; color: #808080; clear: both; }
+	body .pagination { margin: 0; font-family: 'Times New Roman', Times, serif; font-size: 1.5em; font-weight: normal; line-height: 120%; color: #808080; clear: both; }
 		
 	/* Inserts
 	--------------------------------------- */
@@ -154,7 +154,7 @@ body.rtl #navigation ul.primary { direction: ltr; }
 
 	/* Tags & Tags page
 	--------------------------------------- */
-	body .tagdata { font-size: 0.8em; color: #a8a8a8; clear: both; }
+	body .tagdata { font-size: 0.8em; color: #808080; clear: both; }
 	body .tagcloud {}
 	body .tagcloud a { margin: 0 2px 0 0; }
 
@@ -162,7 +162,7 @@ body.rtl #navigation ul.primary { direction: ltr; }
 	--------------------------------------- */
 	body .post-brief { margin: 0 0 2em 0; }
 		body .post-brief h3 { margin: 0 0 0.2em 0; }
-		body .post-brief p.post-metadata { color: #a8a8a8; margin: 0 0 0.2em 0; border: none; padding: 0; }
+		body .post-brief p.post-metadata { color: #808080; margin: 0 0 0.2em 0; border: none; padding: 0; }
 		body .post-brief p.excerpt { margin: 0; }
 			
 	/* Comments
@@ -173,8 +173,8 @@ body.rtl #navigation ul.primary { direction: ltr; }
 		#comments .meta .title { width: 50%; float: left; margin: 0; border: none; }
 		body .meta .comments-feed { width: 50%; float: right; text-align: right; margin:0; padding: 0.75em 0 0 0; }
 			body .meta .comments-feed a { display: block; padding: 1px 20px 1px 0; background: url('images/feed.gif') no-repeat 100% 50%; font-size: 0.8em; }
-		#trackback-link { margin: 0; border-top: 1px solid #ccc; font-size: 0.8em; color: #a8a8a8; background: url('images/trackback.gif') no-repeat 100% 60%; clear: both; }
-		body.rtl #wrapper #trackback-link { margin: 0; border-top: 1px solid #ccc; padding: 0.5em 20px 0.5em 0; background: url('../images/trackback.gif') no-repeat 100% 60%; font-size: 0.8em; color: #a8a8a8; clear: both; }
+		#trackback-link { margin: 0; border-top: 1px solid #ccc; font-size: 0.8em; color: #808080; background: url('images/trackback.gif') no-repeat 100% 60%; clear: both; }
+		body.rtl #wrapper #trackback-link { margin: 0; border-top: 1px solid #ccc; padding: 0.5em 20px 0.5em 0; background: url('../images/trackback.gif') no-repeat 100% 60%; font-size: 0.8em; color: #808080; clear: both; }
 			#trackback-link .secondary p { font-weight: bold; margin: 0; padding: 5px 24px 5px 0; }
 			#trackback-link .primary p { margin: 0; padding: 5px 0; }
 
@@ -219,11 +219,11 @@ body.rtl #navigation ul.primary { direction: ltr; }
 			#recent ul { list-style: none; margin: 0; }
 				#recent li { margin: 0; }
 				h4.recent-title { margin: 0; }
-				p.recent-metadata { font-size: 0.8em; color: #a8a8a8; margin: 0; }
+				p.recent-metadata { font-size: 0.8em; color: #808080; margin: 0; }
 				p.recent-excerpt { line-height: 1.4; margin: 0 0 1em 0; }
 		#blurb {}
-			.edit-link { clear: both; margin: 0 0 1em 0; text-align: right; font-size: 0.8em; color: #a8a8a8; }
-		#theme-info { margin: 0.5em 0 0 0; border-top: 3px double #ccc; padding: 1em 0 0.5em 0; color: #a8a8a8; }
+			.edit-link { clear: both; margin: 0 0 1em 0; text-align: right; font-size: 0.8em; color: #808080; }
+		#theme-info { margin: 0.5em 0 0 0; border-top: 3px double #ccc; padding: 1em 0 0.5em 0; color: #808080; }
 			
 /* Forms
 ----------------------------------------------- */
@@ -232,19 +232,19 @@ input { font-family: Verdana, Helvetica, Arial, sans-serif; font-size: 100%; }
 	/* Search form
 	--------------------------------------- */
 	body .searchbox { width: 200px; margin: 0 0 1em 0; }
-		#s { display: block; width: 194px; margin: 0 0 0.6em 0; border: 1px solid #ccc; padding: 2px; background: #fafafa; color: #545454; }
+		#s { display: block; width: 194px; margin: 0 0 0.6em 0; border: 1px solid #ccc; padding: 2px; background: #fafafa; color: #404040; }
 		#s:focus { background: #fff; }
 
 	/* Comment form
 	--------------------------------------- */
 	#commentform {}
 	#info-input {}
-		body .userinfo { color: #a8a8a8; }
-		#info-input label { display: block; margin: 0 0 1.2em 0; color: #a8a8a8; }
-		#author, #email, #url { display: block; width: 48%; margin: 0.2em 0 0 0; border: 1px solid #ccc; padding: 2px; background: #fafafa; color: #545454; }
+		body .userinfo { color: #808080; }
+		#info-input label { display: block; margin: 0 0 1.2em 0; color: #808080; }
+		#author, #email, #url { display: block; width: 48%; margin: 0.2em 0 0 0; border: 1px solid #ccc; padding: 2px; background: #fafafa; color: #404040; }
 	#comment-input {}
-		#comment-input label { display: block; margin: 0 0 0.2em 0; color: #a8a8a8; }
-		#comment-input textarea { width: 98%; font-family: Verdana, Arial, Helvetica, sans-serif; margin: 0 0 1.2em 0; border: 1px solid #ccc; padding: 2px; background: #fafafa; color: #545454; }
+		#comment-input label { display: block; margin: 0 0 0.2em 0; color: #808080; }
+		#comment-input textarea { width: 98%; font-family: Verdana, Arial, Helvetica, sans-serif; margin: 0 0 1.2em 0; border: 1px solid #ccc; padding: 2px; background: #fafafa; color: #404040; }
 		
 	#author:focus, #email:focus, #url:focus, #comment:focus { background: #fff; }
 	#submit { display:block; margin: 0 0 1em 0; }
@@ -282,7 +282,7 @@ body .widgets #wp-calendar { width: 100%; }
 	body .widgets #wp-calendar caption { text-align: left; font-size: 0.8em; font-weight: normal; color: #8fbf60; text-transform: uppercase; letter-spacing: 0.1em; margin: 0 0 0.8em 0; border-bottom: 1px solid #e5e5e5; padding: 0 0 0.4em 0; }
 
 body .widget_search { margin: 0 0 1em 0; }
-	body .widget_search #s { display: block; width: 194px; margin: 0; border: 1px solid #ccc; padding: 2px; background: #fafafa; color: #545454; }
+	body .widget_search #s { display: block; width: 194px; margin: 0; border: 1px solid #ccc; padding: 2px; background: #fafafa; color: #404040; }
 		#s:focus { background: #fff; }
 
 body .widgets ul { list-style: none; margin: 0; padding: 0; }
