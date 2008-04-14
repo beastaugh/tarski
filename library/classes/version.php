@@ -77,7 +77,6 @@ class Version {
 			if(function_exists('curl_init')) { // If libcurl is installed, use that
 				$ch = curl_init(TARSKIVERSIONFILE);
 				curl_setopt($ch, CURLOPT_FAILONERROR, 1);
-//				curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
 				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 				curl_setopt($ch, CURLOPT_HEADER, 0);
 				$atomdata = curl_exec($ch);
