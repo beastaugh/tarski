@@ -22,6 +22,7 @@
 
 #### Tweaks
 
+  * New style for calendar widget (r549)
   * Slightly darkened text colours (r546)
   * Now requires WordPress 2.5 (r545)
   * Added <acronym title="XHTML Friends Network">XFN</acronym> profile attribute to `head` (r525)
