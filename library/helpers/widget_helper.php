@@ -68,9 +68,8 @@ function tarski_widget_text_wrapper($text) {
  * @return string
  */
 function tarski_widget_links($args) {
-	// $args in case we want them in future
-	// extract($args, EXTR_SKIP);
-	wp_list_bookmarks(tarski_sidebar_links());
+	extract($args, EXTR_SKIP);
+	wp_list_bookmarks(array_merge(tarski_sidebar_links(), array('category_before' => $before_widget, 'category_after' => $after_widget)));
 }
 
 /**
