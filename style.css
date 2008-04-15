@@ -255,29 +255,13 @@ a { text-decoration: none; }
 a:link, a:visited, a:active { color: #006a80; }
 a:hover { color: #a8001c; }
 
-body .content a:link, body .content a:active, body .content a:visited, body .link-pages a:link, body .link-pages a:active, body .link-pages a:visited, body .tagdata a:link, body .tagdata a:active, body .tagdata a:visited { border-bottom: 1px solid #cfe2e5; }
-body .content a:hover, body .link-pages a:hover, body .tagdata a:hover { border-bottom: 1px solid #e5cfd2; }
+body .content a:link, body .content a:active, body .content a:visited, body .link-pages a:link, body .link-pages a:active, body .link-pages a:visited, body .tagdata a:link, body .tagdata a:active, body .tagdata a:visited, body .widget_tag_cloud a:link, body .widget_tag_cloud a:active, body .widget_tag_cloud a:visited { border-bottom: 1px solid #cfe2e5; }
+body .content a:hover, body .link-pages a:hover, body .tagdata a:hover, body .widget_tag_cloud a:hover { border-bottom: 1px solid #e5cfd2; }
 	#wrapper .content h2 a:link, #wrapper .content h2 a:visited, #wrapper .content h2 a:hover, #wrapper .content h2 a:active, #wrapper .content h3 a:link, #wrapper .content h3 a:visited, #wrapper .content h3 a:hover, #wrapper .content h3 a:active, #wrapper .content h4 a:link, #wrapper .content h4 a:visited, #wrapper .content h4 a:hover, #wrapper .content h4 a:active { border: none; }
 		
 /* Widgets
 ----------------------------------------------- */
 body .widget { margin: 0 0 2em 0; }
-
-body .widgets .textwidget { padding: 0 0 1em 0; }
-body .widgets .rsswidget img { border: 0; }
-
-body .widgets .pagenav, body .widgets .pagenav ul, body .widgets .page_item, body .widgets .widget_archives ul { list-style: none; background: none !important; margin: 0; padding: 0; }
-	body .widgets .navlist .page_item { margin: 0.5em 0; }
-		body .widgets .navlist ul { list-style: none; margin: 0 0 0 1em; }
-			body .widgets .navlist ul li { margin: 0.5em 0; }
-body .widgets .pagenav ul li { margin: 0.5em 0; }
-	body .widgets .pagenav ul li ul { margin: 0 0 0 1em; }
-		body .widgets .pagenav ul li ul li { margin: 0.5em 0; }
-body .widget_archives ul li { margin: 0.5em 0; }
-
-body .widgets .widget_archives, body .widgets .pagenav { margin: 0 0 1em 0; }
-
-body .widgets .widget_gsearch div { text-align: left !important; margin: 0 0 1em 0; }
 	
 	/* List widgets
 	------------------------------------------- */
@@ -285,17 +269,22 @@ body .widgets .widget_gsearch div { text-align: left !important; margin: 0 0 1em
 		body .widget ul li { margin: 0.5em 0; }
 		body .widget ul ul { margin-left:2em; }
 	
+	/* Tag cloud widget
+	------------------------------------------- */
+	body .widget_tag_cloud { line-height: 1.2; }
+		body .widget_tag_cloud a { margin: 0 2px 0 0; }
+	
 	/* Calendar widget
 	------------------------------------------- */
-	.widget_calendar {}
-		.widget_calendar table { width: 100%; }
-		.widget_calendar caption { margin: 0.25em 0 0.2em 0; border-bottom: 1px solid #ccc; padding: 0 0 0.5em 0; font-family: 'Times New Roman', Times, Georgia, serif; font-size:1.5em; text-align: center; }
-		.widget_calendar th, td { margin: 1px; padding: 5px; text-align: center; }
-		.widget_calendar th { background: #fafcfc; font-weight: bold; }
-		.widget_calendar td { background: #edf1f2; }
-		.widget_calendar tbody td a { display:block; margin: -5px; padding: 5px; color: #fff; background: #8bb6cc; }
-		.widget_calendar tbody td a:hover { color: #fff; background: #cc8a95; }
-		.widget_calendar td.pad, .widget_calendar tfoot td { background: #fff; }
-		.widget_calendar tfoot td { font-family: 'Times New Roman', Times, Georgia, serif; font-size: 1.5em; }
-		.widget_calendar #prev { text-align: left; }
-		.widget_calendar #next { text-align: right; }
+	body .widget_calendar {}
+		body .widget_calendar table { width: 100%; }
+		body .widget_calendar caption { margin: 0.25em 0 0.2em 0; border-bottom: 1px solid #ccc; padding: 0 0 0.5em 0; font-family: 'Times New Roman', Times, Georgia, serif; font-size:1.5em; text-align: center; }
+		body .widget_calendar th, td { margin: 1px; padding: 5px; text-align: center; }
+		body .widget_calendar th { background: #fafcfc; font-weight: bold; }
+		body .widget_calendar td { background: #edf1f2; }
+		body .widget_calendar tbody td a { display:block; margin: -5px; padding: 5px; color: #fff; background: #8bb6cc; }
+		body .widget_calendar tbody td a:hover { color: #fff; background: #cc8a95; }
+		body .widget_calendar td.pad, .widget_calendar tfoot td { background: #fff; }
+		body .widget_calendar tfoot td { font-family: 'Times New Roman', Times, Georgia, serif; font-size: 1.5em; }
+		body .widget_calendar #prev { text-align: left; }
+		body .widget_calendar #next { text-align: right; }
