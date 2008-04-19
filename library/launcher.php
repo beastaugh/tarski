@@ -66,7 +66,7 @@ add_filter('widget_text', 'tarski_widget_text_wrapper');
 add_filter('tarski_messages', 'tarski_update_notifier');
 
 // Output messages on dashboard and options page
-add_action('admin_notices', array('Message', 'init'));
+add_action('admin_notices', 'tarski_messages');
 
 // Tarski Options page
 add_action('admin_head', 'tarski_admin_style');

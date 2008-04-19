@@ -308,6 +308,19 @@ function tarski_upgrade() {
 }
 
 /**
+ * tarski_messages() - Adds messages about Tarski to the WordPress admin panel.
+ * 
+ * @since 2.1
+ */
+function tarski_messages() {
+	$messages = apply_filters('tarski_messages', array());
+	
+	foreach ( $messages as $message ) {
+		echo "<p class=\"tarski-message\">$message</p>\n\n";
+	}
+}
+
+/**
  * tarski_addmenu() - Adds the Tarski Options page to the WordPress admin panel.
  * 
  * @since 1.0
