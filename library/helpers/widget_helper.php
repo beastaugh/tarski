@@ -75,9 +75,8 @@ function tarski_widget_links($args) {
 /**
  * tarski_widget_search() - Replaces the default search widget.
  *
- * Hopefully temporary, a patch has been proposed for WP 2.5
- * which does the same thing. If that happens this function
- * will be moved into compatibility.php.
+ * Hopefully temporary, a patch has been proposed for WP 2.6
+ * which does the same thing.
  * @since 2.1
  * @link http://trac.wordpress.org/ticket/5567
  */
