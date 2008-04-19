@@ -52,5 +52,14 @@ body.skyline abbr, body.skyline acronym { border-bottom: 1px solid #bf8f93; }
 body.skyline a:link, body.skyline a:active, body.skyline a:visited { color: #3689b3; }
 body.skyline a:hover { color: #a6212c; }
 
-body.skyline .content a:link, body.skyline .content a:active, body.skyline .content a:visited { border-bottom: 1px solid #cfdee5; }
-body.skyline .content a:hover { border-bottom: 1px solid #a6212c; }
+body.skyline .content a:link, body.skyline .content a:active, body.skyline .content a:visited, body.skyline .link-pages a:link, body .link-pages a:active, body .link-pages a:visited, body .tagdata a:link, body.skyline .tagdata a:active, body.skyline .tagdata a:visited, body.skyline .widget_tag_cloud a:link, body.skyline .widget_tag_cloud a:active, body.skyline .widget_tag_cloud a:visited { border-bottom: 1px solid #cfdee5; }
+body.skyline .content a:hover, body.skyline .link-pages a:hover, body.skyline .tagdata a:hover, body.skyline .widget_tag_cloud a:hover { border-bottom: 1px solid #a6212c; }
+
+/* Widgets
+----------------------------------------------- */
+
+	/* Calendar widget
+	------------------------------------------- */
+	body.skyline .widget_calendar tbody td a { color: #fff; background: #8bb6cc; }
+	body.skyline .widget_calendar tbody td a:hover { color: #fff; background: #cc8a95; }
+	
