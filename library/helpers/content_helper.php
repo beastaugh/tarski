@@ -225,6 +225,24 @@ function tidy_avatars($avatar, $id_or_email, $size, $default) {
 }
 
 /**
+ * tarski_avatar() - Linked avatar images for Tarski.
+ * 
+ * Links to the comment author's home page if they have one,
+ * and just returns the image otherwise.
+ * @return string
+ */
+function tarski_avatar() {
+	$avatar = get_avatar(get_comment_author_email(), '50', get_bloginfo('template_directory') . '/images/avatar.gif');
+	$url = get_comment_author_url();
+	
+	if ( empty($url) || preg_match('/^\s*http:\/\/\s*$/', $url) ) {
+		return $avatar;
+	} else {
+		return "<a class=\"avatar-link\" href=\"$url\" rel=\"external nofollow\">$avatar</a>";
+	}
+}
+
+/**
  * tarski_comment_author_link() - Returns a comment author's name, wrapped in a link if present.
  * 
  * It also includes hCard microformat markup.

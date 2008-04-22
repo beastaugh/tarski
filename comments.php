@@ -63,7 +63,7 @@ if($comments || comments_open()) { ?>
 					<div class="secondary">
 						<p class="comment-permalink"><a href="#comment-<?php comment_ID(); ?>" title="<?php _e('Permalink to this comment','tarski'); ?>"><?php echo tarski_comment_datetime(); ?></a></p>
 						<p class="comment-author vcard"><?php echo tarski_comment_author_link(); ?></p>
-						<?php echo get_avatar(get_comment_author_email(), '50', get_bloginfo('template_directory') . '/images/avatar.gif'); ?>
+						<?php echo tarski_avatar(); ?>
 						<?php edit_comment_link(__('edit','tarski'), '<p class="comment-edit">(', ')</p>'); ?>
 					</div> <!-- /comment meta -->
 

@@ -181,8 +181,7 @@ body.rtl #navigation ul.primary { direction: ltr; }
 	body .comment { margin: 0; border-top: 1px solid #ccc; padding: 0.65em 0; }
 		body .comment-permalink, body .comment-edit { font-size: 0.8em; margin: 0; }
 		body .comment-author { margin: 0 0 0.5em 0; font-weight: bold; }
-		body .avatar { margin: 0; }
-		#content a img.avatar { border: none; }
+		body .avatar, body .comment a .avatar { margin: 0 0 0.5em 0; border: 1px solid #ccc; padding: 4px; background:#fcfcfc; }
 		body .moderated { background: #fcffff; }
 		body .moderated .primary-span { border-bottom: 1px dotted #e5e5e5; padding-bottom: 0.5em; background: url('images/moderated.gif') no-repeat 100% 50%; }
 	body .author-comment {}
