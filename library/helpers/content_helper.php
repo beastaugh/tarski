@@ -166,42 +166,6 @@ function tarski_asides_permalink_text() {
 }
 
 /**
- * tarski_sidebar_links() - Returns an array for use with wp_list_bookmarks().
- * 
- * If a link category has been selected as external links in the navbar,
- * it will be excluded from this array.
- * @since 2.0
- * @return array $options
- */
-function tarski_sidebar_links() {
-	$link_cat_args = array(
-		'orderby' => 'term_id',
-		'exclude' => get_tarski_option('nav_extlinkcat'),
-		'hierarchical'=> 0
-	);
-	
-	$link_categories = &get_terms('link_category', $link_cat_args);
-	
-	foreach($link_categories as $link_cat)
-		$link_cats[] = $link_cat->term_id;
-	
-	$link_cats = implode(',', $link_cats);
-	
-	$options = array(
-		'category' => $link_cats,
-		'category_before' => '',
-		'category_after' => '',
-		'title_before' => '<h3>',
-		'title_after' => '</h3>',
-		'show_images' => 0,
-		'show_description' => 0,
-	);
-	
-	$options = apply_filters('tarski_sidebar_links', $options);
-	return $options;
-}
-
-/**
  * tarski_comment_datetime() - Ties the date and time together.
  * 
  * Makes the comment date and time output more translateable.
