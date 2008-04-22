@@ -61,7 +61,11 @@ function tarski_widget_text_wrapper($text) {
  * tarski_sidebar_links() - Returns an array for use with wp_list_bookmarks().
  * 
  * If a link category has been selected as external links in the navbar,
- * it will be excluded from this array.
+ * it will be excluded from this array. Because wp_list_bookmarks() has no way
+ * to exclude categories, this function is inefficient. This core patch
+ * {@link http://trac.wordpress.org/ticket/6808} would allow a substantially
+ * simpler function with one less database call.
+ * @link http://trac.wordpress.org/ticket/6808
  * @since 2.0
  * @return array $options
  */
@@ -137,14 +141,18 @@ function tarski_widget_search($args) {
  * @global object $posts
  * @return string
  */
-function tarski_recent_entries() {
-	global $posts;
-	$options['number'] = 5;
-	
+function tarski_recent_entries($args) {	
 	if ( $output = wp_cache_get('tarski_recent_entries') )
 		return print($output);
 
 	ob_start();
+	extract($args);
+	global $posts;
+	// Allow for configuration in the future
+	$options = array();
+	// $options = get_option('tarski_recent_entries');
+	$title = empty($options['title']) ? __('Recent Articles','tarski') : $options['title'];
+	
 	if ( !$number = (int) $options['number'] )
 		$number = 5;
 	elseif ( $number < 1 )
@@ -162,7 +170,7 @@ function tarski_recent_entries() {
 	if ( $r->have_posts() ) {
 ?>
 <div id="recent">
-	<h3><?php _e('Recent Articles','tarski'); ?></h3>
+	<?php echo $before_title . $title . $after_title; ?>
 	<ul>
 		<?php while ($r->have_posts()) : $r->the_post(); ?>
 		<li>
