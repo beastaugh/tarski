@@ -40,7 +40,7 @@ body.classic abbr, body.classic acronym { border-bottom: 1px solid #bf8060; }
 		/* Images
 		--------------------------------------- */
 		body.classic a img { border: 1px solid #0f6b99; }
-		body.classic a:hover img { border: 1px solid #e59900; }
+		body.classic a:hover img, body.classic .comment a:hover .avatar { border: 1px solid #e59900; }
 			
 		/* Comments
 		--------------------------------------- */

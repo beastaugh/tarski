@@ -40,7 +40,7 @@ body.polar abbr, body.polar acronym { border-bottom: 1px solid #5c8499; }
 		/* Images
 		--------------------------------------- */
 		body.polar a img { border: 1px solid #4c8099; }
-		body.polar a:hover img { border: 1px solid #000; }
+		body.polar a:hover img, body.polar .comment a:hover .avatar { border: 1px solid #000; }
 			
 		/* Comments
 		--------------------------------------- */

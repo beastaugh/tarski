@@ -40,7 +40,7 @@ body.skyline abbr, body.skyline acronym { border-bottom: 1px solid #bf8f93; }
 		/* Images
 		--------------------------------------- */
 		body.skyline a img { border: 1px solid #3689b3; }
-		body.skyline a:hover img { border: 1px solid #a6212c; }
+		body.skyline a:hover img, body.skyline .comment a:hover .avatar { border: 1px solid #a6212c; }
 						
 		/* Comments
 		--------------------------------------- */
