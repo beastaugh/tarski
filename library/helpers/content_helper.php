@@ -232,7 +232,7 @@ function tidy_avatars($avatar, $id_or_email, $size, $default) {
  * @return string
  */
 function tarski_avatar() {
-	$avatar = get_avatar(get_comment_author_email(), '50', get_bloginfo('template_directory') . '/images/avatar.gif');
+	$avatar = get_avatar(get_comment_author_email(), '50', apply_filters('tarski_avatar', get_bloginfo('template_directory') . '/images/avatar.gif'));
 	$url = get_comment_author_url();
 	
 	if ( empty($url) || preg_match('/^\s*http:\/\/\s*$/', $url) ) {
