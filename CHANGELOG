@@ -6,7 +6,6 @@
 
 #### New features
 
-  * Added filter to `tarski_date` (r515)
   * New options page design (r508, r539, r540)
   * Added avatar support (r500)
   * Added action hook `th_posts_nav` (r493)
@@ -22,6 +21,8 @@
 
 #### Tweaks
 
+  * Default avatar filter for `tarski_avatar` (r564)
+  * Added filter to `tarski_date` (r515)
   * New style for tag cloud widget (r551)
   * New style for links list widgets (r550)
   * New style for calendar widget (r549)
