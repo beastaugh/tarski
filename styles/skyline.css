@@ -4,49 +4,40 @@ skyline.css
 Designed by Benedict Eastaugh, http://extralogical.net/
 */
 
+
 /* Navigation
 ----------------------------------------------- */
 body.skyline #wrapper .nav-current:link, body.skyline #wrapper .nav-current:visited, body.skyline #wrapper .nav-current:active { color: #bf6068; }
 body.skyline #wrapper .nav-current:hover { color: #a6212c; }
 
-	/* Feed icon
-	------------------------------------------- */
-	body.skyline .feed { background: url('../images/feed-add.gif') no-repeat 0 50%; }
-
 /* Content
 ----------------------------------------------- */
 body.skyline code { color: #bf8f93; }
 body.skyline abbr, body.skyline acronym { border-bottom: 1px solid #bf8f93; }
-
+		
 		/* Headers
 		--------------------------------------- */
 		body.skyline h3 { color: #bf6068; }
 		body.skyline h4, body.skyline h5, body.skyline h6 { color: #bf8f93; }
-
+		
 		/* Post content
 		--------------------------------------- */
 		body.skyline .articlenav { background: #fcfeff; }
-
+		
 		/* Inserts
 		--------------------------------------- */
 		body.skyline .insert { background: #fcfeff; margin: 0 0 1em 0; border: 1px solid #cfdee5; padding: 9px; }
 			body.skyline .insert h3 { border-bottom: 1px solid #cfdee5; }
-
+		
 		/* Downloads
 		--------------------------------------- */
-		body.skyline a.download:link, body.skyline a.download:visited, body.skyline a.download:active { background: #fcfeff url('../images/download.gif') no-repeat 10px 50%; border-top: 1px solid #cfdee5; border-bottom: 1px solid #cfdee5 !important; }
-		body.skyline a.download:hover { background: #fffcfd url('../images/download.gif') no-repeat 10px 50%; border-top: 1px solid #e5cfd0; border-bottom: 1px solid #e5cfcf !important; }
-
+		body.skyline .content a.download:link, body.skyline .content a.download:visited, body.skyline .content a.download:active { background-color: #fcfeff; border: 1px solid #cfdee5; }
+		
 		/* Images
 		--------------------------------------- */
 		body.skyline a img { border: 1px solid #3689b3; }
 		body.skyline a:hover img, body.skyline .comment a:hover .avatar { border: 1px solid #a6212c; }
-						
-		/* Comments
-		--------------------------------------- */
-		body.skyline .comments-feed a { background: url('../images/feed.gif') no-repeat 100% 50%; }
-		body.skyline .trackback { background: #fcfeff url('../images/trackback.gif') no-repeat 100% 60%; }
-
+		
 /* Links
 ----------------------------------------------- */
 body.skyline a:link, body.skyline a:active, body.skyline a:visited { color: #3689b3; }
@@ -62,4 +53,3 @@ body.skyline .content a:hover, body.skyline .link-pages a:hover, body.skyline .t
 	------------------------------------------- */
 	body.skyline .widget_calendar tbody td a { color: #fff; background: #8bb6cc; }
 	body.skyline .widget_calendar tbody td a:hover { color: #fff; background: #cc8a95; }
-	

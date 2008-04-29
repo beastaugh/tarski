@@ -66,7 +66,7 @@ body.rtl #navigation ul.primary { direction: ltr; }
 
 	/* Feed icon
 	------------------------------------------- */
-	body .feed { display: block; padding: 1px 0 1px 20px; font-size: 0.8em; background: url('images/feed-add.gif') no-repeat 0 50%; }
+	body .feed { display: block; padding: 1px 0 1px 20px; min-height: 15px; font-size: 0.8em; background: url('images/icons.png') no-repeat 0 1px; }
 	body.janus .feed, body.rtl .feed { padding: 1px 20px 1px 0; background-position: 100% 50%; }
 
 /* Content
@@ -138,9 +138,9 @@ body.rtl #navigation ul.primary { direction: ltr; }
 
 	/* Downloads
 	--------------------------------------- */
-	body a.download { display: block; font-weight: bold; margin: 0 0 1em 0; padding: 5px 5px 5px 36px; }
-	body a.download:link, body a.download:visited, body a.download:active { background: #fcffff url('images/download.gif') no-repeat 10px 50%; border-top: 1px solid #cfe2e5; border-bottom: 1px solid #cfe2e5; }
-	body a.download:hover { background: #fffafb url('images/download.gif') no-repeat 10px 50%; border-top: 1px solid #e5cfd2; border-bottom: 1px solid #e5cfd2; }
+	body a.download { display: block; margin: 1em 0; padding: 5px 5px 5px 28px; min-height: 15px; }
+	body .content a.download:link, body .content a.download:visited, body .content a.download:active { background:#fcffff url('images/icons.png') no-repeat 5px -295px; border: 1px solid #cfe2e5; }
+	body .content a.download:hover { text-decoration: underline; }
 
 	/* Images
 	--------------------------------------- */
@@ -172,20 +172,19 @@ body.rtl #navigation ul.primary { direction: ltr; }
 	#comments .meta { margin: 0 0 0.2em 0; }
 		#comments .meta .title { width: 50%; float: left; margin: 0; border: none; }
 		body .meta .comments-feed { width: 50%; float: right; text-align: right; margin:0; padding: 0.75em 0 0 0; }
-			body .meta .comments-feed a { display: block; padding: 1px 20px 1px 0; background: url('images/feed.gif') no-repeat 100% 50%; font-size: 0.8em; }
-		#trackback-link { margin: 0; border-top: 1px solid #ccc; font-size: 0.8em; color: #808080; background: url('images/trackback.gif') no-repeat 100% 60%; clear: both; }
-		body.rtl #wrapper #trackback-link { margin: 0; border-top: 1px solid #ccc; padding: 0.5em 20px 0.5em 0; background: url('../images/trackback.gif') no-repeat 100% 60%; font-size: 0.8em; color: #808080; clear: both; }
+			body .meta .comments-feed a { display: block; min-height:16px; padding: 1px 20px 1px 0; background: url('images/icons.png') no-repeat 100% -100px; font-size: 0.8em; }
+		#trackback-link { margin: 0; border-top: 1px solid #ccc; font-size: 0.8em; color: #808080; clear: both; }
+		body.rtl #wrapper #trackback-link { margin: 0; border-top: 1px solid #ccc; padding: 0.5em 0; font-size: 0.8em; color: #808080; clear: both; }
 			#trackback-link .secondary p { font-weight: bold; margin: 0; padding: 5px 24px 5px 0; }
 			#trackback-link .primary p { margin: 0; padding: 5px 0; }
 
-	body .comment { margin: 0; border-top: 1px solid #ccc; padding: 0.65em 0; }
+	body .comment { margin: 0; border-top: 1px solid #ccc; padding: 0.66em 0; }
 		body .comment-permalink, body .comment-edit { font-size: 0.8em; margin: 0; }
 		body .comment-author { margin: 0 0 0.5em 0; font-weight: bold; }
 		body .avatar, body .comment a .avatar { margin: 0 0 0.5em 0; border: 1px solid #ccc; padding: 4px; background:#fcfcfc; }
-		body .moderated { background: #fcffff; }
-		body .moderated .primary-span { border-bottom: 1px dotted #e5e5e5; padding-bottom: 0.5em; background: url('images/moderated.gif') no-repeat 100% 50%; }
+		body .moderated .primary-span { border-bottom: 1px dotted #e5e5e5; padding-bottom: 0.5em; background: url('images/icons.png') no-repeat 100% -200px; }
 	body .author-comment {}
-	body .trackback { margin: 0; border-top: 1px solid #ccc; padding: 0.5em 0 0.5em 0; background: #fcffff url('images/trackback.gif') no-repeat 100% 60%; }
+	body .trackback { margin: 0; border-top: 1px solid #ccc; padding: 0.5em 0 0.5em 0; background: #fcffff; }
 		body .trackback p { font-size: 0.8em; margin: 0; }
 		
 	#respond { margin: 0; border-top: 1px solid #ccc; padding: 1em 0 0 0; overflow: auto; clear: both; }
