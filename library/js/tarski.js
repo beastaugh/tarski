@@ -5,28 +5,6 @@ Function.prototype.bind = function(object) {
 	};
 };
 
-/**
- * <p>Returns a function that returns the result of applying the function to its arguments,
- * but that logs its input and output to the Firebug console. Derived from a similar function
- * in Oliver Steele's Functional library.</p>
- *
- * Copyright: Copyright 2007 by Oliver Steele.  All rights reserved.
- * http://osteele.com/sources/javascript/functional/
- *
- * @param {String} name The function name used when messages are logged to the console
- * @param {String} func The console function to use. Defaults to 'info'
- * @returns {Function}
- */
-Function.prototype.traced = function(name, func) {
-	var method = this, name = name || this, func = func || 'info';
-	return function() {
-		window.console && console[func](name, ' called on ', this, ' with ', arguments);
-		var result = method.apply(this, arguments);
-		window.console && console[func](name, ' -> ', result);
-		return result;
-	};
-};
-
 function addEvent( obj, type, fn ) {
 	if (obj.addEventListener) {
 		obj.addEventListener( type, fn, false );
