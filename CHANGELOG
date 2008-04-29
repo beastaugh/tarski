@@ -6,6 +6,7 @@
 
 #### New features
 
+  * New icon designs (r567)
   * New options page design (r508, r539, r540)
   * Added avatar support (r500)
   * Added action hook `th_posts_nav` (r493)
