@@ -29,7 +29,6 @@ you upgrade to a newer version of Tarski.
 html, body, form, fieldset { margin: 0; padding: 0; }
 form label { cursor: pointer; }
 fieldset { border: none; }
-input, select, textarea { font-size: 100%; }
 
 /* Main structure
 ----------------------------------------------- */
@@ -223,7 +222,7 @@ body.rtl #navigation ul.primary { direction: ltr; }
 			
 /* Forms
 ----------------------------------------------- */
-input { font-family: Verdana, Helvetica, Arial, sans-serif; font-size: 100%; }
+input, select, textarea { font-family: Verdana, Helvetica, Arial, sans-serif; font-size: 100%; }
 
 	/* Search form
 	--------------------------------------- */
