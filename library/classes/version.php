@@ -203,7 +203,7 @@ function tarski_update_notifier($messages) {
 	
 	// Update checking only performed when remote files can be accessed
 	if ( can_get_remote() ) {
-				
+		
 		// Only performs the update check when notification is enabled
 		if ( get_tarski_option('update_notification') ) {
 			$version->latest_version_number();
@@ -240,7 +240,7 @@ function tarski_update_notifier($messages) {
 					break;
 				}
 			}
-		} else {
+		} elseif ( $plugin_page == 'tarski-options' ) {
 			$messages[] = sprintf(
 				__('Update notification for Tarski is disabled. You can enable it on the %1$s page. Your installed version is %2$s.','tarski'),
 				'<a href="' . get_bloginfo('wpurl') . '/wp-admin/themes.php?page=tarski-options">' . __('Tarski Options','tarski') . '</a>',
