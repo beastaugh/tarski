@@ -49,7 +49,7 @@ class Version {
 	function current_version_number() {
 		$themedata = get_theme_data(TEMPLATEPATH . '/style.css');
 		$installed_version = trim($themedata['Version']);
-		if($installed_version == false) {
+		if(strlen($installed_version) < 1) {
 			$this->current = 'unknown';
 		} else {
 			$this->current = $installed_version;
