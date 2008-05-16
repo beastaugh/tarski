@@ -242,8 +242,7 @@ function tarski_update_notifier($messages) {
 			}
 		} elseif ( $plugin_page == 'tarski-options' ) {
 			$messages[] = sprintf(
-				__('Update notification for Tarski is disabled. You can enable it on the %1$s page. Your installed version is %2$s.','tarski'),
-				'<a href="' . get_bloginfo('wpurl') . '/wp-admin/themes.php?page=tarski-options">' . __('Tarski Options','tarski') . '</a>',
+				__('Update notification for Tarski is disabled. Your installed version is %s.','tarski'),
 				"<strong>$version->current</strong>"
 			);
 		}
