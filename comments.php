@@ -14,13 +14,13 @@ if(!empty($post->post_password)) { // if there's a password
 if($comments || comments_open()) { ?>
 <div id="comments">
 	
-	<div class="meta">
+	<div class="meta clearfix">
 		<h2 class="title"><?php comments_number(__('No comments','tarski'), __('1 comment','tarski'), '%'. __(' comments','tarski')); ?></h2>
 		<?php if(comments_open()) { ?>
 		<p class="comments-feed"><a href="<?php echo get_post_comments_feed_link($post->ID); ?>"><?php _e('Comments feed for this article','tarski'); ?></a></p>
 		<?php } ?>
 		<?php if(pings_open()) { ?>
-		<div id="trackback-link">
+		<div id="trackback-link" class="clearfix">
 			<div class="secondary"><p><?php _e('Trackback link','tarski'); ?></p></div>
 			<div class="primary"><p><a href="<?php trackback_url(); ?>"><?php trackback_url(); ?></a></p></div>
 		</div>
@@ -33,7 +33,7 @@ if($comments || comments_open()) { ?>
 		
 			<?php if($comment->comment_type == "trackback" || $comment->comment_type == "pingback" || ereg("<pingback />", $comment->comment_content) || ereg("<trackback />", $comment->comment_content)) { ?>
 
-				<div class="trackback" id="comment-<?php comment_ID() ?>">
+				<div class="trackback clearfix" id="comment-<?php comment_ID() ?>">
 					<div class="secondary">
 						<p><a href="#comment-<?php comment_ID() ?>" title="<?php _e('Permalink to this comment','tarski'); ?>"><?php comment_date(); _e(' at ','tarski'); comment_time(); ?></a></p>
 					</div>
@@ -54,7 +54,7 @@ if($comments || comments_open()) { ?>
 
 			<?php if($comment->comment_type != "trackback" && $comment->comment_type != "pingback" && !ereg("<pingback />", $comment->comment_content) && !ereg("<trackback />", $comment->comment_content)) { $comment_count++; ?>
 
-				<div class="comment<?php
+				<div class="comment clearfix<?php
 				if ( get_comment_author_email() == get_the_author_email() ) { echo ' author-comment'; }
 				if ($comment->comment_approved == '0') { echo ' moderated'; } ?>" id="comment-<?php comment_ID() ?>">
 					<?php if ($comment->comment_approved == '0') { ?>

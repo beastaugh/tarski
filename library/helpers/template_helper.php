@@ -235,7 +235,7 @@ function tarski_titleandtag() {
  * @return string
  */
 function navbar_wrapper() {
-	echo '<div id="navigation">';
+	echo '<div id="navigation" class="clearfix">';
 	th_navbar();
 	echo '</div>';
 }

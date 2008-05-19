@@ -2,7 +2,7 @@
 
 
 
-<div id="footer">
+<div id="footer" class="clearfix">
 	
 	<div class="secondary">
 		
@@ -16,7 +16,7 @@
 		
 	</div> <!-- /primary -->
 	
-	<div id="theme-info">
+	<div id="theme-info" class="clearfix">
 		
 		<?php th_footer(); ?>
 		
