@@ -71,7 +71,7 @@ body.rtl #navigation ul.primary { direction: ltr; }
 	/* Feed icon
 	------------------------------------------- */
 	body .feed { display: block; float: left; padding: 1px 0 1px 20px; min-height: 15px; font-size: 0.8em; background: url('images/icons.png') no-repeat 0 1px; }
-	body.janus .feed, body.rtl .feed { padding: 1px 20px 1px 0; background-position: 100% 1px; }
+	body.janus .feed, body.rtl .feed { float: right; padding: 1px 20px 1px 0; background-position: 100% 1px; }
 
 /* Content
 ----------------------------------------------- */
