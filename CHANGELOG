@@ -6,6 +6,7 @@
 	
 #### Bug fixes
 
+  * Fixed navbar character encoding problem (r595)
   * Corrected Janus feed icon position (r592)
 
 ### Version 2.1 [&sect;][36]
