@@ -1,9 +1,12 @@
 function CollapsibleList(container) {
 	
 	this.container = jQuery(container);
-	this.main = container.children('p')[0];
+	this.main = jQuery(container.children('p')[0]);
+	this.list = jQuery(container.children('ol')[0]);
 	
 	this.toggle = function() {
+		this.list.slideToggle(150);
+		
 		if ( this.container.hasClass('collapsed') )
 			this.expand();
 		else
@@ -21,7 +24,7 @@ function CollapsibleList(container) {
 	this.addToggle = function(toggler) {
 		scopeFix = this;
 		this.toggler = jQuery(toggler);
-		jQuery(this.main).prepend(toggler);
+		this.main.prepend(toggler);
 		this.toggler.bind('click', function(ev) {
 			scopeFix.toggle();
 		});
