@@ -59,11 +59,11 @@
 #navbar-select ol { margin: 0; padding: 0; }
 #navbar-select li { list-style-type: none; }
 #navbar-select li ol li { margin-left: 1.5em; }
-#navbar-select .nav-page { margin: 0 0 0.5em 0; padding: 0.25em 0.5em; background: #cedeeb; }
+#navbar-select .nav-page { position: relative; margin: 0 0 0.5em 0; padding: 0.25em 0.5em; background: #cedeeb; }
 #navbar-select .nav-page a { text-decoration: none; }
 #navbar-select.js .nav-page { padding-left: 2.25em; }
 #navbar-select .nav-page label { display: inline; margin-right: 1em; }
-#navbar-select .nav-page input { display: block; float: right; margin: 0.25em 0; }
+#navbar-select .nav-page input { position: absolute; top: 0.39em; right: 0.5em; }
 
 /**
  * Checkboxes and radio buttons
