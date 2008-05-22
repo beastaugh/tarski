@@ -298,7 +298,7 @@ function tarski_navbar($return = false) {
 					$page->ID . '-' . $page->post_name,
 					$page_status,
 					get_permalink($page->ID),
-					htmlentities2($page->post_title)
+					htmlspecialchars($page->post_title)
 				);
 			}
 		}
