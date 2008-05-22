@@ -50,6 +50,22 @@
 #tarski-headers label img { background: #fff; margin: 5px; font-weight: bold; }
 
 /**
+ * Navbar selection node tree
+ * 
+ * The navbar selection tool is an ordered list of pages, whose list elements
+ * may also contain child lists of sub-pages.
+ */
+#navbar-select { margin-bottom: 1em; padding: 0; }
+#navbar-select ol { margin: 0; padding: 0; }
+#navbar-select li { list-style-type: none; }
+#navbar-select li ol li { margin-left: 1.5em; }
+#navbar-select .nav-page { margin: 0 0 0.5em 0; padding: 0.25em 0.5em; background: #cedeeb; }
+#navbar-select .nav-page a { text-decoration: none; }
+#navbar-select.js .nav-page { padding-left: 2.25em; }
+#navbar-select .nav-page label { display: inline; margin-right: 1em; }
+#navbar-select .nav-page input { display: block; float: right; margin: 0.25em 0; }
+
+/**
  * Checkboxes and radio buttons
  * 
  * The Tarski options page uses JavaScript to allow the styling of input

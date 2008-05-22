@@ -69,23 +69,19 @@
 	<div class="primary"><div class="section">
 		<h3><?php _e('Navigation Display','tarski'); ?></h3>
 		<?php
+		
 		$pages = &get_pages('sort_column=post_parent,menu_order');
 		$nav_pages = explode(',', get_tarski_option('nav_pages'));
-			
+		
 		if($pages) {
 			echo '<p>'. __('Pages selected here will display in your navbar.','tarski'). "</p>\n";
-			foreach($pages as $page) {
-				echo '<label for="opt-pages-'. $page->ID. '"><input type="checkbox" id="opt-pages-'. $page->ID. '" name="nav_pages[]" value="'. $page->ID. '"';
-				if(in_array($page->ID, $nav_pages)) {
-					echo ' checked="checked"';
-				}
-				echo " />\n";
-				echo $page->post_title. '&nbsp;<a title="'. __('View this page','tarski'). '" href="'. get_permalink($page->ID). '">&#8599;</a></label>'."\n";
-			}
-			echo '<p>' . __('To change the order in which they appear, edit the &#8216;Page Order&#8217; value on each page.','tarski') . "</p>\n";
+			echo tarski_navbar_select($pages, $nav_pages);
+			echo '<p class="tip">' . __('To change the order in which they appear, edit the &#8216;Page Order&#8217; value on each page.','tarski') . "</p>\n";
 		} else {
 			echo '<p>' . __('There are no pages to select navbar items from.','tarski') . "</p>\n";
-		} ?>
+		}
+		
+		?>
 		
 		<h3><?php _e('Navigation Options','tarski'); ?></h3>
 		

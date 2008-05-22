@@ -429,4 +429,20 @@ function tarski_resave_show_authors() {
 	}
 }
 
+/**
+ * tarski_navbar_select() - Generates a list of checkboxes for the site's pages.
+ * 
+ * Walks the tree of pages and generates nested ordered lists of pages, with
+ * corresponding checkboxes to allow the selection of pages for the navbar.
+ * @since 2.2
+ * @param array $pages
+ * @param array $selected
+ */
+function tarski_navbar_select($pages, $selected) {
+	if ( !empty($pages) ) {
+		$walker = new WalkerPageSelect($selected);
+		return "<ol id=\"navbar-select\">\n" . $walker->walk($pages, 0, 0, array()) . "\n</ol>\n\n";
+	}
+}
+
 ?>
