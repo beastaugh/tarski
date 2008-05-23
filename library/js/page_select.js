@@ -41,6 +41,5 @@ jQuery(document).ready(function() {
 		list = new CollapsibleList(jQuery(this).parent());
 		list.collapse();
 		list.addToggle(toggler);
-		console.log(list.toggler);
 	});
 });
