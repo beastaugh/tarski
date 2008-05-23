@@ -109,6 +109,7 @@ add_filter('tarski_sidebar', 'hide_sidebar_for_archives');
 add_action('th_sidebar', 'tarski_sidebar', 10);
 
 // Comments
+add_filter('avatar_defaults', 'tarski_default_avatar');
 add_filter('get_comment_author', 'tidy_openid_names');
 add_filter('get_avatar', 'tidy_avatars', 10, 4);
 

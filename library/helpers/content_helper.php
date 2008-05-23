@@ -215,7 +215,10 @@ function tidy_avatars($avatar, $id_or_email, $size, $default) {
 	$url = get_comment_author_url();
 	$author_alt = sprintf( __('%s&#8217;s avatar'), get_comment_author() );
 	$avatar = preg_replace("/height='[\d]+' width='[\d]+'/", '', $avatar);
-	$avatar = preg_replace("/'/", '"', $avatar);
+	
+	if ( !is_admin() )
+		$avatar = preg_replace("/'/", '"', $avatar);
+	
 	$avatar = preg_replace('/alt=""/', "alt=\"$author_alt\"", $avatar);
 	
 	return $avatar;
@@ -229,7 +232,7 @@ function tidy_avatars($avatar, $id_or_email, $size, $default) {
  * @return string
  */
 function tarski_avatar() {
-	$avatar = get_avatar(get_comment_author_email(), '50', apply_filters('tarski_avatar', get_bloginfo('template_directory') . '/images/avatar.png'));
+	$avatar = get_avatar(get_comment_author_email(), '50');
 	$url = get_comment_author_url();
 	
 	if ( empty($url) || preg_match('/^\s*http:\/\/\s*$/', $url) ) {
@@ -237,6 +240,19 @@ function tarski_avatar() {
 	} else {
 		return "<a class=\"avatar-link\" href=\"$url\" rel=\"external nofollow\">$avatar</a>";
 	}
+}
+
+/**
+ * tarski_default_avatar() - Make Tarski avatar selectable.
+ * 
+ * Adds the Tarski avatar to the Discussion options page, allowing it to be selected
+ * but also allowing users to choose other avatars.
+ * @return string
+ */
+function tarski_default_avatar($avatar_defaults) {
+	$tarski_avatar = get_bloginfo('template_directory') . '/images/avatar.png';
+	$avatar_defaults[$tarski_avatar] = 'Tarski';
+	return $avatar_defaults;
 }
 
 /**
