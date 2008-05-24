@@ -439,11 +439,17 @@ function tarski_resave_show_authors() {
  * @param array $pages
  * @param array $selected
  */
-function tarski_navbar_select($pages, $selected) {
-	if ( !empty($pages) ) {
-		$walker = new WalkerPageSelect($selected);
-		return "<ol id=\"navbar-select\">\n" . $walker->walk($pages, 0, 0, array()) . "\n</ol>\n\n";
+function tarski_navbar_select($pages) {
+	$nav_pages = explode(',', get_tarski_option('nav_pages'));
+	$collapsed_pages = explode(',', get_tarski_option('collapsed_pages'));
+	$walker = new WalkerPageSelect($nav_pages, $collapsed_pages);
+	$return = '';
+	
+	if ( !empty($pages) ) {	
+		$return = "<ol id=\"navbar-select\">\n" . $walker->walk($pages, 0, 0, array()) . "\n</ol>\n\n";
 	}
+	
+	return $return;
 }
 
 ?>

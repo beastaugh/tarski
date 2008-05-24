@@ -22,6 +22,7 @@ class Options {
 	var $display_title;
 	var $display_tagline;
 	var $nav_pages;
+	var $collapsed_pages;
 	var $home_link_name;
 	var $nav_extlinkcat;
 	var $style;
@@ -46,6 +47,7 @@ class Options {
 		$this->display_title = true;
 		$this->display_tagline = true;
 		$this->nav_pages = false;
+		$this->collapsed_pages = '';
 		$this->home_link_name = __('Home','tarski');
 		$this->nav_extlinkcat = 0;
 		$this->style = false;
@@ -105,6 +107,13 @@ class Options {
 				$this->nav_pages = $nav_pages;
 			} else {
 				$this->nav_pages = false;
+			}
+			
+			$collapsed_pages = $_POST['collapsed_pages'];
+			if(isset($collapsed_pages)) {
+				$this->collapsed_pages = $collapsed_pages;
+			} else {
+				$this->collapsed_pages = '';
 			}
 			
 			$stylefile = $_POST['alternate_style'];

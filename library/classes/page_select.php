@@ -14,6 +14,7 @@ class WalkerPageSelect extends Walker {
 	var $tree_type = 'page';
 	var $db_fields = array('parent' => 'post_parent', 'id' => 'ID');
 	var $selected = array();
+	var $collapsed = array();
 	
 	/**
 	 * WalkerPageSelect() - Constructor for the class.
@@ -21,8 +22,9 @@ class WalkerPageSelect extends Walker {
 	 * Constructor to allow a list of selected pages to be passed in.
 	 * @since 2.2
 	 */
-	function WalkerPageSelect($selected = array()) {
+	function WalkerPageSelect($selected, $collapsed) {
 		$this->selected = $selected;
+		$this->collapsed = $collapsed;
 	}
 	
 	/**
@@ -68,7 +70,12 @@ class WalkerPageSelect extends Walker {
 		else
 			$checked = '';
 		
-		$output .= $indent. '<li>';
+		if ( in_array($page->ID, $this->collapsed) )
+			$coll_class = ' class="collapsed"';
+		else
+			$coll_class = '';
+		
+		$output .= $indent. '<li id="page-list-'. $page->ID. '"'. $coll_class. '>';
 		$output .= '<p class="nav-page">'.
 			'<label for="opt-pages-'. $page->ID. '">'. apply_filters('the_title', $page->post_title). '</label> '.
 			'<a title="'. __('View this page','tarski'). '" href="'. get_page_link($page->ID). '">&#8599;</a> '.

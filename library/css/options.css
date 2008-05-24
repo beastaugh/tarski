@@ -65,8 +65,8 @@
 #navbar-select .nav-page label { display: inline; margin-right: 1em; }
 #navbar-select .nav-page input { position: absolute; top: 0.39em; right: 0.5em; }
 #navbar-select .nav-page .toggle { display: block; position: absolute; top: 0; left: 0; width: 2em; height: 100%; background: url('../../images/page_select.png') no-repeat 0.5em -194px; text-indent: -9999em; cursor: pointer; }
-#navbar-select .collapsed .nav-page .toggle { background-position: 0.5em -94px; }
-#navbar-select li.collapsed ol { display: none; }
+#navbar-select .collapsed > .nav-page > .toggle { background-position: 0.5em -94px; }
+#navbar-select.js li.collapsed ol { display: none; }
 
 /**
  * Checkboxes and radio buttons
