@@ -6,7 +6,8 @@
   
 #### New features
 
-  * Navbar selector now displays sub-pages as such (599)
+  * Navbar selector: sub-page lists are collapsible (r606)
+  * Navbar selector: sub-pages are listed as such (599)
 
 ### Version 2.1.1 [&sect;][37]
 
