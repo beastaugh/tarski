@@ -32,7 +32,7 @@
 		<p id="tarski-info">
 			<a href="http://tarskitheme.com/help/"><?php _e('Tarski documentation','tarski'); ?></a>
 			| <a href="http://tarskitheme.com/credits/"><?php _e('Credits &amp; Thanks','tarski'); ?></a>
-			| <a href="http://tarskitheme.com/forum/"><?php _e('Forum'); ?></a>
+			| <a href="http://tarskitheme.com/forum/"><?php _e('Forum','tarski'); ?></a>
 		</p>
 	</div>
 		
