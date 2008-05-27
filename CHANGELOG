@@ -1,13 +1,21 @@
 # Changelog
 
-### Version 2.2 [&sect;][38]
+### Version 2.2 [&sect;][39]
 
-  [38]: http://tarskitheme.com/
+  [39]: http://tarskitheme.com/
   
 #### New features
 
   * Navbar selector: sub-page lists are collapsible (r606)
   * Navbar selector: sub-pages are listed as such (599)
+
+### Version 2.1.2 [&sect;][38]
+
+  [38]: http://tarskitheme.com/2008/05/20/21-release/
+
+#### Bug fixes
+
+  * Add missing textdomain to forum link (r614)
 
 ### Version 2.1.1 [&sect;][37]
 
