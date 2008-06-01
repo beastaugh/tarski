@@ -76,13 +76,17 @@ class Version {
 		} else {
 			if(function_exists('curl_init')) { // If libcurl is installed, use that
 				$ch = curl_init(TARSKIVERSIONFILE);
-				curl_setopt($ch, CURLOPT_FAILONERROR, 1);
-				curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-				curl_setopt($ch, CURLOPT_HEADER, 0);
+				curl_setopt_array($ch, array(
+					CURLOPT_FAILONERROR => 1,
+					CURLOPT_RETURNTRANSFER => 1,
+					CURLOPT_HEADER => 0,
+					CURLOPT_CONNECTTIMEOUT => 2
+				));
 				$atomdata = curl_exec($ch);
 				curl_close($ch);
 			} elseif(ini_get('allow_url_fopen')) { // Otherwise try file_get_contents()
-				$atomdata = file_get_contents('http://tarskitheme.com/version.atom');
+				$ctx = stream_context_create(array('http' => array('timeout' => 2.0)));
+				$atomdata = @file_get_contents(TARSKIVERSIONFILE, false, $ctx);
 			}
 
 			if(!empty($atomdata) && cache_is_writable("version.atom")) {
@@ -143,13 +147,14 @@ class Version {
 		
 		$current_version = version_to_integer($this->current);
 		$latest_version = version_to_integer($this->latest);
-
-		if($current_version === $latest_version) {
-			$version_status = 'current';
-		} elseif($current_version < $latest_version) {
-			$version_status = 'older';
-		} elseif($current_version > $latest_version) {
-				$version_status = 'newer';
+		
+		if($latest_version) {
+			if($current_version === $latest_version)
+				$version_status = 'current';
+			elseif($current_version < $latest_version)
+				$version_status = 'older';
+			elseif($current_version > $latest_version)
+					$version_status = 'newer';
 		} else {
 			$version_status = 'no_connection';
 		}
