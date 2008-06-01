@@ -15,6 +15,7 @@
 
 #### Bug fixes
 
+  * Fix version check timeout issues (r620)
   * Add missing textdomain to forum link (r614)
 
 ### Version 2.1.1 [&sect;][37]
