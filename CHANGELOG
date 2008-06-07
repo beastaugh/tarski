@@ -1,6 +1,6 @@
 # Changelog
 
-### Version 2.2 [&sect;][39]
+### Version 2.2 [&sect;][40]
 
   [39]: http://tarskitheme.com/
   
@@ -8,6 +8,14 @@
 
   * Navbar selector: sub-page lists are collapsible (r606)
   * Navbar selector: sub-pages are listed as such (599)
+
+### Version 2.1.3 [&sect;][39]
+
+  [38]: http://tarskitheme.com/2008/05/20/21-release/
+
+#### Bug fixes
+
+  * Revert to using `curl_setopt()` for <abbr title="PHP: Hypertext Preprocessor">PHP</abbr> 4 compatibility (r629)
 
 ### Version 2.1.2 [&sect;][38]
 

@@ -76,13 +76,11 @@ class Version {
 		} else {
 			if(function_exists('curl_init')) { // If libcurl is installed, use that
 				$ch = curl_init(TARSKIVERSIONFILE);
-				curl_setopt_array($ch, array(
-					CURLOPT_FAILONERROR => 1,
-					CURLOPT_RETURNTRANSFER => 1,
-					CURLOPT_HEADER => 0,
-					CURLOPT_CONNECTTIMEOUT => 1,
-					CURLOPT_TIMEOUT => 1
-				));
+                curl_setopt($ch, CURLOPT_FAILONERROR, 1);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+                curl_setopt($ch, CURLOPT_HEADER, 0);
+                curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 1);
+                curl_setopt($ch, CURLOPT_TIMEOUT, 1);
 				$atomdata = curl_exec($ch);
 				curl_close($ch);
 			} elseif(ini_get('allow_url_fopen')) { // Otherwise try file_get_contents()
