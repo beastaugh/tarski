@@ -80,12 +80,13 @@ class Version {
 					CURLOPT_FAILONERROR => 1,
 					CURLOPT_RETURNTRANSFER => 1,
 					CURLOPT_HEADER => 0,
-					CURLOPT_CONNECTTIMEOUT => 2
+					CURLOPT_CONNECTTIMEOUT => 1,
+					CURLOPT_TIMEOUT => 1
 				));
 				$atomdata = curl_exec($ch);
 				curl_close($ch);
 			} elseif(ini_get('allow_url_fopen')) { // Otherwise try file_get_contents()
-				$ctx = stream_context_create(array('http' => array('timeout' => 2.0)));
+				$ctx = stream_context_create(array('http' => array('timeout' => 1.0)));
 				$atomdata = @file_get_contents(TARSKIVERSIONFILE, false, $ctx);
 			}
 
