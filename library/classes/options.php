@@ -67,7 +67,7 @@ class Options {
 	 * @since 2.0
 	 */
 	function tarski_options_get() {
-		$saved_options = unserialize(get_option('tarski_options'));
+		$saved_options = maybe_unserialize(get_option('tarski_options'));
 		
 		if(!empty($saved_options) && is_object($saved_options)) {
 			foreach($saved_options as $name => $value) {
