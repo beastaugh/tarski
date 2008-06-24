@@ -55,12 +55,12 @@ register_sidebar( // Footer sidebar widgets
 
 // Tarski widgets
 register_sidebar_widget(__('Recent Articles','tarski'), 'tarski_recent_entries');
-register_sidebar_widget(__('Links'), 'tarski_widget_links');
 register_sidebar_widget(__('Search'), 'tarski_widget_search');
 
 // Widget filters
 add_filter('widget_text', 'tarski_content_massage');
 add_filter('widget_text', 'tarski_widget_text_wrapper');
+add_filter('widget_links_args', 'tarski_widget_links_args');
 
 // Generate messages
 add_filter('tarski_messages', 'tarski_update_notifier');

@@ -58,58 +58,15 @@ function tarski_widget_text_wrapper($text) {
 }
 
 /**
- * tarski_sidebar_links() - Returns an array for use with wp_list_bookmarks().
+ * tarski_widget_links_args() - Removes navbar links from the links widget.
  * 
- * If a link category has been selected as external links in the navbar,
- * it will be excluded from this array. Because wp_list_bookmarks() has no way
- * to exclude categories, this function is inefficient. This core patch
- * {@link http://trac.wordpress.org/ticket/6808} would allow a substantially
- * simpler function with one less database call.
- * @link http://trac.wordpress.org/ticket/6808
- * @since 2.0
- * @return array $options
- */
-function tarski_sidebar_links() {
-	$link_cat_args = array(
-		'orderby' => 'term_id',
-		'exclude' => get_tarski_option('nav_extlinkcat'),
-		'hierarchical'=> 0
-	);
-	
-	$link_categories = &get_terms('link_category', $link_cat_args);
-	
-	foreach($link_categories as $link_cat)
-		$link_cats[] = $link_cat->term_id;
-	
-	$link_cats = implode(',', $link_cats);
-	
-	$options = array(
-		'category' => $link_cats,
-		'category_before' => '',
-		'category_after' => '',
-		'title_before' => '<h3>',
-		'title_after' => '</h3>',
-		'show_images' => 0,
-		'show_description' => 0,
-	);
-	
-	$options = apply_filters('tarski_sidebar_links', $options);
-	return $options;
-}
-
-/**
- * tarski_widget_links() - Tarski links widget.
- *
- * Doesn't display links from the category being used in the navbar,
- * if one is set.
- * @since 2.1
- * @see wp_widget_links()
+ * @since 2.2
  * @param array $args
- * @return string
+ * @return array
  */
-function tarski_widget_links($args) {
-	extract($args, EXTR_SKIP);
-	wp_list_bookmarks(array_merge(tarski_sidebar_links(), array('category_before' => $before_widget, 'category_after' => $after_widget)));
+function tarski_widget_links_args($args) {
+	$args['exclude_category'] = get_tarski_option('nav_extlinkcat');
+	return $args;
 }
 
 /**
