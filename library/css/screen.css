@@ -12,7 +12,7 @@ body { min-width: 760px; }
 body .primary { width: 500px; float: right; }
 	body.janus .primary { float: left; }
 body .primary-span { padding-left: 220px; clear: both; }
-	body.janus .primary-span { padding-right: 220px; }
+	body.janus .primary-span { padding-left: 0; padding-right: 220px; }
 
 body .secondary { width: 200px; float: left; }
 	body.janus .secondary { float: right; }
