@@ -278,7 +278,7 @@ body .widget { margin: 0 0 2em 0; }
 	body .widget_calendar {}
 		body .widget_calendar table { width: 100%; }
 		body .widget_calendar caption { margin: 0.25em 0 0.2em 0; border-bottom: 1px solid #ccc; padding: 0 0 0.5em 0; font-family: 'Times New Roman', Times, Georgia, serif; font-size:1.5em; text-align: center; }
-		body .widget_calendar th, body.widget_calendar td { margin: 1px; padding: 5px; text-align: center; }
+		body .widget_calendar th, body .widget_calendar td { margin: 1px; padding: 5px; text-align: center; }
 		body .widget_calendar th { background: #fafcfc; font-weight: bold; }
 		body .widget_calendar td { background: #edf1f2; }
 		body .widget_calendar tbody td a { display:block; margin: -5px; padding: 5px; color: #fff; background: #8bb6cc; }
