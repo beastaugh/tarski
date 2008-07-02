@@ -58,7 +58,7 @@ class Options {
 		$this->tags_everywhere = false;
 		$this->show_categories = true;
 		$this->show_authors = tarski_should_show_authors();
-		$this->use_pages = false;
+		$this->use_pages = true;
 	}
 	
 	/**
