@@ -16,6 +16,17 @@ function is_wp_front_page() {
 }
 
 /**
+ * only_paginate_home() - Turns off paging for everything except feeds and the home page.
+ * 
+ * @since 2.2
+ * @param object $query
+ */
+function only_paginate_home($query) {
+	if ( !is_home() && !is_feed() && '' === $query->get('nopaging') )
+		$query->set('nopaging', 1);
+}
+
+/**
  * tarski_doctitle() - Returns the document title.
  * 
  * The order (site name first or last) can be set on the Tarski Options page.

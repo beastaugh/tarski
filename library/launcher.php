@@ -97,6 +97,8 @@ add_action('th_navbar', 'tarski_navbar');
 add_action('th_navbar', 'tarski_feedlink');
 
 // Posts
+add_action('parse_query', 'only_paginate_home');
+
 add_action('th_postend', 'add_post_tags', 10);
 add_action('th_postend', 'tarski_link_pages', 11);
 
