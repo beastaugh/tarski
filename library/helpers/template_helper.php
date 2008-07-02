@@ -22,8 +22,11 @@ function is_wp_front_page() {
  * @param object $query
  */
 function only_paginate_home($query) {
-	if ( !is_home() && !is_feed() && '' === $query->get('nopaging') )
-		$query->set('nopaging', 1);
+	if ( !get_tarski_option('use_pages') ) {
+		if ( !is_home() && !is_feed() && '' === $query->get('nopaging') ) {
+			$query->set('nopaging', 1);
+		}
+	}
 }
 
 /**
