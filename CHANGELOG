@@ -16,6 +16,7 @@
   
 #### Bug fixes
 
+  * Correct overzealous calendar widget <abbr title="Cascading Stylesheets">CSS</abbr> (r648)
   * Fix Archives template layout for Janus style (r643)
   * Smarter unserialisation for Tarski options (r641)
 
