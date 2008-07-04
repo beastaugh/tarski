@@ -10,8 +10,9 @@
   
 #### Tweaks
 
+  * Remove defunct Tarski search widget (r656)
   * Paginate index pages by default (r652)
-  * Remove pagination from non-home pages more elegantly and efficiently (r651)
+  * Remove pagination from index pages more elegantly and efficiently (r651)
   * Replace Tarski links widget with a filter (r642)
   
 #### Bug fixes
