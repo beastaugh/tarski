@@ -43,7 +43,6 @@ function implode_proper($array, $glue = ', ', $last_connective = 'and') {
 	else
 		$output = $last_value;
 	
-	$output = apply_filters('implode_proper', $output);
 	return $output;
 }
 
