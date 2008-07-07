@@ -58,6 +58,8 @@ class WalkerPageSelect extends Walker {
 	 * starting a particular element of the tree by opening a list item
 	 * and adding its content.
 	 * @since 2.2
+	 * @hook filter the_title
+	 * Native WordPress filter on post titles.
 	 */
 	function start_el(&$output, $page, $depth) {
 		if ( $depth )

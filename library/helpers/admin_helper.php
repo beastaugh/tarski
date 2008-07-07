@@ -311,6 +311,8 @@ function tarski_upgrade() {
  * tarski_messages() - Adds messages about Tarski to the WordPress admin panel.
  * 
  * @since 2.1
+ * @hook filter tarski_messages
+ * Filter the messages Tarski prints to the WordPress admin panel.
  */
 function tarski_messages() {
 	$messages = apply_filters('tarski_messages', array());
@@ -410,6 +412,8 @@ function tarski_count_authors() {
  * @see tarski_count_authors()
  * @global object $wpdb
  * @return boolean
+ * @hook filter tarski_show_authors
+ * Allows other components to decide whether or not Tarski should show authors.
  */
 function tarski_should_show_authors() {
 	$show_authors = tarski_count_authors() > 1;
