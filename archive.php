@@ -43,10 +43,10 @@
 			<?php } elseif(is_day()) { // Daily archive header ?>
 
 				<div class="meta">
-					<h1 class="title"><?php echo tarski_date(); ?></h1>
+					<h1 class="title"><?php the_time(get_option('date_format')); ?></h1>
 				</div>
 				<div class="content">
-					<p><?php printf( __('You are currently browsing the daily archive for %s.','tarski'), '<strong>' . tarski_date() . '</strong>' ); ?></p>
+					<p><?php printf( __('You are currently browsing the daily archive for %s.','tarski'), '<strong>' . get_the_time(get_option('date_format')) . '</strong>' ); ?></p>
 				</div>
 
 			<?php } elseif(is_month()) { // Monthly archive header ?>

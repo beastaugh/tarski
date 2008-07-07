@@ -98,22 +98,6 @@ function tarski_posts_nav_link() {
 }
 
 /**
- * tarski_date() - Tweaked WordPress date function that shows up on every post.
- * 
- * The WP function the_date only shows up on the first post
- * of that day. This one displays on every post, regardless
- * of how many posts are made that day.
- * @since 1.2.2
- * @global object $post
- * @return string
- */
-function tarski_date() {
-	global $post;
-	$date = mysql2date(get_option('date_format'), $post->post_date);
-	return apply_filters('tarski_date', $date);
-}
-
-/**
  * tarski_post_categories_link() - Outputs post categories
  * 
  * Categories list is nicely wrapped for potential DOM interactions

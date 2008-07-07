@@ -147,7 +147,7 @@ class Asset {
 				$source = 'author';
 			} elseif(is_date()) {
 				if(is_day()) {
-					$title = sprintf( __('Daily archive feed for %s','tarski'), tarski_date());
+					$title = sprintf( __('Daily archive feed for %s','tarski'), get_the_time(get_option('date_format')));
 					$link = get_day_link(get_the_time('Y'), get_the_time('m'), get_the_time('d'));
 					$source = 'day';
 				} elseif(is_month()) {

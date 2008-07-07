@@ -113,7 +113,7 @@ function tarski_recent_entries($args) {
 		<li>
 			<h4 class="recent-title"><a title="<?php _e('View this post', 'tarski'); ?>" href="<?php the_permalink(); ?>"><?php the_title() ?></a></h4>
 			<p class="recent-metadata"><?php
-			echo tarski_date();
+			echo the_time(get_option('date_format'));
 			if(!get_tarski_option('hide_categories')) {
 				_e(' in ', 'tarski'); the_category(', ');
 			} ?></p>

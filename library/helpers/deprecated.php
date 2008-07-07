@@ -10,6 +10,29 @@
  */
 
 /**
+ * tarski_date() - Tweaked WordPress date function that shows up on every post.
+ * 
+ * The WP function the_date only shows up on the first post
+ * of that day. This one displays on every post, regardless
+ * of how many posts are made that day.
+ * @since 1.2.2
+ * @deprecated 2.2
+ * @see the_time()
+ * @global object $post
+ * @return string
+ * @hook filter tarski_date
+ * Filter for the date formatting that Tarski uses to ensure that dates are
+ * displayed everywhere using the user's date preferences.
+ */
+function tarski_date() {
+	_deprecated_function(__FUNCTION__, '2.2', get_the_time(get_option('date_format')));
+	
+	global $post;
+	$date = mysql2date(get_option('date_format'), $post->post_date);
+	return apply_filters('tarski_date', $date);
+}
+
+/**
  * add_robots_meta() - Adds robots meta element if blog is public.
  * 
  * WordPress adds a meta element denying robots access if the site is set

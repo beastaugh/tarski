@@ -10,6 +10,7 @@
   
 #### Tweaks
 
+  * Deprecate `tarski_date` function in favour of a <abbr title="WordPress">WP</abbr> core function (r662)
   * Remove defunct Tarski search widget (r656)
   * Paginate index pages by default (r652)
   * Remove pagination from index pages more elegantly and efficiently (r651)
