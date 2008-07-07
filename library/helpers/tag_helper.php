@@ -55,6 +55,9 @@ function implode_proper($array, $glue = ', ', $last_connective = 'and') {
  * @global $wpdb object
  * @param $tag_wrapper string
  * @return string
+ * @hook filter multiple_tag_titles
+ * Filter the value returned when generating the title of multiple (union or
+ * intersection) tag archive page.
  */
 function multiple_tag_titles($tag_wrapper = '') {
 	global $wpdb;
