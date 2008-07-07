@@ -125,7 +125,7 @@ function multiple_tag_titles($tag_wrapper = '') {
  * @return string
  */
 function add_post_tags() {
-	if(is_single() || (get_tarski_option('tags_everywhere')) && !in_category(get_tarski_option('asidescategory'))) {
+	if (is_single() || (get_tarski_option('tags_everywhere') && !in_category(get_tarski_option('asidescategory')))) {
 		the_tags('<p class="tagdata"><strong>'. __('Tags','tarski'). ':</strong> ', ', ', '</p>'."\n");
 	}
 }
