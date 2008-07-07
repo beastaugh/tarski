@@ -10,7 +10,10 @@
   
 #### Tweaks
 
-  * Deprecate `tarski_date` function in favour of a <abbr title="WordPress">WP</abbr> core function (r662)
+  * Deprecated `tarski_excerpt` function (r664)
+  * Deprecated `tarski_date` function in favour of a <abbr title="WordPress">WP</abbr> core function (r662)
+  * Removed filter from `implode_proper` function (r660)
+  * Remove functions deprecated two major releases ago (r659)
   * Remove defunct Tarski search widget (r656)
   * Paginate index pages by default (r652)
   * Remove pagination from index pages more elegantly and efficiently (r651)

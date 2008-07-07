@@ -10,6 +10,66 @@
  */
 
 /**
+ * tarski_excerpt() - Excerpts a la Tarski.
+ * 
+ * Code shamelessly borrowed from Kaf Oseo's 'the_excerpt Reloaded' plugin.
+ * @link http://guff.szub.net/2005/02/26/the-excerpt-reloaded/
+ * @since 1.2.1
+ * @deprecated 2.2
+ * @param $return boolean
+ * @param string $excerpt_length
+ * @return string
+ */
+function tarski_excerpt($return = false, $excerpt_length = 35) {
+	_deprecated_function(__FUNCTION__, '2.2', the_excerpt());
+	
+	global $post;
+
+	if(!empty($post->post_password)) { // if there's a password
+		if ($_COOKIE['wp-postpass_' . COOKIEHASH] != $post->post_password) { // and it doesn't match cookie
+			$output = get_the_password_form();
+		}
+		if($return) {
+			return $output;
+		} else {
+			echo $output;
+			return;
+		}
+	}
+
+	if(!($text = $post->post_excerpt))
+		$text = $post->post_content;
+
+	if($excerpt_length < 0) {
+		$output = $text;
+	} else {
+		str_replace('<!--more-->', '', $text);
+		$text = explode(' ', $text);
+		if(count($text) > $excerpt_length) {
+			$l = $excerpt_length;
+			$ellipsis = '&hellip;';
+		} else {
+			$l = count($text);
+			$ellipsis = false;
+		}
+		for ($i = 0; $i < $l; $i++)
+			$output .= $text[$i] . ' ';
+	}
+
+	$output = rtrim($output, " \n\t\r\0\x0B");
+	$output = strip_tags($output);
+	$output .= $ellipsis;
+	$output = apply_filters('get_the_excerpt', $output);
+	$output = apply_filters('the_excerpt', $output);
+	$output = apply_filters('tarski_excerpt', $output);
+
+	if($return)
+		return $output;
+	else
+		echo $output;
+}
+
+/**
  * tarski_date() - Tweaked WordPress date function that shows up on every post.
  * 
  * The WP function the_date only shows up on the first post

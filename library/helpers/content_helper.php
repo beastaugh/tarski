@@ -155,6 +155,8 @@ function tarski_asides_permalink_text() {
  * Makes the comment date and time output more translateable.
  * @since 2.0
  * @return string
+ * @hook filter tarski_comment_datetime
+ * Filters the date and time printed with a comment.
  */
 function tarski_comment_datetime() {
 	$datetime = sprintf(
@@ -252,6 +254,10 @@ function tarski_default_avatar($avatar_defaults) {
  * @since 2.0
  * @global object $comment
  * @return string
+ * @hook filter get_comment_author_link
+ * Native WordPress filter on comment author links.
+ * @hook filter tarski_comment_author_link
+ * Tarski-specific filter on comment author links.
  */
 function tarski_comment_author_link() {
 	global $comment;
@@ -274,63 +280,6 @@ function tarski_comment_author_link() {
 	$return =  apply_filters('get_comment_author_link', $return);
 	$return = apply_filters('tarski_comment_author_link', $return);
 	return $return;
-}
-
-/**
- * tarski_excerpt() - Excerpts a la Tarski.
- * 
- * Code shamelessly borrowed from Kaf Oseo's 'the_excerpt Reloaded' plugin.
- * @link http://guff.szub.net/2005/02/26/the-excerpt-reloaded/
- * @since 1.2.1
- * @param $return boolean
- * @param string $excerpt_length
- * @return string
- */
-function tarski_excerpt($return = false, $excerpt_length = 35) {
-	global $post;
-
-	if(!empty($post->post_password)) { // if there's a password
-		if ($_COOKIE['wp-postpass_' . COOKIEHASH] != $post->post_password) { // and it doesn't match cookie
-			$output = get_the_password_form();
-		}
-		if($return) {
-			return $output;
-		} else {
-			echo $output;
-			return;
-		}
-	}
-	
-	if(!($text = $post->post_excerpt))
-		$text = $post->post_content;
-
-	if($excerpt_length < 0) {
-		$output = $text;
-	} else {
-		str_replace('<!--more-->', '', $text);
-		$text = explode(' ', $text);
-		if(count($text) > $excerpt_length) {
-			$l = $excerpt_length;
-			$ellipsis = '&hellip;';
-		} else {
-			$l = count($text);
-			$ellipsis = false;
-		}
-		for ($i = 0; $i < $l; $i++)
-			$output .= $text[$i] . ' ';
-	}
-
-	$output = rtrim($output, " \n\t\r\0\x0B");
-	$output = strip_tags($output);
-	$output .= $ellipsis;
-	$output = apply_filters('get_the_excerpt', $output);
-	$output = apply_filters('the_excerpt', $output);
-	$output = apply_filters('tarski_excerpt', $output);
-	
-	if($return)
-		return $output;
-	else
-		echo $output;
 }
 
 /**

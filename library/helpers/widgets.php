@@ -117,7 +117,7 @@ function tarski_recent_entries($args) {
 			if(!get_tarski_option('hide_categories')) {
 				_e(' in ', 'tarski'); the_category(', ');
 			} ?></p>
-			<div class="recent-excerpt content"><?php tarski_excerpt(); ?></div>
+			<div class="recent-excerpt content"><?php the_excerpt(); ?></div>
 		</li>
 		<?php endwhile; ?>
 	</ul>
