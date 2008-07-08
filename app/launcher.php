@@ -61,24 +61,26 @@ add_filter('widget_text', 'tarski_content_massage');
 add_filter('widget_text', 'tarski_widget_text_wrapper');
 add_filter('widget_links_args', 'tarski_widget_links_args');
 
-// Generate messages
-add_filter('tarski_messages', 'tarski_update_notifier');
+if (is_admin()) {
+	// Generate messages
+	add_filter('tarski_messages', 'tarski_update_notifier');
 
-// Output messages on dashboard and options page
-add_action('admin_notices', 'tarski_messages');
+	// Output messages on dashboard and options page
+	add_action('admin_notices', 'tarski_messages');
 
-// Tarski Options page
-add_action('admin_head', 'tarski_admin_style');
-add_action('admin_print_scripts-design_page_tarski-options', 'tarski_inject_scripts');
-add_action('admin_head-design_page_tarski-options', 'tarski_inject_styles');
-add_action('admin_menu', 'tarski_addmenu');
+	// Tarski Options page
+	add_action('admin_head', 'tarski_admin_style');
+	add_action('admin_print_scripts-design_page_tarski-options', 'tarski_inject_scripts');
+	add_action('admin_head-design_page_tarski-options', 'tarski_inject_styles');
+	add_action('admin_menu', 'tarski_addmenu');
 
-// Options
-add_action('admin_head', 'tarski_resave_show_authors');
-add_action('save_post', 'flush_tarski_recent_entries');
-add_action('deleted_post', 'flush_tarski_recent_entries');
-add_action('switch_theme', 'flush_tarski_recent_entries');
-add_action('switch_theme', 'tarski_upgrade_and_flush_options');
+	// Options
+	add_action('admin_head', 'tarski_resave_show_authors');
+	add_action('save_post', 'flush_tarski_recent_entries');
+	add_action('deleted_post', 'flush_tarski_recent_entries');
+	add_action('switch_theme', 'flush_tarski_recent_entries');
+	add_action('switch_theme', 'tarski_upgrade_and_flush_options');
+}
 
 // Header
 add_action('wp_head', array('Asset', 'init'));
