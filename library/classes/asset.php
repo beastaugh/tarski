@@ -108,7 +108,7 @@ class Asset {
 	 */
 	function javascript() {
 		$scripts = array(
-			'tarski-js' => get_bloginfo('template_directory') . '/library/js/tarski.js'
+			'tarski-js' => get_bloginfo('template_directory') . '/app/js/tarski.js'
 		);
 
 		foreach($scripts as $name => $url) {

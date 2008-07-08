@@ -334,7 +334,7 @@ function tarski_inject_styles() {
  * @since 1.4
 */
 function tarski_inject_scripts() {
-	$js_dir = get_bloginfo('template_directory') . '/library/js';
+	$js_dir = get_bloginfo('template_directory') . '/app/js';
 	wp_enqueue_script('page_select', "$js_dir/page_select.js");
 	wp_enqueue_script('crir', "$js_dir/crir.js");
 }
