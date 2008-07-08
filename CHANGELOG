@@ -10,6 +10,7 @@
   
 #### Tweaks
 
+  * Added inline hooks documentation (r657, r658, r661, r665, r666, r667)
   * Deprecated `tarski_excerpt` function (r664)
   * Deprecated `tarski_date` function in favour of a <abbr title="WordPress">WP</abbr> core function (r662)
   * Removed filter from `implode_proper` function (r660)
