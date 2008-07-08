@@ -1,40 +1,6 @@
 <?php
 
 /**
- * check_input() - Checks input is of correct type
- * 
- * Always returns true when WP_DEBUG is true, to allow for easier debugging
- * in the development environment while handling erroneous input more
- * robustly in the production environment.
- * @see http://uk3.php.net/manual/en/function.gettype.php
- * @since 2.1
- * @param mixed $input
- * @param string $type
- * @param string $name
- * @return boolean
- *
- */
-function check_input($input, $type, $name = '') {
-	if ( WP_DEBUG === true )
-		return true;
-
-	if ( $type == 'object' && strlen($name) > 0 )
-		return is_a($input, $name);
-	else
-		return call_user_func("is_$type", $input);
-}
-
-/**
- * detectWPMU() - Detects whether WordPress Multi-User is in use.
- * 
- * @since 1.4
- * @return boolean
- */
-function detectWPMU() {
-	return function_exists('is_site_admin');
-}
-
-/**
  * detectWPMUadmin() - Detect whether the current user is a WPMU site administrator.
  * 
  * @since 2.0
@@ -118,23 +84,6 @@ function version_newer_than($version) {
 	if($version && $current) {
 		return (bool) ($current > $version);
 	}
-}
-
-/**
- * is_valid_tarski_style() - Checks whether a given file name is a valid Tarski stylesheet name.
- * 
- * It must be a valid CSS identifier, followed by the .css file extension,
- * and it cannot have a name that is already taken by Tarski's CSS namepsace.
- * @since 2.0
- * @param string $file
- * @return boolean
- */
-function is_valid_tarski_style($file) {
-	return (bool) (
-		!preg_match('/^\.+$/', $file)
-		&& preg_match('/^[A-Za-z][A-Za-z0-9\-]*.css$/', $file)
-		&& !preg_match('/^janus.css$|^centre.css$|^rtl.css$/', $file)
-	);
 }
 
 /**
@@ -454,6 +403,77 @@ function tarski_navbar_select($pages) {
 	}
 	
 	return $return;
+}
+
+/**
+ * tarski_update_notifier() - Performs version checks and outputs the update notifier.
+ * 
+ * Creates a new Version object, checks the latest and current
+ * versions, and lets the user know whether or not their version
+ * of Tarski needs updating. The way it displays varies slightly
+ * between the WordPress Dashboard and the Tarski Options page.
+ * @since 2.0
+ * @param string $location
+ * @return string
+ */
+function tarski_update_notifier($messages) {
+	global $plugin_page;
+	
+	if ( !is_array($messages) )
+		$messages = array();
+	
+	$version = new Version;
+	$version->current_version_number();
+	$svn_link = 'http://tarskitheme.com/help/updates/svn/';
+	
+	// Update checking only performed when remote files can be accessed
+	if ( can_get_remote() ) {
+		
+		// Only performs the update check when notification is enabled
+		if ( get_tarski_option('update_notification') ) {
+			$version->latest_version_number();
+			$version->latest_version_link();
+			$version->version_status();
+			
+			if ( $version->status == 'older' ) {
+				$messages[] = sprintf(
+					__('A new version of the Tarski theme, version %1$s %2$s. Your installed version is %3$s.','tarski'),
+					"<strong>$version->latest</strong>",
+					'<a href="' . $version->latest_link . '">' . __('is now available','tarski') . '</a>',
+					"<strong>$version->current</strong>"
+				);
+			} elseif ( $plugin_page == 'tarski-options' ) {
+				switch($version->status) {
+					case 'current':
+						$messages[] = sprintf(
+							__('Your version of Tarski (%s) is up to date.','tarski'),
+							"<strong>$version->current</strong>"
+						);
+					break;
+					case 'newer':
+						$messages[] = sprintf(
+							__('You appear to be running a development version of Tarski (%1$s). Please ensure you %2$s.','tarski'),
+							"<strong>$version->current</strong>",
+							"<a href=\"$svn_link\">" . __('stay updated','tarski') . '</a>'
+						);
+					break;
+					case 'no_connection':
+						$messages[] = sprintf(
+							__('No connection to update server. Your installed version is %s.','tarski'),
+							"<strong>$version->current</strong>"
+						);
+					break;
+				}
+			}
+		} elseif ( $plugin_page == 'tarski-options' ) {
+			$messages[] = sprintf(
+				__('Update notification for Tarski is disabled. Your installed version is %s.','tarski'),
+				"<strong>$version->current</strong>"
+			);
+		}
+	}
+	
+	return $messages;
 }
 
 ?>

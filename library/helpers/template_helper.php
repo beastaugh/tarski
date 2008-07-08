@@ -22,7 +22,7 @@ function is_wp_front_page() {
  * @param object $query
  */
 function only_paginate_home($query) {
-	if ( !get_tarski_option('use_pages') ) {
+	if ( !get_tarski_option('use_pages') && !is_admin() ) {
 		if ( !is_home() && !is_feed() && '' === $query->get('nopaging') ) {
 			$query->set('nopaging', 1);
 		}
