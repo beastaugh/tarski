@@ -287,6 +287,8 @@ function tarski_comment_author_link() {
  *
  * @since 1.5
  * @return string
+ * @hook filter th_404_content
+ * Allows users to change their 404 page messages via a plugin.
  */
 function tarski_404_content() {
 	$content = sprintf(
