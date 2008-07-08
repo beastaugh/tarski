@@ -39,6 +39,8 @@ function only_paginate_home($query) {
  * @since 1.5
  * @param string $sep
  * @return string $doctitle
+ * @hook filter tarski_doctitle
+ * Filter document titles.
  */
 function tarski_doctitle($sep = '&middot;') {
 	$site_name = get_bloginfo('name');
@@ -187,6 +189,8 @@ function tarski_headerimage() {
  * wrapped in a p (paragraph) element.
  * @since 1.5
  * @return string
+ * @hook filter tarski_sitetitle
+ * Filter site title.
  */
 function tarski_sitetitle() {
 	if(get_tarski_option('display_title')) {
@@ -217,6 +221,8 @@ function tarski_sitetitle() {
  * 
  * @since 1.5
  * @return string
+ * @hook filter tarski_tagline
+ * Filter site tagline.
  */
 function tarski_tagline() {
 	if((get_tarski_option('display_tagline') && get_bloginfo('description')))
@@ -276,6 +282,8 @@ function home_link_name() {
  * @param boolean $return
  * @global object $wpdb
  * @return string $navbar
+ * @hook filter tarski_navbar
+ * Filter the HTML generated for the navbar.
  */
 function tarski_navbar($return = false) {
 	global $wpdb;
@@ -433,6 +441,8 @@ function tarski_feedlink() {
  * @since 1.2
  * @param boolean $return
  * @return string $classes
+ * @hook filter tarski_bodyclass
+ * Filter the classes applied to the document body by Tarski.
  */
 function tarski_bodyclass($return = false) {
 	if(get_tarski_option('centred_theme')) { // Centred or not
@@ -473,6 +483,8 @@ function tarski_bodyclass($return = false) {
  * @global object $post
  * @global object $wp_query
  * @return string $body_id
+ * @hook filter tarski_bodyid
+ * Filter the document id value.
  */
 function tarski_bodyid($return = false) {
 	global $post, $wp_query;
