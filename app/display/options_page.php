@@ -34,6 +34,8 @@
 			| <a href="http://tarskitheme.com/credits/"><?php _e('Credits &amp; Thanks','tarski'); ?></a>
 			| <a href="http://tarskitheme.com/forum/"><?php _e('Forum','tarski'); ?></a>
 		</p>
+		
+		<div class="clearer"></div>
 	</div>
 		
 	<div id="tarski-update-notifier" class="secondary"><div class="section">
@@ -285,4 +287,6 @@
 	</div>
 	<?php } ?>
 	
+	
+	<div class="clearer"></div>
 </div>

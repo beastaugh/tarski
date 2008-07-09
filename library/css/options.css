@@ -13,8 +13,8 @@
  * background grey, puts the page title in its place, and sorts out other
  * header and footer elements.
  */
-#tarski-options { overflow: auto; }
-#tarski-options-header { clear: both; overflow: auto; margin: 0.4em 0 0.8em 0; border-bottom: 1px solid #dadada; padding: 0.4em; }
+#tarski-options {}
+#tarski-options-header { clear: both; margin: 0.4em 0 0.8em 0; border-bottom: 1px solid #dadada; padding: 0.4em; }
 #tarski-options-header h2 { float: left; margin: 0 0.8em 0 0; border: none; padding: 0; }
 #tarski-save-options, #tarski-info { display: block; padding: 0; }
 #tarski-save-options { float: left; margin: 0; }
@@ -30,6 +30,7 @@
  * allowing for fairly flexible layouts.
  */
 .span { clear: both; }
+.clearer { display: block; clear: both; height: 0; visibility: hidden; }
 .primary, .secondary { width: 49.5%; }
 .primary, .rtl .secondary { float: left; clear: left; }
 .secondary, .rtl .primary { float: right; clear: right; }
@@ -41,7 +42,7 @@
  * precisely than the WordPress defaults do how things should appear.
  */
 .section label, .section select, #opt-nav-homename { display: block; margin: 0.8em 0; }
-.section { margin: 0 0 0.8em 0; padding: 0.8em 0.8em 0.4em 0.8em; background: #eaf3fa; }
+.section { margin: 0 0 0.8em 0; padding: 0.8em 0.8em 0.4em 0.8em; background: #eaf3fa; position: relative; }
 .section h3, .section p { margin: 0 0 0.8em 0; }
 .tip { margin: 0.8em 0; border: 1px solid #c6d9e9; border-left-width: 3px; padding: 0.4em; background: #f7fafd; }
 #tarski-options .highlight { background: none; color: #d54e21; }
