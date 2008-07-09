@@ -56,17 +56,17 @@
  * The navbar selection tool is an ordered list of pages, whose list elements
  * may also contain child lists of sub-pages.
  */
-#navbar-select { margin-bottom: 1em; padding: 0; }
+#navbar-select { margin: 0 0 1em 0; padding: 0; }
 #navbar-select ol { margin: 0; padding: 0; }
 #navbar-select li { list-style-type: none; }
 #navbar-select li ol li { margin-left: 1.5em; }
 #navbar-select .nav-page { position: relative; margin: 0 0 0.5em 0; padding: 0.25em 0.5em; background: #cedeeb; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; }
 #navbar-select .nav-page a { text-decoration: none; }
-#navbar-select.js .nav-page { padding-left: 2.25em; background: #cedeeb url('../../images/page_select.png') no-repeat 0.5em 6px; }
+#navbar-select.js .nav-page { padding-left: 28px; background: #cedeeb url('../../images/page_select.png') no-repeat 5px 6px; }
 #navbar-select .nav-page label { display: inline; margin-right: 1em; }
-#navbar-select .nav-page input { position: absolute; top: 0.39em; right: 0.5em; }
-#navbar-select .nav-page .toggle { display: block; position: absolute; top: 0; left: 0; width: 2em; height: 100%; background: url('../../images/page_select.png') no-repeat 0.5em -194px; text-indent: -9999em; cursor: pointer; }
-#navbar-select .collapsed > .nav-page > .toggle { background-position: 0.5em -94px; }
+#navbar-select .nav-page input { position: absolute; top: 4px; right: 5px; }
+#navbar-select .nav-page .toggle { display: block; position: absolute; top: 0; left: 0; width: 23px; height: 23px; background: url('../../images/page_select.png') no-repeat 5px -194px; text-indent: -9999em; cursor: pointer; }
+#navbar-select .collapsed > .nav-page > .toggle { background-position: 5px -94px; }
 #navbar-select.js li.collapsed ol { display: none; }
 
 /**
