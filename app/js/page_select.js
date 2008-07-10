@@ -1,33 +1,58 @@
-// Array.unique() - Remove duplicate values from an array
-Array.prototype.unique = function() {		
-	var a = [], i, l = this.length;
+// Included for cross-browser compatibility
+if (!Array.prototype.reduce)
+{
+  Array.prototype.reduce = function(fun /*, initial*/)
+  {
+    var len = this.length;
+    if (typeof fun != "function")
+      throw new TypeError();
 
-	for (i=0; i<l; i++) {
-		if (a.indexOf(this[i], 0) < 0) {
-			a.push(this[i]);
-		}
-	}
+    // no value to return if no initial value and an empty array
+    if (len == 0 && arguments.length == 1)
+      throw new TypeError();
 
-	return a;
-};
+    var i = 0;
+    if (arguments.length >= 2)
+    {
+      var rv = arguments[1];
+    }
+    else
+    {
+      do
+      {
+        if (i in this)
+        {
+          rv = this[i++];
+          break;
+        }
 
-// Array.stripZeroes() - Remove values of 0 and '0' from an array
-Array.prototype.stripZeroes = function() {
-	var a = [], i, l = this.length;
-	
-	for (i=0; i<l; i++) {
-		if (parseInt(this[i]) != 0) {
-			a.push(this[i]);
-		}
-	}
-	
-	return a;
+        // if array contains no values, no initial value to return
+        if (++i >= len)
+          throw new TypeError();
+      }
+      while (true);
+    }
+
+    for (; i < len; i++)
+    {
+      if (i in this)
+        rv = fun.call(null, rv, this[i], i, this);
+    }
+
+    return rv;
+  };
+}
+
+var UniqueNumList = function(memo, item) {
+  if (new Number(item) > 0 && memo.indexOf(item, 0) < 0) memo.push(item);
+  return memo;
 };
 
 function CollapsibleList(container, collapsed_page_set) {
+	var id_format = /^page-list-(\d+)$/;
 	
 	this.container = jQuery(container);
-	this.root_id = parseInt(this.container.attr('id').replace(/^page-list-(\d+)$/, ('$1')));
+	this.root_id = parseInt(this.container.attr('id').replace(id_format, '$1'));
 	this.main = jQuery(container.children('p')[0]);
 	this.list = jQuery(container.children('ol')[0]);
 	
@@ -67,12 +92,11 @@ function CollapsedPageSet(selector) {
 	this.pages = [];
 	
 	this.retrieve = function() {
-		var field = jQuery(selector).val();
-		this.pages = field.split(',').map(Number).unique().stripZeroes();
+		this.pages = jQuery(selector).val().split(',').reduce(UniqueNumList, []);
 	};
 	
 	this.save = function() {
-		this.pages = this.pages.unique().stripZeroes();
+		this.pages = this.pages.reduce(UniqueNumList, []);
 		jQuery(selector).val(this.pages.join(','));
 	};
 	
