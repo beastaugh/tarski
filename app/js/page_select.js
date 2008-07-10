@@ -1,3 +1,53 @@
+// Included for cross-browser compatibility
+if (!Array.prototype.reduce)
+{
+  Array.prototype.reduce = function(fun /*, initial*/)
+  {
+    var len = this.length;
+    if (typeof fun != "function")
+      throw new TypeError();
+
+    // no value to return if no initial value and an empty array
+    if (len == 0 && arguments.length == 1)
+      throw new TypeError();
+
+    var i = 0;
+    if (arguments.length >= 2)
+    {
+      var rv = arguments[1];
+    }
+    else
+    {
+      do
+      {
+        if (i in this)
+        {
+          rv = this[i++];
+          break;
+        }
+
+        // if array contains no values, no initial value to return
+        if (++i >= len)
+          throw new TypeError();
+      }
+      while (true);
+    }
+
+    for (; i < len; i++)
+    {
+      if (i in this)
+        rv = fun.call(null, rv, this[i], i, this);
+    }
+
+    return rv;
+  };
+};
+
+var UniqueNumList = function(memo, item) {
+  if (Number(item) > 0 && jQuery.inArray(item, memo) < 0) memo.push(item);
+  return memo;
+};
+
 function CollapsibleList(container, collapsed_page_set) {
 	var id_format = /^page-list-(\d+)$/;
 	
@@ -37,19 +87,15 @@ function CollapsibleList(container, collapsed_page_set) {
 	
 };
 
-var UniqueNumList = function(item, memo) {
-  return Number(item) > 0 && jQuery.inArray(item, memo) < 0;
-};
-
 function CollapsedPageSet(selector) {
 	this.pages = [];
 	
 	this.retrieve = function() {
-		this.pages = jQuery.grep(jQuery(selector).val().split(','), UniqueNumList);
+		this.pages = jQuery(selector).val().split(',').reduce(UniqueNumList, []);
 	};
 	
 	this.save = function() {
-	  this.pages = jQuery.grep(this.pages, UniqueNumList);
+		this.pages = this.pages.reduce(UniqueNumList, []);
 		jQuery(selector).val(this.pages.join(','));
 	};
 	
@@ -69,8 +115,8 @@ function CollapsedPageSet(selector) {
 		this.retrieve();
 		
 		if (this.pages instanceof Array) {
-			this.pages = jQuery.grep(this.pages, function(item, memo) {
-				return item != page_id;
+			this.pages = jQuery.grep(this.pages, function(n) {
+				return n != page_id;
 			});
 		} else {
 			this.pages = [];
