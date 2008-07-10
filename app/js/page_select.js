@@ -44,7 +44,7 @@ if (!Array.prototype.reduce)
 }
 
 var UniqueNumList = function(memo, item) {
-  if (new Number(item) > 0 && memo.indexOf(item, 0) < 0) memo.push(item);
+  if (Number(item) > 0 && memo.indexOf(item, 0) < 0) memo.push(item);
   return memo;
 };
 
