@@ -41,7 +41,7 @@ if (!Array.prototype.reduce)
 
     return rv;
   };
-}
+};
 
 var UniqueNumList = function(memo, item) {
   if (Number(item) > 0 && memo.indexOf(item, 0) < 0) memo.push(item);
@@ -77,11 +77,11 @@ function CollapsibleList(container, collapsed_page_set) {
 	};
 	
 	this.addToggle = function(toggler) {
-		var scopeFix = this;
+		var thisp = this;
 		this.toggler = jQuery(toggler);
 		this.main.prepend(this.toggler);
 		this.toggler.bind('click', function(ev) {
-			scopeFix.toggle();
+			thisp.toggle();
 		});
 	};
 	
