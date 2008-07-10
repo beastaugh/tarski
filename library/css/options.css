@@ -57,10 +57,10 @@
  * may also contain child lists of sub-pages.
  */
 #navbar-select { margin: 0 0 1em 0; padding: 0; }
-#navbar-select ol { margin: 0; padding: 0; }
+#navbar-select ol { margin: 0; padding: 0; *zoom: 1; }
 #navbar-select li { list-style-type: none; }
 #navbar-select li ol li { margin-left: 1.5em; }
-#navbar-select .nav-page { position: relative; margin: 0 0 0.5em 0; padding: 0.25em 0.5em; background: #cedeeb; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; }
+#navbar-select .nav-page { position: relative; margin: 0 0 0.5em 0; padding: 4px 5px 3px 5px; background: #cedeeb; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; }
 #navbar-select .nav-page a { text-decoration: none; }
 #navbar-select.js .nav-page { padding-left: 28px; background: #cedeeb url('../../images/page_select.png') no-repeat 5px 6px; }
 #navbar-select .nav-page label { display: inline; margin-right: 1em; }
