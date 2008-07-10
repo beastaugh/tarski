@@ -44,7 +44,7 @@ if (!Array.prototype.reduce)
 };
 
 var UniqueNumList = function(memo, item) {
-  if (Number(item) > 0 && memo.indexOf(item, 0) < 0) memo.push(item);
+  if (Number(item) > 0 && jQuery.inArray(item, memo) < 0) memo.push(item);
   return memo;
 };
 
@@ -88,7 +88,6 @@ function CollapsibleList(container, collapsed_page_set) {
 };
 
 function CollapsedPageSet(selector) {
-	
 	this.pages = [];
 	
 	this.retrieve = function() {
