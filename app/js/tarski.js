@@ -19,7 +19,7 @@ function addEvent( obj, type, fn ) {
 	else {
 		obj["on"+type] = obj["e"+type+fn];
 	}
-}
+};
 
 var EventCache = function(){
 	var listEvents = [];
@@ -57,7 +57,7 @@ function replaceEmpty(replaceable, replacing) {
 	if (/^\s*$/.test(replaceable.value)) {
 		replaceable.value = replacing.firstChild.nodeValue;
 	}
-}
+};
 
 /**
  * <p>Search box object, allowing us to add some default text to the search

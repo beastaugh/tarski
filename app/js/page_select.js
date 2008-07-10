@@ -37,19 +37,19 @@ function CollapsibleList(container, collapsed_page_set) {
 		} else {
 			this.collapse();
 		}
-	}
+	};
 	
 	this.collapse = function() {
 		this.list.slideUp(150);
 		this.container.addClass('collapsed');
 		collapsed_page_set.addPage(this.root_id);
-	}
+	};
 	
 	this.expand = function() {
 		this.list.slideDown(150);
 		this.container.removeClass('collapsed');
 		collapsed_page_set.removePage(this.root_id);
-	}
+	};
 	
 	this.addToggle = function(toggler) {
 		var scopeFix = this;
@@ -58,9 +58,9 @@ function CollapsibleList(container, collapsed_page_set) {
 		this.toggler.bind('click', function(ev) {
 			scopeFix.toggle();
 		});
-	}
+	};
 	
-}
+};
 
 function CollapsedPageSet(selector) {
 	
@@ -69,12 +69,12 @@ function CollapsedPageSet(selector) {
 	this.retrieve = function() {
 		var field = jQuery(selector).val();
 		this.pages = field.split(',').map(Number).unique().stripZeroes();
-	}
+	};
 	
 	this.save = function() {
 		this.pages = this.pages.unique().stripZeroes();
 		jQuery(selector).val(this.pages.join(','));
-	}
+	};
 	
 	this.addPage = function(page_id) {
 		this.retrieve();
@@ -86,7 +86,7 @@ function CollapsedPageSet(selector) {
 		}
 		
 		this.save();
-	}
+	};
 	
 	this.removePage = function(page_id) {
 		this.retrieve();
@@ -100,9 +100,9 @@ function CollapsedPageSet(selector) {
 		}
 		
 		this.save();
-	}
+	};
 	
-}
+};
 
 jQuery(document).ready(function() {
 	jQuery('#navbar-select').addClass('js');
