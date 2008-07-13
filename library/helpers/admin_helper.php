@@ -157,81 +157,92 @@ function tarski_upgrade() {
 	// Handle special cases first
 	
 	// Update the options version so we don't run this code more than once
+	$old_version = $options->installed;
 	$options->installed = theme_version('current');
 	
-	// If they had hidden the sidebar previously for non-index pages, preserve that setting
-	if(empty($options->sidebar_pp_type) && isset($options->sidebar_onlyhome) && $options->sidebar_onlyhome == 1) {
-		$options->sidebar_pp_type = 'none';
-	}
+	if (version_to_integer($old_version) < 210) {
+		// If they had hidden the sidebar previously for non-index pages, preserve that setting
+		if (
+			empty($options->sidebar_pp_type)
+			&& isset($options->sidebar_onlyhome)
+			&& $options->sidebar_onlyhome == 1
+		) {
+			$options->sidebar_pp_type = 'none';
+		}
 	
-	// If there's more than one author, show authors
-	if(tarski_should_show_authors()) {
-		$options->show_authors = true;
-	}
+		// If there's more than one author, show authors
+		if(tarski_should_show_authors()) {
+			$options->show_authors = true;
+		}
 	
-	// If categories are hidden, respect that option
-	if(empty($options->show_categories) && isset($options->hide_categories) && ($options->hide_categories == 1)) {
-		$options->show_categories = false;
-	}
+		// If categories are hidden, respect that option
+		if (
+			empty($options->show_categories)
+			&& isset($options->hide_categories)
+			&& ($options->hide_categories == 1)
+		) {
+			$options->show_categories = false;
+		}
 	
-	// Change American English to British English, sorry Chris
-	if(empty($options->centred_theme) && isset($options->centered_theme)) {
-		$options->centred_theme = true;
-	}
+		// Change American English to British English, sorry Chris
+		if(empty($options->centred_theme) && isset($options->centered_theme)) {
+			$options->centred_theme = true;
+		}
 	
-	// Upgrade old display options to use widgets instead
+		// Upgrade old display options to use widgets instead
 	
-	// Get current widgets settings
-	$widgets = wp_get_sidebars_widgets();
-	$widget_text = get_option('widget_text');
+		// Get current widgets settings
+		$widgets = wp_get_sidebars_widgets();
+		$widget_text = get_option('widget_text');
 	
-	// Change sidebar names and initialise new sidebars
-	$widgets['sidebar-main'] = $widgets['sidebar-1'];
-	$widgets['footer-sidebar'] = $widgets['sidebar-2'];
-	$widgets['footer-main'] = array();
+		// Change sidebar names and initialise new sidebars
+		$widgets['sidebar-main'] = $widgets['sidebar-1'];
+		$widgets['footer-sidebar'] = $widgets['sidebar-2'];
+		$widgets['footer-main'] = array();
 	
-	// Footer blurb
-	if ( strlen(trim($options->blurb)) ) {
-		$widget_text[] = array( 'title' => '', 'text' => $options->blurb );
-		$wt_num = (int) end(array_keys($widget_text));
-		$widgets['footer-main'][] = "text-$wt_num";
-	}
-	
-	// Recent articles
-	if ( $options->footer_recent ) {
-		$widgets['footer-main'][] = 'recent-articles';
-	}
-	
-	// Footer sidebar default
-	if ( empty($widgets['footer-sidebar']) ) {
-		$widgets['footer-sidebar'] = array('search');
-	}
-		
-	// Main sidebar
-	if ( $options->sidebar_type == 'tarski' ) {
-		if ( empty($widgets['sidebar-main']) )
-			$widgets['sidebar-main'] = array();
-		
-		// Custom text -> text widget
-		if( strlen(trim($options->sidebar_custom)) ) {
-			$widget_text[] = array( 'title' => '', 'text' => $options->sidebar_custom );
+		// Footer blurb
+		if ( strlen(trim($options->blurb)) ) {
+			$widget_text[] = array( 'title' => '', 'text' => $options->blurb );
 			$wt_num = (int) end(array_keys($widget_text));
-			$widgets['sidebar-main'][] = "text-$wt_num";
+			$widgets['footer-main'][] = "text-$wt_num";
+		}
+	
+		// Recent articles
+		if ( $options->footer_recent ) {
+			$widgets['footer-main'][] = 'recent-articles';
+		}
+	
+		// Footer sidebar default
+		if ( empty($widgets['footer-sidebar']) ) {
+			$widgets['footer-sidebar'] = array('search');
 		}
 		
-		// Pages list -> pages widget
-		if($options->sidebar_pages) {
-			$widgets['sidebar-main'][] = 'pages';
+		// Main sidebar
+		if ( $options->sidebar_type == 'tarski' ) {
+			if ( empty($widgets['sidebar-main']) )
+				$widgets['sidebar-main'] = array();
+		
+			// Custom text -> text widget
+			if( strlen(trim($options->sidebar_custom)) ) {
+				$widget_text[] = array( 'title' => '', 'text' => $options->sidebar_custom );
+				$wt_num = (int) end(array_keys($widget_text));
+				$widgets['sidebar-main'][] = "text-$wt_num";
+			}
+		
+			// Pages list -> pages widget
+			if($options->sidebar_pages) {
+				$widgets['sidebar-main'][] = 'pages';
+			}
+		
+			// Links list -> links widget
+			if($options->sidebar_links) {
+				$widgets['sidebar-main'][] = 'links';
+			}
 		}
 		
-		// Links list -> links widget
-		if($options->sidebar_links) {
-			$widgets['sidebar-main'][] = 'links';
-		}
+		// Unset defunct values
+		unset($widgets['sidebar-1'], $widgets['sidebar-2']);
 	}
-		
-	// Unset defunct values
-	unset($widgets['sidebar-1'], $widgets['sidebar-2']);
 	
 	// Conform our options to the expected values, types, and defaults
 	foreach($options as $name => $value) {
