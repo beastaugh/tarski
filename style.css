@@ -154,7 +154,7 @@ body.rtl #navigation ul.primary { direction: ltr; }
 		body .imageleft, body .alignleft { float: left; margin: 0 10px 10px 0; }
 		body .imageright, body .alignright { float: right; margin: 0 0 10px 10px; }
 		body .imageblock { display: block; margin: 0 0 1em 0; }
-		body .imagecentre, body .imagecenter, body .centered { display: block; text-align: center; margin: 0 auto 1em auto; }
+		body .imagecentre, body .imagecenter, body .centered, body .aligncenter { display: block; text-align: center; margin: 0 auto 1em auto; }
 		
 	body .gallery { margin: 0 auto 1em 0; }
 	body .gallery-item { float: left; margin-top: 10px; text-align: center; }
