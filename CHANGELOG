@@ -10,6 +10,7 @@
   
 #### Tweaks
 
+  * Tweaked gallery styling to better fit Tarski (r695)
   * Add <abbr title="WordPress">WP</abbr> standard alignment classes (r694)
   * Added inline hooks documentation (r657, r658, r661, r665, r666, r667)
   * Deprecated `tarski_excerpt` function (r664)
