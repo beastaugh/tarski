@@ -13,12 +13,19 @@
 					
 					<div class="meta">
 						<h1 class="title entry-title"><?php the_title(); ?></h1>
-						<?php if(is_single()) { ?>
-							<p class="metadata"><?php echo '<span class="date updated">' . get_the_time(get_option('date_format')) . '</span>';
-							tarski_post_categories_link();
-							tarski_author_posts_link();
-							tarski_comments_link();
-							edit_post_link(__('edit','tarski'),' <span class="edit">(',')</span>'); ?></p>
+						<?php if(is_attachment()) { ?>
+							<p class="metadata"><?php
+								echo '<span class="date updated">' . get_the_time(get_option('date_format')) . '</span>';
+								edit_post_link(__('edit','tarski'),' <span class="edit">(',')</span>');
+							?></p>
+						<?php } elseif(is_single()) { ?>
+							<p class="metadata"><?php
+								echo '<span class="date updated">' . get_the_time(get_option('date_format')) . '</span>';
+								tarski_post_categories_link();
+								tarski_author_posts_link();
+								tarski_comments_link();
+								edit_post_link(__('edit','tarski'),' <span class="edit">(',')</span>');
+							?></p>
 						<?php } else { ?>
 							<?php edit_post_link(__('edit page','tarski'), '<p class="metadata"><span class="edit">(', ')</span></p>'); ?>
 						<?php } ?>
@@ -65,7 +72,7 @@
 
 
 
-<?php if(is_single() || is_page()) { comments_template(); } ?>
+<?php if(!is_attachment() && (is_single() || is_page())) { comments_template(); } ?>
 
 
 
