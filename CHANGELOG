@@ -1,6 +1,13 @@
 # Changelog
 
 
+### Version 2.2.1 [&sect;](http://tarskitheme.com/2008/07/19/22-release/)
+
+#### Bug fixes
+	
+  * Always show authors if Tarski options haven't been saved (r715)
+
+
 ### Version 2.2 [&sect;](http://tarskitheme.com/2008/07/19/22-release/)
   
 #### New features

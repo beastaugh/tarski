@@ -57,7 +57,7 @@ class Options {
 		$this->swap_title_order = false;
 		$this->tags_everywhere = false;
 		$this->show_categories = true;
-		$this->show_authors = tarski_should_show_authors();
+		$this->show_authors = true;
 		$this->use_pages = true;
 	}
 	
