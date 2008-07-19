@@ -262,8 +262,10 @@ function tarski_upgrade() {
 	}
 
 	// Save our upgraded options
-	update_option('widget_text', $widget_text);
-	wp_set_sidebars_widgets($widgets);
+	if (version_to_integer($old_version) < 210) {
+		update_option('widget_text', $widget_text);
+		wp_set_sidebars_widgets($widgets);
+	}
 	update_option('tarski_options', serialize($options));
 }
 
