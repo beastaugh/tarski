@@ -158,8 +158,10 @@ body.rtl #navigation ul.primary { direction: ltr; }
 		
 	body .gallery { margin: 0 auto 1em 0; }
 	body .gallery-item { float: left; margin-top: 10px; text-align: center; }
-	body .content .gallery-item .gallery-icon a:link, body .content .gallery-item .gallery-icon a:visited, body .content .gallery-item .gallery-icon a:hover, body .content .gallery-item .gallery-icon a:active { border-bottom: none; }
+	body #wrapper .content .gallery-item a, body #wrapper .content .attachment a { border-bottom:none; }
 	body .gallery-caption { margin-left: 0; }
+	
+	
 	
 
 	/* Tags & Tags page
