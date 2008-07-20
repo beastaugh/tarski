@@ -21,7 +21,15 @@ get_header(); ?>
 			</div> <!-- /content -->
 		<?php } ?>
 		<div class="bookmarks">
-			<?php wp_list_bookmarks(tarski_sidebar_links()); ?>
+			<?php wp_list_bookmarks(array(
+				'category' => get_tarski_option('nav_extlinkcat'),
+				'category_before' => '',
+				'category_after' => '',
+				'title_before' => '<h3>',
+				'title_after' => '</h3>',
+				'show_images' => 0,
+				'show_description' => 0
+			)); ?>
 		</div> <!-- /bookmarks -->
 
 		<?php th_postend(); ?>
