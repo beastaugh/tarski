@@ -260,7 +260,7 @@ function tarski_blurb_wrapper($blurb) {
 		$edit_link = sprintf(
 			'<p class="edit-link">(<a title="%1$s" id="edit-footer-blurb" href="%2$s">%3$s</a>)</p>' . "\n",
 			__('Edit the footer content area'),
-			get_bloginfo('wpurl') . '/wp-admin/themes.php?page=tarski-options#footer_blurb',
+			admin_url('themes.php?page=tarski-options#footer_blurb'),
 			__('edit','tarski')
 		);
 	}

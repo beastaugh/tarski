@@ -301,8 +301,8 @@ function tarski_addmenu() {
 function tarski_admin() {
 	save_tarski_options();
 	tarski_update_notifier('options_page');
-	$widgets_link = get_bloginfo('wpurl') . '/wp-admin/widgets.php';
-	$tarski_options_link = get_bloginfo('wpurl') . '/wp-admin/themes.php?page=tarski-options';
+	$widgets_link = admin_url('widgets.php');
+	$tarski_options_link = admin_url('themes.php?page=tarski-options');
 	include(TARSKIDISPLAY . '/options_page.php');
 }
 

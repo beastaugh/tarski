@@ -396,7 +396,7 @@ function add_admin_link($navbar) {
 	if(is_user_logged_in())
 		$navbar['admin'] = sprintf(
 			'<li><a id="nav-admin" href="%1$s">%2$s</a></li>',
-			 get_option('siteurl') . '/wp-admin/',
+			 admin_url(),
 			__('Site Admin','tarski')
 		);	
 	

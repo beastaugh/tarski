@@ -96,7 +96,7 @@ if($comments || comments_open()) { ?>
 	<?php if($user_ID) { // if user is logged in ?>
 		
 		<div id="info-input" class="secondary content">
-			<p class="userinfo"><?php _e('You are logged in as ','tarski'); ?><a href="<?php echo get_option('siteurl'); ?>/wp-admin/profile.php"><?php echo $user_identity; ?></a>.</p>
+			<p class="userinfo"><?php _e('You are logged in as ','tarski'); ?><a href="<?php echo admin_url('profile.php'); ?>"><?php echo $user_identity; ?></a>.</p>
 			<p><a href="<?php bloginfo('wpurl'); ?>/wp-login.php?action=logout" title="<?php _e('Log out of this account','tarski') ?>"><?php _e('Logout &raquo;','tarski'); ?></a></p>
 		</div> <!-- /info fields -->
 

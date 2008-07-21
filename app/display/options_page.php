@@ -104,7 +104,7 @@
 				); ?>
 			<?php } ?>
 		</select>
-		<p class="tip"><?php printf( __('You can add or edit links on the %s page. We recommend creating a link category specifically for the links you want displayed in your navbar, but you can use any category.','tarski'), '<a href="'. get_bloginfo('wpurl'). '/wp-admin/link-manager.php">'. __('Manage Links','tarski'). '</a>' ); ?></p>
+		<p class="tip"><?php printf( __('You can add or edit links on the %s page. We recommend creating a link category specifically for the links you want displayed in your navbar, but you can use any category.','tarski'), '<a href="'. admin_url('link-manager.php') . '">'. __('Manage Links','tarski'). '</a>' ); ?></p>
 		
 		<label for="opt-nav-homename"><?php _e('Rename your &#8216;Home&#8217; link.','tarski'); ?></label>
 		<input type="hidden" name="home_link_name" value="Home" />
@@ -231,7 +231,7 @@
 		</label>
 		
 		<?php if(!get_bloginfo('description')) { ?>
-			<p class="tip"><?php echo __('Your tagline is currently ','tarski'). '<a href="'. get_bloginfo('wpurl'). '/wp-admin/options-general.php">'. __('blank','tarski'). '</a>'. __(' and won&#8217;t be displayed.')  ?></p>
+			<p class="tip"><?php echo __('Your tagline is currently ','tarski'). '<a href="'. admin_url('options-general.php') . '">'. __('blank','tarski'). '</a>'. __(' and won&#8217;t be displayed.')  ?></p>
 		<?php } ?>
 		
 		<label for="opt-misc-cats">					
