@@ -22,7 +22,7 @@ get_header(); ?>
 		<?php } ?>
 		<div class="bookmarks">
 			<?php wp_list_bookmarks(array(
-				'category' => get_tarski_option('nav_extlinkcat'),
+				'exclude_category' => get_tarski_option('nav_extlinkcat'),
 				'category_before' => '',
 				'category_after' => '',
 				'title_before' => '<h3>',

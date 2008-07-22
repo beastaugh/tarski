@@ -7,6 +7,10 @@
 #### New features
  
  * Make options page compatible with <abbr title="Secure Sockets Layer">SSL</abbr> admin (r731)
+ 
+#### Bug fixes
+
+ * Exclude the navbar links category from the links page (r733)
 
 
 ### Version 2.2.2 [&sect;](http://tarskitheme.com/2008/07/19/22-release/)
