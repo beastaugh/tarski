@@ -8,7 +8,8 @@
  * Make options page compatible with <abbr title="Secure Sockets Layer">SSL</abbr> admin (r731)
  
 #### Tweaks
-
+  
+  * Only grant options page access to users with `edit_themes` capability (r736)
   * Enqueue stylesheets for the admin section (r734)
  
 #### Bug fixes
