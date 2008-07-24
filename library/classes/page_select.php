@@ -80,7 +80,7 @@ class WalkerPageSelect extends Walker {
 		$output .= $indent. '<li id="page-list-'. $page->ID. '"'. $coll_class. '>';
 		$output .= '<p class="nav-page">'.
 			'<label for="opt-pages-'. $page->ID. '">'. apply_filters('the_title', $page->post_title). '</label> '.
-			'<a title="'. __('View this page','tarski'). '" href="'. get_page_link($page->ID). '">&#8599;</a> '.
+			'<a title="'. __('View this page','tarski'). '" href="'. get_page_link($page->ID). '">&#8594;</a> '.
 			'<input id="opt-pages-'. $page->ID. '" name="nav_pages[]" type="checkbox" value="'. $page->ID. '"'. $checked. ' />'.
 		'</p>';
 	}

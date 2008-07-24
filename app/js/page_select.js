@@ -66,12 +66,14 @@ function CollapsibleList(container, collapsed_page_set) {
 	
 	this.collapse = function() {
 		this.list.slideUp(150);
+		this.toggler.addClass('collapsed-toggle');
 		this.container.addClass('collapsed');
 		collapsed_page_set.addPage(this.root_id);
 	};
 	
 	this.expand = function() {
 		this.list.slideDown(150);
+    this.toggler.removeClass('collapsed-toggle');
 		this.container.removeClass('collapsed');
 		collapsed_page_set.removePage(this.root_id);
 	};
@@ -79,6 +81,9 @@ function CollapsibleList(container, collapsed_page_set) {
 	this.addToggle = function(toggler) {
 		var thisp = this;
 		this.toggler = jQuery(toggler);
+		
+		if (this.container.hasClass('collapsed')) this.toggler.addClass('collapsed-toggle');
+		
 		this.main.prepend(this.toggler);
 		this.toggler.bind('click', function(ev) {
 			thisp.toggle();

@@ -42,7 +42,7 @@
  * precisely than the WordPress defaults do how things should appear.
  */
 .section label, .section select, #opt-nav-homename { display: block; margin: 0.8em 0; }
-.section { margin: 0 0 0.8em 0; padding: 0.8em 0.8em 0.4em 0.8em; background: #eaf3fa; position: relative; }
+.section { margin: 0 0 0.8em 0; padding: 0.8em 0.8em 0.4em 0.8em; background: #eaf3fa; position: relative; *zoom: 1; }
 .section h3, .section p { margin: 0 0 0.8em 0; }
 .tip { margin: 0.8em 0; border: 1px solid #c6d9e9; border-left-width: 3px; padding: 0.4em; background: #f7fafd; }
 #tarski-options .highlight { background: none; color: #d54e21; }
@@ -56,18 +56,21 @@
  * The navbar selection tool is an ordered list of pages, whose list elements
  * may also contain child lists of sub-pages.
  */
-#navbar-select { margin: 0 0 1em 0; padding: 0; }
-#navbar-select ol { margin: 0; padding: 0; *zoom: 1; }
-#navbar-select li { list-style-type: none; }
-#navbar-select li ol li { margin-left: 1.5em; }
-#navbar-select .nav-page { position: relative; margin: 0 0 0.5em 0; padding: 4px 5px 3px 5px; background: #cedeeb; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; }
+#navbar-select { clear: both; margin: 0 0 1em 0; padding: 0; }
+#navbar-select ol { margin: 0; padding: 0; }
+#navbar-select li { margin: 0; padding: 0; list-style-type: none; }
+#navbar-select li ol li { padding-left: 1.5em; }
+#navbar-select .nav-page { position: relative; margin: 0 0 0.5em 0; padding: 4px 20px 3px 5px; background-color: #cedeeb; background-repeat:no-repeat; background-position: 5px 6px; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; }
 #navbar-select .nav-page a { text-decoration: none; }
-#navbar-select.js .nav-page { padding-left: 28px; background: #cedeeb url('../../images/page_select.png') no-repeat 5px 6px; }
-#navbar-select .nav-page label { display: inline; margin-right: 1em; }
-#navbar-select .nav-page input { position: absolute; top: 4px; right: 5px; }
+#navbar-select.js .nav-page { padding-left: 28px; background-image: url('../../images/page_select.png'); }
+#navbar-select .nav-page label { display: inline; margin: 0 0 0.7em 0; }
+#navbar-select .nav-page input { display: block; position: absolute; top: 4px; right: 5px; width: 1em; height: 1em; }
 #navbar-select .nav-page .toggle { display: block; position: absolute; top: 0; left: 0; width: 23px; height: 23px; background: url('../../images/page_select.png') no-repeat 5px -194px; text-indent: -9999em; cursor: pointer; }
-#navbar-select .collapsed > .nav-page > .toggle { background-position: 5px -94px; }
+#navbar-select.js .collapsed .nav-page .collapsed-toggle { background-position: 5px -94px; }
 #navbar-select.js li.collapsed ol { display: none; }
+/* Some hacks to work around Internet Explorer bugs */
+#navbar-select, #navbar-select ol, #navbar-select li, #navbar-select .nav-page, #navbar-select .nav-page input { *zoom: 1; }
+#navbar-select .nav-page input { _top: 5px; }
 
 /**
  * Checkboxes and radio buttons
