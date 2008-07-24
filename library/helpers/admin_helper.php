@@ -158,8 +158,9 @@ function tarski_upgrade() {
 	// Update the options version so we don't run this code more than once
 	$old_version = $options->installed;
 	$options->installed = theme_version('current');
+	$upgrade_sidebar = version_compare($old_version, '2.1.0') === -1;
 	
-	if (version_compare($old_version, '2.1.0') === -1) {
+	if ($upgrade_sidebar) {
 		// If they had hidden the sidebar previously for non-index pages, preserve that setting
 		if (
 			empty($options->sidebar_pp_type)
@@ -261,10 +262,11 @@ function tarski_upgrade() {
 	}
 
 	// Save our upgraded options
-	if (version_to_integer($old_version) < 210) {
+	if ($upgrade_sidebar) {
 		update_option('widget_text', $widget_text);
 		wp_set_sidebars_widgets($widgets);
 	}
+	
 	update_option('tarski_options', serialize($options));
 }
 
