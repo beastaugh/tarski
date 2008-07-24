@@ -9,6 +9,7 @@
  
 #### Tweaks
   
+  * Switch to native <abbr title="PHP: Hypertext Preprocessor">PHP</abbr> `version_compare` function (r737)
   * Only grant options page access to users with `edit_themes` capability (r736)
   * Enqueue stylesheets for the admin section (r734)
  

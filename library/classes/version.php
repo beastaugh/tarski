@@ -144,21 +144,21 @@ class Version {
 		$this->current_version_number();
 		$this->latest_version_number();
 		
-		$current_version = version_to_integer($this->current);
-		$latest_version = version_to_integer($this->latest);
+		$status = version_compare($this->latest, $this->current);
 		
-		if($latest_version) {
-			if($current_version === $latest_version)
-				$version_status = 'current';
-			elseif($current_version < $latest_version)
-				$version_status = 'older';
-			elseif($current_version > $latest_version)
-					$version_status = 'newer';
+		if ($this->latest) {
+			if ($status === 0) {
+				$this->status = 'current';
+			} elseif ($status === 1) {
+				$this->status = 'older';
+			} elseif ($status === -1) {
+				$this->status = 'newer';
+			} else {
+				$this->status = 'error';
+			}
 		} else {
-			$version_status = 'no_connection';
+			$this->status = 'no_connection';
 		}
-		
-		$this->status = $version_status;
 	}
 	
 }

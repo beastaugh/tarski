@@ -115,9 +115,8 @@ function ready_to_delete_options($del_time) {
  */
 function tarski_upgrade_needed() {
 	if ( get_option('tarski_options') ) {
-		$version = get_tarski_option('installed');
-		$current = theme_version('current');
-		return (bool) empty($version) || (version_to_integer($version) < version_to_integer($current));
+		$installed = get_tarski_option('installed');
+		return empty($installed) || version_compare($installed, theme_version('current')) === -1;
 	}
 }
 
@@ -160,7 +159,7 @@ function tarski_upgrade() {
 	$old_version = $options->installed;
 	$options->installed = theme_version('current');
 	
-	if (version_to_integer($old_version) < 210) {
+	if (version_compare($old_version, '2.1.0') === -1) {
 		// If they had hidden the sidebar previously for non-index pages, preserve that setting
 		if (
 			empty($options->sidebar_pp_type)
@@ -481,6 +480,7 @@ function tarski_update_notifier($messages) {
 						);
 					break;
 					case 'no_connection':
+					case 'error':
 						$messages[] = sprintf(
 							__('No connection to update server. Your installed version is %s.','tarski'),
 							"<strong>$version->current</strong>"
