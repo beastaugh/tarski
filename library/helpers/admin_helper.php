@@ -43,50 +43,6 @@ function cache_is_writable($file = false) {
 }
 
 /**
- * version_to_integer() - Turns Tarski version numbers into integers.
- * 
- * @since 2.0.3
- * @param string $version
- * @return integer
- */
-function version_to_integer($version) {
-	// Remove all non-numeric characters
-	$version = preg_replace('/\D/', '', $version);
-	
-	if($version && strlen($version) >= 1) {
-		// Make the string exactly three characters (numerals) long
-		if(strlen($version) < 2) {
-			$version_int = $version . '00';
-		} elseif(strlen($version) < 3) {
-			$version_int = $version . '0';
-		} elseif(strlen($version) == 3) {
-			$version_int = $version;
-		} elseif(strlen($version) > 3) {
-			$version_int = substr($version, 0, 3);
-		}
-		
-		// Return an integer
-		return (int) $version_int;
-	}
-}
-
-/**
- * version_newer_than() - Returns true if current version is greater than given version.
- *
- * @since 2.0.3
- * @param mixed $version
- * @return boolean
- */
-function version_newer_than($version) {
-	$version = version_to_integer($version);
-	$current = version_to_integer(theme_version('current'));
-	
-	if($version && $current) {
-		return (bool) ($current > $version);
-	}
-}
-
-/**
  * ready_to_delete_options() - Returns true if Tarski is ready to delete its options.
  * 
  * When options are deleted, the time of deletion is saved in Tarski's
