@@ -8,6 +8,10 @@
  
  * Make options page compatible with <abbr title="Secure Sockets Layer">SSL</abbr> admin (r731)
  
+#### Tweaks
+
+  * Enqueue stylesheets for the admin section (r734)
+ 
 #### Bug fixes
 
  * Exclude the navbar links category from the links page (r733)

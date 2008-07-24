@@ -69,9 +69,9 @@ if (is_admin()) {
 	add_action('admin_notices', 'tarski_messages');
 
 	// Tarski Options page
-	add_action('admin_head', 'tarski_admin_style');
+	add_action('admin_print_styles', 'tarski_admin_style');
 	add_action('admin_print_scripts-design_page_tarski-options', 'tarski_inject_scripts');
-	add_action('admin_head-design_page_tarski-options', 'tarski_inject_styles');
+	add_action('admin_print_styles-design_page_tarski-options', 'tarski_inject_styles');
 	add_action('admin_menu', 'tarski_addmenu');
 
 	// Options
