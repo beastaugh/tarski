@@ -330,8 +330,10 @@ function tarski_inject_scripts() {
  */
 function tarski_count_authors() {
 	global $wpdb;
-	$count_users = $wpdb->get_var("SELECT COUNT(*) FROM $wpdb->usermeta WHERE `meta_key` = '" . $wpdb->prefix . "user_level' AND `meta_value` > 1");
-	return (int) $count_users;
+	return $wpdb->get_var($wpdb->prepare(
+		"SELECT COUNT(*) FROM $wpdb->usermeta WHERE meta_key = %d AND meta_value > 1",
+		"'" . $wpdb->prefix . "user_level'"
+	));
 }
 
 /**
