@@ -5,24 +5,24 @@
 
 #### New features
  
- * Make options page compatible with <abbr title="Secure Sockets Layer">SSL</abbr> admin (r731)
+ * Options page now compatible with <abbr title="Secure Sockets Layer">SSL</abbr> admin (r731)
  
 #### Tweaks
   
-  * Refactor upgrade functionality (r746)
-  * Only run author count check when posts are saved (r745)
-  * Author count now checks how many authors have published posts (r744)
-  * Use `wpdb->prepare()` method for author count query (r742)
-  * Deprecate `version_to_integer` and `version_newer_than` functions (r739)
-  * Switch to native <abbr title="PHP: Hypertext Preprocessor">PHP</abbr> `version_compare` function (r737)
-  * Only grant options page access to users with `edit_themes` capability (r736)
-  * Enqueue stylesheets for the admin section (r734)
+  * Upgrade functionality refactored (r746)
+  * Author count check only runs when posts are saved (r745)
+  * Author count checks how many authors have published posts (r744)
+  * `wpdb->prepare()` method used for author count query (r742)
+  * Deprecated `version_to_integer` and `version_newer_than` functions (r739)
+  * Switched to native <abbr title="PHP: Hypertext Preprocessor">PHP</abbr> `version_compare` function (r737)
+  * Options page access granted only to users with `edit_themes` capability (r736)
+  * Stylesheets for the admin section enqueued, not printed (r734)
  
 #### Bug fixes
 
-  * Add more checks to upgrade functionality (r746)
-  * Make navbar selector work better in Internet Explorer (r735)
-  * Exclude the navbar links category from the links page (r733)
+  * Added more checks to upgrade functionality (r746)
+  * Made navbar selector work better in Internet Explorer (r735)
+  * Excluded navbar links category from the links page (r733)
 
 
 ### Version 2.2.2 [&sect;](http://tarskitheme.com/2008/07/19/22-release/)
