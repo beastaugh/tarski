@@ -9,6 +9,7 @@
  
 #### Tweaks
   
+  * Author count now checks how many authors have published posts (r744)
   * Use `wpdb->prepare()` method for author count query (r742)
   * Deprecate `version_to_integer` and `version_newer_than` functions (r739)
   * Switch to native <abbr title="PHP: Hypertext Preprocessor">PHP</abbr> `version_compare` function (r737)

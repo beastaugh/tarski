@@ -320,20 +320,18 @@ function tarski_inject_scripts() {
 }
 
 /**
- * tarski_count_authors() - Returns the number of authors on a site.
+ * tarski_count_authors() - Returns the number of authors who have published posts.
  * 
- * This function returns the number of users on a site with a user
- * level of greater than 1, i.e. Authors, Editors and Administrators.
+ * This function returns the number of author ids associated with published posts.
  * @since 2.0.3
  * @global object $wpdb
  * @return integer
  */
 function tarski_count_authors() {
 	global $wpdb;
-	return $wpdb->get_var($wpdb->prepare(
-		"SELECT COUNT(*) FROM $wpdb->usermeta WHERE meta_key = %d AND meta_value > 1",
-		"'" . $wpdb->prefix . "user_level'"
-	));
+	return count($wpdb->get_col($wpdb->prepare(
+		"SELECT post_author, COUNT(DISTINCT post_author) FROM $wpdb->posts WHERE post_status = 'publish' GROUP BY post_author"
+	), 1));
 }
 
 /**
