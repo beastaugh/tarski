@@ -9,6 +9,7 @@
  
 #### Tweaks
   
+  * Refactor upgrade functionality (r746)
   * Only run author count check when posts are saved (r745)
   * Author count now checks how many authors have published posts (r744)
   * Use `wpdb->prepare()` method for author count query (r742)
@@ -19,6 +20,7 @@
  
 #### Bug fixes
 
+  * Add more checks to upgrade functionality (r746)
   * Make navbar selector work better in Internet Explorer (r735)
   * Exclude the navbar links category from the links page (r733)
 
