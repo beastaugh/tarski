@@ -75,7 +75,7 @@ if (is_admin()) {
 	add_action('admin_menu', 'tarski_addmenu');
 
 	// Options
-	add_action('admin_head', 'tarski_resave_show_authors');
+	add_action('save_post', 'tarski_resave_show_authors');
 	add_action('save_post', 'flush_tarski_recent_entries');
 	add_action('deleted_post', 'flush_tarski_recent_entries');
 	add_action('switch_theme', 'flush_tarski_recent_entries');
