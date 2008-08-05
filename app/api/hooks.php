@@ -11,7 +11,7 @@
  * @hook action th_header
  * One can use this hook to print additional header content. Tarski uses it
  * internally to add the header image, site title, tagline and navbar.
- **/
+ */
 function th_header() {
 	do_action('th_header');
 }
@@ -27,7 +27,7 @@ function th_header() {
  * @hook action th_navbar
  * Executed by a wrapper function added to the th_header hook,
  * this hook is used to add content to the navbar.
- **/
+ */
 function th_navbar() {
 	do_action('th_navbar');
 }
@@ -44,7 +44,7 @@ function th_navbar() {
  * @hook action th_postend
  * This hook is used to add content to the end of posts. Tarski uses it
  * internally to add tags to posts and navigation for multi-page posts.
- **/
+ */
 function th_postend() {
 	do_action('th_postend');
 }
@@ -77,7 +77,7 @@ function th_posts_nav() {
  * The sidebar hook is used by Tarski to add different sidebars, depending on
  * the options chosen by the user. It can be used to override the default
  * sidebar code.
- **/
+ */
 function th_sidebar() {
 	do_action('th_sidebar');
 }
@@ -93,7 +93,7 @@ function th_sidebar() {
  * @hook action th_fsidebar
  * Like th_sidebar, but for the footer, this hook is used to add widgets
  * to the secondary footer area.
- **/
+ */
 function th_fsidebar() {
 	do_action('th_fsidebar');
 }
@@ -109,7 +109,7 @@ function th_fsidebar() {
  * @hook action th_fmain
  * Similar to th_fsidebar and th_sidebar, this hook is used to add widgets to
  * the primary footer area.
- **/
+ */
 function th_fmain() {
 	do_action('th_fmain');
 }
@@ -124,7 +124,7 @@ function th_fmain() {
  * @since 1.5
  * @hook action th_footer
  * Used by default to add the theme credit and site feed link.
- **/
+ */
 function th_footer() {
 	do_action('th_footer');
 }
