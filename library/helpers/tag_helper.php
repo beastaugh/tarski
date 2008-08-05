@@ -57,6 +57,9 @@ function implode_proper($array, $glue = NULL, $last_connective = NULL) {
  * 
  * Tag intersections and unions currently don't have a simple, single template
  * function. This provides one.
+ * 
+ * @example multiple_tag_titles('<em>%s</em>') will wrap every printed tag in
+ * an HTML emphasis element.
  * @since 2.0
  * @global $wpdb object
  * @param $format string
