@@ -9,6 +9,7 @@
  
 #### Tweaks
   
+  * `multiple_tag_titles` function refactored (r751)
   * Upgrade functionality refactored (r746)
   * Author count check only runs when posts are saved or deleted (r745, r748)
   * Author count checks how many authors have published posts (r744)

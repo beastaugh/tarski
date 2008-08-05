@@ -56,7 +56,7 @@ function tarski_doctitle($sep = '&middot;') {
 	} elseif(is_month()) {
 		$content = single_month_title(' ', false);
 	} elseif(is_tag()) {
-		$content = multiple_tag_titles();
+		$content = multiple_tag_titles('');
 	} else {
 		$content = trim(wp_title('', false));
 	}

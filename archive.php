@@ -21,10 +21,10 @@
 			<?php } elseif(is_tag()) { // Tag archive header ?>
 
 				<div class="meta">
-					<h1 class="title"><?php echo multiple_tag_titles(); ?></h1>
+					<h1 class="title"><?php echo multiple_tag_titles(''); ?></h1>
 				</div>
 				<div class="content">
-					<p><?php printf( __('You are currently browsing articles tagged %s.','tarski'), multiple_tag_titles('strong') ); ?></p>
+					<p><?php printf( __('You are currently browsing articles tagged %s.','tarski'), multiple_tag_titles('<strong>%s</strong>') ); ?></p>
 				</div>
 					
 			<?php } elseif(is_author()) { // Author header ?>

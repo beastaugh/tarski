@@ -22,7 +22,7 @@ function wrap_values_in_element($array, $element) {
 }
 
 /**
- * implode_proper() - Implodes an array and provides a proper final connective
+ * implode_proper() - Implodes an array and adds a final conjuction.
  * 
  * Given the array <code>array('John', 'Paul', 'George', 'Ringo')</code> it will
  * return the string <code>'John, Paul, George and Ringo'</code>.
@@ -32,13 +32,19 @@ function wrap_values_in_element($array, $element) {
  * @param $last_connective string
  * @return string
  */
-function implode_proper($array, $glue = ', ', $last_connective = 'and') {
-	if( !check_input($array, 'array') || count($array) == 0 )
+function implode_proper($array, $glue = NULL, $last_connective = NULL) {
+	if ( !check_input($array, 'array') || count($array) == 0 )
 		return;
+	
+	if ($glue == NULL)
+		$glue = __(', ', 'tarski');
+	
+	if ($last_connective == NULL)
+		$last_connective = __('and', 'tarski');
 	
 	$last_value = array_pop($array);
 	
-	if( count($array) )
+	if ( count($array) )
 		$output = implode($glue, $array) . " $last_connective $last_value";
 	else
 		$output = $last_value;
@@ -53,69 +59,52 @@ function implode_proper($array, $glue = ', ', $last_connective = 'and') {
  * function. This provides one.
  * @since 2.0
  * @global $wpdb object
- * @param $tag_wrapper string
+ * @param $format string
  * @return string
  * @hook filter multiple_tag_titles
  * Filter the value returned when generating the title of multiple (union or
  * intersection) tag archive page.
  */
-function multiple_tag_titles($tag_wrapper = '') {
+if ( !function_exists('multiple_tag_titles') ) {
+function multiple_tag_titles($format = '&#8216;%s&#8217;') {
 	global $wpdb;
 	
 	if ( !is_tag() )
 		return;
 	
+	if ( $tag_slugs = get_query_var('tag_slug__and') )
+		$connective = __('and');
+	elseif ( $tag_slugs = get_query_var('tag_slug__in') )
+		$connective = __('or');
+	else
+		$single_tag = intval( get_query_var('tag_id') );
 	
-	// Start horrible hack
-	$tag_slugs = array();
-	if( $tag_slugs = get_query_var('tag_slug__and') ) {
-		$connective = __('and','tarski');
-	} elseif( $tag_slugs = get_query_var('tag_slug__in') ) {
-		$connective = __('or','tarski');
-	} elseif( $single_tag = get_query_var('tag_id') ) {
-		$tag_ids = array($single_tag);
-	} else {
-		return;
-	}
-	
-	if($tag_slugs) {
-		foreach ($tag_slugs as $tag_slug) {
-			$tag_ids[] = $wpdb->get_var("SELECT term_id FROM $wpdb->terms WHERE slug = \"$tag_slug\"");
+	$tags = array();
+	if ( $tag_slugs ) {
+		foreach ( $tag_slugs as $tag_slug ) {
+			$tag = get_term_by('slug', $tag_slug, 'post_tag', OBJECT, 'display');
+			if ( !is_wp_error($tag) && !empty($tag->name) )
+				$tags[] = $tag->name;
 		}
-	}
-	// End horrible hack
-	
-	
-	/*
-	// This doesn't work; tag__and and tag__in are empty for tag intersections and unions
-	$tag_ids = array();
-	
-	if( $tag_ids = get_query_var('tag__and') ) {
-		$connective = __('and','tarski');
-	} elseif( $tag_ids = get_query_var('tag__in') ) {
-		$connective = __('or','tarski');
-	} elseif( $single_tag = get_query_var('tag_id') ) {
-		$tag_ids = array($single_tag);
-	} else {
-		return;
-	}
-	*/
-
-	foreach ( $tag_ids as $tag_id ) {
-		$tag = &get_term($tag_id, 'post_tag', OBJECT, 'display');
-		if ( empty($tag) || is_wp_error($tag) )
-			continue;
+	} elseif ( $single_tag ) {
+		$tag = &get_term($single_tag, 'post_tag', OBJECT, 'display');
+		if ( is_wp_error($tag) || empty($tag->name) )
+			return false;
 		else
 			$tags[] = $tag->name;
+	} else {
+		return;
 	}
 	
-	if ( $tag_wrapper )
-		$tags = wrap_values_in_element($tags, $tag_wrapper);
-
-	$tags = implode_proper($tags, ', ', $connective);
+	if ( strlen($format) > 0 ) {
+		foreach ( $tags as $index => $tag )
+			$tags[$index] = sprintf($format, $tag);
+	}
+			
+	$tags = implode_proper($tags, __(', ', 'tarski'), $connective);
 	$tags = apply_filters('multiple_tag_titles', $tags);
-
 	return $tags;
+}
 }
 
 /**
