@@ -66,7 +66,7 @@ function implode_proper($array, $glue = NULL, $last_connective = NULL) {
  * intersection) tag archive page.
  */
 if ( !function_exists('multiple_tag_titles') ) {
-function multiple_tag_titles($format = '&#8216;%s&#8217;') {
+function multiple_tag_titles($format = '') {
 	global $wpdb;
 	
 	if ( !is_tag() )
