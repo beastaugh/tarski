@@ -102,4 +102,9 @@ var Searchbox = {
 	}
 };
 
+addEvent(window, 'load', function() {
+  var body = document.getElementsByTagName('body')[0];
+  body.className += " js";
+});
+
 addEvent(window, 'load', Searchbox.init.bind(Searchbox));

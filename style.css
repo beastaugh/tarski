@@ -241,6 +241,7 @@ input, select, textarea { font-family: Verdana, Helvetica, Arial, sans-serif; fo
 	body .searchbox { width: 200px; margin: 0 0 1em 0; }
 		#s { display: block; width: 194px; margin: 0 0 0.6em 0; border: 1px solid #ccc; padding: 2px; background: #fafafa; color: #404040; }
 		#s:focus { background: #fff; }
+		body.js #searchlabel { display: none; }
 
 	/* Comment form
 	--------------------------------------- */

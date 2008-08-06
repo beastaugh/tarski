@@ -9,6 +9,7 @@
  
 #### Tweaks
   
+  * Hide the search form label faster (r754)
   * `multiple_tag_titles` function refactored (r751)
   * Upgrade functionality refactored (r746)
   * Author count check only runs when posts are saved or deleted (r745, r748)
