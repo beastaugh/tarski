@@ -9,6 +9,7 @@
  
 #### Tweaks
   
+  * Add `js.css` to the list of disallowed custom styles (r755)
   * Hide the search form label faster (r754)
   * `multiple_tag_titles` function refactored (r751)
   * Upgrade functionality refactored (r746)
