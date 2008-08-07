@@ -35,11 +35,10 @@ function can_get_remote() {
  * @return boolean
  */
 function cache_is_writable($file = false) {
-	if($file)
-		$cachefile = TARSKICACHE . '/' . $file;
+	if ( $file )
+		return is_writable(TARSKICACHE . '/' . $file);
 	
-	if(is_writable($cachefile) || (is_writable(TARSKICACHE) && !file_exists($cachefile)))
-		return true;
+	return is_writable(TARSKICACHE);
 }
 
 /**
