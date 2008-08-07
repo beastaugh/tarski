@@ -36,9 +36,12 @@ function can_get_remote() {
  */
 function cache_is_writable($file = false) {
 	if ( $file )
-		return is_writable(TARSKICACHE . '/' . $file);
+		$cachefile = TARSKICACHE . '/' . $file;
 	
-	return is_writable(TARSKICACHE);
+	if ( file_exists($cachefile) )
+		return is_writable($cachefile);
+	else
+		return is_writable(TARSKICACHE);
 }
 
 /**
