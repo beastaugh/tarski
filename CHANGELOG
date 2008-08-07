@@ -9,7 +9,7 @@
  
 #### Tweaks
   
-  * Show version cache notice when the _file_ cannot be written to (r760)
+  * Show version cache notice when _file_, not directory, isn't writable (r760)
   * Clean up `cache_is_writable` function (r759, r761)
   * Add `js.css` to the list of disallowed custom styles (r755)
   * Hide the search form label faster (r754)
