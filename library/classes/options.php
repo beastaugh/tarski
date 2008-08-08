@@ -168,7 +168,7 @@ function save_tarski_options() {
 	
 	if(isset($_POST['submit'])) {
 		$tarski_options->tarski_options_update();
-		update_option('tarski_options', serialize($tarski_options));
+		update_option('tarski_options', $tarski_options);
 	}
 	
 	flush_tarski_options();
@@ -218,7 +218,7 @@ function update_tarski_option($option, $value) {
 	else
 		$tarski_options->$option = $value;
 		
-	update_option('tarski_options', serialize($tarski_options));
+	update_option('tarski_options', $tarski_options);
 	flush_tarski_options();
 }
 

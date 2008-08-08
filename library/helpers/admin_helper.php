@@ -218,7 +218,7 @@ function tarski_upgrade() {
 	}
 	
 	// Save our upgraded options
-	update_option('tarski_options', serialize($options));
+	update_option('tarski_options', $options);
 }
 
 /**

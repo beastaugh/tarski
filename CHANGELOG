@@ -9,6 +9,7 @@
  
 #### Tweaks
   
+  * Don't serialise the data passed to `update_option` (r763)
   * Show version cache notice when _file_, not directory, isn't writable (r760)
   * Clean up `cache_is_writable` function (r759, r761)
   * Add `js.css` to the list of disallowed custom styles (r755)
