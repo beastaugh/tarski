@@ -1,11 +1,18 @@
 # Changelog
 
 
+### Version 2.4 [&sect;](http://tarskitheme.com/)
+
+#### Tweaks
+
+  * Improve localisability for 'No posts found' text (r775)
+
+
 ### Version 2.3 [&sect;](http://tarskitheme.com/2008/08/10/23-release/)
 
 #### New features
  
- * Options page now compatible with <abbr title="Secure Sockets Layer">SSL</abbr> admin (r731)
+  * Options page now compatible with <abbr title="Secure Sockets Layer">SSL</abbr> admin (r731)
  
 #### Tweaks
   
