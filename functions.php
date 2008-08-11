@@ -4,7 +4,7 @@
 define('TARSKICLASSES', TEMPLATEPATH . '/library/classes');
 define('TARSKIHELPERS', TEMPLATEPATH . '/library/helpers');
 define('TARSKIDISPLAY', TEMPLATEPATH . '/app/display');
-define('TARSKICACHE', TEMPLATEPATH . '/app/cache');
+define('TARSKICACHE', WP_CONTENT_DIR . '/tarski');
 define('TARSKIVERSIONFILE', 'http://tarskitheme.com/version.atom');
 
 // Core library files

@@ -5,6 +5,7 @@
 
 #### Tweaks
 
+  * Move version data cache into `WP_CONTENT_DIR` (r776)
   * Improve localisability for 'No posts found' text (r775)
 
 

@@ -26,22 +26,29 @@ function can_get_remote() {
 }
 
 /**
- * cache_is_writable() - Checks if WordPress can write to $file in Tarski's cache directory.
+ * cache_is_writable() - Checks whether WordPress can write to $file in Tarski's cache directory.
  * 
  * If $file isn't given, the function checks to see if new files can 
- * be written to the cache directory.
+ * be written to the cache directory, and attempts to create the cache
+ * directory if it isn't present.
  * @since 1.7
  * @param string $file
  * @return boolean
  */
 function cache_is_writable($file = false) {
 	if ( $file )
-		$cachefile = TARSKICACHE . '/' . $file;
+		$file = TARSKICACHE . '/' . $file;
 	
-	if ( file_exists($cachefile) )
-		return is_writable($cachefile);
-	else
-		return is_writable(TARSKICACHE);
+	$writable = false;
+	
+	if ( $file && file_exists($file) )
+		$writable = is_writable($file);
+	elseif ( file_exists(TARSKICACHE) )
+		$writable = is_writable(TARSKICACHE);
+	elseif ( is_writable(WP_CONTENT_DIR) )
+		$writable = wp_mkdir_p(TARSKICACHE);
+
+	return $writable;
 }
 
 /**
