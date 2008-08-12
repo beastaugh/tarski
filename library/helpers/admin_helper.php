@@ -52,20 +52,91 @@ function cache_is_writable($file = false) {
 }
 
 /**
- * ready_to_delete_options() - Returns true if Tarski is ready to delete its options.
+ * save_tarski_options() - Saves a new set of Tarski options.
  * 
- * When options are deleted, the time of deletion is saved in Tarski's
- * options. This function checks that time against the current time:
- * if the current time minus the saved time is greater than three hours
- * (i.e. if more than two hours have elapsed since the options were
- * deleted) then this function will return true.
- * @since 2.0.5
- * @return boolean
+ * The main request handler for the Tarski options system. Saves any updated
+ * options and redirects to the options page.
+ * 
+ * @see tarskiupdate() which it replaces
+ * @see delete_tarski_options()
+ * @see restore_tarski_options()
+ * @since 2.0
  */
-function ready_to_delete_options($del_time) {
-	if(!empty($del_time)) {
-		$del_time = (int) $del_time;
-		return (bool) (time() - $del_time) > (3 * 3600);
+function save_tarski_options() {
+	$options = new Options;
+	$options->tarski_options_get();
+		
+	$options->tarski_options_update();
+	update_option('tarski_options', $options);
+	
+	wp_redirect(admin_url('themes.php?page=tarski-options&updated=true'));
+}
+
+/**
+ * delete_tarski_options() - Sets the 'deleted' property on Tarski's options.
+ * 
+ * A secondary request handler for the Tarski options system. Sets the
+ * 'deleted' property in the options object to the current time and redirects
+ * to the options page.
+ * 
+ * @see save_tarski_options()
+ * @see restore_tarski_options()
+ * @since 2.4
+ */
+function delete_tarski_options() {
+	$options = new Options;
+	$options->tarski_options_get();
+	
+	if (!is_int($options->deleted) || $options->deleted < 1) {
+		$options->deleted = time();
+		update_option('tarski_options', $options);
+	}
+	
+	wp_redirect(admin_url('themes.php?page=tarski-options&deleted=true'));
+}
+
+/**
+ * restore_tarski_options() - Unsets the 'deleted' property on Tarski's options.
+ * 
+ * A secondary request handler for the Tarski options system. Unsets the
+ * 'deleted' property in the options object and redirects to the options page.
+ * 
+ * @see save_tarski_options()
+ * @see delete_tarski_options()
+ * @since 2.4
+ */
+function restore_tarski_options() {
+	$options = new Options;
+	$options->tarski_options_get();
+	
+	if (is_int($options->deleted) && $options->deleted > 0) {
+		unset($options->deleted);
+		update_option('tarski_options', $options);
+	}
+	
+	wp_redirect(admin_url('themes.php?page=tarski-options&restored=true'));	
+}
+
+/**
+ * maybe_wipe_tarski_options() - Deletes Tarski's options for good.
+ * 
+ * When the user resets Tarski's options, the 'deleted' property on the options
+ * object is set to the current time. After three hours have elapsed (during
+ * which time the user may restore their options), the tarski_options row in
+ * the wp_options table will be deleted entirely by this function.
+ * 
+ * @see delete_tarski_options()
+ * @see restore_tarski_options()
+ * @since 2.4
+ */
+function maybe_wipe_tarski_options() {
+	$options = new Options;
+	$options->tarski_options_get();
+	$del = $options->deleted;
+	
+	if (is_int($del) && (time() - $del) > (3 * 3600)) {
+		delete_option('tarski_options');
+		flush_tarski_options();
 	}
 }
 
@@ -95,8 +166,7 @@ function tarski_upgrade_needed() {
 function tarski_upgrade_and_flush_options() {
 	if ( tarski_upgrade_needed() ) {
 		tarski_upgrade();
-		$tarski_options = new Options;
-		$tarski_options->tarski_options_get();
+		flush_tarski_options();
 	}
 }
 
@@ -277,22 +347,23 @@ function tarski_messages() {
  * @since 1.0
  */
 function tarski_addmenu() {
-	add_theme_page(__('Tarski Options','tarski'), __('Tarski Options','tarski'), 'edit_themes', 'tarski-options', 'tarski_admin');
+	add_theme_page(
+		__('Tarski Options','tarski'),
+		__('Tarski Options','tarski'),
+		'edit_themes',
+		'tarski-options',
+		'tarski_admin'
+	);
 }
 
 /**
- * tarski_admin() - Saves Tarski's options, and displays the Options page.
+ * tarski_admin() - Displays the Options page.
  * 
  * @since 1.0
  */
 function tarski_admin() {
-	if (current_user_can('edit_themes')) {
-		save_tarski_options();
-		tarski_update_notifier('options_page');
-		$widgets_link = admin_url('widgets.php');
-		$tarski_options_link = admin_url('themes.php?page=tarski-options');
+	if (current_user_can('edit_themes'))
 		include(TARSKIDISPLAY . '/options_page.php');
-	}
 }
 
 /**

@@ -1,32 +1,33 @@
 <div id="tarski-options" class="wrap tarski-options<?php if(get_bloginfo("text_direction") == "rtl") { echo " rtl"; } ?>">
-	
-	<?php if(isset($_POST['submit']) && !get_tarski_option('deleted')) { ?>
+		
+	<?php if (!get_tarski_option('deleted')) { if (isset($_GET['restored'])) { ?>
 	<div id="updated" class="updated fade">
-		<?php if(isset($_POST['restore_options'])) { ?>
 		<p><?php echo __('Tarski options have been restored.','tarski') . ' <a href="' . get_bloginfo('url') . '/">' . __('View site &raquo;','tarski') . '</a>'; ?></p>
-		<?php } else { ?>
-		<p><?php echo __('Tarski options have been updated.','tarski') . ' <a href="' . get_bloginfo('url') . '/">' . __('View site &raquo;','tarski') . '</a>'; ?></p>
-		<?php } ?>
 	</div>
-	<?php } ?>
+	<?php } elseif (isset($_GET['updated'])) { ?>
+	<div id="updated" class="updated fade">
+		<p><?php echo __('Tarski options have been updated.','tarski') . ' <a href="' . get_bloginfo('url') . '/">' . __('View site &raquo;','tarski') . '</a>'; ?></p>
+	</div>
+	<?php } } ?>
 	
-	<?php if(get_tarski_option('deleted')) { ?>
+	<?php if (get_tarski_option('deleted')) { ?>
 	<div class="updated fade">
-		<form name="dofollow" action="<?php echo $tarski_options_link; ?>" method="post">
-			<?php wp_nonce_field('update-options'); ?>
+		<form action="<?php echo admin_url('admin-post.php?action=restore_tarski_options'); ?>" method="post">
+			<?php wp_nonce_field('admin_post_restore_tarski_options'); ?>
 			<input type="hidden" name="restore_options" value="1" />
 			<p><?php _e('You have deleted your Tarski options.','tarski'); ?> <input class="button" type="submit" name="submit" value="<?php _e('Restore Tarski Options &raquo;','tarski'); ?>" /></p>
 		</form>
 	</div>
 	<?php } ?>
 	
-<form name="dofollow" action="<?php echo $tarski_options_link; ?>" method="post">
+<form action="<?php echo admin_url('admin-post.php?action=tarski_options'); ?>" method="post">
+	
+	<?php wp_nonce_field('admin_post_tarski_options'); ?>
 	
 	<div id="tarski-options-header">
 		<h2><?php _e('Tarski Options', 'tarski'); ?></h2>
 		<p id="tarski-save-options">
 			<input type="submit" class="button-secondary" name="submit" value="<?php _e('Save Options','tarski'); ?>" />
-			<input type="hidden" name="page_options" value="'dofollow_timeout'" />
 		</p>
 		
 		<p id="tarski-info">
@@ -277,9 +278,9 @@
 	<div class="secondary">
 		<div class="section">
 			<h3><?php _e('Reset Options', 'tarski'); ?></h3>
-			<form action="<?php echo $tarski_options_link; ?>" method="post">
+			<form action="<?php echo admin_url('admin-post.php?action=delete_tarski_options'); ?>" method="post">
 				<p><input class="button-secondary" type="submit" name="submit" value="<?php _e('Reset Tarski&#8217;s options to their default values','tarski'); ?>" /></p>
-				<?php wp_nonce_field('update-options'); ?>
+				<?php wp_nonce_field('admin_post_delete_tarski_options'); ?>
 				<input type="hidden" name="delete_options" value="1" />
 			</form>
 			<p class="tip"><?php _e('If you change your mind, you&#8217;ll have three hours to restore your options before they&#8217;re removed for good.','tarski'); ?></p>

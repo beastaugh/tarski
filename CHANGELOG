@@ -5,6 +5,7 @@
 
 #### New features
 
+  * Options page now uses WordPress' generic `POST` handler (r778)
   * Add default sidebar content (r777)
 
 #### Tweaks

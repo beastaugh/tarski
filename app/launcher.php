@@ -62,6 +62,11 @@ add_filter('widget_text', 'tarski_widget_text_wrapper');
 add_filter('widget_links_args', 'tarski_widget_links_args');
 
 if (is_admin()) {
+	// Options handlers
+	add_action('admin_post_tarski_options', 'save_tarski_options');
+	add_action('admin_post_delete_tarski_options', 'delete_tarski_options');
+	add_action('admin_post_restore_tarski_options', 'restore_tarski_options');
+	
 	// Generate messages
 	add_filter('tarski_messages', 'tarski_update_notifier');
 
@@ -76,12 +81,15 @@ if (is_admin()) {
 
 	// Options
 	add_action('admin_head', 'tarski_prefill_sidebars');
+	add_action('admin_head', 'tarski_upgrade_and_flush_options');
+	add_action('admin_head', 'maybe_wipe_tarski_options');
 	add_action('save_post', 'tarski_resave_show_authors');
 	add_action('deleted_post', 'tarski_resave_show_authors');
+	
+	// Cache sweeping
 	add_action('save_post', 'flush_tarski_recent_entries');
 	add_action('deleted_post', 'flush_tarski_recent_entries');
 	add_action('switch_theme', 'flush_tarski_recent_entries');
-	add_action('switch_theme', 'tarski_upgrade_and_flush_options');
 }
 
 // Header

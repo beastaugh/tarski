@@ -10,6 +10,27 @@
  */
 
 /**
+ * ready_to_delete_options() - Returns true if Tarski is ready to delete its options.
+ * 
+ * When options are deleted, the time of deletion is saved in Tarski's
+ * options. This function checks that time against the current time:
+ * if the current time minus the saved time is greater than three hours
+ * (i.e. if more than two hours have elapsed since the options were
+ * deleted) then this function will return true.
+ * @since 2.0.5
+ * @deprecated 2.4
+ * @return boolean
+ */
+function ready_to_delete_options($del_time) {
+	_deprecated_function(__FUNCTION__, '2.4');
+	
+	if(!empty($del_time)) {
+		$del_time = (int) $del_time;
+		return (bool) (time() - $del_time) > (3 * 3600);
+	}
+}
+
+/**
  * version_to_integer() - Turns Tarski version numbers into integers.
  * 
  * @since 2.0.3
