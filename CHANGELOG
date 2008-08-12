@@ -3,6 +3,10 @@
 
 ### Version 2.4 [&sect;](http://tarskitheme.com/)
 
+#### New features
+
+  * Add default sidebar content (r777)
+
 #### Tweaks
 
   * Move version data cache into `WP_CONTENT_DIR` (r776)

@@ -177,7 +177,7 @@ function tarski_upgrade_widgets($options, $defaults) {
 	
 	// Update options
 	update_option('widget_text', $widget_text);
-	wp_set_sidebars_widgets($widgets);	
+	wp_set_sidebars_widgets($widgets);
 }
 
 /**
@@ -226,6 +226,34 @@ function tarski_upgrade() {
 	
 	// Save our upgraded options
 	update_option('tarski_options', $options);
+}
+
+/**
+ * tarski_prefill_sidebars() - Default content for Tarski's widget areas.
+ * 
+ * Should leave existing sidebars well alone, and be compatible with the
+ * Tarski upgrade process.
+ * @since 2.4
+ */
+function tarski_prefill_sidebars() {
+	$widgets = wp_get_sidebars_widgets(false);
+	
+	if (!array_key_exists('sidebar-main', $widgets))
+		if (array_key_exists('sidebar-1', $widgets))
+			$widgets['sidebar-main'] = $widgets['sidebar-1'];
+		else
+			$widgets['sidebar-main'] = array('categories', 'links');
+	
+	if (!array_key_exists('footer-sidebar', $widgets))
+		if (array_key_exists('sidebar-2', $widgets))
+			$widgets['footer-sidebar'] = $widgets['sidebar-2'];
+		else
+			$widgets['footer-sidebar'] = array('search');
+	
+	if (!array_key_exists('footer-main', $widgets))
+		$widgets['footer-main'] = array(__('Recent Articles','tarski'));
+	
+	wp_set_sidebars_widgets($widgets);
 }
 
 /**
