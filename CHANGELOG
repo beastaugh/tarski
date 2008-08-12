@@ -10,6 +10,7 @@
 
 #### Tweaks
 
+  * Show tags everywhere by default (r779)
   * Deprecated `ready_to_delete_options` (r778)
   * Moved version data cache into `WP_CONTENT_DIR` (r776)
   * Improved ease of localisation for 'No posts found' text (r775)

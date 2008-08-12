@@ -55,7 +55,7 @@ class Options {
 		$this->centred_theme = true;
 		$this->swap_sides = false;
 		$this->swap_title_order = false;
-		$this->tags_everywhere = false;
+		$this->tags_everywhere = true;
 		$this->show_categories = true;
 		$this->show_authors = true;
 		$this->use_pages = true;
