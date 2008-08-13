@@ -1,13 +1,15 @@
 <div id="tarski-options" class="wrap tarski-options<?php if(get_bloginfo("text_direction") == "rtl") { echo " rtl"; } ?>">
 		
 	<?php if (!get_tarski_option('deleted')) { if (isset($_GET['restored'])) { ?>
-	<div id="updated" class="updated fade">
-		<p><?php echo __('Tarski options have been restored.','tarski') . ' <a href="' . get_bloginfo('url') . '/">' . __('View site &raquo;','tarski') . '</a>'; ?></p>
-	</div>
+	<div id="updated" class="updated fade"><p><?php printf(
+		__('Tarski options have been restored. %s', 'tarski'),
+		'<a href="' . user_trailingslashit(get_bloginfo('url')) . '">' . __('View site &rsaquo;','tarski') . '</a>'
+	); ?></p></div>
 	<?php } elseif (isset($_GET['updated'])) { ?>
-	<div id="updated" class="updated fade">
-		<p><?php echo __('Tarski options have been updated.','tarski') . ' <a href="' . get_bloginfo('url') . '/">' . __('View site &raquo;','tarski') . '</a>'; ?></p>
-	</div>
+	<div id="updated" class="updated fade"><p><?php printf(
+		__('Tarski options have been updated. %s', 'tarski'),
+		'<a href="' . user_trailingslashit(get_bloginfo('url')) . '">' . __('View site &rsaquo;','tarski') . '</a>'
+	); ?></p></div>
 	<?php } } ?>
 	
 	<?php if (get_tarski_option('deleted')) { ?>
@@ -26,6 +28,7 @@
 	
 	<div id="tarski-options-header">
 		<h2><?php _e('Tarski Options', 'tarski'); ?></h2>
+		
 		<p id="tarski-save-options">
 			<input type="submit" class="button-secondary" name="submit" value="<?php _e('Save Options','tarski'); ?>" />
 		</p>
