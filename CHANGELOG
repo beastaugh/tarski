@@ -10,7 +10,7 @@
 
 #### Tweaks
 
-  * Improved ease of localisation for options page notices (r775)
+  * Improved ease of localisation for options page notices (r783)
   * Remove tab indices (r782)
   * Show tags everywhere by default (r779)
   * Deprecated `ready_to_delete_options` (r778)
