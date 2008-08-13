@@ -103,17 +103,17 @@ if($comments || comments_open()) { ?>
 	<?php } else { // if user is not logged in - name, email and website fields ?>
 		
 		<div id="info-input" class="secondary content">
-			<label for="author" class="required"><?php _e('Name','tarski'); ?> <span class="req-notice"><?php _e('(required)','tarski'); ?></span><input type="text" name="author" id="author" value="<?php echo $comment_author; ?>" size="22" tabindex="1" /></label>
-			<label for="email" class="required"><?php _e('Email','tarski'); ?> <span class="req-notice"><?php _e('(required, not displayed)','tarski'); ?></span><input type="text" name="email" id="email" value="<?php echo $comment_author_email; ?>" size="22" tabindex="2" /></label>
-			<label for="url"><?php _e('Website','tarski'); ?><input type="text" name="url" id="url" value="<?php echo $comment_author_url; ?>" size="22" tabindex="3" /></label>
+			<label for="author" class="required"><?php _e('Name','tarski'); ?> <span class="req-notice"><?php _e('(required)','tarski'); ?></span><input type="text" name="author" id="author" value="<?php echo $comment_author; ?>" size="22" /></label>
+			<label for="email" class="required"><?php _e('Email','tarski'); ?> <span class="req-notice"><?php _e('(required, not displayed)','tarski'); ?></span><input type="text" name="email" id="email" value="<?php echo $comment_author_email; ?>" size="22" /></label>
+			<label for="url"><?php _e('Website','tarski'); ?><input type="text" name="url" id="url" value="<?php echo $comment_author_url; ?>" size="22" /></label>
 		</div> <!-- /info fields -->
 
 	<?php } // textarea etc. start here ?>
 	
 		<div id="comment-input" class="primary">
 			<label for="comment"><?php _e('Your comment','tarski'); ?></label>
-			<textarea name="comment" id="comment" cols="60" rows="12" tabindex="4"></textarea>
-			<input name="submit" type="submit" id="submit" tabindex="5" value="<?php _e('Submit Comment','tarski'); ?>" />
+			<textarea name="comment" id="comment" cols="60" rows="12"></textarea>
+			<input name="submit" type="submit" id="submit" value="<?php _e('Submit Comment','tarski'); ?>" />
 			<input type="hidden" name="comment_post_ID" value="<?php echo $id; ?>" />
 		</div>  <!-- /comment input -->
 	<?php do_action('comment_form', $post->ID); ?>
