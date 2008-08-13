@@ -54,7 +54,7 @@ function cache_is_writable($file = false) {
 /**
  * save_tarski_options() - Saves a new set of Tarski options.
  * 
- * The main request handler for the Tarski options system. Saves any updated
+ * The primary request handler for the Tarski options system. Saves any updated
  * options and redirects to the options page.
  * 
  * @see tarskiupdate() which it replaces
@@ -63,6 +63,9 @@ function cache_is_writable($file = false) {
  * @since 2.0
  */
 function save_tarski_options() {
+	if (!current_user_can('edit_themes'))
+		wp_die(__('You are not authorised to perform this operation.', 'tarski'));
+	
 	$options = new Options;
 	$options->tarski_options_get();
 		
@@ -81,9 +84,13 @@ function save_tarski_options() {
  * 
  * @see save_tarski_options()
  * @see restore_tarski_options()
+ * @see maybe_wipe_tarski_options()
  * @since 2.4
  */
 function delete_tarski_options() {
+	if (!current_user_can('edit_themes'))
+		wp_die(__('You are not authorised to perform this operation.', 'tarski'));
+	
 	$options = new Options;
 	$options->tarski_options_get();
 	
@@ -106,6 +113,9 @@ function delete_tarski_options() {
  * @since 2.4
  */
 function restore_tarski_options() {
+	if (!current_user_can('edit_themes'))
+		wp_die(__('You are not authorised to perform this operation.', 'tarski'));
+	
 	$options = new Options;
 	$options->tarski_options_get();
 	
@@ -118,7 +128,7 @@ function restore_tarski_options() {
 }
 
 /**
- * maybe_wipe_tarski_options() - Deletes Tarski's options for good.
+ * maybe_wipe_tarski_options() - Wipes Tarski's options if the restoration window has elapsed.
  * 
  * When the user resets Tarski's options, the 'deleted' property on the options
  * object is set to the current time. After three hours have elapsed (during
