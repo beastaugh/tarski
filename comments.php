@@ -85,19 +85,19 @@ if($comments || comments_open()) { ?>
 <?php if(get_option('comment_registration') && !$user_ID) {  // if registration is mandatory and user not logged in ?>
 	
 	<div class="content">
-		<p><em><?php _e('You must be ','tarski'); ?><a href="<?php echo get_option('siteurl'); echo '/wp-login.php?redirect_to='; the_permalink(); ?>"><?php _e('logged in','tarski'); ?></a><?php _e(' to post a comment.','tarski'); ?></em></p>
+		<p><em><?php _e('You must be ','tarski'); ?><a href="<?php echo site_url('wp-login.php?redirect_to=' . get_permalink()); ?>"><?php _e('logged in','tarski'); ?></a><?php _e(' to post a comment.','tarski'); ?></em></p>
 	</div>
 </div>
 
 <?php } else { // if registration is not mandatory ?>
 	
-	<form action="<?php echo get_option('siteurl'); ?>/wp-comments-post.php" method="post" id="commentform"><fieldset>
+	<form action="<?php echo site_url('wp-comments-post.php'); ?>" method="post" id="commentform"><fieldset>
 
 	<?php if($user_ID) { // if user is logged in ?>
 		
 		<div id="info-input" class="secondary content">
 			<p class="userinfo"><?php _e('You are logged in as ','tarski'); ?><a href="<?php echo admin_url('profile.php'); ?>"><?php echo $user_identity; ?></a>.</p>
-			<p><a href="<?php bloginfo('wpurl'); ?>/wp-login.php?action=logout" title="<?php _e('Log out of this account','tarski') ?>"><?php _e('Logout &raquo;','tarski'); ?></a></p>
+			<p><a href="<?php echo site_url('wp-login.php?action=logout'); ?>" title="<?php _e('Log out of this account','tarski') ?>"><?php _e('Logout &raquo;','tarski'); ?></a></p>
 		</div> <!-- /info fields -->
 
 	<?php } else { // if user is not logged in - name, email and website fields ?>

@@ -10,6 +10,7 @@
 
 #### Tweaks
 
+  * Use <abbr title="Secure Sockets Layer">SSL</abbr>-aware `site_url` function in comments template (r786)
   * Improved ease of localisation for options page notices (r783)
   * Remove tab indices (r782)
   * Show tags everywhere by default (r779)
