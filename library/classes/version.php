@@ -36,6 +36,12 @@ class Version {
 	var $latest_link;
 	
 	/**
+	 * Summary text of the latest Tarski release.
+	 * @var string
+	 */
+	var $latest_summary;
+	
+	/**
 	 * The status of the currently installed version.
 	 * @var string
 	 */
@@ -130,7 +136,19 @@ class Version {
 			$this->latest_link = wp_specialchars($matches[1]);
 		}
 	}
-
+	
+	/**
+	 * latest_version_summary() - Returns the summary text of the the latest version release post.
+	 * 
+	 * @since 2.4
+	 * @return string
+	 */
+	function latest_version_summary() {
+		if(preg_match('/<entry>.*?<summary>(.+?)<\/summary>.*?<\/entry>/is', Version::version_feed_data(), $matches)) {
+			$this->latest_summary = wp_specialchars($matches[1]);
+		}
+	}
+	
 	/**
 	 * version_status() - Returns the status of the current version.
 	 * 

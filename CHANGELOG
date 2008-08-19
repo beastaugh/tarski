@@ -5,6 +5,7 @@
 
 #### New features
 
+  * Version check now returns details of the latest release (r788)
   * Options page now uses WordPress' generic `POST` handler (r778, r787)
   * Added default widget sidebar content (r777)
 
