@@ -5,13 +5,13 @@
 
 #### New features
 
-  * Version check now returns details of the latest release (r788)
-  * Options page now uses WordPress' generic `POST` handler (r778, r787)
+  * Version check now returns details of the latest release (r789)
+  * Options page now uses WordPress' generic `POST` handler (r778, r788)
   * Added default widget sidebar content (r777)
 
 #### Tweaks
 
-  * Options code now checks referrers as well as capabilities (r787)
+  * Options code now checks referrers as well as capabilities (r788)
   * Improved ease of localisation for comments template (r787)
   * Use <abbr title="Secure Sockets Layer">SSL</abbr>-aware `site_url` function in comments template (r786)
   * Improved ease of localisation for options page notices (r783)
