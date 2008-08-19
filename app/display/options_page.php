@@ -15,7 +15,7 @@
 	<?php if (get_tarski_option('deleted')) { ?>
 	<div class="updated fade">
 		<form action="<?php echo admin_url('admin-post.php?action=restore_tarski_options'); ?>" method="post">
-			<?php wp_nonce_field('admin_post_restore_tarski_options'); ?>
+			<?php wp_nonce_field('admin_post_restore_tarski_options', '_wpnonce_restore_tarski_options'); ?>
 			<input type="hidden" name="restore_options" value="1" />
 			<p><?php _e('You have deleted your Tarski options.','tarski'); ?> <input class="button" type="submit" name="submit" value="<?php _e('Restore Tarski Options &raquo;','tarski'); ?>" /></p>
 		</form>
@@ -24,7 +24,7 @@
 	
 <form action="<?php echo admin_url('admin-post.php?action=tarski_options'); ?>" method="post">
 	
-	<?php wp_nonce_field('admin_post_tarski_options'); ?>
+	<?php wp_nonce_field('admin_post_tarski_options', '_wpnonce_tarski_options'); ?>
 	
 	<div id="tarski-options-header">
 		<h2><?php _e('Tarski Options', 'tarski'); ?></h2>
@@ -283,7 +283,7 @@
 			<h3><?php _e('Reset Options', 'tarski'); ?></h3>
 			<form action="<?php echo admin_url('admin-post.php?action=delete_tarski_options'); ?>" method="post">
 				<p><input class="button-secondary" type="submit" name="submit" value="<?php _e('Reset Tarski&#8217;s options to their default values','tarski'); ?>" /></p>
-				<?php wp_nonce_field('admin_post_delete_tarski_options'); ?>
+				<?php wp_nonce_field('admin_post_delete_tarski_options', '_wpnonce_delete_tarski_options'); ?>
 				<input type="hidden" name="delete_options" value="1" />
 			</form>
 			<p class="tip"><?php _e('If you change your mind, you&#8217;ll have three hours to restore your options before they&#8217;re removed for good.','tarski'); ?></p>

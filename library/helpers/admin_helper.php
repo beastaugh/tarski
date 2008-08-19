@@ -63,6 +63,8 @@ function cache_is_writable($file = false) {
  * @since 2.0
  */
 function save_tarski_options() {
+	check_admin_referer('admin_post_tarski_options', '_wpnonce_tarski_options');
+	
 	if (!current_user_can('edit_themes'))
 		wp_die(__('You are not authorised to perform this operation.', 'tarski'));
 	
@@ -88,6 +90,8 @@ function save_tarski_options() {
  * @since 2.4
  */
 function delete_tarski_options() {
+	check_admin_referer('admin_post_delete_tarski_options', '_wpnonce_delete_tarski_options');
+	
 	if (!current_user_can('edit_themes'))
 		wp_die(__('You are not authorised to perform this operation.', 'tarski'));
 	
@@ -113,6 +117,8 @@ function delete_tarski_options() {
  * @since 2.4
  */
 function restore_tarski_options() {
+	check_admin_referer('admin_post_restore_tarski_options', '_wpnonce_restore_tarski_options');
+	
 	if (!current_user_can('edit_themes'))
 		wp_die(__('You are not authorised to perform this operation.', 'tarski'));
 	
