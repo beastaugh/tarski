@@ -11,6 +11,7 @@
 
 #### Tweaks
 
+  * Move template files to `app/templates` (r791)
   * Options code now checks referrers as well as capabilities (r788)
   * Improved ease of localisation for comments template (r787)
   * Use <abbr title="Secure Sockets Layer">SSL</abbr>-aware `site_url` function in comments template (r786)

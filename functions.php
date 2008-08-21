@@ -3,7 +3,7 @@
 // Path constants
 define('TARSKICLASSES', TEMPLATEPATH . '/library/classes');
 define('TARSKIHELPERS', TEMPLATEPATH . '/library/helpers');
-define('TARSKIDISPLAY', TEMPLATEPATH . '/app/display');
+define('TARSKIDISPLAY', TEMPLATEPATH . '/app/templates');
 define('TARSKICACHE', WP_CONTENT_DIR . '/tarski');
 define('TARSKIVERSIONFILE', 'http://tarskitheme.com/version.atom');
 
