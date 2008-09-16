@@ -11,6 +11,7 @@
 
 #### Tweaks
 
+  * Add options page style and scripts via updated hooks (r792)
   * Move template files to `app/templates` (r791)
   * Options code now checks referrers as well as capabilities (r788)
   * Improved ease of localisation for comments template (r787)
