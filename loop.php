@@ -2,7 +2,7 @@
 	
 	<?php if(get_tarski_option('asidescategory') && in_category(get_tarski_option('asidescategory'))) { // Aside loop ?>
 		
-		<div class="aside hentry" id="p-<?php the_ID(); ?>">
+		<div class="aside hentry<?php if (is_sticky()) { echo ' sticky'; } ?>" id="p-<?php the_ID(); ?>">
 			
 			<div class="content entry-content"><?php the_content(__('Read the rest of this entry &raquo;','tarski')); ?></div>
 			
@@ -16,7 +16,7 @@
 	<?php } else { // Non-Aside loop ?>
 	
 	
-		<div class="entry hentry">
+		<div class="entry hentry<?php if (is_sticky()) { echo ' sticky'; } ?>">
 			
 			<div class="meta">
 				<h2 class="title entry-title" id="post-<?php the_ID(); ?>"><a href="<?php the_permalink(); ?>" rel="bookmark" title="<?php _e('Permanent link to ','tarski'); the_title(); ?>"><?php the_title(); ?></a></h2>
