@@ -505,7 +505,7 @@ function tarski_navbar_select($pages) {
 /**
  * tarski_update_notifier() - Performs version checks and outputs the update notifier.
  * 
- * Creates a new Version object, checks the latest and current
+ * Creates a new TarskiVersion object, checks the latest and current
  * versions, and lets the user know whether or not their version
  * of Tarski needs updating. The way it displays varies slightly
  * between the WordPress Dashboard and the Tarski Options page.
@@ -519,7 +519,7 @@ function tarski_update_notifier($messages) {
 	if ( !is_array($messages) )
 		$messages = array();
 	
-	$version = new Version;
+	$version = new TarskiVersion;
 	$version->current_version_number();
 	$svn_link = 'http://tarskitheme.com/help/updates/svn/';
 	
