@@ -10,6 +10,24 @@
  */
 
 /**
+ * tarski_messages() - Adds messages about Tarski to the WordPress admin panel.
+ * 
+ * @since 2.1
+ * @deprecated 2.4
+ * @hook filter tarski_messages
+ * Filter the messages Tarski prints to the WordPress admin panel.
+ */
+function tarski_messages() {
+	_deprecated_function(__FUNCTION__, '2.4');
+	
+	$messages = apply_filters('tarski_messages', array());
+
+	foreach ( $messages as $message ) {
+		echo "<p class=\"tarski-message\">$message</p>\n\n";
+	}
+}
+
+/**
  * ready_to_delete_options() - Returns true if Tarski is ready to delete its options.
  * 
  * When options are deleted, the time of deletion is saved in Tarski's

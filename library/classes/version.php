@@ -80,9 +80,11 @@ class TarskiVersion {
 		if(file_exists($cachefile) && (time() - $cachetime < filemtime($cachefile)) && file_get_contents($cachefile)) {
 			$atomdata = file_get_contents($cachefile);
 		} else {
-			$atomdata = wp_remote_get(TARSKIVERSIONFILE);
+			$response = wp_remote_get(TARSKIVERSIONFILE);
+			$atomdata = wp_remote_retrieve_body(&$response);
+			$code = wp_remote_retrieve_response_code(&$response);
 			
-			if(!empty($atomdata) && cache_is_writable("version.atom")) {
+			if (200 == $code && cache_is_writable("version.atom")) {
 				$fp = fopen($cachefile, "w");
 				if($fp) {
 					fwrite($fp, $atomdata);
