@@ -385,19 +385,6 @@ function tarski_admin_header_style() { ?>
 <?php }
 
 /**
- * tarski_admin_style() - Tarski CSS for the WordPress admin panel.
- * 
- * @since 2.1
-*/
-function tarski_admin_style() {
-	wp_enqueue_style(
-		'tarski_admin',
-		get_bloginfo('template_directory') . '/library/css/admin.css',
-		array(), false, 'screen'
-	);
-}
-
-/**
  * tarski_inject_styles() - Adds CSS to the Tarski Options page.
  * 
  * @since 2.1

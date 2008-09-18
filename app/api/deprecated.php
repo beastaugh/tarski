@@ -10,6 +10,22 @@
  */
 
 /**
+ * tarski_admin_style() - Tarski CSS for the WordPress admin panel.
+ * 
+ * @since 2.1
+ * @deprecated 2.4
+ */
+function tarski_admin_style() {
+	_deprecated_function(__FUNCTION__, '2.4');
+	
+	wp_enqueue_style(
+		'tarski_admin',
+		get_bloginfo('template_directory') . '/library/css/admin.css',
+		array(), false, 'screen'
+	);
+}
+
+/**
  * tarski_messages() - Adds messages about Tarski to the WordPress admin panel.
  * 
  * @since 2.1
