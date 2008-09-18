@@ -5,12 +5,17 @@
 
 #### New features
 
+  * Version check now uses WordPress' <abbr title="Hypertext Transport Protocol">HTTP</abbr> <abbr title="Application Programming Interface">API</abbr> (r794)
+  * Added support for sticky posts (r793)
   * Version check now returns details of the latest release (r789)
   * Options page now uses WordPress' generic `POST` handler (r778, r788)
   * Added default widget sidebar content (r777)
 
 #### Tweaks
 
+  * Presentation of version data on options page improved (r794)
+  * Deprecated `tarski_messages` and `tarski_admin_style` functions (r794)
+  * Renamed `Asset` class to `TarskiAsset` and `Version` to `TarskiVersion` (r794)
   * Add options page style and scripts via updated hooks (r792)
   * Move template files to `app/templates` (r791)
   * Options code now checks referrers as well as capabilities (r788)
