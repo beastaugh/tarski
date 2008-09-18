@@ -80,20 +80,8 @@ class Version {
 		if(file_exists($cachefile) && (time() - $cachetime < filemtime($cachefile)) && file_get_contents($cachefile)) {
 			$atomdata = file_get_contents($cachefile);
 		} else {
-			if(function_exists('curl_init')) { // If libcurl is installed, use that
-				$ch = curl_init(TARSKIVERSIONFILE);
-                curl_setopt($ch, CURLOPT_FAILONERROR, 1);
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-                curl_setopt($ch, CURLOPT_HEADER, 0);
-                curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 1);
-                curl_setopt($ch, CURLOPT_TIMEOUT, 1);
-				$atomdata = curl_exec($ch);
-				curl_close($ch);
-			} elseif(ini_get('allow_url_fopen')) { // Otherwise try file_get_contents()
-				$ctx = stream_context_create(array('http' => array('timeout' => 1.0)));
-				$atomdata = @file_get_contents(TARSKIVERSIONFILE, false, $ctx);
-			}
-
+			$atomdata = wp_remote_get(TARSKIVERSIONFILE);
+			
 			if(!empty($atomdata) && cache_is_writable("version.atom")) {
 				$fp = fopen($cachefile, "w");
 				if($fp) {
@@ -104,6 +92,7 @@ class Version {
 		}
 		
 		return $atomdata;
+		
 		$atomdata = ob_get_contents();
 		ob_end_clean();
 
