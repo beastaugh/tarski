@@ -6,7 +6,7 @@
 #### New features
 
   * Version check now uses WordPress' <abbr title="Hypertext Transport Protocol">HTTP</abbr> <abbr title="Application Programming Interface">API</abbr> (r794)
-  * Added support for sticky posts (r793)
+  * Added support for sticky posts (r793, r796)
   * Version check now returns details of the latest release (r789)
   * Options page now uses WordPress' generic `POST` handler (r778, r788)
   * Added default widget sidebar content (r777)
