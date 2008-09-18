@@ -43,10 +43,13 @@
  */
 .section label, .section select, #opt-nav-homename { display: block; margin: 0.8em 0; }
 .section { margin: 0 0 0.8em 0; padding: 0.8em 0.8em 0.4em 0.8em; background: #eaf3fa; position: relative; *zoom: 1; }
-.section h3, .section p { margin: 0 0 0.8em 0; }
-.tip { margin: 0.8em 0; border: 1px solid #c6d9e9; border-left-width: 3px; padding: 0.4em; background: #f7fafd; }
+.section h3, .section h4, .section p { margin: 0 0 0.8em 0; }
+.tip, #tarski-options .update-status { margin: 0.8em 0; border: 1px solid #c6d9e9;  padding: 0.4em; background: #f7fafd; }
+.tip { border-left-width: 3px; }
+#tarski-options .error { border-color: #cd5761; background-color: #ffd7da; }
+#tarski-options .disabled { border-color: #ccc; background-color: #fafafa; }
 #tarski-options .highlight { background: none; color: #d54e21; }
-#tarski-options .tip p:last-child { margin-bottom: 0; }
+#tarski-options .tip p:last-child, #tarski-options .update-status p:last-child { margin-bottom: 0; }
 #tarski-headers label { display: inline; }
 #tarski-headers label img { background: #fff; margin: 5px; font-weight: bold; }
 

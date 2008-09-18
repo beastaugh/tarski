@@ -43,14 +43,10 @@
 	</div>
 		
 	<div id="tarski-update-notifier" class="secondary"><div class="section">
+		<h3><?php _e('Tarski Updates', 'tarski'); ?></h3>
+		<?php echo tarski_update_notifier(); ?>
 	<?php if ( (!detectWPMU() || detectWPMUadmin()) ) { ?>
 	<?php if(can_get_remote()) { ?>
-		<h3><?php _e('Update Notification','tarski'); ?></h3>
-		<?php if(get_tarski_option('update_notification')) { ?>
-			<p><?php _e('Tarski is set to notify you when an update is available.','tarski'); ?></p>
-		<?php } else { ?>
-			<p><?php _e('Tarski can be set to notify you when updates are available.','tarski'); ?></p>
-		<?php } ?>
 		<label for="update-on"><input type="radio" id="update-on" name="update_notification" value ="on" <?php if(get_tarski_option('update_notification')) { echo 'checked="checked" '; } ?>/> <?php _e('Update notification on (recommended)','tarski'); ?></label>
 		<label for="update-off"><input type="radio" id="update-off" name="update_notification" value ="off" <?php if(!get_tarski_option('update_notification')) { echo 'checked="checked" '; } ?>/> <?php _e('Update notification off','tarski'); ?></label>
 		<?php if(!cache_is_writable('version.atom') && get_tarski_option('update_notification')) { ?>

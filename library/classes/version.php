@@ -1,10 +1,10 @@
 <?php
 
 /**
- * class Version
+ * class TarskiVersion
  * 
  * The Version class is the foundation of Tarski's update notifier.
- * A Version object can have several properties: the current theme
+ * A TarskiVersion object can have several properties: the current theme
  * version (i.e. the currently installed version), the latest theme
  * version (i.e. the most recently released version, as specified by
  * the Tarski version feed {@link http://tarskitheme.com/version.atom}),
@@ -15,7 +15,7 @@
  * @package Tarski
  * @since 2.0
  */
-class Version {
+class TarskiVersion {
 	
 	/**
 	 * The version number of the currently installed theme.
@@ -80,21 +80,11 @@ class Version {
 		if(file_exists($cachefile) && (time() - $cachetime < filemtime($cachefile)) && file_get_contents($cachefile)) {
 			$atomdata = file_get_contents($cachefile);
 		} else {
-			if(function_exists('curl_init')) { // If libcurl is installed, use that
-				$ch = curl_init(TARSKIVERSIONFILE);
-                curl_setopt($ch, CURLOPT_FAILONERROR, 1);
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-                curl_setopt($ch, CURLOPT_HEADER, 0);
-                curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 1);
-                curl_setopt($ch, CURLOPT_TIMEOUT, 1);
-				$atomdata = curl_exec($ch);
-				curl_close($ch);
-			} elseif(ini_get('allow_url_fopen')) { // Otherwise try file_get_contents()
-				$ctx = stream_context_create(array('http' => array('timeout' => 1.0)));
-				$atomdata = @file_get_contents(TARSKIVERSIONFILE, false, $ctx);
-			}
-
-			if(!empty($atomdata) && cache_is_writable("version.atom")) {
+			$response = wp_remote_get(TARSKIVERSIONFILE);
+			$atomdata = wp_remote_retrieve_body(&$response);
+			$code = wp_remote_retrieve_response_code(&$response);
+			
+			if (200 == $code && cache_is_writable("version.atom")) {
 				$fp = fopen($cachefile, "w");
 				if($fp) {
 					fwrite($fp, $atomdata);
@@ -104,6 +94,7 @@ class Version {
 		}
 		
 		return $atomdata;
+		
 		$atomdata = ob_get_contents();
 		ob_end_clean();
 
@@ -117,7 +108,7 @@ class Version {
 	 * @return string
 	 */
 	function latest_version_number() {
-		if(preg_match('/<entry>.*?<title>(.+?)<\/title>.*?<\/entry>/is', Version::version_feed_data(), $matches)) {
+		if(preg_match('/<entry>.*?<title>(.+?)<\/title>.*?<\/entry>/is', TarskiVersion::version_feed_data(), $matches)) {
 			$this->latest = wp_specialchars($matches[1]);
 		}
 	}
@@ -132,7 +123,7 @@ class Version {
 	 * @return string
 	 */
 	function latest_version_link() {
-		if(preg_match('/<entry>.*?<id>(.+?)<\/id>.*?<\/entry>/is', Version::version_feed_data(), $matches)) {
+		if(preg_match('/<entry>.*?<id>(.+?)<\/id>.*?<\/entry>/is', TarskiVersion::version_feed_data(), $matches)) {
 			$this->latest_link = wp_specialchars($matches[1]);
 		}
 	}
@@ -144,7 +135,7 @@ class Version {
 	 * @return string
 	 */
 	function latest_version_summary() {
-		if(preg_match('/<entry>.*?<summary>(.+?)<\/summary>.*?<\/entry>/is', Version::version_feed_data(), $matches)) {
+		if(preg_match('/<entry>.*?<summary>(.+?)<\/summary>.*?<\/entry>/is', TarskiVersion::version_feed_data(), $matches)) {
 			$this->latest_summary = wp_specialchars($matches[1]);
 		}
 	}

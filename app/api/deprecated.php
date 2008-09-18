@@ -10,6 +10,40 @@
  */
 
 /**
+ * tarski_admin_style() - Tarski CSS for the WordPress admin panel.
+ * 
+ * @since 2.1
+ * @deprecated 2.4
+ */
+function tarski_admin_style() {
+	_deprecated_function(__FUNCTION__, '2.4');
+	
+	wp_enqueue_style(
+		'tarski_admin',
+		get_bloginfo('template_directory') . '/library/css/admin.css',
+		array(), false, 'screen'
+	);
+}
+
+/**
+ * tarski_messages() - Adds messages about Tarski to the WordPress admin panel.
+ * 
+ * @since 2.1
+ * @deprecated 2.4
+ * @hook filter tarski_messages
+ * Filter the messages Tarski prints to the WordPress admin panel.
+ */
+function tarski_messages() {
+	_deprecated_function(__FUNCTION__, '2.4');
+	
+	$messages = apply_filters('tarski_messages', array());
+
+	foreach ( $messages as $message ) {
+		echo "<p class=\"tarski-message\">$message</p>\n\n";
+	}
+}
+
+/**
  * ready_to_delete_options() - Returns true if Tarski is ready to delete its options.
  * 
  * When options are deleted, the time of deletion is saved in Tarski's
@@ -170,11 +204,11 @@ function tarski_date() {
  * to private, but it doesn't add one allowing them if it's set to public.
  * @since 2.0
  * @deprecated 2.1
- * @see Asset::meta()
+ * @see TarskiAsset::meta()
  * @return string
  */
 function add_robots_meta() {
-	_deprecated_function(__FUNCTION__, '2.1', Asset::meta());
+	_deprecated_function(__FUNCTION__, '2.1', TarskiAsset::meta());
 	
 	if(get_option('blog_public') != '0')
 		echo '<meta name="robots" content="all" />' . "\n";
@@ -188,9 +222,9 @@ function add_robots_meta() {
  * @return string
  */
 function tarski_stylesheets() {
-	_deprecated_function(__FUNCTION__, '2.1', Asset::stylesheets());
+	_deprecated_function(__FUNCTION__, '2.1', TarskiAsset::stylesheets());
 	
-	$assets = new Asset;
+	$assets = new TarskiAsset;
 	$assets->stylesheets();
 	$assets->output();
 }
@@ -203,13 +237,13 @@ function tarski_stylesheets() {
  * or comments feed depending on the page type.
  * @deprecated 2.1
  * @since 2.0
- * @see Asset::feeds()
+ * @see TarskiAsset::feeds()
  * @return string
  */
 function tarski_feeds() {
-	_deprecated_function(__FUNCTION__, '2.1', Asset::feeds());
+	_deprecated_function(__FUNCTION__, '2.1', TarskiAsset::feeds());
 	
-	$assets = new Asset;
+	$assets = new TarskiAsset;
 	$assets->feeds();
 	$assets->output();
 }
@@ -222,9 +256,9 @@ function tarski_feeds() {
  * @return string
  */
 function tarski_javascript() {
-	_deprecated_function(__FUNCTION__, '2.1', Asset::javascript());
+	_deprecated_function(__FUNCTION__, '2.1', TarskiAsset::javascript());
 	
-	$assets = new Asset;
+	$assets = new TarskiAsset;
 	$assets->javascript();
 	$assets->output();
 }

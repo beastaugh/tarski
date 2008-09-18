@@ -343,21 +343,6 @@ function tarski_prefill_sidebars() {
 }
 
 /**
- * tarski_messages() - Adds messages about Tarski to the WordPress admin panel.
- * 
- * @since 2.1
- * @hook filter tarski_messages
- * Filter the messages Tarski prints to the WordPress admin panel.
- */
-function tarski_messages() {
-	$messages = apply_filters('tarski_messages', array());
-	
-	foreach ( $messages as $message ) {
-		echo "<p class=\"tarski-message\">$message</p>\n\n";
-	}
-}
-
-/**
  * tarski_addmenu() - Adds the Tarski Options page to the WordPress admin panel.
  * 
  * @since 1.0
@@ -398,19 +383,6 @@ function tarski_admin_header_style() { ?>
 	}
 	</style>
 <?php }
-
-/**
- * tarski_admin_style() - Tarski CSS for the WordPress admin panel.
- * 
- * @since 2.1
-*/
-function tarski_admin_style() {
-	wp_enqueue_style(
-		'tarski_admin',
-		get_bloginfo('template_directory') . '/library/css/admin.css',
-		array(), false, 'screen'
-	);
-}
 
 /**
  * tarski_inject_styles() - Adds CSS to the Tarski Options page.
@@ -505,7 +477,7 @@ function tarski_navbar_select($pages) {
 /**
  * tarski_update_notifier() - Performs version checks and outputs the update notifier.
  * 
- * Creates a new Version object, checks the latest and current
+ * Creates a new TarskiVersion object, checks the latest and current
  * versions, and lets the user know whether or not their version
  * of Tarski needs updating. The way it displays varies slightly
  * between the WordPress Dashboard and the Tarski Options page.
@@ -513,13 +485,11 @@ function tarski_navbar_select($pages) {
  * @param string $location
  * @return string
  */
-function tarski_update_notifier($messages) {
+function tarski_update_notifier() {
 	global $plugin_page;
 	
-	if ( !is_array($messages) )
-		$messages = array();
-	
-	$version = new Version;
+	$message = array();
+	$version = new TarskiVersion;
 	$version->current_version_number();
 	$svn_link = 'http://tarskitheme.com/help/updates/svn/';
 	
@@ -531,24 +501,29 @@ function tarski_update_notifier($messages) {
 			$version->latest_version_number();
 			$version->latest_version_link();
 			$version->version_status();
+			$version->latest_version_summary();
 			
 			if ( $version->status == 'older' ) {
-				$messages[] = sprintf(
-					__('A new version of the Tarski theme, version %1$s %2$s. Your installed version is %3$s.','tarski'),
-					"<strong>$version->latest</strong>",
-					'<a href="' . $version->latest_link . '">' . __('is now available','tarski') . '</a>',
-					"<strong>$version->current</strong>"
+				$message['status'] = 'updated fade';
+				$message['body'] = array(
+					sprintf(
+						__('A new version of the Tarski theme, version %1$s %2$s. Your installed version is %3$s.','tarski'),
+						"<strong>$version->latest</strong>",
+						'<a href="' . $version->latest_link . '">' . __('is now available','tarski') . '</a>',
+						"<strong>$version->current</strong>"
+					),
+					$version->latest_summary
 				);
 			} elseif ( $plugin_page == 'tarski-options' ) {
 				switch($version->status) {
 					case 'current':
-						$messages[] = sprintf(
+						$message['body'] = sprintf(
 							__('Your version of Tarski (%s) is up to date.','tarski'),
 							"<strong>$version->current</strong>"
 						);
 					break;
 					case 'newer':
-						$messages[] = sprintf(
+						$message['body'] = sprintf(
 							__('You appear to be running a development version of Tarski (%1$s). Please ensure you %2$s.','tarski'),
 							"<strong>$version->current</strong>",
 							"<a href=\"$svn_link\">" . __('stay updated','tarski') . '</a>'
@@ -556,22 +531,27 @@ function tarski_update_notifier($messages) {
 					break;
 					case 'no_connection':
 					case 'error':
-						$messages[] = sprintf(
+						$message['status'] = 'error';
+						$message['body'] = sprintf(
 							__('No connection to update server. Your installed version is %s.','tarski'),
 							"<strong>$version->current</strong>"
 						);
 					break;
 				}
 			}
-		} elseif ( $plugin_page == 'tarski-options' ) {
-			$messages[] = sprintf(
+		} else {
+			$message['status'] = 'disabled';
+			$message['body'] = sprintf(
 				__('Update notification for Tarski is disabled. Your installed version is %s.','tarski'),
 				"<strong>$version->current</strong>"
 			);
 		}
 	}
 	
-	return $messages;
+	if (is_array($message['body']))
+		$message['body'] = implode("</p>\n<p>", $message['body']);
+	
+	return '<div id="tarski-update-status" class="update-status ' . $message['status'] . '"><p>' . $message['body'] . '</p></div>';
 }
 
 ?>

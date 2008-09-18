@@ -67,18 +67,9 @@ if (is_admin()) {
 	add_action('admin_post_delete_tarski_options', 'delete_tarski_options');
 	add_action('admin_post_restore_tarski_options', 'restore_tarski_options');
 	
-	// Generate messages
-	add_filter('tarski_messages', 'tarski_update_notifier');
-
-	// Output messages on dashboard and options page
-	add_action('admin_notices', 'tarski_messages');
-
 	// Tarski Options page
-	add_action('admin_print_styles', 'tarski_admin_style');
 	add_action('admin_print_scripts-themes_page_tarski-options', 'tarski_inject_scripts');
 	add_action('admin_print_styles-themes_page_tarski-options', 'tarski_inject_styles');
-	add_action('admin_print_scripts-design_page_tarski-options', 'tarski_inject_scripts'); // Pre-2.7
-	add_action('admin_print_styles-design_page_tarski-options', 'tarski_inject_styles'); // Pre-2.7
 	add_action('admin_menu', 'tarski_addmenu');
 
 	// Options
@@ -95,7 +86,7 @@ if (is_admin()) {
 }
 
 // Header
-add_action('wp_head', array('Asset', 'init'));
+add_action('wp_head', array('TarskiAsset', 'init'));
 
 add_action('th_header', 'tarski_headerimage');
 add_action('th_header', 'tarski_titleandtag');
