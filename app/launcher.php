@@ -95,7 +95,7 @@ if (is_admin()) {
 }
 
 // Header
-add_action('wp_head', array('Asset', 'init'));
+add_action('wp_head', array('TarskiAsset', 'init'));
 
 add_action('th_header', 'tarski_headerimage');
 add_action('th_header', 'tarski_titleandtag');
