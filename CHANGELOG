@@ -14,6 +14,7 @@
 #### Tweaks
 
   * Move version check copy into TarskiVersion class (r797)
+  * Deprecated `can_get_remote` function (r797)
   * Presentation of version data on options page improved (r794)
   * Deprecated `tarski_messages` and `tarski_admin_style` functions (r794)
   * Renamed `Asset` class to `TarskiAsset` and `Version` to `TarskiVersion` (r794)
