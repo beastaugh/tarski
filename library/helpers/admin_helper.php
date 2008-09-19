@@ -13,19 +13,6 @@ function detectWPMUadmin() {
 }
 
 /**
- * can_get_remote() - Detects whether Tarski can download remote files.
- * 
- * Checks if either allow_url_fopen is set or libcurl is available.
- * Mainly used by the update notifier to ensure Tarski only attempts to
- * use available functionality.
- * @since 2.0.3
- * @return boolean
- */
-function can_get_remote() {
-	return (bool) (function_exists('curl_init') || ini_get('allow_url_fopen'));
-}
-
-/**
  * cache_is_writable() - Checks whether WordPress can write to $file in Tarski's cache directory.
  * 
  * If $file isn't given, the function checks to see if new files can 
@@ -486,72 +473,8 @@ function tarski_navbar_select($pages) {
  * @return string
  */
 function tarski_update_notifier() {
-	global $plugin_page;
-	
-	$message = array();
-	$version = new TarskiVersion;
-	$version->current_version_number();
-	$svn_link = 'http://tarskitheme.com/help/updates/svn/';
-	
-	// Update checking only performed when remote files can be accessed
-	if ( can_get_remote() ) {
-		
-		// Only performs the update check when notification is enabled
-		if ( get_tarski_option('update_notification') ) {
-			$version->latest_version_number();
-			$version->latest_version_link();
-			$version->version_status();
-			$version->latest_version_summary();
-			
-			if ( $version->status == 'older' ) {
-				$message['status'] = 'updated fade';
-				$message['body'] = array(
-					sprintf(
-						__('A new version of the Tarski theme, version %1$s %2$s. Your installed version is %3$s.','tarski'),
-						"<strong>$version->latest</strong>",
-						'<a href="' . $version->latest_link . '">' . __('is now available','tarski') . '</a>',
-						"<strong>$version->current</strong>"
-					),
-					$version->latest_summary
-				);
-			} elseif ( $plugin_page == 'tarski-options' ) {
-				switch($version->status) {
-					case 'current':
-						$message['body'] = sprintf(
-							__('Your version of Tarski (%s) is up to date.','tarski'),
-							"<strong>$version->current</strong>"
-						);
-					break;
-					case 'newer':
-						$message['body'] = sprintf(
-							__('You appear to be running a development version of Tarski (%1$s). Please ensure you %2$s.','tarski'),
-							"<strong>$version->current</strong>",
-							"<a href=\"$svn_link\">" . __('stay updated','tarski') . '</a>'
-						);
-					break;
-					case 'no_connection':
-					case 'error':
-						$message['status'] = 'error';
-						$message['body'] = sprintf(
-							__('No connection to update server. Your installed version is %s.','tarski'),
-							"<strong>$version->current</strong>"
-						);
-					break;
-				}
-			}
-		} else {
-			$message['status'] = 'disabled';
-			$message['body'] = sprintf(
-				__('Update notification for Tarski is disabled. Your installed version is %s.','tarski'),
-				"<strong>$version->current</strong>"
-			);
-		}
-	}
-	
-	if (is_array($message['body']))
-		$message['body'] = implode("</p>\n<p>", $message['body']);
-	
-	return '<div id="tarski-update-status" class="update-status ' . $message['status'] . '"><p>' . $message['body'] . '</p></div>';
+	$version = new TarskiVersion();
+	return $version->status_message();
 }
 
 ?>

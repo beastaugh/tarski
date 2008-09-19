@@ -10,6 +10,22 @@
  */
 
 /**
+ * can_get_remote() - Detects whether Tarski can download remote files.
+ * 
+ * Checks if either allow_url_fopen is set or libcurl is available.
+ * Mainly used by the update notifier to ensure Tarski only attempts to
+ * use available functionality.
+ * @since 2.0.3
+ * @deprecated 2.4
+ * @return boolean
+ */
+function can_get_remote() {
+	_deprecated_function(__FUNCTION__, '2.4');
+	
+	return (bool) (function_exists('curl_init') || ini_get('allow_url_fopen'));
+}
+
+/**
  * tarski_admin_style() - Tarski CSS for the WordPress admin panel.
  * 
  * @since 2.1

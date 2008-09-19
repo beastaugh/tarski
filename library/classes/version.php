@@ -18,34 +18,115 @@
 class TarskiVersion {
 	
 	/**
+	 * The raw version feed data.
+	 * @var string
+	 */
+	var $feed_data;
+	
+	/**
 	 * The version number of the currently installed theme.
 	 * @var string
 	 */
-	var $current;
+	var $current = false;
 	
 	/**
 	 * The version number of the latest Tarski release.
 	 * @var string
 	 */
-	var $latest;
+	var $latest = false;
 	
 	/**
 	 * Link to the latest Tarski release post.
 	 * @var string
 	 */
-	var $latest_link;
+	var $latest_link = false;
 	
 	/**
 	 * Summary text of the latest Tarski release.
 	 * @var string
 	 */
-	var $latest_summary;
+	var $latest_summary = false;
 	
 	/**
 	 * The status of the currently installed version.
 	 * @var string
 	 */
-	var $status;
+	var $status = 'unchecked';
+	
+	/**
+	 * The messages associated with version states.
+	 * @var string
+	 */
+	var $messages;
+	
+	/**
+	 * TarskiVersion() - constructor for the TarskiVersion class.
+	 * 
+	 * @since 2.4
+	 */
+	function TarskiVersion() {
+		$this->current_version_number();
+		
+		$this->messages = array(
+			'unchecked' => array(
+				'class' => 'error',
+				'body' => sprintf(
+					__('No attempt was made to access the update server. Your installed version is %s.', 'tarski'),
+					"<strong>$this->current</strong>"
+				)
+			),
+			'error' => array(
+				'class' => 'error',
+				'body' => sprintf(
+					__('An error occurred while attempting to access the update server. Your installed version is %s.', 'tarski'),
+					"<strong>$this->current</strong>"
+				)
+			),
+			'no_connection' => array(
+				'class' => 'error',
+				'body' => sprintf(
+					__('No connection to update server. Your installed version is %s.','tarski'),
+					"<strong>$this->current</strong>"
+				)
+			)
+		);
+		
+		if (get_tarski_option('update_notification')) {
+			$this->version_feed_data();
+			
+			$this->latest_version_number();
+			$this->latest_version_link();
+			$this->version_status();
+			$this->latest_version_summary();
+			
+			$this->messages = array_merge($this->messages, array(
+				'current' => array(
+					'class' => '',
+					'body' => sprintf(
+						__('Your version of Tarski (%s) is up to date.','tarski'),
+						"<strong>$this->current</strong>"
+					)
+				),
+				'older' => array(
+					'class' => 'updated fade',
+					'body' => sprintf(
+						__('A new version of the Tarski theme, version %1$s %2$s. Your installed version is %3$s.','tarski'),
+						"<strong>$this->latest</strong>",
+						'<a href="' . $this->latest_link . '">' . __('is now available','tarski') . '</a>',
+						"<strong>$this->current</strong>"
+					) . "\n\n$this->latest_summary"
+				),
+				'newer' => array(
+					'class' => '',
+					'body' => sprintf(
+						__('You appear to be running a development version of Tarski (%1$s). Please ensure you %2$s.','tarski'),
+						"<strong>$this->current</strong>",
+						'<a href="http://tarskitheme.com/help/updates/svn/">' . __('stay updated','tarski') . '</a>'
+					)
+				)
+			));
+		}		
+	}
 	
 	/**
 	 * current_version_number() - Returns current version number.
@@ -67,11 +148,9 @@ class TarskiVersion {
 	 * 
 	 * @link http://tarskitheme.com/version.atom
 	 * @since 2.0
-	 * @return string $atomdata
+	 * @return string
 	 */
 	function version_feed_data() {
-		ob_start();
-		
 		// Thanks to Simon Willison for the inspiration
 		$cachefile = TARSKICACHE . "/version.atom";
 		$cachetime = 60 * 60;
@@ -84,37 +163,37 @@ class TarskiVersion {
 			$atomdata = wp_remote_retrieve_body(&$response);
 			$code = wp_remote_retrieve_response_code(&$response);
 			
-			if (200 == $code && cache_is_writable("version.atom")) {
-				$fp = fopen($cachefile, "w");
-				if($fp) {
-					fwrite($fp, $atomdata);
-					fclose($fp);
+			if (200 == $code) {
+				if (cache_is_writable("version.atom")) {
+					$fp = fopen($cachefile, "w");
+					if($fp) {
+						fwrite($fp, $atomdata);
+						fclose($fp);
+					}
 				}
+			} else {
+				$this->status = 'no_connection';
 			}
 		}
 		
-		return $atomdata;
-		
-		$atomdata = ob_get_contents();
-		ob_end_clean();
-
-		return $atomdata;
+		$this->feed_data = $atomdata;
+		return $this->feed_data;
 	}
 	
 	/**
-	 * latest_version_number() - Returns latest version number.
+	 * latest_version_number() - Sets latest version number.
 	 * 
 	 * @since 2.0
 	 * @return string
 	 */
 	function latest_version_number() {
-		if(preg_match('/<entry>.*?<title>(.+?)<\/title>.*?<\/entry>/is', TarskiVersion::version_feed_data(), $matches)) {
+		if(preg_match('/<entry>.*?<title>(.+?)<\/title>.*?<\/entry>/is', $this->feed_data, $matches)) {
 			$this->latest = wp_specialchars($matches[1]);
 		}
 	}
 	
 	/**
-	 * latest_version_link() - Returns link to latest version release post.
+	 * latest_version_link() - Sets latest version release post.
 	 * 
 	 * The link should be the release post on the Tarski website
 	 * for the latest version of Tarski, which will include a link
@@ -123,51 +202,61 @@ class TarskiVersion {
 	 * @return string
 	 */
 	function latest_version_link() {
-		if(preg_match('/<entry>.*?<id>(.+?)<\/id>.*?<\/entry>/is', TarskiVersion::version_feed_data(), $matches)) {
+		if(preg_match('/<entry>.*?<id>(.+?)<\/id>.*?<\/entry>/is', $this->feed_data, $matches)) {
 			$this->latest_link = wp_specialchars($matches[1]);
 		}
 	}
 	
 	/**
-	 * latest_version_summary() - Returns the summary text of the the latest version release post.
+	 * latest_version_summary() - Sets the summary text of the the latest version release post.
 	 * 
 	 * @since 2.4
 	 * @return string
 	 */
 	function latest_version_summary() {
-		if(preg_match('/<entry>.*?<summary>(.+?)<\/summary>.*?<\/entry>/is', TarskiVersion::version_feed_data(), $matches)) {
+		if(preg_match('/<entry>.*?<summary>(.+?)<\/summary>.*?<\/entry>/is', $this->feed_data, $matches)) {
 			$this->latest_summary = wp_specialchars($matches[1]);
 		}
 	}
 	
 	/**
-	 * version_status() - Returns the status of the current version.
+	 * version_status() - Sets the status of the installed version.
 	 * 
-	 * This lets Tarski know whether there is a connection to the version
-	 * feed {@link http://tarskitheme.com/version.atom} and if so, whether
-	 * the current version is equal to the latest version.
+	 * This lets Tarski know whether the installed version is the current
+	 * version, or whether it is older or newer than the latest version.
 	 * @since 2.0
 	 * @return string
 	 */
 	function version_status() {
-		$this->current_version_number();
-		$this->latest_version_number();
-		
-		$status = version_compare($this->latest, $this->current);
-		
-		if ($this->latest) {
-			if ($status === 0) {
-				$this->status = 'current';
-			} elseif ($status === 1) {
-				$this->status = 'older';
-			} elseif ($status === -1) {
-				$this->status = 'newer';
+		if ('no_connection' != $this->status) {
+			$this->latest_version_number();
+			
+			if (!empty($this->latest) && !empty($this->current)) {
+				$status = version_compare($this->latest, $this->current);
+				
+				if ($status === 0) {
+					$this->status = 'current';
+				} elseif ($status === 1) {
+					$this->status = 'older';
+				} elseif ($status === -1) {
+					$this->status = 'newer';
+				}
 			} else {
 				$this->status = 'error';
-			}
-		} else {
-			$this->status = 'no_connection';
+			}			
 		}
+	}
+	
+	/**
+	 * status_message() - Returns an appropriate version check status message.
+	 * 
+	 * @since 2.4
+	 */
+	function status_message() {
+		$message = $this->messages[$this->status];
+		
+		if (is_array($message) && !empty($message))
+			return '<div id="tarski-update-status" class="update-status ' . $message['class'] . '">' . wpautop($message['body']) . '</div>';
 	}
 	
 }
