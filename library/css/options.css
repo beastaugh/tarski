@@ -50,8 +50,6 @@
 #tarski-options .disabled { border-color: #ccc; background-color: #fafafa; }
 #tarski-options .highlight { background: none; color: #d54e21; }
 #tarski-options .tip p:last-child, #tarski-options .update-status p:last-child { margin-bottom: 0; }
-#tarski-headers label { display: inline; }
-#tarski-headers label img { background: #fff; margin: 5px; font-weight: bold; }
 
 /**
  * Navbar selection node tree
@@ -76,20 +74,14 @@
 #navbar-select .nav-page input { _top: 5px; }
 
 /**
- * Checkboxes and radio buttons
+ * Header selector
  * 
- * The Tarski options page uses JavaScript to allow the styling of input
- * elements. It's mainly used to create clickable header image thumbnails
- * and consequently the styling rules here are fairly minimal, but all the
- * important classes are listed for possible future reference.
+ * The Tarski options page uses JavaScript to create clickable header image
+ * thumbnails.
  */
-label.checkbox_checked {}
-label.checkbox_unchecked {}
-label.radio_checked {}
-label.radio_checked img { border: 2px solid #d54e21; padding: 3px; }
-label.radio_unchecked  {}
-label.radio_unchecked img { border: 1px solid #8ebfd5; padding: 4px; }
-label.radio_unchecked:hover {}
-label.radio_unchecked:hover img { border: 1px solid #d54e21; padding: 4px; }
-label.highlighted { border: 1px solid #333; }
-.crirHidden { position: absolute; left: -9999em; }
+#tarski-headers label, #tarski-headers label img { display: block; float: left; }
+#tarski-headers label { margin: 5px; border: 1px solid #8ebfd5; padding: 4px; }
+#tarski-headers label img { margin: 0; padding: 0; background: #fff; font-weight: bold; }
+#tarski-headers label.checked { border: 2px solid #d54e21; padding: 3px; }
+#tarski-headers label.unchecked {}
+#tarski-headers label.hovered { border-color: #d54e21; }

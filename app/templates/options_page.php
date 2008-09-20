@@ -199,11 +199,12 @@
 					foreach($header_images as $header_image) {
 						$count++;
 						$header_name = str_replace('-thumb', '', $header_image); ?>
-						<label for="header_<?php echo $header_name; ?>"><img class="header_image" alt="<?php echo $header_name; ?>" src="<?php echo get_bloginfo('template_directory') . '/headers/' . $header_image; ?>" /></label>
+						<label id="for_header_<?php echo $header_name; ?>" for="header_<?php echo $header_name; ?>"><img class="header_image" alt="<?php echo $header_name; ?>" src="<?php echo get_bloginfo('template_directory') . '/headers/' . $header_image; ?>" /></label>
 						<input id="header_<?php echo $header_name; ?>" name="header_image" class="crirHiddenJS" value="<?php echo $header_name; ?>" type="radio"<?php if(get_tarski_option('header') == $header_name) { echo ' checked="checked"'; } ?> />
 					<?php }
 				}
 			} ?>
+				<div class="clearer"></div>
 			</div>
 			
 			<p><?php printf( __('Choose a header image by clicking on it. The current image is the %s one.','tarski'), '<span class="highlight">' . __('highlighted','tarski') . '</span>' ); ?></p>
