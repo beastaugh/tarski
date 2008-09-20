@@ -392,7 +392,7 @@ function tarski_inject_styles() {
 function tarski_inject_scripts() {
 	$js_dir = get_bloginfo('template_directory') . '/app/js';
 	wp_enqueue_script('page_select', "$js_dir/page_select.js");
-	wp_enqueue_script('crir', "$js_dir/crir.js");
+	wp_enqueue_script('header_select', "$js_dir/header_select.js");
 }
 
 /**
