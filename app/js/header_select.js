@@ -6,32 +6,22 @@ var Radios = function(selector) {
   });
 };
 
+Radios.prototype.check = function(radio) {
+  var i = this._elements.length;
+  while (i--) {
+    this._elements[i]._input.checked = false;
+    jQuery(this._elements[i]._label).removeClass('checked');
+  }
+  radio._input.checked = true;
+  jQuery(radio._label).addClass('checked');
+};
+
 var Radio = function(group, element) {
-  this._input = element;
-  this._label = document.getElementById('for_' + this._input.id);
-  this._group = group;
+  this._setup(group, element);
   var radio = this;
   
-  jQuery(this._input).wrap('<span style="position:relative;"></span>');
-  jQuery(this._input).css({position: 'absolute', left: '-9999em'});
-  
-  if (this._input.checked)
-    jQuery(this._label).addClass('checked');
-  else
-    jQuery(this._label).addClass('unchecked');
-  
   jQuery([this._input, this._label]).click(function(event) {
-    var i = radio._group._elements.length;
-    
-    while (i--) {
-      radio._group._elements[i]._input.checked = false;
-      jQuery(radio._group._elements[i]._label).removeClass('checked');
-      jQuery(radio._group._elements[i]._label).addClass('unchecked');
-    }
-    
-    radio._input.checked = true;
-    jQuery(radio._label).removeClass('unchecked');
-    jQuery(radio._label).addClass('checked');
+    radio.group.check(radio);
   });
   
   jQuery(this._label).mouseover(function(event) {
@@ -43,6 +33,17 @@ var Radio = function(group, element) {
   });
 };
 
+Radio.prototype._setup = function(group, input) {
+  this.group = group;
+  this._input = input;
+  this._label = document.getElementById('for_' + this._input.id);
+  
+  jQuery(this._input).wrap('<span style="position:relative;"></span>');
+  jQuery(this._input).css({position: 'absolute', left: '-9999em'});
+  
+  if (this._input.checked) jQuery(this._label).addClass('checked');
+}
+
 jQuery(document).ready(function() {
-  var radios = new Radios('#tarski-headers input');
+  new Radios('#tarski-headers input');
 });
