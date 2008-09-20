@@ -18,17 +18,21 @@
   * Presentation of version data on options page improved (r794)
   * Deprecated `tarski_messages` and `tarski_admin_style` functions (r794)
   * Renamed `Asset` class to `TarskiAsset` and `Version` to `TarskiVersion` (r794)
-  * Add options page style and scripts via updated hooks (r792)
+  * <abbr title="WordPress">WP</abbr> 2.7 compatibility update for options page styles and scripts  (r792)
   * Move template files to `app/templates` (r791)
   * Options code now checks referrers as well as capabilities (r788)
   * Improved ease of localisation for comments template (r787)
   * Use <abbr title="Secure Sockets Layer">SSL</abbr>-aware `site_url` function in comments template (r786)
-  * Improved ease of localisation for options page notices (r783)
+  * Improved ease of localisation for options page notices (r783, r799)
   * Remove tab indices (r782)
   * Show tags everywhere by default (r779)
   * Deprecated `ready_to_delete_options` (r778)
   * Moved version data cache into `WP_CONTENT_DIR` (r776)
   * Improved ease of localisation for 'No posts found' text (r775)
+
+#### Bug fixes
+
+  * Fixed untranslateable text on the options page (r799)
 
 
 ### Version 2.3 [&sect;](http://tarskitheme.com/2008/08/10/23-release/)
