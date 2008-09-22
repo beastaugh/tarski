@@ -13,7 +13,7 @@
 
 #### Tweaks
 
-  * Remove functions deprecated in version 2.1 (r810)
+  * Removed functions deprecated in version 2.1 (r810)
   * Replaced <abbr title="Checkbox and Radio button Input Replacement">CRIR</abbr> with home-grown header selector (r801-7)
   * Move version check copy into TarskiVersion class (r797)
   * Deprecated `can_get_remote` function (r797)
