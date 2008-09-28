@@ -7,7 +7,7 @@
 	<div class="content">
 		<p><em><?php printf(
 			__('You must be %s to post a comment.', 'tarski'),
-			'<a href="' . site_url('wp-login.php?redirect_to=' . get_permalink()) . '">' . __('logged in', 'tarski') . '</a>'
+			'<a href="' . wp_login_url(get_permalink()) . '">' . __('logged in', 'tarski') . '</a>'
 		); ?></em></p>
 	</div>
 </div>
@@ -24,7 +24,7 @@
 				'<a href="' . admin_url('profile.php') . '">' . $user_identity . '</a>'
 			); ?></p>
 			
-			<p><a href="<?php echo site_url('wp-login.php?action=logout'); ?>" title="<?php _e('Log out of this account','tarski') ?>"><?php _e('Logout &raquo;','tarski'); ?></a></p>
+			<p><a href="<?php echo wp_logout_url(get_permalink()); ?>" title="<?php _e('Log out of this account', 'tarski') ?>"><?php _e('Logout &raquo;', 'tarski'); ?></a></p>
 		</div> <!-- /info fields -->
 
 	<?php } else { // if user is not logged in - name, email and website fields ?>

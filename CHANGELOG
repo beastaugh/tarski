@@ -5,6 +5,7 @@
 
 #### New features
 
+  * <abbr title="Cross-Site Request Forgery">CSRF</abbr>-hardened login and logout functions (r814)
   * Version check now uses WordPress' <abbr title="Hypertext Transport Protocol">HTTP</abbr> <abbr title="Application Programming Interface">API</abbr> (r794)
   * Added support for sticky posts (r793, r796)
   * Version check now returns details of the latest release (r789)
