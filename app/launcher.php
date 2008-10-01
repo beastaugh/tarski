@@ -68,8 +68,6 @@ if (is_admin()) {
 	add_action('admin_post_restore_tarski_options', 'restore_tarski_options');
 	
 	// Tarski Options page
-	add_action('admin_print_scripts-themes_page_tarski-options', 'tarski_inject_scripts');
-	add_action('admin_print_styles-themes_page_tarski-options', 'tarski_inject_styles');
 	add_action('admin_menu', 'tarski_addmenu');
 
 	// Options

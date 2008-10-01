@@ -335,13 +335,16 @@ function tarski_prefill_sidebars() {
  * @since 1.0
  */
 function tarski_addmenu() {
-	add_theme_page(
+	$page = add_theme_page(
 		__('Tarski Options','tarski'),
 		__('Tarski Options','tarski'),
 		'edit_themes',
 		'tarski-options',
 		'tarski_admin'
 	);
+	
+	add_action("admin_print_scripts-$page", 'tarski_inject_scripts');
+	add_action("admin_print_styles-$page", 'tarski_inject_styles');
 }
 
 /**
