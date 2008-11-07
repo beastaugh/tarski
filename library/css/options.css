@@ -41,15 +41,18 @@
  * Form layouts are a dark art, and these rules let us specify a bit more
  * precisely than the WordPress defaults do how things should appear.
  */
-.postbox label, .postbox select, #opt-nav-homename { display: block; margin: 0.8em 0; }
 .postbox .inside { margin: 0 10px 10px; }
 .postbox h4, .postbox p { margin: 0 0 0.8em 0; }
-.tip, #tarski-options .update-status { margin: 0.8em 0; border: 1px solid #c6d9e9;  padding: 0.4em; background: #f7fafd; }
-.tip { border-left-width: 3px; }
+#tarski-options .update-status { margin: 0.8em 0; border: 1px solid #c6d9e9;  padding: 0.4em; background: #f7fafd; }
+.postbox .option { margin:0 -10px; border-top:1px solid #dfdfdf; padding:0.8em 10px 0 10px; }
+.postbox .borderless { border-top: none; padding-top: 0; }
+.postbox label, .postbox select, .postbox input.text { display: block; margin: 0 0 0.8em 0; }
+.postbox .option label { font-weight: bold; }
 #tarski-options .error { border-color: #cd5761; background-color: #ffd7da; }
 #tarski-options .disabled { border-color: #ccc; background-color: #fafafa; }
 #tarski-options .highlight { background: none; color: #d54e21; }
-#tarski-options .tip p:last-child, #tarski-options .update-status p:last-child { margin-bottom: 0; }
+#tarski-options .update-status p:last-child { margin-bottom: 0; }
+.postbox .tip { margin: 0 -10px -10px -10px; border-top:1px solid #dfdfdf; padding: 0.4em 10px 1px 10px; background: #fafafa; -webkit-border-bottom-right-radius: 6px; -moz-border-bottom-right-radius: 6px; border-bottom-right-radius: 6px; -webkit-border-bottom-left-radius: 6px; -moz-border-bottom-left-radius: 6px; border-bottom-left-radius: 6px; }
 
 /**
  * Navbar selection node tree

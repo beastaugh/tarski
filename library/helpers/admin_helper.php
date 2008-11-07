@@ -462,8 +462,8 @@ function tarski_navbar_select() {
 	if($pages) {
 		$navbar_select = '<p>' . __('Pages selected here will display in your navbar.', 'tarski') . "</p>\n"
 			. $selector
-			. '<input type="hidden" id="opt-collapsed-pages" name="collapsed_pages" value="' . get_tarski_option('collapsed_pages') . " />\n\n"
-			. '<p class="tip">' . __('To change the order in which they appear, edit the &#8216;Page Order&#8217; value on each page.', 'tarski') . "</p>\n";
+			. '<input type="hidden" id="opt-collapsed-pages" name="collapsed_pages" value="' . get_tarski_option('collapsed_pages') . '" />'. "\n\n"
+			. '<p>' . __('To change the order in which they appear, edit the &#8216;Page Order&#8217; value on each page.', 'tarski') . "</p>\n";
 	} else {
 		$navbar_select = false;
 	}

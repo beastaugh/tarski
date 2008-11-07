@@ -10,7 +10,7 @@
 				<label for="update-off"><input type="radio" id="update-off" name="update_notification" value ="off" <?php if(!get_tarski_option('update_notification')) { echo 'checked="checked" '; } ?>/> <?php _e('Update notification off','tarski'); ?></label>
 				
 				<?php if(!cache_is_writable('version.atom') && get_tarski_option('update_notification')) { ?>
-					<p class="tip"><?php printf( __('The version check could not be cached. To enable caching, follow the tutorial on the %s page.','tarski'), '<a href="http://tarskitheme.com/help/updates/notifier/">' . __('update notifier','tarski') . '</a>' ); ?></p>
+					<p><?php printf( __('The version check could not be cached. To enable caching, follow the tutorial on the %s page.','tarski'), '<a href="http://tarskitheme.com/help/updates/notifier/">' . __('update notifier','tarski') . '</a>' ); ?></p>
 				<?php } ?>
 			<?php } else { ?>
 				<h4><?php _e('Update Notification','tarski'); ?></h4>

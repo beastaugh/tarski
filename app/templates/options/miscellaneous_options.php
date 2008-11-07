@@ -11,7 +11,7 @@
 </label>
 
 <?php if(!get_bloginfo('description')) { ?>
-	<p class="tip"><?php printf(
+	<p><?php printf(
 		__('Your tagline is currently %s and won&#8217;t be displayed.', 'tarski'),
 		'<a href="'. admin_url('options-general.php') . '">'. __('blank','tarski'). '</a>'
 	); ?></p>
