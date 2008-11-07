@@ -28,7 +28,7 @@
 		</div>
 	
 		<div class="primary">
-			<?php tarski_options_block('nav_display', __('Navigation Display', 'tarski')); ?>
+			<?php tarski_options_fn_block('tarski_navbar_select', __('Navigation Display', 'tarski')); ?>
 			<?php tarski_options_block('nav_options', __('Navigation Options', 'tarski')); ?>
 		</div>
 	
