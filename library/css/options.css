@@ -14,10 +14,10 @@
  * header and footer elements.
  */
 #tarski-options {}
-#tarski-options-header { clear: both; margin: 0.4em 0 0.8em 0; border-bottom: 1px solid #dadada; padding: 0.4em; }
+#tarski-options-header { clear: both; margin: 0.4em 0 0.8em 0; border-bottom: 1px solid #dadada; padding: 0.4em 0; }
 #tarski-options-header h2 { float: left; margin: 0 0.8em 0 0; border: none; padding: 0; }
 #tarski-save-options, #tarski-info { display: block; padding: 0; }
-#tarski-save-options { float: left; margin: 0; }
+#tarski-save-options { float: left; margin: 0.4em 0 0 0; }
 #tarski-info { float: right; margin: 0.8em 0 0 0; }
 .rtl { text-align: right; direction: rtl; }
 
