@@ -30,7 +30,7 @@
 		<h2><?php _e('Tarski Options', 'tarski'); ?></h2>
 		
 		<p id="tarski-save-options">
-			<input type="submit" class="button-secondary" name="submit" value="<?php _e('Save Options','tarski'); ?>" />
+			<input type="submit" class="button-primary" name="submit" value="<?php _e('Save Options','tarski'); ?>" />
 		</p>
 		
 		<p id="tarski-info">
