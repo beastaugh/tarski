@@ -41,9 +41,9 @@
  * Form layouts are a dark art, and these rules let us specify a bit more
  * precisely than the WordPress defaults do how things should appear.
  */
-.section label, .section select, #opt-nav-homename { display: block; margin: 0.8em 0; }
-.section { margin: 0 0 0.8em 0; padding: 0.8em 0.8em 0.4em 0.8em; background: #eaf3fa; position: relative; *zoom: 1; }
-.section h3, .section h4, .section p { margin: 0 0 0.8em 0; }
+.postbox label, .postbox select, #opt-nav-homename { display: block; margin: 0.8em 0; }
+.postbox .inside { margin: 0 10px 10px; }
+.postbox h4, .postbox p { margin: 0 0 0.8em 0; }
 .tip, #tarski-options .update-status { margin: 0.8em 0; border: 1px solid #c6d9e9;  padding: 0.4em; background: #f7fafd; }
 .tip { border-left-width: 3px; }
 #tarski-options .error { border-color: #cd5761; background-color: #ffd7da; }

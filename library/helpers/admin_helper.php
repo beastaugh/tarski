@@ -480,4 +480,29 @@ function tarski_update_notifier() {
 	return $version->status_message();
 }
 
+/**
+ * tarski_options_fragment() - Includes an options page template fragment.
+ * 
+ * @since 2.4
+ * @param string $block
+ */
+function tarski_options_fragment($block) {
+	$block = preg_replace("/\.php$/", "", $block);
+	include(TARSKIDISPLAY . "/options/$block.php");
+}
+
+/**
+ * tarski_options_block() - Includes an options page postbox.
+ * 
+ * @see tarski_options_fragment()
+ * @since 2.4
+ * @param string $block
+ * @param string $title
+ */
+function tarski_options_block($block, $title) {
+	echo "<div class=\"postbox\"><h3 class=\"hndle\">$title</h3>\n\t<div class=\"inside\">";
+	tarski_options_fragment($block);
+	echo "\t</div>\n</div>";
+}
+
 ?>
