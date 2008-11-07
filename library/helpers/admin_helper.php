@@ -465,7 +465,7 @@ function tarski_navbar_select() {
 			. '<input type="hidden" id="opt-collapsed-pages" name="collapsed_pages" value="' . get_tarski_option('collapsed_pages') . " />\n\n"
 			. '<p class="tip">' . __('To change the order in which they appear, edit the &#8216;Page Order&#8217; value on each page.', 'tarski') . "</p>\n";
 	} else {
-		$navbar_select = '<p>' . __('There are no pages to select navbar items from.', 'tarski') . "</p>\n";
+		$navbar_select = false;
 	}
 	
 	return $navbar_select;
@@ -521,10 +521,13 @@ function tarski_options_block($block, $title) {
  * @param string $title
  */
 function tarski_options_fn_block($fn, $title, $args = array()) {
-	printf(
-		"<div class=\"postbox\"><h3 class=\"hndle\">%s</h3>\n\t<div class=\"inside\">%s\t</div>\n</div>",
-		$title, call_user_func_array($fn, $args)
-	);
+	$fn_output = call_user_func_array($fn, $args);
+	if ($fn_output) {
+		printf(
+			"<div class=\"postbox\"><h3 class=\"hndle\">%s</h3>\n\t<div class=\"inside\">%s\t</div>\n</div>",
+			$title, $fn_output
+		);
+	}
 }
 
 ?>
