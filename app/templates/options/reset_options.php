@@ -8,7 +8,7 @@
 			<?php wp_nonce_field('admin_post_delete_tarski_options', '_wpnonce_delete_tarski_options'); ?>
 			<input type="hidden" name="delete_options" value="1" />
 		</form>
-		<p class="tip"><?php _e('If you change your mind, you&#8217;ll have three hours to restore your options before they&#8217;re removed for good.','tarski'); ?></p>
+		<p><?php _e('If you change your mind, you&#8217;ll have three hours to restore your options before they&#8217;re removed for good.','tarski'); ?></p>
 	</div>
 </div></div>
 <?php } ?>
