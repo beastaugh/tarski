@@ -42,12 +42,16 @@
 			<?php tarski_options_block('header_images', __('Header Images', 'tarski')); ?>
 		</div>
 	
-		<div id="tarski-miscellaneous-options" class="primary">
+		<div class="primary">
 			<?php tarski_options_fn_block('tarski_miscellaneous_options', __('Miscellaneous Options', 'tarski')); ?>
 		</div>
 	</form>
 	
-		<?php tarski_options_fragment('reset_options'); ?>
+	<?php if (get_option('tarski_options') && !get_tarski_option('deleted')) { ?>
+		<div class="secondary">
+			<?php tarski_options_block('reset_options', __('Reset Options', 'tarski')); ?>
+		</div>
+	<?php } ?>
 	
 		<div class="clearer"></div>
 	</div>
