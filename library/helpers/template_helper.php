@@ -1,21 +1,6 @@
 <?php
 
 /**
- * is_wp_front_page() - Returns true when current page is the WP front page.
- * 
- * Very useful, since is_home() doesn't return true for the front page
- * if it's displaying a static page rather than the usual posts page.
- * @since 2.0
- * @return boolean
- */
-function is_wp_front_page() {
-	if(get_option('show_on_front') == 'page')
-		return is_page(get_option('page_on_front'));
-	else
-		return is_home();
-}
-
-/**
  * only_paginate_home() - Turns off paging for everything except feeds and the home page.
  * 
  * @since 2.2
@@ -168,7 +153,7 @@ function tarski_headerimage() {
 
 		$header_img_tag = "<img alt=\"$header_img_alt\" src=\"$header_img_url\" />";
 
-		if(!get_tarski_option('display_title') && !is_wp_front_page()) {
+		if(!get_tarski_option('display_title') && !is_front_page()) {
 			$header_img_tag = sprintf(
 				'<a title="%1$s" rel="home" href="%2$s">%3$s</a>',
 				__('Return to main page','tarski'),
@@ -196,7 +181,7 @@ function tarski_sitetitle() {
 	if(get_tarski_option('display_title')) {
 		$site_title = get_bloginfo('name');
 		
-		if(!is_wp_front_page()) {
+		if(!is_front_page()) {
 			$site_title = sprintf(
 				'<a title="%1$s" href="%2$s" rel="home">%3$s</a>',
 				__('Return to main page','tarski'),
