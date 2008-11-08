@@ -43,7 +43,7 @@
 		</div>
 	
 		<div id="tarski-miscellaneous-options" class="primary">
-			<?php tarski_options_block('miscellaneous_options', __('Miscellaneous Options', 'tarski')); ?>
+			<?php tarski_options_fn_block('tarski_miscellaneous_options', __('Miscellaneous Options', 'tarski')); ?>
 		</div>
 	</form>
 	

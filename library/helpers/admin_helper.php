@@ -472,6 +472,33 @@ function tarski_navbar_select() {
 }
 
 /**
+ * tarski_miscellaneous_options() - Returns a list of checkboxes for miscellaneous options.
+ * 
+ * Used for a bunch of options that don't really fit anywhere else.
+ * @see tarski_option_checkbox()
+ * @since 2.4
+ * @return string
+ */
+function tarski_miscellaneous_options() {
+	$output = '';
+	$checkboxes = array(
+		'display_title' => __('Display site title', 'tarski'),
+		'display_tagline' => __('Display site tagline', 'tarski'),
+		'show_categories' => __('Show post categories', 'tarski'),
+		'tags_everywhere' =>  __('Show tags everywhere', 'tarski'),
+		'use_pages' => __('Paginate index pages', 'tarski'),
+		'centred_theme' => __('Centrally align the theme', 'tarski'),
+		'swap_sides' =>  __('Switch column order', 'tarski'),
+		'swap_title_order' => __('Reverse document title order', 'tarski')
+	);
+	
+	foreach($checkboxes as $name => $label)
+		$output .= tarski_option_checkbox($name, $label) . "\n\n";
+	
+	return $output;
+}
+
+/**
  * tarski_update_notifier() - Performs version checks and outputs the update notifier.
  * 
  * Creates a new TarskiVersion object, checks the latest and current
@@ -515,7 +542,6 @@ function tarski_options_block($block, $title) {
 /**
  * tarski_options_fn_block() - Includes an options page postbox.
  * 
- * @see tarski_options_fragment()
  * @since 2.4
  * @param string $block
  * @param string $title
@@ -528,6 +554,30 @@ function tarski_options_fn_block($fn, $title, $args = array()) {
 			$title, $fn_output
 		);
 	}
+}
+
+/**
+ * tarski_option_checkbox() - Returns checkbox markup for a given Tarski option.
+ * 
+ * @since 2.4
+ * @param string $name
+ * @param string $label
+ * @return string
+ */
+function tarski_option_checkbox($name, $label) {
+	$id = "tarski_option_$name";
+	$checked = '';
+	
+	if(get_tarski_option($name))
+		$checked = 'checked="checked" ';
+	
+	$hidden = "<input type=\"hidden\" name=\"$name\" value=\"0\" />";
+	$checkbox = "<input type=\"checkbox\" id=\"$id\" name=\"$name\" value=\"1\" $checked/>";
+	
+	return sprintf(
+		"<label for=\"%s\">\n\t%s\n\t%s\n\t%s\n</label>",
+		$id, $hidden, $checkbox, $label
+	);
 }
 
 ?>
