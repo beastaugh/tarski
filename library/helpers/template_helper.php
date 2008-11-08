@@ -255,10 +255,10 @@ function navbar_wrapper() {
  * @return string
  */
 function home_link_name() {
-	if(get_tarski_option('home_link_name'))
-		return get_tarski_option('home_link_name');
-	else
-		return __('Home','tarski');
+	$default = __('Home','tarski');
+	$option = get_tarski_option('home_link_name');	
+	$name = (strlen($option)) ? $option : $default;
+	return $name;
 }
 
 /**
