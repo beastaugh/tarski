@@ -130,6 +130,7 @@ function restore_tarski_options() {
  * 
  * @see delete_tarski_options()
  * @see restore_tarski_options()
+ * @uses flush_tarski_options()
  * @since 2.4
  */
 function maybe_wipe_tarski_options() {
@@ -165,6 +166,9 @@ function tarski_upgrade_needed() {
  * @since 2.1
  * @see tarski_upgrade_needed()
  * @see tarski_upgrade()
+ * @uses tarski_upgrade_needed()
+ * @uses tarski_upgrade()
+ * @uses flush_tarski_options
  */
 function tarski_upgrade_and_flush_options() {
 	if ( tarski_upgrade_needed() ) {
@@ -178,6 +182,7 @@ function tarski_upgrade_and_flush_options() {
  * 
  * @since 2.3
  * @see tarski_upgrade()
+ * @uses tarski_should_show_authors()
  * @param object $options
  * @param object $defaults
  */
@@ -261,6 +266,8 @@ function tarski_upgrade_widgets($options, $defaults) {
  * needed, it merely perfoms it. It's also self-contained, so it
  * won't update the global $tarski_options object either.
  * @since 2.1
+ * @uses tarski_upgrade_special()
+ * @uses tarski_upgrade_widgets()
  */
 function tarski_upgrade() {
 	// Get existing options
@@ -417,7 +424,7 @@ function tarski_count_authors() {
  * tarski_should_show_authors() - Determines whether Tarski should show authors.
  * 
  * @since 2.0.3
- * @see tarski_count_authors()
+ * @uses tarski_count_authors()
  * @global object $wpdb
  * @return boolean
  * @hook filter tarski_show_authors
@@ -434,7 +441,7 @@ function tarski_should_show_authors() {
  * If more than one author is detected, it will turn the 'show_authors'
  * option on; otherwise it will turn it off.
  * @since 2.0.3
- * @see tarski_should_show_authors()
+ * @uses tarski_should_show_authors()
  */
 function tarski_resave_show_authors() {
 	if(get_option('tarski_options')) {
@@ -475,7 +482,7 @@ function tarski_navbar_select() {
  * tarski_miscellaneous_options() - Returns a list of checkboxes for miscellaneous options.
  * 
  * Used for a bunch of options that don't really fit anywhere else.
- * @see tarski_option_checkbox()
+ * @uses tarski_option_checkbox()
  * @since 2.4
  * @return string
  */
@@ -528,7 +535,7 @@ function tarski_options_fragment($block) {
 /**
  * tarski_options_block() - Includes an options page postbox.
  * 
- * @see tarski_options_fragment()
+ * @uses tarski_options_fragment()
  * @since 2.4
  * @param string $block
  * @param string $title
