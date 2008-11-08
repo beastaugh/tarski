@@ -448,20 +448,27 @@ function tarski_resave_show_authors() {
  * Walks the tree of pages and generates nested ordered lists of pages, with
  * corresponding checkboxes to allow the selection of pages for the navbar.
  * @since 2.2
- * @param array $pages
- * @param array $selected
  */
-function tarski_navbar_select($pages) {
+function tarski_navbar_select() {
+	$pages = &get_pages('sort_column=post_parent,menu_order');
 	$nav_pages = explode(',', get_tarski_option('nav_pages'));
 	$collapsed_pages = explode(',', get_tarski_option('collapsed_pages'));
 	$walker = new WalkerPageSelect($nav_pages, $collapsed_pages);
-	$return = '';
+	$selector = '';
 	
-	if ( !empty($pages) ) {	
-		$return = "<ol id=\"navbar-select\">\n" . $walker->walk($pages, 0, 0, array()) . "\n</ol>\n\n";
+	if (!empty($pages))
+		$selector = "<ol id=\"navbar-select\">\n" . $walker->walk($pages, 0, 0, array()) . "\n</ol>\n\n";
+	
+	if($pages) {
+		$navbar_select = '<p>' . __('Pages selected here will display in your navbar.', 'tarski') . "</p>\n"
+			. $selector
+			. '<input type="hidden" id="opt-collapsed-pages" name="collapsed_pages" value="' . get_tarski_option('collapsed_pages') . '" />'. "\n\n"
+			. '<p>' . __('To change the order in which they appear, edit the &#8216;Page Order&#8217; value on each page.', 'tarski') . "</p>\n";
+	} else {
+		$navbar_select = false;
 	}
 	
-	return $return;
+	return $navbar_select;
 }
 
 /**
@@ -478,6 +485,49 @@ function tarski_navbar_select($pages) {
 function tarski_update_notifier() {
 	$version = new TarskiVersion();
 	return $version->status_message();
+}
+
+/**
+ * tarski_options_fragment() - Includes an options page template fragment.
+ * 
+ * @since 2.4
+ * @param string $block
+ */
+function tarski_options_fragment($block) {
+	$block = preg_replace("/\.php$/", "", $block);
+	include(TARSKIDISPLAY . "/options/$block.php");
+}
+
+/**
+ * tarski_options_block() - Includes an options page postbox.
+ * 
+ * @see tarski_options_fragment()
+ * @since 2.4
+ * @param string $block
+ * @param string $title
+ */
+function tarski_options_block($block, $title) {
+	echo "<div class=\"postbox\"><h3 class=\"hndle\">$title</h3>\n\t<div class=\"inside\">";
+	tarski_options_fragment($block);
+	echo "\t</div>\n</div>";
+}
+
+/**
+ * tarski_options_fn_block() - Includes an options page postbox.
+ * 
+ * @see tarski_options_fragment()
+ * @since 2.4
+ * @param string $block
+ * @param string $title
+ */
+function tarski_options_fn_block($fn, $title, $args = array()) {
+	$fn_output = call_user_func_array($fn, $args);
+	if ($fn_output) {
+		printf(
+			"<div class=\"postbox\"><h3 class=\"hndle\">%s</h3>\n\t<div class=\"inside\">%s\t</div>\n</div>",
+			$title, $fn_output
+		);
+	}
 }
 
 ?>
