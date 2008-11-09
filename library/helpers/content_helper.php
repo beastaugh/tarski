@@ -223,6 +223,10 @@ function tarski_avatar() {
 		$default = '';
 	
 	$avatar = get_avatar(get_comment_author_email(), '50', $default);
+
+	if (!$avatar)
+		return false;
+
 	$url = get_comment_author_url();
 	
 	if ( empty($url) || preg_match('/^\s*http:\/\/\s*$/', $url) ) {
