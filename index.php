@@ -1,12 +1,11 @@
 <?php get_header(); ?>
 
+<div class="primary">
 
-<?php if(have_posts()) { ?>
+	<?php if(have_posts()) { ?>
 	
-	<?php if(is_single() || is_page()) { // Single entries and pages ?>
+		<?php if(is_single() || is_page()) { // Single entries and pages ?>
 		
-		
-		<div class="primary">
 			<?php while(have_posts()) { the_post(); ?>
 				
 				<div class="entry hentry">
@@ -40,40 +39,24 @@
 				</div> <!-- /entry -->
 				
 			<?php } // End entry loop ?>
-		</div> <!-- /primary -->
 	
-	
-	<?php } else { ?>
+		<?php } else { ?>
 		
-
-		<div class="primary posts">
-			
 			<?php include(TEMPLATEPATH . '/loop.php'); ?>
-			
-		</div>
-	
-	<?php } // End loop types ?>
-	
-<?php } else { // If no posts ?>
 
-
-	<div class="primary">
+		<?php } // End loop types ?>
+	
+	<?php } else { // If no posts ?>
 		
 		<?php include(TARSKIDISPLAY . "/no_posts.php"); ?>
-		
-	</div> <!-- /primary -->
+	
+	<?php } // End loop ?>
 
 
-<?php } // End loop ?>
+	<?php if(!is_attachment() && (is_single() || is_page())) { comments_template('/comments.php', true); } ?>
 
-
-
+</div>
+	
 <?php get_sidebar(); ?>
-
-
-
-<?php if(!is_attachment() && (is_single() || is_page())) { comments_template(); } ?>
-
-
 
 <?php get_footer(); ?>

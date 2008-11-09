@@ -15,7 +15,9 @@
 <?php } else { // if registration is not mandatory ?>
 	
 	<form action="<?php echo site_url('wp-comments-post.php'); ?>" method="post" id="commentform"><fieldset>
-
+		<h2><?php comment_form_title(__('Reply', 'tarski'), __('Reply to %s', 'tarski')); ?></h2>
+		<p><?php cancel_comment_reply_link(); ?></p>
+		
 	<?php if($user_ID) { // if user is logged in ?>
 		
 		<div id="info-input" class="secondary content">
@@ -41,7 +43,7 @@
 			<label for="comment"><?php _e('Your comment','tarski'); ?></label>
 			<textarea name="comment" id="comment" cols="60" rows="12"></textarea>
 			<input name="submit" type="submit" id="submit" value="<?php _e('Submit Comment','tarski'); ?>" />
-			<input type="hidden" name="comment_post_ID" value="<?php echo $id; ?>" />
+			<?php comment_id_fields(); ?>
 		</div>  <!-- /comment input -->
 	<?php do_action('comment_form', $post->ID); ?>
 	</fieldset></form>
