@@ -1,6 +1,8 @@
 <?php
-
 /**
+ * @package WordPress
+ * @subpackage Tarski
+ * 
  * The scrapyard: deprecated functions that haven't yet been removed.
  * 
  * Don't write plugins that rely on these functions, as they are liable
