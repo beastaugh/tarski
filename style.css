@@ -189,17 +189,17 @@ body.rtl #navigation ul.primary { direction: ltr; }
 	 * 
 	 * @since 2.4
 	 */
-	#comments { clear: both; margin: 0; border-top: 1px solid #ccc; padding: 0; }
+	#comments { clear: both; margin: 0 0 0.66em 0; border-bottom: 1px solid #ccc; padding: 0; }
 	body .comment { padding: 0; list-style: none; }
 		body .comment .comment { margin: 0; }
-		li.comment { border-top: 1px solid #ccc; }
+		li.comment { margin: 0; border-top: 1px solid #ccc; padding: 0; }
 		body .comment ol.children { clear: both; margin: 0; border-top: 1px solid #ccc; padding: 0 0 0 20px; }
-		li.depth-1 { border-top: none; border-bottom: 1px solid #ccc; }
+		li.depth-1 { /*border-top: none; border-bottom: 1px solid #ccc;*/ }
 		li.comment-lvl-first { border-top: none; }
 		body .comment .reply { clear: both; }
 	
 	body .comment-wrapper { padding: 0.66em 0; }
-	body .moderated { border-bottom: 1px dotted #e5e5e5; padding-bottom: 0.5em; background: url('images/icons.png') no-repeat 100% -200px; }
+	body .moderated { border-bottom: 1px solid #e5e5e5; padding-bottom: 0.66em; background: url('images/icons.png') no-repeat 100% -200px; }
 	body .comment-meta { font-size: 0.8em; color: #808080; }
 		body .avatar-link { display: block; float: right; margin: 0 0 10px 10px; }
 		body .avatar, body .comment a .avatar { display: block; float: right; margin: 0 0 10px 10px; border: 1px solid #ccc; padding: 4px; background:#fcfcfc; }
@@ -217,10 +217,6 @@ body.rtl #navigation ul.primary { direction: ltr; }
 		#comments-header .comments-feed a { display: block; float:right; min-height:16px; padding: 1px 20px 1px 0; background: url('images/icons.png') no-repeat 100% -100px; font-size: 0.8em; }
 	#comments-header .trackback-link { clear: both; margin: 0.4em 0 0 0; border-top: 1px solid #ccc; padding: 0.5em 0; font-size: 0.8em; font-weight: bold; color: #808080; }
 		#comments-header .trackback-link a { font-weight: normal; }
-	
-	#respond { margin: 0; padding: 1em 0 0 0; }
-		body .comments-info { font-size: 0.8em; margin: 0.6em 0 1em 220px; border-bottom: 1px solid #ccc; padding: 0 0 1.2em 0; }
-		body .req-notice { font-size: 0.8em; }
 	
 	/* Lists
 	--------------------------------------- */
@@ -255,6 +251,8 @@ body.rtl #navigation ul.primary { direction: ltr; }
 /* Forms
 ----------------------------------------------- */
 input, select, textarea { font-family: Verdana, Helvetica, Arial, sans-serif; font-size: 100%; }
+input.text, textarea { border: 1px solid #ccc; padding: 2px; background: #fafafa; color: #404040; }
+input.text:focus, textarea:focus { background: #fff; }
 
 	/* Search form
 	--------------------------------------- */
@@ -262,21 +260,31 @@ input, select, textarea { font-family: Verdana, Helvetica, Arial, sans-serif; fo
 		#s { display: block; width: 194px; margin: 0 0 0.6em 0; border: 1px solid #ccc; padding: 2px; background: #fafafa; color: #404040; }
 		#s:focus { background: #fff; }
 		body.js #searchlabel { display: none; }
-
-	/* Comment form
-	--------------------------------------- */
-	#commentform {}
-	#info-input {}
-		body .userinfo { color: #808080; }
-		#info-input label { display: block; margin: 0 0 1.2em 0; color: #808080; }
-		#author, #email, #url { display: block; width: 48%; margin: 0.2em 0 0 0; border: 1px solid #ccc; padding: 2px; background: #fafafa; color: #404040; }
-	#comment-input {}
-		#comment-input label { display: block; margin: 0 0 0.2em 0; color: #808080; }
-		#comment-input textarea { width: 98%; font-family: Verdana, Arial, Helvetica, sans-serif; margin: 0 0 1.2em 0; border: 1px solid #ccc; padding: 2px; background: #fafafa; color: #404040; }
-		
-	#author:focus, #email:focus, #url:focus, #comment:focus { background: #fff; }
-	#submit { display:block; margin: 0 0 1em 0; }
 	
+	/**
+	 * Comment reply form layout & style.
+	 * 
+	 * Consists of a simple header with a title and 'Cancel reply' link,
+	 * followed by three text fields which are floated next to one another.
+	 * Lastly, a textarea and submit button. The amount of specialised code
+	 * is intentionally small, since the form should inherit from the general
+	 * Tarski form styling.
+	 * 
+	 * @since 2.4
+	 */
+	.comment #respond { border-top: 1px solid #e5e5e5; padding-top: 0.66em; }
+	#respond-header { margin-bottom: 0.66em; }
+	#respond-header .title { float: left; margin: 0; }
+	#respond-header .cancel-reply { float: right; padding-top: 0.75em; font-size: 0.8em; }
+	body .response-details { margin-bottom: 1em; }
+	body .response-details .text-wrap { width: 32%; float: left; margin-right: 2%; }
+	body .response-details .text-wrap:last-child { margin-right: 0; }
+	body .response { margin-bottom: 0.8em; }
+		body .response-details .text-wrap label, body .response label { display: block; margin: 0 0 0.3em 0; color: #808080; }
+		body .response-details .text-wrap input.text, body .response-details .textarea-wrap textarea { display: block; width: 98%; }
+		body .req-notice { font-size: 0.8em; }
+	p.submit-wrapper { margin: 0; }
+
 /* Links
 ----------------------------------------------- */
 a { text-decoration: none; }

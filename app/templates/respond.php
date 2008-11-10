@@ -11,9 +11,9 @@
 <?php } else { // if registration is not mandatory or the user is logged in ?>
 	
 	<form action="<?php echo site_url('wp-comments-post.php'); ?>" method="post" id="commentform">
-		<div id="respond-header">
+		<div id="respond-header" class="clearfix">
 			<h2 class="title"><?php comment_form_title(__('Reply', 'tarski'), __('Reply to %s', 'tarski')); ?></h2>
-			<p class="cancel"><?php cancel_comment_reply_link(); ?></p>
+			<p class="cancel-reply"><?php cancel_comment_reply_link(__('Click here to cancel your reply', 'tarski')); ?></p>
 		</div>
 		
 	<?php if($user_ID) { // if user is logged in ?>
@@ -24,7 +24,7 @@
 
 	<?php } else { // if user is not logged in - name, email and website fields ?>
 		
-		<div class="details">
+		<div class="response-details clearfix">
 			<?php comment_text_field('author', __('Name %s', 'tarski'), $comment_author, $req); ?>
 			<?php comment_text_field('email', __('Email %s', 'tarski'), $comment_author_email, $req); ?>
 			<?php comment_text_field('url', __('Website', 'tarski'), $comment_author_url); ?>
@@ -32,13 +32,13 @@
 		
 	<?php } // textarea etc. start here ?>
 		
-		<div class="textarea-wrap">
+		<div class="response textarea-wrap">
 			<label for="comment"><?php _e('Your comment','tarski'); ?></label>
 			<textarea name="comment" id="comment" cols="60" rows="10"></textarea>
-			<input name="submit" type="submit" id="submit" value="<?php _e('Submit Comment','tarski'); ?>" />
 			<?php comment_id_fields(); ?>
 		</div>
 		
+		<p class="submit-wrap"><input class="submit" name="submit" type="submit" id="submit" value="<?php _e('Submit Comment', 'tarski'); ?>" /></p>
 		<?php do_action('comment_form', $post->ID); ?>
 	</form>
 
