@@ -194,9 +194,9 @@ body.rtl #navigation ul.primary { direction: ltr; }
 		body .comment .comment { margin: 0; }
 		li.comment { margin: 0; border-top: 1px solid #ccc; padding: 0; }
 		body .comment ol.children { clear: both; margin: 0; border-top: 1px solid #ccc; padding: 0 0 0 20px; }
-		li.depth-1 { /*border-top: none; border-bottom: 1px solid #ccc;*/ }
 		li.comment-lvl-first { border-top: none; }
 		body .comment .reply { clear: both; }
+		body .comment .reply a { padding-left: 12px; background: url('images/icons.png') no-repeat -9px -397px; }
 	
 	body .comment-wrapper { padding: 0.66em 0; }
 	body .moderated { border-bottom: 1px solid #e5e5e5; padding-bottom: 0.66em; background: url('images/icons.png') no-repeat 100% -200px; }
@@ -276,6 +276,7 @@ input.text:focus, textarea:focus { background: #fff; }
 	#respond-header { margin-bottom: 0.66em; }
 	#respond-header .title { float: left; margin: 0; }
 	#respond-header .cancel-reply { float: right; padding-top: 0.75em; font-size: 0.8em; }
+		#respond-header .cancel-reply a { padding-right: 12px; background: url('images/icons.png') no-repeat 100% -497px; }
 	body .response-details { margin-bottom: 1em; }
 	body .response-details .text-wrap { width: 32%; float: left; margin-right: 2%; }
 	body .response-details .text-wrap:last-child { margin-right: 0; }
