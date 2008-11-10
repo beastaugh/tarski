@@ -1,9 +1,19 @@
 <?php
-
+/**
+ * HTML comment list class, Tarski style.
+ * 
+ * @package WordPress
+ * @subpackage Tarski
+ * @since 2.4
+ * @uses Walker_Comment
+ * @uses Walker
+ */
 class TarskiCommentWalker extends Walker_Comment {
+	
 	/**
 	 * @see Walker::start_lvl()
-	 * @since unknown
+	 * @see Walker_Comment::start_lvl()
+	 * @since 2.4
 	 *
 	 * @param string $output Passed by reference. Used to append additional content.
 	 * @param int $depth Depth of comment.
@@ -28,8 +38,9 @@ class TarskiCommentWalker extends Walker_Comment {
 	}
 	
 	/**
-	 * @see Walker::start_el()
-	 * @since unknown
+	 * @see Walker::start_lvl()
+	 * @see Walker_Comment::start_el()
+	 * @since 2.4
 	 *
 	 * @param string $output Passed by reference. Used to append additional content.
 	 * @param object $comment Comment data object.
