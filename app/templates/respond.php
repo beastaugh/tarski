@@ -1,12 +1,10 @@
 <div id="respond">
-<?php if(get_option('comment_registration') && !$user_ID) {  // if registration is mandatory and user not logged in ?>
+<?php if (get_option('comment_registration') && !$user_ID) {  // if registration is mandatory and user not logged in ?>
 	
-	<div class="content">
-		<p><em><?php printf(
-			__('You must be %s to post a comment.', 'tarski'),
-			'<a href="' . wp_login_url(get_permalink()) . '">' . __('logged in', 'tarski') . '</a>'
-		); ?></em></p>
-	</div>
+	<p class="login-required"><em><?php printf(
+		__('You must be %s to post a comment.', 'tarski'),
+		'<a href="' . wp_login_url(get_permalink()) . '">' . __('logged in', 'tarski') . '</a>'
+	); ?></em></p>
 
 <?php } else { // if registration is not mandatory or the user is logged in ?>
 	
