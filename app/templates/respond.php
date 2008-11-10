@@ -1,4 +1,9 @@
-<div id="respond">
+<?php
+/**
+ * @package WordPress
+ * @subpackage Tarski
+ */
+?><div id="respond">
 <?php if (get_option('comment_registration') && !$user_ID) {  // if registration is mandatory and user not logged in ?>
 	
 	<p class="login-required"><em><?php printf(
