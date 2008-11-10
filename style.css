@@ -200,13 +200,13 @@ body.rtl #navigation ul.primary { direction: ltr; }
 	
 	body .comment-wrapper { padding: 0.66em 0; }
 	body .moderated { border-bottom: 1px solid #e5e5e5; padding-bottom: 0.66em; background: url('images/icons.png') no-repeat 100% -200px; }
-	body .comment-meta { font-size: 0.8em; color: #808080; }
+	body .comment-meta { margin: 0; float: left; font-size: 0.8em; color: #808080; }
 		body .avatar-link { display: block; float: right; margin: 0 0 10px 10px; }
 		body .avatar, body .comment a .avatar { display: block; float: right; margin: 0 0 10px 10px; border: 1px solid #ccc; padding: 4px; background:#fcfcfc; }
 		body .comment .avatar-link .avatar { float: none; margin: 0; }
 		body .comment-permalink, body .comment-edit {}
 		body .comment-author { font-weight: bold; color: #404040; }
-	body .comment-content {}
+	body .comment-content { clear: left; padding-top: 0.8em; }
 	body .reply { margin: 0; font-size: 0.8em; }
 	body .author-comment {}
 	body .trackback { margin: 0; border-top: 1px solid #ccc; padding: 0.5em 0; background: #fcffff; }
@@ -278,8 +278,9 @@ input.text:focus, textarea:focus { background: #fff; }
 	#respond-header .cancel-reply { float: right; padding-top: 0.75em; font-size: 0.8em; }
 		#respond-header .cancel-reply a { padding-right: 12px; background: url('images/icons.png') no-repeat 100% -497px; }
 	body .response-details { margin-bottom: 1em; }
-	body .response-details .text-wrap { width: 32%; float: left; margin-right: 2%; }
-	body .response-details .text-wrap:last-child { margin-right: 0; }
+	body .response-details .text-wrap { width: 31%; float: left; margin-right: 2%; }
+	body .response-details > .text-wrap { width: 32%; }
+	body .response-details .url-wrap { margin-right: 0; }
 	body .response { margin-bottom: 0.8em; }
 		body .response-details .text-wrap label, body .response label { display: block; margin: 0 0 0.3em 0; color: #808080; }
 		body .response-details .text-wrap input.text { display: block; width: 98%; }
