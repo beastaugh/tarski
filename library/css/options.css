@@ -64,7 +64,7 @@
 #navbar-select ol { margin: 0; padding: 0; }
 #navbar-select li { margin: 0; padding: 0; list-style-type: none; }
 #navbar-select li ol li { padding-left: 1.5em; }
-#navbar-select .nav-page { position: relative; margin: 0 0 0.5em 0; padding: 4px 20px 3px 5px; background-color: #cedeeb; background-repeat:no-repeat; background-position: 5px 6px; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; }
+#navbar-select .nav-page { position: relative; margin: 0 0 0.5em 0; padding: 4px 20px 3px 5px; background-color: #eaf2fa; background-repeat:no-repeat; background-position: 5px 6px; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; }
 #navbar-select .nav-page a { text-decoration: none; }
 #navbar-select.js .nav-page { padding-left: 28px; background-image: url('../../images/page_select.png'); }
 #navbar-select .nav-page label { display: inline; margin: 0 0 0.7em 0; }
