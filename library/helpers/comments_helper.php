@@ -172,7 +172,7 @@ function tarski_comment_author_link() {
  * @param integer $size
  */
 function comment_text_field($field, $label, $value = '', $required = false, $size = 20) { ?>
-	<div class="text-wrap">
+	<div class="text-wrap <?php echo "$field-wrap"; ?>">
 		<label for="<?php echo $field; ?>"><?php printf($label, required_field($required)); ?></label>
 		<input class="<?php echo comment_field_classes(); ?>" type="text" name="<?php echo $field; ?>" id="<?php echo $field; ?>" value="<?php echo $value; ?>" size="<?php echo $size; ?>" />
 	</div>
