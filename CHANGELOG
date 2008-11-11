@@ -5,6 +5,7 @@
 
 #### New features
 
+  * Support for WordPress 2.7's threaded and paginated comments (various)
   * <abbr title="Cross-Site Request Forgery">CSRF</abbr>-hardened login and logout functions (r814)
   * Version check now uses WordPress' <abbr title="Hypertext Transport Protocol">HTTP</abbr> <abbr title="Application Programming Interface">API</abbr> (r794)
   * Added support for sticky posts (r793, r796)
@@ -14,6 +15,9 @@
 
 #### Tweaks
 
+  * Updated some inline function references (various)
+  * Updated some inline documentation with package info (various)
+  * Updated options page to match new admin style (various)
   * Moved comments reply form into its own file (r813)
   * Removed functions deprecated in version 2.1 (r810)
   * Replaced <abbr title="Checkbox and Radio button Input Replacement">CRIR</abbr> with home-grown header selector (r801-7)
