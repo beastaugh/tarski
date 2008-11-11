@@ -1,4 +1,8 @@
 <?php
+/**
+ * @package WordPress
+ * @subpackage Tarski
+ */
 
 if (!empty($_SERVER['SCRIPT_FILENAME']) && 'comments.php' == basename($_SERVER['SCRIPT_FILENAME']))
 	die('This page should not be loaded directly.');
