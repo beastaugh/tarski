@@ -221,6 +221,8 @@ function tarski_tagline() {
  * tarski_titleandtag() - Outputs site title and tagline.
  * 
  * @since 1.5
+ * @uses tarski_tagline()
+ * @uses tarski_sitetitle()
  * @return string
  */
 function tarski_titleandtag() {
@@ -235,7 +237,7 @@ function tarski_titleandtag() {
 /**
  * navbar_wrapper() - Outputs navigation section.
  * 
- * @see th_navbar()
+ * @uses th_navbar()
  * @since 2.1
  * @return string
  */
