@@ -30,7 +30,5 @@ if (post_password_required()) {
 	<?php } elseif (!comments_open()) { ?>
 	<p><em><?php _e('Comments are closed for this article.', 'tarski'); ?></em></p>
 	<?php } ?>
-	
-	<p><?php echo paginate_comments_links(); ?></p>
-	
+		
 <?php } if (comments_open()) include_once(TARSKIDISPLAY . '/respond.php'); ?>
