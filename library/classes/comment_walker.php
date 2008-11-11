@@ -73,7 +73,7 @@ class TarskiCommentWalker extends Walker_Comment {
 		extract($args, EXTR_SKIP);
 ?>
 		<li <?php comment_class($first); ?> id="comment-<?php comment_ID(); ?>">
-			<div class="comment-wrapper" id="comment-wrapper-<?php comment_ID(); ?>">
+			<div class="comment-wrapper clearfix" id="comment-wrapper-<?php comment_ID(); ?>">
 	          	<?php if ($comment->comment_approved == '0') { ?>
 	          		<p class="moderated"><strong><?php _e('Your comment is awaiting moderation.', 'tarski'); ?></strong></p>
 	          	<?php } ?>
