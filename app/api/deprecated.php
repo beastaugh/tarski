@@ -10,6 +10,24 @@
  */
 
 /**
+ * is_wp_front_page() - Returns true when current page is the WP front page.
+ * 
+ * Very useful, since is_home() doesn't return true for the front page
+ * if it's displaying a static page rather than the usual posts page.
+ * @since 2.0
+ * @deprecated 2.4
+ * @return boolean
+ */
+function is_wp_front_page() {
+	_deprecated_function(__FUNCTION__, '2.4', is_front_page());
+
+	if(get_option('show_on_front') == 'page')
+		return is_page(get_option('page_on_front'));
+	else
+		return is_home();
+}
+
+/**
  * can_get_remote() - Detects whether Tarski can download remote files.
  * 
  * Checks if either allow_url_fopen is set or libcurl is available.
