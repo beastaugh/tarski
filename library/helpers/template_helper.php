@@ -226,12 +226,11 @@ function tarski_tagline() {
  * @return string
  */
 function tarski_titleandtag() {
-	if(tarski_tagline() || tarski_sitetitle()) {
-		echo '<div id="title">'."\n";
-		echo tarski_sitetitle() . "\n";
-		echo tarski_tagline() . "\n";
-		echo '</div>'."\n";
-	}
+	$title = tarski_sitetitle();
+	$tagline = tarski_tagline();
+	
+	if ($title || $tagline)
+		echo "<div id=\"title\">\n\t$title\n\t$tagline</div>\n";
 }
 
 /**
