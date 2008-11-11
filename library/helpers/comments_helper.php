@@ -23,9 +23,25 @@
 function comment_text_field($field, $label, $value = '', $required = false, $size = 20) { ?>
 	<div class="text-wrap">
 		<label for="<?php echo $field; ?>"><?php printf($label, required_field($required)); ?></label>
-		<input type="text" name="<?php echo $field; ?>" id="<?php echo $field; ?>" value="<?php echo $value; ?>" size="<?php echo $size; ?>" />
+		<input class="<?php echo comment_field_classes(); ?>" type="text" name="<?php echo $field; ?>" id="<?php echo $field; ?>" value="<?php echo $value; ?>" size="<?php echo $size; ?>" />
 	</div>
 <?php }
+
+/**
+ * Builds the HTML classes for comment form text fields.
+ * 
+ * @since 2.4
+ * 
+ * @param string $classes
+ * @param boolean $required
+ * @return string
+ */
+function comment_field_classes($classes = '', $required = false) {
+	$classes = trim($classes);
+	if (strlen($classes) < 1) $classes = 'text';
+	if ($required) $classes .= ' required';
+	return apply_filters('comment_field_classes', $classes, $required);
+}
 
 /**
  * Returns a notice stating that a field is required.
@@ -34,13 +50,14 @@ function comment_text_field($field, $label, $value = '', $required = false, $siz
  * sprintf()s and localisation strings cluttering up the comment form.
  * 
  * @since 2.4
- * @param boolean $req
+ * 
+ * @param boolean $required
  * @return string
  */
 function required_field($required = true) {
 	if ($required) return sprintf(
 		'<span class="req-notice">(%s)</span>',
-		__('required', 'tarski_404_content')
+		__('required', 'tarski')
 	);
 }
 
