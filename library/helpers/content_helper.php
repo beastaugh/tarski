@@ -1,31 +1,40 @@
 <?php
+/**
+ * @package WordPress
+ * @subpackage Tarski
+ */
 
 /**
- * tarski_next_prev_posts() - Outputs links to the next and previous posts.
+ * Outputs links to the next and previous posts.
  * 
  * WordPress has this functionality, but the built-in formatting isn't
  * to Tarski's tastes, so this function builds its own.
+ * 
  * @since 1.2
+ * @uses previous_post_link()
+ * @uses next_post_link()
+ * 
  * @return string
  */
 function tarski_next_prev_posts() {
 	if ( is_single() ) {
 		$prev_post = get_previous_post();
 		$next_post = get_next_post();
-		if($prev_post || $next_post) {
+		
+		if ($prev_post || $next_post) {
 			echo '<p class="primary-span articlenav">';
 
-			if($prev_post) {
+			if ($prev_post) {
 				echo '<span class="previous-entry">';
 				previous_post_link('%link','&lsaquo; %title');
 				echo '</span>';
 
-				if($next_post) {
+				if ($next_post) {
 					echo ' <span class="separator">&nbsp;&bull;&nbsp;</span> ';
 				}
 			}
 
-			if($next_post) {
+			if ($next_post) {
 				echo '<span class="next-entry">';
 				next_post_link('%link','%title &rsaquo;');
 				echo '</span>';
@@ -37,10 +46,10 @@ function tarski_next_prev_posts() {
 }
 
 /**
- * tarski_link_pages() - Tarski wrapper around wp_link_pages().
+ * Passes some Tarski-specific arguments to wp_link_pages().
  * 
  * @since 2.0
- * @return string
+ * @uses wp_link_pages()
  */
 function tarski_link_pages() {
 	$arguments = array(
@@ -54,34 +63,34 @@ function tarski_link_pages() {
 		'echo' => 1
 	);
 	
-	if(!in_category(get_tarski_option('asidescategory'))) {
+	if (!in_category(get_tarski_option('asidescategory')))
 		wp_link_pages($arguments);
-	}
 }
 
 /**
- * tarski_posts_nav_link() - Outputs next / previous index page links.
+ * Outputs next / previous index page links.
  * 
  * @since 1.2
+ * 
  * @global object $wp_query
  * @return string
  */
 function tarski_posts_nav_link() {
-	if(get_tarski_option('use_pages')) {
+	if (get_tarski_option('use_pages')) {
 		global $wp_query;
 				
-		if(!is_singular()) {
+		if (!is_singular()) {
 			$max_num_pages = $wp_query->max_num_pages;
 			$paged = get_query_var('paged');
 			$sep = ' &sect; ';
 			
 			// Only have sep if there's both prev and next results
-			if ($paged < 2 || $paged >= $max_num_pages) {
+			if ($paged < 2 || $paged >= $max_num_pages)
 				$sep = '';
-			}
-		
+			
 			if($max_num_pages > 1) {
 				echo '<p class="pagination">';
+				
 				if(is_search()) {
 					previous_posts_link('&laquo; ' . __('Previous results','tarski'));
 					echo $sep;
@@ -91,6 +100,7 @@ function tarski_posts_nav_link() {
 					echo $sep;
 					previous_posts_link(__('Newer entries','tarski') . ' &raquo;');
 				}
+				
 				echo "</p>\n";				
 			}
 		}
@@ -98,26 +108,32 @@ function tarski_posts_nav_link() {
 }
 
 /**
- * tarski_post_categories_link() - Outputs post categories
+ * A simple wrapper around get_the_category_list().
  * 
- * Categories list is nicely wrapped for potential DOM interactions
- * via JavaScript, CSS etc.
+ * Wraps the categories list in a span to make it easier to access via the DOM.
+ * 
  * @since 2.0
+ * @uses get_the_category_list()
+ * 
  * @return string
  */
 function tarski_post_categories_link() {
-	if(get_tarski_option('show_categories')) {
-		printf(
-			__(' in %s','tarski'),
-			'<span class="categories">' . get_the_category_list(', ') . '</span>'
-		);
-	}
+	if (get_tarski_option('show_categories')) printf(__(' in %s','tarski'),
+		'<span class="categories">' . get_the_category_list(', ') . '</span>');
 }
 
 /**
- * tarski_comments_link() - Outputs comments links.
- *
+ * Outputs comments links for different post types.
+ * 
+ * The function has different output modes for single posts, pages and posts on
+ * index pages; in the latter case it's a simple function call, but in the
+ * former cases it has to be built manually and it's convenient to have a
+ * wrapper around all the logic, so as to keep the templates clean.
+ * 
  * @since 2.1
+ * @uses comments_number()
+ * @uses comments_popup_link()
+ * 
  * @global object $post
  * @return string
  */
@@ -134,9 +150,11 @@ function tarski_comments_link() {
 }
 
 /**
- * tarski_asides_permalink_text() - Outputs permalink text for asides.
+ * Outputs permalink text for asides.
  *
  * @since 2.1
+ * @uses comments_number()
+ * 
  * @global object $post
  * @return string
  */
@@ -150,153 +168,19 @@ function tarski_asides_permalink_text() {
 }
 
 /**
- * tarski_comment_datetime() - Ties the date and time together.
- * 
- * Makes the comment date and time output more translateable.
- * @since 2.0
- * @return string
- * @hook filter tarski_comment_datetime
- * Filters the date and time printed with a comment.
- */
-function tarski_comment_datetime() {
-	$datetime = sprintf(
-		__('%1$s at %2$s','tarski'),
-		get_comment_date(),
-		get_comment_time()
-	);
-	return apply_filters('tarski_comment_datetime', $datetime);
-}
-
-/**
- * tidy_openid_names() - Strips the http:// prefix from OpenID names.
- * 
- * @since 2.0
- * @global object $comment_author
- * @return string $comment_author
- */
-function tidy_openid_names($comment_author) {
-	global $comment;
-	$comment_author =  str_replace('http://', '', $comment_author);
-	$comment_author = rtrim($comment_author, '/');
-	return $comment_author;
-}
-
-/**
- * tidy_avatars - Remove some of the cruft generated by get_avatar()
- * 
- * Adds proper alternate text for the image, replaces single quotes
- * with double ones for markup consistency, and removes the height
- * and width attributes so a naturally sized default image can be
- * employed (e.g. a 1x1 pixel transparent GIF so there appears to
- * be no default image).
- * @since 2.1
- * @param string $avatar
- * @param string $id_or_email
- * @param string $size
- * @param string $default
- * @return mixed
- */
-function tidy_avatars($avatar, $id_or_email, $size, $default) {
-	$url = get_comment_author_url();
-	$author_alt = sprintf( __('%s&#8217;s avatar'), get_comment_author() );
-	$avatar = preg_replace("/height='[\d]+' width='[\d]+'/", '', $avatar);
-	
-	if ( !is_admin() )
-		$avatar = preg_replace("/'/", '"', $avatar);
-	
-	$avatar = preg_replace('/alt=""/', "alt=\"$author_alt\"", $avatar);
-	
-	return $avatar;
-}
-
-/**
- * tarski_avatar() - Linked avatar images for Tarski.
- * 
- * Links to the comment author's home page if they have one,
- * and just returns the image otherwise.
- * @return string
- */
-function tarski_avatar() {
-	if ( get_option('avatar_default') == '' )
-		$default = get_bloginfo('template_directory') . '/images/avatar.png';
-	else
-		$default = '';
-	
-	$avatar = get_avatar(get_comment_author_email(), '50', $default);
-
-	if (!$avatar)
-		return false;
-
-	$url = get_comment_author_url();
-	
-	if ( empty($url) || preg_match('/^\s*http:\/\/\s*$/', $url) ) {
-		return $avatar;
-	} else {
-		return "<a class=\"avatar-link\" href=\"$url\" rel=\"external nofollow\">$avatar</a>";
-	}
-}
-
-/**
- * tarski_default_avatar() - Make Tarski avatar selectable.
- * 
- * Adds the Tarski avatar to the Discussion options page, allowing it to be selected
- * but also allowing users to choose other avatars.
- * @return string
- */
-function tarski_default_avatar($avatar_defaults) {
-	$tarski_avatar = get_bloginfo('template_directory') . '/images/avatar.png';
-	$avatar_defaults[$tarski_avatar] = 'Tarski';
-	return $avatar_defaults;
-}
-
-/**
- * tarski_comment_author_link() - Returns a comment author's name, wrapped in a link if present.
- * 
- * It also includes hCard microformat markup.
- * @link http://microformats.org/wiki/hcard
- * @since 2.0
- * @global object $comment
- * @return string
- * @hook filter get_comment_author_link
- * Native WordPress filter on comment author links.
- * @hook filter tarski_comment_author_link
- * Tarski-specific filter on comment author links.
- */
-function tarski_comment_author_link() {
-	global $comment;
-	$url = get_comment_author_url();
-	$author = get_comment_author();
-
-	if(empty($url) || 'http://' == $url) {
-		$return = sprintf(
-			'<span class="fn">%s</span>',
-			$author
-		);
-	} else {
-		$return = sprintf(
-			'<a class="url fn" href="%1$s" rel="external nofollow">%2$s</a>',
-			$url,
-			$author
-		);
-	}
-
-	$return =  apply_filters('get_comment_author_link', $return);
-	$return = apply_filters('tarski_comment_author_link', $return);
-	return $return;
-}
-
-/**
- * tarski_404_content() - Outputs default text for 404 error pages.
+ * Outputs default text for 404 error pages.
  *
  * @since 1.5
+ * 
  * @return string
+ * 
  * @hook filter th_404_content
  * Allows users to change their 404 page messages via a plugin.
  */
 function tarski_404_content() {
 	$content = sprintf(
 		__('The page you are looking for does not exist; it may have been moved, or removed altogether. You might want to try the search function or return to the %s.','tarski'),
-		'<a href="' . user_trailingslashit(get_bloginfo('url')) . '">' . __('front page','tarski') . '</a>'
+		'<a href="' . user_trailingslashit(get_bloginfo('url')) . '">' . __('front page', 'tarski') . '</a>'
 	);
 	$content = wpautop($content);
 	$content = apply_filters('th_404_content', $content);
@@ -304,22 +188,24 @@ function tarski_404_content() {
 }
 
 /**
- * tarski_content_massage() - Filter adding smart quotes, auto-paragraphs etc.
+ * Filter adding smart quotes, auto-paragraphs etc.
  * 
  * This function strips slashes, adds smart quotes and other typographical
  * niceties, converts characters such as ampersands to their HTML equivalent,
  * adds automatic paragraphing and line breaks, and finally returns the
  * altered content.
+ * 
  * @since 2.0.5
- * @param string $input
- * @return string $output
- *
+ * @uses wptexturize()
+ * @uses convert_chars()
+ * @uses wpautop
+ * 
+ * @param string $text
+ * @return string
  */
-function tarski_content_massage($input) {
-	if(!empty($input)) {
-		$output = wpautop(convert_chars(wptexturize(stripslashes($input))));
-	}
-	return $output;
+function tarski_content_massage($text) {
+	if (strlen($text) > 0)
+		return wpautop(convert_chars(wptexturize(stripslashes($text))));
 }
 
 ?>
