@@ -56,10 +56,6 @@ class TarskiCommentWalker extends Walker_Comment {
 			'max_depth' => $args['max_depth']
 		));
 		
-		// echo '<pre>';
-		// print_r($reply_link_opts);
-		// echo '</pre>';
-		
 		$GLOBALS['comment'] = $comment;
 		extract($args, EXTR_SKIP);
 ?>
