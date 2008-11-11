@@ -282,8 +282,9 @@ input.text:focus, textarea:focus { background: #fff; }
 	body .response-details .text-wrap:last-child { margin-right: 0; }
 	body .response { margin-bottom: 0.8em; }
 		body .response-details .text-wrap label, body .response label { display: block; margin: 0 0 0.3em 0; color: #808080; }
-		body .response-details .text-wrap input.text, body .response-details .textarea-wrap textarea { display: block; width: 98%; }
-		body .req-notice { font-size: 0.8em; }
+		body .response-details .text-wrap input.text { display: block; width: 98%; }
+		body .response textarea { display: block; width: 99%; }
+		body .req-notice { font-size: 0.8em; margin-top: -0.1em; }
 	p.submit-wrapper { margin: 0; }
 
 /* Links
