@@ -11,6 +11,7 @@ define('TARSKIVERSIONFILE', 'http://tarskitheme.com/version.atom');
 require_once(TEMPLATEPATH . '/library/core.php');
 require_once(TARSKICLASSES . '/options.php');
 require_once(TARSKICLASSES . '/asset.php');
+require_once(TARSKICLASSES . '/comment_walker.php');
 
 // Admin library files
 if (is_admin()) {

@@ -177,31 +177,51 @@ body.rtl #navigation ul.primary { direction: ltr; }
 		body .post-brief p.post-metadata { color: #808080; margin: 0 0 0.2em 0; border: none; padding: 0; }
 		body .post-brief p.excerpt { margin: 0; }
 			
-	/* Comments
-	--------------------------------------- */
-	#comments { padding: 2em 0 0 0; clear: both; }
-	body.janus #comments .secondary { text-align: right; }
-	#comments .meta { margin: 0 0 0.2em 0; }
-		#comments .meta .title { width: 49.5%; float: left; margin: 0; border: none; }
-		body .meta .comments-feed { width: 49.5%; float: right; text-align: right; margin:0; padding: 0.75em 0 0 0; }
-			body .meta .comments-feed a { display: block; float:right; min-height:16px; padding: 1px 20px 1px 0; background: url('images/icons.png') no-repeat 100% -100px; font-size: 0.8em; }
-		#trackback-link { margin: 0; padding-top: 2px; border-top: 1px solid #ccc; font-size: 0.8em; color: #808080; clear: both; }
-			#trackback-link .secondary p { font-weight: bold; margin: 0; padding: 5px 24px 5px 0; }
-			#trackback-link .primary p { margin: 0; padding: 5px 0; }
-
-	body .comment { margin: 0; border-top: 1px solid #ccc; padding: 0.66em 0; }
-		body .comment-permalink, body .comment-edit { font-size: 0.8em; margin: 0; }
-		body .comment-author { margin: 0 0 0.5em 0; font-weight: bold; }
-		body .avatar, body .comment a .avatar { margin: 0 0 0.5em 0; border: 1px solid #ccc; padding: 4px; background:#fcfcfc; }
-		body .moderated .primary-span { border-bottom: 1px dotted #e5e5e5; padding-bottom: 0.5em; background: url('images/icons.png') no-repeat 100% -200px; }
+	/**
+	 * Comments layout & style
+	 * 
+	 * Designed to work for comments which are threaded, unthreaded, paginated
+	 * and unpaginated. Trackbacks are now included inline rather than being
+	 * rendered at the top. Comments also sit directly below the post or page
+	 * content, rather than taking the entire width of the site. This increases
+	 * their flexibility (given column swapping etc.) and maintainability
+	 * (since fewer permutations reduce the likelihood of bugs.)
+	 * 
+	 * @since 2.4
+	 */
+	#comments { clear: both; margin: 0; border-top: 1px solid #ccc; padding: 0; }
+	body .comment { padding: 0; list-style: none; }
+		body .comment .comment { margin: 0; }
+		li.comment { border-top: 1px solid #ccc; }
+		body .comment ol.children { clear: both; margin: 0; border-top: 1px solid #ccc; padding: 0 0 0 20px; }
+		li.depth-1 { border-top: none; border-bottom: 1px solid #ccc; }
+		li.comment-lvl-first { border-top: none; }
+		body .comment .reply { clear: both; }
+	
+	body .comment-wrapper { padding: 0.66em 0; }
+	body .moderated { border-bottom: 1px dotted #e5e5e5; padding-bottom: 0.5em; background: url('images/icons.png') no-repeat 100% -200px; }
+	body .comment-meta { font-size: 0.8em; color: #808080; }
+		body .avatar-link { display: block; float: right; margin: 0 0 10px 10px; }
+		body .avatar, body .comment a .avatar { display: block; float: right; margin: 0 0 10px 10px; border: 1px solid #ccc; padding: 4px; background:#fcfcfc; }
+		body .comment .avatar-link .avatar { float: none; margin: 0; }
+		body .comment-permalink, body .comment-edit {}
+		body .comment-author { font-weight: bold; color: #404040; }
+	body .comment-content {}
+	body .reply { margin: 0; font-size: 0.8em; }
 	body .author-comment {}
 	body .trackback { margin: 0; border-top: 1px solid #ccc; padding: 0.5em 0; background: #fcffff; }
-		body .trackback p { font-size: 0.8em; margin: 0; }
-		
-	#respond { margin: 0; border-top: 1px solid #ccc; padding: 1em 0 0 0; }
+	body .trackback p { font-size: 0.8em; margin: 0; }
+	
+	#comments-header .title { width: 49.5%; float: left; margin: 0; border: none; }
+	#comments-header .comments-feed { width: 49.5%; float: right; text-align: right; margin: 0; padding: 0.75em 0 0 0; }
+		#comments-header .comments-feed a { display: block; float:right; min-height:16px; padding: 1px 20px 1px 0; background: url('images/icons.png') no-repeat 100% -100px; font-size: 0.8em; }
+	#comments-header .trackback-link { clear: both; margin: 0.4em 0 0 0; border-top: 1px solid #ccc; padding: 0.5em 0; font-size: 0.8em; font-weight: bold; color: #808080; }
+		#comments-header .trackback-link a { font-weight: normal; }
+	
+	#respond { margin: 0; padding: 1em 0 0 0; }
 		body .comments-info { font-size: 0.8em; margin: 0.6em 0 1em 220px; border-bottom: 1px solid #ccc; padding: 0 0 1.2em 0; }
 		body .req-notice { font-size: 0.8em; }
-		
+	
 	/* Lists
 	--------------------------------------- */
 	body .navlist { list-style: none; margin: 0 0 1em 0; }
@@ -256,7 +276,7 @@ input, select, textarea { font-family: Verdana, Helvetica, Arial, sans-serif; fo
 		
 	#author:focus, #email:focus, #url:focus, #comment:focus { background: #fff; }
 	#submit { display:block; margin: 0 0 1em 0; }
-
+	
 /* Links
 ----------------------------------------------- */
 a { text-decoration: none; }
