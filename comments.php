@@ -33,11 +33,12 @@ if (post_password_required()) {
 	</ol>
 	
 	<?php $page_links = paginate_comments_links(array(
+		'type' => 'array',
 		'echo' => false,
 		'prev_text' => __('&lsaquo; Previous', 'tarski'),
 		'next_text' => __('Next &rsaquo;', 'tarski')));
 	
-	if ($page_links) echo "<p id=\"comment-pages\">$page_links</p>"; ?>
+	if ($page_links) echo '<p id="comment-paging">' . join(' &middot; ', $page_links) . '</p>'; ?>
 	
 	<?php } elseif (!comments_open()) { ?>
 	<p><em><?php _e('Comments are closed for this article.', 'tarski'); ?></em></p>
