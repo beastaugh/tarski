@@ -38,10 +38,11 @@ if (post_password_required()) {
 		'prev_text' => __('&lsaquo; Previous', 'tarski'),
 		'next_text' => __('Next &rsaquo;', 'tarski')));
 	
-	if ($page_links) echo '<p id="comment-paging">' . join(' &middot; ', $page_links) . '</p>'; ?>
+	if ($page_links) echo '<p id="comment-paging">' . join(' &middot; ', $page_links) . '</p>';
+	} ?>
 	
-	<?php } elseif (!comments_open()) { ?>
-	<p class="comments-closed"><em><?php _e('Comments are closed for this article.', 'tarski'); ?></em></p>
-	<?php } ?>
-		
+<?php } else { ?>
+	
+	<p id="comments-closed"><em><?php _e('Comments are closed for this article.', 'tarski'); ?></em></p>
+	
 <?php } if (comments_open()) include_once(TARSKIDISPLAY . '/respond.php'); ?>
