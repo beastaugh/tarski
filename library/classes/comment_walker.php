@@ -53,7 +53,9 @@ class TarskiCommentWalker extends Walker_Comment {
 		$reply_link_opts = array_merge($args, array(
 			'add_below' => 'comment-wrapper',
 			'depth' => $depth,
-			'max_depth' => $args['max_depth']
+			'max_depth' => $args['max_depth'],
+			'before' => '<p class="reply">',
+			'after' => '</p>'
 		));
 		
 		$GLOBALS['comment'] = $comment;
@@ -78,7 +80,7 @@ class TarskiCommentWalker extends Walker_Comment {
 					<?php comment_text(); ?>
 				</div>
 				
-				<p class="reply"><?php comment_reply_link($reply_link_opts); ?></p>
+				<?php comment_reply_link($reply_link_opts); ?>
 	        </div>
 <?
 	}
