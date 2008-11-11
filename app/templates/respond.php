@@ -42,7 +42,10 @@
 		</div>
 		
 		<p class="submit-wrap"><input class="submit" name="submit" type="submit" id="submit" value="<?php _e('Submit Comment', 'tarski'); ?>" /></p>
-		<?php do_action('comment_form', $post->ID); ?>
+		
+		<div class="response-extras">
+			<?php do_action('comment_form', $post->ID); ?>
+		</div>
 	</form>
 
 <?php } // end registration check ?>
