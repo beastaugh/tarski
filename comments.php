@@ -41,7 +41,7 @@ if (post_password_required()) {
 	if ($page_links) echo '<p id="comment-paging">' . join(' &middot; ', $page_links) . '</p>'; ?>
 	
 	<?php } elseif (!comments_open()) { ?>
-	<p><em><?php _e('Comments are closed for this article.', 'tarski'); ?></em></p>
+	<p class="comments-closed"><em><?php _e('Comments are closed for this article.', 'tarski'); ?></em></p>
 	<?php } ?>
 		
 <?php } if (comments_open()) include_once(TARSKIDISPLAY . '/respond.php'); ?>
