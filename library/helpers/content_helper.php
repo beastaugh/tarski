@@ -164,8 +164,7 @@ function tarski_comment_datetime() {
 		get_comment_date(),
 		get_comment_time()
 	);
-	$datetime = apply_filters('tarski_comment_datetime', $datetime);
-	echo $datetime;
+	return apply_filters('tarski_comment_datetime', $datetime);
 }
 
 /**
