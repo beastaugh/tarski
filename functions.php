@@ -23,6 +23,7 @@ if (is_admin()) {
 // Various helper libraries
 require_once(TARSKIHELPERS . '/template_helper.php');
 require_once(TARSKIHELPERS . '/content_helper.php');
+require_once(TARSKIHELPERS . '/comments_helper.php');
 require_once(TARSKIHELPERS . '/author_helper.php');
 require_once(TARSKIHELPERS . '/tag_helper.php');
 require_once(TARSKIHELPERS . '/widgets.php');
