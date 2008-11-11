@@ -31,6 +31,14 @@ if (post_password_required()) {
 	<ol id="comments" class="clear">
 		<?php wp_list_comments(array('style' => 'ol', 'walker' => new TarskiCommentWalker)); ?>
 	</ol>
+	
+	<?php $page_links = paginate_comments_links(array(
+		'echo' => false,
+		'prev_text' => __('&lsaquo; Previous', 'tarski'),
+		'next_text' => __('Next &rsaquo;', 'tarski')));
+	
+	if ($page_links) echo "<p id=\"comment-pages\">$page_links</p>"; ?>
+	
 	<?php } elseif (!comments_open()) { ?>
 	<p><em><?php _e('Comments are closed for this article.', 'tarski'); ?></em></p>
 	<?php } ?>
