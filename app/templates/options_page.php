@@ -1,6 +1,6 @@
 <div id="tarski-options" class="wrap metabox-holder <?php if(get_bloginfo("text_direction") == "rtl") { echo " rtl"; } ?>">
 	
-	<?php tarski_options_fragment('messages'); ?>
+	<?php tarski_options_fragment('restore_options'); ?>
 	
 	<form action="<?php echo admin_url('admin-post.php?action=tarski_options'); ?>" method="post">
 		
@@ -21,6 +21,8 @@
 			
 			<div class="clearer"></div>
 		</div>
+		
+		<?php tarski_options_fragment('messages'); ?>
 		
 		<div class="secondary">
 			<?php tarski_options_fragment('update_notifier'); ?>
