@@ -1,4 +1,8 @@
 <?php
+/**
+ * @package WordPress
+ * @subpackage Tarski
+ */
 
 /**
  * tarski_output_constant() - Checks if constant exists and outputs it if it does.
