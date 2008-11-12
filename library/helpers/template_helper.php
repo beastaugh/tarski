@@ -128,6 +128,32 @@ function feed_link_type($type = '') {
 }
 
 /**
+ * Remove unnecessary gallery styling.
+ * 
+ * The gallery feature adds an inline style element, which is pretty horrible
+ * in any case, but it also adds lots of unnecessary rules which Tarski has its
+ * own equivalents for.
+ * 
+ * One thing that is necessary is the width of each gallery item, since this is
+ * set dynamically from within WordPress and cannot be calculated in advance or
+ * otherwise accounted for by the theme.
+ * 
+ * Consequently, this function removes the other rules from the style block,
+ * while preserving the gallery item styling.
+ * 
+ * @since 2.4
+ * 
+ * @param string $style
+ * @return string
+ */
+function trim_gallery_style($style) {
+	$style = preg_replace('/\.gallery img {.*?}/s', '', $style);
+	$style = preg_replace('/\.gallery {.*?}/s', '', $style);
+	$style = preg_replace('/\.gallery-caption {.*?}/s', '', $style);
+	return $style;
+}
+
+/**
  * tarski_headerimage() - Outputs header image.
  * 
  * @since 1.0
