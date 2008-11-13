@@ -69,21 +69,21 @@ class TarskiVersion {
 		
 		$this->messages = array(
 			'unchecked' => array(
-				'class' => 'error',
+				'class' => 'disabled',
 				'body' => sprintf(
-					__('No attempt was made to access the update server. Your installed version is %s.', 'tarski'),
+					__('Update notification is disabled, so no attempt was made to access the update server. Your installed version is %s.', 'tarski'),
 					"<strong>$this->current</strong>"
 				)
 			),
 			'error' => array(
-				'class' => 'error',
+				'class' => 'problem',
 				'body' => sprintf(
 					__('An error occurred while attempting to access the update server. Your installed version is %s.', 'tarski'),
 					"<strong>$this->current</strong>"
 				)
 			),
 			'no_connection' => array(
-				'class' => 'error',
+				'class' => 'problem',
 				'body' => sprintf(
 					__('No connection to update server. Your installed version is %s.','tarski'),
 					"<strong>$this->current</strong>"
@@ -108,9 +108,9 @@ class TarskiVersion {
 					)
 				),
 				'older' => array(
-					'class' => 'updated fade',
+					'class' => 'update-available',
 					'body' => sprintf(
-						__('A new version of the Tarski theme, version %1$s %2$s. Your installed version is %3$s.','tarski'),
+						__('Version %1$s of the Tarski theme %2$s. Your installed version is %3$s.','tarski'),
 						"<strong>$this->latest</strong>",
 						'<a href="' . $this->latest_link . '">' . __('is now available','tarski') . '</a>',
 						"<strong>$this->current</strong>"
@@ -258,7 +258,7 @@ class TarskiVersion {
 		$message = $this->messages[$this->status];
 		
 		if (is_array($message) && !empty($message))
-			return '<div id="tarski-update-status" class="update-status ' . $message['class'] . '">' . wpautop($message['body']) . '</div>';
+			return '<div id="tarski-update-status" class="' . $message['class'] . '">' . wpautop($message['body']) . '</div>';
 	}
 	
 }
