@@ -16,8 +16,8 @@
 				<h4><?php _e('Update Notification','tarski'); ?></h4>
 				<p><?php printf(
 					__('Your server appears to have %1$s disabled and %2$s not installed. This means that the update notifier will not work.','tarski'),
-					'<a href="http://uk.php.net/manual/en/ref.filesystem.php"><code>allow_url_fopen</code></a>',
-					'<a href="http://uk.php.net/manual/en/ref.curl.php"><code>libcurl</code></a>'
+					'<a href="http://uk.php.net/manual/en/ref.filesystem.php"><kbd>allow_url_fopen</kbd></a>',
+					'<a href="http://uk.php.net/manual/en/ref.curl.php"><kbd>libcurl</kbd></a>'
 				); ?></p>
 				<p><?php printf(
 					__('You can read our %1$s on how to fix your server setup, but if you are unable to change it we recommend subscribing to either the %2$s or the %3$s in your feed reader, so that you can be alerted when new Tarski versions become available.','tarski'),
