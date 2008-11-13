@@ -23,7 +23,7 @@
 	<p><?php printf( __('Choose a header image by clicking on it. The current image is the %s one.','tarski'), '<span class="highlight">' . __('highlighted','tarski') . '</span>' ); ?></p>
 <?php if(!detectWPMU()) { ?>
 <div class="details">
-	<p><?php printf( __('You can upload your own header images (.gif, .jpg or .png) to %s.','tarski'), '<code>wp-content/themes/' . get_template() . '/headers/</code>' ); ?></p>
-	<p><?php printf( __('Make sure that you upload a thumbnail file as well. If your image is named %1$s, the corresponding thumbnail file should be named %2$s.','tarski'), '<code>'. __('example','tarski'). '.jpg</code>', '<code>'. __('example','tarski'). '-thumb.jpg</code>'); ?></p>
+	<p><?php printf( __('You can upload your own header images (.gif, .jpg or .png) to %s.','tarski'), '<kbd>wp-content/themes/' . get_template() . '/headers/</kbd>' ); ?></p>
+	<p><?php printf( __('Make sure that you upload a thumbnail file as well. If your image is named %1$s, the corresponding thumbnail file should be named %2$s.','tarski'), '<kbd>'. __('example','tarski'). '.jpg</kbd>', '<kbd>'. __('example','tarski'). '-thumb.jpg</kbd>'); ?></p>
 </div>
 <?php } ?>
