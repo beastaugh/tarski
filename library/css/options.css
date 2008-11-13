@@ -50,7 +50,7 @@
 .postbox .option label { font-weight: bold; }
 .postbox .details { margin: 0 -10px -10px -10px; border-top:1px solid #dfdfdf; padding: 0.4em 10px 1px 10px; background: #f9f9f9; -webkit-border-bottom-right-radius: 6px; -moz-border-bottom-right-radius: 6px; border-bottom-right-radius: 6px; -webkit-border-bottom-left-radius: 6px; -moz-border-bottom-left-radius: 6px; border-bottom-left-radius: 6px; }
 #tarski-options .highlight { background: none; color: #d54e21; }
-#tarski-update-status { margin: -10px 0 0.8em 0; border-bottom: 1px solid #dfdfdf; padding: 10px; font-family: Georgia, Times, serif; font-size: 1.1em; }
+#tarski-update-status { margin: -10px -10px 0.8em -10px; border-bottom: 1px solid #dfdfdf; padding: 10px; font-family: Georgia, Times, serif; font-size: 1.1em; }
 #tarski-update-status.update-available { background-color: #eaf2fa; }
 #tarski-update-status.problem { background-color: #f9f9f9; }
 #tarski-update-status.disabled { background-color: #f9f9f9; }
