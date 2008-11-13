@@ -23,6 +23,6 @@
 <div class="option">
 	<label for="opt-nav-homename"><?php _e('Rename your &#8216;Home&#8217; link','tarski'); ?></label>
 	<input type="hidden" name="home_link_name" value="Home" />
-	<input class="text" type="text" id="opt-nav-homename" name="home_link_name" value="<?php if(get_tarski_option('home_link_name')) { echo get_tarski_option('home_link_name'); } else { _e('Home','tarski'); } ?>" />
+	<input class="text" class="text" type="text" id="opt-nav-homename" name="home_link_name" value="<?php if(get_tarski_option('home_link_name')) { echo get_tarski_option('home_link_name'); } else { _e('Home','tarski'); } ?>" />
 	<p><?php _e('This link is not displayed when you have a static front page.','tarski'); ?></p>
 </div>

@@ -46,6 +46,7 @@
 .postbox .option { margin:0 -10px; border-top:1px solid #dfdfdf; padding:0.8em 10px 0 10px; }
 .postbox .borderless { border-top: none; padding-top: 0; }
 .postbox label, .postbox select, .postbox input.text { display: block; margin: 0 0 0.8em 0; }
+.postbox input.text { border: 1px solid #ccc; }
 .postbox .option label { font-weight: bold; }
 .postbox .tip { margin: 0 -10px -10px -10px; border-top:1px solid #dfdfdf; padding: 0.4em 10px 1px 10px; background: #f9f9f9; -webkit-border-bottom-right-radius: 6px; -moz-border-bottom-right-radius: 6px; border-bottom-right-radius: 6px; -webkit-border-bottom-left-radius: 6px; -moz-border-bottom-left-radius: 6px; border-bottom-left-radius: 6px; }
 #tarski-options .highlight { background: none; color: #d54e21; }
