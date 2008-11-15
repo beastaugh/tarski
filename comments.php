@@ -11,9 +11,9 @@ if (post_password_required()) {
 	printf('<p class="nocomments">%s</p>',
 		__('This post is password protected. Enter the password to view comments.', 'tarski'));
 	return;
-} ?>
+}
 
-<?php if (have_comments() || comments_open()) { ?>
+if (have_comments() || comments_open()) { ?>
 	<div id="comments-header">
 		<div class="clearfix">
 			<h2 class="title"><?php comments_number(__('No comments', 'tarski'), __('1 comment', 'tarski'), __('% comments', 'tarski')); ?></h2>
@@ -28,21 +28,24 @@ if (post_password_required()) {
 	</div>
 	
 	<?php if (have_comments()) { ?>
-	<ol id="comments" class="clear">
-		<?php wp_list_comments(array('style' => 'ol', 'walker' => new TarskiCommentWalker)); ?>
-	</ol>
+		<ol id="comments" class="clear">
+			<?php wp_list_comments(array('style' => 'ol', 'walker' => new TarskiCommentWalker)); ?>
+		</ol>
+		
+		<?php $page_links = paginate_comments_links(array(
+			'type' => 'array', 'echo' => false,
+			'prev_text' => __('&lsaquo; Previous', 'tarski'),
+			'next_text' => __('Next &rsaquo;', 'tarski')));
+		
+		if ($page_links) {
+			echo '<p id="comment-paging">' . join(' &middot; ', $page_links) . '</p>';
+		}
 	
-	<?php $page_links = paginate_comments_links(array(
-		'type' => 'array',
-		'echo' => false,
-		'prev_text' => __('&lsaquo; Previous', 'tarski'),
-		'next_text' => __('Next &rsaquo;', 'tarski')));
+	}
 	
-	if ($page_links) echo '<p id="comment-paging">' . join(' &middot; ', $page_links) . '</p>';
-	} ?>
-	
-<?php } else { ?>
-	
-	<p id="comments-closed"><em><?php _e('Comments are closed for this article.', 'tarski'); ?></em></p>
-	
-<?php } if (comments_open()) include_once(TARSKIDISPLAY . '/respond.php'); ?>
+	if (comments_open()) {
+		include_once(TARSKIDISPLAY . '/respond.php');
+	} else {
+		echo '<p><em>' . __('Comments are now closed.', 'tarski') . '</em></p>';
+	}
+} ?>
