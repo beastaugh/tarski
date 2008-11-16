@@ -91,7 +91,7 @@ class TarskiCommentWalker extends Walker_Comment {
 					<?php comment_text(); ?>
 				</div>
 				
-				<?php if (comments_open()) comment_reply_link($reply_link_opts); ?>
+				<?php comment_reply_link($reply_link_opts); ?>
 	        </div>
 <?
 	}
