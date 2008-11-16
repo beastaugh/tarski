@@ -37,14 +37,11 @@ if (have_comments() || comments_open()) { ?>
 			'prev_text' => __('&lsaquo; Previous', 'tarski'),
 			'next_text' => __('Next &rsaquo;', 'tarski')));
 		
-		if ($page_links) {
-			echo '<p id="comment-paging">' . join(' &middot; ', $page_links) . '</p>';
-		}
+		if ($page_links) echo '<p id="comment-paging">' . join(' &middot; ', $page_links) . '</p>';
 	}
 	
-	if (comments_open()) {
+	if (comments_open())
 		include_once(TARSKIDISPLAY . '/respond.php');
-	} else {
+	else
 		echo '<p id="comments-closed"><em>' . __('Comments are now closed.', 'tarski') . '</em></p>';
-	}
 } ?>
