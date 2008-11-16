@@ -40,12 +40,11 @@ if (have_comments() || comments_open()) { ?>
 		if ($page_links) {
 			echo '<p id="comment-paging">' . join(' &middot; ', $page_links) . '</p>';
 		}
-	
 	}
 	
 	if (comments_open()) {
 		include_once(TARSKIDISPLAY . '/respond.php');
 	} else {
-		echo '<p><em>' . __('Comments are now closed.', 'tarski') . '</em></p>';
+		echo '<p id="comments-closed"><em>' . __('Comments are now closed.', 'tarski') . '</em></p>';
 	}
 } ?>

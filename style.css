@@ -217,7 +217,7 @@ body.rtl #navigation ul.primary { direction: ltr; }
 	#comment-paging { border-bottom: 1px solid #e5e5e5; padding: 0.5em 0; }
 	#comment-paging { margin: 0; font-family: 'Times New Roman', Times, serif; font-size: 1.5em; color: #808080; }
 		#comment-paging span.page-numbers { color: #404040; }
-	#comments-closed { margin: 0; border-top: 1px solid #ccc; padding-top: 1.33em; }
+	#comments-closed { margin: 0; padding-top: 0.66em; }
 	
 	/* Lists
 	--------------------------------------- */
