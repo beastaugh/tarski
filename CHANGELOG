@@ -40,6 +40,7 @@
 
 #### Bug fixes
 
+  * 'Description' `meta` element content is now better escaped (r865)
   * Fixed untranslateable text on the options page (r799)
 
 

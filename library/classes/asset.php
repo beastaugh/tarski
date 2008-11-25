@@ -37,10 +37,10 @@ class TarskiAsset {
 		if ( (is_single() || is_page()) && strlen($excerpt) )
 			$description = $excerpt;
 		else
-			$description = get_bloginfo('description');
+			$description = trim(strip_tags(wp_specialchars(get_bloginfo('description'))));
 
 		if ( strlen($description) )
-			$meta[] = "<meta name=\"description\" content=\"$description\" />";
+			$meta[] = sprintf('<meta name="description" content="%s" />', wptexturize($description));
 		
 		if(get_option('blog_public') != '0')
 			$meta[] = '<meta name="robots" content="all" />';
