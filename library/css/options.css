@@ -41,7 +41,7 @@
  * Form layouts are a dark art, and these rules let us specify a bit more
  * precisely than the WordPress defaults do how things should appear.
  */
-.postbox .inside { margin: 0 10px 10px; }
+.postbox .inside { margin: 10px; }
 .postbox h4, .postbox p { margin: 0 0 0.8em 0; }
 .postbox .option { margin:0 -10px; border-top:1px solid #dfdfdf; padding:0.8em 10px 0 10px; }
 .postbox .borderless { border-top: none; padding-top: 0; }
