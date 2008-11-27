@@ -160,11 +160,11 @@ class TarskiVersion {
 			$atomdata = file_get_contents($cachefile);
 		} else {
 			$response = wp_remote_get(TARSKIVERSIONFILE);
-			$code = wp_remote_retrieve_response_code(&$response);
+			$code = wp_remote_retrieve_response_code($response);
 			$atomdata = '';
 			
 			if (200 == $code) {
-				$atomdata = wp_remote_retrieve_body(&$response);
+				$atomdata = wp_remote_retrieve_body($response);
 				
 				if (cache_is_writable("version.atom")) {
 					$fp = fopen($cachefile, "w");
