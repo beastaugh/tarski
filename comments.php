@@ -28,7 +28,7 @@ if (have_comments() || comments_open()) { ?>
 	</div>
 	
 	<?php if (have_comments()) { ?>
-		<ol id="comments" class="clear">
+		<ol id="comments" class="clearfix">
 			<?php wp_list_comments(array('style' => 'ol', 'walker' => new TarskiCommentWalker)); ?>
 		</ol>
 		
