@@ -1,6 +1,6 @@
 /**
  * Tarski options page
- * 
+ *
  * Tarski's options page lets users change the way Tarski looks and behaves.
  * As a fairly involved form-based page with a non-standard layout, a certain
  * amount of CSS is needed to keep things in order.
@@ -8,7 +8,7 @@
 
 /**
  * Overall page styling
- * 
+ *
  * Broad-brush stuff, setting the stage for the form elements. Makes the page
  * background grey, puts the page title in its place, and sorts out other
  * header and footer elements.
@@ -23,7 +23,7 @@
 
 /**
  * Positioning
- * 
+ *
  * The 'span' class is for elements which span the entire page width, while
  * the 'primary' and 'secondary' classes are for blocks which are floated to
  * left and right respectively, clearing only those above them and thus
@@ -37,7 +37,7 @@
 
 /**
  * Form sections and elements
- * 
+ *
  * Form layouts are a dark art, and these rules let us specify a bit more
  * precisely than the WordPress defaults do how things should appear.
  */
@@ -58,7 +58,7 @@
 
 /**
  * Navbar selection node tree
- * 
+ *
  * The navbar selection tool is an ordered list of pages, whose list elements
  * may also contain child lists of sub-pages.
  */
@@ -80,7 +80,7 @@
 
 /**
  * Header selector
- * 
+ *
  * The Tarski options page uses JavaScript to create clickable header image
  * thumbnails.
  */
