@@ -121,7 +121,7 @@ class TarskiVersion {
 					'body' => sprintf(
 						__('You appear to be running a development version of Tarski (%1$s). Please ensure you %2$s.','tarski'),
 						"<strong>$this->current</strong>",
-						'<a href="http://tarskitheme.com/help/updates/svn/">' . __('stay updated','tarski') . '</a>'
+						'<a href="http://tarskitheme.com/help/updates/#edge">' . __('stay updated','tarski') . '</a>'
 					)
 				)
 			));
