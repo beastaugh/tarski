@@ -45,6 +45,7 @@
 		
 		<div class="primary">
 			<?php tarski_options_fn_block('tarski_miscellaneous_options', __('Miscellaneous Options', 'tarski')); ?>
+			<p><input type="submit" class="button-primary" name="submit" value="<?php _e('Save Options','tarski'); ?>" /></p>
 		</div>
 	</form>
 	
