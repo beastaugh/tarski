@@ -17,7 +17,7 @@
 #tarski-options-header { clear: both; margin-bottom: 0.8em; }
 #tarski-options-header h2 { float: left; margin: 0 0.8em 0 0; border: none; padding: 0; }
 #tarski-save-options, #tarski-info { display: block; padding: 0; }
-#tarski-save-options { float: left; margin: 0.4em 0 0 0; }
+#tarski-save-options { float: left; margin: 0.6em 0 0 0; }
 #tarski-info { float: right; margin: 0.8em 0 0 0; font-weight: bold; }
 .rtl { text-align: right; direction: rtl; }
 
