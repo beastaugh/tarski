@@ -26,6 +26,23 @@ function tarski_comment_datetime() {
 }
 
 /**
+ * Returns a link to a particular comment.
+ *
+ * @since 2.4
+ * @uses tarski_comment_datetime
+ *
+ * @param object $comment
+ * @param mixed $args
+ * @return string
+ */
+function tarski_comment_link($comment, $args) {
+	return sprintf('<a title="%s" href="%s">%s</a>',
+		__('Permalink to this comment','tarski'),
+		htmlspecialchars(get_comment_link($comment->comment_ID, $args)),
+		tarski_comment_datetime());
+}
+
+/**
  * Strips the http:// prefix from OpenID names.
  * 
  * @since 2.0
