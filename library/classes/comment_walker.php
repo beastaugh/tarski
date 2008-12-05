@@ -74,24 +74,31 @@ class TarskiCommentWalker extends Walker_Comment {
 ?>
 		<li <?php comment_class($first); ?> id="comment-<?php comment_ID(); ?>">
 			<div class="comment-wrapper clearfix" id="comment-wrapper-<?php comment_ID(); ?>">
-	          	<?php if ($comment->comment_approved == '0') { ?>
-	          		<p class="moderated"><strong><?php _e('Your comment is awaiting moderation.', 'tarski'); ?></strong></p>
-	          	<?php } ?>
-	
-				<?php echo tarski_avatar(); ?>
-				
-				<p class="comment-meta commentmetadata"><?php printf(__('%1$s on %2$s', 'tarski'),
-					'<span class="comment-author vcard">' . tarski_comment_author_link() . '</span>',
-					'<span class="comment-permalink"><a title="' .  __('Permalink to this comment','tarski') . '" href="' . htmlspecialchars(get_comment_link($comment->comment_ID, $page)) . '">' . tarski_comment_datetime() .'</a></span>'
-				); edit_comment_link(__('edit','tarski'), ' <span class="comment-edit">(', ')</span>'); ?>
-				</p>
-				
-				
-				<div class="comment-content content">
-					<?php comment_text(); ?>
-				</div>
-				
-				<?php comment_reply_link($reply_link_opts); ?>
+				<?php if (in_array(get_comment_type(), array('trackback', 'pingback', 'pings'))) { ?>
+					<p class="pingdata"><?php printf(__('%1$s from %2$s on %3$s', 'tarski'),
+						comment_type(_c('Comment|noun', 'tarski'), __('Trackback'), __('Pingback')),
+						tarski_comment_author_link(),
+						tarski_comment_link($comment, array('page' => $page)));
+						edit_comment_link(__('edit','tarski'), ' <span class="comment-edit">(', ')</span>'); ?></p>
+				<?php } else { ?>
+					<?php if ($comment->comment_approved == '0') { ?>
+	          			<p class="moderated"><strong><?php _e('Your comment is awaiting moderation.', 'tarski'); ?></strong></p>
+	          		<?php } ?>
+					
+					<?php echo tarski_avatar(); ?>
+					
+					<p class="comment-meta commentmetadata"><?php printf(__('%1$s on %2$s', 'tarski'),
+						'<span class="comment-author vcard">' . tarski_comment_author_link() . '</span>',
+						'<span class="comment-permalink">' . tarski_comment_link($comment, array('page' => $page)) . '</span>'
+					); edit_comment_link(__('edit','tarski'), ' <span class="comment-edit">(', ')</span>'); ?>
+					</p>
+					
+					<div class="comment-content content">
+						<?php comment_text(); ?>
+					</div>
+					
+					<?php comment_reply_link($reply_link_opts); ?>
+				<?php } ?>
 	        </div>
 <?
 	}
