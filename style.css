@@ -187,10 +187,11 @@ body.rtl #navigation ul.primary { direction: ltr; }
 	 * @since 2.4
 	 */
 	#comments { clear: both; margin: 0; padding: 0; }
-	body .comment { padding: 0; list-style: none; }
+	body .comment, body .trackback, body .pingback { padding: 0; list-style: none; }
 		body .comment .comment { margin: 0; }
-		li.comment { margin: 0; border-top: 1px solid #ccc; padding: 0; }
-		body .comment ol.children { clear: both; margin: 0; border-top: 1px solid #ccc; padding: 0 0 0 20px; }
+		li.comment, li.trackback, li.pingback { margin: 0; border-top: 1px solid #ccc; padding: 0; }
+		body .comment ol.children, body .trackback ol.children, body .pingback ol.children { clear: both; margin: 0; border-top: 1px solid #ccc; padding: 0 0 0 20px; }
+		body p.pingdata { margin: 0; font-size: 0.8em; color: #808080; }
 		li.comment-lvl-first { border-top: none; }
 		body .comment .reply { clear: both; }
 		body .comment .reply a { padding-left: 13px; background: url('images/icons.png') no-repeat -7px -398px; }
