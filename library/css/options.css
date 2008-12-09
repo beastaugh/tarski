@@ -34,6 +34,7 @@
 .primary, .secondary { width: 49.5%; }
 .primary, .rtl .secondary { float: left; clear: left; }
 .secondary, .rtl .primary { float: right; clear: right; }
+#tarski-options .updated { margin-bottom: 15px; }
 
 /**
  * Form sections and elements
