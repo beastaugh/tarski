@@ -236,11 +236,12 @@ function tarski_sitetitle() {
  * Filter site tagline.
  */
 function tarski_tagline() {
+	$tagline = '';
+	
 	if((get_tarski_option('display_tagline') && get_bloginfo('description')))
 		$tagline = '<p id="tagline">' .  get_bloginfo('description') . '</p>';
 	
-	$tagline = apply_filters('tarski_tagline', $tagline);
-	return $tagline;
+	return apply_filters('tarski_tagline', $tagline);
 }
 
 /**
@@ -370,6 +371,7 @@ function add_external_links($navbar) {
 	if(get_tarski_option('nav_extlinkcat')) {
 		$extlinks_cat = get_tarski_option('nav_extlinkcat');
 		$extlinks = get_bookmarks("category=$extlinks_cat");
+		$target = $rel = '';
 		foreach($extlinks as $link) {
 			if($link->link_rel) {
 				$rel = 'rel="' . $link->link_rel . '" ';
