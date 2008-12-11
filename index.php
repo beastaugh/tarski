@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-<div class="primary">
+<div class="primary<?php if (!(is_single() || is_page())) { echo ' posts'; } ?>">
 
 	<?php if(have_posts()) { ?>
 	
