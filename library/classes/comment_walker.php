@@ -100,7 +100,7 @@ class TarskiCommentWalker extends Walker_Comment {
 					<?php comment_reply_link($reply_link_opts); ?>
 				<?php } ?>
 	        </div>
-<?
+<?php
 	}
 }
 
