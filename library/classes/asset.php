@@ -32,7 +32,7 @@ class TarskiAsset {
 		$meta = array("<meta name=\"wp_theme\" content=\"Tarski $themeversion\" />");
 		
 		global $wp_query;
-		$excerpt = trim(strip_tags(wp_specialchars($wp_query->post->post_excerpt)));
+		$excerpt = ($wp_query->post) ? trim(strip_tags(wp_specialchars($wp_query->post->post_excerpt))) : '';
 
 		if ( (is_single() || is_page()) && strlen($excerpt) )
 			$description = $excerpt;
