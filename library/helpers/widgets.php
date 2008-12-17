@@ -78,16 +78,15 @@ function tarski_widget_links_args($args) {
  * @global object $posts
  * @return string
  */
-function tarski_recent_entries($args) {	
+function tarski_recent_entries($args = array()) {
+	global $posts;
+	
 	if ( $output = wp_cache_get('tarski_recent_entries') )
 		return print($output);
-
+	
 	ob_start();
 	extract($args);
-	global $posts;
-	// Allow for configuration in the future
 	$options = array();
-	// $options = get_option('tarski_recent_entries');
 	$title = empty($options['title']) ? __('Recent Articles','tarski') : $options['title'];
 	
 	if ( !$number = (int) $options['number'] )
