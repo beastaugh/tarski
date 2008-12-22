@@ -8,6 +8,7 @@
 
 #### Bug fixes
 
+  * Replace deprecated `get_settings` call
   * Fix uninitialised variable error with blank header
   * Check whether post exists before trying to access its excerpt
   * Corrected bottom margins for posts on index pages

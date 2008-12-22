@@ -160,7 +160,7 @@ class TarskiAsset {
 					$link = get_year_link(get_the_time('Y'));
 					$source = 'year';
 				}	
-				if(get_settings('permalink_structure')) {
+				if(get_option('permalink_structure')) {
 					$link .= 'feed/';
 				} else {
 					$link .= '&amp;feed=' . get_default_feed();
