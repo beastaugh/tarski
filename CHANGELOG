@@ -2,11 +2,13 @@
 
 #### Tweaks
 
+  * Refactor `tarski_headerimgage`
   * Add empty array as default argument for `tarski_recent_entries`
   * Theme tags updated to comply with new theme directory requirements
 
 #### Bug fixes
 
+  * Fix uninitialised variable error with blank header
   * Check whether post exists before trying to access its excerpt
   * Corrected bottom margins for posts on index pages
   * Abbreviated opening <abbr title="PHP: Hypertext Preprocessor">PHP</abbr> tag removed
