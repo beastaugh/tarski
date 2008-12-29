@@ -2,14 +2,20 @@
 
 #### Tweaks
 
-  * Refactor `tarski_headerimgage`
-  * Add empty array as default argument for `tarski_recent_entries`
+  * Post classes are now applied to single posts and pages
+  * Refactored `tarski_recent_entries`
+  * Refactored `tarski_headerimage`
+  * Added empty array as default argument for `tarski_recent_entries`
   * Theme tags updated to comply with new theme directory requirements
 
 #### Bug fixes
 
-  * Replace deprecated `get_settings` call
-  * Fix uninitialised variable error with blank header
+  * Fixed uninitialised variable errors with nested comments
+  * Fixed a minor localisation issue with 404 error page titles
+  * Fixed uninitialised variable errors with recent articles widget
+  * Site descriptions are now properly filtered
+  * Replaced deprecated `get_settings` call
+  * Fixed uninitialised variable error with blank header
   * Check whether post exists before trying to access its excerpt
   * Corrected bottom margins for posts on index pages
   * Abbreviated opening <abbr title="PHP: Hypertext Preprocessor">PHP</abbr> tag removed
