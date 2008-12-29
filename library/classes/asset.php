@@ -34,15 +34,15 @@ class TarskiAsset {
 		global $wp_query;
 		$excerpt = ($wp_query->post) ? trim(strip_tags(wp_specialchars($wp_query->post->post_excerpt))) : '';
 
-		if ( (is_single() || is_page()) && strlen($excerpt) )
+		if ((is_single() || is_page()) && strlen($excerpt))
 			$description = $excerpt;
 		else
-			$description = trim(strip_tags(wp_specialchars(get_bloginfo('description'))));
+			$description = trim(strip_tags(get_bloginfo('description', 'display')));
 
-		if ( strlen($description) )
+		if (strlen($description))
 			$meta[] = sprintf('<meta name="description" content="%s" />', wptexturize($description));
 		
-		if(get_option('blog_public') != '0')
+		if (get_option('blog_public') != '0')
 			$meta[] = '<meta name="robots" content="all" />';
 			
 		$this->meta = apply_filters('tarski_asset_meta', $meta);

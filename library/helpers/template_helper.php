@@ -29,44 +29,35 @@ function only_paginate_home($query) {
  */
 function tarski_doctitle($sep = '&middot;') {
 	$site_name = get_bloginfo('name');
+	$content = trim(wp_title('', false));
 	
-	if(is_404()) {
-		$content = __(sprintf('Error %s','404'),'tarski');
-	} elseif((get_option('show_on_front') == 'posts') && is_home()) {
-		if(get_bloginfo('description')) {
-			$content = get_bloginfo('description');
-		}
-	} elseif(is_search()) {
+	if (is_404())
+		$content = __(sprintf('Error %s', '404'), 'tarski');
+	elseif ((get_option('show_on_front') == 'posts') && is_home())
+		$content = get_bloginfo('description', 'display');
+	elseif (is_search())
 		$content = sprintf( __('Search results for %s','tarski'), attribute_escape(get_search_query()) );
-	} elseif(is_month()) {
+	elseif (is_month())
 		$content = single_month_title(' ', false);
-	} elseif(is_tag()) {
+	elseif (is_tag())
 		$content = multiple_tag_titles();
-	} else {
-		$content = trim(wp_title('', false));
-	}
 	
-	if($content) {
+	if (strlen($content))
 		$elements = array(
 			'site_name' => $site_name,
 			'separator' => $sep,
-			'content' => $content
-		);
-	} else {
-		$elements = array(
-			'site_name' => $site_name
-		);
-	}
+			'content' => $content);
+	else
+		$elements = array('site_name' => $site_name);
 	
-	if(get_tarski_option('swap_title_order')) {
+	if (get_tarski_option('swap_title_order'))
 		$elements = array_reverse($elements, true);
-	}
 	
 	// Filters should return an array
 	$elements = apply_filters('tarski_doctitle', $elements);
 	
 	// But if they don't, it won't try to implode
-	if(check_input($elements, 'array'))
+	if (check_input($elements, 'array'))
 		$doctitle = implode(' ', $elements);
 	
 	echo $doctitle;
@@ -228,11 +219,8 @@ function tarski_sitetitle() {
  * Filter site tagline.
  */
 function tarski_tagline() {
-	$tagline = '';
-	
-	if((get_tarski_option('display_tagline') && get_bloginfo('description')))
-		$tagline = '<p id="tagline">' .  get_bloginfo('description') . '</p>';
-	
+	$tagline = get_bloginfo('description', 'display');
+	$tagline = (get_tarski_option('display_tagline') && strlen($tagline)) ? sprintf('<p id="tagline">%s</p>', $tagline) : '';
 	return apply_filters('tarski_tagline', $tagline);
 }
 
