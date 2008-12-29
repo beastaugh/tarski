@@ -70,59 +70,67 @@ function tarski_widget_links_args($args) {
 }
 
 /**
- * tarski_recent_entries() - Recent entries á la Tarski.
+ * Recent entries á la Tarski.
  *
- * Basically a ripoff of the WP widget function wp_widget_recent_entries().
+ * Lists the five most recent entries, or, on the home page, the five most
+ * recent entries after those posts actually displayed on the page.
+ *
  * @since 2.0.5
- * @see wp_widget_recent_entries()
+ * @see wp_widget_recent_entries
+ * @uses wp_cache_get
+ * @uses wp_cache_add
+ * @uses wp_reset_query
+ *
  * @global object $posts
  * @return string
  */
 function tarski_recent_entries($args = array()) {
 	global $posts;
 	
-	if ( $output = wp_cache_get('tarski_recent_entries') )
-		return print($output);
+	$output = wp_cache_get('tarski_recent_entries');
+		
+	if (strlen($output)) {
+		echo $output;
+		return;
+	}
 	
 	ob_start();
 	extract($args);
-	$options = array();
-	$title = empty($options['title']) ? __('Recent Articles','tarski') : $options['title'];
 	
-	if ( !$number = (int) $options['number'] )
-		$number = 5;
-	elseif ( $number < 1 )
+	$options = array();
+	$title = empty($options['title']) ? __('Recent Articles', 'tarski') : $options['title'];
+	$number = (array_key_exists('number', $options)) ? intval($options['number']) : 5;
+	
+	if ($number < 1)
 		$number = 1;
-	elseif ( $number > 10 )
+	elseif ($number > 10)
 		$number = 10;
 	
-	if ( is_home() )
-		$offset = count($posts);
-	else
-		$offset = 0;
-
-	$r = new WP_Query("showposts=$number&what_to_show=posts&nopaging=0&post_status=publish&offset=$offset");
+	$recent = new WP_Query(array(
+		'showposts' => $number,
+		'what_to_show' => 'posts',
+		'nopaging' => 0,
+		'post_status' => 'publish',
+		'offset' => (is_home()) ? count($posts) : 0));
 	
-	if ( $r->have_posts() ) {
+	if ($recent->have_posts()) {
 ?>
 <div id="recent">
 	<?php echo $before_title . $title . $after_title; ?>
 	<ul>
-		<?php while ($r->have_posts()) : $r->the_post(); ?>
+		<?php while ($recent->have_posts()) { $recent->the_post(); ?>
 		<li>
 			<h4 class="recent-title"><a title="<?php _e('View this post', 'tarski'); ?>" href="<?php the_permalink(); ?>"><?php the_title() ?></a></h4>
-			<p class="recent-metadata"><?php
-			echo the_time(get_option('date_format'));
-			if(!get_tarski_option('hide_categories')) {
-				_e(' in ', 'tarski'); the_category(', ');
-			} ?></p>
+			<p class="recent-metadata"><?php printf(get_tarski_option('show_categories') ? __('%1$s in %2$s', 'tarski') : '%s',
+				the_time(get_option('date_format')),
+				get_the_category_list(', ', '', false)); ?></p>
 			<div class="recent-excerpt content"><?php the_excerpt(); ?></div>
 		</li>
-		<?php endwhile; ?>
+		<?php } ?>
 	</ul>
 </div> <!-- /recent -->
 <?php
-		unset($r);
+		unset($recent);
 		wp_reset_query();  // Restore global post data stomped by the_post().
 	}
 	
