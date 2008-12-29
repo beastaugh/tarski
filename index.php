@@ -8,7 +8,7 @@
 		
 			<?php while(have_posts()) { the_post(); ?>
 				
-				<div class="entry hentry">
+				<div <?php post_class('entry'); ?>>
 					
 					<div class="meta">
 						<h1 class="title entry-title"><?php the_title(); ?></h1>
