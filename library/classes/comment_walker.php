@@ -56,10 +56,12 @@ class TarskiCommentWalker extends Walker_Comment {
 			return;
 		}
 		
-		if ($this->first_on_level) {
-			$first = "comment-lvl-first";
-			$this->first_on_level = false;
-		}
+		$first = '';
+		
+		if (isset($this->first_on_level) && $this->first_on_level)
+			$first = 'comment-lvl-first';
+			
+		$this->first_on_level = false;
 		
 		$reply_link_opts = array_merge($args, array(
 			'add_below' => 'comment-wrapper',
