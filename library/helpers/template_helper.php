@@ -32,11 +32,11 @@ function tarski_doctitle($sep = '&middot;') {
 	$content = trim(wp_title('', false));
 	
 	if (is_404())
-		$content = __(sprintf('Error %s', '404'), 'tarski');
+		$content = sprintf(__('Error %s', 'tarski'), '404');
 	elseif ((get_option('show_on_front') == 'posts') && is_home())
 		$content = get_bloginfo('description', 'display');
 	elseif (is_search())
-		$content = sprintf( __('Search results for %s','tarski'), attribute_escape(get_search_query()) );
+		$content = sprintf(__('Search results for %s', 'tarski'), attribute_escape(get_search_query()));
 	elseif (is_month())
 		$content = single_month_title(' ', false);
 	elseif (is_tag())
