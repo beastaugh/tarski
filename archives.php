@@ -35,7 +35,7 @@ get_header(); ?>
 	<?php if(get_tarski_option('show_categories')) { ?>
 		<h3><?php _e('Category Archives', 'tarski'); ?></h3>
 		<ul class="archivelist xoxo">
-			<?php wp_list_categories(array('orderby' => 'name', 'order' => 'DESC', 'title_li' => false)); ?>
+			<?php wp_list_categories(array('order' => 'DESC', 'title_li' => false)); ?>
 		</ul>
 	<?php } ?>
 	<?php th_sidebar(); ?>
