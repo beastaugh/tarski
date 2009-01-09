@@ -25,7 +25,7 @@ get_header(); ?>
 		<h3><?php _e('Monthly Archives', 'tarski'); ?></h3>
 
 		<ul class="archivelist xoxo">
-			<?php get_archives('monthly', '', 'html', '', '', 'TRUE'); ?>
+			<?php wp_get_archives(array('type' => 'monthly', 'show_post_count' => true)); ?>
 		</ul>
 		<?php th_postend(); ?>
 	</div> <!-- /primary -->
@@ -35,7 +35,7 @@ get_header(); ?>
 	<?php if(get_tarski_option('show_categories')) { ?>
 		<h3><?php _e('Category Archives', 'tarski'); ?></h3>
 		<ul class="archivelist xoxo">
-			<?php wp_list_cats('sort_column=name&sort_order=desc'); ?>
+			<?php wp_list_categories(array('orderby' => 'name', 'order' => 'DESC', 'title_li' => false)); ?>
 		</ul>
 	<?php } ?>
 	<?php th_sidebar(); ?>
