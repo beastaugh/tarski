@@ -10,6 +10,8 @@
 
 #### Bug fixes
 
+  * Widgets now re-register properly if the `sidebars_widgets` options field is deleted
+  * Deprecated functions on the archives template have been replaced
   * Fixed uninitialised variable errors with nested comments
   * Fixed a minor localisation issue with 404 error page titles
   * Fixed uninitialised variable errors with recent articles widget

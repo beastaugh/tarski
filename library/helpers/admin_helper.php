@@ -322,7 +322,7 @@ function tarski_prefill_sidebars() {
 		if (array_key_exists('sidebar-1', $widgets))
 			$widgets['sidebar-main'] = $widgets['sidebar-1'];
 		else
-			$widgets['sidebar-main'] = array('categories', 'links');
+			$widgets['sidebar-main'] = array(_widget_id_by_name(__('Categories')), 'links');
 	
 	if (!array_key_exists('footer-sidebar', $widgets))
 		if (array_key_exists('sidebar-2', $widgets))
@@ -331,7 +331,7 @@ function tarski_prefill_sidebars() {
 			$widgets['footer-sidebar'] = array('search');
 	
 	if (!array_key_exists('footer-main', $widgets))
-		$widgets['footer-main'] = array(__('Recent Articles','tarski'));
+		$widgets['footer-main'] = array('recent-articles');
 	
 	wp_set_sidebars_widgets($widgets);
 }
