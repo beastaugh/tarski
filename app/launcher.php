@@ -54,7 +54,7 @@ register_sidebar( // Footer sidebar widgets
 );
 
 // Tarski widgets
-register_sidebar_widget(__('Recent Articles','tarski'), 'tarski_recent_entries');
+wp_register_sidebar_widget('recent-articles', __('Recent Articles', 'tarski'), 'tarski_recent_entries');
 
 // Widget filters
 add_filter('widget_text', 'tarski_content_massage');
