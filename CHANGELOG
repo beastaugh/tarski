@@ -1,5 +1,7 @@
 # Changelog
 
+### Version 2.4.1 [&sect;](http://tarskitheme.com/)
+
 #### Tweaks
 
   * Post classes are now applied to single posts and pages
@@ -10,7 +12,7 @@
 
 #### Bug fixes
 
-  * Widgets now re-register properly if the `sidebars_widgets` options field is deleted
+  * Widgets now register properly if the `sidebars_widgets` field is deleted
   * Deprecated functions on the archives template have been replaced
   * Fixed uninitialised variable errors with nested comments
   * Fixed a minor localisation issue with 404 error page titles
@@ -23,7 +25,7 @@
   * Abbreviated opening <abbr title="PHP: Hypertext Preprocessor">PHP</abbr> tag removed
 
 
-### Version 2.4 [&sect;](http://tarskitheme.com/)
+### Version 2.4 [&sect;](http://tarskitheme.com/2008/12/04/24-release/)
 
 #### New features
 
