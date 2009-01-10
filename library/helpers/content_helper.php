@@ -76,35 +76,27 @@ function tarski_link_pages() {
  * @return string
  */
 function tarski_posts_nav_link() {
-	if (get_tarski_option('use_pages')) {
-		global $wp_query;
-				
-		if (!is_singular()) {
-			$max_num_pages = $wp_query->max_num_pages;
-			$paged = get_query_var('paged');
-			$sep = ' &sect; ';
-			
-			// Only have sep if there's both prev and next results
-			if ($paged < 2 || $paged >= $max_num_pages)
-				$sep = '';
-			
-			if($max_num_pages > 1) {
-				echo '<p class="pagination">';
-				
-				if(is_search()) {
-					previous_posts_link('&laquo; ' . __('Previous results','tarski'));
-					echo $sep;
-					next_posts_link(__('More results','tarski') . ' &raquo;');
-				} else {
-					next_posts_link('&laquo; ' . __('Older entries','tarski'));
-					echo $sep;
-					previous_posts_link(__('Newer entries','tarski') . ' &raquo;');
-				}
-				
-				echo "</p>\n";				
-			}
-		}
-	}
+	if (!get_tarski_option('use_pages') || is_singular()) return;
+	
+	global $wp_query;
+	
+	$max_num_pages = $wp_query->max_num_pages;
+	$paged = get_query_var('paged');
+	
+	if ($max_num_pages <= 1) return;
+	
+	if (is_search())
+		$links = array(
+			get_previous_posts_link('&laquo; ' . __('Previous results', 'tarski')),
+			get_next_posts_link(__('More results', 'tarski') . ' &raquo;'));
+	else
+		$links = array(
+			get_next_posts_link('&laquo; ' . __('Older entries', 'tarski')),
+			get_previous_posts_link(__('Newer entries', 'tarski') . ' &raquo;'));
+	
+	printf('<p class="pagination">%1$s%3$s%2$s</p>',
+		$links[0], $links[1],
+		$paged < 2 || $paged >= $max_num_pages ? '' : ' &sect; ');
 }
 
 /**
