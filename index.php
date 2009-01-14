@@ -1,23 +1,23 @@
 <?php get_header(); ?>
 
-<div class="primary<?php if (!(is_single() || is_page())) { echo ' posts'; } ?>">
+<div class="primary<?php if (!(is_single() || is_page())) echo ' posts'; ?>">
 
-	<?php if(have_posts()) { ?>
+	<?php if (have_posts()) { ?>
 	
-		<?php if(is_single() || is_page()) { // Single entries and pages ?>
+		<?php if (is_single() || is_page()) { // Single entries and pages ?>
 		
-			<?php while(have_posts()) { the_post(); ?>
+			<?php while (have_posts()) { the_post(); ?>
 				
 				<div <?php post_class('entry'); ?>>
 					
 					<div class="meta">
 						<h1 class="title entry-title"><?php the_title(); ?></h1>
-						<?php if(is_attachment()) { ?>
+						<?php if (is_attachment()) { ?>
 							<p class="metadata"><?php
 								echo '<span class="date updated">' . get_the_time(get_option('date_format')) . '</span>';
 								edit_post_link(__('edit','tarski'),' <span class="edit">(',')</span>');
 							?></p>
-						<?php } elseif(is_single()) { ?>
+						<?php } elseif (is_single()) { ?>
 							<p class="metadata"><?php
 								echo '<span class="date updated">' . get_the_time(get_option('date_format')) . '</span>';
 								tarski_post_categories_link();
@@ -53,7 +53,7 @@
 	<?php } // End loop ?>
 
 
-	<?php if(!is_attachment() && (is_single() || is_page())) { comments_template('/comments.php', true); } ?>
+	<?php if (!is_attachment() && (is_single() || is_page())) comments_template(); ?>
 
 </div>
 	
