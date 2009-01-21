@@ -16,7 +16,11 @@ class TarskiAsset {
 		$assets->meta();
 		$assets->stylesheets();
 		$assets->javascript();
-		$assets->feeds();
+
+		if (function_exists('automatic_feed_links'))
+			automatic_feed_links();
+		else
+			$assets->feeds();
 		
 		$assets->output();
 	}
