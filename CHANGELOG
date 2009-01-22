@@ -4,6 +4,7 @@
 
 #### Tweaks
 
+  * Make on-page feed links use `get_feed_link`
   * Feed links are now provided by the <abbr title="WordPress">WP</abbr> core function `automatic_feed_links`
   * Post classes are now applied to single posts and pages
   * Refactored `tarski_recent_entries`
