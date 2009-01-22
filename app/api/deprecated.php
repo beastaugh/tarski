@@ -12,6 +12,32 @@
  */
 
 /**
+ * add_version_to_styles() - Adds version number to style links.
+ *
+ * This makes browsers re-download the CSS file when the version
+ * number changes, reducing problems that may occur when markup
+ * changes but the corresponding new CSS is not downloaded.
+ * @since 2.0.1
+ * @deprecated 2.5
+ *
+ * @see tarski_stylesheets()
+ * @param array $style_array
+ * @return array $style_array
+ */
+function add_version_to_styles($style_array) {
+	_deprecated_function(__FUNCTION__, '2.5');
+	
+	if(check_input($style_array, 'array')) {
+		foreach($style_array as $type => $values) {
+			if(is_array($values) && $values['url']) {
+				$style_array[$type]['url'] .= '?v=' . theme_version();
+			}
+		}
+	}
+	return $style_array;
+}
+
+/**
  * generate_feed_link() - Returns a properly formatted RSS or Atom feed link
  *
  * @since 2.1
