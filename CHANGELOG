@@ -1,9 +1,10 @@
 # Changelog
 
-### Version 2.4.1 [&sect;](http://tarskitheme.com/)
+### Version 2.5 [&sect;](http://tarskitheme.com/)
 
 #### Tweaks
 
+  * Deprecated `feed_link_type` and `generate_feed_link` functions
   * Make on-page feed links use `get_feed_link`
   * Feed links are now provided by the <abbr title="WordPress">WP</abbr> core function `automatic_feed_links`
   * Post classes are now applied to single posts and pages

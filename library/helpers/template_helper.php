@@ -86,39 +86,6 @@ function add_version_to_styles($style_array) {
 }
 
 /**
- * generate_feed_link() - Returns a properly formatted RSS or Atom feed link
- *
- * @since 2.1
- * @param string $title
- * @param string $link
- * @param string $type
- * @return string
- */
-function generate_feed_link($title, $link, $type = '') {
-	if ( $type == '' )
-		$type = feed_link_type();
-	
-	return "<link rel=\"alternate\" type=\"$type\" title=\"$title\" href=\"$link\" />";
-}
-
-/**
- * feed_link_type() - Returns an Atom or RSS feed MIME type
- *
- * @since 2.1
- * @param string $type
- * @return string
- */
-function feed_link_type($type = '') {
-	if(empty($type))
-		$type = get_default_feed();
-	
-	if($type == 'atom')
-		return 'application/atom+xml';
-	else
-		return 'application/rss+xml';
-}
-
-/**
  * Remove unnecessary gallery styling.
  * 
  * The gallery feature adds an inline style element, which is pretty horrible

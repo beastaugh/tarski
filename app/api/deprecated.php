@@ -12,6 +12,49 @@
  */
 
 /**
+ * generate_feed_link() - Returns a properly formatted RSS or Atom feed link
+ *
+ * @since 2.1
+ * @deprecated 2.5
+ *
+ * @param string $title
+ * @param string $link
+ * @param string $type
+ * @return string
+ */
+function generate_feed_link($title, $link, $type = '') {
+	if (function_exists('feed_content_type'))
+		_deprecated_function(__FUNCTION__, '2.5');
+	
+	if ( $type == '' )
+		$type = feed_link_type();
+
+	return "<link rel=\"alternate\" type=\"$type\" title=\"$title\" href=\"$link\" />";
+}
+
+/**
+ * feed_link_type() - Returns an Atom or RSS feed MIME type
+ *
+ * @since 2.1
+ * @deprecated 2.5
+ *
+ * @param string $type
+ * @return string
+ */
+function feed_link_type($type = '') {
+	if (function_exists('feed_content_type'))
+		_deprecated_function(__FUNCTION__, '2.5', feed_content_type($type));
+	
+	if(empty($type))
+		$type = get_default_feed();
+
+	if($type == 'atom')
+		return 'application/atom+xml';
+	else
+		return 'application/rss+xml';
+}
+
+/**
  * is_wp_front_page() - Returns true when current page is the WP front page.
  * 
  * Very useful, since is_home() doesn't return true for the front page
