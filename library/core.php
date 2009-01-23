@@ -15,7 +15,7 @@
  *
  */
 function check_input($input, $type, $name = '') {
-	if ( WP_DEBUG === true )
+	if ( defined('WP_DEBUG') && WP_DEBUG === true )
 		return true;
 
 	if ( $type == 'object' && strlen($name) > 0 )
