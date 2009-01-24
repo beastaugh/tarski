@@ -329,15 +329,10 @@ function add_external_links($navbar) {
  * @return string $navbar
  */
 function add_admin_link($navbar) {
-	if(!check_input($navbar, 'array'))
-		$navbar = array();
-	
-	if(is_user_logged_in())
+	if (is_user_logged_in())
 		$navbar['admin'] = sprintf(
 			'<li><a id="nav-admin" href="%1$s">%2$s</a></li>',
-			 admin_url(),
-			__('Site Admin','tarski')
-		);	
+			 admin_url(), __('Dashboard', 'tarski'));
 	
 	return $navbar;
 }
