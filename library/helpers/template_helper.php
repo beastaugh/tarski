@@ -321,12 +321,13 @@ function add_external_links($navbar) {
 }
 
 /**
- * add_admin_link() - Adds a WordPress site admin link to the Tarski navbar.
- * 
+ * Adds a WordPress dashboard link to the Tarski navbar.
+ *
  * @since 2.0
  * @see tarski_navbar()
- * @param string $navbar
- * @return string $navbar
+ *
+ * @param array $navbar
+ * @return array $navbar
  */
 function add_admin_link($navbar) {
 	if (is_user_logged_in())
