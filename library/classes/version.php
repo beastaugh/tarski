@@ -159,7 +159,7 @@ class TarskiVersion {
 		if(file_exists($cachefile) && (time() - $cachetime < filemtime($cachefile)) && file_get_contents($cachefile)) {
 			$atomdata = file_get_contents($cachefile);
 		} else {
-			$response = wp_remote_get(TARSKIVERSIONFILE);
+			$response = (array) wp_remote_get(TARSKIVERSIONFILE);
 			$code = wp_remote_retrieve_response_code($response);
 			$atomdata = '';
 			
