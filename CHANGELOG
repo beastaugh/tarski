@@ -4,6 +4,7 @@
 
 #### Tweaks
 
+  * Style `tt` elements
   * Changed navbar admin link text to 'Dashboard'
   * Removed functions deprecated in version 2.2
   * Deprecated `add_version_to_styles` function
