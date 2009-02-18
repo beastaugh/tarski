@@ -255,6 +255,8 @@ body.rtl #navigation ul.primary { direction: ltr; }
 input, select, textarea { font-family: Verdana, Helvetica, Arial, sans-serif; font-size: 100%; }
 input.text, textarea { border: 1px solid #ccc; padding: 2px; background: #fafafa; color: #404040; }
 input.text:focus, textarea:focus { background: #fff; }
+input[type=submit] { border: 1px solid #ccc; padding: 2px 10px; border-radius: 10px; -webkit-border-radius: 10px; -moz-border-radius: 10px; background: #a3c5cc url('images/button_gradient.png') repeat-x 0 0; color: #154a54; cursor: pointer; }
+input[type=submit]:hover, input[type=submit]:focus { background-color: #cca3aa; color: #802030; }
 
 	/* Search form
 	--------------------------------------- */
