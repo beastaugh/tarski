@@ -85,37 +85,33 @@ class Options {
 	 * @see save_tarski_options()
 	 */
 	function tarski_options_update() {
-		if($_POST['update_notification'] == 'off')
-			$this->update_notification = false;
-		elseif($_POST['update_notification'] == 'on')
-			$this->update_notification = true;
-		
-		$header = $_POST['header_image'];
-		if(isset($header)) {
-			$header = str_replace('-thumb', '', $header);
-			$this->header = $header;
+		if (isset($_POST['update_notification'])) {
+			if ($_POST['update_notification'] == 'off')
+				$this->update_notification = false;
+			elseif ($_POST['update_notification'] == 'on')
+				$this->update_notification = true;
 		}
 		
-		$nav_pages = $_POST['nav_pages'];
-		if(isset($nav_pages)) {
-			$nav_pages = implode(',', $nav_pages);
-			$this->nav_pages = $nav_pages;
-		} else {
+		if (isset($_POST['header_image']))
+			$this->header = str_replace('-thumb', '', $_POST['header_image']);
+		
+		if (isset($_POST['nav_pages']))
+			$this->nav_pages = implode(',', $_POST['nav_pages']);
+		else
 			$this->nav_pages = false;
-		}
 		
-		$collapsed_pages = $_POST['collapsed_pages'];
-		if(isset($collapsed_pages)) {
-			$this->collapsed_pages = $collapsed_pages;
-		} else {
+		if (isset($_POST['collapsed_pages']))
+			$this->collapsed_pages = $_POST['collapsed_pages'];
+		else
 			$this->collapsed_pages = '';
-		}
 		
-		$stylefile = $_POST['alternate_style'];
-		if(is_valid_tarski_style($stylefile))
-			$this->style = $stylefile;
-		elseif(!$stylefile)
-			$this->style = false;
+		if (isset($_POST['alternate_style'])) {
+			$stylefile = $_POST['alternate_style'];
+			if (is_valid_tarski_style($stylefile))
+				$this->style = $stylefile;
+			else
+				$this->style = false;
+		}
 		
 		$this->display_title = (bool) $_POST['display_title'];
 		$this->display_tagline = (bool) $_POST['display_tagline'];
