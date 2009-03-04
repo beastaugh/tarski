@@ -7,11 +7,7 @@
 if (!empty($_SERVER['SCRIPT_FILENAME']) && 'comments.php' == basename($_SERVER['SCRIPT_FILENAME']))
 	die('This page should not be loaded directly.');
 
-if (post_password_required()) {
-	printf('<p class="nocomments">%s</p>',
-		__('This post is password protected. Enter the password to view comments.', 'tarski'));
-	return;
-}
+if (post_password_required()) return;
 
 if (have_comments() || comments_open()) { ?>
 	<div id="comments-header">
