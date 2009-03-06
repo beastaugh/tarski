@@ -8,6 +8,7 @@
 
 #### Tweaks
 
+  * Style all text input fields in the same fashion
   * Removed duplicate password required message
   * Style `tt` elements
   * Changed navbar admin link text to 'Dashboard'

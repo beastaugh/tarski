@@ -253,9 +253,9 @@ body.rtl #navigation ul.primary { direction: ltr; }
 /* Forms
 ----------------------------------------------- */
 input, select, textarea { font-family: Verdana, Helvetica, Arial, sans-serif; font-size: 100%; }
-input.text, textarea { border: 1px solid #ccc; padding: 2px; background: #fafafa; color: #404040; }
-input.text:focus, textarea:focus { background: #fff; }
-input[type=submit]:enabled { border: 1px solid #ccc; padding: 2px 10px; border-radius: 10px; -webkit-border-radius: 10px; -moz-border-radius: 10px; background: url('images/button_gradient.png') repeat-x 0 0; color: #404040; cursor: pointer; }
+input.text, input[type=text], input[type=password], textarea { border: 1px solid #ccc; padding: 2px; background: #fafafa; color: #404040; }
+input.text:focus, input[type=text]:focus, input[type=password]:focus, textarea:focus { background: #fff; }
+input[type=submit]:enabled, button:enabled { border: 1px solid #ccc; padding: 2px 10px; border-radius: 10px; -webkit-border-radius: 10px; -moz-border-radius: 10px; background: url('images/button_gradient.png') repeat-x 0 0; color: #404040; cursor: pointer; }
 
 	/* Search form
 	--------------------------------------- */
