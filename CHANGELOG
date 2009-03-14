@@ -8,6 +8,7 @@
 
 #### Tweaks
 
+  * Check whether custom header constants are defined
   * Style all text input fields in the same fashion
   * Removed duplicate password required message
   * Style `tt` elements
