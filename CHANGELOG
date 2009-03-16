@@ -4,11 +4,12 @@
 
 #### New features
 
+  * Cache and version file locations can be overridden
+  * Custom header constants can now be overridden
   * Nicer buttons for capable browsers
 
 #### Tweaks
 
-  * Check whether custom header constants are defined
   * Style all text input fields in the same fashion
   * Removed duplicate password required message
   * Style `tt` elements
