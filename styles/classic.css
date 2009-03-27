@@ -12,30 +12,29 @@ body.classic #wrapper .nav-current:hover { color: #e59900; }
 
 /* Content
 ----------------------------------------------- */
-body.classic code { color: #bf8060; }
 body.classic abbr, body.classic acronym { border-bottom: 1px solid #bf8060; }
 		
-		/* Headers
-		--------------------------------------- */
-		body.classic h3 { color: #bf6030; }
-		
-		/* Post content
-		--------------------------------------- */
-		body.classic .articlenav { background: #fcfeff; }
-		
-		/* Inserts
-		--------------------------------------- */
-		body.classic .insert { background: #fcfeff; margin: 0 0 1em 0; border: 1px solid #cfdde5; padding: 9px; }
-			body.classic .insert h3 { border-bottom: 1px solid #cfdde5; }
-		
-		/* Downloads
-		--------------------------------------- */		
-		body.classic .content a.download:link, body.classic .content a.download:visited, body.classic .content a.download:active { background-color: #fcfeff; border: 1px solid #cfdde5; }
-		
-		/* Images
-		--------------------------------------- */
-		body.classic a img { border: 1px solid #0f6b99; }
-		body.classic a:hover img, body.classic .comment a:hover .avatar { border: 1px solid #e59900; }
+	/* Headers
+	--------------------------------------- */
+	body.classic h3 { color: #bf6030; }
+	
+	/* Post content
+	--------------------------------------- */
+	body.classic .articlenav { background: #fcfeff; }
+	
+	/* Inserts
+	--------------------------------------- */
+	body.classic .insert { background: #fcfeff; margin: 0 0 1em 0; border: 1px solid #cfdde5; padding: 9px; }
+		body.classic .insert h3 { border-bottom: 1px solid #cfdde5; }
+	
+	/* Downloads
+	--------------------------------------- */
+	body.classic .content a.download:link, body.classic .content a.download:visited, body.classic .content a.download:active { background-color: #fcfeff; border: 1px solid #cfdde5; }
+	
+	/* Images
+	--------------------------------------- */
+	body.classic a img { border: 1px solid #0f6b99; }
+	body.classic a:hover img, body.classic .comment a:hover .avatar { border: 1px solid #e59900; }
 		
 /* Links
 ----------------------------------------------- */

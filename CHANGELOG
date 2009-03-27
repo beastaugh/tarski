@@ -10,6 +10,7 @@
 
 #### Tweaks
 
+  * Improve `code` and `pre` element styling
   * Style all text input fields in the same fashion
   * Removed duplicate password required message
   * Style `tt` elements

@@ -12,31 +12,30 @@ body.skyline #wrapper .nav-current:hover { color: #a6212c; }
 
 /* Content
 ----------------------------------------------- */
-body.skyline code { color: #bf8f93; }
 body.skyline abbr, body.skyline acronym { border-bottom: 1px solid #bf8f93; }
 		
-		/* Headers
-		--------------------------------------- */
-		body.skyline h3 { color: #bf6068; }
-		body.skyline h4, body.skyline h5, body.skyline h6 { color: #bf8f93; }
-		
-		/* Post content
-		--------------------------------------- */
-		body.skyline .articlenav { background: #fcfeff; }
-		
-		/* Inserts
-		--------------------------------------- */
-		body.skyline .insert { background: #fcfeff; margin: 0 0 1em 0; border: 1px solid #cfdee5; padding: 9px; }
-			body.skyline .insert h3 { border-bottom: 1px solid #cfdee5; }
-		
-		/* Downloads
-		--------------------------------------- */
-		body.skyline .content a.download:link, body.skyline .content a.download:visited, body.skyline .content a.download:active { background-color: #fcfeff; border: 1px solid #cfdee5; }
-		
-		/* Images
-		--------------------------------------- */
-		body.skyline a img { border: 1px solid #3689b3; }
-		body.skyline a:hover img, body.skyline .comment a:hover .avatar { border: 1px solid #a6212c; }
+	/* Headers
+	--------------------------------------- */
+	body.skyline h3 { color: #bf6068; }
+	body.skyline h4, body.skyline h5, body.skyline h6 { color: #bf8f93; }
+	
+	/* Post content
+	--------------------------------------- */
+	body.skyline .articlenav { background: #fcfeff; }
+	
+	/* Inserts
+	--------------------------------------- */
+	body.skyline .insert { background: #fcfeff; margin: 0 0 1em 0; border: 1px solid #cfdee5; padding: 9px; }
+		body.skyline .insert h3 { border-bottom: 1px solid #cfdee5; }
+	
+	/* Downloads
+	--------------------------------------- */
+	body.skyline .content a.download:link, body.skyline .content a.download:visited, body.skyline .content a.download:active { background-color: #fcfeff; border: 1px solid #cfdee5; }
+	
+	/* Images
+	--------------------------------------- */
+	body.skyline a img { border: 1px solid #3689b3; }
+	body.skyline a:hover img, body.skyline .comment a:hover .avatar { border: 1px solid #a6212c; }
 		
 /* Links
 ----------------------------------------------- */
