@@ -88,10 +88,10 @@ body.rtl #navigation ul.primary { direction: ltr; }
 		sup { vertical-align: super; }
 		sub { vertical-align: sub; }
 		hr { width: 100%; height: 1px; background: #ccc; color: #ccc; margin: 1em 0; border: none; padding: 0; }
-	pre, code, tt { font-family: 'Monaco', 'Courier', monospace; font-size: 1em; line-height:1.8; color: #000; }
+	pre, code, tt { font-family: 'Courier', 'Courier New', monospace; font-size: 1em; line-height:1.8; color: #4d4d4d; }
 		pre { margin: 0 0 1em 0; border: 1px solid #e5e5e5; padding: 0.5em 1em; white-space: pre-wrap; overflow: hidden; background: #fafafa; }
-  	code {background:#efefef;}
-  	pre code { background: none; }
+  	code, tt { background: #efefef; }
+  	pre code, pre tt { background: none; }
 		html > body code, html > body tt, html > body pre { font-size:12px; }
 		h3 code { text-transform: none; }
 	ul, ol { margin: 0 0 1em 30px; padding: 0; }
