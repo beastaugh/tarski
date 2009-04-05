@@ -85,7 +85,7 @@ function delete_tarski_options() {
 	$options = new Options;
 	$options->tarski_options_get();
 	
-	if (!is_int($options->deleted) || $options->deleted < 1) {
+	if (!is_numeric($options->deleted) || $options->deleted < 1) {
 		$options->deleted = time();
 		update_option('tarski_options', $options);
 	}
@@ -112,7 +112,7 @@ function restore_tarski_options() {
 	$options = new Options;
 	$options->tarski_options_get();
 	
-	if (is_int($options->deleted) && $options->deleted > 0) {
+	if (is_numeric($options->deleted) && $options->deleted > 0) {
 		unset($options->deleted);
 		update_option('tarski_options', $options);
 	}
@@ -138,7 +138,7 @@ function maybe_wipe_tarski_options() {
 	$options->tarski_options_get();
 	$del = $options->deleted;
 	
-	if (is_int($del) && (time() - $del) > (3 * 3600)) {
+	if (is_numeric($del) && (time() - $del) > (3 * 3600)) {
 		delete_option('tarski_options');
 		flush_tarski_options();
 	}
