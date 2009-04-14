@@ -191,28 +191,36 @@ body.rtl #navigation ul.primary { direction: ltr; }
 		body .comment .comment { margin: 0; }
 		li.comment, li.trackback, li.pingback { margin: 0; border-top: 1px solid #ccc; padding: 0; }
 		body .comment ol.children, body .trackback ol.children, body .pingback ol.children { clear: both; margin: 0; border-top: 1px solid #ccc; padding: 0 0 0 20px; }
+		body.rtl .comment ol.children, body.rtl .trackback ol.children, body.rtl .pingback ol.children { padding: 0 20px 0 0 ; }
 		body p.pingdata { margin: 0; font-size: 0.8em; color: #808080; }
 		li.comment-lvl-first { border-top: none; }
 		body .comment .reply { clear: both; }
 		body .comment .reply a { padding-left: 13px; background: url('images/icons.png') no-repeat -7px -398px; }
+		body.rtl .comment .reply a { background: url('rtl-images/icons.png') no-repeat -7px -398px; }
 	
 	body .comment-wrapper { padding: 0.66em 0; }
 	body .moderated { border-bottom: 1px solid #e5e5e5; padding-bottom: 0.66em; background: url('images/icons.png') no-repeat 100% -200px; }
 	body .comment-meta { margin: 0; float: left; font-size: 0.8em; color: #808080; }
+	body.rtl .comment-meta { float: right;}
 		body .avatar-link { display: block; float: right; margin: 0 0 10px 10px; }
+		body.rtl .avatar-link { float: left; margin: 0 10px 10px 0; }
 		body .avatar, body .comment a .avatar { display: block; float: right; margin: 0 0 10px 10px; border: 1px solid #ccc; padding: 4px; background:#fcfcfc; }
+		body.rtl .avatar, body.rtl .comment a .avatar { float: left; margin: 0 10px 10px 0;}
 		body .comment .avatar-link .avatar { float: none; margin: 0; }
 		body .comment-permalink, body .comment-edit {}
 		body .comment-author { font-weight: bold; color: #404040; }
 	body .comment-content { clear: left; padding-top: 0.8em; }
+	body.rtl .comment-content { clear: right; }
 	body .reply { margin: 0; font-size: 0.8em; }
 	body .author-comment {}
 	body .trackback { margin: 0; border-top: 1px solid #ccc; padding: 0.5em 0; background: #fcffff; }
 	body .trackback p { font-size: 0.8em; margin: 0; }
 	
 	#comments-header .title { width: 49.5%; float: left; margin: 0 0 0.1em 0; border: none; }
+	.rtl #comments-header .title { float: right; }
 	#comments-header .comments-feed { width: 49.5%; float: right; text-align: right; margin: 0; padding: 0.75em 0 0 0; }
 		#comments-header .comments-feed a { display: block; float:right; min-height:16px; padding: 1px 20px 1px 0; background: url('images/icons.png') no-repeat 100% -100px; font-size: 0.8em; }
+		.rtl #comments-header .comments-feed a { float:left; padding: 1px 20px 1px 0; }
 	#comments-header .trackback-link { clear: both; margin: 0.4em 0 0 0; border-top: 1px solid #ccc; padding: 0.5em 0; font-size: 0.8em; font-weight: bold; color: #808080; }
 		#comments-header .trackback-link a { font-weight: normal; }
 	#comment-paging { padding: 0.5em 0; }
@@ -279,7 +287,9 @@ input[type=submit]:enabled:focus, input[type=submit]:enabled:hover, button:enabl
 	#respond { padding-top: 0.66em; border-top: 1px solid #e5e5e5; }
 	#respond-header { margin-bottom: 0.66em; border-bottom: 1px solid #ccc; padding-bottom: 0.4em; }
 	#respond-header .title { float: left; margin: 0; }
+	.rtl #respond-header .title { float: right; }
 	#respond-header .cancel-reply { float: right; margin: 0; padding-top: 0.75em; font-size: 0.8em; }
+	.rtl #respond-header .cancel-reply { float: left; }
 		#respond-header .cancel-reply a { padding-right: 13px; background: url('images/icons.png') no-repeat 100% -498px; }
 	body .response-details { margin-bottom: 1em; }
 	body .response-details .text-wrap { width: 31%; float: left; margin-right: 2%; }
