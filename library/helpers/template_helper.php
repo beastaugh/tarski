@@ -332,8 +332,9 @@ function add_external_links($navbar) {
 function add_admin_link($navbar) {
 	if (is_user_logged_in())
 		$navbar['admin'] = sprintf(
-			'<li><a id="nav-admin" href="%1$s">%2$s</a></li>',
-			 admin_url(), __('Dashboard', 'tarski'));
+			'<li><a id="nav-admin" href="%1$s" title="%3$s">%2$s</a></li>',
+			 admin_url(), __('Dashboard &rarr;', 'tarski'),
+			 __('View your dashboard', 'tarski'));
 	
 	return $navbar;
 }
