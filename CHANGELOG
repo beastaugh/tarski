@@ -28,6 +28,7 @@
 
 #### Bug fixes
 
+  * Fix undefined variable error in `the_archive_author_description`
   * Fix notices caused by undefined indices in the Options class
   * Fix version check errors caused by lack of connection
   * Check whether `WP_DEBUG` is defined before referring to it

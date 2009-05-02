@@ -50,7 +50,9 @@ function the_archive_author_displayname() {
  */
 function the_archive_author_description() {
 	$current_author = the_archive_author();
-	return $current_author->user_description;
+	return isset($current_author->user_description) ?
+		$current_author->user_description :
+		'';
 }
 
 ?>
