@@ -1,18 +1,19 @@
 <?php
 
 /**
- * class Options
- * 
- * The Options class handles the retrieval and setting of Tarski's options,
- * although an external function, save_tarski_options(), saves updated
+ * class TarskiOptions
+ *
+ * The TarskiOptions class handles the retrieval and setting of Tarski's
+ * options, although an external function, save_tarski_options(), saves updated
  * options to the database (via WordPress's API functions). Options can be
  * set on the Tarski Options page, which can be found in the WP admin panel:
  * Presentation > Tarski Options, or /wp-admin/themes.php?page=tarski-options
  * in your WordPress directory.
+ *
  * @package Tarski
  * @since 2.0
  */
-class Options {
+class TarskiOptions {
 	
 	var $installed;
 	var $deleted;
@@ -35,8 +36,8 @@ class Options {
 	var $use_pages;
 	
 	/**
-	 * tarski_options_defaults() - Sets Options object's properties to their default values.
-	 * 
+	 * Sets TarskiOptions object's properties to their default values.
+	 *
 	 * @since 2.0
 	 */
 	function tarski_options_defaults() {
@@ -48,7 +49,7 @@ class Options {
 		$this->display_tagline = true;
 		$this->nav_pages = false;
 		$this->collapsed_pages = '';
-		$this->home_link_name = __('Home','tarski');
+		$this->home_link_name = __('Home', 'tarski');
 		$this->nav_extlinkcat = 0;
 		$this->style = false;
 		$this->asidescategory = 0;
@@ -62,25 +63,28 @@ class Options {
 	}
 	
 	/**
-	 * tarski_options_get() - Sets Options properties to the values retrieved from the database.
-	 * 
+	 * Sets TarskiOptions properties to the values retrieved from the database.
+	 *
 	 * @since 2.0
 	 */
 	function tarski_options_get() {
 		$saved_options = maybe_unserialize(get_option('tarski_options'));
 		
-		if(!empty($saved_options) && is_object($saved_options)) {
-			foreach($saved_options as $name => $value) {
+		foreach ($saved_options as $name => $value) {
+			if ((function_exists('property_exists') &&
+			property_exists($this, 'installed')) ||
+			array_key_exists('installed', $this)) {
 				$this->$name = $value;
 			}
 		}
 	}
 	
 	/**
-	 * tarski_options_update() - Sets Options properties to the values set on the Options page.
-	 * 
+	 * Sets TarskiOptions properties to the values set on the Options page.
+	 *
 	 * Note that this function doesn't save anything to the database, that's the
 	 * preserve of save_tarski_options().
+	 *
 	 * @since 2.0
 	 * @see save_tarski_options()
 	 */
@@ -132,9 +136,9 @@ class Options {
 }
 
 /**
- * flush_tarski_options() - Flushes Tarski's options for use by the theme.
+ * Flushes Tarski's options for use by the theme.
  * 
- * Creates a new Options object, and gets the current options. If
+ * Creates a new TarskiOptions object, and gets the current options. If
  * no options have been set in the database, it will return the
  * defaults. Additionally, if the 'deleted' property has been set
  * then the function will check to see if it was set more than two
@@ -147,30 +151,32 @@ class Options {
  */
 function flush_tarski_options() {
 	global $tarski_options;
-	$tarski_options = new Options;
+	
+	$tarski_options = new TarskiOptions;
 	$tarski_options->tarski_options_get();
 	
-	if(!get_option('tarski_options') || isset($tarski_options->deleted))
+	if (!get_option('tarski_options') || isset($tarski_options->deleted))
 		$tarski_options->tarski_options_defaults();
 }
 
 /**
- * update_tarski_option() - Updates the given Tarski option with a new value.
- * 
- * This function can be used either to update a particular option
- * with a new value, or to delete that option altogether by setting
- * $drop to true.
+ * Updates the given Tarski option with a new value.
+ *
+ * This function can be used either to update a particular option with a new
+ * value, or to delete that option altogether by setting $drop to true.
+ *
  * @since 1.4
+ *
  * @param string $option
  * @param string $value
  * @param boolean $drop
  * @global object $tarski_options
  */
 function update_tarski_option($option, $value) {
-	$tarski_options = new Options;
+	$tarski_options = new TarskiOptions;
 	$tarski_options->tarski_options_get();
 		
-	if(empty($value))
+	if (empty($value))
 		unset($tarski_options->$option);
 	else
 		$tarski_options->$option = $value;
@@ -180,16 +186,17 @@ function update_tarski_option($option, $value) {
 }
 
 /**
- * get_tarski_option() - Returns the given Tarski option.
+ * Returns the given Tarski option.
  * 
  * @since 1.4
+ *
  * @param string $name
  * @return mixed
  */
 function get_tarski_option($name) {
 	global $tarski_options;
 	
-	if(!is_object($tarski_options))
+	if (!is_object($tarski_options))
 		flush_tarski_options();
 	
 	return $tarski_options->$name;

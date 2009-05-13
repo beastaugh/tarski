@@ -55,7 +55,7 @@ function save_tarski_options() {
 	if (!current_user_can('edit_themes'))
 		wp_die(__('You are not authorised to perform this operation.', 'tarski'));
 	
-	$options = new Options;
+	$options = new TarskiOptions;
 	$options->tarski_options_get();
 		
 	$options->tarski_options_update();
@@ -82,7 +82,7 @@ function delete_tarski_options() {
 	if (!current_user_can('edit_themes'))
 		wp_die(__('You are not authorised to perform this operation.', 'tarski'));
 	
-	$options = new Options;
+	$options = new TarskiOptions;
 	$options->tarski_options_get();
 	
 	if (!is_numeric($options->deleted) || $options->deleted < 1) {
@@ -109,7 +109,7 @@ function restore_tarski_options() {
 	if (!current_user_can('edit_themes'))
 		wp_die(__('You are not authorised to perform this operation.', 'tarski'));
 	
-	$options = new Options;
+	$options = new TarskiOptions;
 	$options->tarski_options_get();
 	
 	if (is_numeric($options->deleted) && $options->deleted > 0) {
@@ -121,7 +121,7 @@ function restore_tarski_options() {
 }
 
 /**
- * maybe_wipe_tarski_options() - Wipes Tarski's options if the restoration window has elapsed.
+ * Wipes Tarski's options if the restoration window has elapsed.
  * 
  * When the user resets Tarski's options, the 'deleted' property on the options
  * object is set to the current time. After three hours have elapsed (during
@@ -134,7 +134,7 @@ function restore_tarski_options() {
  * @since 2.4
  */
 function maybe_wipe_tarski_options() {
-	$options = new Options;
+	$options = new TarskiOptions;
 	$options->tarski_options_get();
 	$del = $options->deleted;
 	
@@ -271,11 +271,11 @@ function tarski_upgrade_widgets($options, $defaults) {
  */
 function tarski_upgrade() {
 	// Get existing options
-	$options = new Options;
+	$options = new TarskiOptions;
 	$options->tarski_options_get();
 	
 	// Get our defaults, so we can merge them in
-	$defaults = new Options;
+	$defaults = new TarskiOptions;
 	$defaults->tarski_options_defaults();
 
 	// Update the options version so we don't run this code more than once

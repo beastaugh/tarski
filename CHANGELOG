@@ -10,6 +10,7 @@
 
 #### Tweaks
 
+  * Rename `Options` class to `TarskiOptions` to prevent namespace clashes
   * Improve `code` and `pre` element styling
   * Style all text input fields in the same fashion
   * Removed duplicate password required message
