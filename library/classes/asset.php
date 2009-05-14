@@ -16,11 +16,8 @@ class TarskiAsset {
 		$assets->meta();
 		$assets->stylesheets();
 		$assets->javascript();
-
-		if (function_exists('automatic_feed_links'))
-			automatic_feed_links();
-		else
-			$assets->feeds();
+		
+		automatic_feed_links();
 		
 		$assets->output();
 	}
@@ -121,71 +118,6 @@ class TarskiAsset {
 		}
 		
 		$this->javascript = apply_filters('tarski_javascript', $javascript);
-	}
-	
-	/**
-	 * Generate RSS or Atom feed link elements appropriate to the context.
-	 * 
-	 * @hook filter tarski_feeds
-	 * Filter the RSS or Atam feed link elements before they're printed to the
-	 * document.
-	 */
-	function feeds() {
-		global $comments;
-		if(is_single() || (is_page() && ($comments || comments_open()))) {
-			global $post;
-			$title = sprintf(__('Commments feed for %s','tarski'), get_the_title());
-			$link = get_post_comments_feed_link($post->ID);
-			$source = 'post_comments';
-		} elseif(is_archive()) {
-			if(is_category()) {
-				$title = sprintf( __('Category feed for %s','tarski'), single_cat_title('','',false) );
-				$link = get_category_feed_link(get_query_var('cat'));
-				$source = 'category';
-			} elseif(is_tag()) {
-				$title = sprintf( __('Tag feed for %s','tarski'), single_tag_title('','',false));
-				$link = get_tag_feed_link(get_query_var('tag_id'));
-				$source = 'tag';
-			} elseif(is_author()) {
-				$title = sprintf( __('Articles feed for %s','tarski'), the_archive_author_displayname());
-				$link = get_author_feed_link(get_query_var('author'));
-				$source = 'author';
-			} elseif(is_date()) {
-				if(is_day()) {
-					$title = sprintf( __('Daily archive feed for %s','tarski'), get_the_time(get_option('date_format')));
-					$link = get_day_link(get_the_time('Y'), get_the_time('m'), get_the_time('d'));
-					$source = 'day';
-				} elseif(is_month()) {
-					$title = sprintf( __('Monthly archive feed for %s','tarski'), get_the_time('F Y'));
-					$link = get_month_link(get_the_time('Y'), get_the_time('m'));
-					$source = 'month';
-				} elseif(is_year()) {
-					$title = sprintf( __('Yearly archive feed for %s','tarski'), get_the_time('Y'));
-					$link = get_year_link(get_the_time('Y'));
-					$source = 'year';
-				}	
-				if(get_option('permalink_structure')) {
-					$link .= 'feed/';
-				} else {
-					$link .= '&amp;feed=' . get_default_feed();
-				}
-			}
-		} elseif(is_search()) {
-			$search_query = attribute_escape(get_search_query());
-			$feeds['search'] = generate_feed_link( sprintf(__('Search feed for %s','tarski'), $search_query), get_search_feed_link('', $type), feed_link_type($type) );
-			$title = sprintf(__('Search comments feed for %s','tarski'), $search_query);
-			$link = get_search_comments_feed_link('', $type);
-			$source = 'search_comments';
-		} else {
-			$title = false;
-		}
-
-		if($title && $link)
-			$feeds[$source] = generate_feed_link($title, $link, feed_link_type(get_default_feed()));
-
-		$feeds['site'] = generate_feed_link( sprintf(__('%s feed','tarski'), get_bloginfo('name')), get_feed_link(), feed_link_type(get_default_feed()) );
-		
-		$this->feeds = apply_filters('tarski_feeds', $feeds);
 	}
 	
 	/**
