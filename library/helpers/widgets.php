@@ -147,19 +147,4 @@ function flush_tarski_recent_entries() {
 	wp_cache_delete('tarski_recent_entries');
 }
 
-/**
- * Find awkwardly registered widgets by name.
- *
- * @since 2.5
- *
- * @param string $name
- * @return integer|boolean The id of the widget if successful, false otherwise.
- */
-function _widget_id_by_name($name) {
-	foreach ((array) $GLOBALS['wp_registered_widgets'] as $widget)
-		if ($name === $widget['name']) return $widget['id'];
-	
-	return false;
-}
-
 ?>

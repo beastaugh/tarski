@@ -10,6 +10,8 @@
 
 #### Tweaks
 
+  * A default set of widgets is no longer installed
+  * Deprecated `tarski_prefill_sidebars` function
   * Rename `Options` class to `TarskiOptions` to prevent namespace clashes
   * Improve `code` and `pre` element styling
   * Style all text input fields in the same fashion

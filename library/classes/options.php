@@ -70,6 +70,8 @@ class TarskiOptions {
 	function tarski_options_get() {
 		$saved_options = maybe_unserialize(get_option('tarski_options'));
 		
+		if (empty($saved_options)) return;
+		
 		foreach ($saved_options as $name => $value) {
 			if ((function_exists('property_exists') &&
 			property_exists($this, 'installed')) ||

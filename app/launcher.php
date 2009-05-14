@@ -76,7 +76,6 @@ if (is_admin()) {
 	add_action('admin_menu', 'tarski_addmenu');
 
 	// Options
-	add_action('admin_head', 'tarski_prefill_sidebars');
 	add_action('admin_head', 'tarski_upgrade_and_flush_options');
 	add_action('admin_head', 'maybe_wipe_tarski_options');
 	add_action('save_post', 'tarski_resave_show_authors');

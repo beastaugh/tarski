@@ -12,6 +12,39 @@
  */
 
 /**
+ * Default content for Tarski's widget areas.
+ *
+ * Should leave existing sidebars well alone, and be compatible with the
+ * Tarski upgrade process. Deprecated since it's not compatible with
+ * WordPress 2.8's widgets implementation.
+ *
+ * @since 2.4
+ * @deprecated 2.5
+ */
+function tarski_prefill_sidebars() {
+	_deprecated_function(__FUNCTION__, '2.5');
+	
+	$widgets = wp_get_sidebars_widgets(false);
+	
+	if (!array_key_exists('sidebar-main', $widgets))
+		if (array_key_exists('sidebar-1', $widgets))
+			$widgets['sidebar-main'] = $widgets['sidebar-1'];
+		else
+			$widgets['sidebar-main'] = array('categories', 'links');
+	
+	if (!array_key_exists('footer-sidebar', $widgets))
+		if (array_key_exists('sidebar-2', $widgets))
+			$widgets['footer-sidebar'] = $widgets['sidebar-2'];
+		else
+			$widgets['footer-sidebar'] = array('search');
+	
+	if (!array_key_exists('footer-main', $widgets))
+		$widgets['footer-main'] = array('recent-articles');
+	
+	wp_set_sidebars_widgets($widgets);
+}
+
+/**
  * add_version_to_styles() - Adds version number to style links.
  *
  * This makes browsers re-download the CSS file when the version
