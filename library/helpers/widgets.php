@@ -13,6 +13,9 @@ function tarski_sidebar() {
 	
 	if (file_exists($user_sidebar)) {
 		include($user_sidebar);
+		return new WP_Error('tarski-deprecated',
+			__('User sidebars are now deprecated; please use a child theme or sidebar widgets.', 'tarski'),
+			$user_sidebar);
 	} elseif (is_page_template('archives.php')) {
 		return;
 	} elseif ((is_single() || is_page()) && (get_tarski_option('sidebar_pp_type') != 'main')) {

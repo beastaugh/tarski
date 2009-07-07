@@ -10,6 +10,7 @@
 
 #### Tweaks
 
+  * Deprecated `user-sidebar.php` custom sidebar file
   * A default set of widgets is no longer installed
   * Deprecated `tarski_prefill_sidebars` function
   * Rename `Options` class to `TarskiOptions` to prevent namespace clashes
