@@ -197,7 +197,7 @@ function tarski_404_content() {
  */
 function tarski_content_massage($text) {
 	if (strlen($text) > 0)
-		return wpautop(convert_chars(wptexturize(stripslashes($text))));
+		return convert_chars(wptexturize($text));
 }
 
 ?>
