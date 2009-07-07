@@ -31,6 +31,7 @@
 
 #### Bug fixes
 
+  * `wpautop` is no longer applied to text widgets
   * Fix undefined variable error in `the_archive_author_description`
   * Fix notices caused by undefined indices in the Options class
   * Fix version check errors caused by lack of connection
