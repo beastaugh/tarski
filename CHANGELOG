@@ -10,6 +10,8 @@
 
 #### Tweaks
 
+  * Corrected widget list margins for <abbr title="Right to Left">RTL</abbr> languages
+  * Decreased lists' left margins
   * Deprecated `user-sidebar.php` custom sidebar file
   * A default set of widgets is no longer installed
   * Deprecated `tarski_prefill_sidebars` function
