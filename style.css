@@ -196,7 +196,7 @@ body.rtl #navigation ul.primary { direction: ltr; }
 		li.comment-lvl-first { border-top: none; }
 		body .comment .reply { clear: both; }
 		body .comment .reply a { padding-left: 13px; background: url('images/icons.png') no-repeat -7px -398px; }
-		body.rtl .comment .reply a { background: url('rtl-images/icons.png') no-repeat -7px -398px; }
+		body.rtl .comment .reply a { background: url('images/icons.png') no-repeat -7px -598px; }
 	
 	body .comment-wrapper { padding: 0.66em 0; }
 	body .moderated { border-bottom: 1px solid #e5e5e5; padding-bottom: 0.66em; background: url('images/icons.png') no-repeat 100% -200px; }
