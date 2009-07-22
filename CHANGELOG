@@ -10,6 +10,9 @@
 
 #### Tweaks
 
+  * Clearer comment reply icon for <abbr title="Right to Left">RTL</abbr> languages
+  * Cleaner trackback <abbr title="Uniform Resource Identifier">URI</abbr> display for
+    <abbr title="Right to Left">RTL</abbr> languages
   * Corrected widget list margins for <abbr title="Right to Left">RTL</abbr> languages
   * Decreased lists' left margins
   * Deprecated `user-sidebar.php` custom sidebar file
