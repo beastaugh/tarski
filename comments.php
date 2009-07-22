@@ -19,7 +19,7 @@ if (have_comments() || comments_open()) { ?>
   		</div>
   		<?php if (pings_open()) { ?>
 		<p class="trackback-link"><?php printf(__('Trackback link: %s', 'tarski'),
-			'<a href="' . get_trackback_url() . '">' . get_trackback_url() . '</a>') .'</p>'; ?></p>
+			'<a href="' . get_trackback_url() . '">' . urldecode(get_trackback_url()) . '</a>') .'</p>'; ?></p>
 		<?php } ?>
 	</div>
 	
