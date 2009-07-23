@@ -10,6 +10,7 @@
 
 #### Tweaks
 
+  * Remove search form from 404 error page
   * Use main sidebar for search results
   * Clearer comment reply icon for <abbr title="Right to Left">RTL</abbr>
     languages
