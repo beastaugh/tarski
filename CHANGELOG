@@ -10,6 +10,7 @@
 
 #### Tweaks
 
+  * Use main sidebar for search results
   * Clearer comment reply icon for <abbr title="Right to Left">RTL</abbr>
     languages
   * Cleaner trackback <abbr title="Uniform Resource Identifier">URI</abbr>
