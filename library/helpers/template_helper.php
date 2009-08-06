@@ -225,34 +225,26 @@ function home_link_name() {
  */
 function tarski_navbar($return = false) {
 	global $wpdb;
-	$current = ' class="nav-current"';
-	$navbar = array();
 	
-	if(get_option('show_on_front') != 'page') {
-		if(is_home()) {
-			$home_status = $current;
-		} else {
-			$home_status = false;
-		}
+	$current = ' class="nav-current"';
+	$navbar  = array();
+	
+	if (get_option('show_on_front') != 'page')
 		$navbar['home'] = sprintf(
 			'<li><a id="nav-home"%1$s href="%2$s" rel="home">%3$s</a></li>',
-			$home_status,
+			is_home() ? $current : '',
 			user_trailingslashit(get_bloginfo('url')),
-			home_link_name()
-		);
-	}
+			home_link_name());
 	
 	$pages = &get_pages('sort_column=post_parent,menu_order');
 	$nav_pages = explode(',', get_tarski_option('nav_pages'));
 	
-	if(!empty($nav_pages) && !empty($pages)) {
-		foreach($pages as $page) {
-			if(in_array($page->ID, $nav_pages)) {
-				if(is_page($page->ID) || ((get_option('show_on_front') == 'page') && (get_option('page_for_posts') == $page->ID) && is_home())) {
-					$page_status = $current;
-				} else {
-					$page_status = false;
-				}
+	if (!empty($nav_pages) && !empty($pages)) {
+		foreach ($pages as $page) {
+			if (in_array($page->ID, $nav_pages)) {
+				$page_status = is_page($page->ID) || ((get_option('show_on_front') == 'page') && (get_option('page_for_posts') == $page->ID) && is_home())
+					? $current
+					: '';
 				
 				$navbar[$page->ID] = sprintf(
 					'<li><a id="nav-%1$s"%2$s href="%3$s">%4$s</a></li>',
@@ -269,17 +261,14 @@ function tarski_navbar($return = false) {
 	$navbar = apply_filters('tarski_navbar', $navbar);
 
 	// But if they don't, the function will return false
-	if(check_input($navbar, 'array') && !empty($navbar)) {
-		$navbar = "\n" . implode("\n", $navbar) . "\n\n";
-	} else {
-		$navbar = false;
-	}
-
-	if($return) {
+	$navbar = is_array($navbar) && !empty($navbar)
+		? "\n" . implode("\n", $navbar) . "\n\n"
+		: false;
+	
+	if ($return)
 		return $navbar;
-	} else {
+	else
 		echo $navbar;
-	}
 }
 
 /**

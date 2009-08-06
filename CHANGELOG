@@ -13,6 +13,7 @@
 
 #### Tweaks
 
+  * Refactored `tarski_navbar`
   * Removed defunct debug template
   * Recent Articles widget re-implemented using the new widget
     <abbr title="Application Programming Interface">API</abbr>
