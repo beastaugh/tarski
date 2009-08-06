@@ -13,6 +13,7 @@
 
 #### Tweaks
 
+  * Clean up some core library functions and documentation
   * Refactored `tarski_navbar`
   * Removed defunct debug template
   * Recent Articles widget re-implemented using the new widget
