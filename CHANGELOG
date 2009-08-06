@@ -13,6 +13,7 @@
 
 #### Tweaks
 
+  * Removed defunct debug template
   * Recent Articles widget re-implemented using the new widget
     <abbr title="Application Programming Interface">API</abbr>
   * Remove search form from 404 error page
