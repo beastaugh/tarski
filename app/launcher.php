@@ -80,11 +80,6 @@ if (is_admin()) {
 	add_action('admin_head', 'maybe_wipe_tarski_options');
 	add_action('save_post', 'tarski_resave_show_authors');
 	add_action('deleted_post', 'tarski_resave_show_authors');
-	
-	// Cache sweeping
-	add_action('save_post', 'flush_tarski_recent_entries');
-	add_action('deleted_post', 'flush_tarski_recent_entries');
-	add_action('switch_theme', 'flush_tarski_recent_entries');
 }
 
 // Header
