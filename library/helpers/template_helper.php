@@ -57,7 +57,7 @@ function tarski_doctitle($sep = '&middot;') {
 	$elements = apply_filters('tarski_doctitle', $elements);
 	
 	// But if they don't, it won't try to implode
-	if (check_input($elements, 'array'))
+	if (is_array($elements))
 		$doctitle = implode(' ', $elements);
 	
 	echo $doctitle;
@@ -280,7 +280,7 @@ function tarski_navbar($return = false) {
  * @return array $navbar
  */
 function add_external_links($navbar) {
-	if(!check_input($navbar, 'array'))
+	if(!is_array($navbar))
 		$navbar = array();
 	
 	if(get_tarski_option('nav_extlinkcat')) {
@@ -341,7 +341,7 @@ function add_admin_link($navbar) {
  * @return string $navbar
  */
 function wrap_navlist($navbar) {
-	if(check_input($navbar, 'array')) {
+	if (is_array($navbar)) {
 		array_unshift($navbar, '<ul class="primary xoxo">');
 		array_push($navbar, '</ul>');
 		return $navbar;

@@ -12,7 +12,7 @@
  * @return array
  */
 function wrap_values_in_element($array, $element) {
-	if(!check_input($array, 'array') || empty($array))
+	if (!is_array($array) || empty($array))
 		return;
 	
 	foreach($array as $value)
@@ -33,7 +33,7 @@ function wrap_values_in_element($array, $element) {
  * @return string
  */
 function implode_proper($array, $glue = NULL, $last_connective = NULL) {
-	if ( !check_input($array, 'array') || count($array) == 0 )
+	if (!is_array($array) || empty($array))
 		return;
 	
 	if ($glue == NULL)
@@ -44,10 +44,9 @@ function implode_proper($array, $glue = NULL, $last_connective = NULL) {
 	
 	$last_value = array_pop($array);
 	
-	if ( count($array) )
-		$output = implode($glue, $array) . " $last_connective $last_value";
-	else
-		$output = $last_value;
+	$output = !empty($array)
+		? implode($glue, $array) . " $last_connective $last_value"
+		: $last_value;
 	
 	return $output;
 }
