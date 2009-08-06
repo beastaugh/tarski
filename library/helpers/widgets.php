@@ -95,6 +95,8 @@ class Tarski_Widget_Recent_Entries extends WP_Widget {
 	}
 	
 	function widget($args, $instance) {
+		global $posts;
+		
 		$cache = wp_cache_get('tarski_recent_entries', 'widget');
 		
 		if ( !is_array($cache) )
@@ -116,7 +118,12 @@ class Tarski_Widget_Recent_Entries extends WP_Widget {
 		else if ( $number > 15 )
 			$number = 15;
 		
-		$r = new WP_Query(array('showposts' => $number, 'nopaging' => 0, 'post_status' => 'publish', 'caller_get_posts' => 1));
+		$r = new WP_Query(array(
+			'showposts' => $number,
+			'nopaging' => 0,
+			'post_status' => 'publish',
+			'caller_get_posts' => 1,
+			'offset' => is_home() ? count($posts) : 0));
 		if ($r->have_posts()) :
 ?>
 
