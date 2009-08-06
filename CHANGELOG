@@ -4,12 +4,17 @@
 
 #### New features
 
+  * Recent Articles widget can be used more than once
+  * The number of posts displayed by Recent Articles widget is adjustable
+  * The title of the Recent Articles widget is customisable
   * Cache and version file locations can be overridden
   * Custom header constants can now be overridden
   * Nicer buttons for capable browsers
 
 #### Tweaks
 
+  * Recent Articles widget re-implemented using the new widget
+    <abbr title="Application Programming Interface">API</abbr>
   * Remove search form from 404 error page
   * Use main sidebar for search results
   * Clearer comment reply icon for <abbr title="Right to Left">RTL</abbr>

@@ -72,55 +72,58 @@ function tarski_widget_links_args($args) {
 }
 
 /**
+ * class Tarski_Widget_Recent_Entries
+ *
  * Recent entries á la Tarski.
  *
  * Lists the five most recent entries, or, on the home page, the five most
  * recent entries after those posts actually displayed on the page.
  *
- * @since 2.0.5
- * @see wp_widget_recent_entries
- * @uses wp_cache_get
- * @uses wp_cache_add
- * @uses wp_reset_query
- *
- * @global object $posts
- * @return string
+ * @package Tarski
+ * @since 2.5
  */
-function tarski_recent_entries($args = array()) {
-	global $posts;
+class Tarski_Widget_Recent_Entries extends WP_Widget {
 	
-	$output = wp_cache_get('tarski_recent_entries');
+	function Tarski_Widget_Recent_Entries() {
+		$widget_ops = array('classname' => 'recent-articles', 'description' => __('The most recent articles, offset by the number of visible articles on the home page.', 'tarski'));
+		$this->WP_Widget('recent-articles', __('Recent Articles', 'tarski'), $widget_ops);
+		$this->alt_option_name = 'tarski_recent_entries';
 		
-	if (strlen($output)) {
-		echo $output;
-		return;
+		add_action('save_post', array(&$this, 'flush_widget_cache'));
+		add_action('deleted_post', array(&$this, 'flush_widget_cache'));
+		add_action('switch_theme', array(&$this, 'flush_widget_cache'));
 	}
 	
-	ob_start();
-	extract($args);
-	
-	$options = array();
-	$title = empty($options['title']) ? __('Recent Articles', 'tarski') : $options['title'];
-	$number = (array_key_exists('number', $options)) ? intval($options['number']) : 5;
-	
-	if ($number < 1)
-		$number = 1;
-	elseif ($number > 10)
-		$number = 10;
-	
-	$recent = new WP_Query(array(
-		'showposts' => $number,
-		'what_to_show' => 'posts',
-		'nopaging' => 0,
-		'post_status' => 'publish',
-		'offset' => (is_home()) ? count($posts) : 0));
-	
-	if ($recent->have_posts()) {
+	function widget($args, $instance) {
+		$cache = wp_cache_get('tarski_recent_entries', 'widget');
+		
+		if ( !is_array($cache) )
+			$cache = array();
+		
+		if ( isset($cache[$args['widget_id']]) ) {
+			echo $cache[$args['widget_id']];
+			return;
+		}
+		
+		ob_start();
+		extract($args);
+		
+		$title = apply_filters('widget_title', empty($instance['title']) ? __('Recent Articles', 'tarski') : $instance['title']);
+		if ( !$number = (int) $instance['number'] )
+			$number = 10;
+		else if ( $number < 1 )
+			$number = 1;
+		else if ( $number > 15 )
+			$number = 15;
+		
+		$r = new WP_Query(array('showposts' => $number, 'nopaging' => 0, 'post_status' => 'publish', 'caller_get_posts' => 1));
+		if ($r->have_posts()) :
 ?>
-<div id="recent">
-	<?php echo $before_title . $title . $after_title; ?>
+
+<?php echo $before_widget; ?>
+	<?php if ($title) echo $before_title . $title . $after_title; ?>
 	<ul>
-		<?php while ($recent->have_posts()) { $recent->the_post(); ?>
+		<?php while ($r->have_posts()) : $r->the_post(); ?>
 		<li>
 			<h4 class="recent-title"><a title="<?php _e('View this post', 'tarski'); ?>" href="<?php the_permalink(); ?>"><?php the_title() ?></a></h4>
 			<p class="recent-metadata"><?php printf(get_tarski_option('show_categories') ? __('%1$s in %2$s', 'tarski') : '%s',
@@ -128,25 +131,47 @@ function tarski_recent_entries($args = array()) {
 				get_the_category_list(', ', '', false)); ?></p>
 			<div class="recent-excerpt content"><?php the_excerpt(); ?></div>
 		</li>
-		<?php } ?>
+		<?php endwhile; ?>
 	</ul>
-</div> <!-- /recent -->
+<?php echo $after_widget; ?>
 <?php
-		unset($recent);
-		wp_reset_query();  // Restore global post data stomped by the_post().
+			wp_reset_query();  // Restore global post data stomped by the_post().
+		endif;
+		
+		$cache[$args['widget_id']] = ob_get_flush();
+		wp_cache_add('tarski_recent_entries', $cache, 'widget');
 	}
 	
-	wp_cache_add('tarski_recent_entries', ob_get_flush(), 'widget');
-}
-
-/**
- * flush_tarski_recent_entries() - Deletes tarski_recent_entries() from the cache. 
- *
- * @since 2.0.5
- * @see tarski_recent_entries()
- */
-function flush_tarski_recent_entries() {
-	wp_cache_delete('tarski_recent_entries');
+	function update($new_instance, $old_instance) {
+		$instance = $old_instance;
+		$instance['title'] = strip_tags($new_instance['title']);
+		$instance['number'] = (int) $new_instance['number'];
+		$this->flush_widget_cache();
+		
+		$alloptions = wp_cache_get('alloptions', 'options');
+		if (isset($alloptions['tarski_recent_entries']))
+			delete_option('tarski_recent_entries');
+		
+		return $instance;
+	}
+	
+	function flush_widget_cache() {
+		wp_cache_delete('tarski_recent_entries', 'widget');
+	}
+	
+	function form($instance) {
+		$title = isset($instance['title']) ? esc_attr($instance['title']) : '';
+		if (!isset($instance['number']) || !$number = (int) $instance['number'])
+			$number = 5;
+?>
+		<p><label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:', 'tarski'); ?></label>
+		<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo $title; ?>" /></p>
+		
+		<p><label for="<?php echo $this->get_field_id('number'); ?>"><?php _e('Number of posts to display:', 'tarski'); ?></label>
+		<input id="<?php echo $this->get_field_id('number'); ?>" name="<?php echo $this->get_field_name('number'); ?>" type="text" value="<?php echo $number; ?>" size="3" /><br />
+		<small><?php _e('(at most 15)', 'tarski'); ?></small></p>
+<?php
+	}
 }
 
 ?>

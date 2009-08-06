@@ -250,9 +250,9 @@ body.rtl #navigation ul.primary { direction: ltr; }
 	/* Footer
 	--------------------------------------- */
 	#footer { margin: 0 20px 0 20px; border-top: 3px double #ccc; padding: 1em 0 0 0; }
-		#recent {}
-			#recent ul { list-style: none; margin: 0; }
-				#recent li { margin: 0; }
+		.recent-articles {}
+			.recent-articles ul { list-style: none; margin: 0; }
+				.recent-articles li { margin: 0; }
 				h4.recent-title { margin: 0; }
 				.recent-metadata { font-size: 0.8em; color: #808080; margin: 0 0 0.5em 0; }
 				.recent-excerpt { line-height: 1.4; margin: 0 0 1em 0; }
