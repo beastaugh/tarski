@@ -47,6 +47,7 @@
 
 #### Bug fixes
 
+  * Fix undefined variable error when navbar has no contents
   * `wpautop` is no longer applied to text widgets
   * Fix undefined variable error in `the_archive_author_description`
   * Fix notices caused by undefined indices in the Options class

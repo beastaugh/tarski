@@ -226,6 +226,7 @@ function home_link_name() {
 function tarski_navbar($return = false) {
 	global $wpdb;
 	$current = ' class="nav-current"';
+	$navbar = array();
 	
 	if(get_option('show_on_front') != 'page') {
 		if(is_home()) {
