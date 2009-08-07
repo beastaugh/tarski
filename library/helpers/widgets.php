@@ -1,28 +1,21 @@
 <?php
 
 /**
- * tarski_sidebar() - Outputs Tarski's sidebar.
- * 
+ * Output the Tarski sidebar.
+ *
  * @since 2.0
- * @global object $post
+ * @uses is_page_template
+ * @uses dynamic_sidebar
  * @return mixed
  */
 function tarski_sidebar() {
-	global $post;
-	$user_sidebar = TEMPLATEPATH . '/user-sidebar.php';
-	
-	if (file_exists($user_sidebar)) {
-		include($user_sidebar);
-		return new WP_Error('tarski-deprecated',
-			__('User sidebars are now deprecated; please use a child theme or sidebar widgets.', 'tarski'),
-			$user_sidebar);
-	} elseif (is_page_template('archives.php')) {
+	if (is_page_template('archives.php'))
 		return;
-	} elseif ((is_single() || is_page()) && (get_tarski_option('sidebar_pp_type') != 'main')) {
+	
+	if ((is_single() || is_page()) && (get_tarski_option('sidebar_pp_type') != 'main'))
 		dynamic_sidebar('sidebar-post-and-page');
-	} else {
+	else
 		dynamic_sidebar('sidebar-main');
-	}
 }
 
 /**
