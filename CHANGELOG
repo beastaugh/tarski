@@ -1,5 +1,16 @@
 # Changelog
 
+### Version 2.6 [&sect;](http://tarskitheme.com/)
+
+#### Tweaks
+
+  * Change of DOCTYPE to [HTML 5][html5]
+  * Removed <abbr title="XHTML Friends Network">XFN</abbr> support as the
+    `profile` attribute is not supported in HTML 5
+
+[html5]: http://www.whatwg.org/specs/web-apps/current-work/
+
+
 ### Version 2.5 [&sect;](http://tarskitheme.com/2009/08/07/25-release/)
 
 #### New features
