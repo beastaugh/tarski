@@ -10,6 +10,11 @@
   * Removed <abbr title="XHTML Friends Network">XFN</abbr> support as the
     `profile` attribute is not supported in HTML 5
 
+#### Bug fixes
+
+  * Always link to the 'respond' anchor if comments are open but none have been
+    posted yet
+
 [html5]: http://www.whatwg.org/specs/web-apps/current-work/
 
 

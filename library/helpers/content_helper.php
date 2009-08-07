@@ -115,29 +115,45 @@ function tarski_post_categories_link() {
 }
 
 /**
- * Outputs comments links for different post types.
+ * Output comment links for different post types.
  * 
  * The function has different output modes for single posts, pages and posts on
  * index pages; in the latter case it's a simple function call, but in the
  * former cases it has to be built manually and it's convenient to have a
- * wrapper around all the logic, so as to keep the templates clean.
+ * wrapper around all the logic, keeping the templates clean.
  * 
  * @since 2.1
- * @uses comments_number()
- * @uses comments_popup_link()
+ * @uses comments_number
+ * @uses comments_popup_link
  * 
  * @global object $post
- * @return string
+ * @return void
  */
 function tarski_comments_link() {
 	global $post;
-	if($post->comment_status == 'open' || $post->comment_count > 0) {
-		if(is_single() || is_page()) {
-			echo ' | <a class="comments-link" href="#comments">'; comments_number(__('No comments', 'tarski'), __('1 comment', 'tarski'), '%' . __(' comments', 'tarski')); echo '</a>';
-		} else {
-			echo ' | ';
-			comments_popup_link(__('No comments', 'tarski'), __('1 comment', 'tarski'), '%' . __(' comments', 'tarski'), 'comments-link', __('Comments closed', 'tarski'));
-		}
+	
+	$have_comments = intval($post->comment_count) > 0;
+	
+	if (!(comments_open() || $have_comments))
+		return;
+	
+	$anchor = $have_comments ? '#comments' : '#respond';
+	
+	if (is_single() || is_page()) {
+		printf(' | <a class="comments-link" href="%s">', $anchor);
+		comments_number(
+			__('No comments', 'tarski'),
+			__('1 comment', 'tarski'),
+			__('% comments', 'tarski'));
+		echo '</a>';
+	} else {
+		echo ' | ';
+		comments_popup_link(
+			__('No comments', 'tarski'),
+			__('1 comment', 'tarski'),
+			__('% comments', 'tarski'),
+			'comments-link',
+			__('Comments closed', 'tarski'));
 	}
 }
 
