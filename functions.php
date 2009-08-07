@@ -82,7 +82,6 @@ require_once(TARSKIHELPERS . '/widgets.php');
  * files where they can be easily found and documented.
  */
 require_once(TEMPLATEPATH . '/app/api/hooks.php');
-require_once(TEMPLATEPATH . '/app/api/constants_helper.php');
 include_once(TEMPLATEPATH . '/app/api/deprecated.php');
 
 /**
