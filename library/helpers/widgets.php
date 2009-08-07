@@ -19,9 +19,10 @@ function tarski_sidebar() {
 }
 
 /**
- * tarski_footer_main() - Outputs footer main widgets field.
+ * Output footer main widgets field.
  * 
  * @since 2.1
+ * @uses dynamic_sidebar
  * @return mixed
  */
 function tarski_footer_main() {
@@ -29,9 +30,10 @@ function tarski_footer_main() {
 }
 
 /**
- * tarski_footer_sidebar() - Outputs the footer sidebar widgets field.
+ * Output the footer sidebar widgets field.
  * 
  * @since 2.0
+ * @uses dynamic_sidebar
  * @return mixed
  */
 function tarski_footer_sidebar() {
@@ -39,27 +41,28 @@ function tarski_footer_sidebar() {
 }
 
 /**
- * tarski_widget_text_wrapper() - Wraps text widgets in content div with edit link.
+ * Wrap text widgets in content div with edit link.
  *
  * @since 2.1
  * @param string $text
  * @return string
  */
 function tarski_widget_text_wrapper($text) {
-	if ( strlen(trim($text)) )
-		$text = "<div class=\"content\">\n$text</div>\n";
-	
-	return $text;
+	return strlen(trim($text)) > 0
+		? "<div class=\"content\">\n\n$text</div>\n"
+		: '';
 }
 
 /**
- * tarski_widget_links_args() - Removes navbar links from the links widget.
+ * Remove navbar links from the links widget.
  * 
  * @since 2.2
+ * @uses get_tarski_option
  * @param array $args
  * @return array
  */
 function tarski_widget_links_args($args) {
+	$args = is_array($args) ? $args : array();
 	$args['exclude_category'] = get_tarski_option('nav_extlinkcat');
 	return $args;
 }
