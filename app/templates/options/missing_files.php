@@ -1,0 +1,3 @@
+<p><?php _e('This may be because you have removed them, or because those files aren&#8217;t readable by WordPress.', 'tarski'); ?></p>
+<p><?php printf(__('If you have problems making the files readable, try the WordPress Codex documentation on %s.', 'tarski'), '<a href="http://codex.wordpress.org/Changing_File_Permissions">' . __('changing file permissions', 'tarski') . '</a>'); ?></p>
+<p><?php printf(__('If you deleted the files by accident, just download a new copy from the %s and re-upload them to your website.', 'tarski'), '<a href="http://tarskitheme.com/">' . __('Tarski website', 'tarski') . '</a>'); ?>
