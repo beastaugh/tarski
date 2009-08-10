@@ -4,6 +4,7 @@
 
 #### Tweaks
 
+  * Header listing degrades gracefully when no headers are present
   * Drop support for the user sidebar file
   * Remove `constants.php` file support
   * Change of DOCTYPE to [HTML 5][html5]
