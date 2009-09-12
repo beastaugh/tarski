@@ -49,7 +49,7 @@
 		</div>
 	</form>
 	
-	<?php if (get_option('tarski_options') && !get_tarski_option('deleted')) { ?>
+	<?php if (get_option('tarski_options') && !is_numeric(get_raw_tarski_option('deleted'))) { ?>
 		<div class="secondary">
 			<?php tarski_options_block('reset_options', __('Reset Options', 'tarski')); ?>
 		</div>

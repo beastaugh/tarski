@@ -15,8 +15,11 @@
  */
 class TarskiOptions {
 	
+	var $defaults;
+	
 	var $installed;
 	var $deleted;
+	
 	var $update_notification;
 	var $sidebar_pp_type;
 	var $header;
@@ -36,49 +39,58 @@ class TarskiOptions {
 	var $use_pages;
 	
 	/**
-	 * Sets TarskiOptions object's properties to their default values.
+	 * The TarskiOptions constructor sets all fields to their default values.
 	 *
-	 * @since 2.0
+	 * @since 2.5
 	 */
-	function tarski_options_defaults() {
-		$this->installed = theme_version('current');
-		$this->update_notification = true;
-		$this->sidebar_pp_type = 'main';
-		$this->header = 'greytree.jpg';
-		$this->display_title = true;
-		$this->display_tagline = true;
-		$this->nav_pages = false;
-		$this->collapsed_pages = '';
-		$this->home_link_name = __('Home', 'tarski');
-		$this->nav_extlinkcat = 0;
-		$this->style = false;
-		$this->asidescategory = 0;
-		$this->centred_theme = true;
-		$this->swap_sides = false;
-		$this->swap_title_order = false;
-		$this->tags_everywhere = true;
-		$this->show_categories = true;
-		$this->show_authors = true;
-		$this->use_pages = true;
+	function TarskiOptions() {
+		$this->set_defaults();
 	}
 	
 	/**
-	 * Sets TarskiOptions properties to the values retrieved from the database.
+	 * Unserialising a TarskiOptions object also sets the defaults.
 	 *
-	 * @since 2.0
+	 * Setting object defaults is done on wakeup in case any fields are missing
+	 * values, as new fields may have been added between versions.
+	 *
+	 * @since 2.5
 	 */
-	function tarski_options_get() {
-		$saved_options = maybe_unserialize(get_option('tarski_options'));
+	function __wakeup() {
+		$this->set_defaults();
+	}
+	
+	/**
+	 * Set the default values for Tarski's options.
+	 *
+	 * This has to be performed as an method call rather than set in the class
+	 * definition since only constant initialisers are permitted in PHP 4.
+	 *
+	 * @since 2.5
+	 */
+	function set_defaults() {
+		$this->defaults = array(
+			'installed' => theme_version('current'),
+			'update_notification' => true,
+			'header' => 'greytree.jpg',
+			'display_title' => true,
+			'display_tagline' => true,
+			'nav_pages' => false,
+			'collapsed_pages' => '',
+			'home_link_name' => __('Home', 'tarski'),
+			'nav_extlinkcat' => 0,
+			'style' => false,
+			'asidescategory' => 0,
+			'centred_theme' => true,
+			'swap_sides' => false,
+			'swap_title_order' => false,
+			'tags_everywhere' => true,
+			'show_categories' => true,
+			'show_authors' => true,
+			'use_pages' => true);
 		
-		if (empty($saved_options)) return;
-		
-		foreach ($saved_options as $name => $value) {
-			if ((function_exists('property_exists') &&
-			property_exists($this, 'installed')) ||
-			array_key_exists('installed', $this)) {
-				$this->$name = $value;
-			}
-		}
+		foreach ($this->defaults as $key => $value)
+			if (!isset($this->$key))
+				$this->$key = $value;
 	}
 	
 	/**
@@ -147,43 +159,55 @@ class TarskiOptions {
  * hours ago--if it was, the tarski_options database row will be
  * dropped. If the 'deleted' property has been set, then the defaults
  * will be returned regardless of whether other options are set.
+ *
  * @since 1.4
+ *
  * @global object $tarski_options
  * @return object $tarski_options
  */
 function flush_tarski_options() {
 	global $tarski_options;
 	
-	$tarski_options = new TarskiOptions;
-	$tarski_options->tarski_options_get();
+	$opts = get_option('tarski_options');
 	
-	if (!get_option('tarski_options') || isset($tarski_options->deleted))
-		$tarski_options->tarski_options_defaults();
+	if (is_a($opts, 'TarskiOptions')) {
+		$tarski_options = $opts;
+	} else {
+		$tarski_options = new TarskiOptions();
+		
+		// Upgrade from older versions of Tarski
+		if (is_a($opts, 'Options')) {
+			foreach ($opts->defaults as $key => $value)
+				if (isset($tarski_options->defaults[$key]))
+					$tarski_options->$key = $value;
+		}
+	}
+	
+	return $tarski_options;
 }
 
 /**
  * Updates the given Tarski option with a new value.
  *
  * This function can be used either to update a particular option with a new
- * value, or to delete that option altogether by setting $drop to true.
+ * value, or to delete that option altogether by setting $value to null.
  *
  * @since 1.4
  *
  * @param string $option
- * @param string $value
- * @param boolean $drop
+ * @param mixed $value
  * @global object $tarski_options
  */
 function update_tarski_option($option, $value) {
-	$tarski_options = new TarskiOptions;
-	$tarski_options->tarski_options_get();
-		
-	if (empty($value))
+	flush_tarski_options();
+	
+	if (is_null($value))
 		unset($tarski_options->$option);
 	else
 		$tarski_options->$option = $value;
-		
+	
 	update_option('tarski_options', $tarski_options);
+	
 	flush_tarski_options();
 }
 
@@ -192,13 +216,40 @@ function update_tarski_option($option, $value) {
  * 
  * @since 1.4
  *
+ * @uses get_raw_tarski_option
+ *
  * @param string $name
  * @return mixed
  */
 function get_tarski_option($name) {
 	global $tarski_options;
 	
-	if (!is_object($tarski_options))
+	$opt = get_raw_tarski_option($name);
+	
+	return is_numeric($tarski_options->deleted)
+		? $tarski_options->defaults[$name]
+	 	: $opt;
+}
+
+/**
+ * Returns the raw value of a given Tarski option.
+ *
+ * This function is required because, depending on the circumstances (such as
+ * the TarskiOptions object being in a 'deleted' state), get_tarski_option may
+ * return a default value rather than the raw value.
+ *
+ * @since 2.5
+ *
+ * @see get_tarski_option
+ *
+ * @global object $tarski_options
+ * @param string $name
+ * @return mixed
+ */
+function get_raw_tarski_option($name) {
+	global $tarski_options;
+	
+	if (!is_a($tarski_options, 'TarskiOptions'))
 		flush_tarski_options();
 	
 	return $tarski_options->$name;

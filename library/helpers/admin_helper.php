@@ -7,9 +7,7 @@
  * @return boolean
  */
 function detectWPMUadmin() {
-	if(detectWPMU()) {
-		return is_site_admin();
-	}
+	return detectWPMU() ? is_site_admin() : false;
 }
 
 /**
@@ -23,18 +21,18 @@ function detectWPMUadmin() {
  * @return boolean
  */
 function cache_is_writable($file = false) {
-	if ( $file )
+	if ($file)
 		$file = TARSKICACHE . '/' . $file;
 	
 	$writable = false;
 	
-	if ( $file && file_exists($file) )
+	if ($file && file_exists($file))
 		$writable = is_writable($file);
-	elseif ( file_exists(TARSKICACHE) )
+	elseif (file_exists(TARSKICACHE))
 		$writable = is_writable(TARSKICACHE);
-	elseif ( is_writable(WP_CONTENT_DIR) )
+	elseif (is_writable(WP_CONTENT_DIR))
 		$writable = wp_mkdir_p(TARSKICACHE);
-
+	
 	return $writable;
 }
 
@@ -55,9 +53,7 @@ function save_tarski_options() {
 	if (!current_user_can('edit_themes'))
 		wp_die(__('You are not authorised to perform this operation.', 'tarski'));
 	
-	$options = new TarskiOptions;
-	$options->tarski_options_get();
-		
+	$options = flush_tarski_options();
 	$options->tarski_options_update();
 	update_option('tarski_options', $options);
 	
@@ -82,8 +78,7 @@ function delete_tarski_options() {
 	if (!current_user_can('edit_themes'))
 		wp_die(__('You are not authorised to perform this operation.', 'tarski'));
 	
-	$options = new TarskiOptions;
-	$options->tarski_options_get();
+	$options = flush_tarski_options();
 	
 	if (!is_numeric($options->deleted) || $options->deleted < 1) {
 		$options->deleted = time();
@@ -109,8 +104,7 @@ function restore_tarski_options() {
 	if (!current_user_can('edit_themes'))
 		wp_die(__('You are not authorised to perform this operation.', 'tarski'));
 	
-	$options = new TarskiOptions;
-	$options->tarski_options_get();
+	$options = flush_tarski_options();
 	
 	if (is_numeric($options->deleted) && $options->deleted > 0) {
 		unset($options->deleted);
@@ -134,8 +128,7 @@ function restore_tarski_options() {
  * @since 2.4
  */
 function maybe_wipe_tarski_options() {
-	$options = new TarskiOptions;
-	$options->tarski_options_get();
+	$options = flush_tarski_options();
 	$del = $options->deleted;
 	
 	if (is_numeric($del) && (time() - $del) > (3 * 3600)) {
@@ -154,7 +147,7 @@ function maybe_wipe_tarski_options() {
  * @return boolean
  */
 function tarski_upgrade_needed() {
-	if ( get_option('tarski_options') ) {
+	if (get_option('tarski_options')) {
 		$installed = get_tarski_option('installed');
 		return empty($installed) || version_compare($installed, theme_version('current')) === -1;
 	}
@@ -171,7 +164,7 @@ function tarski_upgrade_needed() {
  * @uses flush_tarski_options
  */
 function tarski_upgrade_and_flush_options() {
-	if ( tarski_upgrade_needed() ) {
+	if (tarski_upgrade_needed()) {
 		tarski_upgrade();
 		flush_tarski_options();
 	}
@@ -187,15 +180,14 @@ function tarski_upgrade_and_flush_options() {
  * @param object $defaults
  */
 function tarski_upgrade_special($options, $defaults) {
-	if ( tarski_should_show_authors() )
+	if (tarski_should_show_authors())
 		$options->show_authors = true;
 	
-	if ( empty($options->centred_theme) && isset($options->centered_theme) )
+	if (empty($options->centred_theme) && isset($options->centered_theme))
 		$options->centred_theme = true;
 	
-	if ( empty($options->show_categories) && isset($options->hide_categories) && ($options->hide_categories == 1) )
+	if (empty($options->show_categories) && isset($options->hide_categories) && ($options->hide_categories == 1))
 		$options->show_categories = false;
-	
 }
 
 /**
