@@ -16,6 +16,7 @@
 
 #### Bug fixes
 
+  * Floated elements in the post content are now cleared
   * Always link to the 'respond' anchor if comments are open but none have been
     posted yet
 

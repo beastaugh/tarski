@@ -4,7 +4,7 @@
 		
 		<div <?php post_class('aside'); ?> id="p-<?php the_ID(); ?>">
 			
-			<div class="content entry-content"><?php the_content(__('Read the rest of this entry &raquo;','tarski')); ?></div>
+			<div class="content entry-content clearfix"><?php the_content(__('Read the rest of this entry &raquo;','tarski')); ?></div>
 			
 			<p class="meta"><span class="date updated"><?php the_time(get_option('date_format')); ?></span><?php tarski_author_posts_link(); ?> | <a class="comments-link" rel="bookmark" href="<?php the_permalink(); ?>"><?php tarski_asides_permalink_text(); ?></a><?php edit_post_link(__('edit','tarski'), ' (', ')'); ?></p>
 			
@@ -27,7 +27,7 @@
 				edit_post_link(__('edit', 'tarski'),' <span class="edit">(',')</span>'); ?></p>
 			</div>
 			
-			<div class="content entry-content">
+			<div class="content entry-content clearfix">
 				<?php the_content(__('Read the rest of this entry &raquo;','tarski')); ?>
 			</div>
 			

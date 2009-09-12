@@ -30,7 +30,7 @@
 						<?php } ?>
 					</div>
 					
-					<div class="content">
+					<div class="content clearfix">
 						<?php the_content(); ?>
 					</div>
 
