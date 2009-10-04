@@ -287,6 +287,7 @@ function add_external_links($navbar) {
 		$extlinks_cat = get_tarski_option('nav_extlinkcat');
 		$extlinks = get_bookmarks("category=$extlinks_cat");
 		$target = $rel = '';
+		$title  = '';
 		foreach($extlinks as $link) {
 			if($link->link_rel) {
 				$rel = 'rel="' . $link->link_rel . '" ';
