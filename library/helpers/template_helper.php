@@ -36,7 +36,7 @@ function tarski_doctitle($sep = '&middot;') {
 	elseif ((get_option('show_on_front') == 'posts') && is_home())
 		$content = get_bloginfo('description', 'display');
 	elseif (is_search())
-		$content = sprintf(__('Search results for %s', 'tarski'), attribute_escape(get_search_query()));
+		$content = sprintf(__('Search results for %s', 'tarski'), esc_html(get_search_query()));
 	elseif (is_month())
 		$content = single_month_title(' ', false);
 	elseif (is_tag())

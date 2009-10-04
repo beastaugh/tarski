@@ -11,7 +11,7 @@
 				<h1 class="title"><?php _e('Search Results','tarski'); ?></h1>
 			</div>
 			<div class="content">
-				<p><?php printf( __('Your search for %s returned the following results.','tarski'), '<strong>' . attribute_escape(get_search_query()) . '</strong>' ); ?></p>
+				<p><?php printf( __('Your search for %s returned the following results.','tarski'), '<strong>' . esc_html(get_search_query()) . '</strong>' ); ?></p>
 			</div>
 		</div> <!-- /archive -->
 		
@@ -26,7 +26,7 @@
 				<h1 class="title"><?php _e('No results','tarski'); ?></h1>
 			</div>
 			<div class="content">
-				<p><?php printf( __('Your search for %1$s returned no results. Try returning to the %2$s.','tarski'), '<strong>' . attribute_escape(get_search_query()) . '</strong>', '<a href="' . get_bloginfo('url') . '">' . __('front page','tarski') . '</a>' ); ?></p>
+				<p><?php printf( __('Your search for %1$s returned no results. Try returning to the %2$s.','tarski'), '<strong>' . esc_html(get_search_query()) . '</strong>', '<a href="' . get_bloginfo('url') . '">' . __('front page','tarski') . '</a>' ); ?></p>
 			</div>
 		</div> <!-- /entry -->
 		

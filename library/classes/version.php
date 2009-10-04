@@ -190,7 +190,7 @@ class TarskiVersion {
 	 */
 	function latest_version_number() {
 		if(preg_match('/<entry>.*?<title>(.+?)<\/title>.*?<\/entry>/is', $this->feed_data, $matches)) {
-			$this->latest = wp_specialchars($matches[1]);
+			$this->latest = esc_html($matches[1]);
 		}
 	}
 	
@@ -205,7 +205,7 @@ class TarskiVersion {
 	 */
 	function latest_version_link() {
 		if(preg_match('/<entry>.*?<id>(.+?)<\/id>.*?<\/entry>/is', $this->feed_data, $matches)) {
-			$this->latest_link = wp_specialchars($matches[1]);
+			$this->latest_link = esc_html($matches[1]);
 		}
 	}
 	

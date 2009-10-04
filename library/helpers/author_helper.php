@@ -14,7 +14,7 @@ function tarski_author_posts_link() {
 			get_author_posts_url($authordata->ID, $authordata->user_nicename), 
 			sprintf(
 				__('Articles by %s','tarski'),
-				attribute_escape(get_the_author())
+				esc_attr(get_the_author())
 			), 
 			get_the_author()
 		);

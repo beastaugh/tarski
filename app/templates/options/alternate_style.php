@@ -29,7 +29,7 @@ if (count($styles) > 0) { ?>
 <?php if (detectWPMU()) { // WPMU users ?>
 	<p><?php _e('Tarski allows you to select an alternate style that modifies the default one. Choose from the list above.','tarski'); ?></p>
 <?php } else { // non-WPMU users ?>
-	<p><?php printf( __('Tarski allows you to select an %1$s that modifies the default one. Choose from the list above, or upload your own to %2$s.','tarski'), '<a href="http://tarskitheme.com/help/styles/">'. __('alternate style','tarski'). '</a>', '<kbd>wp-content/themes/' . get_template() . '/styles/</kbd>' ); ?></p>
+	<p><?php printf( __('Tarski allows you to select an %1$s that modifies the default one. Choose from the list above, or upload your own to %2$s.', 'tarski'), '<a href="http://tarskitheme.com/help/styles/">' . __('alternate style', 'tarski') . '</a>', '<kbd>wp-content/themes/' . get_template() . '/styles/</kbd>' ); ?></p>
 <?php } ?>
 
 <?php if (count($styles) < 1)  { ?>

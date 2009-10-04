@@ -4,6 +4,7 @@
 
 #### Tweaks
 
+  * Switched to the new WordPress escaping API
   * Rewritten TarskiOptions object deserialisation
   * Added `get_raw_tarski_option` function
   * Alternate stylesheet listing degrades gracefully when no styles are present
