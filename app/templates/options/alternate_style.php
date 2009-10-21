@@ -1,26 +1,16 @@
 <?php
-$style_dir = dir(TEMPLATEPATH . '/styles');
-$styles = array();
 
-if ($style_dir)
-	while(($file = $style_dir->read()))
-		if(is_valid_tarski_style($file))
-			$styles[] = $file;
+$styles = _tarski_list_alternate_styles();
 
 if (count($styles) > 0) { ?>
 	<select name="alternate_style" id="alternate_style" size="1">
 		<option<?php if(!get_tarski_option('style')) { echo ' selected="selected"'; } ?> value=""><?php _e('Default style','tarski'); ?></option>
 		<?php foreach($styles as $style) {
-			if(get_tarski_option('style') == $style) {
-				$status = ' selected="selected"';
-			} else {
-				$status = false;
-			}
 			printf(
-				'<option%1$s value="%2$s">%3$s</option>'."\n",
-				$status,
+				'<option%1$s value="%2$s">%3$s</option>' . "\n",
+				get_tarski_option('style') == $style ? ' selected="selected"' : '',
 				$style,
-				$style
+				preg_replace('/^Tarski\/(.*?)$/', '\\1', $style)
 			);
 		} ?>
 	</select>

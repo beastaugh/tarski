@@ -15,6 +15,26 @@ function only_paginate_home($query) {
 }
 
 /**
+ * Returns the URI of the current alternate stylesheet.
+ *
+ * @uses get_tarski_option
+ * @uses get_template_directory_uri
+ * @uses get_stylesheet_directory_uri
+ * @uses get_current_theme
+ *
+ * @return string
+ */
+function _tarski_get_alternate_stylesheet_uri() {
+	$opt  = preg_split('/\//', get_tarski_option('style'));
+	$path = get_template_directory_uri();
+	
+	if (count($opt) > 1 && array_shift($opt) == get_current_theme())
+		$path  = get_stylesheet_directory_uri();
+	
+	return $path . '/styles/' . $opt[0];
+}
+
+/**
  * tarski_doctitle() - Returns the document title.
  * 
  * The order (site name first or last) can be set on the Tarski Options page.
@@ -380,7 +400,7 @@ function tarski_bodyclass($return = false) {
 	}
 	if(get_tarski_option('style')) { // Alternate style
 		$stylefile = get_tarski_option('style');
-		$stylename = str_replace('.css', '', $stylefile);
+		$stylename = preg_replace('/^.*\/(.+)\.css$/', '\\1', $stylefile);
 		if(is_valid_tarski_style($stylefile)) {
 			$classes[] = $stylename;
 		}

@@ -2,6 +2,10 @@
 
 ### Version 2.6 [&sect;](http://tarskitheme.com/)
 
+#### New features
+
+  * Child themes can define their own alternate styles
+
 #### Tweaks
 
   * Switched to the new WordPress escaping API

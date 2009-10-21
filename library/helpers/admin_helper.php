@@ -442,6 +442,29 @@ function tarski_navbar_select() {
 	return $navbar_select;
 }
 
+function _tarski_list_alternate_styles() {
+	$styles = array();
+	$dirs 	= array('Tarski' => TEMPLATEPATH);
+	$current = get_tarski_option('style');
+	
+	if (TEMPLATEPATH != STYLESHEETPATH)
+		$dirs[get_current_theme()] = STYLESHEETPATH;
+	
+	foreach($dirs as $theme => $dir) {
+		$style_dir = dir($dir . '/styles');
+		if (!$style_dir) continue;
+		
+		while ($file = $style_dir->read())
+			if (is_valid_tarski_style($file))
+				$styles[] = $theme . '/' . $file;
+	}
+	
+	if (is_valid_tarski_style($current) && !in_array($current, $styles))
+		$styles[] = $current;
+	
+	return $styles;
+}
+
 /**
  * tarski_miscellaneous_options() - Returns a list of checkboxes for miscellaneous options.
  * 

@@ -30,10 +30,11 @@ function detectWPMU() {
  * and it cannot have a name that is already taken by Tarski's CSS namespace.
  *
  * @since 2.0
- * @param string $file
+ * @param string $name
  * @return boolean
  */
-function is_valid_tarski_style($file) {
+function is_valid_tarski_style($name) {
+	$file = array_pop(preg_split('/\//', $name));
 	return !preg_match('/^\.+$/', $file) &&
 		preg_match('/^[A-Za-z][A-Za-z0-9\-]*.css$/', $file) &&
 		!preg_match('/^(janus|centre|rtl|js).css$/', $file);

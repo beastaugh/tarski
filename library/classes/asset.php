@@ -75,11 +75,8 @@ class TarskiAsset {
 			)
 		);
 
-		if(get_tarski_option('style')) {
-			$style_array['alternate'] = array(
-				'url' => get_bloginfo('template_directory') . '/styles/' . get_tarski_option('style')
-			);
-		}
+		if (get_tarski_option('style'))
+			$style_array['alternate'] = array('url' => _tarski_get_alternate_stylesheet_uri());
 
 		$style_array = apply_filters('tarski_style_array', $style_array);
 
