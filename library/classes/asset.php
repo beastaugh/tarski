@@ -45,7 +45,9 @@ class TarskiAsset {
 		
 		if (get_option('blog_public') != '0')
 			$meta[] = '<meta name="robots" content="all" />';
-			
+		
+		$meta[] = '<link rel="profile" href="http://gmpg.org/xfn/11" />';
+		
 		$this->meta = apply_filters('tarski_asset_meta', $meta);
 	}
 	

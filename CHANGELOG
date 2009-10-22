@@ -17,8 +17,6 @@
   * Drop support for the user sidebar file
   * Remove `constants.php` file support
   * Change of DOCTYPE to [HTML 5][html5]
-  * Removed <abbr title="XHTML Friends Network">XFN</abbr> support as the
-    `profile` attribute is not supported in HTML 5
 
 #### Bug fixes
 
