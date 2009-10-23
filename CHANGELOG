@@ -7,9 +7,13 @@
   * Header images are now also pulled from child themes
   * Child themes can define their own alternate styles
   * README file introducing users and developers to working with Tarski
+  * Home and page links are now added to the navbar via the `tarski_navbar`
+    filter
 
 #### Tweaks
 
+  * Page and external navbar links now have more meaningful array keys when
+    passed to the `tarski_navbar` filter
   * Search form uses [HTML5][html5] placeholder text where available
   * Switched to the new WordPress escaping API
   * Rewritten TarskiOptions object deserialisation
