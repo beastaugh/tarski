@@ -6,9 +6,11 @@
 
   * Header images are now also pulled from child themes
   * Child themes can define their own alternate styles
+  * README file introducing users and developers to working with Tarski
 
 #### Tweaks
 
+  * Search form uses [HTML5][html5] placeholder text where available
   * Switched to the new WordPress escaping API
   * Rewritten TarskiOptions object deserialisation
   * Added `get_raw_tarski_option` function
@@ -17,8 +19,6 @@
   * Drop support for the user sidebar file
   * Remove `constants.php` file support
   * Change of DOCTYPE to [HTML 5][html5]
-  * Removed <abbr title="XHTML Friends Network">XFN</abbr> support as the
-    `profile` attribute is not supported in HTML 5
 
 #### Bug fixes
 
@@ -26,7 +26,7 @@
   * Always link to the 'respond' anchor if comments are open but none have been
     posted yet
 
-[html5]: http://www.whatwg.org/specs/web-apps/current-work/
+[html5]: http://www.w3.org/TR/html5/
 
 
 ### Version 2.5 [&sect;](http://tarskitheme.com/2009/08/07/25-release/)

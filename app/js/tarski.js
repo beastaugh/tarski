@@ -79,6 +79,9 @@ var Searchbox = {
 		this.sLabel = document.getElementById('searchlabel');
 		if (this.sBox && this.sLabel) {
 			this.sLabel.style.display = 'none';
+			
+			if (this.sBox.placeholder && this.sBox.placeholder.length > 1) return;
+			
 			replaceEmpty(this.sBox, this.sLabel);
 			addEvent(this.sBox, 'focus', this.reset_text.bind(this));
 			addEvent(this.sBox, 'blur', this.add_text.bind(this));
