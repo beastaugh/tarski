@@ -110,24 +110,33 @@ function trim_gallery_style($style) {
 }
 
 /**
- * tarski_headerimage() - Outputs header image.
- * 
+ * Outputs header image.
+ *
  * @since 1.0
  * @return string
  */
 function tarski_headerimage() {
 	$header_opt = get_tarski_option('header');
-	if ($header_opt == 'blank.gif') return;
-	
-	if (get_theme_mod('header_image'))
+	if (preg_match('/\/blank\.gif/', $header_opt)) return '';
+    
+	if (get_theme_mod('header_image')) {
 		$header_img_url = get_header_image();
-	elseif (!empty($header_opt))
-		$header_img_url = get_bloginfo('template_directory') . '/headers/' . $header_opt;
-	else
-		$header_img_url = get_bloginfo('template_directory') . '/headers/greytree.jpg';
+	} elseif (!empty($header_opt)) {
+        $opt  = preg_split('/\//', $header_opt);
+    	$path = get_template_directory_uri();
+        
+    	if (count($opt) > 1 && array_shift($opt) == get_current_theme())
+    		$path  = get_stylesheet_directory_uri();
+	    
+	    $header_img_url = $path . '/headers/' . $opt[0];
+	} else {
+		$header_img_url = get_template_directory_uri() . '/headers/greytree.jpg';
+	}
 	
 	$header_img_tag = sprintf('<img alt="%s" src="%s" />',
-		get_tarski_option('display_title') ? __('Header image', 'tarski') : get_bloginfo('name'),
+		get_tarski_option('display_title')
+		    ? __('Header image', 'tarski')
+		    : get_bloginfo('name'),
 		$header_img_url);
 	
 	if (!get_tarski_option('display_title') && !is_front_page())

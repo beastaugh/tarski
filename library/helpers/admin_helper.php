@@ -442,15 +442,68 @@ function tarski_navbar_select() {
 	return $navbar_select;
 }
 
+/**
+ * Return a list of header images, both from the Tarski directory and the child
+ * theme (if one is being used).
+ *
+ * @uses get_tarski_option
+ * @uses get_current_theme
+ * @uses get_template_directory_uri
+ * @uses get_stylesheet_directory_uri
+ *
+ * @return array
+ */
+function _tarski_list_header_images() {
+    $headers = array();
+    $dirs 	 = array('Tarski' => TEMPLATEPATH);
+	$current = get_tarski_option('header');
+	
+	if (TEMPLATEPATH != STYLESHEETPATH)
+        $dirs[get_current_theme()] = STYLESHEETPATH;
+	
+	foreach ($dirs as $theme => $dir) {
+	    $header_dir = dir($dir . '/headers');
+	    if (!$header_dir) continue;
+	    
+        while ($file = $header_dir->read())
+            if (preg_match('/^[^.].+\.(jpg|png|gif)/', $file) &&
+                !preg_match('/-thumb\.(jpg|png|gif)$/', $file)) {
+	            $name = $theme . '/' . $file;
+	            $id   = 'header_' . preg_replace('/[^a-z_]/', '_', strtolower($name));
+	            $uri  = ($dir == TEMPLATEPATH
+                      ? get_template_directory_uri()
+                      : get_stylesheet_directory_uri()) . "/headers/$file";
+	            $headers[] = array(
+	                'name'  => $name,
+	                'id'    => $id,
+	                'lid'   => 'for_' . $id,
+	                'path'  => $uri,
+	                'thumb' => preg_replace('/(\.(?:png|gif|jpg))/', '-thumb\\1', $uri));
+	        }
+	}
+	
+	return $headers;
+}
+
+/**
+ * Return a list of alternate stylesheets, both from the Tarski directory and
+ * the child theme (if one is being used).
+ *
+ * @uses get_tarski_option
+ * @uses is_valid_tarski_style
+ * @uses get_current_theme
+ *
+ * @return array
+ */
 function _tarski_list_alternate_styles() {
-	$styles = array();
-	$dirs 	= array('Tarski' => TEMPLATEPATH);
+	$styles  = array();
+	$dirs    = array('Tarski' => TEMPLATEPATH);
 	$current = get_tarski_option('style');
 	
 	if (TEMPLATEPATH != STYLESHEETPATH)
 		$dirs[get_current_theme()] = STYLESHEETPATH;
 	
-	foreach($dirs as $theme => $dir) {
+	foreach ($dirs as $theme => $dir) {
 		$style_dir = dir($dir . '/styles');
 		if (!$style_dir) continue;
 		

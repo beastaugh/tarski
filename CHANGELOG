@@ -4,6 +4,7 @@
 
 #### New features
 
+  * Header images are now also pulled from child themes
   * Child themes can define their own alternate styles
 
 #### Tweaks

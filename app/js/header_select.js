@@ -1,6 +1,6 @@
 var Radios = function(selector) {
   this._elements = [];
-  var radios = this;
+  var radios     = this;
   jQuery(selector).each(function(i) {
     radios.add(new Radio(radios, this));
   });
@@ -21,7 +21,7 @@ Radios.prototype.check = function(radio) {
 };
 
 var Radio = function(group, input) {
-  this.group = group;
+  this.group  = group;
   this._input = input;
   this._label = document.getElementById('for_' + this._input.id);
   this._setup(this._group, this._input);
@@ -32,7 +32,7 @@ Radio.prototype._setup = function(group, input) {
   jQuery(this._input).css({position: 'absolute', left: '-9999em'});
   
   if (this._input.checked) jQuery(this._label).addClass('checked');
-
+  
   var radio = this;
   
   jQuery([this._input, this._label]).click(function(event) {
