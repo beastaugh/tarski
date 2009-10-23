@@ -392,43 +392,46 @@ function tarski_feedlink() {
 }
 
 /**
- * tarski_bodyclass() - Returns the classes that should be applied to the document body.
- * 
+ * Returns the classes that should be applied to the document body.
+ *
  * @since 1.2
+ *
+ * @uses get_tarski_option
+ * @uses is_valid_tarski_style
+ * @uses get_bloginfo
+ * @uses apply_filters
+ *
  * @param boolean $return
  * @return string $classes
+ *
  * @hook filter tarski_bodyclass
  * Filter the classes applied to the document body by Tarski.
  */
 function tarski_bodyclass($return = false) {
-	if(get_tarski_option('centred_theme')) { // Centred or not
-		$classes[] = 'centre';
+    if (get_tarski_option('centred_theme'))
+        $classes[] = 'centre';
+    
+    if (get_tarski_option('swap_sides'))
+        $classes[] = 'janus';
+    
+    if (get_tarski_option('style')) {
+        $stylefile = get_tarski_option('style');
+        $stylename = preg_replace('/^.*\/(.+)\.css$/', '\\1', $stylefile);
+		
+        if (is_valid_tarski_style($stylefile))
+            $classes[] = $stylename;
 	}
-	if(get_tarski_option('swap_sides')) { // Swapped or not
-		$classes[] = 'janus';
-	}
-	if(get_tarski_option('style')) { // Alternate style
-		$stylefile = get_tarski_option('style');
-		$stylename = preg_replace('/^.*\/(.+)\.css$/', '\\1', $stylefile);
-		if(is_valid_tarski_style($stylefile)) {
-			$classes[] = $stylename;
-		}
-	}
-	if(get_bloginfo('text_direction') == 'rtl') {
-		$classes[] = 'rtl';
-	}
-	
-	// Filters should return an array
-	$classes = apply_filters('tarski_bodyclass', $classes);
-	
-	// But if they don't, it won't implode
-	if(is_array($classes))
-		$classes = implode(' ', $classes);
-	
-	if($return)
-		return $classes;
-	else
-		echo $classes;
+    
+    if (get_bloginfo('text_direction') == 'rtl')
+        $classes[] = 'rtl';
+    
+    $classes = apply_filters('tarski_bodyclass', $classes);
+    $classes = is_array($classes) ? implode(' ', $classes) : '';
+    
+    if ($return)
+        return $classes;
+    else
+        echo $classes;
 }
 
 /**
