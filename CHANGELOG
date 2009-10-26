@@ -6,7 +6,7 @@
 
   * Header images are now also pulled from child themes
   * Child themes can define their own alternate styles
-  * README file introducing users and developers to working with Tarski
+  * `README` file introducing users and developers to working with Tarski
   * Home and page links are now added to the navbar via the `tarski_navbar`
     filter
 
@@ -15,14 +15,15 @@
   * Page and external navbar links now have more meaningful array keys when
     passed to the `tarski_navbar` filter
   * Search form uses [HTML5][html5] placeholder text where available
-  * Switched to the new WordPress escaping API
+  * Switched to the new WordPress escaping
+    <abbr title="Application Programming Interface">API</abbr>
   * Rewritten TarskiOptions object deserialisation
   * Added `get_raw_tarski_option` function
   * Alternate stylesheet listing degrades gracefully when no styles are present
   * Header listing degrades gracefully when no headers are present
   * Drop support for the user sidebar file
   * Remove `constants.php` file support
-  * Change of DOCTYPE to [HTML 5][html5]
+  * Change of `DOCTYPE` to [HTML 5][html5]
 
 #### Bug fixes
 
