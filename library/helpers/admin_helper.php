@@ -214,7 +214,7 @@ function tarski_upgrade_widgets($options, $defaults) {
 		$widgets['footer-main'] = array();
 		
 		// Footer blurb
-		if ( strlen(trim($options->blurb)) ) {
+		if ( isset($options->blurb) && strlen(trim($options->blurb)) ) {
 			$widget_text[] = array( 'title' => '', 'text' => $options->blurb );
 			$wt_num = (int) end(array_keys($widget_text));
 			$widgets['footer-main'][] = "text-$wt_num";
@@ -230,7 +230,7 @@ function tarski_upgrade_widgets($options, $defaults) {
 		$widgets['sidebar-main'] = array();
 	
 		// Custom text -> text widget
-		if( strlen(trim($options->sidebar_custom)) ) {
+		if( isset($options->sidebar_custom) && strlen(trim($options->sidebar_custom)) ) {
 			$widget_text[] = array( 'title' => '', 'text' => $options->sidebar_custom );
 			$wt_num = (int) end(array_keys($widget_text));
 			$widgets['sidebar-main'][] = "text-$wt_num";
@@ -251,53 +251,30 @@ function tarski_upgrade_widgets($options, $defaults) {
 }
 
 /**
- * function tarski_upgrade() - Upgrades Tarski's options where appropriate.
- * 
  * Tarski preferences sometimes change between versions, and need to
  * be updated. This function does not determine whether an update is
  * needed, it merely perfoms it. It's also self-contained, so it
  * won't update the global $tarski_options object either.
+ *
  * @since 2.1
- * @uses tarski_upgrade_special()
- * @uses tarski_upgrade_widgets()
+ * @uses tarski_upgrade_special
+ * @uses tarski_upgrade_widgets
  */
 function tarski_upgrade() {
-	// Get existing options
-	$options = new TarskiOptions;
-	$options->tarski_options_get();
-	
-	// Get our defaults, so we can merge them in
-	$defaults = new TarskiOptions;
-	$defaults->tarski_options_defaults();
+    // Get options and set defaults
+    $options = new TarskiOptions;
 
-	// Update the options version so we don't run this code more than once
-	$options->installed = theme_version('current');
-	
-	// Handle special cases first
-	tarski_upgrade_special($options, $defaults);
-		
-	// Upgrade old display options to use widgets instead
-	tarski_upgrade_widgets($options, $defaults);
-	
-	// Conform our options to the expected values, types, and defaults
-	foreach($options as $name => $value) {
-		if(!isset($defaults->$name)) {
-			// Get rid of options which no longer exist
-			unset($options->$name);
-		} elseif(!isset($options->$name)) {
-			// Use the default if we don't have this option
-			$options->$name = $defaults->$name;
-		} elseif(is_array($options->$name) && !is_array($defaults->$name)) {
-			// If our option is an array and the default is not, implode using " " as a separator
-			$options->$name = implode(" ", $options->$name);
-		} elseif(!is_array($options->$name) && is_array($defaults->$name)) {
-			// If our option is a scalar and the default is an array, wrap our option in an array
-			$options->$name = array($options->$name);
-		}
-	}
-	
-	// Save our upgraded options
-	update_option('tarski_options', $options);
+    // Update the options version so we don't run this code more than once
+    $options->installed = theme_version('current');
+
+    // Handle special cases first
+    tarski_upgrade_special($options, null);
+
+    // Upgrade old display options to use widgets instead
+    tarski_upgrade_widgets($options, null);
+
+    // Save our upgraded options
+    update_option('tarski_options', $options);
 }
 
 /**
