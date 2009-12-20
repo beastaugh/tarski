@@ -110,8 +110,10 @@ class TarskiOptions {
 				$this->update_notification = true;
 		}
 		
-		if (isset($_POST['header_image']))
-			$this->header = str_replace('-thumb', '', $_POST['header_image']);
+        if (isset($_POST['header_image'])) {
+            $thumbless    = str_replace('-thumb', '', $_POST['header_image']);
+            $this->header = array_slice(preg_split('/\//', $thumbless), 0, 2);
+        }
 		
 		if (isset($_POST['nav_pages']))
 			$this->nav_pages = implode(',', $_POST['nav_pages']);

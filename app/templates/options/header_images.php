@@ -4,7 +4,7 @@
     $headers = _tarski_list_header_images();
     if (count($headers) > 0) { foreach ($headers as $header) { ?>
         <label id="<?php echo $header['lid']; ?>" for="<?php echo $header['id']; ?>"><img class="header_image" alt="<?php echo $header['name']; ?>" src="<?php echo $header['thumb'] ?>" /></label>
-        <input id="<?php echo $header['id']; ?>" name="header_image" value="<?php echo $header['name']; ?>" type="radio"<?php if ($name == $header['name']) echo ' checked="checked"'; ?> />
+        <input id="<?php echo $header['id']; ?>" name="header_image" value="<?php echo $header['name']; ?>" type="radio"<?php if ($header['current']) echo ' checked="checked"'; ?> />
     <?php } } else { ?>
         <p><strong><?php _e('No header images appear to be present.', 'tarski'); ?></strong></p>
         <?php tarski_options_fragment('missing_files'); ?>

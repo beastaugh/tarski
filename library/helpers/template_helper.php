@@ -116,23 +116,28 @@ function trim_gallery_style($style) {
  * @return string
  */
 function tarski_headerimage() {
-	$header_opt = get_tarski_option('header');
-	if (preg_match('/\/blank\.gif/', $header_opt)) return '';
-    
-	if (get_theme_mod('header_image')) {
-		$header_img_url = get_header_image();
-	} elseif (!empty($header_opt)) {
-        $opt  = preg_split('/\//', $header_opt);
-    	$path = get_template_directory_uri();
+    if (get_theme_mod('header_image')) {
+        $header_img_url = get_header_image();
+    } else {
+        $header = get_tarski_option('header');
         
-    	if (count($opt) > 1 && array_shift($opt) == get_current_theme())
-    		$path  = get_stylesheet_directory_uri();
-	    
-	    $header_img_url = $path . '/headers/' . $opt[0];
-	} else {
-		$header_img_url = get_template_directory_uri() . '/headers/greytree.jpg';
-	}
-	
+        if (is_array($header)) {
+            $file = $header[1];
+        } elseif (empty($header)) {
+            $file = 'greytree.jpg';
+        } else {
+            $file = $header;
+        }
+        
+        if (preg_match('/\/blank\.gif/', $file)) return '';
+        
+        $path = is_array($header) && $header[0] == get_current_theme()
+              ? get_stylesheet_directory_uri()
+              : get_template_directory_uri();
+        
+        $header_img_url = $path . '/headers/' . $file;
+    }
+    
 	$header_img_tag = sprintf('<img alt="%s" src="%s" />',
 		get_tarski_option('display_title')
 		    ? __('Header image', 'tarski')
