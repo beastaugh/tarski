@@ -6,13 +6,12 @@ if (count($styles) > 0) { ?>
 	<select name="alternate_style" id="alternate_style" size="1">
 		<option<?php if(!get_tarski_option('style')) { echo ' selected="selected"'; } ?> value=""><?php _e('Default style','tarski'); ?></option>
 		<?php foreach($styles as $style) {
-			printf(
-				'<option%1$s value="%2$s">%3$s</option>' . "\n",
-				get_tarski_option('style') == $style ? ' selected="selected"' : '',
-				$style,
-				preg_replace('/^Tarski\/(.*?)$/', '\\1', $style)
-			);
-		} ?>
+            printf(
+                '<option%1$s value="%2$s">%3$s</option>' . "\n",
+                $style['current'] ? ' selected="selected"' : '',
+                $style['name'],
+                $style['public']);
+        } ?>
 	</select>
 <?php } ?>
 

@@ -25,13 +25,19 @@ function only_paginate_home($query) {
  * @return string
  */
 function _tarski_get_alternate_stylesheet_uri() {
-	$opt  = preg_split('/\//', get_tarski_option('style'));
-	$path = get_template_directory_uri();
-	
-	if (count($opt) > 1 && array_shift($opt) == get_current_theme())
-		$path  = get_stylesheet_directory_uri();
-	
-	return $path . '/styles/' . $opt[0];
+    $style = get_tarski_option('style');
+    
+    if (is_string($style)) {
+        $path = get_template_directory_uri();
+        $file = $style;
+    } else {
+        $path = $style[0] == get_current_theme()
+              ? get_stylesheet_directory_uri()
+              : get_template_directory_uri();
+        $file = $style[1];
+    }
+    
+    return $path . '/styles/' . $file;
 }
 
 /**
@@ -471,12 +477,12 @@ function tarski_bodyclass($return = false) {
         $classes[] = 'janus';
     
     if (get_tarski_option('style')) {
-        $stylefile = get_tarski_option('style');
-        $stylename = preg_replace('/^.*\/(.+)\.css$/', '\\1', $stylefile);
-		
-        if (is_valid_tarski_style($stylefile))
-            $classes[] = $stylename;
-	}
+        $style = get_tarski_option('style');
+        $file  = is_array($style) ? $style[1] : $style;
+        
+        if (is_valid_tarski_style($file))
+            $classes[] = preg_replace('/^(.+)\.css$/', '\\1', $file);
+    }
     
     if (get_bloginfo('text_direction') == 'rtl')
         $classes[] = 'rtl';

@@ -263,16 +263,16 @@ function tarski_upgrade_widgets($options, $defaults) {
 function tarski_upgrade() {
     // Get options and set defaults
     $options = new TarskiOptions;
-
+    
     // Update the options version so we don't run this code more than once
     $options->installed = theme_version('current');
-
+    
     // Handle special cases first
     tarski_upgrade_special($options, null);
-
+    
     // Upgrade old display options to use widgets instead
     tarski_upgrade_widgets($options, null);
-
+    
     // Save our upgraded options
     update_option('tarski_options', $options);
 }
@@ -478,26 +478,30 @@ function _tarski_list_header_images() {
  * @return array
  */
 function _tarski_list_alternate_styles() {
-	$styles  = array();
-	$dirs    = array('Tarski' => TEMPLATEPATH);
-	$current = get_tarski_option('style');
-	
-	if (TEMPLATEPATH != STYLESHEETPATH)
-		$dirs[get_current_theme()] = STYLESHEETPATH;
-	
-	foreach ($dirs as $theme => $dir) {
-		$style_dir = dir($dir . '/styles');
-		if (!$style_dir) continue;
-		
-		while ($file = $style_dir->read())
-			if (is_valid_tarski_style($file))
-				$styles[] = $theme . '/' . $file;
-	}
-	
-	if (is_valid_tarski_style($current) && !in_array($current, $styles))
-		$styles[] = $current;
-	
-	return $styles;
+    $styles  = array();
+    $dirs    = array('Tarski' => TEMPLATEPATH);
+    $current = get_tarski_option('style');
+    
+    if (TEMPLATEPATH != STYLESHEETPATH)
+        $dirs[$theme] = STYLESHEETPATH;
+    
+    foreach ($dirs as $theme => $dir) {
+        if ($style_dir = dir($dir . '/styles')) {
+            while ($file = $style_dir->read()) {
+                if (is_valid_tarski_style($file)) {
+                    $is_current = is_string($current) && $theme == 'Tarski' && $current == $file ||
+                                  $current[0] == $theme && $current[1] == $file;
+                    
+                    $styles[] = array(
+                        'name'    => $theme . '/' . $file,
+                        'public'  => ($theme == 'Tarski' ? '' : $theme . '/') . $file,
+                        'current' => $is_current);
+                }
+            }
+        }
+    }
+    
+    return $styles;
 }
 
 /**

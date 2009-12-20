@@ -125,14 +125,11 @@ class TarskiOptions {
 		else
 			$this->collapsed_pages = '';
 		
-		if (isset($_POST['alternate_style'])) {
-			$stylefile = $_POST['alternate_style'];
-			if (is_valid_tarski_style($stylefile))
-				$this->style = $stylefile;
-			else
-				$this->style = false;
-		}
-		
+        if (isset($_POST['alternate_style'])) {
+            $style = array_slice(preg_split('/\//', $_POST['alternate_style']), 0, 2);
+            $this->style = is_valid_tarski_style($style[1]) ? $style : false;
+        }
+        
 		$this->display_title = (bool) $_POST['display_title'];
 		$this->display_tagline = (bool) $_POST['display_tagline'];
 		$this->show_categories = (bool) $_POST['show_categories'];
