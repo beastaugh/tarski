@@ -87,32 +87,26 @@ function tidy_avatars($avatar, $id_or_email, $size, $default) {
 
 /**
  * Linked avatar images for Tarski.
- * 
+ *
  * Links to the comment author's home page if they have one, and just returns
  * the image otherwise.
- * 
+ *
  * @since 2.3
- * 
+ *
  * @return string
  */
 function tarski_avatar() {
-	$default = '';
-	
-	if ('' == get_option('avatar_default'))
-		$default = get_bloginfo('template_directory') . '/images/avatar.png';
-	
-	$avatar = get_avatar(get_comment_author_email(), '50', $default);
-	
-	if (!$avatar)
-		return false;
-	
-	$url = get_comment_author_url();
-	
-	if (empty($url) || preg_match('/^\s*http:\/\/\s*$/', $url)) {
-		return $avatar;
-	} else {
-		return "<a class=\"avatar-link\" href=\"$url\" rel=\"external nofollow\">$avatar</a>";
-	}
+    $alt    = sprintf(__('%s&#8217;s avatar'), get_comment_author());
+    $avatar = get_avatar(get_comment_author_email(), '50');
+    $url    = get_comment_author_url();
+    
+    if (empty($url) || preg_match('/^\s*http:\/\/\s*$/', $url)) {
+        return $avatar;
+    } else {
+        return sprintf(
+            '<a class="avatar-link" href="%s" rel="external nofollow">%s</a>',
+            $url, $avatar);
+    }
 }
 
 /**
