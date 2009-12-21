@@ -575,6 +575,8 @@ function tarski_post_thumbnail() {
     $wrapper   = '<a class="imagelink2" href="%s">%s</a>';
     $thumbnail = get_the_post_thumbnail(null, 'post-thumbnail', array('class' => 'imageright'));
     
+    if (empty($thumbnail)) return '';
+    
     return is_single() || is_page()
         ? $thumbnail
         : sprintf($wrapper, get_permalink(), $thumbnail);
