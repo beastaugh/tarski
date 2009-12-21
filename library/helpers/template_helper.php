@@ -26,18 +26,20 @@ function only_paginate_home($query) {
  */
 function _tarski_get_alternate_stylesheet_uri() {
     $style = get_tarski_option('style');
+    $path  = get_template_directory_uri();
     
-    if (is_string($style)) {
-        $path = get_template_directory_uri();
-        $file = $style;
-    } else {
-        $path = $style[0] == get_current_theme()
-              ? get_stylesheet_directory_uri()
-              : get_template_directory_uri();
-        $file = $style[1];
+    if (is_string($style) && strlen($style) > 0) {
+        $file  = $style;
+    } elseif (is_array($style)) {
+        if ($style[0] == get_current_theme()) {
+            $path = get_stylesheet_directory_uri();
+            $file = $style[1];
+        } elseif ('Tarski' == $style[0]) {
+            $file = $style[1];
+        }
     }
     
-    return $path . '/styles/' . $file;
+    return isset($file) ? $path . '/styles/' . $file : '';
 }
 
 /**
@@ -126,20 +128,21 @@ function tarski_headerimage() {
         $header_img_url = get_header_image();
     } else {
         $header = get_tarski_option('header');
+        $file   = 'greytree.jpg';
+        $path   = get_template_directory_uri();
         
-        if (is_array($header)) {
-            $file = $header[1];
-        } elseif (empty($header)) {
-            $file = 'greytree.jpg';
-        } else {
+        if (is_string($header) && strlen($header) > 0) {
             $file = $header;
+        } elseif (is_array($header)) {
+            if ($header[0] == get_current_theme()) {
+                $path = get_stylesheet_directory_uri();
+                $file = $header[1];
+            } elseif ('Tarski' == $header[0]) {
+                $file = $header[1];
+            }
         }
         
         if (preg_match('/\/blank\.gif/', $file)) return '';
-        
-        $path = is_array($header) && $header[0] == get_current_theme()
-              ? get_stylesheet_directory_uri()
-              : get_template_directory_uri();
         
         $header_img_url = $path . '/headers/' . $file;
     }
@@ -150,7 +153,7 @@ function tarski_headerimage() {
 		    : get_bloginfo('name'),
 		$header_img_url);
 	
-	if (!get_tarski_option('display_title') && !is_front_page())
+	if (!(get_tarski_option('display_title') || is_front_page()))
 		$header_img_tag = sprintf(
 			'<a title="%s" rel="home" href="%s">%s</a>',
 			__('Return to main page', 'tarski'),
