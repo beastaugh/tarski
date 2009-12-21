@@ -559,6 +559,28 @@ function tarski_bodyid($return = false) {
 }
 
 /**
+ * A simple wrapper around WordPress' thumbnail functionality to allow them to
+ * link to the relevant post from index pages.
+ *
+ * @since 2.6
+ *
+ * @uses get_the_post_thumbnail
+ * @uses get_permalink
+ * @uses is_single
+ * @uses is_page
+ *
+ * @return string
+ */
+function tarski_post_thumbnail() {
+    $wrapper   = '<a class="imagelink2" href="%s">%s</a>';
+    $thumbnail = get_the_post_thumbnail(null, 'post-thumbnail', array('class' => 'imageright'));
+    
+    return is_single() || is_page()
+        ? $thumbnail
+        : sprintf($wrapper, get_permalink(), $thumbnail);
+}
+
+/**
  * tarski_searchform() - Outputs the WordPress search form.
  * 
  * Will only output the search form on pages that aren't a search

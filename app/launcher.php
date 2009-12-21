@@ -71,6 +71,10 @@ add_filter('widget_text', 'tarski_content_massage');
 add_filter('widget_text', 'tarski_widget_text_wrapper');
 add_filter('widget_links_args', 'tarski_widget_links_args');
 
+// Post thumbnails; change these settings via a child theme or plugin
+add_theme_support('post-thumbnails');
+set_post_thumbnail_size(150, 150, false);
+
 if (is_admin()) {
 	// Options handlers
 	add_action('admin_post_tarski_options', 'save_tarski_options');
