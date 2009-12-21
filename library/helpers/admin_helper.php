@@ -440,8 +440,12 @@ function _tarski_list_header_images() {
         $dirs[$theme] = STYLESHEETPATH;
     
     foreach ($dirs as $theme => $dir) {
-        $header_dir = dir($dir . '/headers');
-        if (!$header_dir) continue;
+        $dirpath = $dir . '/headers';
+        
+        if (is_dir($dirpath))
+            $header_dir = dir($dirpath);
+        else
+            continue;
         
         while ($file = $header_dir->read()) {
             if (preg_match('/^[^.].+\.(jpg|png|gif)/', $file) &&
@@ -478,25 +482,34 @@ function _tarski_list_header_images() {
  * @return array
  */
 function _tarski_list_alternate_styles() {
-    $styles  = array();
-    $dirs    = array('Tarski' => TEMPLATEPATH);
-    $current = get_tarski_option('style');
+    $styles        = array();
+    $dirs          = array('Tarski' => TEMPLATEPATH);
+    $current_style = get_tarski_option('style');
+    $current_theme = get_current_theme();
     
     if (TEMPLATEPATH != STYLESHEETPATH)
-        $dirs[$theme] = STYLESHEETPATH;
+        $dirs[$current_theme] = STYLESHEETPATH;
     
     foreach ($dirs as $theme => $dir) {
-        if ($style_dir = dir($dir . '/styles')) {
-            while ($file = $style_dir->read()) {
-                if (is_valid_tarski_style($file)) {
-                    $is_current = is_string($current) && $theme == 'Tarski' && $current == $file ||
-                                  $current[0] == $theme && $current[1] == $file;
-                    
-                    $styles[] = array(
-                        'name'    => $theme . '/' . $file,
-                        'public'  => ($theme == 'Tarski' ? '' : $theme . '/') . $file,
-                        'current' => $is_current);
-                }
+        $dirpath = $dir . '/styles';
+        
+        if (is_dir($dirpath))
+            $style_dir = dir($dirpath);
+        else
+            continue;
+        
+        while ($file = $style_dir->read()) {
+            if (is_valid_tarski_style($file)) {
+                $is_current = (is_string($current_style)    &&
+                               $current_theme == 'Tarski'   &&
+                               $current_style == $file)
+                            || ($current_style[0] == $theme &&
+                                $current_style[1] == $file);
+                $prefix = $theme . '/';
+                $styles[] = array(
+                    'name'    => $prefix . $file,
+                    'public'  => ($theme == 'Tarski' ? '' : $prefix) . $file,
+                    'current' => $is_current);
             }
         }
     }
