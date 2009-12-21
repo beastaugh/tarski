@@ -138,19 +138,24 @@ function maybe_wipe_tarski_options() {
 }
 
 /**
- * tarski_upgrade_needed() - Returns true if Tarski needs upgrading.
+ * Determines whether Tarski needs upgrading.
  * 
  * 'Needs upgrading' is defined as having either no installed version,
  * or having an installed version with a lower version number than the
  * version number extracted from the main stylesheet.
+ *
  * @since 2.1
+ *
+ * @uses get_option
+ * @uses get_tarski_option
+ * @uses theme_version
+ *
  * @return boolean
  */
 function tarski_upgrade_needed() {
-	if (get_option('tarski_options')) {
-		$installed = get_tarski_option('installed');
-		return empty($installed) || version_compare($installed, theme_version('current')) === -1;
-	}
+    if (!get_option('tarski_options')) return false;
+    $installed = get_tarski_option('installed');
+    return empty($installed) || version_compare($installed, theme_version('current')) === -1;
 }
 
 /**
@@ -262,7 +267,7 @@ function tarski_upgrade_widgets($options, $defaults) {
  */
 function tarski_upgrade() {
     // Get options and set defaults
-    $options = new TarskiOptions;
+    $options = get_option('tarski_options');
     
     // Update the options version so we don't run this code more than once
     $options->installed = theme_version('current');
@@ -274,7 +279,7 @@ function tarski_upgrade() {
     tarski_upgrade_widgets($options, null);
     
     // Save our upgraded options
-    update_option('tarski_options', $options);
+    update_option('tarski_options', flush_tarski_options());
 }
 
 /**

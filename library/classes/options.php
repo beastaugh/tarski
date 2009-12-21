@@ -195,19 +195,16 @@ function flush_tarski_options() {
  *
  * @param string $option
  * @param mixed $value
- * @global object $tarski_options
  */
 function update_tarski_option($option, $value) {
-	flush_tarski_options();
-	
-	if (is_null($value))
-		unset($tarski_options->$option);
-	else
-		$tarski_options->$option = $value;
-	
-	update_option('tarski_options', $tarski_options);
-	
-	flush_tarski_options();
+    $tarski_options = flush_tarski_options();
+    
+    if (is_null($value))
+        unset($tarski_options->$option);
+    else
+        $tarski_options->$option = $value;
+    
+    update_option('tarski_options', $tarski_options);
 }
 
 /**
