@@ -16,6 +16,11 @@ if (!defined('NO_HEADER_TEXT'))
 	define('NO_HEADER_TEXT', true);
 add_custom_image_header('', 'tarski_admin_header_style');
 
+// Content width; set this in a plugin or child theme if you want to change
+// the width of the theme via a stylesheet.
+if (!isset($content_width))
+    $content_width = 500;
+
 // Widgets
 register_sidebar( // Main sidebar widgets
 	array(
