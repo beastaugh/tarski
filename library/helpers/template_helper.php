@@ -144,7 +144,7 @@ function tarski_headerimage() {
         $header_img_url = $path . '/headers/' . $file;
     }
     
-	$header_img_tag = sprintf('<img alt="%s" src="%s" />',
+	$header_img_tag = sprintf('<img alt="%s" src="%s">',
 		get_tarski_option('display_title')
 		    ? __('Header image', 'tarski')
 		    : get_bloginfo('name'),

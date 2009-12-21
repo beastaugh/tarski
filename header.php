@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html <?php language_attributes('html'); ?>><head>
-	<meta http-equiv="Content-Type" content="<?php echo get_bloginfo('html_type') .'; charset=' . get_bloginfo('charset'); ?>" />
+	<meta http-equiv="Content-Type" content="<?php echo get_bloginfo('html_type') .'; charset=' . get_bloginfo('charset'); ?>">
 	<title><?php echo tarski_doctitle(); ?></title>
 	
 	<?php wp_head(); ?>
