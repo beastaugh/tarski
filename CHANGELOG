@@ -6,6 +6,7 @@
 
   * Header images are now also pulled from child themes
   * Child themes can define their own alternate styles
+  * Styling for captioned images
   * Support for post thumbnails
   * `README` file introducing users and developers to working with Tarski
   * Home and page links are now added to the navbar via the `tarski_navbar`
