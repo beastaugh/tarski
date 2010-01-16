@@ -376,7 +376,7 @@ function add_external_links($navbar) {
     if (!get_tarski_option('nav_extlinkcat')) return $navbar;
     
     $extlinks_cat = get_tarski_option('nav_extlinkcat');
-    $extlinks = get_bookmarks("category=$extlinks_cat");
+    $extlinks = get_bookmarks("category=$extlinks_cat&orderby=rating");
     $target = $rel = '';
     $title  = '';
     foreach ($extlinks as $link) {
@@ -388,8 +388,8 @@ function add_external_links($navbar) {
         
         if ($link->link_description)
             $title = 'title="'. $link->link_description . '" ';
-    	
-    	$navbar['link-' . $link->ID] = sprintf(
+        
+        $navbar['link-' . $link->link_id] = sprintf(
             '<li><a id="nav-link-%1$s" %2$s href="%3$s">%4$s</a></li>',
             $link->link_id,
             $rel . $target . $title,

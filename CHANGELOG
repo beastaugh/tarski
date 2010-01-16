@@ -14,9 +14,10 @@
 
 #### Tweaks
 
-  * Deprecated sidebar and widget upgrade routine
+  * External navbar links are now ordered by link rating
   * Page and external navbar links now have more meaningful array keys when
     passed to the `tarski_navbar` filter
+  * Sidebar and widget upgrade routine is deprecated
   * Search form uses [HTML5][html5] placeholder text where available
   * Switched to the new WordPress escaping
     <abbr title="Application Programming Interface">API</abbr>
