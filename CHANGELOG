@@ -13,6 +13,7 @@
 
 #### Tweaks
 
+  * Deprecated sidebar and widget upgrade routine
   * Page and external navbar links now have more meaningful array keys when
     passed to the `tarski_navbar` filter
   * Search form uses [HTML5][html5] placeholder text where available

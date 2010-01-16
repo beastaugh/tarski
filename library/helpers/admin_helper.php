@@ -196,66 +196,6 @@ function tarski_upgrade_special($options, $defaults) {
 }
 
 /**
- * Upgrade old Tarski sidebar options to use widgets.
- *
- * @since 2.3
- * @see tarski_upgrade
- * @param object $options
- * @param object $defaults
- */
-function tarski_upgrade_widgets($options, $defaults) {
-    $widgets = wp_get_sidebars_widgets(false);
-    $widget_text = get_option('widget_text');
-
-    // Change sidebar names and initialise new sidebars
-    if (empty($widgets['sidebar-main']) && !empty($widgets['sidebar-1']))
-        $widgets['sidebar-main'] = $widgets['sidebar-1'];
-
-    if (empty($widgets['footer-sidebar']) && !empty($widgets['sidebar-2']))
-        $widgets['footer-sidebar'] = $widgets['sidebar-2'];
-
-    // Main footer widgets
-    if (empty($widgets['footer-main'])) {
-        $widgets['footer-main'] = array();
-
-        // Footer blurb
-        if (isset($options->blurb) && strlen(trim($options->blurb))) {
-            $widget_text[] = array( 'title' => '', 'text' => $options->blurb );
-            $wt_num = (int) end(array_keys($widget_text));
-            $widgets['footer-main'][] = "text-$wt_num";
-        }
-
-        // Recent articles
-        if (isset($options->footer_recent) && $options->footer_recent)
-            $widgets['footer-main'][] = 'recent-articles';
-    }
-
-    // Main sidebar
-    if (empty($widgets['sidebar-main']) && $options->sidebar_type == 'tarski') {
-        $widgets['sidebar-main'] = array();
-
-        // Custom text -> text widget
-        if(isset($options->sidebar_custom) && strlen(trim($options->sidebar_custom))) {
-            $widget_text[] = array( 'title' => '', 'text' => $options->sidebar_custom );
-            $wt_num = (int) end(array_keys($widget_text));
-            $widgets['sidebar-main'][] = "text-$wt_num";
-        }
-
-        // Pages list -> pages widget
-        if (isset($options->sidebar_pages) && $options->sidebar_pages)
-            $widgets['sidebar-main'][] = 'pages';
-
-        // Links list -> links widget
-        if(isset($options->sidebar_links) && $options->sidebar_links)
-            $widgets['sidebar-main'][] = 'links';
-    }
-
-    // Update options
-    update_option('widget_text', $widget_text);
-    wp_set_sidebars_widgets($widgets);
-}
-
-/**
  * Tarski preferences sometimes change between versions, and need to
  * be updated. This function does not determine whether an update is
  * needed, it merely perfoms it. It's also self-contained, so it
@@ -263,7 +203,6 @@ function tarski_upgrade_widgets($options, $defaults) {
  *
  * @since 2.1
  * @uses tarski_upgrade_special
- * @uses tarski_upgrade_widgets
  */
 function tarski_upgrade() {
     // Get options and set defaults
@@ -274,9 +213,6 @@ function tarski_upgrade() {
     
     // Handle special cases first
     tarski_upgrade_special($options, null);
-    
-    // Upgrade old display options to use widgets instead
-    tarski_upgrade_widgets($options, null);
     
     // Save our upgraded options
     update_option('tarski_options', flush_tarski_options());
