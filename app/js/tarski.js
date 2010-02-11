@@ -80,7 +80,7 @@ var Searchbox = {
 		if (this.sBox && this.sLabel) {
 			this.sLabel.style.display = 'none';
 			
-			if (this.sBox.placeholder && this.sBox.placeholder.length > 1) return;
+			if ('placeholder' in document.createElement('input') && this.sBox.placeholder.length > 1) return;
 			
 			replaceEmpty(this.sBox, this.sLabel);
 			addEvent(this.sBox, 'focus', this.reset_text.bind(this));
