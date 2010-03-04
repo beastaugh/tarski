@@ -4,6 +4,7 @@
 
 #### Bug fixes
 
+  * Blank header now doesn't render
   * Fix placeholder attribute detection in Internet Explorer.
 
 

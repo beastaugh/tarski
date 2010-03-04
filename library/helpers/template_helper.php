@@ -142,7 +142,7 @@ function tarski_headerimage() {
             }
         }
         
-        if (preg_match('/\/blank\.gif/', $file)) return '';
+        if ('blank.gif' == $file) return '';
         
         $header_img_url = $path . '/headers/' . $file;
     }
