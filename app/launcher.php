@@ -71,6 +71,9 @@ add_filter('widget_text', 'tarski_content_massage');
 add_filter('widget_text', 'tarski_widget_text_wrapper');
 add_filter('widget_links_args', 'tarski_widget_links_args');
 
+// Automatic feed links
+add_theme_support('automatic-feed-links');
+
 // Post thumbnails; change these settings via a child theme or plugin
 add_theme_support('post-thumbnails');
 set_post_thumbnail_size(150, 150, false);
@@ -92,7 +95,6 @@ if (is_admin()) {
 }
 
 // Header
-automatic_feed_links();
 add_action('wp_head', 'tarski_meta');
 add_action('wp_head', 'tarski_stylesheets');
 add_action('wp_head', 'tarski_javascript');
