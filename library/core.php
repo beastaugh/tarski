@@ -51,10 +51,10 @@ function is_valid_tarski_style($name) {
  * @return string
  */
 function tarski_js($path) {
-    $min  = defined('TARSKI_DEBUG') && TARSKI_DEBUG === true ? '' : '-min';
+    $dev  = defined('TARSKI_DEBUG') && TARSKI_DEBUG === true ? '.dev' : '';
     $path = preg_replace('/\.js$/', '', $path);
     
-    return $path . $min . '.js';
+    return $path . $dev . '.js';
 }
 
 ?>
