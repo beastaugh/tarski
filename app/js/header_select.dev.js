@@ -1,21 +1,26 @@
 Radios = function(selector) {
     this._elements = [];
     var radios     = this;
+    
     jQuery(selector).each(function(i) {
         radios.add(new Radio(radios, this));
     });
 };
 
 Radios.prototype.add = function(item) {
-    if (item._input && item._label) this._elements.push(item);
+    if (item._input && item._label) {
+        this._elements.push(item);
+    }
 };
 
 Radios.prototype.check = function(radio) {
     var i = this._elements.length;
+    
     while (i--) {
         this._elements[i]._input.checked = false;
         jQuery(this._elements[i]._label).removeClass('checked');
     }
+    
     radio._input.checked = true;
     jQuery(radio._label).addClass('checked');
 };
@@ -35,18 +40,18 @@ Radio.prototype._setup = function(group, input) {
     
     var radio = this;
     
-    jQuery([this._input, this._label]).click(function(event) {
+    jQuery([this._input, this._label]).click(function() {
         radio.group.check(radio);
     });
     
-    jQuery(this._label).mouseover(function(event) {
+    jQuery(this._label).mouseover(function() {
         jQuery(this).addClass('hovered');
     });
     
-    jQuery(this._label).mouseout(function(event) {
+    jQuery(this._label).mouseout(function() {
         jQuery(this).removeClass('hovered');
     });
-}
+};
 
 jQuery(document).ready(function() {
     new Radios('#tarski-headers input[type=radio]');
