@@ -2,6 +2,11 @@
 
 ### EDGE
 
+#### Tweaks
+
+  * Replace deprecated `wp_specialchars` call on the Tarski options page with
+    `esc_html`
+
 #### Bug fixes
 
   * Blank header now doesn't render

@@ -217,7 +217,7 @@ class TarskiVersion {
 	 */
 	function latest_version_summary() {
 		if(preg_match('/<entry>.*?<summary>(.+?)<\/summary>.*?<\/entry>/is', $this->feed_data, $matches)) {
-			$this->latest_summary = wp_specialchars($matches[1]);
+			$this->latest_summary = esc_html($matches[1]);
 		}
 	}
 	
