@@ -4,8 +4,8 @@
 
 #### New features
 
-  * Use minified versions of Tarski's JavaScript files unless `TARSKI_DEBUG`
-    is set to `true`
+  * Use minified versions of Tarski's JavaScript and CSS files unless
+    `TARSKI_DEBUG` is set to `true`
 
 #### Bug fixes
 
