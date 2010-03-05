@@ -1,0 +1,27 @@
+/*
+Tarski screen stylesheet
+*/
+
+/* Main structure
+----------------------------------------------- */
+body { min-width: 760px; }
+#wrapper { width: 760px; }
+
+/* Positioning
+----------------------------------------------- */
+body .primary { width: 500px; float: right; }
+	body.janus .primary { float: left; }
+body .primary-span { padding-left: 220px; clear: both; }
+	body.janus .primary-span { padding-left: 0; padding-right: 220px; }
+
+body .secondary { width: 200px; float: left; }
+	body.janus .secondary { float: right; }
+body .secondary-span { padding-left: 520px; clear: both; }
+	body.janus .secondary-span { padding-left: 0; padding-right: 520px; }
+
+body { text-align: left; }
+body.rtl { text-align: right; }
+body.centre { text-align: center; }
+body #wrapper { margin: 0 auto 0 0; }
+body.rtl #wrapper { margin: 0 0 0 auto; }
+body.centre #wrapper { margin: 0 auto; }

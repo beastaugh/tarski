@@ -1,0 +1,94 @@
+/**
+ * Tarski options page
+ *
+ * Tarski's options page lets users change the way Tarski looks and behaves.
+ * As a fairly involved form-based page with a non-standard layout, a certain
+ * amount of CSS is needed to keep things in order.
+ */
+
+/**
+ * Overall page styling
+ *
+ * Broad-brush stuff, setting the stage for the form elements. Makes the page
+ * background grey, puts the page title in its place, and sorts out other
+ * header and footer elements.
+ */
+#tarski-options {}
+#tarski-options-header { clear: both; margin-bottom: 0.8em; }
+#tarski-options-header h2 { float: left; margin: 0 0.8em 0 0; border: none; padding: 0; }
+#tarski-save-options, #tarski-info { display: block; padding: 0; }
+#tarski-save-options { float: left; margin: 0.6em 0 0 0; }
+#tarski-info { float: right; margin: 0.8em 0 0 0; font-weight: bold; }
+.rtl { text-align: right; direction: rtl; }
+
+/**
+ * Positioning
+ *
+ * The 'span' class is for elements which span the entire page width, while
+ * the 'primary' and 'secondary' classes are for blocks which are floated to
+ * left and right respectively, clearing only those above them and thus
+ * allowing for fairly flexible layouts.
+ */
+.span { clear: both; }
+.clearer { display: block; clear: both; height: 0; visibility: hidden; }
+.primary, .secondary { width: 49.5%; }
+.primary, .rtl .secondary { float: left; clear: left; }
+.secondary, .rtl .primary { float: right; clear: right; }
+#tarski-options .updated { margin-bottom: 15px; }
+
+/**
+ * Form sections and elements
+ *
+ * Form layouts are a dark art, and these rules let us specify a bit more
+ * precisely than the WordPress defaults do how things should appear.
+ */
+.postbox .inside { margin: 10px; }
+.postbox h4, .postbox p { margin: 0 0 0.8em 0; }
+.postbox .option { margin:0 -10px; border-top:1px solid #dfdfdf; padding:0.8em 10px 0 10px; }
+.postbox .borderless { border-top: none; padding-top: 0; }
+.postbox label, .postbox select, .postbox input.text { display: block; margin: 0 0 0.8em 0; }
+.postbox input.text { border: 1px solid #ccc; }
+.postbox .option label { font-weight: bold; }
+.postbox .details { margin: 0 -10px -10px -10px; border-top:1px solid #dfdfdf; padding: 0.4em 10px 1px 10px; background: #f9f9f9; -webkit-border-bottom-right-radius: 6px; -moz-border-bottom-right-radius: 6px; border-bottom-right-radius: 6px; -webkit-border-bottom-left-radius: 6px; -moz-border-bottom-left-radius: 6px; border-bottom-left-radius: 6px; }
+#tarski-options .highlight { background: none; color: #d54e21; }
+#tarski-update-status { margin: -10px -10px 0.8em -10px; border-bottom: 1px solid #dfdfdf; padding: 10px; }
+#tarski-update-status p { font-family: Georgia, Times, serif; font-size: 14px; }
+#tarski-update-status.update-available { background-color: #eaf2fa; }
+#tarski-update-status.problem { background-color: #f9f9f9; }
+#tarski-update-status.disabled { background-color: #f9f9f9; }
+#tarski-update-status p:last-child { margin-bottom: 0; }
+
+/**
+ * Navbar selection node tree
+ *
+ * The navbar selection tool is an ordered list of pages, whose list elements
+ * may also contain child lists of sub-pages.
+ */
+#navbar-select { clear: both; margin: 0 0 1em 0; padding: 0; }
+#navbar-select ol { margin: 0; padding: 0; }
+#navbar-select li { margin: 0; padding: 0; list-style-type: none; }
+#navbar-select li ol li { padding-left: 1.5em; }
+#navbar-select .nav-page { position: relative; margin: 0 0 0.5em 0; padding: 4px 20px 3px 5px; background-color: #eaf2fa; background-repeat:no-repeat; background-position: 5px 6px; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; }
+#navbar-select .nav-page a { text-decoration: none; }
+#navbar-select.js .nav-page { padding-left: 28px; background-image: url('../../images/page_select.png'); }
+#navbar-select .nav-page label { display: inline; margin: 0 0 0.7em 0; }
+#navbar-select .nav-page input { display: block; position: absolute; top: 4px; right: 5px; width: 1em; height: 1em; }
+#navbar-select .nav-page .toggle { display: block; position: absolute; top: 0; left: 0; width: 23px; height: 23px; background: url('../../images/page_select.png') no-repeat 5px -194px; text-indent: -9999em; cursor: pointer; }
+#navbar-select.js .collapsed .nav-page .collapsed-toggle { background-position: 5px -94px; }
+#navbar-select.js li.collapsed ol { display: none; }
+/* Some hacks to work around Internet Explorer bugs */
+#navbar-select, #navbar-select ol, #navbar-select li, #navbar-select .nav-page, #navbar-select .nav-page input { *zoom: 1; }
+#navbar-select .nav-page input { _top: 5px; }
+
+/**
+ * Header selector
+ *
+ * The Tarski options page uses JavaScript to create clickable header image
+ * thumbnails.
+ */
+#tarski-headers label, #tarski-headers label img { display: block; float: left; }
+#tarski-headers label { margin: 0 10px 10px 0; border: 1px solid #8ebfd5; padding: 4px; background: #fff; }
+#tarski-headers label img { margin: 0; padding: 0; font-weight: bold; }
+#tarski-headers label.checked { border: 2px solid #d54e21; padding: 3px; }
+#tarski-headers label.unchecked {}
+#tarski-headers label.hovered { border-color: #d54e21; }
