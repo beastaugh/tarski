@@ -238,11 +238,18 @@ function tarski_addmenu() {
 
 /**
  * Displays the Options page.
- * 
+ *
  * @since 1.0
+ *
+ * @uses current_user_can
+ * @see WP_Http
  */
 function tarski_admin() {
     if (current_user_can('edit_themes')) {
+        if (!class_exists('WP_Http')) {
+            require_once(ABSPATH . WPINC . '/class-http.php');
+        }
+        
         tarski_template('options_page.php');
     }
 }
