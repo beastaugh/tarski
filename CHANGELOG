@@ -2,6 +2,11 @@
 
 ### EDGE
 
+#### New features
+
+  * Use minified versions of Tarski's JavaScript files unless `TARSKI_DEBUG`
+    is set to `true`
+
 #### Bug fixes
 
   * Blank header now doesn't render

@@ -277,14 +277,19 @@ function tarski_inject_styles() {
 }
 
 /**
- * tarski_inject_scripts() - Adds JavaScript to the Tarski Options page.
- * 
+ * Adds JavaScript to the Tarski Options page.
+ *
  * @since 1.4
+ *
+ * @uses get_bloginfo
+ * @uses wp_enqueue_script
+ *
+ * @return void
 */
 function tarski_inject_scripts() {
-	$js_dir = get_bloginfo('template_directory') . '/app/js';
-	wp_enqueue_script('page_select', "$js_dir/page_select.js");
-	wp_enqueue_script('header_select', "$js_dir/header_select.js");
+    $js_dir = get_bloginfo('template_directory') . '/app/js';
+    wp_enqueue_script('page_select', tarski_js("$js_dir/page_select.js"));
+    wp_enqueue_script('header_select', tarski_js("$js_dir/header_select.js"));
 }
 
 /**

@@ -40,4 +40,21 @@ function is_valid_tarski_style($name) {
 		!preg_match('/^(janus|centre|rtl|js).css$/', $file);
 }
 
+/**
+ * Appends "-min" to the filename of the JavaScript file path passed in.
+ *
+ * @since 2.7
+ *
+ * @see TARSKI_DEBUG
+ *
+ * @param string $path
+ * @return string
+ */
+function tarski_js($path) {
+    $min  = defined('TARSKI_DEBUG') && TARSKI_DEBUG === true ? '' : '-min';
+    $path = preg_replace('/\.js$/', '', $path);
+    
+    return $path . $min . '.js';
+}
+
 ?>
