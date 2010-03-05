@@ -12,20 +12,28 @@ namespace :minify do
       options    = {:shrink_vars => true, :private => true}
       code       = File.read(file)
       compressed = Packr.pack(code, options)
-      File.open(file.sub(/\.dev.js$/, ".js"), 'wb') { |f| f.write(compressed) }
+      File.open(file.sub(/\.dev.js$/, ".js"), "w") { |f| f.write(compressed) }
     end
   end
   
   desc "Compress CSS files"
   task :css do
-    file       = "style.css"
+    main       = "style.dev.css"
+    files      = Dir.glob("library/css/*.dev.css") << main
     compressor = YUI::CssCompressor.new
-    code       = File.read(file)
-    header     = code.match(/\/\*.+?\*\//m)[0]
-    compressed = compressor.compress(code)
     
-    File.open("style.min.css", "wb") do |f|
-      f.write(header + "\n" + compressed)
+    files.each do |file|
+      code       = File.read(file)
+      compressed = compressor.compress(code)
+      
+      if file == main
+        header = code.match(/\/\*.+?\*\//m)[0]
+        output = header + "\n" + compressed
+      else
+        output = compressed
+      end
+      
+      File.open(file.sub(/\.dev\.css/, ".css"), "w") { |f| f.write(output) }
     end
   end
   
