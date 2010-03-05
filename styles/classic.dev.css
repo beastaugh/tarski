@@ -1,0 +1,54 @@
+/*
+classic.css
+'Classic' style for the Tarski theme - http://tarskitheme.com/
+Designed by Benedict Eastaugh, http://extralogical.net/
+*/
+
+
+/* Navigation
+----------------------------------------------- */
+body.classic #wrapper .nav-current:link, body.classic #wrapper .nav-current:visited, body.classic #wrapper .nav-current:active { color: #bf6030; }
+body.classic #wrapper .nav-current:hover { color: #e59900; }
+
+/* Content
+----------------------------------------------- */
+body.classic abbr, body.classic acronym { border-bottom: 1px solid #bf8060; }
+		
+	/* Headers
+	--------------------------------------- */
+	body.classic h3 { color: #bf6030; }
+	
+	/* Post content
+	--------------------------------------- */
+	body.classic .articlenav { background: #fcfeff; }
+	
+	/* Inserts
+	--------------------------------------- */
+	body.classic .insert { background: #fcfeff; margin: 0 0 1em 0; border: 1px solid #cfdde5; padding: 9px; }
+		body.classic .insert h3 { border-bottom: 1px solid #cfdde5; }
+	
+	/* Downloads
+	--------------------------------------- */
+	body.classic .content a.download:link, body.classic .content a.download:visited, body.classic .content a.download:active { background-color: #fcfeff; border: 1px solid #cfdde5; }
+	
+	/* Images
+	--------------------------------------- */
+	body.classic a img { border: 1px solid #0f6b99; }
+	body.classic a:hover img, body.classic .comment a:hover .avatar { border: 1px solid #e59900; }
+		
+/* Links
+----------------------------------------------- */
+body.classic a:link, body.classic a:active, body.classic a:visited { color: #0f6b99; }
+body.classic a:hover { color: #e59900; }
+
+body.classic .content a:link, body.classic .content a:active, body.classic .content a:visited, body.classic .link-pages a:link, body.classic .link-pages a:active, body.classic .link-pages a:visited, body.classic .tagdata a:link, body.classic .tagdata a:active, body.classic .tagdata a:visited, body.classic .widget_tag_cloud a:link, body.classic .widget_tag_cloud a:active, body.classic .widget_tag_cloud a:visited { border-bottom: 1px solid #cfdde5; }
+body.classic .content a:hover, body.classic .link-pages a:hover, body.classic .tagdata a:hover, body.classic .widget_tag_cloud a:hover { border-bottom: 1px solid #e59900; }
+
+/* Widgets
+----------------------------------------------- */
+	
+	/* Calendar widget
+	------------------------------------------- */
+	body.classic .widget_calendar tbody td a { color: #fff; background: #8bb6cc; }
+	body.classic .widget_calendar tbody td a:hover { color: #fff; background: #cca352; }
+	
