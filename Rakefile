@@ -19,7 +19,7 @@ namespace :minify do
   desc "Compress CSS files"
   task :css do
     main       = "style.dev.css"
-    files      = Dir.glob("library/css/*.dev.css") << main
+    files      = Dir.glob("{styles,library/css}/*.dev.css") << main
     compressor = YUI::CssCompressor.new
     
     files.each do |file|
