@@ -1,1 +1,53 @@
-body.polar #wrapper .nav-current:link,body.polar #wrapper .nav-current:visited,body.polar #wrapper .nav-current:active{color:#a8a8a8;}body.polar #wrapper .nav-current:hover{color:#000;}body.polar abbr,body.polar acronym{border-bottom:1px solid #5c8499;}body.polar h3{color:#a8a8a8;}body.polar .articlenav{background:#fff;}body.polar .insert{background:#fff;margin:0 0 1em 0;border:1px solid #cfdee5;padding:9px;}body.polar .insert h3{border-bottom:1px solid #cfdee5;}body.polar .content a.download:link,body.polar .content a.download:visited,body.polar .content a.download:active{background-color:#fafcfc;border:1px solid #cfdee5;}body.polar a img{border:1px solid #4c8099;}body.polar a:hover img,body.polar .comment a:hover .avatar{border:1px solid #000;}body.polar a:link,body.polar a:active,body.polar a:visited{color:#4c8099;}body.polar a:hover{color:#000;}body.polar .content a:link,body.polar .content a:active,body.polar .content a:visited,body.polar .link-pages a:link,body .link-pages a:active,body .link-pages a:visited,body .tagdata a:link,body.polar .tagdata a:active,body.polar .tagdata a:visited,body.polar .widget_tag_cloud a:link,body.polar .widget_tag_cloud a:active,body.polar .widget_tag_cloud a:visited{border-bottom:1px solid #ccc;}body.polar .content a:hover,body.polar .link-pages a:hover,body.polar .tagdata a:hover,body.polar .widget_tag_cloud a:hover{border-bottom:1px solid #000;}body.polar .widget_calendar tbody td a{color:#fff;background:#8bb6cc;}body.polar .widget_calendar tbody td a:hover{color:#fff;background:#404040;}
+/*
+polar.css
+'Polar' style for the Tarski theme - http://tarskitheme.com/
+Designed by Benedict Eastaugh, http://extralogical.net/
+*/
+
+
+/* Navigation
+----------------------------------------------- */
+body.polar #wrapper .nav-current:link, body.polar #wrapper .nav-current:visited, body.polar #wrapper .nav-current:active { color: #a8a8a8; }
+body.polar #wrapper .nav-current:hover { color: #000; }
+	
+/* Content
+----------------------------------------------- */
+body.polar abbr, body.polar acronym { border-bottom: 1px solid #5c8499; }
+		
+	/* Headers
+	--------------------------------------- */
+	body.polar h3 { color: #a8a8a8; }
+	
+	/* Post content
+	--------------------------------------- */
+	body.polar .articlenav { background: #fff; }
+	
+	/* Inserts
+	--------------------------------------- */
+	body.polar .insert { background: #fff; margin: 0 0 1em 0; border: 1px solid #cfdee5; padding: 9px; }
+		body.polar .insert h3 { border-bottom: 1px solid #cfdee5; }
+	
+	/* Downloads
+	--------------------------------------- */
+	body.polar .content a.download:link, body.polar .content a.download:visited, body.polar .content a.download:active { background-color: #fafcfc; border: 1px solid #cfdee5; }
+	
+	/* Images
+	--------------------------------------- */
+	body.polar a img { border: 1px solid #4c8099; }
+	body.polar a:hover img, body.polar .comment a:hover .avatar { border: 1px solid #000; }
+		
+/* Links
+----------------------------------------------- */
+body.polar a:link, body.polar a:active, body.polar a:visited { color: #4c8099; }
+body.polar a:hover { color: #000; }
+
+body.polar .content a:link, body.polar .content a:active, body.polar .content a:visited, body.polar .link-pages a:link, body .link-pages a:active, body .link-pages a:visited, body .tagdata a:link, body.polar .tagdata a:active, body.polar .tagdata a:visited, body.polar .widget_tag_cloud a:link, body.polar .widget_tag_cloud a:active, body.polar .widget_tag_cloud a:visited { border-bottom: 1px solid #ccc; }
+body.polar .content a:hover, body.polar .link-pages a:hover, body.polar .tagdata a:hover, body.polar .widget_tag_cloud a:hover { border-bottom: 1px solid #000; }
+
+/* Widgets
+----------------------------------------------- */
+
+	/* Calendar widget
+	------------------------------------------- */
+	body.polar .widget_calendar tbody td a { color: #fff; background: #8bb6cc; }
+	body.polar .widget_calendar tbody td a:hover { color: #fff; background: #404040; }
