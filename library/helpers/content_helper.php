@@ -100,61 +100,94 @@ function tarski_posts_nav_link() {
 }
 
 /**
- * A simple wrapper around get_the_category_list().
- * 
- * Wraps the categories list in a span to make it easier to access via the DOM.
- * 
+ * A simple wrapper around the get_the_category_list function, it wraps the
+ * categories list in a span to make it easier to access via the DOM.
+ *
  * @since 2.0
- * @uses get_the_category_list()
- * 
+ *
+ * @uses get_tarski_option
+ * @uses get_the_category_list
+ *
+ * @see tarski_post_metadata
+ *
+ * @param string $metadata
  * @return string
  */
-function tarski_post_categories_link() {
-	if (get_tarski_option('show_categories')) printf(__(' in %s','tarski'),
-		'<span class="categories">' . get_the_category_list(', ') . '</span>');
+function tarski_post_categories_link($metadata) {
+    if (get_tarski_option('show_categories')) {
+        $categories_links = sprintf('<span class="categories">%s</span>',
+            get_the_category_list(', '));
+        
+        $metadata .= sprintf(__(' in %s','tarski'), $categories_links);
+    }
+    
+    return $metadata;
 }
 
 /**
- * Output comment links for different post types.
- * 
- * The function has different output modes for single posts, pages and posts on
- * index pages; in the latter case it's a simple function call, but in the
- * former cases it has to be built manually and it's convenient to have a
- * wrapper around all the logic, keeping the templates clean.
- * 
- * @since 2.1
+ * A specialisation of the core function comments_number, written mainly
+ * because the core function echoes its result rather than returning it.
+ *
+ * @since 2.7
+ *
+ * @uses get_comments_number
+ * @uses number_format_i18n
  * @uses comments_number
- * @uses comments_popup_link
- * 
+ *
+ * @see comments_number
+ * @see tarski_comments_link
+ *
+ * @global integer $id
+ * @return string
+ */
+function tarski_comments_number() {
+    global $id;
+    
+    $number = get_comments_number($id);
+    
+    if ($number > 1) {
+        $output = str_replace('%',
+            number_format_i18n($number),
+            __('% comments', 'tarski'));
+    } elseif ($number == 0) {
+        $output = __('No comments', 'tarski');
+    } else {
+        $output = __('1 comment', 'tarski');
+    }
+    
+    return apply_filters('comments_number', $output, $number);
+}
+
+/**
+ * Returns a link to a post's comments (if a post has them) or the comment form
+ * (if comments are open).
+ *
+ * @since 2.1
+ *
+ * @uses comments_open
+ * @uses get_permalink
+ * @uses comments_number
+ *
+ * @see tarski_post_metadata
+ *
+ * @param string $metadata
  * @global object $post
  * @return void
  */
-function tarski_comments_link() {
-	global $post;
-	
-	$have_comments = intval($post->comment_count) > 0;
-	
-	if (!(comments_open() || $have_comments))
-		return;
-	
-	$anchor = $have_comments ? '#comments' : '#respond';
-	
-	if (is_single() || is_page()) {
-		printf(' | <a class="comments-link" href="%s">', $anchor);
-		comments_number(
-			__('No comments', 'tarski'),
-			__('1 comment', 'tarski'),
-			__('% comments', 'tarski'));
-		echo '</a>';
-	} else {
-		echo ' | ';
-		comments_popup_link(
-			__('No comments', 'tarski'),
-			__('1 comment', 'tarski'),
-			__('% comments', 'tarski'),
-			'comments-link',
-			__('Comments closed', 'tarski'));
-	}
+function tarski_comments_link($metadata) {
+    global $post;
+    
+    $have_comments = intval($post->comment_count) > 0;
+    
+    if (comments_open() || $have_comments) {
+        $anchor = get_permalink() . ($have_comments ? '#comments' : '#respond');
+        $link   = sprintf('<a class="comments-link" href="%s">%s</a>',
+            $anchor, tarski_comments_number());
+        
+        $metadata .= ' | ' . $link;
+    }
+    
+    return $metadata;
 }
 
 /**
@@ -173,6 +206,132 @@ function tarski_asides_permalink_text() {
 	} else {
 		_e('Permalink', 'tarski');
 	}
+}
+
+/**
+ * Returns HTML representing metadata associated with a post, e.g. the date and
+ * time of posting, the author, the number of comments, an edit link etc. This
+ * function is essentially a wrapper that returns the results of applying
+ * filters via the th_post_metadata hook.
+ *
+ * @since 2.7
+ *
+ * @see tarski_post_metadata
+ *
+ * @return string
+ *
+ * @hook filter th_post_metadata
+ * Allows for the customisation of post metadata (the content displayed
+ * immediately below the post title). By default 
+ */
+function th_post_metadata() {
+    return apply_filters('th_post_metadata', '');
+}
+
+/**
+ * This function drives Tarski's post metadata, adding different filters to the
+ * th_post_metadata hook depending on which kind of page is being viewed etc.
+ * Depending on how its use evolves, we may have to revisit the way this
+ * operates, since it runs before we know which individual posts it's being
+ * used for.
+ *
+ * @since 2.7
+ *
+ * @uses is_attachment
+ * @uses add_filter
+ *
+ * @see th_post_metadata
+ * @see tarski_post_categories_link
+ * @see tarski_author_posts_link
+ * @see tarski_comments_link
+ * @see tarski_post_metadata_edit
+ * @see tarski_post_metadata_wrapper
+ *
+ * @return void
+ */
+function tarski_post_metadata() {
+    $filters = array();
+    
+    $filters[] = 'tarski_post_metadata_date';
+    
+    if (!is_attachment()) {
+        $filters[] = 'tarski_post_categories_link';
+        $filters[] = 'tarski_author_posts_link';
+        $filters[] = 'tarski_comments_link';
+    }
+    
+    $filters[] = 'tarski_post_metadata_edit';
+    $filters[] = 'tarski_post_metadata_wrapper';
+    
+    foreach ($filters as $filter) {
+        add_filter('th_post_metadata', $filter);
+    }
+}
+
+/**
+ * Wraps a post's metadata in a paragraph.
+ *
+ * @see tarski_post_metadata
+ *
+ * @param string $metadata
+ * @return string
+ */
+function tarski_post_metadata_wrapper($metadata) {
+    // $wrapper_class = tarski_post_is_aside() ? 'meta' : 'metadata';
+    $wrapper_class = 'metadata';
+    return "<p class=\"${wrapper_class}\">" . $metadata . '</p>';
+}
+
+/**
+ * Displays the date of a given post.
+ *
+ * @since 2.7
+ *
+ * @uses get_the_time
+ * @uses get_option
+ *
+ * @see th_post_metadata
+ * @see tarski_post_metadata
+ *
+ * @param string $metadata
+ * @return string
+ */
+function tarski_post_metadata_date($metadata) {
+    $date = sprintf('<span class="date updated">%s</span>',
+        get_the_time(get_option('date_format')));
+    
+    return $metadata . $date;
+}
+
+/**
+ * Displays edit links for a given post.
+ *
+ * @since 2.7
+ *
+ * @uses get_edit_post_link
+ * @uses esc_attr
+ * @uses esc_html
+ *
+ * @see th_post_metadata
+ * @see tarski_post_metadata
+ *
+ * @param string $metadata
+ * @return string
+ */
+function tarski_post_metadata_edit($metadata) {
+    $uri = get_edit_post_link($post->ID);
+    
+    if ($uri) {
+        $edit_link = sprintf(
+            '<a class="post-edit-link" href="%s" title="%s">%s</a>',
+            $uri,
+            esc_attr(__('Edit this post', 'tarski')),
+            esc_html(__('edit', 'tarski')));
+        
+        $metadata .= ' <span class="edit">(' . $edit_link . ')</span>';
+    }
+    
+    return $metadata;
 }
 
 /**

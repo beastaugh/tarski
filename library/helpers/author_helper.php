@@ -1,24 +1,34 @@
 <?php
 
 /**
- * tarski_author_posts_link() - If site has more than one author, output a link to that author's archive page.
- * 
+ * If site has more than one author, output a link to that author's archive page.
+ *
+ * @since 1.7
+ *
+ * @uses get_tarski_option
+ * @uses get_author_posts_url
+ * @uses get_the_author
+ *
+ * @see tarski_post_metadata
+ *
+ * @param string $metadata
  * @global object $authordata
  * @return string
  */
-function tarski_author_posts_link() {
-	global $authordata;
-	if(get_tarski_option('show_authors')) {
-		printf(
-			__(' by ','tarski') . '<span class="vcard author"><a href="%1$s" title="%2$s" class="url fn">%3$s</a></span>', 
-			get_author_posts_url($authordata->ID, $authordata->user_nicename), 
-			sprintf(
-				__('Articles by %s','tarski'),
-				esc_attr(get_the_author())
-			), 
-			get_the_author()
-		);
-	}
+function tarski_author_posts_link($metadata) {
+    global $authordata;
+
+    if (get_tarski_option('show_authors')) {
+        $link = sprintf('<a href="%1$s" title="%2$s" class="url fn">%3$s</a>',
+            get_author_posts_url($authordata->ID, $authordata->user_nicename),
+            sprintf(__('Articles by %s','tarski'), esc_attr(get_the_author())),
+            get_the_author());
+
+        $metadata .= __(' by ','tarski') .
+            "<span class=\"vcard author\">$link</span>";
+    }
+
+    return $metadata;
 }
 
 /**
