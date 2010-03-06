@@ -112,7 +112,7 @@ class TarskiAsset {
 	 */
 	function javascript() {
 		$scripts = array(
-			'tarski-js' => get_bloginfo('template_directory') . '/app/js/tarski.js',
+			'tarski-js' => tarski_js(get_bloginfo('template_directory') . '/app/js/tarski.js'),
 			'comment-reply' => site_url('wp-includes/js/comment-reply.js')
 		);
 		

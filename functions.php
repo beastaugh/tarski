@@ -16,6 +16,7 @@
  * @see TarskiVersion
  * @link http://tarskitheme.com/help/updates/notifier/
  */
+define('TARSKI_DEBUG', false);
 define('TARSKICLASSES', TEMPLATEPATH . '/library/classes');
 define('TARSKIHELPERS', TEMPLATEPATH . '/library/helpers');
 define('TARSKIDISPLAY', TEMPLATEPATH . '/app/templates');

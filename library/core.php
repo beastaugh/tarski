@@ -40,4 +40,53 @@ function is_valid_tarski_style($name) {
 		!preg_match('/^(janus|centre|rtl|js).css$/', $file);
 }
 
+/**
+ * If debug mode is enabled, use uncompressed (development mode) JavaScript.
+ *
+ * @since 2.7
+ *
+ * @see TARSKI_DEBUG
+ * @uses _tarski_compressible_asset_path
+ *
+ * @param string $path
+ * @return string
+ */
+function tarski_js($path) {
+    return _tarski_compressible_asset_path('js', $path);
+}
+
+/**
+ * If debug mode is enabled, use uncompressed (development mode) CSS.
+ *
+ * @since 2.7
+ *
+ * @see TARSKI_DEBUG
+ * @uses _tarski_compressible_asset_path
+ *
+ * @param string $path
+ * @return string
+ */
+function tarski_css($path) {
+    return _tarski_compressible_asset_path('css', $path);
+}
+
+/**
+ * If debug mode is enabled, use an uncompressed version of the file.
+ *
+ * @since 2.7
+ *
+ * @see TARSKI_DEBUG
+ * @see tarski_js
+ * @see tarski_css
+ *
+ * @param string $path
+ * @return string
+ */
+function _tarski_compressible_asset_path($type, $path) {
+    $dev  = defined('TARSKI_DEBUG') && TARSKI_DEBUG === true ? '.dev' : '';
+    $path = preg_replace("/\.${type}$/", '', $path);
+    
+    return $path . $dev . ".${type}";
+}
+
 ?>
