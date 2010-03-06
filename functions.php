@@ -38,7 +38,6 @@ if (!defined('TARSKIVERSIONFILE'))
  */
 require_once(TEMPLATEPATH . '/library/core.php');
 require_once(TARSKICLASSES . '/options.php');
-require_once(TARSKICLASSES . '/asset.php');
 require_once(TARSKICLASSES . '/comment_walker.php');
 
 /**

@@ -9,6 +9,13 @@
 
 #### Tweaks
 
+  * The `tarski_assets` filter is now deprecated
+  * The `TarskiAsset` class has been removed
+  * The array passed to the `tarski_asset_meta` filter now has meaningful keys
+  * Require the `WP_Http` class on the options page to power the update
+    notifier
+  * Remove deprecated `automatic_feed_links` call, use the new
+    `automatic-feed-links` option on `add_theme_support` instead
   * Replace deprecated `wp_specialchars` call on the Tarski options page with
     `esc_html`
 

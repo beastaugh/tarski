@@ -92,7 +92,10 @@ if (is_admin()) {
 }
 
 // Header
-add_action('wp_head', array('TarskiAsset', 'init'));
+automatic_feed_links();
+add_action('wp_head', 'tarski_meta');
+add_action('wp_head', 'tarski_stylesheets');
+add_action('wp_head', 'tarski_javascript');
 add_filter('gallery_style', 'trim_gallery_style', 20);
 
 add_action('th_header', 'tarski_headerimage');

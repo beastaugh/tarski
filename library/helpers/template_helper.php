@@ -118,6 +118,165 @@ function trim_gallery_style($style) {
 }
 
 /**
+ * Generate meta elements pertaining to Tarski and the site.
+ *
+ * @since 2.7
+ *
+ * @uses theme_version
+ * @uses get_bloginfo
+ * @uses get_option
+ * @uses _tarski_asset_output
+ *
+ * @see tarski_stylesheets
+ * @see tarski_javascript
+ *
+ * @return void
+ *
+ * @hook filter tarski_asset_meta
+ * Filters metadata (in the form of meta and link elements) that appears in the
+ * document head.
+ */
+function tarski_meta() {
+    global $wp_query;
+    
+    $themeversion = theme_version();
+    $meta         = array(
+        'wp_theme' => "<meta name=\"wp_theme\" content=\"Tarski $themeversion\">");
+    $excerpt      = ($wp_query->post) ?
+        trim(strip_tags(esc_attr($wp_query->post->post_excerpt))) : '';
+    
+    if ((is_single() || is_page()) && strlen($excerpt)) {
+        $description = $excerpt;
+    } else {
+        $description = trim(strip_tags(get_bloginfo('description', 'display')));
+    }
+    
+    if (strlen($description)) {
+        $meta['description'] = sprintf('<meta name="description" content="%s">',
+            wptexturize($description));
+    }
+    
+    if (get_option('blog_public') != '0') {
+        $meta['robots'] = '<meta name="robots" content="all">';
+    }
+    
+    $meta['xfn_profile'] = '<link rel="profile" href="http://gmpg.org/xfn/11">';
+    
+    _tarski_asset_output('asset_meta', $meta);
+}
+
+/**
+ * Generate links to the various Tarski stylesheets.
+ *
+ * @since 2.7
+ *
+ * @uses get_bloginfo
+ * @uses get_tarski_option
+ * @uses _tarski_get_alternate_stylesheet_uri
+ * @uses _tarski_asset_output
+ *
+ * @see tarski_meta
+ * @see tarski_javascript
+ *
+ * @return void
+ *
+ * @hook filter tarski_style_array
+ * Filter the array of stylesheet attributes from which the stylesheet
+ * links are generated.
+ *
+ * @hook filter tarski_stylesheets
+ * Filter the raw stylesheet link elements before they're printed to
+ * the document.
+ */
+function tarski_stylesheets() {
+    $style_array = array(
+        'main' => array(
+            'url' => get_bloginfo('stylesheet_url')),
+        'screen' => array(
+            'url' => get_bloginfo('template_directory') . '/library/css/screen.css',
+            'media' => 'screen,projection'),
+        'print' => array(
+            'url' => get_bloginfo('template_directory') . '/library/css/print.css',
+            'media' => 'print'));
+    
+    if (get_tarski_option('style')) {
+        $style_uri = _tarski_get_alternate_stylesheet_uri();
+        
+        if (strlen($style_uri) > 0) {
+            $style_array['alternate'] = array('url' => $style_uri);
+        }
+    }
+    
+    $style_array = apply_filters('tarski_style_array', $style_array);
+    
+    if (is_array($style_array)) {
+        foreach ($style_array as $type => $values) {
+            if (is_array($values) && $values['url']) {
+                if (empty($values['media'])) {
+                    $values['media'] = 'all';
+                }
+                
+                $stylesheets[$type] = sprintf(
+                    '<link rel="stylesheet" href="%1$s" type="text/css" media="%2$s">',
+                    $values['url'],
+                    $values['media']);
+            }
+        }
+    }
+    
+    _tarski_asset_output('stylesheets', $stylesheets);
+}
+
+/**
+ * Generate script elements linking to Tarski's JavaScript.
+ *
+ * @since 2.7
+ *
+ * @uses get_bloginfo
+ * @uses site_url
+ * @uses _tarski_asset_output
+ *
+ * @see tarski_meta
+ * @see tarski_stylesheets
+ *
+ * @return void
+ *
+ * @hook filter tarski_javascript
+ * Filter script elements before they're printed to the document.
+ */
+function tarski_javascript() {
+    $scripts = array();
+    $files   = array(
+        'tarski-js'     => get_bloginfo('template_directory') . '/app/js/tarski.js',
+        'comment-reply' => site_url('wp-includes/js/comment-reply.js'));
+    
+    foreach ($files as $name => $url) {
+        $scripts[$name] = "<script type=\"text/javascript\" src=\"$url\"></script>";
+    }
+    
+    _tarski_asset_output('javascript', $scripts);
+}
+
+/**
+ * Apply filters to an array of HTML elements, then print the result.
+ *
+ * @since 2.7
+ *
+ * @uses apply_filters
+ *
+ * @see tarski_meta
+ * @see tarski_stylesheets
+ * @see tarski_javascript
+ *
+ * @return void
+ */
+function _tarski_asset_output($type, $assets) {
+    $filtered = apply_filters('tarski_' . $type, $assets);
+    
+    echo implode("\n", $filtered) . "\n\n";
+}
+
+/**
  * Outputs header image.
  *
  * @since 1.0
