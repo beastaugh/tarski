@@ -4,6 +4,7 @@
 
 #### Tweaks
 
+  * Captions are now centred
   * Replace deprecated `wp_specialchars` call on the Tarski options page with
     `esc_html`
 
