@@ -319,7 +319,7 @@ function tarski_post_metadata_date($metadata) {
  * @return string
  */
 function tarski_post_metadata_edit($metadata) {
-    $uri = get_edit_post_link($post->ID);
+    $uri = get_edit_post_link();
     
     if ($uri) {
         $edit_link = sprintf(
