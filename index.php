@@ -29,13 +29,13 @@
 	
 		<?php } else { ?>
 		
-			<?php include(TARSKIDISPLAY . '/loop.php'); ?>
+			<?php tarski_template('loop.php'); ?>
 
 		<?php } // End loop types ?>
 	
 	<?php } else { // If no posts ?>
 		
-		<?php include(TARSKIDISPLAY . "/no_posts.php"); ?>
+		<?php tarski_template('no_posts.php'); ?>
 	
 	<?php } // End loop ?>
 

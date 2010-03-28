@@ -71,12 +71,12 @@
 		</div> <!-- /archive -->
 		
 		
-		<?php include(TARSKIDISPLAY . '/loop.php'); ?>
+		<?php tarski_template('loop.php'); ?>
 		
 		
 	<?php } else { ?>
 		
-		<?php include(TARSKIDISPLAY . "/no_posts.php"); ?>
+		<?php tarski_template('no_posts.php'); ?>
 		
 	<?php } // End if posts ?>
 </div> <!-- /primary -->

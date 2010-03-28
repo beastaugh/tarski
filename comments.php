@@ -37,7 +37,7 @@ if (have_comments() || comments_open()) { ?>
 	}
 	
 	if (comments_open())
-		include_once(TARSKIDISPLAY . '/respond.php');
+	    tarski_template('respond.php');
 	else
 		echo '<p id="comments-closed"><em>' . __('Comments are now closed.', 'tarski') . '</em></p>';
 } ?>

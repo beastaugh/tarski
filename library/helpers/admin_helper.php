@@ -237,13 +237,14 @@ function tarski_addmenu() {
 }
 
 /**
- * tarski_admin() - Displays the Options page.
+ * Displays the Options page.
  * 
  * @since 1.0
  */
 function tarski_admin() {
-	if (current_user_can('edit_themes'))
-		include(TARSKIDISPLAY . '/options_page.php');
+    if (current_user_can('edit_themes')) {
+        tarski_template('options_page.php');
+    }
 }
 
 /**
@@ -507,14 +508,17 @@ function tarski_update_notifier() {
 }
 
 /**
- * tarski_options_fragment() - Includes an options page template fragment.
- * 
+ * Include an options page template fragment.
+ *
  * @since 2.4
+ *
+ * @uses tarski_template
+ *
  * @param string $block
  */
 function tarski_options_fragment($block) {
-	$block = preg_replace("/\.php$/", "", $block);
-	include(TARSKIDISPLAY . "/options/$block.php");
+    $block = preg_replace("/\.php$/", "", $block);
+    tarski_template("options/$block.php");
 }
 
 /**
