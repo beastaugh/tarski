@@ -10,6 +10,7 @@
 
 #### Tweaks
 
+  * `loop.php` file moved into `app/templates/` directory
   * The `tarski_assets` filter is now deprecated
   * The `TarskiAsset` class has been removed
   * The array passed to the `tarski_asset_meta` filter now has meaningful keys

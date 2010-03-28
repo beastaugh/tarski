@@ -15,7 +15,7 @@
 			</div>
 		</div> <!-- /archive -->
 		
-		<?php include(TEMPLATEPATH.'/loop.php'); ?>
+		<?php include(TARSKIDISPLAY . '/loop.php'); ?>
 		
 		
 	<?php } else { ?>
