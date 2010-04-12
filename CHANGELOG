@@ -26,6 +26,7 @@
 
 #### Bug fixes
 
+  * Fix comment author data retention
   * Blank header now doesn't render
   * Fix placeholder attribute detection in Internet Explorer.
 

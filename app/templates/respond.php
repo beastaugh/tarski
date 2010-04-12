@@ -3,8 +3,9 @@
  * @package WordPress
  * @subpackage Tarski
  */
+global $user_identity;
 ?><div id="respond">
-<?php if (get_option('comment_registration') && !$user_ID) {  // if registration is mandatory and user not logged in ?>
+<?php if (get_option('comment_registration') && !is_user_logged_in()) {  // if registration is mandatory and user not logged in ?>
 	
 	<p class="login-required"><em><?php printf(
 		__('You must be %s to post a comment.', 'tarski'),
@@ -19,7 +20,7 @@
 			<p class="cancel-reply"><?php cancel_comment_reply_link(__('Click here to cancel your reply', 'tarski')); ?></p>
 		</div>
 		
-	<?php if($user_ID) { // if user is logged in ?>
+	<?php if (is_user_logged_in()) { // if user is logged in ?>
 		
 		<p class="logged-in"><?php printf(__('Logged in as %1$s. %2$s', 'tarski'),
 			'<a href="' . admin_url('profile.php') . '">' . $user_identity . '</a>',
@@ -28,9 +29,9 @@
 	<?php } else { // if user is not logged in - name, email and website fields ?>
 		
 		<div class="response-details clearfix">
-			<?php comment_text_field('author', __('Name %s', 'tarski'), $comment_author, $req); ?>
-			<?php comment_text_field('email', __('Email %s', 'tarski'), $comment_author_email, $req); ?>
-			<?php comment_text_field('url', __('Website', 'tarski'), $comment_author_url); ?>
+			<?php comment_text_field('author', __('Name %s', 'tarski'), get_comment_author(), true); ?>
+			<?php comment_text_field('email', __('Email %s', 'tarski'), get_comment_author_email(), true, 20, 'email'); ?>
+			<?php comment_text_field('url', __('Website', 'tarski'), get_comment_author_url(), false, 20, 'url'); ?>
 		</div>
 		
 	<?php } // textarea etc. start here ?>
@@ -44,7 +45,7 @@
 		<p class="submit-wrap"><input class="submit" name="submit" type="submit" id="submit" value="<?php _e('Submit Comment', 'tarski'); ?>"></p>
 		
 		<div class="response-extras">
-			<?php do_action('comment_form', $post->ID); ?>
+			<?php do_action('comment_form', get_the_ID()); ?>
 		</div>
 	</form>
 
