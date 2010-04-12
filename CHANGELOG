@@ -13,6 +13,7 @@
 
 #### Tweaks
 
+  * Use HTML5 `search` text field type in the search form
   * Use HTML5 `email` and `url` text field types in the comment form
   * `loop.php` file moved into `app/templates/` directory
   * The `tarski_assets` filter is now deprecated
