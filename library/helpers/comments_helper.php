@@ -167,25 +167,25 @@ function tarski_comment_author_link() {
 
 /**
  * Outputs a text field and associated label.
- * 
+ *
  * Used in the comments reply form to reduce duplication and clean up the
  * template. Adds a wrapper div around the label and input field for ease of
  * styling.
- * 
+ *
  * @since 2.4
- * @uses required_field()
- * 
+ * @uses required_field
+ *
  * @param string $field
  * @param string $label
  * @param string $value
  * @param boolean $required
  * @param integer $size
  */
-function comment_text_field($field, $label, $value = '', $required = false, $size = 20) { ?>
-	<div class="text-wrap <?php echo "$field-wrap"; ?>">
-		<label for="<?php echo $field; ?>"><?php printf($label, required_field($required)); ?></label>
-		<input class="<?php echo comment_field_classes(); ?>" type="text" name="<?php echo $field; ?>" id="<?php echo $field; ?>" value="<?php echo $value; ?>" size="<?php echo $size; ?>">
-	</div>
+function comment_text_field($field, $label, $value = '', $required = false, $size = 20, $type = "text") { ?>
+    <div class="text-wrap <?php echo "$field-wrap"; ?>">
+        <label for="<?php echo $field; ?>"><?php printf($label, required_field($required)); ?></label>
+        <input class="<?php echo comment_field_classes(); ?>" type="<?php echo $type ?>" name="<?php echo $field; ?>" id="<?php echo $field; ?>" value="<?php echo $value; ?>" size="<?php echo $size; ?>">
+    </div>
 <?php }
 
 /**

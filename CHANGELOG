@@ -6,13 +6,14 @@
 
   * New template stores can now be added via the `tarski_template_paths` filter
   * Child themes may override some Tarski templates by including files of the
-    same name in a `/templates` directory within the child theme.
+    same name in a `/templates` directory within the child theme
   * Post metadata is now added via the `th_post_metadata` filter hook
   * Use minified versions of Tarski's JavaScript and CSS files unless
     `TARSKI_DEBUG` is set to `true`
 
 #### Tweaks
 
+  * Use HTML5 `email` and `url` text field types in the comment form
   * `loop.php` file moved into `app/templates/` directory
   * The `tarski_assets` filter is now deprecated
   * The `TarskiAsset` class has been removed
@@ -28,7 +29,7 @@
 
   * Fix comment author data retention
   * Blank header now doesn't render
-  * Fix placeholder attribute detection in Internet Explorer.
+  * Fix placeholder attribute detection in Internet Explorer
 
 
 ### Version 2.6 [&sect;](http://tarskitheme.com/2010/01/16/2-6-release/)
