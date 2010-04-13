@@ -13,6 +13,7 @@
 
 #### Tweaks
 
+  * Add `aria-required` and `aria-multiline` attributes to comment form fields
   * Use HTML5 `search` text field type in the search form
   * Use HTML5 `email` and `url` text field types in the comment form
   * `loop.php` file moved into `app/templates/` directory
@@ -28,7 +29,6 @@
 
 #### Bug fixes
 
-  * Fix comment author data retention
   * Blank header now doesn't render
   * Fix placeholder attribute detection in Internet Explorer
 
