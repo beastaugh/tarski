@@ -1,4 +1,4 @@
-<?php $categories = &get_categories('type=link&hide_empty=0'); ?>
+<?php $categories = &get_categories('taxonomy=link_category&hide_empty=0'); ?>
 <div class="option borderless">
 	<label for="opt-nav-extlinkcat"><?php _e('Add external links to the navbar','tarski'); ?></label>
 	<select name="nav_extlinkcat" id="opt-nav-extlinkcat" size="1">
