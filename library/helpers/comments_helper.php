@@ -184,7 +184,7 @@ function tarski_comment_author_link() {
 function comment_text_field($field, $label, $value = '', $required = false, $size = 20, $type = "text") { ?>
     <div class="text-wrap <?php echo "$field-wrap"; ?>">
         <label for="<?php echo $field; ?>"><?php printf($label, required_field($required)); ?></label>
-        <input class="<?php echo comment_field_classes(); ?>" type="<?php echo $type ?>" name="<?php echo $field; ?>" id="<?php echo $field; ?>" value="<?php echo $value; ?>" size="<?php echo $size; ?>">
+        <input class="<?php echo comment_field_classes(); ?>" type="<?php echo $type ?>" name="<?php echo $field; ?>" id="<?php echo $field; ?>" value="<?php echo $value; ?>" size="<?php echo $size; ?>"<?php if ($required) echo ' aria-required="true"'; ?>>
     </div>
 <?php }
 
