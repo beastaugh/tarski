@@ -10,6 +10,7 @@
   * Post metadata is now added via the `th_post_metadata` filter hook
   * Use minified versions of Tarski's JavaScript and CSS files unless
     `TARSKI_DEBUG` is set to `true`
+  * Theme graphics are more strongly compressed
 
 #### Tweaks
 
