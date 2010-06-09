@@ -15,7 +15,7 @@
 			</div>
 		</div> <!-- /archive -->
 		
-		<?php tarski_template('loop.php'); ?>
+		<?php get_template_part('app/templates/loop'); ?>
 		
 		
 	<?php } else { ?>

@@ -4,9 +4,8 @@
 
 #### New features
 
-  * New template stores can now be added via the `tarski_template_paths` filter
   * Child themes may override some Tarski templates by including files of the
-    same name in a `/templates` directory within the child theme
+    same name in an `/app/templates` directory within the child theme
   * Post metadata is now added via the `th_post_metadata` filter hook
   * Use minified versions of Tarski's JavaScript and CSS files unless
     `TARSKI_DEBUG` is set to `true`

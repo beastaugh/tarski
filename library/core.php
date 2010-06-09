@@ -5,56 +5,6 @@
  */
 
 /**
- * Locate a template somewhere in the Tarski template search path. The search
- * path itself by default includes the current theme's /templates directory,
- * and Tarski's /app/templates directory. The function returns the path of the
- * first template of the given name to be located.
- *
- * @since 2.7
- *
- * @uses apply_filters
- * @see tarski_template
- *
- * @param string $template
- * @return string
- *
- * @hook filter tarski_template_paths
- * Allows for the addition of new template stores to supplement those provided
- * by Tarski itself and any child theme. Simply add a new file system path to
- * the beginning of the array passed to filters added to the
- * tarski_template_paths hook using e.g. array_unshift.
- */
-function tarski_locate_template($template) {
-    $default_search_paths = array(
-        STYLESHEETPATH . "/templates",
-        TARSKIDISPLAY);
-    
-    $search_paths = apply_filters('tarski_template_paths',
-        $default_search_paths);
-    
-    while ($path = next($search_paths) . "/${template}") {
-        if (file_exists($path)) break;
-    }
-    
-    return $path;
-}
-
-/**
- * Include a template located somewhere in the Tarski template search path.
- *
- * @since 2.7
- *
- * @uses tarski_locate_template
- *
- * @param string $filename
- * @return void
- */
-function tarski_template($filename) {
-    $path = tarski_locate_template($filename);
-    if ($path) include($path);
-}
-
-/**
  * Return the current theme version.
  * 
  * @since 2.0

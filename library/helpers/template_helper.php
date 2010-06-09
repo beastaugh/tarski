@@ -609,12 +609,12 @@ function wrap_navlist($navbar) {
  *
  * @since 2.0
  *
- * @uses tarski_template
+ * @uses get_template_part
  *
  * @return void
  */
 function tarski_feedlink() {
-    tarski_template('feed_link.php');
+    get_template_part('app/templates/feed_link');
 }
 
 /**
@@ -761,7 +761,7 @@ function tarski_searchform() {
  * 
  * @since 1.5
  *
- * @uses tarski_template
+ * @uses get_template_part
  *
  * @return void
  */
@@ -770,7 +770,7 @@ function tarski_credits() {
         $current_site = get_current_site();
     }
     
-    tarski_template('credits.php');
+    get_template_part('app/templates/credits');
 }
 
 ?>
