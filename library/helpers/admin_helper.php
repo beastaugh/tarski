@@ -525,7 +525,7 @@ function tarski_update_notifier() {
  */
 function tarski_options_fragment($block) {
     $block = preg_replace("/\.php$/", "", $block);
-    get_template_part("app/templates/options/$block.php");
+    get_template_part("app/templates/options/$block");
 }
 
 /**
