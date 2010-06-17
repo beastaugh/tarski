@@ -6,16 +6,16 @@
  * @since 2.0
  * @uses is_page_template
  * @uses dynamic_sidebar
- * @return mixed
+ * @return void
  */
 function tarski_sidebar() {
-	if (is_page_template('archives.php'))
-		return;
-	
-	if ((is_single() || is_page()) && (get_tarski_option('sidebar_pp_type') != 'main'))
-		dynamic_sidebar('sidebar-post-and-page');
-	else
-		dynamic_sidebar('sidebar-main');
+    if (is_page_template('archives.php')) return;
+    
+    $sidebar = is_singular() && (get_tarski_option('sidebar_pp_type') != 'main')
+             ? 'sidebar-post-and-page'
+             : 'sidebar-main';
+    
+    dynamic_sidebar($sidebar);
 }
 
 /**

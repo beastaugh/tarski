@@ -17,7 +17,7 @@
  * @return string
  */
 function tarski_next_prev_posts() {
-	if ( is_single() ) {
+	if (is_singular()) {
 		$prev_post = get_previous_post();
 		$next_post = get_next_post();
 		

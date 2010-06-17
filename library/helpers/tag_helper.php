@@ -113,12 +113,14 @@ function multiple_tag_titles($format = '') {
  * add_post_tags() - Appends tags to posts.
  * 
  * @since 2.0
- * @return string
+ * @return void
  */
 function add_post_tags() {
-	if (is_single() || (get_tarski_option('tags_everywhere') && !in_category(get_tarski_option('asidescategory')))) {
-		the_tags('<p class="tagdata"><strong>'. __('Tags','tarski'). ':</strong> ', ', ', '</p>'."\n");
-	}
+    if (is_404()) return;
+    
+    if (is_singular() || (get_tarski_option('tags_everywhere') && !in_category(get_tarski_option('asidescategory')))) {
+        the_tags('<p class="tagdata"><strong>'. __('Tags','tarski'). ':</strong> ', ', ', '</p>'."\n");
+    }
 }
 
 ?>

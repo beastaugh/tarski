@@ -145,7 +145,7 @@ function tarski_meta() {
     $excerpt      = ($wp_query->post) ?
         trim(strip_tags(esc_attr($wp_query->post->post_excerpt))) : '';
     
-    if ((is_single() || is_page()) && strlen($excerpt)) {
+    if (is_singular() && strlen($excerpt)) {
         $description = $excerpt;
     } else {
         $description = trim(strip_tags(get_bloginfo('description', 'display')));
@@ -738,9 +738,7 @@ function tarski_post_thumbnail() {
     
     if (empty($thumbnail)) return '';
     
-    return is_single() || is_page()
-        ? $thumbnail
-        : sprintf($wrapper, get_permalink(), $thumbnail);
+    return is_singular() ? $thumbnail : sprintf($wrapper, get_permalink(), $thumbnail);
 }
 
 /**
