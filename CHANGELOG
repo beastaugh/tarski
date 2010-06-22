@@ -4,6 +4,7 @@
 
 #### New features
 
+  * Added support for custom backgrounds
   * Child themes may override some Tarski templates by including files of the
     same name in an `/app/templates` directory within the child theme
   * Post metadata is now added via the `th_post_metadata` filter hook

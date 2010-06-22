@@ -74,6 +74,9 @@ add_filter('widget_links_args', 'tarski_widget_links_args');
 // Automatic feed links
 add_theme_support('automatic-feed-links');
 
+// Custom background support
+add_custom_background();
+
 // Post thumbnails; change these settings via a child theme or plugin
 add_theme_support('post-thumbnails');
 set_post_thumbnail_size(150, 150, false);
@@ -95,9 +98,9 @@ if (is_admin()) {
 }
 
 // Header
-add_action('wp_head', 'tarski_meta');
-add_action('wp_head', 'tarski_stylesheets');
-add_action('wp_head', 'tarski_javascript');
+add_action('wp_head', 'tarski_meta', 9);
+add_action('wp_head', 'tarski_stylesheets', 9);
+add_action('wp_head', 'tarski_javascript', 9);
 add_filter('gallery_style', 'trim_gallery_style', 20);
 
 add_action('th_header', 'tarski_headerimage');
