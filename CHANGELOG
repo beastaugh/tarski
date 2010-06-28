@@ -28,6 +28,8 @@
     `automatic-feed-links` option on `add_theme_support` instead
   * Replace deprecated `wp_specialchars` call on the Tarski options page with
     `esc_html`
+  * Use `the_title_attribute` function when printing a post title within an
+    element attribute
 
 #### Bug fixes
 

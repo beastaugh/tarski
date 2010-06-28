@@ -15,7 +15,11 @@
         <div <?php post_class('entry'); ?>>
             
             <div class="meta">
-                <h2 class="title entry-title" id="post-<?php the_ID(); ?>"><a href="<?php the_permalink(); ?>" rel="bookmark" title="<?php _e('Permanent link to ','tarski'); the_title(); ?>"><?php the_title(); ?></a></h2>
+                <h2 class="title entry-title" id="post-<?php the_ID(); ?>">
+                    <a href="<?php the_permalink(); ?>" rel="bookmark" title="<?php printf(__('Permanent link to %s', 'tarski'), the_title_attribute(array('echo' => 0))); ?>">
+                        <?php the_title(); ?>
+                    </a>
+                </h2>
                 
                 <?php echo th_post_metadata(); ?>
             </div>
