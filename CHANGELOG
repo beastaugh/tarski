@@ -1,5 +1,12 @@
 # Changelog
 
+### Version 2.7.1 [&sect;](http://tarskitheme.com/2010/08/01/2-7-release/)
+
+#### Bug fixes
+
+  * Posts only attempt to display categories when there are some
+
+
 ### Version 2.7.0 [&sect;](http://tarskitheme.com/2010/08/01/2-7-release/)
 
 #### New features

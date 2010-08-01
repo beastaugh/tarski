@@ -115,10 +115,12 @@ function tarski_posts_nav_link() {
  */
 function tarski_post_categories_link($metadata) {
     if (get_tarski_option('show_categories')) {
-        $categories_links = sprintf('<span class="categories">%s</span>',
-            get_the_category_list(', '));
+        $cats = get_the_category_list(', ');
         
-        $metadata .= sprintf(__(' in %s','tarski'), $categories_links);
+        if (strlen($cats)) {
+            $metadata .= sprintf(__(' in %s','tarski'),
+                '<span class="categories">' . $cats . '</span>');
+        }
     }
     
     return $metadata;
