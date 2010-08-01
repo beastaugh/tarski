@@ -5,6 +5,8 @@
 #### Bug fixes
 
   * Posts only attempt to display categories when there are some
+  * Fixed some metadata display logic to match that of versions prior to 2.7.0
+  * Fixed navigation display logic to match that of versions prior to 2.7.0
 
 
 ### Version 2.7.0 [&sect;](http://tarskitheme.com/2010/08/01/2-7-release/)

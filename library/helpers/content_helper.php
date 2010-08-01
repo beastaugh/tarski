@@ -17,7 +17,7 @@
  * @return string
  */
 function tarski_next_prev_posts() {
-	if (is_singular()) {
+	if (is_single()) {
 		$prev_post = get_previous_post();
 		$next_post = get_next_post();
 		
@@ -254,9 +254,11 @@ function th_post_metadata() {
 function tarski_post_metadata() {
     $filters = array();
     
-    $filters[] = 'tarski_post_metadata_date';
+    if (!is_page()) {
+        $filters[] = 'tarski_post_metadata_date';
+    }
     
-    if (!is_attachment()) {
+    if (!(is_attachment() || is_page())) {
         $filters[] = 'tarski_post_categories_link';
         $filters[] = 'tarski_author_posts_link';
         $filters[] = 'tarski_comments_link';
