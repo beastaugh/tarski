@@ -32,8 +32,8 @@ fieldset { border: none; }
 
 /* Main structure
 ----------------------------------------------- */
-body { font-family: Verdana, Helvetica, Arial, sans-serif; font-size: 76%; line-height: 120%; color: #404040; background: #fff; }
-#wrapper { text-align: left; }
+body { min-width: 760px; font-family: Verdana, Helvetica, Arial, sans-serif; font-size: 76%; line-height: 120%; color: #404040; background: #fff; }
+#wrapper { width: 760px; text-align: left; }
 body.rtl #wrapper { text-align: right; direction: rtl; }
     #header, #content { margin-bottom: 2em; padding-left: 20px; padding-right: 20px; }
     #footer, #theme-info, #footer-include { clear: both; }
@@ -46,6 +46,25 @@ body.rtl #wrapper { text-align: right; direction: rtl; }
 * html .clearfix { height: 1%; }
 .clearfix { display: block; }
 /* End hide from IE-mac */
+
+/* Positioning
+----------------------------------------------- */
+body .primary { width: 500px; float: right; }
+    body.janus .primary { float: left; }
+body .primary-span { padding-left: 220px; clear: both; }
+    body.janus .primary-span { padding-left: 0; padding-right: 220px; }
+
+body .secondary { width: 200px; float: left; }
+    body.janus .secondary { float: right; }
+body .secondary-span { padding-left: 520px; clear: both; }
+    body.janus .secondary-span { padding-left: 0; padding-right: 520px; }
+
+body { text-align: left; }
+body.rtl { text-align: right; }
+body.centre { text-align: center; }
+body #wrapper { margin: 0 auto 0 0; }
+body.rtl #wrapper { margin: 0 0 0 auto; }
+body.centre #wrapper { margin: 0 auto; }
 
 /* Header
 ----------------------------------------------- */

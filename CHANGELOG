@@ -1,5 +1,12 @@
 # Changelog
 
+### Edge
+
+#### Tweaks
+
+  * Removed the `screen.css` stylesheet and moved its content into the main
+    stylesheet
+
 ### Version 2.7.1 [&sect;](http://tarskitheme.com/2010/08/01/2-7-release/)
 
 #### Bug fixes

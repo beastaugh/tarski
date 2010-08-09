@@ -192,9 +192,6 @@ function tarski_stylesheets() {
     $style_array = array(
         'main' => array(
             'url' => get_bloginfo('stylesheet_url')),
-        'screen' => array(
-            'url' => get_bloginfo('template_directory') . '/library/css/screen.css',
-            'media' => 'screen,projection'),
         'print' => array(
             'url' => get_bloginfo('template_directory') . '/library/css/print.css',
             'media' => 'print'));
