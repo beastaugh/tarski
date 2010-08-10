@@ -111,8 +111,8 @@ class TarskiOptions {
 		}
 		
         if (isset($_POST['header_image'])) {
-            $thumbless    = str_replace('-thumb', '', $_POST['header_image']);
-            $this->header = array_slice(preg_split('/\//', $thumbless), 0, 2);
+            $header = preg_split('/\//', str_replace('-thumb', '', $_POST['header_image']));
+            $this->header = array_slice($header, 0, 2);
         }
 		
 		if (isset($_POST['nav_pages']))
@@ -127,7 +127,7 @@ class TarskiOptions {
 		
         if (isset($_POST['alternate_style'])) {
             $style = array_slice(preg_split('/\//', $_POST['alternate_style']), 0, 2);
-            $this->style = is_valid_tarski_style($style[1]) ? $style : false;
+            $this->style = count($style) > 1 && is_valid_tarski_style($style[1]) ? $style : false;
         }
         
 		$this->display_title = (bool) $_POST['display_title'];
@@ -141,7 +141,7 @@ class TarskiOptions {
 		$this->asidescategory = $_POST['asides_category'];
 		$this->nav_extlinkcat = $_POST['nav_extlinkcat'];
 		$this->home_link_name = $_POST['home_link_name'];
-		$this->sidebar_pp_type = $_POST['sidebar_pp_type'];			
+		$this->sidebar_pp_type = $_POST['sidebar_pp_type'];
 		$this->show_authors = tarski_should_show_authors();
 		unset($this->deleted);
 	}

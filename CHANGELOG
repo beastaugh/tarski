@@ -19,6 +19,8 @@
 #### Bug fixes
 
   * Replaced call to deprecated `_c` function with `_x`
+  * Fix some warnings on the options page when saving alternate styles and
+    headers
 
 
 ### Version 2.7.1 [&sect;](http://tarskitheme.com/2010/08/01/2-7-0-release/)
