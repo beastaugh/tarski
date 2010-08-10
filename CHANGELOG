@@ -4,6 +4,7 @@
 
 #### Tweaks
 
+  * Made time format strings translateable
   * Removed the `screen.css` stylesheet and moved its content into the main
     stylesheet
 
