@@ -4,6 +4,8 @@
 
 #### Tweaks
 
+  * Changed permission level necessary to edit Tarski options from
+    `edit_themes` to `manage_options`
   * Made time format strings translateable
   * Deprecated `tarski_searchform` function
   * Replaced `detectWPMU` and `detectWPMUadmin` with core functions
