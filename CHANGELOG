@@ -10,6 +10,11 @@
   * Removed the `screen.css` stylesheet and moved its content into the main
     stylesheet
 
+#### Bug fixes
+
+  * Replaced call to deprecated `_c` function with `_x`
+
+
 ### Version 2.7.1 [&sect;](http://tarskitheme.com/2010/08/01/2-7-0-release/)
 
 #### Bug fixes
