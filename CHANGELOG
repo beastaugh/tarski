@@ -4,6 +4,8 @@
 
 #### Tweaks
 
+  * Changed permission level necessary to edit Tarski options from
+    `edit_themes` to `manage_options`
   * Made time format strings translateable
   * Removed the `screen.css` stylesheet and moved its content into the main
     stylesheet

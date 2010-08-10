@@ -50,7 +50,7 @@ function cache_is_writable($file = false) {
 function save_tarski_options() {
 	check_admin_referer('admin_post_tarski_options', '_wpnonce_tarski_options');
 	
-	if (!current_user_can('edit_themes'))
+	if (!current_user_can('manage_options'))
 		wp_die(__('You are not authorised to perform this operation.', 'tarski'));
 	
 	$options = flush_tarski_options();
@@ -75,7 +75,7 @@ function save_tarski_options() {
 function delete_tarski_options() {
 	check_admin_referer('admin_post_delete_tarski_options', '_wpnonce_delete_tarski_options');
 	
-	if (!current_user_can('edit_themes'))
+	if (!current_user_can('manage_options'))
 		wp_die(__('You are not authorised to perform this operation.', 'tarski'));
 	
 	$options = flush_tarski_options();
@@ -101,7 +101,7 @@ function delete_tarski_options() {
 function restore_tarski_options() {
 	check_admin_referer('admin_post_restore_tarski_options', '_wpnonce_restore_tarski_options');
 	
-	if (!current_user_can('edit_themes'))
+	if (!current_user_can('manage_options'))
 		wp_die(__('You are not authorised to perform this operation.', 'tarski'));
 	
 	$options = flush_tarski_options();
@@ -227,7 +227,7 @@ function tarski_addmenu() {
 	$page = add_theme_page(
 		__('Tarski Options','tarski'),
 		__('Tarski Options','tarski'),
-		'edit_themes',
+		'manage_options',
 		'tarski-options',
 		'tarski_admin'
 	);
@@ -245,7 +245,7 @@ function tarski_addmenu() {
  * @see WP_Http
  */
 function tarski_admin() {
-    if (current_user_can('edit_themes')) {
+    if (current_user_can('manage_options')) {
         if (!class_exists('WP_Http')) {
             require_once(ABSPATH . WPINC . '/class-http.php');
         }
