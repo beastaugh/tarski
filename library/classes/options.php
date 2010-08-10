@@ -112,9 +112,7 @@ class TarskiOptions {
 		
         if (isset($_POST['header_image'])) {
             $header = preg_split('/\//', str_replace('-thumb', '', $_POST['header_image']));
-            if (count($header) > 1) {
-                $this->header = array_slice($header, 0, 2);
-            }
+            $this->header = array_slice($header, 0, 2);
         }
 		
 		if (isset($_POST['nav_pages']))
@@ -128,13 +126,8 @@ class TarskiOptions {
 			$this->collapsed_pages = '';
 		
         if (isset($_POST['alternate_style'])) {
-            $style = preg_split('/\//', $_POST['alternate_style']);
-            if (count($style) > 1) {
-                $style = array_slice($style, 0, 2);
-                $this->style = is_valid_tarski_style($style[1]) ? $style : false;
-            } else {
-                $this->style = false;
-            }
+            $style = array_slice(preg_split('/\//', $_POST['alternate_style']), 0, 2);
+            $this->style = count($style) > 1 && is_valid_tarski_style($style[1]) ? $style : false;
         }
         
 		$this->display_title = (bool) $_POST['display_title'];
