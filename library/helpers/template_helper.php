@@ -751,10 +751,6 @@ function tarski_searchform() {
  * @return void
  */
 function tarski_credits() {
-    if (detectWPMU()) {
-        $current_site = get_current_site();
-    }
-    
     get_template_part('app/templates/credits');
 }
 

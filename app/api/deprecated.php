@@ -12,6 +12,32 @@
  */
 
 /**
+ * detectWPMUadmin() - Detect whether the current user is a WPMU site administrator.
+ *
+ * @since 2.0
+ * @deprecated 2.8
+ * @return boolean
+ */
+function detectWPMUadmin() {
+    _deprecated_function(__FUNCTION__, '2.8');
+    
+    return is_multisite() && is_super_admin();
+}
+
+/**
+ * Detect whether WordPress Multi-User is in use.
+ *
+ * @since 1.4
+ * @deprecated 2.8
+ * @return boolean
+ */
+function detectWPMU() {
+    _deprecated_function(__FUNCTION__, '2.8');
+    
+    return function_exists('is_site_admin');
+}
+
+/**
  * Returns the classes that should be applied to the document body.
  *
  * @since 1.2
@@ -29,7 +55,7 @@
  * Filter the classes applied to the document body by Tarski.
  */
 function tarski_bodyclass($return = false) {
-    _deprecated_function(__FUNCTION__, '2.6');
+    _deprecated_function(__FUNCTION__, '2.8');
     
     if (get_tarski_option('centred_theme'))
         $classes[] = 'centre';

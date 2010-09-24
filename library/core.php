@@ -18,16 +18,6 @@ function theme_version() {
 }
 
 /**
- * Detect whether WordPress Multi-User is in use.
- * 
- * @since 1.4
- * @return boolean
- */
-function detectWPMU() {
-	return function_exists('is_site_admin');
-}
-
-/**
  * Check whether a given file name is a valid Tarski stylesheet name.
  * 
  * It must be a valid CSS identifier, followed by the .css file extension,

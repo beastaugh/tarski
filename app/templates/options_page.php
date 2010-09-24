@@ -25,7 +25,7 @@
 		<?php tarski_options_fragment('messages'); ?>
 		
 		<div class="secondary">
-			<?php if (!detectWPMU() || detectWPMUadmin()) tarski_options_fragment('update_notifier'); ?>
+			<?php if (is_super_admin()) tarski_options_fragment('update_notifier'); ?>
 		</div>
 		
 		<div class="primary">

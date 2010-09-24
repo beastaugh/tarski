@@ -1,16 +1,6 @@
 <?php
 
 /**
- * detectWPMUadmin() - Detect whether the current user is a WPMU site administrator.
- * 
- * @since 2.0
- * @return boolean
- */
-function detectWPMUadmin() {
-	return detectWPMU() ? is_site_admin() : false;
-}
-
-/**
  * cache_is_writable() - Checks whether WordPress can write to $file in Tarski's cache directory.
  * 
  * If $file isn't given, the function checks to see if new files can 
