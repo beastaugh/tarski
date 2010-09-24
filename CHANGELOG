@@ -4,6 +4,10 @@
 
 #### Tweaks
 
+  * Replaced use of `detectWPMU` and global `$current_site` in credits file.
+  * Updated license information in stylesheet and moved license file to comply
+    with new WordPress theme policy.
+  * Replaced `tarski_bodyclass` function with a WP API call.
   * Removed the `screen.css` stylesheet and moved its content into the main
     stylesheet
 
