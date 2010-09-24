@@ -4,6 +4,7 @@
 
 #### Tweaks
 
+  * Deprecated `tarski_searchform` function
   * Replaced `detectWPMU` and `detectWPMUadmin` with core functions
     `is_multisite` and `is_super_admin`
   * Updated license information in stylesheet and moved license file to comply

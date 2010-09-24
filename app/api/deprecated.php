@@ -2,14 +2,30 @@
 /**
  * @package WordPress
  * @subpackage Tarski
- * 
+ *
  * The scrapyard: deprecated functions that haven't yet been removed.
- * 
+ *
  * Don't write plugins that rely on these functions, as they are liable
  * to be removed between versions. There will usually be a better way
  * to do what you want; post on the forum if you need help.
  * @link http://tarskitheme.com/forum/
  */
+
+/**
+ * tarski_searchform() - Outputs the WordPress search form.
+ *
+ * Will only output the search form on pages that aren't a search
+ * page or a 404, as these pages include the search form earlier
+ * in the document and the search form relies on the 's' id value,
+ * which as an HTML id must be unique within the document.
+ * @since 2.0
+ * @deprecated 2.8
+ */
+function tarski_searchform() {
+    _deprecated_function(__FUNCTION__, '2.8');
+    
+    get_search_form();
+}
 
 /**
  * detectWPMUadmin() - Detect whether the current user is a WPMU site administrator.

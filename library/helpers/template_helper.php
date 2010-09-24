@@ -729,19 +729,6 @@ function tarski_post_thumbnail() {
 }
 
 /**
- * tarski_searchform() - Outputs the WordPress search form.
- * 
- * Will only output the search form on pages that aren't a search
- * page or a 404, as these pages include the search form earlier
- * in the document and the search form relies on the 's' id value,
- * which as an HTML id must be unique within the document.
- * @since 2.0
- */
-function tarski_searchform() {
-	include_once(TEMPLATEPATH . "/searchform.php");
-}
-
-/**
  * Outputs the site feed and Tarski credits.
  * 
  * @since 1.5
