@@ -615,22 +615,18 @@ function tarski_feedlink() {
 }
 
 /**
- * Returns the classes that should be applied to the document body.
+ * Add Tarski-specific classes to the body element.
  *
- * @since 1.2
+ * @since 2.8
  *
  * @uses get_tarski_option
  * @uses is_valid_tarski_style
  * @uses get_bloginfo
- * @uses apply_filters
  *
- * @param boolean $return
- * @return string $classes
- *
- * @hook filter tarski_bodyclass
- * Filter the classes applied to the document body by Tarski.
+ * @param array $classes
+ * @return array
  */
-function tarski_bodyclass($return = false) {
+function tarski_body_class($classes) {
     if (get_tarski_option('centred_theme'))
         $classes[] = 'centre';
     
@@ -648,13 +644,7 @@ function tarski_bodyclass($return = false) {
     if (get_bloginfo('text_direction') == 'rtl')
         $classes[] = 'rtl';
     
-    $classes = apply_filters('tarski_bodyclass', $classes);
-    $classes = is_array($classes) ? implode(' ', $classes) : '';
-    
-    if ($return)
-        return $classes;
-    else
-        echo $classes;
+    return $classes;
 }
 
 /**

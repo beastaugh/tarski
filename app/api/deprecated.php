@@ -12,6 +12,52 @@
  */
 
 /**
+ * Returns the classes that should be applied to the document body.
+ *
+ * @since 1.2
+ * @deprecated 2.8
+ *
+ * @uses get_tarski_option
+ * @uses is_valid_tarski_style
+ * @uses get_bloginfo
+ * @uses apply_filters
+ *
+ * @param boolean $return
+ * @return string $classes
+ *
+ * @hook filter tarski_bodyclass
+ * Filter the classes applied to the document body by Tarski.
+ */
+function tarski_bodyclass($return = false) {
+    _deprecated_function(__FUNCTION__, '2.6');
+    
+    if (get_tarski_option('centred_theme'))
+        $classes[] = 'centre';
+    
+    if (get_tarski_option('swap_sides'))
+        $classes[] = 'janus';
+    
+    if (get_tarski_option('style')) {
+        $style = get_tarski_option('style');
+        $file  = is_array($style) ? $style[1] : $style;
+        
+        if (is_valid_tarski_style($file))
+            $classes[] = preg_replace('/^(.+)\.css$/', '\\1', $file);
+    }
+    
+    if (get_bloginfo('text_direction') == 'rtl')
+        $classes[] = 'rtl';
+    
+    $classes = apply_filters('tarski_bodyclass', $classes);
+    $classes = is_array($classes) ? implode(' ', $classes) : '';
+    
+    if ($return)
+        return $classes;
+    else
+        echo $classes;
+}
+
+/**
  * Upgrade old Tarski sidebar options to use widgets.
  *
  * @since 2.3

@@ -108,6 +108,8 @@ add_action('th_header', 'tarski_titleandtag');
 add_action('th_header', 'navbar_wrapper');
 add_action('th_header', 'tarski_next_prev_posts');
 
+add_filter('body_class', 'tarski_body_class');
+
 add_filter('tarski_navbar', '_tarski_navbar_home_link');
 add_filter('tarski_navbar', '_tarski_navbar_page_links');
 add_filter('tarski_navbar', 'add_external_links');
