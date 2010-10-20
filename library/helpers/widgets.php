@@ -118,7 +118,7 @@ class Tarski_Widget_Recent_Entries extends WP_Widget {
 			'showposts' => $number,
 			'nopaging' => 0,
 			'post_status' => 'publish',
-			'caller_get_posts' => 1,
+			'ignore_sticky_posts' => true,
 			'offset' => is_home() ? count($posts) : 0));
 		if ($r->have_posts()) :
 ?>
