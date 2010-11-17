@@ -4,6 +4,7 @@
 
 #### Tweaks
 
+  * Made time format strings translateable
   * Deprecated `tarski_searchform` function
   * Replaced `detectWPMU` and `detectWPMUadmin` with core functions
     `is_multisite` and `is_super_admin`
