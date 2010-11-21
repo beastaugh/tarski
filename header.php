@@ -7,7 +7,7 @@
 
 <body id="<?php tarski_bodyid(); ?>" <?php body_class(); ?>>
 
-<div id="wrapper">
+<div id="wrapper" class="tarski">
     <div id="header">
         <?php th_header(); ?>
     </div>

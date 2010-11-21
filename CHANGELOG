@@ -4,6 +4,7 @@
 
 #### Tweaks
 
+  * Namespaced form styling so as not to interfere with the admin bar
   * Changed permission level necessary to edit Tarski options from
     `edit_themes` to `manage_options`
   * Made time format strings translateable
