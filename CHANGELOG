@@ -4,6 +4,10 @@
 
 #### Tweaks
 
+  * Merged `app/launcher.php` file with `functions.php` file
+  * Deprecated `tarski_javascript` function in favour of core functions
+  * Renamed `README.md` to `readme.txt` to follow theme guidelines
+  * Replaced calls to `get_bloginfo` function with new core functions
   * Namespaced form styling so as not to interfere with the admin bar
   * Changed permission level necessary to edit Tarski options from
     `edit_themes` to `manage_options`
