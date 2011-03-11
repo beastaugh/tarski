@@ -1,10 +1,14 @@
 Tarski
 ======
 
-[Tarski][tarski] is an elegant, flexible [WordPress][wp] theme developed by
-[Benedict Eastaugh][exl]. As a WordPress extension it is licensed under the
-GPL; please consult the COPYRIGHT file that should have been provided with this
+[Tarski] is an elegant, flexible [WordPress] theme developed by
+[Benedict Eastaugh]. As a WordPress extension it is licensed under the GPL;
+please consult the COPYRIGHT file that should have been provided with this
 README for more details.
+
+  [Tarski]:            http://tarskitheme.com/
+  [WordPress]:         http://wordpress.org/
+  [Benedict Eastaugh]: http://extralogical.net/
 
 
 Installing
@@ -37,17 +41,24 @@ alternate styles and header images from child themes as well as Tarski itself.
 
 Tarski's extensive API and large library of utility functions, allied to the
 customisability provided by its options page, makes it an excellent base for
-building [WordPress child themes][td].
+building WordPress [child themes].
+
+  [child themes]: http://codex.wordpress.org/Theme_Development
 
 
 ### Writing plugins
 
-[Tarski's theme hooks API][hooks] is an extension of the basic WordPress hooks
+Tarski's theme hooks [API] is an extension of the basic WordPress hooks
 API, and allows for major modifications to be made to almost every aspect of
-the theme's functionality. [Writing Plugins for Tarski][plugins] explains the
-process of creating a plugin that modifies some aspect of Tarski, while the
-[Hooks Reference][ref] is a complete API reference. A library of
-[example plugins][examples] rounds out the documentation with example code.
+the theme's functionality.  [Writing Plugins] explains the process of creating
+a plugin that modifies some aspect of Tarski, while the [Hooks Reference] is a
+complete API reference. A library of [example plugins] rounds out the
+documentation with example code.
+
+  [API]:             http://tarskitheme.com/help/hooks/
+  [Writing Plugins]: http://tarskitheme.com/help/hooks/plugins/
+  [Hooks Reference]: http://tarskitheme.com/help/hooks/reference/
+  [example plugins]: http://tarskitheme.com/help/hooks/example-plugins/
 
 
 Contributing
@@ -60,23 +71,29 @@ writing plugins; and lastly, improving the theme itself.
 
 ### Reporting bugs
 
-Bugs should be reported on the [Tarski issue tracker][issues]. If you're not
-sure whether the behaviour you're observing is caused by Tarski or WordPress,
-or whether it's intentional or not, please post on the [Tarski forum][forum].
-Security issues should be reported [directly to Benedict][contact].
+Bugs should be reported on the Tarski [issue tracker]. If you're not sure
+whether the behaviour you're observing is caused by Tarski or WordPress, or
+whether it's intentional or not, please post on the [Tarski forum]. Security
+issues should be reported directly to [Benedict].
+
+  [issue tracker]: http://github.com/beastaugh/tarski/issues
+  [Tarski forum]:  http://tarskitheme.com/forum/
+  [Benedict]:      mailto:benedict@eastaugh.net
 
 
 ### Translations
 
 There are a large number of translations already available for Tarski, but new
 and updated localisation files are always welcome. Please see the
-[localisation page][i18n] for more details.
+[localisation page] for more details.
+
+  [localisation page]: http://tarskitheme.com/help/localisation/
 
 
 ### Core contributions
 
-If you want to contribute directly to the core Tarski code, please
-[fork the project on GitHub][gh], make your changes in a topic branch and send
+If you want to contribute directly to the core Tarski code, please fork the
+project on [GitHub], make your changes in a topic branch and send
 a pull request. Contributions are particularly welcome in the following areas:
 
   * Improving the hooks documentation
@@ -85,17 +102,4 @@ a pull request. Contributions are particularly welcome in the following areas:
 
 Happy hacking!
 
-
-  [tarski]:   http://tarskitheme.com/
-  [wp]:       http://wordpress.org/
-  [exl]:       http://extralogical.net/
-  [issues]:   http://github.com/ionfish/tarski/issues
-  [forum]:    http://tarskitheme.com/forum/
-  [contact]:  http://extralogical.net/about/
-  [i18n]:     http://tarskitheme.com/help/localisation/
-  [td]:       http://codex.wordpress.org/Theme_Development
-  [hooks]:    http://tarskitheme.com/help/hooks/
-  [plugins]:  http://tarskitheme.com/help/hooks/plugins/
-  [ref]:      http://tarskitheme.com/help/hooks/reference/
-  [examples]: http://tarskitheme.com/help/hooks/example-plugins/
-  [gh]:       http://github.com/ionfish/tarski
+  [GitHub]: http://github.com/beastaugh/tarski
