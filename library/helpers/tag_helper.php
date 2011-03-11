@@ -75,9 +75,9 @@ function multiple_tag_titles($format = '') {
 		return;
 	
 	if ( $tag_slugs = get_query_var('tag_slug__and') )
-		$connective = __('and');
+		$connective = __('and', 'tarski');
 	elseif ( $tag_slugs = get_query_var('tag_slug__in') )
-		$connective = __('or');
+		$connective = __('or', 'tarski');
 	else
 		$single_tag = intval( get_query_var('tag_id') );
 	

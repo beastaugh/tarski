@@ -351,7 +351,7 @@ function tarski_post_metadata_edit($metadata) {
 function tarski_404_content() {
 	$content = sprintf(
 		__('The page you are looking for does not exist; it may have been moved, or removed altogether. You might want to try the search function or return to the %s.','tarski'),
-		'<a href="' . user_trailingslashit(get_bloginfo('url')) . '">' . __('front page', 'tarski') . '</a>'
+		'<a href="' . user_trailingslashit(home_url()) . '">' . __('front page', 'tarski') . '</a>'
 	);
 	$content = wpautop($content);
 	$content = apply_filters('th_404_content', $content);

@@ -269,7 +269,7 @@ function tarski_admin_header_style() { ?>
 function tarski_inject_styles() {
 	wp_enqueue_style(
 		'tarski_options',
-		get_bloginfo('template_directory') . '/library/css/options.css',
+		get_template_directory_uri() . '/library/css/options.css',
 		array(), false, 'screen'
 	);
 }
@@ -285,7 +285,7 @@ function tarski_inject_styles() {
  * @return void
 */
 function tarski_inject_scripts() {
-    $js_dir = get_bloginfo('template_directory') . '/app/js';
+    $js_dir = get_template_directory_uri() . '/app/js';
     wp_enqueue_script('page_select', tarski_js("$js_dir/page_select.js"));
     wp_enqueue_script('header_select', tarski_js("$js_dir/header_select.js"));
 }

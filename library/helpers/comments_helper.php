@@ -121,7 +121,7 @@ function tarski_avatar() {
  * @return string
  */
 function tarski_default_avatar($avatar_defaults) {
-	$tarski_avatar = get_bloginfo('template_directory') . '/images/avatar.png';
+	$tarski_avatar = get_template_directory_uri() . '/images/avatar.png';
 	$avatar_defaults[$tarski_avatar] = 'Tarski';
 	return $avatar_defaults;
 }

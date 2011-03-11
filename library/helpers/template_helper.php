@@ -193,7 +193,7 @@ function tarski_stylesheets() {
         'main' => array(
             'url' => get_bloginfo('stylesheet_url')),
         'print' => array(
-            'url' => get_bloginfo('template_directory') . '/library/css/print.css',
+            'url' => get_template_directory_uri() . '/library/css/print.css',
             'media' => 'print'));
     
     if (get_tarski_option('style')) {
@@ -244,7 +244,7 @@ function tarski_stylesheets() {
 function tarski_javascript() {
     $scripts = array();
     $files   = array(
-        'tarski-js'     => get_bloginfo('template_directory') . '/app/js/tarski.js',
+        'tarski-js'     => get_template_directory_uri() . '/app/js/tarski.js',
         'comment-reply' => site_url('wp-includes/js/comment-reply.js'));
     
     foreach ($files as $name => $url) {
@@ -313,7 +313,7 @@ function tarski_headerimage() {
 		$header_img_tag = sprintf(
 			'<a title="%s" rel="home" href="%s">%s</a>',
 			__('Return to main page', 'tarski'),
-			user_trailingslashit(get_bloginfo('url')),
+			user_trailingslashit(home_url()),
 			$header_img_tag);
 	
 	echo "<div id=\"header-image\">$header_img_tag</div>\n\n";
@@ -338,7 +338,7 @@ function tarski_sitetitle() {
 			$site_title = sprintf(
 				'<a title="%1$s" href="%2$s" rel="home">%3$s</a>',
 				__('Return to main page','tarski'),
-				user_trailingslashit(get_bloginfo('url')),
+				user_trailingslashit(home_url()),
 				$site_title
 			);
 		}
@@ -454,7 +454,7 @@ function _tarski_navbar_home_link($navbar) {
         $navbar['home'] = sprintf(
             '<li><a id="nav-home"%1$s href="%2$s" rel="home">%3$s</a></li>',
             is_home() ? ' class="nav-current"' : '',
-            user_trailingslashit(get_bloginfo('url')),
+            user_trailingslashit(home_url()),
             home_link_name());
     
     return $navbar;

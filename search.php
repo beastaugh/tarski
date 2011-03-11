@@ -26,7 +26,7 @@
 				<h1 class="title"><?php _e('No results','tarski'); ?></h1>
 			</div>
 			<div class="content">
-				<p><?php printf( __('Your search for %1$s returned no results. Try returning to the %2$s.','tarski'), '<strong>' . esc_html(get_search_query()) . '</strong>', '<a href="' . get_bloginfo('url') . '">' . __('front page','tarski') . '</a>' ); ?></p>
+				<p><?php printf( __('Your search for %1$s returned no results. Try returning to the %2$s.','tarski'), '<strong>' . esc_html(get_search_query()) . '</strong>', '<a href="' . home_url() . '">' . __('front page','tarski') . '</a>' ); ?></p>
 			</div>
 		</div> <!-- /entry -->
 		

@@ -5,7 +5,7 @@
         <div class="archive">
             <?php if (is_category()) { // Category header ?>
                 <div class="meta">
-                    <h1><?php echo single_cat_title(); ?></h1>
+                    <h1><?php single_cat_title(); ?></h1>
                 </div>
                 
                 <div class="content">

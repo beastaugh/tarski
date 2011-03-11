@@ -422,7 +422,7 @@ function tarski_admin_style() {
 	
 	wp_enqueue_style(
 		'tarski_admin',
-		get_bloginfo('template_directory') . '/library/css/admin.css',
+		get_template_directory_uri() . '/library/css/admin.css',
 		array(), false, 'screen'
 	);
 }
