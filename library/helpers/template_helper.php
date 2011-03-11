@@ -225,36 +225,6 @@ function tarski_stylesheets() {
 }
 
 /**
- * Generate script elements linking to Tarski's JavaScript.
- *
- * @since 2.7
- *
- * @uses get_bloginfo
- * @uses site_url
- * @uses _tarski_asset_output
- *
- * @see tarski_meta
- * @see tarski_stylesheets
- *
- * @return void
- *
- * @hook filter tarski_javascript
- * Filter script elements before they're printed to the document.
- */
-function tarski_javascript() {
-    $scripts = array();
-    $files   = array(
-        'tarski-js'     => get_template_directory_uri() . '/app/js/tarski.js',
-        'comment-reply' => site_url('wp-includes/js/comment-reply.js'));
-    
-    foreach ($files as $name => $url) {
-        $scripts[$name] = "<script type=\"text/javascript\" src=\"$url\"></script>";
-    }
-    
-    _tarski_asset_output('javascript', $scripts);
-}
-
-/**
  * Apply filters to an array of HTML elements, then print the result.
  *
  * @since 2.7

@@ -100,7 +100,9 @@ if (is_admin()) {
 // Header
 add_action('wp_head', 'tarski_meta', 9);
 add_action('wp_head', 'tarski_stylesheets', 9);
-add_action('wp_head', 'tarski_javascript', 9);
+wp_register_script('tarski', get_template_directory_uri() . '/app/js/tarski.js');
+wp_enqueue_script('tarski');
+wp_enqueue_script('comment-reply');
 add_filter('gallery_style', 'trim_gallery_style', 20);
 
 add_action('th_header', 'tarski_headerimage');
