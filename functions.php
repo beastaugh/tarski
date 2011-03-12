@@ -162,6 +162,9 @@ add_filter('widget_links_args', 'tarski_widget_links_args');
 // Automatic feed links
 add_theme_support('automatic-feed-links');
 
+// Register navbar location
+register_nav_menu('tarski_navbar', __('Tarski navbar', 'tarski'));
+
 // Custom background support
 add_custom_background();
 
@@ -201,12 +204,6 @@ add_action('th_header', 'navbar_wrapper');
 add_action('th_header', 'tarski_next_prev_posts');
 
 add_filter('body_class', 'tarski_body_class');
-
-add_filter('tarski_navbar', '_tarski_navbar_home_link');
-add_filter('tarski_navbar', '_tarski_navbar_page_links');
-add_filter('tarski_navbar', 'add_external_links');
-add_filter('tarski_navbar', 'add_admin_link', 20);
-add_filter('tarski_navbar', 'wrap_navlist', 21);
 
 add_action('th_navbar', 'tarski_navbar');
 add_action('th_navbar', 'tarski_feedlink');

@@ -11,5 +11,5 @@
     <div id="header">
         <?php th_header(); ?>
     </div>
-
+    
     <div id="content" class="clearfix">

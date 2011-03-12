@@ -7,8 +7,8 @@ Designed by Benedict Eastaugh, http://extralogical.net/
 
 /* Navigation
 ----------------------------------------------- */
-body.polar #wrapper .nav-current:link, body.polar #wrapper .nav-current:visited, body.polar #wrapper .nav-current:active { color: #a8a8a8; }
-body.polar #wrapper .nav-current:hover { color: #000; }
+body.polar #wrapper .current-menu-item a:link, body.polar #wrapper .current-menu-item a:visited, body.polar #wrapper .current-menu-item a:active { color: #a8a8a8; }
+body.polar #wrapper .current-menu-item a:hover { color: #000; }
     
 /* Content
 ----------------------------------------------- */

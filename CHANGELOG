@@ -2,8 +2,14 @@
 
 ### Edge
 
+#### Features
+
+  * Replaced Tarski navbar with WordPress core menu functionality.
+
 #### Tweaks
 
+  * Deprecated defunct Tarski navbar functions
+  * Removed all functions deprecated before version 2.7
   * Merged `app/launcher.php` file with `functions.php` file
   * Deprecated `tarski_javascript` function in favour of core functions
   * Renamed `README.md` to `readme.txt` to follow theme guidelines
