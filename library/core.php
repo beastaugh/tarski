@@ -83,4 +83,63 @@ function _tarski_compressible_asset_path($type, $path) {
     return $path . $dev . ".${type}";
 }
 
+/**
+ * Return a list of header images, both from the Tarski directory and the child
+ * theme (if one is being used).
+ *
+ * @uses get_tarski_option
+ * @uses get_current_theme
+ * @uses get_template_directory_uri
+ * @uses get_stylesheet_directory_uri
+ *
+ * @return array
+ */
+function _tarski_list_header_images() {
+    $headers = array();
+    $dirs    = array('Tarski' => TEMPLATEPATH);
+    $current = get_tarski_option('header');
+    $theme   = get_current_theme();
+    
+    if (TEMPLATEPATH != STYLESHEETPATH)
+        $dirs[$theme] = STYLESHEETPATH;
+    
+    foreach ($dirs as $theme => $dir) {
+        $dirpath = $dir . '/headers';
+        
+        if (is_dir($dirpath))
+            $header_dir = dir($dirpath);
+        else
+            continue;
+        
+        while ($file = $header_dir->read()) {
+            if (preg_match('/^[^.].+\.(jpg|png|gif)/', $file) &&
+                !preg_match('/-thumb\.(jpg|png|gif)$/', $file)) {
+                $name  = $theme . '/' . $file;
+                $id    = 'header_' . preg_replace('/[^a-z_]/', '_', strtolower($name));
+                $path  = $dir == TEMPLATEPATH ? '%1$s' : '%2$s';
+                $thumb = preg_replace('/(\.(?:png|gif|jpg))/', '-thumb\\1', $file);
+                $uri   = ($dir == TEMPLATEPATH
+                       ? get_template_directory_uri()
+                       : get_stylesheet_directory_uri());
+                $is_current = is_string($current) && $current == $file ||
+                              $current[0] == $theme && $current[1] == $file;
+                $headers[] = array(
+                    'name'    => $name,
+                    'id'      => $id,
+                    'lid'     => 'for_' . $id,
+                    'path'    => "$uri/headers/$file",
+                    'current' => $is_current,
+                    'thumb'   => "$uri/headers/$thumb",
+                    
+                    // New fields for core header selector
+                    'description'   => $name,
+                    'url'           => "$path/headers/$file",
+                    'thumbnail_url' => "$path/headers/$thumb");
+            }
+        }
+    }
+    
+    return $headers;
+}
+
 ?>

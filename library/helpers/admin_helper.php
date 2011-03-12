@@ -359,58 +359,6 @@ function tarski_navbar_select() {
 }
 
 /**
- * Return a list of header images, both from the Tarski directory and the child
- * theme (if one is being used).
- *
- * @uses get_tarski_option
- * @uses get_current_theme
- * @uses get_template_directory_uri
- * @uses get_stylesheet_directory_uri
- *
- * @return array
- */
-function _tarski_list_header_images() {
-    $headers = array();
-    $dirs    = array('Tarski' => TEMPLATEPATH);
-    $current = get_tarski_option('header');
-    $theme   = get_current_theme();
-    
-    if (TEMPLATEPATH != STYLESHEETPATH)
-        $dirs[$theme] = STYLESHEETPATH;
-    
-    foreach ($dirs as $theme => $dir) {
-        $dirpath = $dir . '/headers';
-        
-        if (is_dir($dirpath))
-            $header_dir = dir($dirpath);
-        else
-            continue;
-        
-        while ($file = $header_dir->read()) {
-            if (preg_match('/^[^.].+\.(jpg|png|gif)/', $file) &&
-                !preg_match('/-thumb\.(jpg|png|gif)$/', $file)) {
-                $name = $theme . '/' . $file;
-                $id   = 'header_' . preg_replace('/[^a-z_]/', '_', strtolower($name));
-                $uri  = ($dir == TEMPLATEPATH
-                      ? get_template_directory_uri()
-                      : get_stylesheet_directory_uri()) . "/headers/$file";
-                $is_current = is_string($current) && $current == $file ||
-                              $current[0] == $theme && $current[1] == $file;
-                $headers[] = array(
-                    'name'    => $name,
-                    'id'      => $id,
-                    'lid'     => 'for_' . $id,
-                    'path'    => $uri,
-                    'current' => $is_current,
-                    'thumb'   => preg_replace('/(\.(?:png|gif|jpg))/', '-thumb\\1', $uri));
-            }
-        }
-    }
-    
-    return $headers;
-}
-
-/**
  * Return a list of alternate stylesheets, both from the Tarski directory and
  * the child theme (if one is being used).
  *
