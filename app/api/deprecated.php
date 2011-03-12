@@ -17,6 +17,7 @@
  * The option 'home_link_name' can be set in the Tarski Options page;
  * if it's not set, it defaults to 'Home'.
  * @since 1.7
+ * @deprecated 2.8
  * @return string
  */
 function home_link_name() {
@@ -30,6 +31,8 @@ function home_link_name() {
 
 /**
  * Adds a 'Home' link to the navbar.
+ *
+ * @deprecated 2.8
  *
  * @see tarski_navbar
  * @uses home_link_name
@@ -54,6 +57,8 @@ function _tarski_navbar_home_link($navbar) {
 
 /**
  * Adds page links to the navbar.
+ *
+ * @deprecated 2.8
  *
  * @see tarski_navbar
  * @uses get_permalink
@@ -95,6 +100,8 @@ function _tarski_navbar_page_links($navbar) {
 /**
  * Utility function to determine whether the user is viewing a particular page.
  *
+ * @deprecated 2.8
+ *
  * @see _tarski_navbar_page_links
  * @uses is_page
  * @uses is_home
@@ -115,6 +122,7 @@ function _tarski_on_page($id) {
  * Adds external links to the navbar.
  *
  * @since 2.0
+ * @deprecated 2.8
  *
  * @see tarski_navbar
  * @uses get_bookmarks
@@ -158,6 +166,7 @@ function add_external_links($navbar) {
  * Adds a WordPress dashboard link to the Tarski navbar.
  *
  * @since 2.0
+ * @deprecated 2.8
  *
  * @see tarski_navbar
  * @uses is_user_logged_in
@@ -186,6 +195,7 @@ function add_admin_link($navbar) {
  * unordered list. Instead, it simply returns false.
  *
  * @since 2.0
+ * @deprecated 2.8
  * @see tarski_navbar
  * @param string $navbar
  * @return string $navbar
