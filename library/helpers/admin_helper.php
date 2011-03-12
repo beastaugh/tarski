@@ -235,13 +235,8 @@ function tarski_addmenu() {
  * @see WP_Http
  */
 function tarski_admin() {
-    if (current_user_can('manage_options')) {
-        if (!class_exists('WP_Http')) {
-            require_once(ABSPATH . WPINC . '/class-http.php');
-        }
-        
+    if (current_user_can('manage_options'))
         get_template_part('app/templates/options_page');
-    }
 }
 
 /**

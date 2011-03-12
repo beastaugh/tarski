@@ -24,10 +24,6 @@
 		
 		<?php tarski_options_fragment('messages'); ?>
 		
-		<div class="secondary">
-			<?php if (is_super_admin()) tarski_options_fragment('update_notifier'); ?>
-		</div>
-		
 		<div class="primary">
 			<?php tarski_options_fn_block('tarski_navbar_select', __('Navigation Display', 'tarski')); ?>
 			<?php tarski_options_block('nav_options', __('Navigation Options', 'tarski')); ?>

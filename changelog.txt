@@ -8,6 +8,7 @@
 
 #### Tweaks
 
+  * Removed update notifier
   * Deprecated defunct Tarski navbar functions
   * Removed all functions deprecated before version 2.7
   * Merged `app/launcher.php` file with `functions.php` file

@@ -20,10 +20,6 @@ define('TARSKI_DEBUG', false);
 define('TARSKICLASSES', TEMPLATEPATH . '/library/classes');
 define('TARSKIHELPERS', TEMPLATEPATH . '/library/helpers');
 define('TARSKIDISPLAY', TEMPLATEPATH . '/app/templates');
-if (!defined('TARSKICACHE'))
-    define('TARSKICACHE', WP_CONTENT_DIR . '/tarski');
-if (!defined('TARSKIVERSIONFILE'))
-    define('TARSKIVERSIONFILE', 'http://tarskitheme.com/version.atom');
 
 /**
  * Core library files.
@@ -53,7 +49,6 @@ require_once(TARSKICLASSES . '/comment_walker.php');
  * @see WalkerPageSelect
  */
 if (is_admin()) {
-    require_once(TARSKICLASSES . '/version.php');
     require_once(TARSKICLASSES . '/page_select.php');
     require_once(TARSKIHELPERS . '/admin_helper.php');
 }
