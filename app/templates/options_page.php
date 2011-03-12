@@ -35,10 +35,6 @@
 			<?php tarski_options_block('sidebar_options', __('Sidebar Options', 'tarski')); ?>
 		</div>
 		
-		<div class="span">
-			<?php tarski_options_block('header_images', __('Header Images', 'tarski')); ?>
-		</div>
-		
 		<div class="primary">
 			<?php tarski_options_fn_block('tarski_miscellaneous_options', __('Miscellaneous Options', 'tarski')); ?>
 			<p><input type="submit" class="button-primary" name="submit" value="<?php _e('Save Options','tarski'); ?>" /></p>

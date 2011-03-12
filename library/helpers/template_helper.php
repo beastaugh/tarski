@@ -250,43 +250,24 @@ function _tarski_asset_output($type, $assets) {
  * @return string
  */
 function tarski_headerimage() {
-    if (get_theme_mod('header_image')) {
-        $header_img_url = get_header_image();
-    } else {
-        $header = get_tarski_option('header');
-        $file   = 'greytree.jpg';
-        $path   = get_template_directory_uri();
-        
-        if (is_string($header) && strlen($header) > 0) {
-            $file = $header;
-        } elseif (is_array($header)) {
-            if ($header[0] == get_current_theme()) {
-                $path = get_stylesheet_directory_uri();
-                $file = $header[1];
-            } elseif ('Tarski' == $header[0]) {
-                $file = $header[1];
-            }
-        }
-        
-        if ('blank.gif' == $file) return '';
-        
-        $header_img_url = $path . '/headers/' . $file;
-    }
+    if (!get_theme_mod('header_image')) return;
     
-	$header_img_tag = sprintf('<img alt="%s" src="%s">',
-		get_tarski_option('display_title')
-		    ? __('Header image', 'tarski')
-		    : get_bloginfo('name'),
-		$header_img_url);
-	
-	if (!(get_tarski_option('display_title') || is_front_page()))
-		$header_img_tag = sprintf(
-			'<a title="%s" rel="home" href="%s">%s</a>',
-			__('Return to main page', 'tarski'),
-			user_trailingslashit(home_url()),
-			$header_img_tag);
-	
-	echo "<div id=\"header-image\">$header_img_tag</div>\n\n";
+    $header_img_url = get_header_image();
+    
+    $header_img_tag = sprintf('<img alt="%s" src="%s">',
+        get_tarski_option('display_title')
+            ? __('Header image', 'tarski')
+            : get_bloginfo('name'),
+        $header_img_url);
+    
+    if (!(get_tarski_option('display_title') || is_front_page()))
+        $header_img_tag = sprintf(
+            '<a title="%s" rel="home" href="%s">%s</a>',
+            __('Return to main page', 'tarski'),
+            user_trailingslashit(home_url()),
+            $header_img_tag);
+    
+    echo "<div id=\"header-image\">$header_img_tag</div>\n\n";
 }
 
 /**
