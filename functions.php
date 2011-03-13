@@ -6,15 +6,10 @@
 
 /**
  * Tarski's constants.
- * 
- * These mostly provide convenient aliases for filesystem paths. Tarski's many
- * files live in a number of directories (the main ones being /app and
- * /library), so keeping includes simple is greatly helped by a sane set of
- * path constants. The one exception is TARSKIVERSIONFILE, which defines the
- * URL of the update notifier.
- * 
- * @see TarskiVersion
- * @link http://tarskitheme.com/help/updates/notifier/
+ *
+ * These mostly provide convenient aliases for filesystem paths. Tarski's files
+ * live in a number of directories (the main ones being /app and /library), so
+ * keeping includes simple is greatly helped by a sane set of path constants.
  */
 define('TARSKI_DEBUG', false);
 define('TARSKICLASSES', TEMPLATEPATH . '/library/classes');
@@ -23,13 +18,12 @@ define('TARSKIDISPLAY', TEMPLATEPATH . '/app/templates');
 
 /**
  * Core library files.
- * 
+ *
  * These files will be loaded whenever WordPress is. They include a few key
  * functions, and the core classes that Tarski requires to load its options,
  * add dependencies to document heads, and output comments.
- * 
+ *
  * @see Options
- * @see Asset
  * @see TarskiCommentWalker
  */
 require_once(TEMPLATEPATH  . '/library/core.php');
@@ -38,20 +32,12 @@ require_once(TARSKICLASSES . '/comment_walker.php');
 
 /**
  * Admin library files.
- * 
- * These library files are required for Tarski's administrative functions:
- * notifying the user about updates, selecting pages to add to the navbar,
- * defining the options page parameters, and so on. They are loaded only on
- * when a WordPress admin page is accessed, so as to reduce the load on the
- * server.
- * 
- * @see TarskiVersion
- * @see WalkerPageSelect
+ *
+ * These library files are required for Tarski's administrative functions. They
+ * are loaded only when a WordPress admin page is accessed, so as to reduce the
+ * load on the server.
  */
-if (is_admin()) {
-    require_once(TARSKICLASSES . '/page_select.php');
-    require_once(TARSKIHELPERS . '/admin_helper.php');
-}
+if (is_admin()) require_once(TARSKIHELPERS . '/admin_helper.php');
 
 /**
  * Templating libraries.
