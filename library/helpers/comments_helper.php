@@ -168,7 +168,7 @@ function tarski_comment_author_link() {
 /**
  * Tarski-specific options to be passed to WordPress' `comment_form` function.
  *
- * @since 2.8
+ * @since 3.0
  *
  * @see comment_form
  *

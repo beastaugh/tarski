@@ -367,7 +367,7 @@ function tarski_feedlink() {
 /**
  * Add Tarski-specific classes to the body element.
  *
- * @since 2.8
+ * @since 3.0
  *
  * @uses get_tarski_option
  * @uses is_valid_tarski_style

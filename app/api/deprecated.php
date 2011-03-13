@@ -15,11 +15,11 @@
  * Turns off paging for everything except feeds and the home page.
  *
  * @since 2.2
- * @deprecated 2.8
+ * @deprecated 3.0
  * @param object $query
  */
 function only_paginate_home($query) {
-    _deprecated_function(__FUNCTION__, '2.8');
+    _deprecated_function(__FUNCTION__, '3.0');
     
     if ( !get_tarski_option('use_pages') && !is_admin() ) {
         if ( !is_home() && !is_feed() && '' === $query->get('nopaging') ) {
@@ -36,7 +36,7 @@ function only_paginate_home($query) {
  * styling.
  *
  * @since 2.4
- * @deprecated 2.8
+ * @deprecated 3.0
  * @uses required_field
  *
  * @param string $field
@@ -46,7 +46,7 @@ function only_paginate_home($query) {
  * @param integer $size
  */
 function comment_text_field($field, $label, $value = '', $required = false, $size = 20, $type = "text") {
-    _deprecated_function(__FUNCTION__, '2.8'); ?>
+    _deprecated_function(__FUNCTION__, '3.0'); ?>
     <div class="text-wrap <?php echo "$field-wrap"; ?>">
         <label for="<?php echo $field; ?>"><?php printf($label, required_field($required)); ?></label>
         <input class="<?php echo comment_field_classes(); ?>" type="<?php echo $type ?>" name="<?php echo $field; ?>" id="<?php echo $field; ?>" value="<?php echo $value; ?>" size="<?php echo $size; ?>"<?php if ($required) echo ' aria-required="true"'; ?>>
@@ -57,14 +57,14 @@ function comment_text_field($field, $label, $value = '', $required = false, $siz
  * Builds the HTML classes for comment form text fields.
  *
  * @since 2.4
- * @deprecated 2.8
+ * @deprecated 3.0
  *
  * @param string $classes
  * @param boolean $required
  * @return string
  */
 function comment_field_classes($classes = '', $required = false) {
-    _deprecated_function(__FUNCTION__, '2.8');
+    _deprecated_function(__FUNCTION__, '3.0');
     
     $classes = trim($classes);
     if (strlen($classes) < 1) $classes = 'text';
@@ -79,13 +79,13 @@ function comment_field_classes($classes = '', $required = false) {
  * sprintf()s and localisation strings cluttering up the comment form.
  *
  * @since 2.4
- * @deprecated 2.8
+ * @deprecated 3.0
  *
  * @param boolean $required
  * @return string
  */
 function required_field($required = true) {
-    _deprecated_function(__FUNCTION__, '2.8');
+    _deprecated_function(__FUNCTION__, '3.0');
     
     if ($required) return sprintf(
         '<span class="req-notice">(%s)</span>',
@@ -98,11 +98,11 @@ function required_field($required = true) {
  * The option 'home_link_name' can be set in the Tarski Options page;
  * if it's not set, it defaults to 'Home'.
  * @since 1.7
- * @deprecated 2.8
+ * @deprecated 3.0
  * @return string
  */
 function home_link_name() {
-    _deprecated_function(__FUNCTION__, '2.8');
+    _deprecated_function(__FUNCTION__, '3.0');
     
     $default = __('Home','tarski');
     $option = get_tarski_option('home_link_name');
@@ -113,7 +113,7 @@ function home_link_name() {
 /**
  * Adds a 'Home' link to the navbar.
  *
- * @deprecated 2.8
+ * @deprecated 3.0
  *
  * @see tarski_navbar
  * @uses home_link_name
@@ -122,7 +122,7 @@ function home_link_name() {
  * @return array $navbar
  */
 function _tarski_navbar_home_link($navbar) {
-    _deprecated_function(__FUNCTION__, '2.8');
+    _deprecated_function(__FUNCTION__, '3.0');
     
     if (!is_array($navbar)) $navbar = array();
     
@@ -139,7 +139,7 @@ function _tarski_navbar_home_link($navbar) {
 /**
  * Adds page links to the navbar.
  *
- * @deprecated 2.8
+ * @deprecated 3.0
  *
  * @see tarski_navbar
  * @uses get_permalink
@@ -149,7 +149,7 @@ function _tarski_navbar_home_link($navbar) {
  * @return array $navbar
  */
 function _tarski_navbar_page_links($navbar) {
-    _deprecated_function(__FUNCTION__, '2.8');
+    _deprecated_function(__FUNCTION__, '3.0');
     
     global $wpdb;
     
@@ -181,7 +181,7 @@ function _tarski_navbar_page_links($navbar) {
 /**
  * Utility function to determine whether the user is viewing a particular page.
  *
- * @deprecated 2.8
+ * @deprecated 3.0
  *
  * @see _tarski_navbar_page_links
  * @uses is_page
@@ -191,7 +191,7 @@ function _tarski_navbar_page_links($navbar) {
  * @return boolean
  */
 function _tarski_on_page($id) {
-    _deprecated_function(__FUNCTION__, '2.8');
+    _deprecated_function(__FUNCTION__, '3.0');
     
     return is_page($id) ||
            ((get_option('show_on_front') == 'page') &&
@@ -203,7 +203,7 @@ function _tarski_on_page($id) {
  * Adds external links to the navbar.
  *
  * @since 2.0
- * @deprecated 2.8
+ * @deprecated 3.0
  *
  * @see tarski_navbar
  * @uses get_bookmarks
@@ -212,7 +212,7 @@ function _tarski_on_page($id) {
  * @return array $navbar
  */
 function add_external_links($navbar) {
-    _deprecated_function(__FUNCTION__, '2.8');
+    _deprecated_function(__FUNCTION__, '3.0');
     
     if (!is_array($navbar)) $navbar = array();
     
@@ -247,7 +247,7 @@ function add_external_links($navbar) {
  * Adds a WordPress dashboard link to the Tarski navbar.
  *
  * @since 2.0
- * @deprecated 2.8
+ * @deprecated 3.0
  *
  * @see tarski_navbar
  * @uses is_user_logged_in
@@ -257,7 +257,7 @@ function add_external_links($navbar) {
  * @return array $navbar
  */
 function add_admin_link($navbar) {
-    _deprecated_function(__FUNCTION__, '2.8');
+    _deprecated_function(__FUNCTION__, '3.0');
     
     if (is_user_logged_in())
         $navbar['admin'] = sprintf(
@@ -276,13 +276,13 @@ function add_admin_link($navbar) {
  * unordered list. Instead, it simply returns false.
  *
  * @since 2.0
- * @deprecated 2.8
+ * @deprecated 3.0
  * @see tarski_navbar
  * @param string $navbar
  * @return string $navbar
  */
 function wrap_navlist($navbar) {
-    _deprecated_function(__FUNCTION__, '2.8');
+    _deprecated_function(__FUNCTION__, '3.0');
     
     if (is_array($navbar)) {
         array_unshift($navbar, '<ul class="primary xoxo">');
@@ -298,7 +298,7 @@ function wrap_navlist($navbar) {
  * Generate script elements linking to Tarski's JavaScript.
  *
  * @since 2.7
- * @deprecated 2.8
+ * @deprecated 3.0
  *
  * @uses get_bloginfo
  * @uses site_url
@@ -310,7 +310,7 @@ function wrap_navlist($navbar) {
  * @return void
  */
 function tarski_javascript() {
-    _deprecated_function(__FUNCTION__, '2.8');
+    _deprecated_function(__FUNCTION__, '3.0');
     
     $scripts = array();
     $files   = array(
@@ -332,10 +332,10 @@ function tarski_javascript() {
  * in the document and the search form relies on the 's' id value,
  * which as an HTML id must be unique within the document.
  * @since 2.0
- * @deprecated 2.8
+ * @deprecated 3.0
  */
 function tarski_searchform() {
-    _deprecated_function(__FUNCTION__, '2.8');
+    _deprecated_function(__FUNCTION__, '3.0');
     
     get_search_form();
 }
@@ -344,11 +344,11 @@ function tarski_searchform() {
  * detectWPMUadmin() - Detect whether the current user is a WPMU site administrator.
  *
  * @since 2.0
- * @deprecated 2.8
+ * @deprecated 3.0
  * @return boolean
  */
 function detectWPMUadmin() {
-    _deprecated_function(__FUNCTION__, '2.8');
+    _deprecated_function(__FUNCTION__, '3.0');
     
     return is_multisite() && is_super_admin();
 }
@@ -357,11 +357,11 @@ function detectWPMUadmin() {
  * Detect whether WordPress Multi-User is in use.
  *
  * @since 1.4
- * @deprecated 2.8
+ * @deprecated 3.0
  * @return boolean
  */
 function detectWPMU() {
-    _deprecated_function(__FUNCTION__, '2.8');
+    _deprecated_function(__FUNCTION__, '3.0');
     
     return function_exists('is_site_admin');
 }
@@ -370,7 +370,7 @@ function detectWPMU() {
  * Returns the classes that should be applied to the document body.
  *
  * @since 1.2
- * @deprecated 2.8
+ * @deprecated 3.0
  *
  * @uses get_tarski_option
  * @uses is_valid_tarski_style
@@ -381,7 +381,7 @@ function detectWPMU() {
  * @return string $classes
  */
 function tarski_bodyclass($return = false) {
-    _deprecated_function(__FUNCTION__, '2.8');
+    _deprecated_function(__FUNCTION__, '3.0');
     
     if (get_tarski_option('centred_theme'))
         $classes[] = 'centre';
