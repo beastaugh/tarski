@@ -121,19 +121,19 @@ body.rtl #navigation ul.primary { direction: ltr; }
     --------------------------------------- */
     body .content p { line-height: 1.4; }
     body .content li { line-height: 1.4; }
-
+    
     /* Headers
     --------------------------------------- */
     #blog-title { font-family: 'Times New Roman', Times, serif; font-size: 2.5em; font-weight: normal; margin: 0; border: none; padding: 0; line-height: 120%; }
     #tagline { font-family: 'Times New Roman', Times, serif; font-size: 1.5em; font-weight: normal; font-style: italic; color: #808080; margin: 0.1em 0 0.3em 0; border: none; padding: 0; line-height: 120%; }
-
+    
     h1, body .entry .title { font-family: 'Times New Roman', Times, serif; font-size: 2em; font-weight: normal; line-height: 120%; margin: 0; border-bottom: 1px solid #ccc; padding: 0 0 0.1em 0; }
     h2 { font-family: 'Times New Roman', Times, serif; font-size: 2em; font-weight: normal; line-height: 120%; margin: 0 0 0.5em 0; }
     h3 { font-size: 0.8em; font-weight: normal; color: #8fbf60; text-transform: uppercase; letter-spacing: 0.1em; margin: 0 0 0.8em 0; border-bottom: 1px solid #e5e5e5; padding: 0 0 0.4em 0; }
     h4 { font-family: 'Times New Roman', Times, serif; font-size: 1.5em; font-weight: normal; line-height: 120%; margin: 0 0 0.3em 0; }
     h5 { font-size: 1em; font-weight: bold; line-height: 120%; margin: 0 0 0.3em 0; padding: 0; }
     h6 { font-size: 0.8em; font-weight: bold; line-height: 120%; margin: 0 0 0.3em 0; padding: 0; }
-
+    
     /* Post content
     --------------------------------------- */
     body .articlenav { margin: 0 0 2em 0; border-bottom: 1px solid #e5e5e5; padding-top: 0.75em; padding-bottom: 0.75em; background: #fcffff; color: #808080; }
@@ -150,20 +150,21 @@ body.rtl #navigation ul.primary { direction: ltr; }
         body .archive .meta { margin: 0 0 1em 0; }
     body .link-pages { font-size: 0.8em; color: #808080; clear: both; }
     body .pagination { margin: 0; font-family: 'Times New Roman', Times, serif; font-size: 1.5em; font-weight: normal; line-height: 120%; color: #808080; clear: both; }
-        
+    .sticky { background-color: inherit; }
+    
     /* Inserts
     --------------------------------------- */
     body .insertright { margin: 0 0 20px 20px; width: 220px; float: right; }
     body .insertleft { margin: 0 20px 20px 0; width: 220px; float: left; }
     body .insert { background: #fcffff; margin: 0 0 1em 0; border: 1px solid #cfe2e5; padding: 9px; }
         body .insert h3 { border-bottom: 1px solid #cfe2e5; }
-
+    
     /* Downloads
     --------------------------------------- */
     body a.download { display: block; margin: 1em 0; padding: 5px 5px 5px 28px; min-height: 15px; }
     body .content a.download:link, body .content a.download:visited, body .content a.download:active { background:#fcffff url('images/icons.png') no-repeat 5px -295px; border: 1px solid #cfe2e5; }
     body .content a.download:hover { text-decoration: underline; }
-
+    
     /* Images
     --------------------------------------- */
     a img { border: 1px solid #006a80; }
@@ -240,6 +241,7 @@ body.rtl #navigation ul.primary { direction: ltr; }
     body .author-comment {}
     body .trackback { margin: 0; border-top: 1px solid #ccc; padding: 0.5em 0; background: #fcffff; }
     body .trackback p { font-size: 0.8em; margin: 0; }
+    .bypostauthor { background-color: inherit; }
     
     #comments-header .title { width: 49.5%; float: left; margin: 0 0 0.1em 0; border: none; }
     .rtl #comments-header .title { float: right; }
