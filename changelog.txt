@@ -7,6 +7,7 @@
   * Replaced Tarski navbar with WordPress core menu functionality
   * Replaced Tarski header images with WordPress core functionality
   * Replaced comment form with WordPress `comment_form` function call
+  * Removed option not to paginate index pages
 
 #### Tweaks
 

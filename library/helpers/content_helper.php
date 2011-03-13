@@ -76,7 +76,7 @@ function tarski_link_pages() {
  * @return string
  */
 function tarski_posts_nav_link() {
-	if (!get_tarski_option('use_pages') || is_singular()) return;
+	if (is_singular()) return;
 	
 	global $wp_query;
 	

@@ -12,6 +12,23 @@
  */
 
 /**
+ * Turns off paging for everything except feeds and the home page.
+ *
+ * @since 2.2
+ * @deprecated 2.8
+ * @param object $query
+ */
+function only_paginate_home($query) {
+    _deprecated_function(__FUNCTION__, '2.8');
+    
+    if ( !get_tarski_option('use_pages') && !is_admin() ) {
+        if ( !is_home() && !is_feed() && '' === $query->get('nopaging') ) {
+            $query->set('nopaging', 1);
+        }
+    }
+}
+
+/**
  * Outputs a text field and associated label.
  *
  * Used in the comments reply form to reduce duplication and clean up the

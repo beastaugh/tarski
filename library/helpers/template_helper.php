@@ -1,20 +1,6 @@
 <?php
 
 /**
- * only_paginate_home() - Turns off paging for everything except feeds and the home page.
- * 
- * @since 2.2
- * @param object $query
- */
-function only_paginate_home($query) {
-	if ( !get_tarski_option('use_pages') && !is_admin() ) {
-		if ( !is_home() && !is_feed() && '' === $query->get('nopaging') ) {
-			$query->set('nopaging', 1);
-		}
-	}
-}
-
-/**
  * Returns the URI of the current alternate stylesheet.
  *
  * @uses get_tarski_option
@@ -56,39 +42,39 @@ function _tarski_get_alternate_stylesheet_uri() {
  * Filter document titles.
  */
 function tarski_doctitle($sep = '&middot;') {
-	$site_name = get_bloginfo('name');
-	$content = trim(wp_title('', false));
-	
-	if (is_404())
-		$content = sprintf(__('Error %s', 'tarski'), '404');
-	elseif ((get_option('show_on_front') == 'posts') && is_home())
-		$content = get_bloginfo('description', 'display');
-	elseif (is_search())
-		$content = sprintf(__('Search results for %s', 'tarski'), esc_html(get_search_query()));
-	elseif (is_month())
-		$content = single_month_title(' ', false);
-	elseif (is_tag())
-		$content = multiple_tag_titles();
-	
-	if (strlen($content))
-		$elements = array(
-			'site_name' => $site_name,
-			'separator' => $sep,
-			'content' => $content);
-	else
-		$elements = array('site_name' => $site_name);
-	
-	if (get_tarski_option('swap_title_order'))
-		$elements = array_reverse($elements, true);
-	
-	// Filters should return an array
-	$elements = apply_filters('tarski_doctitle', $elements);
-	
-	// But if they don't, it won't try to implode
-	if (is_array($elements))
-		$doctitle = implode(' ', $elements);
-	
-	echo $doctitle;
+    $site_name = get_bloginfo('name');
+    $content = trim(wp_title('', false));
+    
+    if (is_404())
+        $content = sprintf(__('Error %s', 'tarski'), '404');
+    elseif ((get_option('show_on_front') == 'posts') && is_home())
+        $content = get_bloginfo('description', 'display');
+    elseif (is_search())
+        $content = sprintf(__('Search results for %s', 'tarski'), esc_html(get_search_query()));
+    elseif (is_month())
+        $content = single_month_title(' ', false);
+    elseif (is_tag())
+        $content = multiple_tag_titles();
+    
+    if (strlen($content))
+        $elements = array(
+            'site_name' => $site_name,
+            'separator' => $sep,
+            'content' => $content);
+    else
+        $elements = array('site_name' => $site_name);
+    
+    if (get_tarski_option('swap_title_order'))
+        $elements = array_reverse($elements, true);
+    
+    // Filters should return an array
+    $elements = apply_filters('tarski_doctitle', $elements);
+    
+    // But if they don't, it won't try to implode
+    if (is_array($elements))
+        $doctitle = implode(' ', $elements);
+    
+    echo $doctitle;
 }
 
 /**
@@ -111,10 +97,10 @@ function tarski_doctitle($sep = '&middot;') {
  * @return string
  */
 function trim_gallery_style($style) {
-	$style = preg_replace('/\.gallery img {.*?}/s', '', $style);
-	$style = preg_replace('/\.gallery {.*?}/s', '', $style);
-	$style = preg_replace('/\.gallery-caption {.*?}/s', '', $style);
-	return $style;
+    $style = preg_replace('/\.gallery img {.*?}/s', '', $style);
+    $style = preg_replace('/\.gallery {.*?}/s', '', $style);
+    $style = preg_replace('/\.gallery-caption {.*?}/s', '', $style);
+    return $style;
 }
 
 /**
@@ -282,27 +268,27 @@ function tarski_headerimage() {
  * Filter site title.
  */
 function tarski_sitetitle() {
-	if(get_tarski_option('display_title')) {
-		$site_title = get_bloginfo('name');
-		
-		if(!is_front_page()) {
-			$site_title = sprintf(
-				'<a title="%1$s" href="%2$s" rel="home">%3$s</a>',
-				__('Return to main page','tarski'),
-				user_trailingslashit(home_url()),
-				$site_title
-			);
-		}
-		
-		if((get_option('show_on_front') == 'posts') && is_home()) {
-			$site_title = sprintf('<h1 id="blog-title">%s</h1>', $site_title);
-		} else {
-			$site_title = sprintf('<p id="blog-title">%s</p>', $site_title);
-		}
-		
-		$site_title = apply_filters('tarski_sitetitle', $site_title);
-		return $site_title;
-	}
+    if(get_tarski_option('display_title')) {
+        $site_title = get_bloginfo('name');
+        
+        if(!is_front_page()) {
+            $site_title = sprintf(
+                '<a title="%1$s" href="%2$s" rel="home">%3$s</a>',
+                __('Return to main page','tarski'),
+                user_trailingslashit(home_url()),
+                $site_title
+            );
+        }
+        
+        if((get_option('show_on_front') == 'posts') && is_home()) {
+            $site_title = sprintf('<h1 id="blog-title">%s</h1>', $site_title);
+        } else {
+            $site_title = sprintf('<p id="blog-title">%s</p>', $site_title);
+        }
+        
+        $site_title = apply_filters('tarski_sitetitle', $site_title);
+        return $site_title;
+    }
 }
 
 /**
@@ -314,9 +300,9 @@ function tarski_sitetitle() {
  * Filter site tagline.
  */
 function tarski_tagline() {
-	$tagline = get_bloginfo('description', 'display');
-	$tagline = (get_tarski_option('display_tagline') && strlen($tagline)) ? sprintf('<p id="tagline">%s</p>', $tagline) : '';
-	return apply_filters('tarski_tagline', $tagline);
+    $tagline = get_bloginfo('description', 'display');
+    $tagline = (get_tarski_option('display_tagline') && strlen($tagline)) ? sprintf('<p id="tagline">%s</p>', $tagline) : '';
+    return apply_filters('tarski_tagline', $tagline);
 }
 
 /**
@@ -328,11 +314,11 @@ function tarski_tagline() {
  * @return string
  */
 function tarski_titleandtag() {
-	$title = tarski_sitetitle();
-	$tagline = tarski_tagline();
-	
-	if ($title || $tagline)
-		echo "<div id=\"title\">\n\t$title\n\t$tagline</div>\n";
+    $title = tarski_sitetitle();
+    $tagline = tarski_tagline();
+    
+    if ($title || $tagline)
+        echo "<div id=\"title\">\n\t$title\n\t$tagline</div>\n";
 }
 
 /**
@@ -353,7 +339,7 @@ function navbar_wrapper() {
  *
  * @since 1.2
  *
- * @uses apply_filters
+ * @uses wp_nav_menu
  *
  * @param boolean $return
  * @return string $navbar
@@ -361,8 +347,8 @@ function navbar_wrapper() {
 function tarski_navbar($return = false) {
     wp_nav_menu(array(
         'theme_location' => 'tarski_navbar',
-        'container' => false,
-        'menu_class' => 'primary xoxo'));
+        'container'      => false,
+        'menu_class'     => 'primary xoxo'));
 }
 
 /**
@@ -423,51 +409,51 @@ function tarski_body_class($classes) {
  * Filter the document id value.
  */
 function tarski_bodyid($return = false) {
-	global $post, $wp_query;
+    global $post, $wp_query;
 
-	if(is_home()) {
-		$body_id = 'home';
-	} elseif(is_search()) {
-		$body_id = 'search';
-	} elseif(is_page()) {
-		$body_id = 'page-'. $post->post_name;
-	} elseif(is_single()) {
-		$body_id = 'post-'. $post->post_name;
-	} elseif(is_category()) {
-		$cat_ID = intval(get_query_var('cat'));
-		$category = &get_category($cat_ID);
-		$body_id = 'cat-'. $category->category_nicename;
-	} elseif(is_tag()) {
-		$tag_ID = intval(get_query_var('tag_id'));
-		$tag = &get_term($tag_ID, 'post_tag');
-		$body_id = 'tag-'. $tag->slug;
-	} elseif(is_author()) {
-		$author = the_archive_author();
-		$body_id = 'author-'. $author->user_login;
-	} elseif(is_date()) {
-		$year = get_query_var('year');
-		$monthnum = get_query_var('monthnum');
-		$day = get_query_var('day');
-		$body_id = "date";
-		if(is_year()) {
-			$body_id .= '-'. $year;
-		} elseif(is_month()) {
-			$body_id .= '-'. $year. '-'. $monthnum;
-		} elseif(is_day()) {
-			$body_id .= '-'. $year. '-'. $monthnum. '-'. $day;
-		}
-	} elseif(is_404()) {
-		$body_id = '404';
-	} else {
-		$body_id = 'unknown';
-	}
-	
-	$body_id = apply_filters('tarski_bodyid', $body_id);
-	
-	if($return)
-		return $body_id;
-	else
-		echo $body_id;
+    if(is_home()) {
+        $body_id = 'home';
+    } elseif(is_search()) {
+        $body_id = 'search';
+    } elseif(is_page()) {
+        $body_id = 'page-'. $post->post_name;
+    } elseif(is_single()) {
+        $body_id = 'post-'. $post->post_name;
+    } elseif(is_category()) {
+        $cat_ID = intval(get_query_var('cat'));
+        $category = &get_category($cat_ID);
+        $body_id = 'cat-'. $category->category_nicename;
+    } elseif(is_tag()) {
+        $tag_ID = intval(get_query_var('tag_id'));
+        $tag = &get_term($tag_ID, 'post_tag');
+        $body_id = 'tag-'. $tag->slug;
+    } elseif(is_author()) {
+        $author = the_archive_author();
+        $body_id = 'author-'. $author->user_login;
+    } elseif(is_date()) {
+        $year = get_query_var('year');
+        $monthnum = get_query_var('monthnum');
+        $day = get_query_var('day');
+        $body_id = "date";
+        if(is_year()) {
+            $body_id .= '-'. $year;
+        } elseif(is_month()) {
+            $body_id .= '-'. $year. '-'. $monthnum;
+        } elseif(is_day()) {
+            $body_id .= '-'. $year. '-'. $monthnum. '-'. $day;
+        }
+    } elseif(is_404()) {
+        $body_id = '404';
+    } else {
+        $body_id = 'unknown';
+    }
+    
+    $body_id = apply_filters('tarski_bodyid', $body_id);
+    
+    if($return)
+        return $body_id;
+    else
+        echo $body_id;
 }
 
 /**

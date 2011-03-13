@@ -191,8 +191,6 @@ add_action('th_navbar', 'tarski_navbar');
 add_action('th_navbar', 'tarski_feedlink');
 
 // Posts
-add_action('parse_query', 'only_paginate_home');
-
 add_action('wp_head', 'tarski_post_metadata');
 
 add_action('th_postend', 'add_post_tags', 10);

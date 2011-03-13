@@ -419,7 +419,6 @@ function tarski_miscellaneous_options() {
 		'display_tagline' => __('Display site tagline', 'tarski'),
 		'show_categories' => __('Show post categories', 'tarski'),
 		'tags_everywhere' =>  __('Show tags everywhere', 'tarski'),
-		'use_pages' => __('Paginate index pages', 'tarski'),
 		'centred_theme' => __('Centrally align the theme', 'tarski'),
 		'swap_sides' =>  __('Switch column order', 'tarski'),
 		'swap_title_order' => __('Reverse document title order', 'tarski')
