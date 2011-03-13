@@ -166,60 +166,36 @@ function tarski_comment_author_link() {
 }
 
 /**
- * Outputs a text field and associated label.
+ * Tarski-specific options to be passed to WordPress' `comment_form` function.
  *
- * Used in the comments reply form to reduce duplication and clean up the
- * template. Adds a wrapper div around the label and input field for ease of
- * styling.
+ * @since 2.8
  *
- * @since 2.4
- * @uses required_field
+ * @see comment_form
  *
- * @param string $field
- * @param string $label
- * @param string $value
- * @param boolean $required
- * @param integer $size
+ * @return array
  */
-function comment_text_field($field, $label, $value = '', $required = false, $size = 20, $type = "text") { ?>
-    <div class="text-wrap <?php echo "$field-wrap"; ?>">
-        <label for="<?php echo $field; ?>"><?php printf($label, required_field($required)); ?></label>
-        <input class="<?php echo comment_field_classes(); ?>" type="<?php echo $type ?>" name="<?php echo $field; ?>" id="<?php echo $field; ?>" value="<?php echo $value; ?>" size="<?php echo $size; ?>"<?php if ($required) echo ' aria-required="true"'; ?>>
+function tarski_comment_form() {
+    $login_message  = sprintf(__('You must be %s to post a comment.', 'tarski'),
+        '<a href="' . wp_login_url(get_permalink()) . '">' .
+        __('logged in', 'tarski') . '</a>');
+    $must_log_in    = "<p class=\"login-required\"><em>$login_message</em></p>";
+    $textarea_title = __('Your comment','tarski');
+    $id_fields      = get_comment_id_fields();
+    $comment_field  = <<<COMMENT_FIELD
+    <div class="response textarea-wrap">
+        <label for="comment">$textarea_title</label>
+        <textarea name="comment" id="comment"
+            cols="60" rows="10"
+            aria-required="true" aria-multiline="true"></textarea>
+        $id_fields
     </div>
-<?php }
-
-/**
- * Builds the HTML classes for comment form text fields.
- * 
- * @since 2.4
- * 
- * @param string $classes
- * @param boolean $required
- * @return string
- */
-function comment_field_classes($classes = '', $required = false) {
-	$classes = trim($classes);
-	if (strlen($classes) < 1) $classes = 'text';
-	if ($required) $classes .= ' required';
-	return apply_filters('comment_field_classes', $classes, $required);
-}
-
-/**
- * Returns a notice stating that a field is required.
- * 
- * Thrown into a function for reusability's sake, and to reduce the number of
- * sprintf()s and localisation strings cluttering up the comment form.
- * 
- * @since 2.4
- * 
- * @param boolean $required
- * @return string
- */
-function required_field($required = true) {
-	if ($required) return sprintf(
-		'<span class="req-notice">(%s)</span>',
-		__('required', 'tarski')
-	);
+COMMENT_FIELD;
+    
+    return array(
+        'comment_field'  => $comment_field,
+        'must_log_in'    => $must_log_in,
+        'title_reply'    => __('Reply', 'tarski'),
+        'title_reply_to' => __('Reply to %s', 'tarski'));
 }
 
 ?>

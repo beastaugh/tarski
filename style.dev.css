@@ -311,12 +311,8 @@ body.rtl #navigation ul.primary { direction: ltr; }
      * @since 2.4
      */
     #respond { padding-top: 0.66em; border-top: 1px solid #e5e5e5; }
-    #respond-header { margin-bottom: 0.66em; border-bottom: 1px solid #ccc; padding-bottom: 0.4em; }
-    #respond-header .title { float: left; margin: 0; }
-    .rtl #respond-header .title { float: right; }
-    #respond-header .cancel-reply { float: right; margin: 0; padding-top: 0.75em; font-size: 0.8em; }
-    .rtl #respond-header .cancel-reply { float: left; }
-        #respond-header .cancel-reply a { padding-right: 13px; background: url('images/icons.png') no-repeat 100% -498px; }
+    #reply-title { margin: 0 0 0.33em 0; border-bottom: 1px solid #ccc; padding: 0 0 0.33em 0; font-family: 'Times New Roman', Times, serif; font-size: 2em; font-weight: normal; text-transform: none; letter-spacing: 0; line-height: 1; color: #404040; }
+    #cancel-comment-reply-link { display: block; float: right; margin: 0.75em 0 0.5em 0; padding: 0 13px 0.25em 0; font-family: Verdana, Helvetica, Arial, sans-serif; font-size: 0.5em; background: url('images/icons.png') no-repeat 100% -498px; }
     body .response-details { margin-bottom: 1em; }
     body .response-details .text-wrap { width: 31%; float: left; margin-right: 2%; }
     body .response-details > .text-wrap { width: 32%; }

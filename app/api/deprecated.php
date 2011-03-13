@@ -12,6 +12,70 @@
  */
 
 /**
+ * Outputs a text field and associated label.
+ *
+ * Used in the comments reply form to reduce duplication and clean up the
+ * template. Adds a wrapper div around the label and input field for ease of
+ * styling.
+ *
+ * @since 2.4
+ * @deprecated 2.8
+ * @uses required_field
+ *
+ * @param string $field
+ * @param string $label
+ * @param string $value
+ * @param boolean $required
+ * @param integer $size
+ */
+function comment_text_field($field, $label, $value = '', $required = false, $size = 20, $type = "text") {
+    _deprecated_function(__FUNCTION__, '2.8'); ?>
+    <div class="text-wrap <?php echo "$field-wrap"; ?>">
+        <label for="<?php echo $field; ?>"><?php printf($label, required_field($required)); ?></label>
+        <input class="<?php echo comment_field_classes(); ?>" type="<?php echo $type ?>" name="<?php echo $field; ?>" id="<?php echo $field; ?>" value="<?php echo $value; ?>" size="<?php echo $size; ?>"<?php if ($required) echo ' aria-required="true"'; ?>>
+    </div>
+<?php }
+
+/**
+ * Builds the HTML classes for comment form text fields.
+ *
+ * @since 2.4
+ * @deprecated 2.8
+ *
+ * @param string $classes
+ * @param boolean $required
+ * @return string
+ */
+function comment_field_classes($classes = '', $required = false) {
+    _deprecated_function(__FUNCTION__, '2.8');
+    
+    $classes = trim($classes);
+    if (strlen($classes) < 1) $classes = 'text';
+    if ($required) $classes .= ' required';
+    return apply_filters('comment_field_classes', $classes, $required);
+}
+
+/**
+ * Returns a notice stating that a field is required.
+ *
+ * Thrown into a function for reusability's sake, and to reduce the number of
+ * sprintf()s and localisation strings cluttering up the comment form.
+ *
+ * @since 2.4
+ * @deprecated 2.8
+ *
+ * @param boolean $required
+ * @return string
+ */
+function required_field($required = true) {
+    _deprecated_function(__FUNCTION__, '2.8');
+    
+    if ($required) return sprintf(
+        '<span class="req-notice">(%s)</span>',
+        __('required', 'tarski'));
+}
+
+/**
  * home_link_name() - Returns the name for the navbar 'Home' link.
  *
  * The option 'home_link_name' can be set in the Tarski Options page;
@@ -407,15 +471,15 @@ function tarski_upgrade_widgets($options, $defaults) {
  *
  */
 function check_input($input, $type, $name = '') {
-	_deprecated_function(__FUNCTION__, '2.5');
-	
-	if ( defined('WP_DEBUG') && WP_DEBUG === true )
-		return true;
+    _deprecated_function(__FUNCTION__, '2.5');
+    
+    if ( defined('WP_DEBUG') && WP_DEBUG === true )
+        return true;
 
-	if ( $type == 'object' && strlen($name) > 0 )
-		return is_a($input, $name);
-	else
-		return call_user_func("is_$type", $input);
+    if ( $type == 'object' && strlen($name) > 0 )
+        return is_a($input, $name);
+    else
+        return call_user_func("is_$type", $input);
 }
 
 /**
@@ -436,58 +500,58 @@ function check_input($input, $type, $name = '') {
  * @return string
  */
 function tarski_recent_entries($args = array()) {
-	_deprecated_function(__FUNCTION__, '2.5');
+    _deprecated_function(__FUNCTION__, '2.5');
 
-	global $posts;
+    global $posts;
 
-	$output = wp_cache_get('tarski_recent_entries');
+    $output = wp_cache_get('tarski_recent_entries');
 
-	if (strlen($output)) {
-		echo $output;
-		return;
-	}
+    if (strlen($output)) {
+        echo $output;
+        return;
+    }
 
-	ob_start();
-	extract($args);
+    ob_start();
+    extract($args);
 
-	$options = array();
-	$title = empty($options['title']) ? __('Recent Articles', 'tarski') : $options['title'];
-	$number = (array_key_exists('number', $options)) ? intval($options['number']) : 5;
+    $options = array();
+    $title = empty($options['title']) ? __('Recent Articles', 'tarski') : $options['title'];
+    $number = (array_key_exists('number', $options)) ? intval($options['number']) : 5;
 
-	if ($number < 1)
-		$number = 1;
-	elseif ($number > 10)
-		$number = 10;
+    if ($number < 1)
+        $number = 1;
+    elseif ($number > 10)
+        $number = 10;
 
-	$recent = new WP_Query(array(
-		'showposts' => $number,
-		'what_to_show' => 'posts',
-		'nopaging' => 0,
-		'post_status' => 'publish',
-		'offset' => (is_home()) ? count($posts) : 0));
+    $recent = new WP_Query(array(
+        'showposts' => $number,
+        'what_to_show' => 'posts',
+        'nopaging' => 0,
+        'post_status' => 'publish',
+        'offset' => (is_home()) ? count($posts) : 0));
 
-	if ($recent->have_posts()) {
+    if ($recent->have_posts()) {
 ?>
 <div id="recent">
-	<?php echo $before_title . $title . $after_title; ?>
-	<ul>
-		<?php while ($recent->have_posts()) { $recent->the_post(); ?>
-		<li>
-			<h4 class="recent-title"><a title="<?php _e('View this post', 'tarski'); ?>" href="<?php the_permalink(); ?>"><?php the_title() ?></a></h4>
-			<p class="recent-metadata"><?php printf(get_tarski_option('show_categories') ? __('%1$s in %2$s', 'tarski') : '%s',
-				the_time(get_option('date_format')),
-				get_the_category_list(', ', '', false)); ?></p>
-			<div class="recent-excerpt content"><?php the_excerpt(); ?></div>
-		</li>
-		<?php } ?>
-	</ul>
+    <?php echo $before_title . $title . $after_title; ?>
+    <ul>
+        <?php while ($recent->have_posts()) { $recent->the_post(); ?>
+        <li>
+            <h4 class="recent-title"><a title="<?php _e('View this post', 'tarski'); ?>" href="<?php the_permalink(); ?>"><?php the_title() ?></a></h4>
+            <p class="recent-metadata"><?php printf(get_tarski_option('show_categories') ? __('%1$s in %2$s', 'tarski') : '%s',
+                the_time(get_option('date_format')),
+                get_the_category_list(', ', '', false)); ?></p>
+            <div class="recent-excerpt content"><?php the_excerpt(); ?></div>
+        </li>
+        <?php } ?>
+    </ul>
 </div> <!-- /recent -->
 <?php
-		unset($recent);
-		wp_reset_query();  // Restore global post data stomped by the_post().
-	}
+        unset($recent);
+        wp_reset_query();  // Restore global post data stomped by the_post().
+    }
 
-	wp_cache_add('tarski_recent_entries', ob_get_flush(), 'widget');
+    wp_cache_add('tarski_recent_entries', ob_get_flush(), 'widget');
 }
 
 /**
@@ -499,9 +563,9 @@ function tarski_recent_entries($args = array()) {
  * @see tarski_recent_entries()
  */
 function flush_tarski_recent_entries() {
-	_deprecated_function(__FUNCTION__, '2.5');
+    _deprecated_function(__FUNCTION__, '2.5');
 
-	wp_cache_delete('tarski_recent_entries');
+    wp_cache_delete('tarski_recent_entries');
 }
 
 /**
@@ -515,26 +579,26 @@ function flush_tarski_recent_entries() {
  * @deprecated 2.5
  */
 function tarski_prefill_sidebars() {
-	_deprecated_function(__FUNCTION__, '2.5');
-	
-	$widgets = wp_get_sidebars_widgets(false);
-	
-	if (!array_key_exists('sidebar-main', $widgets))
-		if (array_key_exists('sidebar-1', $widgets))
-			$widgets['sidebar-main'] = $widgets['sidebar-1'];
-		else
-			$widgets['sidebar-main'] = array('categories', 'links');
-	
-	if (!array_key_exists('footer-sidebar', $widgets))
-		if (array_key_exists('sidebar-2', $widgets))
-			$widgets['footer-sidebar'] = $widgets['sidebar-2'];
-		else
-			$widgets['footer-sidebar'] = array('search');
-	
-	if (!array_key_exists('footer-main', $widgets))
-		$widgets['footer-main'] = array('recent-articles');
-	
-	wp_set_sidebars_widgets($widgets);
+    _deprecated_function(__FUNCTION__, '2.5');
+    
+    $widgets = wp_get_sidebars_widgets(false);
+    
+    if (!array_key_exists('sidebar-main', $widgets))
+        if (array_key_exists('sidebar-1', $widgets))
+            $widgets['sidebar-main'] = $widgets['sidebar-1'];
+        else
+            $widgets['sidebar-main'] = array('categories', 'links');
+    
+    if (!array_key_exists('footer-sidebar', $widgets))
+        if (array_key_exists('sidebar-2', $widgets))
+            $widgets['footer-sidebar'] = $widgets['sidebar-2'];
+        else
+            $widgets['footer-sidebar'] = array('search');
+    
+    if (!array_key_exists('footer-main', $widgets))
+        $widgets['footer-main'] = array('recent-articles');
+    
+    wp_set_sidebars_widgets($widgets);
 }
 
 /**
@@ -551,16 +615,16 @@ function tarski_prefill_sidebars() {
  * @return array $style_array
  */
 function add_version_to_styles($style_array) {
-	_deprecated_function(__FUNCTION__, '2.5');
-	
-	if(check_input($style_array, 'array')) {
-		foreach($style_array as $type => $values) {
-			if(is_array($values) && $values['url']) {
-				$style_array[$type]['url'] .= '?v=' . theme_version();
-			}
-		}
-	}
-	return $style_array;
+    _deprecated_function(__FUNCTION__, '2.5');
+    
+    if(check_input($style_array, 'array')) {
+        foreach($style_array as $type => $values) {
+            if(is_array($values) && $values['url']) {
+                $style_array[$type]['url'] .= '?v=' . theme_version();
+            }
+        }
+    }
+    return $style_array;
 }
 
 /**
@@ -575,13 +639,13 @@ function add_version_to_styles($style_array) {
  * @return string
  */
 function generate_feed_link($title, $link, $type = '') {
-	if (function_exists('feed_content_type'))
-		_deprecated_function(__FUNCTION__, '2.5');
-	
-	if ( $type == '' )
-		$type = feed_link_type();
+    if (function_exists('feed_content_type'))
+        _deprecated_function(__FUNCTION__, '2.5');
+    
+    if ( $type == '' )
+        $type = feed_link_type();
 
-	return "<link rel=\"alternate\" type=\"$type\" title=\"$title\" href=\"$link\" />";
+    return "<link rel=\"alternate\" type=\"$type\" title=\"$title\" href=\"$link\" />";
 }
 
 /**
@@ -594,16 +658,16 @@ function generate_feed_link($title, $link, $type = '') {
  * @return string
  */
 function feed_link_type($type = '') {
-	if (function_exists('feed_content_type'))
-		_deprecated_function(__FUNCTION__, '2.5', feed_content_type($type));
-	
-	if(empty($type))
-		$type = get_default_feed();
+    if (function_exists('feed_content_type'))
+        _deprecated_function(__FUNCTION__, '2.5', feed_content_type($type));
+    
+    if(empty($type))
+        $type = get_default_feed();
 
-	if($type == 'atom')
-		return 'application/atom+xml';
-	else
-		return 'application/rss+xml';
+    if($type == 'atom')
+        return 'application/atom+xml';
+    else
+        return 'application/rss+xml';
 }
 
 /**
@@ -616,12 +680,12 @@ function feed_link_type($type = '') {
  * @return boolean
  */
 function is_wp_front_page() {
-	_deprecated_function(__FUNCTION__, '2.4', is_front_page());
+    _deprecated_function(__FUNCTION__, '2.4', is_front_page());
 
-	if(get_option('show_on_front') == 'page')
-		return is_page(get_option('page_on_front'));
-	else
-		return is_home();
+    if(get_option('show_on_front') == 'page')
+        return is_page(get_option('page_on_front'));
+    else
+        return is_home();
 }
 
 /**
@@ -635,9 +699,9 @@ function is_wp_front_page() {
  * @return boolean
  */
 function can_get_remote() {
-	_deprecated_function(__FUNCTION__, '2.4');
-	
-	return (bool) (function_exists('curl_init') || ini_get('allow_url_fopen'));
+    _deprecated_function(__FUNCTION__, '2.4');
+    
+    return (bool) (function_exists('curl_init') || ini_get('allow_url_fopen'));
 }
 
 /**
@@ -647,13 +711,13 @@ function can_get_remote() {
  * @deprecated 2.4
  */
 function tarski_admin_style() {
-	_deprecated_function(__FUNCTION__, '2.4');
-	
-	wp_enqueue_style(
-		'tarski_admin',
-		get_template_directory_uri() . '/library/css/admin.css',
-		array(), false, 'screen'
-	);
+    _deprecated_function(__FUNCTION__, '2.4');
+    
+    wp_enqueue_style(
+        'tarski_admin',
+        get_template_directory_uri() . '/library/css/admin.css',
+        array(), false, 'screen'
+    );
 }
 
 /**
@@ -663,13 +727,13 @@ function tarski_admin_style() {
  * @deprecated 2.4
  */
 function tarski_messages() {
-	_deprecated_function(__FUNCTION__, '2.4');
-	
-	$messages = apply_filters('tarski_messages', array());
+    _deprecated_function(__FUNCTION__, '2.4');
+    
+    $messages = apply_filters('tarski_messages', array());
 
-	foreach ( $messages as $message ) {
-		echo "<p class=\"tarski-message\">$message</p>\n\n";
-	}
+    foreach ( $messages as $message ) {
+        echo "<p class=\"tarski-message\">$message</p>\n\n";
+    }
 }
 
 /**
@@ -685,12 +749,12 @@ function tarski_messages() {
  * @return boolean
  */
 function ready_to_delete_options($del_time) {
-	_deprecated_function(__FUNCTION__, '2.4');
-	
-	if(!empty($del_time)) {
-		$del_time = (int) $del_time;
-		return (bool) (time() - $del_time) > (3 * 3600);
-	}
+    _deprecated_function(__FUNCTION__, '2.4');
+    
+    if(!empty($del_time)) {
+        $del_time = (int) $del_time;
+        return (bool) (time() - $del_time) > (3 * 3600);
+    }
 }
 
 /**
@@ -702,26 +766,26 @@ function ready_to_delete_options($del_time) {
  * @return integer
  */
 function version_to_integer($version) {
-	_deprecated_function(__FUNCTION__, '2.3');
-	
-	// Remove all non-numeric characters
-	$version = preg_replace('/\D/', '', $version);
+    _deprecated_function(__FUNCTION__, '2.3');
+    
+    // Remove all non-numeric characters
+    $version = preg_replace('/\D/', '', $version);
 
-	if($version && strlen($version) >= 1) {
-		// Make the string exactly three characters (numerals) long
-		if(strlen($version) < 2) {
-			$version_int = $version . '00';
-		} elseif(strlen($version) < 3) {
-			$version_int = $version . '0';
-		} elseif(strlen($version) == 3) {
-			$version_int = $version;
-		} elseif(strlen($version) > 3) {
-			$version_int = substr($version, 0, 3);
-		}
+    if($version && strlen($version) >= 1) {
+        // Make the string exactly three characters (numerals) long
+        if(strlen($version) < 2) {
+            $version_int = $version . '00';
+        } elseif(strlen($version) < 3) {
+            $version_int = $version . '0';
+        } elseif(strlen($version) == 3) {
+            $version_int = $version;
+        } elseif(strlen($version) > 3) {
+            $version_int = substr($version, 0, 3);
+        }
 
-		// Return an integer
-		return (int) $version_int;
-	}
+        // Return an integer
+        return (int) $version_int;
+    }
 }
 
 /**
@@ -733,14 +797,14 @@ function version_to_integer($version) {
  * @return boolean
  */
 function version_newer_than($version) {
-	_deprecated_function(__FUNCTION__, '2.3');
-	
-	$version = version_to_integer($version);
-	$current = version_to_integer(theme_version('current'));
+    _deprecated_function(__FUNCTION__, '2.3');
+    
+    $version = version_to_integer($version);
+    $current = version_to_integer(theme_version('current'));
 
-	if($version && $current) {
-		return (bool) ($current > $version);
-	}
+    if($version && $current) {
+        return (bool) ($current > $version);
+    }
 }
 
 ?>
