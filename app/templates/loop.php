@@ -1,6 +1,6 @@
 <?php while (have_posts()) {
     the_post();
-    if (get_tarski_option('asidescategory') && in_category(get_tarski_option('asidescategory'))) { // Aside loop ?>
+    if (has_post_format('aside') || (get_tarski_option('asidescategory') && in_category(get_tarski_option('asidescategory')))) { // Aside loop ?>
         <div <?php post_class('aside'); ?> id="p-<?php the_ID(); ?>">
             <div class="content entry-content clearfix">
                 <?php echo tarski_post_thumbnail(); ?>

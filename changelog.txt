@@ -6,6 +6,7 @@
 
   * Replaced Tarski navbar with WordPress core menu functionality
   * Replaced Tarski header images with WordPress core functionality
+  * Replaced Tarski asides functionality with aside post format
   * Replaced comment form with WordPress `comment_form` function call
   * Removed option not to paginate index pages
 

@@ -63,7 +63,7 @@ function tarski_link_pages() {
 		'echo' => 1
 	);
 	
-	if (!in_category(get_tarski_option('asidescategory')))
+	if (!(has_post_format('aside') || in_category(get_tarski_option('asidescategory'))))
 		wp_link_pages($arguments);
 }
 

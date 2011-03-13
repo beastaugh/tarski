@@ -118,8 +118,13 @@ function multiple_tag_titles($format = '') {
 function add_post_tags() {
     if (is_404()) return;
     
-    if (is_singular() || (get_tarski_option('tags_everywhere') && !in_category(get_tarski_option('asidescategory')))) {
-        the_tags('<p class="tagdata"><strong>'. __('Tags','tarski'). ':</strong> ', ', ', '</p>'."\n");
+    $aside = has_post_format('aside') ||
+        in_category(get_tarski_option('asidescategory'));
+    
+    if (is_singular() || (get_tarski_option('tags_everywhere') && !$aside)) {
+        $tag_html = '<p class="tagdata"><strong>' .
+            __('Tags', 'tarski') . ':</strong> ';
+        the_tags($tag_html, ', ', '</p>'."\n");
     }
 }
 

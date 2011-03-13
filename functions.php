@@ -154,6 +154,9 @@ add_custom_background();
 add_theme_support('post-thumbnails');
 set_post_thumbnail_size(150, 150, false);
 
+// Post types
+add_theme_support('post-formats', array('aside'));
+
 if (is_admin()) {
     // Options handlers
     add_action('admin_post_tarski_options', 'save_tarski_options');
