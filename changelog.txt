@@ -8,11 +8,12 @@
   * Replaced Tarski header images with WordPress core functionality
   * Replaced Tarski asides functionality with aside post format
   * Replaced comment form with WordPress `comment_form` function call
-  * Removed option not to paginate index pages
+  * Styled the visual editor text field to approximate live styling
 
 #### Tweaks
 
   * Removed update notifier
+  * Removed option not to paginate index pages
   * Deprecated defunct Tarski navbar functions
   * Removed all functions deprecated before version 2.7
   * Merged `app/launcher.php` file with `functions.php` file

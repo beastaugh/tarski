@@ -192,14 +192,14 @@ body.rtl #navigation ul.primary { direction: ltr; }
     body .tagdata { font-size: 0.8em; color: #808080; clear: both; }
     body .tagcloud {}
     body .tagcloud a { margin: 0 2px 0 0; }
-
+    
     /* Search content
     --------------------------------------- */
     body .post-brief { margin: 0 0 2em 0; }
         body .post-brief h3 { margin: 0 0 0.2em 0; }
         body .post-brief p.post-metadata { color: #808080; margin: 0 0 0.2em 0; border: none; padding: 0; }
         body .post-brief p.excerpt { margin: 0; }
-            
+    
     /**
      * Comments layout & style
      * 
