@@ -6,14 +6,15 @@
 
 /**
  * Outputs links to the next and previous posts.
- * 
+ *
  * WordPress has this functionality, but the built-in formatting isn't
  * to Tarski's tastes, so this function builds its own.
- * 
+ *
  * @since 1.2
- * @uses previous_post_link()
- * @uses next_post_link()
- * 
+ *
+ * @uses previous_post_link
+ * @uses next_post_link
+ *
  * @return string
  */
 function tarski_next_prev_posts() {
@@ -23,45 +24,47 @@ function tarski_next_prev_posts() {
         
         if ($prev_post || $next_post) {
             echo '<p class="primary-span articlenav">';
-
+            
             if ($prev_post) {
                 echo '<span class="previous-entry">';
                 previous_post_link('%link','&lsaquo; %title');
                 echo '</span>';
-
+                
                 if ($next_post) {
                     echo ' <span class="separator">&nbsp;&bull;&nbsp;</span> ';
                 }
             }
-
+            
             if ($next_post) {
                 echo '<span class="next-entry">';
                 next_post_link('%link','%title &rsaquo;');
                 echo '</span>';
             }
-
+            
             echo "</p>\n";
         }
     }
 }
 
 /**
- * Passes some Tarski-specific arguments to wp_link_pages().
- * 
+ * Passes some Tarski-specific arguments to wp_link_pages.
+ *
  * @since 2.0
- * @uses wp_link_pages()
+ *
+ * @uses wp_link_pages
  */
 function tarski_link_pages() {
     $arguments = array(
-        'before' => '<p class="link-pages"><strong>' . __('Pages:','tarski') . '</strong>',
-        'after' => '</p>',
-        'next_or_number' => 'number',
-        'nextpagelink' => __('Next page','tarski'),
+        'before'           => '<p class="link-pages"><strong>' .
+                              __('Pages:','tarski') .
+                              '</strong>',
+        'after'            => '</p>',
+        'next_or_number'   => 'number',
+        'nextpagelink'     => __('Next page','tarski'),
         'previouspagelink' => __('Previous page','tarski'),
-        'pagelink' => '%',
-        'more_file' => '',
-        'echo' => 1
-    );
+        'pagelink'         => '%',
+        'more_file'        => '',
+        'echo'             => true);
     
     if (!(has_post_format('aside') || in_category(get_tarski_option('asidescategory'))))
         wp_link_pages($arguments);
@@ -69,9 +72,9 @@ function tarski_link_pages() {
 
 /**
  * Outputs next / previous index page links.
- * 
+ *
  * @since 1.2
- * 
+ *
  * @global object $wp_query
  * @return string
  */
@@ -196,15 +199,18 @@ function tarski_comments_link($metadata) {
  * Outputs permalink text for asides.
  *
  * @since 2.1
- * @uses comments_number()
- * 
+ *
+ * @uses comments_number
+ *
  * @global object $post
  * @return string
  */
 function tarski_asides_permalink_text() {
     global $post;
-    if($post->comment_status == 'open' || $post->comment_count > 0) {
-        comments_number(__('No comments','tarski'), __('1 comment','tarski'), __('% comments','tarski'));
+    if ($post->comment_status == 'open' || $post->comment_count > 0) {
+        comments_number(__('No comments','tarski'),
+                        __('1 comment','tarski'),
+                        __('% comments','tarski'));
     } else {
         _e('Permalink', 'tarski');
     }
@@ -275,6 +281,8 @@ function tarski_post_metadata() {
 /**
  * Wraps a post's metadata in a paragraph.
  *
+ * @since 2.7
+ *
  * @see tarski_post_metadata
  *
  * @param string $metadata
@@ -342,9 +350,9 @@ function tarski_post_metadata_edit($metadata) {
  * Outputs default text for 404 error pages.
  *
  * @since 1.5
- * 
+ *
  * @return string
- * 
+ *
  * @hook filter th_404_content
  * Allows users to change their 404 page messages via a plugin.
  */
@@ -360,17 +368,18 @@ function tarski_404_content() {
 
 /**
  * Filter adding smart quotes, auto-paragraphs etc.
- * 
+ *
  * This function strips slashes, adds smart quotes and other typographical
  * niceties, converts characters such as ampersands to their HTML equivalent,
  * adds automatic paragraphing and line breaks, and finally returns the
  * altered content.
- * 
+ *
  * @since 2.0.5
- * @uses wptexturize()
- * @uses convert_chars()
+ *
+ * @uses wptexturize
+ * @uses convert_chars
  * @uses wpautop
- * 
+ *
  * @param string $text
  * @return string
  */
