@@ -5,7 +5,7 @@
     <?php wp_head(); ?>
 </head>
 
-<body id="<?php tarski_bodyid(); ?>" <?php body_class(); ?>>
+<body id="<?php echo tarski_bodyid(); ?>" <?php body_class(); ?>>
 
 <div id="wrapper" class="tarski">
     <div id="header">

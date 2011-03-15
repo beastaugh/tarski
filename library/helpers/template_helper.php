@@ -29,21 +29,24 @@ function _tarski_get_alternate_stylesheet_uri() {
 }
 
 /**
- * tarski_doctitle() - Returns the document title.
+ * Returns the document title.
  * 
  * The order (site name first or last) can be set on the Tarski Options page.
  * While the function ultimately returns a string, please note that filters
  * are applied to an array! This allows plugins to easily alter any aspect
  * of the title. For example, one might write a plugin to change the separator.
+ *
  * @since 1.5
+ *
  * @param string $sep
- * @return string $doctitle
+ * @return string
+ *
  * @hook filter tarski_doctitle
  * Filter document titles.
  */
 function tarski_doctitle($sep = '&middot;') {
     $site_name = get_bloginfo('name');
-    $content = trim(wp_title('', false));
+    $content   = trim(wp_title('', false));
     
     if (is_404())
         $content = sprintf(__('Error %s', 'tarski'), '404');
@@ -56,13 +59,11 @@ function tarski_doctitle($sep = '&middot;') {
     elseif (is_tag())
         $content = multiple_tag_titles();
     
-    if (strlen($content))
-        $elements = array(
-            'site_name' => $site_name,
-            'separator' => $sep,
-            'content' => $content);
-    else
-        $elements = array('site_name' => $site_name);
+    $elements = strlen($content) > 0
+              ? array('site_name' => $site_name,
+                      'separator' => $sep,
+                      'content'   => $content)
+              : array('site_name' => $site_name);
     
     if (get_tarski_option('swap_title_order'))
         $elements = array_reverse($elements, true);
@@ -233,6 +234,7 @@ function _tarski_asset_output($type, $assets) {
  * Outputs header image.
  *
  * @since 1.0
+ *
  * @return string
  */
 function tarski_headerimage() {
@@ -257,45 +259,48 @@ function tarski_headerimage() {
 }
 
 /**
- * tarski_sitetitle() - Returns site title, wrapped in appropriate markup.
+ * Returns site title, wrapped in appropriate markup.
  * 
  * The title on the home page will appear inside an h1 element,
  * whereas on other pages it will be a link (to the home page),
  * wrapped in a p (paragraph) element.
+ *
  * @since 1.5
+ *
  * @return string
+ *
  * @hook filter tarski_sitetitle
  * Filter site title.
  */
 function tarski_sitetitle() {
-    if(get_tarski_option('display_title')) {
-        $site_title = get_bloginfo('name');
-        
-        if(!is_front_page()) {
-            $site_title = sprintf(
-                '<a title="%1$s" href="%2$s" rel="home">%3$s</a>',
-                __('Return to main page','tarski'),
-                user_trailingslashit(home_url()),
-                $site_title
-            );
-        }
-        
-        if((get_option('show_on_front') == 'posts') && is_home()) {
-            $site_title = sprintf('<h1 id="blog-title">%s</h1>', $site_title);
-        } else {
-            $site_title = sprintf('<p id="blog-title">%s</p>', $site_title);
-        }
-        
-        $site_title = apply_filters('tarski_sitetitle', $site_title);
-        return $site_title;
+    if (!get_tarski_option('display_title')) return '';
+    
+    $site_title = get_bloginfo('name');
+    
+    if (!is_front_page()) {
+        $site_title = sprintf(
+            '<a title="%1$s" href="%2$s" rel="home">%3$s</a>',
+            __('Return to main page','tarski'),
+            user_trailingslashit(home_url()),
+            $site_title);
     }
+    
+    if ((get_option('show_on_front') == 'posts') && is_home()) {
+        $site_title = sprintf('<h1 id="blog-title">%s</h1>', $site_title);
+    } else {
+        $site_title = sprintf('<p id="blog-title">%s</p>', $site_title);
+    }
+    
+    return apply_filters('tarski_sitetitle', $site_title);
 }
 
 /**
- * tarski_tagline() - Returns site tagline, wrapped in appropriate markup.
- * 
+ * Returns site tagline, wrapped in appropriate markup.
+ *
  * @since 1.5
+ *
  * @return string
+ *
  * @hook filter tarski_tagline
  * Filter site tagline.
  */
@@ -306,11 +311,13 @@ function tarski_tagline() {
 }
 
 /**
- * tarski_titleandtag() - Outputs site title and tagline.
+ * Outputs site title and tagline.
  * 
  * @since 1.5
- * @uses tarski_tagline()
- * @uses tarski_sitetitle()
+ *
+ * @uses tarski_tagline
+ * @uses tarski_sitetitle
+ *
  * @return string
  */
 function tarski_titleandtag() {
@@ -322,10 +329,12 @@ function tarski_titleandtag() {
 }
 
 /**
- * navbar_wrapper() - Outputs navigation section.
- * 
- * @uses th_navbar()
+ * Outputs navigation section.
+ *
  * @since 2.1
+ *
+ * @uses th_navbar
+ *
  * @return string
  */
 function navbar_wrapper() {
@@ -421,62 +430,59 @@ function tarski_body_class($classes) {
 }
 
 /**
- * tarski_bodyid() - Outputs the id that should be applied to the document body.
+ * Returns the id that should be applied to the document body.
  * 
  * @since 1.7
+ *
  * @param boolean $return
  * @global object $post
  * @global object $wp_query
- * @return string $body_id
+ * @return string
+ *
  * @hook filter tarski_bodyid
  * Filter the document id value.
  */
-function tarski_bodyid($return = false) {
+function tarski_bodyid() {
     global $post, $wp_query;
     
-    if(is_home()) {
+    if (is_home()) {
         $body_id = 'home';
-    } elseif(is_search()) {
+    } elseif (is_search()) {
         $body_id = 'search';
-    } elseif(is_page()) {
+    } elseif (is_page()) {
         $body_id = 'page-'. $post->post_name;
-    } elseif(is_single()) {
+    } elseif (is_single()) {
         $body_id = 'post-'. $post->post_name;
-    } elseif(is_category()) {
+    } elseif (is_category()) {
         $cat_ID = intval(get_query_var('cat'));
         $category = &get_category($cat_ID);
         $body_id = 'cat-'. $category->category_nicename;
-    } elseif(is_tag()) {
+    } elseif (is_tag()) {
         $tag_ID = intval(get_query_var('tag_id'));
         $tag = &get_term($tag_ID, 'post_tag');
         $body_id = 'tag-'. $tag->slug;
-    } elseif(is_author()) {
+    } elseif (is_author()) {
         $author = the_archive_author();
         $body_id = 'author-'. $author->user_login;
-    } elseif(is_date()) {
+    } elseif (is_date()) {
         $year = get_query_var('year');
         $monthnum = get_query_var('monthnum');
         $day = get_query_var('day');
         $body_id = "date";
-        if(is_year()) {
+        if (is_year()) {
             $body_id .= '-'. $year;
-        } elseif(is_month()) {
+        } elseif (is_month()) {
             $body_id .= '-'. $year. '-'. $monthnum;
-        } elseif(is_day()) {
+        } elseif (is_day()) {
             $body_id .= '-'. $year. '-'. $monthnum. '-'. $day;
         }
-    } elseif(is_404()) {
+    } elseif (is_404()) {
         $body_id = '404';
     } else {
         $body_id = 'unknown';
     }
     
-    $body_id = apply_filters('tarski_bodyid', $body_id);
-    
-    if($return)
-        return $body_id;
-    else
-        echo $body_id;
+    return apply_filters('tarski_bodyid', $body_id);
 }
 
 /**
