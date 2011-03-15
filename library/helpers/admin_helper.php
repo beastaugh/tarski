@@ -11,19 +11,19 @@
  * @return boolean
  */
 function cache_is_writable($file = false) {
-	if ($file)
-		$file = TARSKICACHE . '/' . $file;
-	
-	$writable = false;
-	
-	if ($file && file_exists($file))
-		$writable = is_writable($file);
-	elseif (file_exists(TARSKICACHE))
-		$writable = is_writable(TARSKICACHE);
-	elseif (is_writable(WP_CONTENT_DIR))
-		$writable = wp_mkdir_p(TARSKICACHE);
-	
-	return $writable;
+    if ($file)
+        $file = TARSKICACHE . '/' . $file;
+    
+    $writable = false;
+    
+    if ($file && file_exists($file))
+        $writable = is_writable($file);
+    elseif (file_exists(TARSKICACHE))
+        $writable = is_writable(TARSKICACHE);
+    elseif (is_writable(WP_CONTENT_DIR))
+        $writable = wp_mkdir_p(TARSKICACHE);
+    
+    return $writable;
 }
 
 /**
@@ -38,16 +38,16 @@ function cache_is_writable($file = false) {
  * @since 2.0
  */
 function save_tarski_options() {
-	check_admin_referer('admin_post_tarski_options', '_wpnonce_tarski_options');
-	
-	if (!current_user_can('manage_options'))
-		wp_die(__('You are not authorised to perform this operation.', 'tarski'));
-	
-	$options = flush_tarski_options();
-	$options->tarski_options_update();
-	update_option('tarski_options', $options);
-	
-	wp_redirect(admin_url('themes.php?page=tarski-options&updated=true'));
+    check_admin_referer('admin_post_tarski_options', '_wpnonce_tarski_options');
+    
+    if (!current_user_can('manage_options'))
+        wp_die(__('You are not authorised to perform this operation.', 'tarski'));
+    
+    $options = flush_tarski_options();
+    $options->tarski_options_update();
+    update_option('tarski_options', $options);
+    
+    wp_redirect(admin_url('themes.php?page=tarski-options&updated=true'));
 }
 
 /**
@@ -63,19 +63,19 @@ function save_tarski_options() {
  * @since 2.4
  */
 function delete_tarski_options() {
-	check_admin_referer('admin_post_delete_tarski_options', '_wpnonce_delete_tarski_options');
-	
-	if (!current_user_can('manage_options'))
-		wp_die(__('You are not authorised to perform this operation.', 'tarski'));
-	
-	$options = flush_tarski_options();
-	
-	if (!is_numeric($options->deleted) || $options->deleted < 1) {
-		$options->deleted = time();
-		update_option('tarski_options', $options);
-	}
-	
-	wp_redirect(admin_url('themes.php?page=tarski-options&deleted=true'));
+    check_admin_referer('admin_post_delete_tarski_options', '_wpnonce_delete_tarski_options');
+    
+    if (!current_user_can('manage_options'))
+        wp_die(__('You are not authorised to perform this operation.', 'tarski'));
+    
+    $options = flush_tarski_options();
+    
+    if (!is_numeric($options->deleted) || $options->deleted < 1) {
+        $options->deleted = time();
+        update_option('tarski_options', $options);
+    }
+    
+    wp_redirect(admin_url('themes.php?page=tarski-options&deleted=true'));
 }
 
 /**
@@ -89,19 +89,19 @@ function delete_tarski_options() {
  * @since 2.4
  */
 function restore_tarski_options() {
-	check_admin_referer('admin_post_restore_tarski_options', '_wpnonce_restore_tarski_options');
-	
-	if (!current_user_can('manage_options'))
-		wp_die(__('You are not authorised to perform this operation.', 'tarski'));
-	
-	$options = flush_tarski_options();
-	
-	if (is_numeric($options->deleted) && $options->deleted > 0) {
-		unset($options->deleted);
-		update_option('tarski_options', $options);
-	}
-	
-	wp_redirect(admin_url('themes.php?page=tarski-options&restored=true'));	
+    check_admin_referer('admin_post_restore_tarski_options', '_wpnonce_restore_tarski_options');
+    
+    if (!current_user_can('manage_options'))
+        wp_die(__('You are not authorised to perform this operation.', 'tarski'));
+    
+    $options = flush_tarski_options();
+    
+    if (is_numeric($options->deleted) && $options->deleted > 0) {
+        unset($options->deleted);
+        update_option('tarski_options', $options);
+    }
+    
+    wp_redirect(admin_url('themes.php?page=tarski-options&restored=true'));    
 }
 
 /**
@@ -118,13 +118,13 @@ function restore_tarski_options() {
  * @since 2.4
  */
 function maybe_wipe_tarski_options() {
-	$options = flush_tarski_options();
-	$del = $options->deleted;
-	
-	if (is_numeric($del) && (time() - $del) > (3 * 3600)) {
-		delete_option('tarski_options');
-		flush_tarski_options();
-	}
+    $options = flush_tarski_options();
+    $del = $options->deleted;
+    
+    if (is_numeric($del) && (time() - $del) > (3 * 3600)) {
+        delete_option('tarski_options');
+        flush_tarski_options();
+    }
 }
 
 /**
@@ -159,10 +159,10 @@ function tarski_upgrade_needed() {
  * @uses flush_tarski_options
  */
 function tarski_upgrade_and_flush_options() {
-	if (tarski_upgrade_needed()) {
-		tarski_upgrade();
-		flush_tarski_options();
-	}
+    if (tarski_upgrade_needed()) {
+        tarski_upgrade();
+        flush_tarski_options();
+    }
 }
 
 /**
@@ -175,14 +175,14 @@ function tarski_upgrade_and_flush_options() {
  * @param object $defaults
  */
 function tarski_upgrade_special($options, $defaults) {
-	if (tarski_should_show_authors())
-		$options->show_authors = true;
-	
-	if (empty($options->centred_theme) && isset($options->centered_theme))
-		$options->centred_theme = true;
-	
-	if (empty($options->show_categories) && isset($options->hide_categories) && ($options->hide_categories == 1))
-		$options->show_categories = false;
+    if (tarski_should_show_authors())
+        $options->show_authors = true;
+    
+    if (empty($options->centred_theme) && isset($options->centered_theme))
+        $options->centred_theme = true;
+    
+    if (empty($options->show_categories) && isset($options->hide_categories) && ($options->hide_categories == 1))
+        $options->show_categories = false;
 }
 
 /**
@@ -214,16 +214,16 @@ function tarski_upgrade() {
  * @since 1.0
  */
 function tarski_addmenu() {
-	$page = add_theme_page(
-		__('Tarski Options','tarski'),
-		__('Tarski Options','tarski'),
-		'manage_options',
-		'tarski-options',
-		'tarski_admin'
-	);
-	
-	add_action("admin_print_scripts-$page", 'tarski_inject_scripts');
-	add_action("admin_print_styles-$page", 'tarski_inject_styles');
+    $page = add_theme_page(
+        __('Tarski Options','tarski'),
+        __('Tarski Options','tarski'),
+        'manage_options',
+        'tarski-options',
+        'tarski_admin'
+    );
+    
+    add_action("admin_print_scripts-$page", 'tarski_inject_scripts');
+    add_action("admin_print_styles-$page", 'tarski_inject_styles');
 }
 
 /**
@@ -245,15 +245,15 @@ function tarski_admin() {
  * @since 1.4
  */
 function tarski_admin_header_style() { ?>
-	<style type="text/css">
-	#headimg {
-		height: <?php echo HEADER_IMAGE_HEIGHT; ?>px;
-		width: <?php echo HEADER_IMAGE_WIDTH; ?>px;
-	}
-	#headimg h1, #headimg #desc {
-		display: none;
-	}
-	</style>
+    <style type="text/css">
+    #headimg {
+        height: <?php echo HEADER_IMAGE_HEIGHT; ?>px;
+        width: <?php echo HEADER_IMAGE_WIDTH; ?>px;
+    }
+    #headimg h1, #headimg #desc {
+        display: none;
+    }
+    </style>
 <?php }
 
 /**
@@ -262,11 +262,11 @@ function tarski_admin_header_style() { ?>
  * @since 2.1
 */
 function tarski_inject_styles() {
-	wp_enqueue_style(
-		'tarski_options',
-		get_template_directory_uri() . '/library/css/options.css',
-		array(), false, 'screen'
-	);
+    wp_enqueue_style(
+        'tarski_options',
+        get_template_directory_uri() . '/library/css/options.css',
+        array(), false, 'screen'
+    );
 }
 
 /**
@@ -294,10 +294,10 @@ function tarski_inject_scripts() {
  * @return integer
  */
 function tarski_count_authors() {
-	global $wpdb;
-	return count($wpdb->get_col($wpdb->prepare(
-		"SELECT post_author, COUNT(DISTINCT post_author) FROM $wpdb->posts WHERE post_status = 'publish' GROUP BY post_author"
-	), 1));
+    global $wpdb;
+    return count($wpdb->get_col($wpdb->prepare(
+        "SELECT post_author, COUNT(DISTINCT post_author) FROM $wpdb->posts WHERE post_status = 'publish' GROUP BY post_author"
+    ), 1));
 }
 
 /**
@@ -311,8 +311,8 @@ function tarski_count_authors() {
  * Allows other components to decide whether or not Tarski should show authors.
  */
 function tarski_should_show_authors() {
-	$show_authors = tarski_count_authors() > 1;
-	return (bool) apply_filters('tarski_show_authors', $show_authors);
+    $show_authors = tarski_count_authors() > 1;
+    return (bool) apply_filters('tarski_show_authors', $show_authors);
 }
 
 /**
@@ -324,9 +324,9 @@ function tarski_should_show_authors() {
  * @uses tarski_should_show_authors()
  */
 function tarski_resave_show_authors() {
-	if(get_option('tarski_options')) {
-		update_tarski_option('show_authors', tarski_should_show_authors());
-	}
+    if(get_option('tarski_options')) {
+        update_tarski_option('show_authors', tarski_should_show_authors());
+    }
 }
 
 /**
@@ -337,25 +337,25 @@ function tarski_resave_show_authors() {
  * @since 2.2
  */
 function tarski_navbar_select() {
-	$pages = &get_pages('sort_column=post_parent,menu_order');
-	$nav_pages = explode(',', get_tarski_option('nav_pages'));
-	$collapsed_pages = explode(',', get_tarski_option('collapsed_pages'));
-	$walker = new WalkerPageSelect($nav_pages, $collapsed_pages);
-	$selector = '';
-	
-	if (!empty($pages))
-		$selector = "<ol id=\"navbar-select\">\n" . $walker->walk($pages, 0, 0, array()) . "\n</ol>\n\n";
-	
-	if($pages) {
-		$navbar_select = '<p>' . __('Pages selected here will display in your navbar.', 'tarski') . "</p>\n"
-			. $selector
-			. '<input type="hidden" id="opt-collapsed-pages" name="collapsed_pages" value="' . get_tarski_option('collapsed_pages') . '" />'. "\n\n"
-			. '<p>' . __('To change the order in which they appear, edit the &#8216;Page Order&#8217; value on each page.', 'tarski') . "</p>\n";
-	} else {
-		$navbar_select = false;
-	}
-	
-	return $navbar_select;
+    $pages = &get_pages('sort_column=post_parent,menu_order');
+    $nav_pages = explode(',', get_tarski_option('nav_pages'));
+    $collapsed_pages = explode(',', get_tarski_option('collapsed_pages'));
+    $walker = new WalkerPageSelect($nav_pages, $collapsed_pages);
+    $selector = '';
+    
+    if (!empty($pages))
+        $selector = "<ol id=\"navbar-select\">\n" . $walker->walk($pages, 0, 0, array()) . "\n</ol>\n\n";
+    
+    if($pages) {
+        $navbar_select = '<p>' . __('Pages selected here will display in your navbar.', 'tarski') . "</p>\n"
+            . $selector
+            . '<input type="hidden" id="opt-collapsed-pages" name="collapsed_pages" value="' . get_tarski_option('collapsed_pages') . '" />'. "\n\n"
+            . '<p>' . __('To change the order in which they appear, edit the &#8216;Page Order&#8217; value on each page.', 'tarski') . "</p>\n";
+    } else {
+        $navbar_select = false;
+    }
+    
+    return $navbar_select;
 }
 
 /**
@@ -413,21 +413,21 @@ function _tarski_list_alternate_styles() {
  * @return string
  */
 function tarski_miscellaneous_options() {
-	$output = '';
-	$checkboxes = array(
-		'display_title' => __('Display site title', 'tarski'),
-		'display_tagline' => __('Display site tagline', 'tarski'),
-		'show_categories' => __('Show post categories', 'tarski'),
-		'tags_everywhere' =>  __('Show tags everywhere', 'tarski'),
-		'centred_theme' => __('Centrally align the theme', 'tarski'),
-		'swap_sides' =>  __('Switch column order', 'tarski'),
-		'swap_title_order' => __('Reverse document title order', 'tarski')
-	);
-	
-	foreach($checkboxes as $name => $label)
-		$output .= tarski_option_checkbox($name, $label) . "\n\n";
-	
-	return $output;
+    $output = '';
+    $checkboxes = array(
+        'display_title' => __('Display site title', 'tarski'),
+        'display_tagline' => __('Display site tagline', 'tarski'),
+        'show_categories' => __('Show post categories', 'tarski'),
+        'tags_everywhere' =>  __('Show tags everywhere', 'tarski'),
+        'centred_theme' => __('Centrally align the theme', 'tarski'),
+        'swap_sides' =>  __('Switch column order', 'tarski'),
+        'swap_title_order' => __('Reverse document title order', 'tarski')
+    );
+    
+    foreach($checkboxes as $name => $label)
+        $output .= tarski_option_checkbox($name, $label) . "\n\n";
+    
+    return $output;
 }
 
 /**
@@ -442,8 +442,8 @@ function tarski_miscellaneous_options() {
  * @return string
  */
 function tarski_update_notifier() {
-	$version = new TarskiVersion();
-	return $version->status_message();
+    $version = new TarskiVersion();
+    return $version->status_message();
 }
 
 /**
@@ -469,9 +469,9 @@ function tarski_options_fragment($block) {
  * @param string $title
  */
 function tarski_options_block($block, $title) {
-	echo "<div class=\"postbox\"><h3 class=\"hndle\">$title</h3>\n\t<div class=\"inside\">";
-	tarski_options_fragment($block);
-	echo "\t</div>\n</div>";
+    echo "<div class=\"postbox\"><h3 class=\"hndle\">$title</h3>\n\t<div class=\"inside\">";
+    tarski_options_fragment($block);
+    echo "\t</div>\n</div>";
 }
 
 /**
@@ -482,13 +482,13 @@ function tarski_options_block($block, $title) {
  * @param string $title
  */
 function tarski_options_fn_block($fn, $title, $args = array()) {
-	$fn_output = call_user_func_array($fn, $args);
-	if ($fn_output) {
-		printf(
-			"<div class=\"postbox\"><h3 class=\"hndle\">%s</h3>\n\t<div class=\"inside\">%s\t</div>\n</div>",
-			$title, $fn_output
-		);
-	}
+    $fn_output = call_user_func_array($fn, $args);
+    if ($fn_output) {
+        printf(
+            "<div class=\"postbox\"><h3 class=\"hndle\">%s</h3>\n\t<div class=\"inside\">%s\t</div>\n</div>",
+            $title, $fn_output
+        );
+    }
 }
 
 /**
@@ -500,19 +500,19 @@ function tarski_options_fn_block($fn, $title, $args = array()) {
  * @return string
  */
 function tarski_option_checkbox($name, $label) {
-	$id = "tarski_option_$name";
-	$checked = '';
-	
-	if(get_tarski_option($name))
-		$checked = 'checked="checked" ';
-	
-	$hidden = "<input type=\"hidden\" name=\"$name\" value=\"0\" />";
-	$checkbox = "<input type=\"checkbox\" id=\"$id\" name=\"$name\" value=\"1\" $checked/>";
-	
-	return sprintf(
-		"<label for=\"%s\">\n\t%s\n\t%s\n\t%s\n</label>",
-		$id, $hidden, $checkbox, $label
-	);
+    $id = "tarski_option_$name";
+    $checked = '';
+    
+    if(get_tarski_option($name))
+        $checked = 'checked="checked" ';
+    
+    $hidden = "<input type=\"hidden\" name=\"$name\" value=\"0\" />";
+    $checkbox = "<input type=\"checkbox\" id=\"$id\" name=\"$name\" value=\"1\" $checked/>";
+    
+    return sprintf(
+        "<label for=\"%s\">\n\t%s\n\t%s\n\t%s\n</label>",
+        $id, $hidden, $checkbox, $label
+    );
 }
 
 ?>

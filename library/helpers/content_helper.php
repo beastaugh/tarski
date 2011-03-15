@@ -17,32 +17,32 @@
  * @return string
  */
 function tarski_next_prev_posts() {
-	if (is_single()) {
-		$prev_post = get_previous_post();
-		$next_post = get_next_post();
-		
-		if ($prev_post || $next_post) {
-			echo '<p class="primary-span articlenav">';
+    if (is_single()) {
+        $prev_post = get_previous_post();
+        $next_post = get_next_post();
+        
+        if ($prev_post || $next_post) {
+            echo '<p class="primary-span articlenav">';
 
-			if ($prev_post) {
-				echo '<span class="previous-entry">';
-				previous_post_link('%link','&lsaquo; %title');
-				echo '</span>';
+            if ($prev_post) {
+                echo '<span class="previous-entry">';
+                previous_post_link('%link','&lsaquo; %title');
+                echo '</span>';
 
-				if ($next_post) {
-					echo ' <span class="separator">&nbsp;&bull;&nbsp;</span> ';
-				}
-			}
+                if ($next_post) {
+                    echo ' <span class="separator">&nbsp;&bull;&nbsp;</span> ';
+                }
+            }
 
-			if ($next_post) {
-				echo '<span class="next-entry">';
-				next_post_link('%link','%title &rsaquo;');
-				echo '</span>';
-			}
+            if ($next_post) {
+                echo '<span class="next-entry">';
+                next_post_link('%link','%title &rsaquo;');
+                echo '</span>';
+            }
 
-			echo "</p>\n";
-		}
-	}
+            echo "</p>\n";
+        }
+    }
 }
 
 /**
@@ -52,19 +52,19 @@ function tarski_next_prev_posts() {
  * @uses wp_link_pages()
  */
 function tarski_link_pages() {
-	$arguments = array(
-		'before' => '<p class="link-pages"><strong>' . __('Pages:','tarski') . '</strong>',
-		'after' => '</p>',
-		'next_or_number' => 'number',
-		'nextpagelink' => __('Next page','tarski'),
-		'previouspagelink' => __('Previous page','tarski'),
-		'pagelink' => '%',
-		'more_file' => '',
-		'echo' => 1
-	);
-	
-	if (!(has_post_format('aside') || in_category(get_tarski_option('asidescategory'))))
-		wp_link_pages($arguments);
+    $arguments = array(
+        'before' => '<p class="link-pages"><strong>' . __('Pages:','tarski') . '</strong>',
+        'after' => '</p>',
+        'next_or_number' => 'number',
+        'nextpagelink' => __('Next page','tarski'),
+        'previouspagelink' => __('Previous page','tarski'),
+        'pagelink' => '%',
+        'more_file' => '',
+        'echo' => 1
+    );
+    
+    if (!(has_post_format('aside') || in_category(get_tarski_option('asidescategory'))))
+        wp_link_pages($arguments);
 }
 
 /**
@@ -76,27 +76,27 @@ function tarski_link_pages() {
  * @return string
  */
 function tarski_posts_nav_link() {
-	if (is_singular()) return;
-	
-	global $wp_query;
-	
-	$max_num_pages = $wp_query->max_num_pages;
-	$paged = get_query_var('paged');
-	
-	if ($max_num_pages <= 1) return;
-	
-	if (is_search())
-		$links = array(
-			get_previous_posts_link('&laquo; ' . __('Previous results', 'tarski')),
-			get_next_posts_link(__('More results', 'tarski') . ' &raquo;'));
-	else
-		$links = array(
-			get_next_posts_link('&laquo; ' . __('Older entries', 'tarski')),
-			get_previous_posts_link(__('Newer entries', 'tarski') . ' &raquo;'));
-	
-	printf('<p class="pagination">%1$s%3$s%2$s</p>',
-		$links[0], $links[1],
-		$paged < 2 || $paged >= $max_num_pages ? '' : ' &sect; ');
+    if (is_singular()) return;
+    
+    global $wp_query;
+    
+    $max_num_pages = $wp_query->max_num_pages;
+    $paged = get_query_var('paged');
+    
+    if ($max_num_pages <= 1) return;
+    
+    if (is_search())
+        $links = array(
+            get_previous_posts_link('&laquo; ' . __('Previous results', 'tarski')),
+            get_next_posts_link(__('More results', 'tarski') . ' &raquo;'));
+    else
+        $links = array(
+            get_next_posts_link('&laquo; ' . __('Older entries', 'tarski')),
+            get_previous_posts_link(__('Newer entries', 'tarski') . ' &raquo;'));
+    
+    printf('<p class="pagination">%1$s%3$s%2$s</p>',
+        $links[0], $links[1],
+        $paged < 2 || $paged >= $max_num_pages ? '' : ' &sect; ');
 }
 
 /**
@@ -202,12 +202,12 @@ function tarski_comments_link($metadata) {
  * @return string
  */
 function tarski_asides_permalink_text() {
-	global $post;
-	if($post->comment_status == 'open' || $post->comment_count > 0) {
-		comments_number(__('No comments','tarski'), __('1 comment','tarski'), __('% comments','tarski'));
-	} else {
-		_e('Permalink', 'tarski');
-	}
+    global $post;
+    if($post->comment_status == 'open' || $post->comment_count > 0) {
+        comments_number(__('No comments','tarski'), __('1 comment','tarski'), __('% comments','tarski'));
+    } else {
+        _e('Permalink', 'tarski');
+    }
 }
 
 /**
@@ -349,13 +349,13 @@ function tarski_post_metadata_edit($metadata) {
  * Allows users to change their 404 page messages via a plugin.
  */
 function tarski_404_content() {
-	$content = sprintf(
-		__('The page you are looking for does not exist; it may have been moved, or removed altogether. You might want to try the search function or return to the %s.','tarski'),
-		'<a href="' . user_trailingslashit(home_url()) . '">' . __('front page', 'tarski') . '</a>'
-	);
-	$content = wpautop($content);
-	$content = apply_filters('th_404_content', $content);
-	echo $content;
+    $content = sprintf(
+        __('The page you are looking for does not exist; it may have been moved, or removed altogether. You might want to try the search function or return to the %s.','tarski'),
+        '<a href="' . user_trailingslashit(home_url()) . '">' . __('front page', 'tarski') . '</a>'
+    );
+    $content = wpautop($content);
+    $content = apply_filters('th_404_content', $content);
+    echo $content;
 }
 
 /**
@@ -375,8 +375,8 @@ function tarski_404_content() {
  * @return string
  */
 function tarski_content_massage($text) {
-	if (strlen($text) > 0)
-		return convert_chars(wptexturize($text));
+    if (strlen($text) > 0)
+        return convert_chars(wptexturize($text));
 }
 
 ?>

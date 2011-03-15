@@ -251,12 +251,12 @@
 ### Version 2.3 [&sect;](http://tarskitheme.com/2008/08/10/23-release/)
 
 #### New features
- 
+
   * Options page now compatible with
     <abbr title="Secure Sockets Layer">SSL</abbr> admin (r731)
- 
+
 #### Tweaks
-  
+
   * Don't serialise the data passed to `update_option` (r763)
   * Show version cache notice when _file_, not directory, isn't writable (r760)
   * Clean up `cache_is_writable` function (r759, r761)
@@ -272,7 +272,7 @@
     `version_compare` function (r737)
   * Options page access granted only to users with `edit_themes` capability (r736)
   * Stylesheets for the admin section enqueued, not printed (r734)
- 
+
 #### Bug fixes
 
   * Added more checks to upgrade functionality (r746)
@@ -290,17 +290,17 @@
 ### Version 2.2.1 [&sect;](http://tarskitheme.com/2008/07/19/22-release/)
 
 #### Bug fixes
-	
+
   * Always show authors if Tarski options haven't been saved (r715)
 
 
 ### Version 2.2 [&sect;](http://tarskitheme.com/2008/07/19/22-release/)
-  
+
 #### New features
 
   * Navbar selector: sub-page lists are collapsible (r606)
   * Navbar selector: sub-pages are listed as such (r599)
-  
+
 #### Tweaks
 
   * Better handling of attachments (r697, r698)
@@ -346,7 +346,7 @@
 
 
 ### Version 2.1.1 [&sect;](http://tarskitheme.com/2008/05/20/21-release/)
-	
+
 #### Bug fixes
 
   * Fixed navbar character encoding problem (r595)

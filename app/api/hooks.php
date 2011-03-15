@@ -24,7 +24,7 @@
  * internally to add the header image, site title, tagline and navbar.
  */
 function th_header() {
-	do_action('th_header');
+    do_action('th_header');
 }
 
 /**
@@ -45,7 +45,7 @@ function th_header() {
  * used to add content to the navbar.
  */
 function th_navbar() {
-	do_action('th_navbar');
+    do_action('th_navbar');
 }
 
 /**
@@ -65,7 +65,7 @@ function th_navbar() {
  * internally to add tags to posts and navigation for multi-page posts.
  */
 function th_postend() {
-	do_action('th_postend');
+    do_action('th_postend');
 }
 
 /**
@@ -85,7 +85,7 @@ function th_postend() {
  * pages. It could be used to replace this navigation with some other kind.
  */
 function th_posts_nav() {
-	do_action('th_posts_nav');
+    do_action('th_posts_nav');
 }
 
 /**
@@ -106,7 +106,7 @@ function th_posts_nav() {
  * sidebar code.
  */
 function th_sidebar() {
-	do_action('th_sidebar');
+    do_action('th_sidebar');
 }
 
 /**
@@ -125,7 +125,7 @@ function th_sidebar() {
  * secondary footer area.
  */
 function th_fsidebar() {
-	do_action('th_fsidebar');
+    do_action('th_fsidebar');
 }
 
 /**
@@ -144,7 +144,7 @@ function th_fsidebar() {
  * the primary footer area.
  */
 function th_fmain() {
-	do_action('th_fmain');
+    do_action('th_fmain');
 }
 
 /**
@@ -164,7 +164,7 @@ function th_fmain() {
  * Used by default to add the theme credit and site feed link.
  */
 function th_footer() {
-	do_action('th_footer');
+    do_action('th_footer');
 }
 
 ?>

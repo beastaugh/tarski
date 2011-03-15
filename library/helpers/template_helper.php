@@ -433,7 +433,7 @@ function tarski_body_class($classes) {
  */
 function tarski_bodyid($return = false) {
     global $post, $wp_query;
-
+    
     if(is_home()) {
         $body_id = 'home';
     } elseif(is_search()) {

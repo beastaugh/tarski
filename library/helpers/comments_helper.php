@@ -17,12 +17,12 @@
  * Filters the date and time printed with a comment.
  */
 function tarski_comment_datetime() {
-	$datetime = sprintf(
-		__('%1$s at %2$s','tarski'),
-		get_comment_date(),
-		get_comment_time()
-	);
-	return apply_filters('tarski_comment_datetime', $datetime);
+    $datetime = sprintf(
+        __('%1$s at %2$s','tarski'),
+        get_comment_date(),
+        get_comment_time()
+    );
+    return apply_filters('tarski_comment_datetime', $datetime);
 }
 
 /**
@@ -36,10 +36,10 @@ function tarski_comment_datetime() {
  * @return string
  */
 function tarski_comment_link($comment, $args) {
-	return sprintf('<a title="%s" href="%s">%s</a>',
-		__('Permalink to this comment','tarski'),
-		htmlspecialchars(get_comment_link($comment->comment_ID, $args)),
-		tarski_comment_datetime());
+    return sprintf('<a title="%s" href="%s">%s</a>',
+        __('Permalink to this comment','tarski'),
+        htmlspecialchars(get_comment_link($comment->comment_ID, $args)),
+        tarski_comment_datetime());
 }
 
 /**
@@ -51,10 +51,10 @@ function tarski_comment_link($comment, $args) {
  * @return string $comment_author
  */
 function tidy_openid_names($comment_author) {
-	global $comment;
-	$comment_author =  str_replace('http://', '', $comment_author);
-	$comment_author = rtrim($comment_author, '/');
-	return $comment_author;
+    global $comment;
+    $comment_author =  str_replace('http://', '', $comment_author);
+    $comment_author = rtrim($comment_author, '/');
+    return $comment_author;
 }
 
 /**
@@ -74,15 +74,15 @@ function tidy_openid_names($comment_author) {
  * @return mixed
  */
 function tidy_avatars($avatar, $id_or_email, $size, $default) {
-	$avatar = preg_replace("/height='[\d]+' width='[\d]+'/", '', $avatar);
-	
-	if (is_admin()) return $avatar;
-	
-	$avatar = preg_replace("/'/", '"', $avatar);
-	$author_alt = sprintf(__('%s&#8217;s avatar'), get_comment_author());
-	$avatar = preg_replace('/alt=""/', "alt=\"$author_alt\"", $avatar);
-	
-	return $avatar;
+    $avatar = preg_replace("/height='[\d]+' width='[\d]+'/", '', $avatar);
+    
+    if (is_admin()) return $avatar;
+    
+    $avatar = preg_replace("/'/", '"', $avatar);
+    $author_alt = sprintf(__('%s&#8217;s avatar'), get_comment_author());
+    $avatar = preg_replace('/alt=""/', "alt=\"$author_alt\"", $avatar);
+    
+    return $avatar;
 }
 
 /**
@@ -121,9 +121,9 @@ function tarski_avatar() {
  * @return string
  */
 function tarski_default_avatar($avatar_defaults) {
-	$tarski_avatar = get_template_directory_uri() . '/images/avatar.png';
-	$avatar_defaults[$tarski_avatar] = 'Tarski';
-	return $avatar_defaults;
+    $tarski_avatar = get_template_directory_uri() . '/images/avatar.png';
+    $avatar_defaults[$tarski_avatar] = 'Tarski';
+    return $avatar_defaults;
 }
 
 /**
@@ -143,26 +143,26 @@ function tarski_default_avatar($avatar_defaults) {
  * Tarski-specific filter on comment author links.
  */
 function tarski_comment_author_link() {
-	global $comment;
-	$url = get_comment_author_url();
-	$author = get_comment_author();
+    global $comment;
+    $url = get_comment_author_url();
+    $author = get_comment_author();
 
-	if(empty($url) || 'http://' == $url) {
-		$return = sprintf(
-			'<span class="fn">%s</span>',
-			$author
-		);
-	} else {
-		$return = sprintf(
-			'<a class="url fn" href="%1$s" rel="external nofollow">%2$s</a>',
-			$url,
-			$author
-		);
-	}
+    if(empty($url) || 'http://' == $url) {
+        $return = sprintf(
+            '<span class="fn">%s</span>',
+            $author
+        );
+    } else {
+        $return = sprintf(
+            '<a class="url fn" href="%1$s" rel="external nofollow">%2$s</a>',
+            $url,
+            $author
+        );
+    }
 
-	$return =  apply_filters('get_comment_author_link', $return);
-	$return = apply_filters('tarski_comment_author_link', $return);
-	return $return;
+    $return =  apply_filters('get_comment_author_link', $return);
+    $return = apply_filters('tarski_comment_author_link', $return);
+    return $return;
 }
 
 /**

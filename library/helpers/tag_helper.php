@@ -12,13 +12,13 @@
  * @return array
  */
 function wrap_values_in_element($array, $element) {
-	if (!is_array($array) || empty($array))
-		return;
-	
-	foreach($array as $value)
-		$output[] = "<$element>$value</$element>";
-	
-	return $output;
+    if (!is_array($array) || empty($array))
+        return;
+    
+    foreach($array as $value)
+        $output[] = "<$element>$value</$element>";
+    
+    return $output;
 }
 
 /**
@@ -33,22 +33,22 @@ function wrap_values_in_element($array, $element) {
  * @return string
  */
 function implode_proper($array, $glue = NULL, $last_connective = NULL) {
-	if (!is_array($array) || empty($array))
-		return;
-	
-	if ($glue == NULL)
-		$glue = __(', ', 'tarski');
-	
-	if ($last_connective == NULL)
-		$last_connective = __('and', 'tarski');
-	
-	$last_value = array_pop($array);
-	
-	$output = !empty($array)
-		? implode($glue, $array) . " $last_connective $last_value"
-		: $last_value;
-	
-	return $output;
+    if (!is_array($array) || empty($array))
+        return;
+    
+    if ($glue == NULL)
+        $glue = __(', ', 'tarski');
+    
+    if ($last_connective == NULL)
+        $last_connective = __('and', 'tarski');
+    
+    $last_value = array_pop($array);
+    
+    $output = !empty($array)
+        ? implode($glue, $array) . " $last_connective $last_value"
+        : $last_value;
+    
+    return $output;
 }
 
 /**
@@ -69,43 +69,43 @@ function implode_proper($array, $glue = NULL, $last_connective = NULL) {
  */
 if ( !function_exists('multiple_tag_titles') ) {
 function multiple_tag_titles($format = '') {
-	global $wpdb;
-	
-	if ( !is_tag() )
-		return;
-	
-	if ( $tag_slugs = get_query_var('tag_slug__and') )
-		$connective = __('and', 'tarski');
-	elseif ( $tag_slugs = get_query_var('tag_slug__in') )
-		$connective = __('or', 'tarski');
-	else
-		$single_tag = intval( get_query_var('tag_id') );
-	
-	$tags = array();
-	if ( $tag_slugs ) {
-		foreach ( $tag_slugs as $tag_slug ) {
-			$tag = get_term_by('slug', $tag_slug, 'post_tag', OBJECT, 'display');
-			if ( !is_wp_error($tag) && !empty($tag->name) )
-				$tags[] = $tag->name;
-		}
-	} elseif ( $single_tag ) {
-		$tag = &get_term($single_tag, 'post_tag', OBJECT, 'display');
-		if ( is_wp_error($tag) || empty($tag->name) )
-			return false;
-		else
-			$tags[] = $tag->name;
-	} else {
-		return;
-	}
-	
-	if ( strlen($format) > 0 ) {
-		foreach ( $tags as $index => $tag )
-			$tags[$index] = sprintf($format, $tag);
-	}
-			
-	$tags = implode_proper($tags, __(', ', 'tarski'), $connective);
-	$tags = apply_filters('multiple_tag_titles', $tags);
-	return $tags;
+    global $wpdb;
+    
+    if ( !is_tag() )
+        return;
+    
+    if ( $tag_slugs = get_query_var('tag_slug__and') )
+        $connective = __('and', 'tarski');
+    elseif ( $tag_slugs = get_query_var('tag_slug__in') )
+        $connective = __('or', 'tarski');
+    else
+        $single_tag = intval( get_query_var('tag_id') );
+    
+    $tags = array();
+    if ( $tag_slugs ) {
+        foreach ( $tag_slugs as $tag_slug ) {
+            $tag = get_term_by('slug', $tag_slug, 'post_tag', OBJECT, 'display');
+            if ( !is_wp_error($tag) && !empty($tag->name) )
+                $tags[] = $tag->name;
+        }
+    } elseif ( $single_tag ) {
+        $tag = &get_term($single_tag, 'post_tag', OBJECT, 'display');
+        if ( is_wp_error($tag) || empty($tag->name) )
+            return false;
+        else
+            $tags[] = $tag->name;
+    } else {
+        return;
+    }
+    
+    if ( strlen($format) > 0 ) {
+        foreach ( $tags as $index => $tag )
+            $tags[$index] = sprintf($format, $tag);
+    }
+            
+    $tags = implode_proper($tags, __(', ', 'tarski'), $connective);
+    $tags = apply_filters('multiple_tag_titles', $tags);
+    return $tags;
 }
 }
 

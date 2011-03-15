@@ -11,10 +11,10 @@
  * @return string
  */
 function theme_version() {
-	$themedata = get_theme_data(TEMPLATEPATH . '/style.css');
-	$version = trim($themedata['Version']);
-	
-	return strlen($version) > 0 ? $version : '';
+    $themedata = get_theme_data(TEMPLATEPATH . '/style.css');
+    $version = trim($themedata['Version']);
+    
+    return strlen($version) > 0 ? $version : '';
 }
 
 /**
@@ -28,10 +28,10 @@ function theme_version() {
  * @return boolean
  */
 function is_valid_tarski_style($name) {
-	$file = array_pop(preg_split('/\//', $name));
-	return !preg_match('/^\.+$/', $file) &&
-		preg_match('/^[A-Za-z][A-Za-z0-9\-]*.css$/', $file) &&
-		!preg_match('/^(janus|centre|rtl|js).css$/', $file);
+    $file = array_pop(preg_split('/\//', $name));
+    return !preg_match('/^\.+$/', $file) &&
+        preg_match('/^[A-Za-z][A-Za-z0-9\-]*.css$/', $file) &&
+        !preg_match('/^(janus|centre|rtl|js).css$/', $file);
 }
 
 /**
