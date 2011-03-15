@@ -6,13 +6,13 @@
 
 /**
  * Ties the date and time together.
- * 
+ *
  * This function makes the comment date and time output more translateable.
- * 
+ *
  * @since 2.0
- * 
+ *
  * @return string
- * 
+ *
  * @hook filter tarski_comment_datetime
  * Filters the date and time printed with a comment.
  */
@@ -134,7 +134,6 @@ function tarski_default_avatar($avatar_defaults) {
  * 
  * @since 2.0
  * 
- * @global object $comment
  * @return string
  * 
  * @hook filter get_comment_author_link
@@ -143,26 +142,18 @@ function tarski_default_avatar($avatar_defaults) {
  * Tarski-specific filter on comment author links.
  */
 function tarski_comment_author_link() {
-    global $comment;
-    $url = get_comment_author_url();
+    $url    = get_comment_author_url();
     $author = get_comment_author();
-
-    if(empty($url) || 'http://' == $url) {
-        $return = sprintf(
-            '<span class="fn">%s</span>',
-            $author
-        );
-    } else {
-        $return = sprintf(
-            '<a class="url fn" href="%1$s" rel="external nofollow">%2$s</a>',
-            $url,
-            $author
-        );
-    }
-
-    $return =  apply_filters('get_comment_author_link', $return);
-    $return = apply_filters('tarski_comment_author_link', $return);
-    return $return;
+    
+    $htmlString = (empty($url) || 'http://' == $url)
+                ? '<span class="fn">%2$s</span>'
+                : '<a class="url fn" href="%1$s" rel="external nofollow">%2$s</a>';
+    $authorHTML = sprintf($htmlString, $url, $author);
+    
+    $authorHTML = apply_filters('get_comment_author_link', $authorHTML);
+    $authorHTML = apply_filters('tarski_comment_author_link', $authorHTML);
+    
+    return $authorHTML;
 }
 
 /**
