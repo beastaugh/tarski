@@ -340,15 +340,38 @@ function navbar_wrapper() {
  * @since 1.2
  *
  * @uses wp_nav_menu
+ * @see tarski_page_menu
  *
- * @param boolean $return
- * @return string $navbar
+ * @return void
  */
-function tarski_navbar($return = false) {
+function tarski_navbar() {
     wp_nav_menu(array(
         'theme_location' => 'tarski_navbar',
         'container'      => false,
-        'menu_class'     => 'primary xoxo'));
+        'menu_class'     => 'primary xoxo',
+        'fallback_cb'    => 'tarski_page_menu'));
+}
+
+/**
+ * Wrapper for `wp_page_menu` that passes in some custom options.
+ *
+ * @since 3.0.0
+ *
+ * @uses wp_page_menu
+ * @see wp_nav_menu
+ *
+ * @return void
+ */
+function tarski_page_menu() {
+    wp_page_menu(array(
+        'sort_column' => 'menu_order, post_title',
+        'menu_class'  => 'primary xoxo',
+        'include'     => '',
+        'exclude'     => '',
+        'echo'        => true,
+        'show_home'   => true,
+        'link_before' => '',
+        'link_after'  => ''));
 }
 
 /**

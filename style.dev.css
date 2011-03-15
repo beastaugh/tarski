@@ -5,7 +5,7 @@ Description: An elegant, flexible theme developed by <a href="http://extralogica
 Author: Benedict Eastaugh and Chris Sternal-Johnson
 Author URI: http://tarskitheme.com/about/
 Tags: white, two-columns, left-sidebar, right-sidebar, fixed-width, custom-colors, custom-header, custom-background, custom-menu, editor-style, theme-options, threaded-comments, sticky-post, microformats, rtl-language-support, translation-ready
-Version: 3.0RC1
+Version: 3.0RC2
 License: GNU General Public License, v2
 License URI: http://www.opensource.org/licenses/gpl-2.0.html
 */
@@ -75,16 +75,16 @@ body.centre #wrapper { margin: 0 auto; }
 
 /* Navigation
 ----------------------------------------------- */
-#navigation ul.primary { list-style: none; margin: 0; padding: 0.5em 0; }
-body.rtl #navigation ul.primary { direction: ltr; }
-    #navigation ul.primary li { display: inline; margin: 0 1em 0 0; }
-    body.rtl #navigation ul.primary li { display: inline; margin: 0 0 0 1em; }
+#navigation ul.primary, #navigation .primary ul { list-style: none; margin: 0; padding: 0.5em 0; }
+body.rtl #navigation ul.primary, body.rtl #navigation .primary ul { direction: ltr; }
+    #navigation .primary li { display: inline; margin: 0 1em 0 0; }
+    body.rtl #navigation .primary li { display: inline; margin: 0 0 0 1em; }
 #navigation div.secondary { padding: 0.5em 0; }
     #navigation div.secondary p { margin: 0; }
     body.janus #navigation .secondary p, body.janus #theme-info .secondary p { text-align: right; }
     
-#wrapper .current-menu-item a:link, #wrapper .current-menu-item a:visited, #wrapper .current-menu-item a:active { color: #8fbf60; }
-#wrapper .current-menu-item a:hover { color: #a8001c; }
+#wrapper .current-menu-item a:link, #wrapper .current-menu-item a:visited, #wrapper .current-menu-item a:active, #wrapper .current_page_item a:link, #wrapper .current_page_item a:visited, #wrapper .current_page_item a:active { color: #8fbf60; }
+#wrapper .current-menu-item a:hover, #wrapper .current_page_item a:hover { color: #a8001c; }
 
     /* Feed icon
     ------------------------------------------- */
