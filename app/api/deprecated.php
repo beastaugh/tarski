@@ -12,6 +12,30 @@
  */
 
 /**
+ * wrap_values_in_element() - Wraps array values in the specified HTML element
+ *
+ * Given the array <code>array('Bread', 'Milk', 'Cheese')</code>, if the specified
+ * HTML element were <code>'li'</code> it would return the array
+ * <code>array('<li>Bread</li>', '<li>Milk</li>', '<li>Cheese</li>')</code>.
+ * @since 2.0
+ * @deprecated 3.0
+ * @param $array array
+ * @param $element string
+ * @return array
+ */
+function wrap_values_in_element($array, $element) {
+    _deprecated_function(__FUNCTION__, '3.0');
+    
+    if (!is_array($array) || empty($array))
+        return;
+    
+    foreach($array as $value)
+        $output[] = "<$element>$value</$element>";
+    
+    return $output;
+}
+
+/**
  * Turns off paging for everything except feeds and the home page.
  *
  * @since 2.2

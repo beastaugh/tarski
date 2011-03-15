@@ -16,6 +16,7 @@
   * Removed option not to paginate index pages
   * Deprecated defunct Tarski navbar functions
   * Removed all functions deprecated before version 2.7
+  * Deprecated `wrap_values_in_element` function
   * Merged `app/launcher.php` file with `functions.php` file
   * Deprecated `tarski_javascript` function in favour of core functions
   * Renamed `README.md` to `readme.txt` to follow theme guidelines
