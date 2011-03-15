@@ -1,11 +1,17 @@
 <?php
+/**
+ * @package WordPress
+ * @subpackage Tarski
+ */
 
 /**
  * Output the Tarski sidebar.
  *
  * @since 2.0
+ *
  * @uses is_page_template
  * @uses dynamic_sidebar
+ *
  * @return void
  */
 function tarski_sidebar() {
@@ -22,7 +28,9 @@ function tarski_sidebar() {
  * Output footer main widgets field.
  * 
  * @since 2.1
+ *
  * @uses dynamic_sidebar
+ *
  * @return mixed
  */
 function tarski_footer_main() {
@@ -33,6 +41,7 @@ function tarski_footer_main() {
  * Output the footer sidebar widgets field.
  * 
  * @since 2.0
+ *
  * @uses dynamic_sidebar
  * @return mixed
  */
@@ -44,6 +53,7 @@ function tarski_footer_sidebar() {
  * Wrap text widgets in content div with edit link.
  *
  * @since 2.1
+ *
  * @param string $text
  * @return string
  */
@@ -57,7 +67,9 @@ function tarski_widget_text_wrapper($text) {
  * Remove navbar links from the links widget.
  * 
  * @since 2.2
+ *
  * @uses get_tarski_option
+ *
  * @param array $args
  * @return array
  */
@@ -76,6 +88,7 @@ function tarski_widget_links_args($args) {
  * recent entries after those posts actually displayed on the page.
  *
  * @package Tarski
+ *
  * @since 2.5
  */
 class Tarski_Widget_Recent_Entries extends WP_Widget {
@@ -95,10 +108,10 @@ class Tarski_Widget_Recent_Entries extends WP_Widget {
         
         $cache = wp_cache_get('tarski_recent_entries', 'widget');
         
-        if ( !is_array($cache) )
+        if (!is_array($cache))
             $cache = array();
         
-        if ( isset($cache[$args['widget_id']]) ) {
+        if (isset($cache[$args['widget_id']])) {
             echo $cache[$args['widget_id']];
             return;
         }
@@ -107,11 +120,11 @@ class Tarski_Widget_Recent_Entries extends WP_Widget {
         extract($args);
         
         $title = apply_filters('widget_title', empty($instance['title']) ? __('Recent Articles', 'tarski') : $instance['title']);
-        if ( !$number = (int) $instance['number'] )
+        if (!$number = (int) $instance['number'])
             $number = 10;
-        else if ( $number < 1 )
+        else if ($number < 1)
             $number = 1;
-        else if ( $number > 15 )
+        else if ($number > 15)
             $number = 15;
         
         $r = new WP_Query(array(
