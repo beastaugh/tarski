@@ -1,15 +1,16 @@
 <?php
 
 /**
- * save_tarski_options() - Saves a new set of Tarski options.
+ * Saves a new set of Tarski options.
  * 
  * The primary request handler for the Tarski options system. Saves any updated
  * options and redirects to the options page.
  * 
+ * @since 2.0
+ *
  * @see tarskiupdate() which it replaces
  * @see delete_tarski_options()
  * @see restore_tarski_options()
- * @since 2.0
  */
 function save_tarski_options() {
     check_admin_referer('admin_post_tarski_options', '_wpnonce_tarski_options');
@@ -25,16 +26,17 @@ function save_tarski_options() {
 }
 
 /**
- * delete_tarski_options() - Sets the 'deleted' property on Tarski's options.
+ * Sets the 'deleted' property on Tarski's options.
  * 
  * A secondary request handler for the Tarski options system. Sets the
  * 'deleted' property in the options object to the current time and redirects
  * to the options page.
  * 
+ * @since 2.4
+ *
  * @see save_tarski_options()
  * @see restore_tarski_options()
  * @see maybe_wipe_tarski_options()
- * @since 2.4
  */
 function delete_tarski_options() {
     check_admin_referer('admin_post_delete_tarski_options', '_wpnonce_delete_tarski_options');
@@ -53,14 +55,15 @@ function delete_tarski_options() {
 }
 
 /**
- * restore_tarski_options() - Unsets the 'deleted' property on Tarski's options.
+ * Unsets the 'deleted' property on Tarski's options.
  * 
  * A secondary request handler for the Tarski options system. Unsets the
  * 'deleted' property in the options object and redirects to the options page.
  * 
+ * @since 2.4
+ *
  * @see save_tarski_options()
  * @see delete_tarski_options()
- * @since 2.4
  */
 function restore_tarski_options() {
     check_admin_referer('admin_post_restore_tarski_options', '_wpnonce_restore_tarski_options');
@@ -86,10 +89,11 @@ function restore_tarski_options() {
  * which time the user may restore their options), the tarski_options row in
  * the wp_options table will be deleted entirely by this function.
  * 
+ * @since 2.4
+ *
  * @see delete_tarski_options()
  * @see restore_tarski_options()
  * @uses flush_tarski_options()
- * @since 2.4
  */
 function maybe_wipe_tarski_options() {
     $options = flush_tarski_options();
@@ -123,13 +127,14 @@ function tarski_upgrade_needed() {
 }
 
 /**
- * tarski_upgrade_and_flush_options() - Upgrades Tarski if needed and flushes options.
+ * Upgrades Tarski if needed and flushes options.
  * 
  * @since 2.1
- * @see tarski_upgrade_needed()
- * @see tarski_upgrade()
- * @uses tarski_upgrade_needed()
- * @uses tarski_upgrade()
+ *
+ * @see tarski_upgrade_needed
+ * @see tarski_upgrade
+ * @uses tarski_upgrade_needed
+ * @uses tarski_upgrade
  * @uses flush_tarski_options
  */
 function tarski_upgrade_and_flush_options() {
@@ -140,11 +145,13 @@ function tarski_upgrade_and_flush_options() {
 }
 
 /**
- * tarski_upgrade_special() - Upgrades Tarski options special cases.
+ * Upgrades Tarski options special cases.
  * 
  * @since 2.3
- * @see tarski_upgrade()
- * @uses tarski_should_show_authors()
+ *
+ * @see tarski_upgrade
+ * @uses tarski_should_show_authors
+ *
  * @param object $options
  * @param object $defaults
  */
@@ -166,6 +173,7 @@ function tarski_upgrade_special($options, $defaults) {
  * won't update the global $tarski_options object either.
  *
  * @since 2.1
+ *
  * @uses tarski_upgrade_special
  */
 function tarski_upgrade() {
@@ -183,7 +191,7 @@ function tarski_upgrade() {
 }
 
 /**
- * tarski_addmenu() - Adds the Tarski Options page to the WordPress admin panel.
+ * Adds the Tarski Options page to the WordPress admin panel.
  * 
  * @since 1.0
  */
@@ -193,8 +201,7 @@ function tarski_addmenu() {
         __('Tarski Options','tarski'),
         'manage_options',
         'tarski-options',
-        'tarski_admin'
-    );
+        'tarski_admin');
     
     add_action("admin_print_scripts-$page", 'tarski_inject_scripts');
     add_action("admin_print_styles-$page", 'tarski_inject_styles');
@@ -214,8 +221,8 @@ function tarski_admin() {
 }
 
 /**
- * tarski_admin_header_style() - Styles the custom header image admin page for use with Tarski.
- * 
+ * Styles the custom header image admin page for use with Tarski.
+ *
  * @since 1.4
  */
 function tarski_admin_header_style() { ?>
@@ -231,8 +238,8 @@ function tarski_admin_header_style() { ?>
 <?php }
 
 /**
- * tarski_inject_styles() - Adds CSS to the Tarski Options page.
- * 
+ * Adds CSS to the Tarski Options page.
+ *
  * @since 2.1
 */
 function tarski_inject_styles() {
@@ -260,27 +267,33 @@ function tarski_inject_scripts() {
 }
 
 /**
- * tarski_count_authors() - Returns the number of authors who have published posts.
- * 
- * This function returns the number of author ids associated with published posts.
+ * Returns the number of authors who have published posts.
+ *
  * @since 2.0.3
+ *
  * @global object $wpdb
  * @return integer
  */
 function tarski_count_authors() {
     global $wpdb;
     return count($wpdb->get_col($wpdb->prepare(
-        "SELECT post_author, COUNT(DISTINCT post_author) FROM $wpdb->posts WHERE post_status = 'publish' GROUP BY post_author"
+        "SELECT post_author, COUNT(DISTINCT post_author)
+         FROM $wpdb->posts
+         WHERE post_status = 'publish'
+         GROUP BY post_author"
     ), 1));
 }
 
 /**
- * tarski_should_show_authors() - Determines whether Tarski should show authors.
+ * Determines whether Tarski should show authors.
  * 
  * @since 2.0.3
+ *
  * @uses tarski_count_authors()
+ *
  * @global object $wpdb
  * @return boolean
+ *
  * @hook filter tarski_show_authors
  * Allows other components to decide whether or not Tarski should show authors.
  */
@@ -290,46 +303,19 @@ function tarski_should_show_authors() {
 }
 
 /**
- * tarski_resave_show_authors() - Re-saves Tarski's 'show_authors' option.
- * 
+ * Re-saves Tarski's 'show_authors' option.
+ *
  * If more than one author is detected, it will turn the 'show_authors'
  * option on; otherwise it will turn it off.
+ *
  * @since 2.0.3
- * @uses tarski_should_show_authors()
+ *
+ * @uses tarski_should_show_authors
  */
 function tarski_resave_show_authors() {
-    if(get_option('tarski_options')) {
+    if (get_option('tarski_options')) {
         update_tarski_option('show_authors', tarski_should_show_authors());
     }
-}
-
-/**
- * tarski_navbar_select() - Generates a list of checkboxes for the site's pages.
- * 
- * Walks the tree of pages and generates nested ordered lists of pages, with
- * corresponding checkboxes to allow the selection of pages for the navbar.
- * @since 2.2
- */
-function tarski_navbar_select() {
-    $pages = &get_pages('sort_column=post_parent,menu_order');
-    $nav_pages = explode(',', get_tarski_option('nav_pages'));
-    $collapsed_pages = explode(',', get_tarski_option('collapsed_pages'));
-    $walker = new WalkerPageSelect($nav_pages, $collapsed_pages);
-    $selector = '';
-    
-    if (!empty($pages))
-        $selector = "<ol id=\"navbar-select\">\n" . $walker->walk($pages, 0, 0, array()) . "\n</ol>\n\n";
-    
-    if($pages) {
-        $navbar_select = '<p>' . __('Pages selected here will display in your navbar.', 'tarski') . "</p>\n"
-            . $selector
-            . '<input type="hidden" id="opt-collapsed-pages" name="collapsed_pages" value="' . get_tarski_option('collapsed_pages') . '" />'. "\n\n"
-            . '<p>' . __('To change the order in which they appear, edit the &#8216;Page Order&#8217; value on each page.', 'tarski') . "</p>\n";
-    } else {
-        $navbar_select = false;
-    }
-    
-    return $navbar_select;
 }
 
 /**
@@ -379,45 +365,31 @@ function _tarski_list_alternate_styles() {
 }
 
 /**
- * tarski_miscellaneous_options() - Returns a list of checkboxes for miscellaneous options.
- * 
- * Used for a bunch of options that don't really fit anywhere else.
- * @uses tarski_option_checkbox()
+ * Returns a list of checkboxes for miscellaneous options.
+ *
+ * Used for options that don't really fit anywhere else.
+ *
  * @since 2.4
+ *
+ * @uses tarski_option_checkbox
+ *
  * @return string
  */
 function tarski_miscellaneous_options() {
-    $output = '';
+    $output     = '';
     $checkboxes = array(
-        'display_title' => __('Display site title', 'tarski'),
-        'display_tagline' => __('Display site tagline', 'tarski'),
-        'show_categories' => __('Show post categories', 'tarski'),
-        'tags_everywhere' =>  __('Show tags everywhere', 'tarski'),
-        'centred_theme' => __('Centrally align the theme', 'tarski'),
-        'swap_sides' =>  __('Switch column order', 'tarski'),
-        'swap_title_order' => __('Reverse document title order', 'tarski')
-    );
+        'display_title'    => __('Display site title', 'tarski'),
+        'display_tagline'  => __('Display site tagline', 'tarski'),
+        'show_categories'  => __('Show post categories', 'tarski'),
+        'tags_everywhere'  => __('Show tags everywhere', 'tarski'),
+        'centred_theme'    => __('Centrally align the theme', 'tarski'),
+        'swap_sides'       => __('Switch column order', 'tarski'),
+        'swap_title_order' => __('Reverse document title order', 'tarski'));
     
-    foreach($checkboxes as $name => $label)
+    foreach ($checkboxes as $name => $label)
         $output .= tarski_option_checkbox($name, $label) . "\n\n";
     
     return $output;
-}
-
-/**
- * tarski_update_notifier() - Performs version checks and outputs the update notifier.
- * 
- * Creates a new TarskiVersion object, checks the latest and current
- * versions, and lets the user know whether or not their version
- * of Tarski needs updating. The way it displays varies slightly
- * between the WordPress Dashboard and the Tarski Options page.
- * @since 2.0
- * @param string $location
- * @return string
- */
-function tarski_update_notifier() {
-    $version = new TarskiVersion();
-    return $version->status_message();
 }
 
 /**
@@ -435,10 +407,12 @@ function tarski_options_fragment($block) {
 }
 
 /**
- * tarski_options_block() - Includes an options page postbox.
- * 
- * @uses tarski_options_fragment()
+ * Includes an options page postbox.
+ *
  * @since 2.4
+ *
+ * @uses tarski_options_fragment
+ *
  * @param string $block
  * @param string $title
  */
@@ -449,44 +423,43 @@ function tarski_options_block($block, $title) {
 }
 
 /**
- * tarski_options_fn_block() - Includes an options page postbox.
- * 
+ * Includes an options page postbox.
+ *
  * @since 2.4
+ *
  * @param string $block
  * @param string $title
  */
 function tarski_options_fn_block($fn, $title, $args = array()) {
     $fn_output = call_user_func_array($fn, $args);
+    
     if ($fn_output) {
-        printf(
-            "<div class=\"postbox\"><h3 class=\"hndle\">%s</h3>\n\t<div class=\"inside\">%s\t</div>\n</div>",
-            $title, $fn_output
-        );
+        printf("<div class=\"postbox\"><h3 class=\"hndle\">%s</h3>\n\t<div class=\"inside\">%s\t</div>\n</div>",
+            $title, $fn_output);
     }
 }
 
 /**
- * tarski_option_checkbox() - Returns checkbox markup for a given Tarski option.
- * 
+ * Returns checkbox markup for a given Tarski option.
+ *
  * @since 2.4
+ *
  * @param string $name
  * @param string $label
  * @return string
  */
 function tarski_option_checkbox($name, $label) {
-    $id = "tarski_option_$name";
+    $id      = "tarski_option_$name";
     $checked = '';
     
-    if(get_tarski_option($name))
+    if (get_tarski_option($name))
         $checked = 'checked="checked" ';
     
-    $hidden = "<input type=\"hidden\" name=\"$name\" value=\"0\" />";
+    $hidden   = "<input type=\"hidden\" name=\"$name\" value=\"0\" />";
     $checkbox = "<input type=\"checkbox\" id=\"$id\" name=\"$name\" value=\"1\" $checked/>";
     
-    return sprintf(
-        "<label for=\"%s\">\n\t%s\n\t%s\n\t%s\n</label>",
-        $id, $hidden, $checkbox, $label
-    );
+    return sprintf("<label for=\"%s\">\n\t%s\n\t%s\n\t%s\n</label>",
+        $id, $hidden, $checkbox, $label);
 }
 
 ?>
