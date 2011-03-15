@@ -1,4 +1,8 @@
 <?php
+/**
+ * @package WordPress
+ * @subpackage Tarski
+ */
 
 /**
  * Returns the URI of the current alternate stylesheet.

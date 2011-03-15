@@ -1,4 +1,8 @@
 <?php
+/**
+ * @package WordPress
+ * @subpackage Tarski
+ */
 
 /**
  * If site has more than one author, output a link to that author's archive page.

@@ -1,4 +1,8 @@
 <?php
+/**
+ * @package WordPress
+ * @subpackage Tarski
+ */
 
 /**
  * Saves a new set of Tarski options.
