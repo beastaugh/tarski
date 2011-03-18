@@ -362,7 +362,8 @@ function tarski_navbar() {
         'theme_location' => 'tarski_navbar',
         'container'      => false,
         'menu_class'     => 'primary xoxo',
-        'fallback_cb'    => 'tarski_page_menu'));
+        'fallback_cb'    => 'tarski_page_menu',
+        'depth'          => 1));
 }
 
 /**
