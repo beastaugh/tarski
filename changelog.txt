@@ -12,6 +12,8 @@
 
 #### Tweaks
 
+  * Dropped current page link highlighting for browsers not supporting the
+    parent selector
   * Removed update notifier
   * Removed option not to paginate index pages
   * Deprecated defunct Tarski navbar functions
