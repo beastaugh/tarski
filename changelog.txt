@@ -5,6 +5,7 @@
 #### Tweaks
 
   * Always display a link to a post's page, even if there is no title
+  * Stop images without set sizes from overflowing the content area
 
 
 ### Version 3.0.0 [&sect;](http://tarskitheme.com/2011/03/18/3-0-release/)

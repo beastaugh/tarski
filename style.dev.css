@@ -5,7 +5,7 @@ Description: An elegant, flexible theme developed by <a href="http://extralogica
 Author: Benedict Eastaugh and Chris Sternal-Johnson
 Author URI: http://tarskitheme.com/about/
 Tags: white, two-columns, left-sidebar, right-sidebar, fixed-width, custom-colors, custom-header, custom-background, custom-menu, editor-style, theme-options, threaded-comments, sticky-post, microformats, rtl-language-support, translation-ready
-Version: 3.0.0
+Version: 3.0.1
 License: GNU General Public License, v2
 License URI: http://www.opensource.org/licenses/gpl-2.0.html
 */
@@ -119,6 +119,7 @@ body.rtl #navigation ul.primary, body.rtl #navigation .primary ul { direction: l
     
     /* Global content control
     --------------------------------------- */
+    body .content img { max-width: 98%; height: auto; }
     body .content p { line-height: 1.4; }
     body .content li { line-height: 1.4; }
     
