@@ -177,7 +177,7 @@ function tarski_comments_number() {
  *
  * @param string $metadata
  * @global object $post
- * @return void
+ * @return string
  */
 function tarski_comments_link($metadata) {
     global $post;
@@ -185,14 +185,16 @@ function tarski_comments_link($metadata) {
     $have_comments = intval($post->comment_count) > 0;
     
     if (comments_open() || $have_comments) {
-        $anchor = get_permalink() . ($have_comments ? '#comments' : '#respond');
-        $link   = sprintf('<a class="comments-link" href="%s">%s</a>',
-            $anchor, tarski_comments_number());
-        
-        $metadata .= ' | ' . $link;
+        $href = get_permalink() . ($have_comments ? '#comments' : '#respond');
+        $text = tarski_comments_number();
+    } else {
+        $href = get_permalink();
+        $text = __('Permalink', 'tarski');
     }
     
-    return $metadata;
+    $link = sprintf('<a class="comments-link" href="%s">%s</a>', $href, $text);
+                         
+    return $metadata . ' | ' . $link;
 }
 
 /**
