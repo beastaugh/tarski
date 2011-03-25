@@ -119,7 +119,7 @@ body.rtl #navigation ul.primary, body.rtl #navigation .primary ul { direction: l
     
     /* Global content control
     --------------------------------------- */
-    body .content img { max-width: 98%; height: auto; }
+    body .content img { max-width: 100%; height: auto; }
     body .content p { line-height: 1.4; }
     body .content li { line-height: 1.4; }
     
