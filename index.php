@@ -10,7 +10,7 @@
                 <div <?php post_class('entry'); ?>>
                 
                     <div class="meta">
-                        <h1 class="title entry-title"><?php the_title(); ?></h1>
+                        <?php the_title('<h1 class="title entry-title">', '</h1>'); ?>
                         
                         <?php echo th_post_metadata(); ?>
                     </div>
