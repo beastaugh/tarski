@@ -171,14 +171,12 @@ function tarski_comment_form() {
         __('logged in', 'tarski') . '</a>');
     $must_log_in    = "<p class=\"login-required\"><em>$login_message</em></p>";
     $textarea_title = __('Your comment','tarski');
-    $id_fields      = get_comment_id_fields();
     $comment_field  = <<<COMMENT_FIELD
     <div class="response textarea-wrap">
         <label for="comment">$textarea_title</label>
         <textarea name="comment" id="comment"
             cols="60" rows="10"
             aria-required="true" aria-multiline="true"></textarea>
-        $id_fields
     </div>
 COMMENT_FIELD;
     

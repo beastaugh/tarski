@@ -1,6 +1,20 @@
 # Changelog
 
-### Version 3.0.1
+### Version 3.0.3 [&sect;](http://tarskitheme.com/2011/03/18/3-0-release/)
+
+#### Bug fixes
+
+  * Removed duplicate comment id fields which were breaking threaded comments
+
+
+### Version 3.0.2 [&sect;](http://tarskitheme.com/2011/03/18/3-0-release/)
+
+#### Tweaks
+
+  * Slight improvements to the image overflow code
+
+
+### Version 3.0.1 [&sect;](http://tarskitheme.com/2011/03/18/3-0-release/)
 
 #### Tweaks
 
