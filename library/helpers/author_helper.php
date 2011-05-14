@@ -5,11 +5,12 @@
  */
 
 /**
- * If site has more than one author, output a link to that author's archive page.
+ * If the site has more than one author, output a link to the current post's
+ * author's archive page.
  *
  * @since 1.7
  *
- * @uses get_tarski_option
+ * @uses is_multi_author
  * @uses get_author_posts_url
  * @uses get_the_author
  *
@@ -22,7 +23,7 @@
 function tarski_author_posts_link($metadata) {
     global $authordata;
     
-    if (get_tarski_option('show_authors')) {
+    if (is_multi_author()) {
         $link = sprintf('<a href="%1$s" title="%2$s" class="url fn">%3$s</a>',
             get_author_posts_url($authordata->ID, $authordata->user_nicename),
             sprintf(__('Articles by %s','tarski'), esc_attr(get_the_author())),

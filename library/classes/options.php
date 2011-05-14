@@ -142,7 +142,7 @@ class TarskiOptions {
         $this->nav_extlinkcat = $_POST['nav_extlinkcat'];
         $this->home_link_name = $_POST['home_link_name'];
         $this->sidebar_pp_type = $_POST['sidebar_pp_type'];
-        $this->show_authors = tarski_should_show_authors();
+        $this->show_authors = true;
         unset($this->deleted);
     }
 

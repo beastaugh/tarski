@@ -172,8 +172,6 @@ if (is_admin()) {
     // Options
     add_action('admin_head', 'tarski_upgrade_and_flush_options');
     add_action('admin_head', 'maybe_wipe_tarski_options');
-    add_action('save_post', 'tarski_resave_show_authors');
-    add_action('deleted_post', 'tarski_resave_show_authors');
 } else {
     // JavaScript
     wp_register_script('tarski', get_template_directory_uri() . '/app/js/tarski.js');

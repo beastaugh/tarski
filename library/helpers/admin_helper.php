@@ -160,9 +160,6 @@ function tarski_upgrade_and_flush_options() {
  * @param object $defaults
  */
 function tarski_upgrade_special($options, $defaults) {
-    if (tarski_should_show_authors())
-        $options->show_authors = true;
-    
     if (empty($options->centred_theme) && isset($options->centered_theme))
         $options->centred_theme = true;
     
@@ -268,58 +265,6 @@ function tarski_inject_scripts() {
     $js_dir = get_template_directory_uri() . '/app/js';
     wp_enqueue_script('page_select', tarski_js("$js_dir/page_select.js"));
     wp_enqueue_script('header_select', tarski_js("$js_dir/header_select.js"));
-}
-
-/**
- * Returns the number of authors who have published posts.
- *
- * @since 2.0.3
- *
- * @global object $wpdb
- * @return integer
- */
-function tarski_count_authors() {
-    global $wpdb;
-    return count($wpdb->get_col($wpdb->prepare(
-        "SELECT post_author, COUNT(DISTINCT post_author)
-         FROM $wpdb->posts
-         WHERE post_status = 'publish'
-         GROUP BY post_author"
-    ), 1));
-}
-
-/**
- * Determines whether Tarski should show authors.
- * 
- * @since 2.0.3
- *
- * @uses tarski_count_authors()
- *
- * @global object $wpdb
- * @return boolean
- *
- * @hook filter tarski_show_authors
- * Allows other components to decide whether or not Tarski should show authors.
- */
-function tarski_should_show_authors() {
-    $show_authors = tarski_count_authors() > 1;
-    return (bool) apply_filters('tarski_show_authors', $show_authors);
-}
-
-/**
- * Re-saves Tarski's 'show_authors' option.
- *
- * If more than one author is detected, it will turn the 'show_authors'
- * option on; otherwise it will turn it off.
- *
- * @since 2.0.3
- *
- * @uses tarski_should_show_authors
- */
-function tarski_resave_show_authors() {
-    if (get_option('tarski_options')) {
-        update_tarski_option('show_authors', tarski_should_show_authors());
-    }
 }
 
 /**

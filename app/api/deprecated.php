@@ -12,6 +12,67 @@
  */
 
 /**
+ * Returns the number of authors who have published posts.
+ *
+ * @since 2.0.3
+ * @deprecated 3.1.0
+ *
+ * @global object $wpdb
+ * @return integer
+ */
+function tarski_count_authors() {
+    _deprecated_function(__FUNCTION__, '3.1');
+    
+    global $wpdb;
+    return count($wpdb->get_col($wpdb->prepare(
+        "SELECT post_author, COUNT(DISTINCT post_author)
+         FROM $wpdb->posts
+         WHERE post_status = 'publish'
+         GROUP BY post_author"
+    ), 1));
+}
+
+/**
+ * Determines whether Tarski should show authors.
+ *
+ * @since 2.0.3
+ * @deprecated 3.1.0
+ *
+ * @uses tarski_count_authors()
+ *
+ * @global object $wpdb
+ * @return boolean
+ *
+ * @hook filter tarski_show_authors
+ * Allows other components to decide whether or not Tarski should show authors.
+ */
+function tarski_should_show_authors() {
+    _deprecated_function(__FUNCTION__, '3.1');
+    
+    $show_authors = tarski_count_authors() > 1;
+    return (bool) apply_filters('tarski_show_authors', $show_authors);
+}
+
+/**
+ * Re-saves Tarski's 'show_authors' option.
+ *
+ * If more than one author is detected, it will turn the 'show_authors'
+ * option on; otherwise it will turn it off.
+ *
+ * @since 2.0.3
+ * @deprecated 3.1.0
+ *
+ * @uses tarski_should_show_authors
+ */
+function tarski_resave_show_authors() {
+    _deprecated_function(__FUNCTION__, '3.1');
+    
+    if (get_option('tarski_options')) {
+        update_tarski_option('show_authors', tarski_should_show_authors());
+    }
+}
+
+/**
  * wrap_values_in_element() - Wraps array values in the specified HTML element
  *
  * Given the array <code>array('Bread', 'Milk', 'Cheese')</code>, if the specified
