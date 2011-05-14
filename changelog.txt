@@ -8,6 +8,7 @@
     function `tarski_should_show_authors`
   * Deprecated `tarski_count_authors` and `tarski_resave_show_authors`
     functions
+  * Removed all functions deprecated before version 3.0
 
 ### Version 3.0.4 [&sect;](http://tarskitheme.com/2011/03/18/3-0-release/)
 
