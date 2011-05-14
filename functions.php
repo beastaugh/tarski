@@ -174,8 +174,9 @@ if (is_admin()) {
     add_action('admin_head', 'maybe_wipe_tarski_options');
 } else {
     // JavaScript
-    wp_register_script('tarski', get_template_directory_uri() . '/app/js/tarski.js');
-    wp_enqueue_script('tarski');
+    wp_enqueue_script('tarski',
+        get_template_directory_uri() . '/app/js/tarski.js',
+        array('jquery'), theme_version());
     wp_enqueue_script('comment-reply');
 }
 
