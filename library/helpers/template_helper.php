@@ -353,7 +353,7 @@ function navbar_wrapper() {
  * @since 1.2
  *
  * @uses wp_nav_menu
- * @see tarski_page_menu
+ * @see tarski_default_navbar
  *
  * @return void
  */
@@ -362,8 +362,40 @@ function tarski_navbar() {
         'theme_location' => 'tarski_navbar',
         'container'      => false,
         'menu_class'     => 'primary xoxo',
-        'fallback_cb'    => false,
+        'fallback_cb'    => 'tarski_default_navbar',
         'depth'          => 1));
+}
+
+/**
+ * Output a default set of navbar links. Used as a fallback if the user hasn't
+ * defined their own navbar.
+ *
+ * @since 3.1
+ *
+ * @uses is_home
+ * @uses get_settings
+ * @uses wp_list_pages
+ *
+ * @return void
+ */
+function tarski_default_navbar() {
+    $home_current = is_home() ? ' class="current_page_item"' : '';
+    $home_title   = __('Return to front page', 'tarski');
+    $home_name    = __('Home', 'tarski');
+    $home_url     = get_option('home');
+    
+    $navbar_pages = wp_list_pages(array(
+        'sort_column' => 'menu_order',
+        'title_li'    => '',
+        'depth'       => 1,
+        'echo'        => 0));
+    
+    echo <<<NAVBAR_HTML
+        <ul id="menu-primary-navigation" class="primary xoxo">
+            <li$home_current><a title="$home_title" href="$home_url">$home_name</a></li>
+            $navbar_pages
+    </ul>
+NAVBAR_HTML;
 }
 
 /**

@@ -4,6 +4,7 @@
 
 #### Tweaks
 
+  * Added default navbar for sites without menus defined
   * Use `is_multi_author` function in favour of the now-deprecated Tarski
     function `tarski_should_show_authors`
   * Deprecated `tarski_count_authors` and `tarski_resave_show_authors`
