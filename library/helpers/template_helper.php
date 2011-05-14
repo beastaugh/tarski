@@ -133,7 +133,7 @@ function tarski_meta() {
     $themeversion = theme_version();
     $meta         = array(
         'wp_theme' => "<meta name=\"wp_theme\" content=\"Tarski $themeversion\">");
-    $excerpt      = ($wp_query->post) ?
+    $excerpt      = (isset($wp_query->post)) ?
         trim(strip_tags(esc_attr($wp_query->post->post_excerpt))) : '';
     
     if (is_singular() && strlen($excerpt)) {
