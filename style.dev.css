@@ -75,16 +75,69 @@ body.centre #wrapper { margin: 0 auto; }
 
 /* Navigation
 ----------------------------------------------- */
-#navigation ul.primary, #navigation .primary ul { list-style: none; margin: 0; padding: 0.5em 0; }
-body.rtl #navigation ul.primary, body.rtl #navigation .primary ul { direction: ltr; }
-    #navigation .primary li { display: inline; margin: 0 1em 0 0; }
-    body.rtl #navigation .primary li { display: inline; margin: 0 0 0 1em; }
-#navigation div.secondary { padding: 0.5em 0; }
-    #navigation div.secondary p { margin: 0; }
-    body.janus #navigation .secondary p, body.janus #theme-info .secondary p { text-align: right; }
-    
-#wrapper .current-menu-item > a:link, #wrapper .current-menu-item > a:visited, #wrapper .current-menu-item > a:active, #wrapper .current_page_item > a:link, #wrapper .current_page_item > a:visited, #wrapper .current_page_item > a:active { color: #8fbf60; }
-#wrapper .current-menu-item > a:hover, #wrapper .current_page_item > a:hover { color: #a8001c; }
+#navigation {
+    padding: 5px 0;
+}
+
+#navigation ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+body.rtl #navigation ul {
+    direction: ltr;
+}
+
+#navigation.collapsed .sub-menu {
+    display: none;
+}
+
+#navigation.expanded .sub-menu {
+    display: block;
+}
+
+#navigation .menu-item {
+    display: block;
+    margin: 0 20px 0 0;
+    float: left;
+}
+
+#navigation .menu-item a {
+    display: block;
+}
+
+#navigation .sub-menu {
+    margin-left: 10px;
+}
+
+#navigation .sub-menu .menu-item {
+    float: none;
+    margin: 5px 0 0 0;
+}
+
+#wrapper .current-menu-item > a:link,
+#wrapper .current-menu-item > a:visited,
+#wrapper .current-menu-item > a:active,
+#wrapper .current_page_item > a:link,
+#wrapper .current_page_item > a:visited,
+#wrapper .current_page_item > a:active {
+    color: #8fbf60;
+}
+
+#wrapper .current-menu-item > a:hover,
+#wrapper .current_page_item > a:hover {
+    color: #a8001c;
+}
+
+#navigation .secondary p {
+    margin: 0;
+}
+
+body.janus #navigation .secondary p,
+body.janus #theme-info .secondary p {
+    text-align: right;
+}
 
     /* Feed icon
     ------------------------------------------- */
