@@ -12,6 +12,21 @@
  */
 
 /**
+ * Adds JavaScript to the Tarski Options page.
+ *
+ * @since 1.4
+ * @deprecated 3.1.0
+ *
+ * @uses get_bloginfo
+ * @uses wp_enqueue_script
+ *
+ * @return void
+*/
+function tarski_inject_scripts() {
+    _deprecated_function(__FUNCTION__, '3.1.0');
+}
+
+/**
  * Returns the number of authors who have published posts.
  *
  * @since 2.0.3
@@ -21,7 +36,7 @@
  * @return integer
  */
 function tarski_count_authors() {
-    _deprecated_function(__FUNCTION__, '3.1');
+    _deprecated_function(__FUNCTION__, '3.1.0');
     
     global $wpdb;
     return count($wpdb->get_col($wpdb->prepare(
@@ -47,7 +62,7 @@ function tarski_count_authors() {
  * Allows other components to decide whether or not Tarski should show authors.
  */
 function tarski_should_show_authors() {
-    _deprecated_function(__FUNCTION__, '3.1');
+    _deprecated_function(__FUNCTION__, '3.1.0');
     
     $show_authors = tarski_count_authors() > 1;
     return (bool) apply_filters('tarski_show_authors', $show_authors);
@@ -65,7 +80,7 @@ function tarski_should_show_authors() {
  * @uses tarski_should_show_authors
  */
 function tarski_resave_show_authors() {
-    _deprecated_function(__FUNCTION__, '3.1');
+    _deprecated_function(__FUNCTION__, '3.1.0');
     
     if (get_option('tarski_options')) {
         update_tarski_option('show_authors', tarski_should_show_authors());

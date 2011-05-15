@@ -204,7 +204,6 @@ function tarski_addmenu() {
         'tarski-options',
         'tarski_admin');
     
-    add_action("admin_print_scripts-$page", 'tarski_inject_scripts');
     add_action("admin_print_styles-$page", 'tarski_inject_styles');
 }
 
@@ -249,22 +248,6 @@ function tarski_inject_styles() {
         get_template_directory_uri() . '/library/css/options.css',
         array(), false, 'screen'
     );
-}
-
-/**
- * Adds JavaScript to the Tarski Options page.
- *
- * @since 1.4
- *
- * @uses get_bloginfo
- * @uses wp_enqueue_script
- *
- * @return void
-*/
-function tarski_inject_scripts() {
-    $js_dir = get_template_directory_uri() . '/app/js';
-    wp_enqueue_script('page_select', tarski_js("$js_dir/page_select.js"));
-    wp_enqueue_script('header_select', tarski_js("$js_dir/header_select.js"));
 }
 
 /**
