@@ -76,6 +76,7 @@ body.centre #wrapper { margin: 0 auto; }
 /* Navigation
 ----------------------------------------------- */
 #navigation {
+    position: relative;
     padding: 5px 0;
 }
 
@@ -91,8 +92,9 @@ body.rtl #navigation ul {
 
 #navigation .menu-item {
     display: block;
-    margin: 0 20px 0 0;
+    margin: 0 15px 0 0;
     float: left;
+    overflow: hidden;
 }
 
 #navigation .menu-item a {
@@ -100,7 +102,8 @@ body.rtl #navigation ul {
 }
 
 #navigation .sub-menu {
-    margin-left: 10px;
+    margin: 5px 0 0 0;
+    min-width: 80px;
 }
 
 #navigation.expanded .sub-menu {
@@ -113,7 +116,8 @@ body.rtl #navigation ul {
 
 #navigation .sub-menu .menu-item {
     float: none;
-    margin: 5px 0 0 0;
+    padding: 0 0 0 10px;
+    margin: 5px 0;
 }
 
 #wrapper .current-menu-item > a:link,
@@ -132,6 +136,14 @@ body.rtl #navigation ul {
 
 #navigation .secondary p {
     margin: 0;
+}
+
+#navigation .navbar-toggle {
+    font-size: 0.8em;
+    position: absolute;
+    top: 7px;
+    right: 0;
+    cursor: pointer;
 }
 
 body.janus #navigation .secondary p,

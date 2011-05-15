@@ -4,16 +4,43 @@
 window.Tarski = {};
 
 Tarski.Navbar = function(navbar) {
-    var self = this;
+    var self = this, lists;
     
-    this._container = jQuery(navbar).addClass('expanded');
-    this._maxHeight = this._container.height();
+    navbar = jQuery(navbar).addClass('expanded');
+    lists  = navbar.children('ul.primary').children('.menu-item');
+    
+    this._container = navbar;
+    this._listItems = jQuery.map(lists, function(el, i) {
+        var item    = jQuery(el),
+            submenu = item.children('.sub-menu');
+        submenu.height(submenu.height());
+        return item;
+    });
+    
+    this._maxHeight     = this._container.height();
+    this._maxMenuWidths = jQuery.map(this._listItems, function(el, i) {
+        return el.width();
+    });
+    
     this._container.removeClass('expanded').addClass('collapsed');
+    
     this._minHeight = this._container.height();
+    this._minMenuWidths = jQuery.map(this._listItems, function(el, i) {
+        var width = el.width();
+        el.width(width);
+        return width;
+    });
     this._container.height(this._minHeight)
     
-    this._container.mouseenter(function() { self.expand(); });
-    this._container.mouseleave(function() { self.collapse(); });
+    this._toggle = jQuery('<span class="navbar-toggle">Expand</span>');
+    this._toggle.click(function() {
+        if (self.inState('COLLAPSED')) {
+            self.expand();
+        } else if (self.inState('EXPANDED')) {
+            self.collapse();
+        }
+    });
+    this._container.append(this._toggle);
     
     this.setState('COLLAPSED');
 };
@@ -30,8 +57,17 @@ Tarski.Navbar.prototype.expand = function(cb) {
         .addClass('expanded')
         .animate(
             {height: this._maxHeight},
-            500,
-            function() { self.setState('EXPANDED'); });
+            Tarski.Navbar.EXPAND_TIME,
+            function() {
+                self._toggle.html('Collapse');
+                self.setState('EXPANDED');
+            });
+    
+    jQuery.each(this._listItems, function(i, el) {
+        el.animate(
+            {width: self._maxMenuWidths[i]},
+            Tarski.Navbar.EXPAND_TIME);
+    });
     
     return this;
 };
@@ -46,28 +82,24 @@ Tarski.Navbar.prototype.collapse = function(elem, cb) {
     this._container
         .animate(
             {height: this._minHeight},
-            500,
+            Tarski.Navbar.COLLAPSE_TIME,
             function() {
                 self._container
                     .removeClass('expanded')
                     .addClass('collapsed');
                 
+                self._toggle.html('Expand');
+                
                 self.setState('COLLAPSED');
             });
     
+    jQuery.each(this._listItems, function(i, el) {
+        el.animate(
+            {width: self._minMenuWidths[i]},
+            Tarski.Navbar.COLLAPSE_TIME);
+    });
+    
     return this;
-};
-
-Tarski.Navbar.prototype.setNextAction = function(action) {
-    this._nextAction = action;
-};
-
-Tarski.Navbar.prototype.fireNextAction = function() {
-    if (Tarski.Navbar.ACTIONS.indexOf(this._nextAction) === 1) {
-        this[this._nextAction](function(self) {
-            self._nextAction = null;
-        });
-    }
 };
 
 Tarski.Navbar.prototype.isAnimating = function() {
@@ -82,7 +114,8 @@ Tarski.Navbar.prototype.setState = function(state) {
     this._state = state;
 };
 
-Tarski.Navbar.ACTIONS = ['expand', 'collapse'];
+Tarski.Navbar.EXPAND_TIME = 300;
+Tarski.Navbar.COLLAPSE_TIME = 300;
 
 /**
  *  new Tarski.Searchbox(field, label)
