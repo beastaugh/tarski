@@ -1,8 +1,18 @@
 /**
  *  Tarski
+ *
+ *  The global namespace for all of Tarski's JavaScript.
  **/
 window.Tarski = {};
 
+/**
+ *  new Tarski.Navbar(navbar)
+ *  - navbar (HTMLElement|String|jQuery): the navigation container
+ *
+ *  [[Tarski.Navbar]] is an expanding navigation component to display sub-menus
+ *  within Tarski. It essentially provides an alternative to the normal
+ *  dropdown-style menus.
+ **/
 Tarski.Navbar = function(navbar) {
     var self = this, lists;
     
@@ -45,6 +55,11 @@ Tarski.Navbar = function(navbar) {
     this.setState('COLLAPSED');
 };
 
+/**
+ *  Tarski.Navbar#expand() -> Tarski.Navbar
+ *
+ *  Expands the navbar so that all sub-menus are displayed.
+ **/
 Tarski.Navbar.prototype.expand = function(cb) {
     var self = this;
     
@@ -72,6 +87,11 @@ Tarski.Navbar.prototype.expand = function(cb) {
     return this;
 };
 
+/**
+ *  Tarski.Navbar#expand() -> Tarski.Navbar
+ *
+ *  Collapses the navbar so that all sub-menus are hidden.
+ **/
 Tarski.Navbar.prototype.collapse = function(elem, cb) {
     var self = this;
     
@@ -102,25 +122,60 @@ Tarski.Navbar.prototype.collapse = function(elem, cb) {
     return this;
 };
 
+/**
+ *  Tarski.Navbar#isAnimating() -> Boolean
+ *
+ *  Check whether the navbar is currently animating (i.e. is in the process of
+ *  expanding or collapsing).
+ **/
 Tarski.Navbar.prototype.isAnimating = function() {
     return this.inState('ANIMATING');
 };
 
+/**
+ *  Tarski.Navbar#inState(state) -> Boolean
+ *  - state (string): the state being checked for
+ *
+ *  Check whether the navbar is currently in the state named by the given
+ *  string.
+ **/
 Tarski.Navbar.prototype.inState = function(state) {
     return this._state === state;
 };
 
+/**
+ *  Tarski.Navbar#setState(state) -> Boolean
+ *  - state (string): the state to be set
+ *
+ *  Change the navbar's state to that named by the given string.
+ **/
 Tarski.Navbar.prototype.setState = function(state) {
     this._state = state;
 };
 
+/**
+ *  Tarski.Navbar.EXPAND_TIME -> Number
+ *
+ *  The duration of the animation run when expanding the navbar.
+ **/
 Tarski.Navbar.EXPAND_TIME = 300;
+
+/**
+ *  Tarski.Navbar.COLLAPSE_TIME -> Number
+ *
+ *  The duration of the animation run when collapsing the navbar.
+ **/
 Tarski.Navbar.COLLAPSE_TIME = 300;
 
 /**
  *  new Tarski.Searchbox(field, label)
  *  - field (HTMLElement): the search field
  *  - label (HTMLElement): the label for the search field
+ *
+ *  This type provides a fallback for search forms in browsers where the
+ *  HTML5 placeholder attribute is not supported. When creating instances of
+ *  [[Tarski.Searchbox]], pass in the input element and the label for that
+ *  element as the arguments to the constructor.
  **/
 Tarski.Searchbox = function(field, label) {
     var self = this, text;
