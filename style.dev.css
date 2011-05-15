@@ -116,8 +116,9 @@ body.rtl #navigation ul {
 
 #navigation .sub-menu .menu-item {
     float: none;
-    padding: 0 0 0 10px;
+    padding: 0 0 0 12px;
     margin: 5px 0;
+    background: url('images/icons.png') no-repeat 2px -694px;
 }
 
 #wrapper .current-menu-item > a:link,
@@ -143,7 +144,13 @@ body.rtl #navigation ul {
     position: absolute;
     top: 7px;
     right: 0;
+    padding-right: 13px;
+    background: url('images/icons.png') no-repeat 100% -797px;
     cursor: pointer;
+}
+
+#navigation .navbar-toggle:hover {
+    text-decoration: underline;
 }
 
 body.janus #navigation .secondary p,
