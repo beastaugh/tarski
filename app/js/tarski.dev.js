@@ -16,10 +16,11 @@ window.Tarski = {};
 Tarski.Navbar = function(navbar) {
     var self = this, lists;
     
-    navbar = jQuery(navbar).addClass('expanded');
-    lists  = navbar.children('ul.primary').children('.menu-item');
+    this._container = jQuery(navbar).addClass('expanded');
+    lists = this._container.children('ul.primary').children('.menu-item');
     
-    this._container = navbar;
+    if (!this.hasSubMenus()) return;
+    
     this._listItems = jQuery.map(lists, function(el, i) {
         var item    = jQuery(el),
             submenu = item.children('.sub-menu');
@@ -151,6 +152,15 @@ Tarski.Navbar.prototype.inState = function(state) {
  **/
 Tarski.Navbar.prototype.setState = function(state) {
     this._state = state;
+};
+
+/**
+ *  Tarski.Navbar#hasSubMenus() -> Boolean
+ *
+ *  Check whether the navbar has any sub-menus.
+ **/
+Tarski.Navbar.prototype.hasSubMenus = function() {
+    return this._container.find('ul.sub-menu').length > 0;
 };
 
 /**
