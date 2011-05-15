@@ -2,6 +2,11 @@
 
 ### Version 3.1.0
 
+#### New features
+
+  * Sub-menu menu support in the navbar
+  * JavaScript-powered expanding navbar to display sub-menus
+
 #### Tweaks
 
   * Added default navbar for sites without menus defined
@@ -12,6 +17,8 @@
   * Deprecated `tarski_count_authors` and `tarski_resave_show_authors`
     functions
   * Removed all functions deprecated before version 3.0
+  * Deprecated `tarski_inject_scripts` function
+  * Removed defunct admin page JavaScript
 
 ### Version 3.0.4 [&sect;](http://tarskitheme.com/2011/03/18/3-0-release/)
 
