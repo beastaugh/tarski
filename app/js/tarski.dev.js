@@ -30,7 +30,7 @@ Tarski.Navbar = function(navbar) {
         el.width(width);
         return width;
     });
-    this._container.height(this._minHeight)
+    this._container.height(this._minHeight);
     
     this._toggle = jQuery('<span class="navbar-toggle">Expand</span>');
     this._toggle.click(function() {
