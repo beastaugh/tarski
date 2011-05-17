@@ -247,7 +247,3 @@ Tarski.Searchbox.PLACEHOLDER_SUPPORTED = (function() {
     var input = document.createElement('input');
     return 'placeholder' in input;
 })();
-
-jQuery(document).ready(function() {
-    var navbar = new Tarski.Navbar(jQuery('#navigation'));
-});

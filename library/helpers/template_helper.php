@@ -345,6 +345,14 @@ function navbar_wrapper() {
     echo '<div id="navigation" class="clearfix">';
     th_navbar();
     echo '</div>';
+    
+    echo <<<NAVBAR_SCRIPT
+<script type="text/javascript">
+    (function() {
+        var navbar = new Tarski.Navbar(jQuery('#navigation'));
+    })();
+</script>
+NAVBAR_SCRIPT;
 }
 
 /**
