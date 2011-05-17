@@ -6,3 +6,15 @@
         <input type="submit" id="searchsubmit" value="<?php _e('Search','tarski'); ?>">
     </fieldset></form>
 </div>
+
+<script type="text/javascript">
+    (function() {
+        var searchField = jQuery('#s'),
+            searchLabel = jQuery('#searchlabel'),
+            searchBox;
+        
+        if (searchField.length > 0 && searchLabel.length > 0) {
+            searchBox = new Tarski.Searchbox(searchField, searchLabel);
+        }
+    })();
+</script>
