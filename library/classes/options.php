@@ -150,7 +150,7 @@ class TarskiOptions {
 
 /**
  * Flushes Tarski's options for use by the theme.
- * 
+ *
  * Creates a new TarskiOptions object, and gets the current options. If
  * no options have been set in the database, it will return the
  * defaults. Additionally, if the 'deleted' property has been set
@@ -209,7 +209,7 @@ function update_tarski_option($option, $value) {
 
 /**
  * Returns the given Tarski option.
- * 
+ *
  * @since 1.4
  *
  * @uses get_raw_tarski_option

@@ -34,7 +34,7 @@ function _tarski_get_alternate_stylesheet_uri() {
 
 /**
  * Returns the document title.
- * 
+ *
  * The order (site name first or last) can be set on the Tarski Options page.
  * While the function ultimately returns a string, please note that filters
  * are applied to an array! This allows plugins to easily alter any aspect
@@ -84,20 +84,20 @@ function tarski_doctitle($sep = '&middot;') {
 
 /**
  * Remove unnecessary gallery styling.
- * 
+ *
  * The gallery feature adds an inline style element, which is pretty horrible
  * in any case, but it also adds lots of unnecessary rules which Tarski has its
  * own equivalents for.
- * 
+ *
  * One thing that is necessary is the width of each gallery item, since this is
  * set dynamically from within WordPress and cannot be calculated in advance or
  * otherwise accounted for by the theme.
- * 
+ *
  * Consequently, this function removes the other rules from the style block,
  * while preserving the gallery item styling.
- * 
+ *
  * @since 2.4
- * 
+ *
  * @param string $style
  * @return string
  */
@@ -264,7 +264,7 @@ function tarski_headerimage() {
 
 /**
  * Returns site title, wrapped in appropriate markup.
- * 
+ *
  * The title on the home page will appear inside an h1 element,
  * whereas on other pages it will be a link (to the home page),
  * wrapped in a p (paragraph) element.
@@ -316,7 +316,7 @@ function tarski_tagline() {
 
 /**
  * Outputs site title and tagline.
- * 
+ *
  * @since 1.5
  *
  * @uses tarski_tagline
@@ -445,7 +445,7 @@ function tarski_body_class($classes) {
 
 /**
  * Returns the id that should be applied to the document body.
- * 
+ *
  * @since 1.7
  *
  * @param boolean $return
@@ -523,7 +523,7 @@ function tarski_post_thumbnail() {
 
 /**
  * Outputs the site feed and Tarski credits.
- * 
+ *
  * @since 1.5
  *
  * @uses get_template_part

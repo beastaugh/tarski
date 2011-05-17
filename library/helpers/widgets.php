@@ -26,7 +26,7 @@ function tarski_sidebar() {
 
 /**
  * Output footer main widgets field.
- * 
+ *
  * @since 2.1
  *
  * @uses dynamic_sidebar
@@ -39,7 +39,7 @@ function tarski_footer_main() {
 
 /**
  * Output the footer sidebar widgets field.
- * 
+ *
  * @since 2.0
  *
  * @uses dynamic_sidebar
@@ -65,7 +65,7 @@ function tarski_widget_text_wrapper($text) {
 
 /**
  * Remove navbar links from the links widget.
- * 
+ *
  * @since 2.2
  *
  * @uses get_tarski_option

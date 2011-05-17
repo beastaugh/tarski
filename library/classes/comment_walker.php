@@ -1,7 +1,7 @@
 <?php
 /**
  * HTML comment list class, Tarski style.
- * 
+ *
  * @package WordPress
  * @subpackage Tarski
  * @since 2.4

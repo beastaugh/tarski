@@ -6,7 +6,7 @@
 
 /**
  * Return the current theme version.
- * 
+ *
  * @since 2.0
  * @return string
  */
@@ -19,7 +19,7 @@ function theme_version() {
 
 /**
  * Check whether a given file name is a valid Tarski stylesheet name.
- * 
+ *
  * It must be a valid CSS identifier, followed by the .css file extension,
  * and it cannot have a name that is already taken by Tarski's CSS namespace.
  *

@@ -41,7 +41,7 @@ if (is_admin()) require(TARSKIHELPERS . '/admin_helper.php');
 
 /**
  * Templating libraries.
- * 
+ *
  * As a theme, particularly given its complexity and multiplicity of options,
  * Tarski needs a lot of templating functions. There is an ongoing effort to
  * split functions up into logical groups spread across more and smaller files,
@@ -56,7 +56,7 @@ require(TARSKIHELPERS . '/widgets.php');
 
 /**
  * API files.
- * 
+ *
  * Tarski's API is actually spread across much of the library files required
  * above, but certain pieces of functionality such as generic template hooks,
  * legacy API handlers, and deprecated functions, all live in specialised API
@@ -67,7 +67,7 @@ include(TEMPLATEPATH . '/app/api/deprecated.php');
 
 /**
  * Launcher.
- * 
+ *
  * The following code makes an inital round of function calls, loading any
  * available localisation files, defining several constants which WordPress
  * requires, registering widget sidebars, and adding numerous actions and

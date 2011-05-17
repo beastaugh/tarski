@@ -2,7 +2,7 @@
 
 /**
  * Implodes an array and adds a final conjuction.
- * 
+ *
  * Given the array <code>array('John', 'Paul', 'George', 'Ringo')</code> it will
  * return the string <code>'John, Paul, George and Ringo'</code>.
  *

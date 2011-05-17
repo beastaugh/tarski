@@ -52,7 +52,7 @@ function the_archive_author() {
 
 /**
  * Returns the display name of the author associated with a given archive page.
- * 
+ *
  * @since 1.7
  *
  * @return string

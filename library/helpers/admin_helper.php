@@ -6,10 +6,10 @@
 
 /**
  * Saves a new set of Tarski options.
- * 
+ *
  * The primary request handler for the Tarski options system. Saves any updated
  * options and redirects to the options page.
- * 
+ *
  * @since 2.0
  *
  * @see tarskiupdate() which it replaces
@@ -31,11 +31,11 @@ function save_tarski_options() {
 
 /**
  * Sets the 'deleted' property on Tarski's options.
- * 
+ *
  * A secondary request handler for the Tarski options system. Sets the
  * 'deleted' property in the options object to the current time and redirects
  * to the options page.
- * 
+ *
  * @since 2.4
  *
  * @see save_tarski_options()
@@ -60,10 +60,10 @@ function delete_tarski_options() {
 
 /**
  * Unsets the 'deleted' property on Tarski's options.
- * 
+ *
  * A secondary request handler for the Tarski options system. Unsets the
  * 'deleted' property in the options object and redirects to the options page.
- * 
+ *
  * @since 2.4
  *
  * @see save_tarski_options()
@@ -87,12 +87,12 @@ function restore_tarski_options() {
 
 /**
  * Wipes Tarski's options if the restoration window has elapsed.
- * 
+ *
  * When the user resets Tarski's options, the 'deleted' property on the options
  * object is set to the current time. After three hours have elapsed (during
  * which time the user may restore their options), the tarski_options row in
  * the wp_options table will be deleted entirely by this function.
- * 
+ *
  * @since 2.4
  *
  * @see delete_tarski_options()
@@ -111,7 +111,7 @@ function maybe_wipe_tarski_options() {
 
 /**
  * Determines whether Tarski needs upgrading.
- * 
+ *
  * 'Needs upgrading' is defined as having either no installed version,
  * or having an installed version with a lower version number than the
  * version number extracted from the main stylesheet.
@@ -132,7 +132,7 @@ function tarski_upgrade_needed() {
 
 /**
  * Upgrades Tarski if needed and flushes options.
- * 
+ *
  * @since 2.1
  *
  * @see tarski_upgrade_needed
@@ -150,7 +150,7 @@ function tarski_upgrade_and_flush_options() {
 
 /**
  * Upgrades Tarski options special cases.
- * 
+ *
  * @since 2.3
  *
  * @see tarski_upgrade
@@ -193,7 +193,7 @@ function tarski_upgrade() {
 
 /**
  * Adds the Tarski Options page to the WordPress admin panel.
- * 
+ *
  * @since 1.0
  */
 function tarski_addmenu() {
