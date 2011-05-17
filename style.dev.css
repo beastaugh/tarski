@@ -58,27 +58,20 @@ body.rtl #wrapper {
 
 /* Fix floats
 ----------------------------------------------- */
-.clearfix:after {
-    content: ".";
+.clearfix:before, .clearfix:after {
+    content: "\0020";
     display: block;
     height: 0;
+    overflow: hidden;
+}
+
+.clearfix:after {
     clear: both;
-    visibility: hidden;
 }
 
 .clearfix {
-    display: inline-block;
+    zoom: 1;
 }
-
-/* Hides from IE-mac \*/
-* html .clearfix {
-    height: 1%;
-}
-
-.clearfix {
-    display: block;
-}
-/* End hide from IE-mac */
 
 /* Positioning
 ----------------------------------------------- */
