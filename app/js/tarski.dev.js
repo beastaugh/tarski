@@ -249,7 +249,5 @@ Tarski.Searchbox.PLACEHOLDER_SUPPORTED = (function() {
 })();
 
 jQuery(document).ready(function() {
-    jQuery('body').addClass('js');
-    
     var navbar = new Tarski.Navbar(jQuery('#navigation'));
 });

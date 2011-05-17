@@ -7,6 +7,12 @@
 
 <body id="<?php echo tarski_bodyid(); ?>" <?php body_class(); ?>>
 
+<script type="text/javascript">
+    (function() {
+        jQuery('body').addClass('js');
+    })();
+</script>
+
 <div id="wrapper" class="tarski">
     <div id="header">
         <?php th_header(); ?>
