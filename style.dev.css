@@ -200,7 +200,7 @@ body.rtl #navigation ul {
     display: block;
 }
 
-#navigation.collapsed .sub-menu {
+#navigation .sub-menu, #navigation.collapsed .sub-menu {
     display: none;
 }
 
