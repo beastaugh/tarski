@@ -26,9 +26,9 @@ define('TARSKIDISPLAY', TEMPLATEPATH . '/app/templates');
  * @see Options
  * @see TarskiCommentWalker
  */
-require_once(TEMPLATEPATH  . '/library/core.php');
-require_once(TARSKICLASSES . '/options.php');
-require_once(TARSKICLASSES . '/comment_walker.php');
+require(TEMPLATEPATH  . '/library/core.php');
+require(TARSKICLASSES . '/options.php');
+require(TARSKICLASSES . '/comment_walker.php');
 
 /**
  * Admin library files.
@@ -37,7 +37,7 @@ require_once(TARSKICLASSES . '/comment_walker.php');
  * are loaded only when a WordPress admin page is accessed, so as to reduce the
  * load on the server.
  */
-if (is_admin()) require_once(TARSKIHELPERS . '/admin_helper.php');
+if (is_admin()) require(TARSKIHELPERS . '/admin_helper.php');
 
 /**
  * Templating libraries.
@@ -47,12 +47,12 @@ if (is_admin()) require_once(TARSKIHELPERS . '/admin_helper.php');
  * split functions up into logical groups spread across more and smaller files,
  * so that each grouping remains comprehensible and each function easy to find.
  */
-require_once(TARSKIHELPERS . '/template_helper.php');
-require_once(TARSKIHELPERS . '/content_helper.php');
-require_once(TARSKIHELPERS . '/comments_helper.php');
-require_once(TARSKIHELPERS . '/author_helper.php');
-require_once(TARSKIHELPERS . '/tag_helper.php');
-require_once(TARSKIHELPERS . '/widgets.php');
+require(TARSKIHELPERS . '/template_helper.php');
+require(TARSKIHELPERS . '/content_helper.php');
+require(TARSKIHELPERS . '/comments_helper.php');
+require(TARSKIHELPERS . '/author_helper.php');
+require(TARSKIHELPERS . '/tag_helper.php');
+require(TARSKIHELPERS . '/widgets.php');
 
 /**
  * API files.
@@ -62,8 +62,8 @@ require_once(TARSKIHELPERS . '/widgets.php');
  * legacy API handlers, and deprecated functions, all live in specialised API
  * files where they can be easily found and documented.
  */
-require_once(TEMPLATEPATH . '/app/api/hooks.php');
-include_once(TEMPLATEPATH . '/app/api/deprecated.php');
+require(TEMPLATEPATH . '/app/api/hooks.php');
+include(TEMPLATEPATH . '/app/api/deprecated.php');
 
 /**
  * Launcher.
