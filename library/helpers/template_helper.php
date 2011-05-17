@@ -372,7 +372,7 @@ function tarski_navbar() {
  * @since 3.1
  *
  * @uses is_home
- * @uses get_settings
+ * @uses home_url
  * @uses wp_list_pages
  *
  * @return void
@@ -381,7 +381,7 @@ function tarski_default_navbar() {
     $home_current = is_home() ? ' class="current_page_item"' : '';
     $home_title   = __('Return to front page', 'tarski');
     $home_name    = __('Home', 'tarski');
-    $home_url     = get_option('home');
+    $home_url     = home_url();
     
     $navbar_pages = wp_list_pages(array(
         'sort_column' => 'menu_order',
