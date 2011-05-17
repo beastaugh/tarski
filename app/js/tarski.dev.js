@@ -43,7 +43,7 @@ Tarski.Navbar = function(navbar) {
     });
     this._container.height(this._minHeight);
     
-    this._toggle = jQuery('<span class="navbar-toggle">Expand</span>');
+    this._toggle = jQuery('<span class="navbar-toggle">' + objectL10n.expand + '</span>');
     this._toggle.click(function() {
         if (self.inState('COLLAPSED')) {
             self.expand();
@@ -75,7 +75,7 @@ Tarski.Navbar.prototype.expand = function(cb) {
             {height: this._maxHeight},
             Tarski.Navbar.EXPAND_TIME,
             function() {
-                self._toggle.html('Collapse');
+                self._toggle.html(objectL10n.collapse);
                 self.setState('EXPANDED');
             });
     
@@ -109,7 +109,7 @@ Tarski.Navbar.prototype.collapse = function(elem, cb) {
                     .removeClass('expanded')
                     .addClass('collapsed');
                 
-                self._toggle.html('Expand');
+                self._toggle.html(objectL10n.expand);
                 
                 self.setState('COLLAPSED');
             });
