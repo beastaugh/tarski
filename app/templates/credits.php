@@ -7,6 +7,6 @@
             '<a href="http://' .
             $current_site->domain .
             $current_site->path .
-            '">' . $current_site->name . '</a>');
+            '">' . $current_site->site_name . '</a>');
     } ?></p>
 </div>
