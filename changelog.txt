@@ -20,6 +20,14 @@
   * Deprecated `tarski_inject_scripts` function
   * Removed defunct admin page JavaScript
 
+
+### Version 3.0.5 [&sect;](http://tarskitheme.com/2011/03/18/3-0-release/)
+
+#### Bug fixes
+
+  * Fixed multisite name in footer credits.
+
+
 ### Version 3.0.4 [&sect;](http://tarskitheme.com/2011/03/18/3-0-release/)
 
 #### Bug fixes
