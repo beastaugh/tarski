@@ -362,7 +362,6 @@ body.rtl ul, body.rtl ol {
     margin: 0 15px 1em 0; padding: 0;
 }
 
-    
 /* Global content control
 ----------------------------------------------- */
 body .content img {
@@ -381,7 +380,7 @@ body .content p {
 body .content li {
     line-height: 1.4;
 }
-    
+
 /* Headers
 ----------------------------------------------- */
 #blog-title {
@@ -1244,7 +1243,7 @@ body .widget_tag_cloud a:hover {
 body .widget {
     margin: 0 0 2em 0;
 }
-    
+
 /* List widgets
 ----------------------------------------------- */
 body .widget ul {
@@ -1269,7 +1268,7 @@ body.rtl .widget ol ul,
 body.rtl .widget ul ol {
     margin-right: 15px;
 }
-    
+
 /* Tag cloud widget
 ----------------------------------------------- */
 body .widget_tag_cloud {
