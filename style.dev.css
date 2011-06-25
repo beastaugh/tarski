@@ -1107,10 +1107,6 @@ body .searchbox {
     background: #fff;
 }
 
-body.js #searchlabel {
-    display: none;
-}
-
 /* Comment reply form layout & style.
 ----------------------------------------------- */
 #respond {
