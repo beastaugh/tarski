@@ -28,32 +28,34 @@ Tarski.Navbar = function(navbar) {
         return item;
     });
     
-    this._maxHeight     = this._container.height();
-    this._maxMenuWidths = jQuery.map(this._listItems, function(el, i) {
-        return el.width();
-    });
-    
-    this._container.removeClass('expanded').addClass('collapsed');
-    
-    this._minHeight = this._container.height();
-    this._minMenuWidths = jQuery.map(this._listItems, function(el, i) {
-        var width = el.width();
-        el.width(width);
-        return width;
-    });
-    this._container.height(this._minHeight);
-    
-    this._toggle = jQuery('<span class="navbar-toggle">' + objectL10n.expand + '</span>');
-    this._toggle.click(function() {
-        if (self.inState('COLLAPSED')) {
-            self.expand();
-        } else if (self.inState('EXPANDED')) {
-            self.collapse();
-        }
-    });
-    this._container.append(this._toggle);
-    
-    this.setState('COLLAPSED');
+    setTimeout(function() {
+        self._maxHeight     = self._container.height();
+        self._maxMenuWidths = jQuery.map(self._listItems, function(el, i) {
+            return el.width();
+        });
+        
+        self._container.removeClass('expanded').addClass('collapsed');
+        
+        self._minHeight = self._container.height();
+        self._minMenuWidths = jQuery.map(self._listItems, function(el, i) {
+            var width = el.width();
+            el.width(width);
+            return width;
+        });
+        self._container.height(self._minHeight);
+        
+        self._toggle = jQuery('<span class="navbar-toggle">' + objectL10n.expand + '</span>');
+        self._toggle.click(function() {
+            if (self.inState('COLLAPSED')) {
+                self.expand();
+            } else if (self.inState('EXPANDED')) {
+                self.collapse();
+            }
+        });
+        self._container.append(self._toggle);
+        
+        self.setState('COLLAPSED');
+    }, 10);
 };
 
 /**
