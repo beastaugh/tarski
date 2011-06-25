@@ -330,19 +330,24 @@ function tarski_post_metadata_date($metadata) {
  * @see tarski_post_metadata
  *
  * @param string $metadata
+ * @global object $post
  * @return string
  */
 function tarski_post_metadata_edit($metadata) {
     $uri = get_edit_post_link();
     
     if ($uri) {
+        global $post;
+        
         $edit_link = sprintf(
             '<a class="post-edit-link" href="%s" title="%s">%s</a>',
             $uri,
             esc_attr(__('Edit this post', 'tarski')),
             esc_html(__('edit', 'tarski')));
         
-        $metadata .= ' <span class="edit">(' . $edit_link . ')</span>';
+        $metadata .= ' <span class="edit">('
+                  .  apply_filters('edit_post_link', $edit_link, $post->ID)
+                  .  ')</span>';
     }
     
     return $metadata;

@@ -9,6 +9,8 @@
 
 #### Tweaks
 
+  * The output of `tarski_post_metadata_edit` now passes through
+    `edit_post_link` filters.
   * Added default navbar for sites without menus defined
   * New search form placeholder fallback JavaScript
   * Tarski now depends on jQuery
