@@ -8,13 +8,13 @@
 </div>
 
 <script type="text/javascript">
-    (function() {
-        var searchField = jQuery('#s'),
-            searchLabel = jQuery('#searchlabel'),
+    jQuery(document).ready(function() {
+        var searchField = document.getElementById('s'),
+            searchLabel = document.getElementById('searchlabel'),
             searchBox;
         
-        if (searchField.length > 0 && searchLabel.length > 0) {
+        if (searchField && searchLabel) {
             searchBox = new Tarski.Searchbox(searchField, searchLabel);
         }
-    })();
+    });
 </script>

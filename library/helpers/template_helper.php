@@ -348,9 +348,14 @@ function navbar_wrapper() {
     
     echo <<<NAVBAR_SCRIPT
 <script type="text/javascript">
-    (function() {
-        var navbar = new Tarski.Navbar(jQuery('#navigation'));
-    })();
+    jQuery(document).ready(function() {
+        var container = document.getElementById('navigation'),
+            navbar;
+        
+        if (container) {
+            navbar = new Tarski.Navbar(container);
+        }
+    });
 </script>
 NAVBAR_SCRIPT;
 }
