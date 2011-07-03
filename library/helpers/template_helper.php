@@ -349,7 +349,7 @@ function navbar_wrapper() {
     echo <<<NAVBAR_SCRIPT
 <script type="text/javascript">
     jQuery(document).ready(function() {
-        var container = jQuery('#navigation ul'),
+        var container = jQuery('#navigation > ul'),
             navbar;
         
         if (container.length > 0) {

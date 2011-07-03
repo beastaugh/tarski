@@ -17,7 +17,7 @@ window.Tarski = {};
  **/
 Tarski.Navbar = function(container) {
     var navbar      = this;
-    this._container = jQuery(container);
+    this._container = jQuery(container).first();
     this._parent    = this._container.parent();
     this._items     = this._container.children('li');
     
