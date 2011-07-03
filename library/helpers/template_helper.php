@@ -349,10 +349,10 @@ function navbar_wrapper() {
     echo <<<NAVBAR_SCRIPT
 <script type="text/javascript">
     jQuery(document).ready(function() {
-        var container = document.getElementById('navigation'),
+        var container = jQuery('#navigation ul'),
             navbar;
         
-        if (container) {
+        if (container.length > 0) {
             navbar = new Tarski.Navbar(container);
         }
     });

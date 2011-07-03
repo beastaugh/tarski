@@ -6,178 +6,89 @@
 window.Tarski = {};
 
 /**
- *  new Tarski.Navbar(navbar)
- *  - navbar (HTMLElement|String|jQuery): the navigation container
+ *  new Tarski.Navbar(container)
+ *  - container (HTMLElement|String|jQuery): the navigation container
  *
- *  [[Tarski.Navbar]] is an expanding navigation component to display sub-menus
- *  within Tarski. It essentially provides an alternative to the normal
- *  dropdown-style menus.
+ *  [[Tarski.Navbar]] is a small wrapper around the normal CSS dropdowns to
+ *  ensure compatibility with older browsers such as Internet Explorer 6 which
+ *  do not support the :hover pseduo-class on elements that are not anchors,
+ *  and do a more intelligent job of positioning dropdowns so that they remain
+ *  within the theme layout.
  **/
-Tarski.Navbar = function(navbar) {
-    var self = this, lists;
+Tarski.Navbar = function(container) {
+    var navbar      = this;
+    this._container = jQuery(container);
+    this._parent    = this._container.parent();
+    this._items     = this._container.children('li');
     
-    this._container = jQuery(navbar).addClass('expanded');
-    lists = this._container.children('ul.primary').children('.menu-item');
-    
-    if (!this.hasSubMenus()) return;
-    
-    this._listItems = jQuery.map(lists, function(el, i) {
-        var item    = jQuery(el),
-            submenu = item.children('.sub-menu');
-        submenu.height(submenu.height());
-        return item;
-    });
-    
-    setTimeout(function() {
-        self._maxHeight     = self._container.height();
-        self._maxMenuWidths = jQuery.map(self._listItems, function(el, i) {
-            return el.width();
+    this._items.each(function(i, el) {
+        jQuery(el).hover(function() {
+            navbar.expand(this);
+        }, function() {
+            navbar.collapse(this);
         });
         
-        self._container.removeClass('expanded').addClass('collapsed');
-        
-        self._minHeight = self._container.height();
-        self._minMenuWidths = jQuery.map(self._listItems, function(el, i) {
-            var width = el.width();
-            el.width(width);
-            return width;
-        });
-        self._container.height(self._minHeight);
-        
-        self._toggle = jQuery('<span class="navbar-toggle">' + objectL10n.expand + '</span>');
-        self._toggle.click(function() {
-            if (self.inState('COLLAPSED')) {
-                self.expand();
-            } else if (self.inState('EXPANDED')) {
-                self.collapse();
-            }
-        });
-        self._container.append(self._toggle);
-        
-        self.setState('COLLAPSED');
-    }, 10);
-};
-
-/**
- *  Tarski.Navbar#expand() -> Tarski.Navbar
- *
- *  Expands the navbar so that all sub-menus are displayed.
- **/
-Tarski.Navbar.prototype.expand = function(cb) {
-    var self = this;
-    
-    if (this.isAnimating()) return;
-    
-    this.setState('ANIMATING');
-    
-    this._container
-        .removeClass('collapsed')
-        .addClass('expanded')
-        .animate(
-            {height: this._maxHeight},
-            Tarski.Navbar.EXPAND_TIME,
-            function() {
-                self._toggle.html(objectL10n.collapse);
-                self.setState('EXPANDED');
-            });
-    
-    jQuery.each(this._listItems, function(i, el) {
-        el.animate(
-            {width: self._maxMenuWidths[i]},
-            Tarski.Navbar.EXPAND_TIME);
+        navbar.collapse(el);
     });
-    
-    return this;
 };
 
 /**
- *  Tarski.Navbar#expand() -> Tarski.Navbar
- *
- *  Collapses the navbar so that all sub-menus are hidden.
+ *  Tarski.Navbar#expand(element)
+ *  - element (HTMLElement|String|jQuery): the top-level menu item whose
+ *    associated submenu is to be expanded.
  **/
-Tarski.Navbar.prototype.collapse = function(elem, cb) {
-    var self = this;
+Tarski.Navbar.prototype.expand = function(element) {
+        element = jQuery(element);
+    var submenu = element.children('.sub-menu');
     
-    if (this.isAnimating()) return;
+    if (submenu.length < 1) return;
     
-    this.setState('ANIMATING');
+    submenu.removeClass('collapsed').addClass('expanded').show();
     
-    this._container
-        .animate(
-            {height: this._minHeight},
-            Tarski.Navbar.COLLAPSE_TIME,
-            function() {
-                self._container
-                    .removeClass('expanded')
-                    .addClass('collapsed');
-                
-                self._toggle.html(objectL10n.expand);
-                
-                self.setState('COLLAPSED');
-            });
-    
-    jQuery.each(this._listItems, function(i, el) {
-        el.animate(
-            {width: self._minMenuWidths[i]},
-            Tarski.Navbar.COLLAPSE_TIME);
-    });
-    
-    return this;
+    this._reposition(submenu);
 };
 
 /**
- *  Tarski.Navbar#isAnimating() -> Boolean
- *
- *  Check whether the navbar is currently animating (i.e. is in the process of
- *  expanding or collapsing).
+ *  Tarski.Navbar#collapse(element)
+ *  - element (HTMLElement|String|jQuery): the top-level menu item whose
+ *    associated submenu is to be collapsed.
  **/
-Tarski.Navbar.prototype.isAnimating = function() {
-    return this.inState('ANIMATING');
+Tarski.Navbar.prototype.collapse = function(element) {
+        element = jQuery(element);
+    var submenu = element.children('.sub-menu');
+    
+    if (submenu.length < 1) return;
+    
+    submenu.hide().removeClass('expanded').addClass('collapsed');
 };
 
-/**
- *  Tarski.Navbar#inState(state) -> Boolean
- *  - state (string): the state being checked for
- *
- *  Check whether the navbar is currently in the state named by the given
- *  string.
- **/
-Tarski.Navbar.prototype.inState = function(state) {
-    return this._state === state;
+Tarski.Navbar.prototype._reposition = function(submenu) {
+    var wrapperOffset = this._parent.offset().left,
+        wrapperWidth  = this._parent.width(),
+        menuOffset    = submenu.offset().left,
+        menuWidth     = submenu.outerWidth(),
+        leftDiff      = menuOffset - wrapperOffset,
+        rightDiff     = menuOffset + menuWidth - wrapperOffset - wrapperWidth,
+        parent, rightShift;
+    
+    if (leftDiff <= 0) {
+        submenu.css({
+            left: 0,
+            right: 'auto'
+        });
+    } else if (rightDiff >= 0) {
+        parent     = submenu.parent();
+        rightShift = parent.offset().left
+                   + parent.width()
+                   - wrapperOffset
+                   - wrapperWidth;
+        
+        submenu.css({
+            left: 'auto',
+            right: rightShift + 'px'
+        });
+    }
 };
-
-/**
- *  Tarski.Navbar#setState(state) -> Boolean
- *  - state (string): the state to be set
- *
- *  Change the navbar's state to that named by the given string.
- **/
-Tarski.Navbar.prototype.setState = function(state) {
-    this._state = state;
-};
-
-/**
- *  Tarski.Navbar#hasSubMenus() -> Boolean
- *
- *  Check whether the navbar has any sub-menus.
- **/
-Tarski.Navbar.prototype.hasSubMenus = function() {
-    return this._container.find('ul.sub-menu').length > 0;
-};
-
-/**
- *  Tarski.Navbar.EXPAND_TIME -> Number
- *
- *  The duration of the animation run when expanding the navbar.
- **/
-Tarski.Navbar.EXPAND_TIME = 300;
-
-/**
- *  Tarski.Navbar.COLLAPSE_TIME -> Number
- *
- *  The duration of the animation run when collapsing the navbar.
- **/
-Tarski.Navbar.COLLAPSE_TIME = 300;
 
 /**
  *  new Tarski.Searchbox(field, label)

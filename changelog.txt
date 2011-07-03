@@ -5,7 +5,7 @@
 #### New features
 
   * Sub-menu menu support in the navbar
-  * JavaScript-powered expanding navbar to display sub-menus
+  * JavaScript-enhanced dropdowns to display sub-menus
 
 #### Tweaks
 

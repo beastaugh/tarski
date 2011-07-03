@@ -167,6 +167,9 @@ body.centre #wrapper {
 ----------------------------------------------- */
 #navigation {
     position: relative;
+}
+
+#navigation .secondary {
     padding: 5px 0;
 }
 
@@ -180,34 +183,51 @@ body.rtl #navigation ul {
     direction: ltr;
 }
 
-#navigation .menu-item {
+#navigation > ul > .menu-item {
     display: block;
     margin: 0 15px 0 0;
+    padding: 6px 0 7px 0;
     float: left;
-    overflow: hidden;
+    position: relative;
 }
 
 #navigation .menu-item a {
     display: block;
 }
 
-#navigation .sub-menu {
-    margin: 5px 0 0 0;
-    min-width: 80px;
+#navigation > ul > .menu-item > .sub-menu {
+    display: none;
+    min-width: 130px;
+    position: absolute;
+    left: -10px;
+    top: 100%;
+    z-index: 2;
+    margin: 0;
+    padding: 0 10px 3px;
+    border: 1px solid #ccc;
+    border-top-color: #fff;
+    background: #fff;
 }
 
-#navigation.expanded .sub-menu {
+#navigation > ul > .menu-item:hover > .sub-menu {
     display: block;
 }
 
-#navigation .sub-menu, #navigation.collapsed .sub-menu {
-    display: none;
+#navigation .sub-menu .sub-menu {
+    position: static;
+    background: none;
+    border: none;
+    padding: 0;
 }
 
 #navigation .sub-menu .menu-item {
     float: none;
-    padding: 0 0 0 12px;
-    margin: 5px 0;
+    margin: 7px 0;
+    padding: 0;
+}
+
+#navigation .sub-menu .sub-menu .menu-item {
+    padding: 0 0 0 16px;
     background: url('images/icons.png') no-repeat 2px -694px;
 }
 
