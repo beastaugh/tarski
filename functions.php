@@ -175,7 +175,7 @@ if (is_admin()) {
 } else {
     // JavaScript
     wp_enqueue_script('tarski',
-        get_template_directory_uri() . '/app/js/tarski.js',
+        tarski_asset_path('app/js/tarski.js'),
         array('jquery'), theme_version());
     wp_localize_script('tarski', 'objectL10n', array(
         'expand'   => __('Expand', 'tarski'),

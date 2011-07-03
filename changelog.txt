@@ -18,9 +18,15 @@
     function `tarski_should_show_authors`
   * Deprecated `tarski_count_authors` and `tarski_resave_show_authors`
     functions
+  * Deprecated `tarski_css` and `tarski_js` functions
   * Removed all functions deprecated before version 3.0
   * Deprecated `tarski_inject_scripts` function
   * Removed defunct admin page JavaScript
+
+#### Bug fixes
+
+  * Make development JavaScript and CSS files load when `TARSKI_DEBUG` is set
+    to `true`
 
 
 ### Version 3.0.5 [&sect;](http://tarskitheme.com/2011/03/18/3-0-release/)

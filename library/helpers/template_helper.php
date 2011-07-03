@@ -182,9 +182,9 @@ function tarski_meta() {
 function tarski_stylesheets() {
     $style_array = array(
         'main' => array(
-            'url' => get_bloginfo('stylesheet_url')),
+            'url' => tarski_asset_path('style.css')),
         'print' => array(
-            'url' => get_template_directory_uri() . '/library/css/print.css',
+            'url' => tarski_asset_path('library/css/print.css'),
             'media' => 'print'));
     
     if (get_tarski_option('style')) {

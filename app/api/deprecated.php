@@ -12,6 +12,42 @@
  */
 
 /**
+ * If debug mode is enabled, use uncompressed (development mode) JavaScript.
+ *
+ * @since 2.7
+ * @deprecated 3.1.0
+ *
+ * @see TARSKI_DEBUG
+ * @uses _tarski_compressible_asset_path
+ *
+ * @param string $path
+ * @return string
+ */
+function tarski_js($path) {
+    _deprecated_function(__FUNCTION__, '3.1.0');
+    
+    return tarski_asset_path($path);
+}
+
+/**
+ * If debug mode is enabled, use uncompressed (development mode) CSS.
+ *
+ * @since 2.7
+ * @deprecated 3.1.0
+ *
+ * @see TARSKI_DEBUG
+ * @uses _tarski_compressible_asset_path
+ *
+ * @param string $path
+ * @return string
+ */
+function tarski_css($path) {
+    _deprecated_function(__FUNCTION__, '3.1.0');
+    
+    return tarski_asset_path($path);
+}
+
+/**
  * Adds JavaScript to the Tarski Options page.
  *
  * @since 1.4
