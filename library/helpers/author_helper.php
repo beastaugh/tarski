@@ -19,11 +19,14 @@
  * @param string $metadata
  * @global object $authordata
  * @return string
+ *
+ * @hook filter tarski_show_authors
+ * Allows other components to decide whether or not Tarski should show authors.
  */
 function tarski_author_posts_link($metadata) {
     global $authordata;
     
-    if (is_multi_author()) {
+    if ((bool) apply_filters('tarski_show_authors', is_multi_author())) {
         $link = sprintf('<a href="%1$s" title="%2$s" class="url fn">%3$s</a>',
             get_author_posts_url($authordata->ID, $authordata->user_nicename),
             sprintf(__('Articles by %s','tarski'), esc_attr(get_the_author())),

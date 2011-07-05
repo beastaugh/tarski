@@ -93,9 +93,6 @@ function tarski_count_authors() {
  *
  * @global object $wpdb
  * @return boolean
- *
- * @hook filter tarski_show_authors
- * Allows other components to decide whether or not Tarski should show authors.
  */
 function tarski_should_show_authors() {
     _deprecated_function(__FUNCTION__, '3.1.0');
