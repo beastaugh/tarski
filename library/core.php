@@ -40,8 +40,6 @@ function is_valid_tarski_style($name) {
  * @since 2.7
  *
  * @see TARSKI_DEBUG
- * @see tarski_js
- * @see tarski_css
  *
  * @param string $path
  * @return string
