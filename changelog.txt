@@ -9,6 +9,7 @@
 
 #### Tweaks
 
+  * Child theme stylesheets are now always loaded
   * The output of `tarski_post_metadata_edit` now passes through
     `edit_post_link` filters.
   * Added default navbar for sites without menus defined

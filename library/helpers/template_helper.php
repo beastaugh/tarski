@@ -187,6 +187,10 @@ function tarski_stylesheets() {
             'url' => tarski_asset_path('library/css/print.css'),
             'media' => 'print'));
     
+    if (get_template_directory() != get_stylesheet_directory()) {
+        $style_array['child_main'] = array('url' => get_stylesheet_uri());
+    }
+    
     if (get_tarski_option('style')) {
         $style_uri = _tarski_get_alternate_stylesheet_uri();
         
