@@ -183,7 +183,7 @@ body.rtl #navigation ul {
     direction: ltr;
 }
 
-#navigation > ul > .menu-item, #navigation > ul > .page_item,  #navigation > ul > .current_page_item {
+#navigation > ul > li {
     display: block;
     margin: 0 15px 0 0;
     padding: 6px 0 7px 0;
