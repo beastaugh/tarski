@@ -183,7 +183,7 @@ body.rtl #navigation ul {
     direction: ltr;
 }
 
-#navigation > ul > li {
+#navigation li {
     display: block;
     margin: 0 15px 0 0;
     padding: 6px 0 7px 0;
@@ -195,7 +195,7 @@ body.rtl #navigation ul {
     display: block;
 }
 
-#navigation > ul > .menu-item > .sub-menu {
+#navigation .sub-menu {
     display: none;
     min-width: 130px;
     position: absolute;
@@ -209,7 +209,7 @@ body.rtl #navigation ul {
     background: #fff;
 }
 
-#navigation > ul > .menu-item:hover > .sub-menu {
+#navigation .menu-item:hover .sub-menu {
     display: block;
 }
 
