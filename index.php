@@ -38,7 +38,7 @@
     
     <?php } // End loop ?>
     
-    <?php if (is_singular() && !is_attachment()) comments_template(); ?>
+    <?php comments_template(); ?>
 </div>
 
 <?php get_sidebar(); ?>
