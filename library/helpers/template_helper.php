@@ -243,12 +243,22 @@ function _tarski_asset_output($type, $assets) {
  *
  * @since 1.0
  *
+ * @uses get_theme_mod
+ * @uses get_header_image
+ * @uses get_tarski_option
+ * @uses get_bloginfo
+ * @uses is_front_page
+ * @uses user_trailingslashit
+ * @uses home_url
+ *
  * @return string
  */
 function tarski_headerimage() {
     if (!get_theme_mod('header_image')) return;
     
     $header_img_url = get_header_image();
+    
+    if (!$header_img_url) return;
     
     $header_img_tag = sprintf('<img alt="%s" src="%s">',
         get_tarski_option('display_title')
