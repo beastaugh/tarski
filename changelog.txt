@@ -1,5 +1,19 @@
 # Changelog
 
+### Version 3.1.2
+
+#### Bug fixes
+
+  * Cleaned up the `TarskiOptions` class `POST` handler to remove references to
+    unused properties and ensure all input is validated.
+
+#### Tweaks
+
+  * Removed direct access preventation code from `comments.php`.
+  * `get_template_directory` and `get_stylesheet_directory` function calls now
+    used in preference to `TEMPLATEPATH` and `STYLESHEETPATH` constants.
+
+
 ### Version 3.1.1
 
 #### Bug fixes
