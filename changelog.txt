@@ -12,6 +12,8 @@
   * Removed direct access preventation code from `comments.php`.
   * `get_template_directory` and `get_stylesheet_directory` function calls now
     used in preference to `TEMPLATEPATH` and `STYLESHEETPATH` constants.
+  * Text domains are now present for all translated strings, even those already
+    used in the core WordPress code.
 
 
 ### Version 3.1.1

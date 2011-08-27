@@ -78,7 +78,9 @@ class TarskiCommentWalker extends Walker_Comment {
             <div class="comment-wrapper clearfix" id="comment-wrapper-<?php comment_ID(); ?>">
                 <?php if (in_array(get_comment_type(), array('trackback', 'pingback', 'pings'))) { ?>
                     <p class="pingdata"><?php printf(__('%1$s from %2$s on %3$s', 'tarski'),
-                        comment_type(_x('Comment', 'noun', 'tarski'), __('Trackback'), __('Pingback')),
+                        comment_type(_x('Comment', 'noun', 'tarski'),
+                                     __('Trackback', 'tarski'),
+                                     __('Pingback', 'tarski')),
                         tarski_comment_author_link(),
                         tarski_comment_link($comment, array('page' => $page)));
                         edit_comment_link(__('edit','tarski'), ' <span class="comment-edit">(', ')</span>'); ?></p>

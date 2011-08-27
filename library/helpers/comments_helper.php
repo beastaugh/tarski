@@ -79,7 +79,7 @@ function tidy_avatars($avatar, $id_or_email, $size, $default) {
     if (is_admin()) return $avatar;
     
     $avatar = preg_replace("/'/", '"', $avatar);
-    $author_alt = sprintf(__('%s&#8217;s avatar'), get_comment_author());
+    $author_alt = sprintf(__('%s&#8217;s avatar', 'tarski'), get_comment_author());
     $avatar = preg_replace('/alt=""/', "alt=\"$author_alt\"", $avatar);
     
     return $avatar;
@@ -96,7 +96,7 @@ function tidy_avatars($avatar, $id_or_email, $size, $default) {
  * @return string
  */
 function tarski_avatar() {
-    $alt    = sprintf(__('%s&#8217;s avatar'), get_comment_author());
+    $alt    = sprintf(__('%s&#8217;s avatar', 'tarski'), get_comment_author());
     $avatar = get_avatar(get_comment_author_email(), '50');
     $url    = get_comment_author_url();
     
