@@ -12,9 +12,9 @@
  * keeping includes simple is greatly helped by a sane set of path constants.
  */
 define('TARSKI_DEBUG', false);
-define('TARSKICLASSES', TEMPLATEPATH . '/library/classes');
-define('TARSKIHELPERS', TEMPLATEPATH . '/library/helpers');
-define('TARSKIDISPLAY', TEMPLATEPATH . '/app/templates');
+define('TARSKICLASSES', get_template_directory() . '/library/classes');
+define('TARSKIHELPERS', get_template_directory() . '/library/helpers');
+define('TARSKIDISPLAY', get_template_directory() . '/app/templates');
 
 /**
  * Core library files.
@@ -26,7 +26,7 @@ define('TARSKIDISPLAY', TEMPLATEPATH . '/app/templates');
  * @see Options
  * @see TarskiCommentWalker
  */
-require(TEMPLATEPATH  . '/library/core.php');
+require(get_template_directory() . '/library/core.php');
 require(TARSKICLASSES . '/options.php');
 require(TARSKICLASSES . '/comment_walker.php');
 
@@ -62,8 +62,8 @@ require(TARSKIHELPERS . '/widgets.php');
  * legacy API handlers, and deprecated functions, all live in specialised API
  * files where they can be easily found and documented.
  */
-require(TEMPLATEPATH . '/app/api/hooks.php');
-include(TEMPLATEPATH . '/app/api/deprecated.php');
+require(get_template_directory() . '/app/api/hooks.php');
+include(get_template_directory() . '/app/api/deprecated.php');
 
 /**
  * Launcher.

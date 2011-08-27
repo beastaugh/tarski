@@ -262,12 +262,12 @@ function tarski_inject_styles() {
  */
 function _tarski_list_alternate_styles() {
     $styles        = array();
-    $dirs          = array('Tarski' => TEMPLATEPATH);
+    $dirs          = array('Tarski' => get_template_directory());
     $current_style = get_tarski_option('style');
     $current_theme = get_current_theme();
     
-    if (TEMPLATEPATH != STYLESHEETPATH)
-        $dirs[$current_theme] = STYLESHEETPATH;
+    if (get_template_directory() != get_stylesheet_directory())
+        $dirs[$current_theme] = get_stylesheet_directory();
     
     foreach ($dirs as $theme => $dir) {
         $dirpath = $dir . '/styles';
