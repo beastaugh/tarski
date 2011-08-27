@@ -87,11 +87,13 @@ class TarskiOptions {
             'show_categories'     => true,
             'show_authors'        => true,
             'use_pages'           => true,
-            'sidebar_pp_type'     => null);
+            'sidebar_pp_type'     => '');
         
-        foreach ($this->defaults as $key => $value)
-            if (!isset($this->$key))
+        foreach ($this->defaults as $key => $value) {
+            if (!isset($this->$key)) {
                 $this->$key = $value;
+            }
+        }
     }
     
     /**
@@ -104,49 +106,25 @@ class TarskiOptions {
      * @see save_tarski_options()
      */
     function tarski_options_update() {
-        if (isset($_POST['update_notification'])) {
-            if ($_POST['update_notification'] == 'off')
-                $this->update_notification = false;
-            elseif ($_POST['update_notification'] == 'on')
-                $this->update_notification = true;
-        }
-        
-        if (isset($_POST['header_image'])) {
-            $header = preg_split('/\//', str_replace('-thumb', '', $_POST['header_image']));
-            $this->header = array_slice($header, 0, 2);
-        }
-        
-        if (isset($_POST['nav_pages']))
-            $this->nav_pages = implode(',', $_POST['nav_pages']);
-        else
-            $this->nav_pages = false;
-        
-        if (isset($_POST['collapsed_pages']))
-            $this->collapsed_pages = $_POST['collapsed_pages'];
-        else
-            $this->collapsed_pages = '';
-        
         if (isset($_POST['alternate_style'])) {
             $style = array_slice(preg_split('/\//', $_POST['alternate_style']), 0, 2);
             $this->style = count($style) > 1 && is_valid_tarski_style($style[1]) ? $style : false;
         }
         
-        $this->display_title = (bool) $_POST['display_title'];
-        $this->display_tagline = (bool) $_POST['display_tagline'];
-        $this->show_categories = (bool) $_POST['show_categories'];
-        $this->tags_everywhere = (bool) $_POST['tags_everywhere'];
-        $this->use_pages = (bool) $_POST['use_pages'];
-        $this->centred_theme = (bool) $_POST['centred_theme'];
-        $this->swap_sides = (bool) $_POST['swap_sides'];
+        if (isset($_POST['sidebar_pp_type']) && $_POST['sidebar_pp_type'] == "main") {
+            $this->sidebar_pp_type = "main";
+        }
+        
+        $this->display_title    = (bool) $_POST['display_title'];
+        $this->display_tagline  = (bool) $_POST['display_tagline'];
+        $this->show_categories  = (bool) $_POST['show_categories'];
+        $this->tags_everywhere  = (bool) $_POST['tags_everywhere'];
+        $this->centred_theme    = (bool) $_POST['centred_theme'];
+        $this->swap_sides       = (bool) $_POST['swap_sides'];
         $this->swap_title_order = (bool) $_POST['swap_title_order'];
-        $this->asidescategory = $_POST['asides_category'];
-        $this->nav_extlinkcat = $_POST['nav_extlinkcat'];
-        $this->home_link_name = $_POST['home_link_name'];
-        $this->sidebar_pp_type = $_POST['sidebar_pp_type'];
-        $this->show_authors = true;
+        
         unset($this->deleted);
     }
-
 }
 
 /**
