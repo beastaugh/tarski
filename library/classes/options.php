@@ -69,24 +69,25 @@ class TarskiOptions {
      */
     function set_defaults() {
         $this->defaults = array(
-            'installed' => theme_version('current'),
+            'installed'           => theme_version('current'),
             'update_notification' => true,
-            'header' => 'greytree.jpg',
-            'display_title' => true,
-            'display_tagline' => true,
-            'nav_pages' => false,
-            'collapsed_pages' => '',
-            'home_link_name' => __('Home', 'tarski'),
-            'nav_extlinkcat' => 0,
-            'style' => false,
-            'asidescategory' => 0,
-            'centred_theme' => true,
-            'swap_sides' => false,
-            'swap_title_order' => false,
-            'tags_everywhere' => true,
-            'show_categories' => true,
-            'show_authors' => true,
-            'use_pages' => true);
+            'header'              => 'greytree.jpg',
+            'display_title'       => true,
+            'display_tagline'     => true,
+            'nav_pages'           => false,
+            'collapsed_pages'     => '',
+            'home_link_name'      => __('Home', 'tarski'),
+            'nav_extlinkcat'      => 0,
+            'style'               => false,
+            'asidescategory'      => 0,
+            'centred_theme'       => true,
+            'swap_sides'          => false,
+            'swap_title_order'    => false,
+            'tags_everywhere'     => true,
+            'show_categories'     => true,
+            'show_authors'        => true,
+            'use_pages'           => true,
+            'sidebar_pp_type'     => null);
         
         foreach ($this->defaults as $key => $value)
             if (!isset($this->$key))
@@ -224,7 +225,7 @@ function get_tarski_option($name) {
     
     return is_numeric($tarski_options->deleted)
         ? $tarski_options->defaults[$name]
-         : $opt;
+        : $opt;
 }
 
 /**
