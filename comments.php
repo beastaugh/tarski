@@ -4,9 +4,6 @@
  * @subpackage Tarski
  */
 
-if (!empty($_SERVER['SCRIPT_FILENAME']) && 'comments.php' == basename($_SERVER['SCRIPT_FILENAME']))
-    die('This page should not be loaded directly.');
-
 if (post_password_required()) return;
 
 if (have_comments() || comments_open()) { ?>
