@@ -153,6 +153,9 @@ add_custom_background();
 
 // Post thumbnails; change these settings via a child theme or plugin
 add_theme_support('post-thumbnails');
+if (get_tarski_option('featured_header'))
+set_post_thumbnail_size(HEADER_IMAGE_WIDTH, HEADER_IMAGE_HEIGHT, true);
+else
 set_post_thumbnail_size(150, 150, false);
 
 // Post types

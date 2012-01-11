@@ -16,7 +16,7 @@
                     </div>
                     
                     <div class="content clearfix">
-                        <?php echo tarski_post_thumbnail(); ?>
+                        <?php if (!get_tarski_option('featured_header')) echo tarski_post_thumbnail(); ?>
                         <?php the_content(); ?>
                     </div>
                     

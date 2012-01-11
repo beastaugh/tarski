@@ -3,7 +3,7 @@
     if (has_post_format('aside') || (get_tarski_option('asidescategory') && in_category(get_tarski_option('asidescategory')))) { // Aside loop ?>
         <div <?php post_class('aside'); ?> id="p-<?php the_ID(); ?>">
             <div class="content entry-content clearfix">
-                <?php echo tarski_post_thumbnail(); ?>
+                <?php if (!get_tarski_option('featured_header')) echo tarski_post_thumbnail(); ?>
                 <?php the_content(__('Read the rest of this entry &raquo;','tarski')); ?>
             </div>
             
@@ -25,7 +25,7 @@
             </div>
             
             <div class="content entry-content clearfix">
-                <?php echo tarski_post_thumbnail(); ?>
+                <?php if (!get_tarski_option('featured_header')) echo tarski_post_thumbnail(); ?>
                 <?php the_content(__('Read the rest of this entry &raquo;','tarski')); ?>
             </div>
             

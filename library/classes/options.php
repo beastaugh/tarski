@@ -33,6 +33,8 @@ class TarskiOptions {
     var $asidescategory;
     var $centred_theme;
     var $swap_sides;
+    var $swap_title_order;
+    var $featured_header;
     var $tags_everywhere;
     var $show_categories;
     var $show_authors;
@@ -83,6 +85,7 @@ class TarskiOptions {
             'centred_theme'       => true,
             'swap_sides'          => false,
             'swap_title_order'    => false,
+            'featured_header'     => false,
             'tags_everywhere'     => true,
             'show_categories'     => true,
             'show_authors'        => true,
@@ -124,6 +127,7 @@ class TarskiOptions {
         $this->centred_theme    = (bool) $_POST['centred_theme'];
         $this->swap_sides       = (bool) $_POST['swap_sides'];
         $this->swap_title_order = (bool) $_POST['swap_title_order'];
+        $this->featured_header  = (bool) $_POST['featured_header'];
         
         unset($this->deleted);
     }

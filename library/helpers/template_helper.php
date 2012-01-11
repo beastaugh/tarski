@@ -284,6 +284,16 @@ function tarski_headerimage() {
     
     $header_img_url = get_header_image();
     
+    // inspired by twentyeleven
+    if ( get_tarski_option('featured_header') &&
+      is_singular() &&
+      has_post_thumbnail( $post->ID ) &&
+      ( /* $src, $width, $height */ $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), array( HEADER_IMAGE_WIDTH, HEADER_IMAGE_WIDTH ) ) ) &&
+      $image[1] >= HEADER_IMAGE_WIDTH )
+      // Houston, we have a new header image!
+      $header_img_tag = get_the_post_thumbnail( $post->ID, 'post-thumbnail' );
+    else {
+    
     if (!$header_img_url) return;
     
     $header_img_tag = sprintf('<img alt="%s" src="%s">',
@@ -291,6 +301,8 @@ function tarski_headerimage() {
             ? __('Header image', 'tarski')
             : get_bloginfo('name'),
         $header_img_url);
+    
+    }
     
     if (!(get_tarski_option('display_title') || is_front_page()))
         $header_img_tag = sprintf(
