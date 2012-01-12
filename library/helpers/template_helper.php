@@ -280,6 +280,7 @@ function _tarski_asset_output($type, $assets) {
  * @return string
  */
 function tarski_headerimage() {
+    global $post;
     if (!get_theme_mod('header_image')) return;
     
     $header_img_url = get_header_image();
