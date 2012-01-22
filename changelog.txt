@@ -7,6 +7,10 @@
   * `wp_enqueue_script` is now only called from within actions, as per a change
     in WordPress 3.3.
 
+#### Tweaks
+
+  * Allow external code to define TARSKI_DEBUG by checking whether it's set.
+
 
 ### Version 3.1.2
 

@@ -11,7 +11,8 @@
  * live in a number of directories (the main ones being /app and /library), so
  * keeping includes simple is greatly helped by a sane set of path constants.
  */
-define('TARSKI_DEBUG', false);
+if (!defined('TARSKI_DEBUG'))
+    define('TARSKI_DEBUG', false);
 define('TARSKICLASSES', get_template_directory() . '/library/classes');
 define('TARSKIHELPERS', get_template_directory() . '/library/helpers');
 define('TARSKIDISPLAY', get_template_directory() . '/app/templates');
