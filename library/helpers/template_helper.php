@@ -157,6 +157,28 @@ function tarski_meta() {
 }
 
 /**
+ * Enqueue Tarski's own JavaScript and the comment reply script.
+ *
+ * @since 3.1.3
+ *
+ * @uses wp_enqueue_script
+ * @uses tarski_asset_path
+ * @uses theme_version
+ *
+ * @see tarski_meta
+ * @see tarski_stylesheets
+ *
+ * @return void
+ */
+function tarski_enqueue_scripts() {
+    wp_enqueue_script('tarski',
+        tarski_asset_path('app/js/tarski.js'),
+        array('jquery'), theme_version());
+    
+    wp_enqueue_script('comment-reply');
+}
+
+/**
  * Generate links to the various Tarski stylesheets.
  *
  * @since 2.7
@@ -167,7 +189,6 @@ function tarski_meta() {
  * @uses _tarski_asset_output
  *
  * @see tarski_meta
- * @see tarski_javascript
  *
  * @return void
  *
