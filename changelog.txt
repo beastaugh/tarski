@@ -12,6 +12,7 @@
 
   * Allow external code to define TARSKI_DEBUG by checking whether it's set.
   * Removed `wp_theme` meta element as it isn't valid HTML.
+  * Removed functions deprecated in Tarski 3.0.
 
 
 ### Version 3.1.2
