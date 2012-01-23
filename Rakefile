@@ -1,7 +1,7 @@
 require 'pathname'
 
 require 'packr'
-require 'yui/compressor'
+require 'sass'
 
 desc "Create a zip file of the lastest release"
 task :build do
@@ -43,11 +43,10 @@ namespace :minify do
   task :css do
     main       = "style.dev.css"
     files      = Dir.glob("library/css/*.dev.css") << main
-    compressor = YUI::CssCompressor.new
     
     files.each do |file|
       code       = File.read(file)
-      compressed = compressor.compress(code)
+      compressed = minify_css(code, file)
       
       if file == main
         header = code.match(/\/\*.+?\*\//m)[0]
@@ -66,4 +65,10 @@ def theme_version(stylesheet)
   lines  = File.read(stylesheet).split("\n")
   prefix = "Version: "
   lines.select {|line| line =~ /^#{prefix}/ }.first.sub(prefix, "").strip
+end
+
+def minify_css(str, filename)
+  root_node = ::Sass::SCSS::CssParser.new(str, filename).parse
+  root_node.options = {:style => :compressed}
+  root_node.render.strip
 end
