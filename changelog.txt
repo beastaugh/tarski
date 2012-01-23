@@ -11,6 +11,7 @@
 #### Tweaks
 
   * Allow external code to define TARSKI_DEBUG by checking whether it's set.
+  * Removed `wp_theme` meta element as it isn't valid HTML.
 
 
 ### Version 3.1.2
