@@ -6,12 +6,12 @@ Tarski
 please consult the COPYRIGHT file that should have been provided with this
 README for more details.
 
-This version of Tarski requires [WordPress 3.2].
+This version of Tarski requires **WordPress 3.2**, but it works fine with
+**WordPress 3.3** too.
 
   [Tarski]:            http://tarskitheme.com/
   [WordPress]:         http://wordpress.org/
   [Benedict Eastaugh]: http://extralogical.net/
-  [WordPress 3.2]:     http://wordpress.org/download/
 
 
 Installing
