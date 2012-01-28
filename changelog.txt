@@ -7,11 +7,11 @@
   * `wp_enqueue_script` is now only called from within actions, as per a change
     in WordPress 3.3.
   * Hosting site name on multi-sites now works properly.
+  * Removed `wp_theme` meta element as it isn't valid HTML.
 
 #### Tweaks
 
   * Allow external code to define TARSKI_DEBUG by checking whether it's set.
-  * Removed `wp_theme` meta element as it isn't valid HTML.
   * Removed functions deprecated in Tarski 3.0.
 
 
