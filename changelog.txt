@@ -1,5 +1,11 @@
 # Changelog
 
+### Version 3.2.0
+
+  * Deprecated `tarski_doctitle` in favour of a filter on `wp_title`.
+  * Updated the author details per Theme Directory requirements.
+  * Updated theme description to explain more of its advantages.
+
 ### Version 3.1.3
 
 #### Bug fixes
