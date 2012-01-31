@@ -33,7 +33,7 @@ function _tarski_get_alternate_stylesheet_uri() {
 }
 
 /**
- * Returns the document title.
+ * Creates the document title.
  *
  * The order (site name first or last) can be set on the Tarski Options page.
  * While the function ultimately returns a string, please note that filters
@@ -48,38 +48,45 @@ function _tarski_get_alternate_stylesheet_uri() {
  * @hook filter tarski_doctitle
  * Filter document titles.
  */
-function tarski_doctitle($sep = '&middot;') {
-    $site_name = get_bloginfo('name');
-    $content   = trim(wp_title('', false));
+function tarski_document_title($title, $sep, $seplocation) {
+    $title    = trim($title);
+    $sitename = get_bloginfo('name');
+    $enc      = get_option('blog_charset');
     
-    if (is_404())
-        $content = sprintf(__('Error %s', 'tarski'), '404');
-    elseif ((get_option('show_on_front') == 'posts') && is_home())
-        $content = get_bloginfo('description', 'display');
-    elseif (is_search())
-        $content = sprintf(__('Search results for %s', 'tarski'), esc_html(get_search_query()));
-    elseif (is_month())
-        $content = single_month_title(' ', false);
-    elseif (is_tag())
-        $content = multiple_tag_titles();
+    if (!(isset($enc) && strlen($enc) > 0)) {
+        $enc = "utf-8";
+    }
     
-    $elements = strlen($content) > 0
-              ? array('site_name' => $site_name,
-                      'separator' => $sep,
-                      'content'   => $content)
-              : array('site_name' => $site_name);
+    $slen     = mb_strlen($sep, $enc);
+    $tlen     = mb_strlen($title, $enc);
     
-    if (get_tarski_option('swap_title_order'))
-        $elements = array_reverse($elements, true);
+    if ($seplocation == 'right') {
+        $doctitle = mb_substr($title, 0, $tlen - $slen, $enc);
+    } else {
+        $doctitle = mb_substr($title, $slen, $tlen - $slen, $enc);
+    }
     
-    // Filters should return an array
-    $elements = apply_filters('tarski_doctitle', $elements);
+    $doctitle = trim($doctitle);
     
-    // But if they don't, it won't try to implode
-    if (is_array($elements))
-        $doctitle = implode(' ', $elements);
+    if (is_404()) {
+        $doctitle = sprintf(__('Error %s', 'tarski'), '404');
+    } elseif ((get_option('show_on_front') == 'posts') && is_home()) {
+        $doctitle = get_bloginfo('description', 'display');
+    } elseif (is_search()) {
+        $doctitle = sprintf(__('Search results for %s', 'tarski'), esc_html(get_search_query()));
+    } elseif (is_month()) {
+        $doctitle = single_month_title(' ', false);
+    } elseif (is_tag()) {
+        $doctitle = multiple_tag_titles();
+    }
     
-    echo $doctitle;
+    $title = array($sitename, $sep, $doctitle);
+    
+    if (get_tarski_option('swap_title_order')) {
+        $title = array_reverse($title);
+    }
+    
+    return implode(" ", $title);
 }
 
 /**

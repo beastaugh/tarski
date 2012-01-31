@@ -182,6 +182,7 @@ if (is_admin()) {
 add_action('wp_head', 'tarski_meta', 9);
 add_action('wp_head', 'tarski_stylesheets', 9);
 add_filter('gallery_style', 'trim_gallery_style', 20);
+add_filter('wp_title', 'tarski_document_title', 10, 3);
 
 add_action('th_header', 'tarski_headerimage');
 add_action('th_header', 'tarski_titleandtag');
