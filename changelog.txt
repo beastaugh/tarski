@@ -5,6 +5,8 @@
   * Deprecated `tarski_doctitle` in favour of a filter on `wp_title`.
   * Updated the author details per Theme Directory requirements.
   * Updated theme description to explain more of its advantages.
+  * Fixed options saving bug so post and page sidebar selection works properly.
+
 
 ### Version 3.1.3
 
