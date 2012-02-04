@@ -113,6 +113,8 @@ class TarskiOptions {
         
         if (isset($_POST['sidebar_pp_type']) && $_POST['sidebar_pp_type'] == "main") {
             $this->sidebar_pp_type = "main";
+        } else {
+            $this->sidebar_pp_type = "";
         }
         
         $this->display_title    = (bool) $_POST['display_title'];
