@@ -1,0 +1,528 @@
+# Translation of the WordPress theme Tarski 3.2 by Benedict Eastaugh
+# Copyright (c) 2012 Benedict Eastaugh
+# This file is distributed under the same license as the Tarski package.
+msgid ""
+msgstr ""
+"Project-Id-Version: Tarski 3.2.0\n"
+"Report-Msgid-Bugs-To: Benedict Eastaugh <bugs@tarskitheme.com>\n"
+"POT-Creation-Date: 2012-02-12 15:44:21+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2012-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Benedict Eastaugh <bugs@tarskitheme.com>\n"
+"Language-Team: Benedict Eastaugh <bugs@tarskitheme.com>\n"
+
+#: 404.php:8
+msgid "Error 404"
+msgstr ""
+
+#: app/api/deprecated.php:38 library/helpers/template_helper.php:72
+msgid "Error %s"
+msgstr ""
+
+#: app/api/deprecated.php:42 library/helpers/template_helper.php:76
+msgid "Search results for %s"
+msgstr ""
+
+#: app/templates/credits.php:2
+msgid "Powered by <a href=\"http://wordpress.org/\">WordPress</a> and <a href=\"http://tarskitheme.com/\">Tarski</a>"
+msgstr ""
+
+#: app/templates/credits.php:6
+msgid " | Hosted by %s"
+msgstr ""
+
+#: app/templates/feed_link.php:2
+msgid "Subscribe to feed"
+msgstr ""
+
+#: app/templates/loop.php:7 app/templates/loop.php:29
+msgid "Read the rest of this entry &raquo;"
+msgstr ""
+
+#: app/templates/loop.php:10 library/classes/comment_walker.php:86
+#: library/classes/comment_walker.php:97 library/helpers/content_helper.php:346
+msgid "edit"
+msgstr ""
+
+#: app/templates/loop.php:19
+msgid "Permanent link to %s"
+msgstr ""
+
+#: app/templates/no_posts.php:4
+msgid "No posts found"
+msgstr ""
+
+#: app/templates/no_posts.php:9
+msgid "Looks like there&#8127;s nothing here, sorry. You might want to try the search function. Alternatively, return to the %s."
+msgstr ""
+
+#: app/templates/no_posts.php:10 library/helpers/content_helper.php:369
+#: search.php:29
+msgid "front page"
+msgstr ""
+
+#: app/templates/options/alternate_style.php:7
+msgid "Default style"
+msgstr ""
+
+#: app/templates/options/alternate_style.php:19
+msgid "Tarski allows you to select an alternate style that modifies the default one. Choose from the list above."
+msgstr ""
+
+#: app/templates/options/alternate_style.php:21
+msgid "Tarski allows you to select an %1$s that modifies the default one. Choose from the list above, or upload your own to %2$s."
+msgstr ""
+
+#: app/templates/options/alternate_style.php:21
+msgid "alternate style"
+msgstr ""
+
+#: app/templates/options/alternate_style.php:25
+msgid "No alternate stylesheets appear to be present."
+msgstr ""
+
+#: app/templates/options/messages.php:3
+msgid "Tarski options have been restored. %s"
+msgstr ""
+
+#: app/templates/options/messages.php:4 app/templates/options/messages.php:9
+msgid "View site &rsaquo;"
+msgstr ""
+
+#: app/templates/options/messages.php:8
+msgid "Tarski options have been updated. %s"
+msgstr ""
+
+#: app/templates/options/missing_files.php:1
+msgid "This may be because you have removed them, or because those files aren&#8217;t readable by WordPress."
+msgstr ""
+
+#: app/templates/options/missing_files.php:2
+msgid "If you have problems making the files readable, try the WordPress Codex documentation on %s."
+msgstr ""
+
+#: app/templates/options/missing_files.php:2
+msgid "changing file permissions"
+msgstr ""
+
+#: app/templates/options/missing_files.php:3
+msgid "If you deleted the files by accident, just download a new copy from the %s and re-upload them to your website."
+msgstr ""
+
+#: app/templates/options/missing_files.php:3
+msgid "Tarski website"
+msgstr ""
+
+#: app/templates/options/reset_options.php:2
+msgid "Reset Tarski&#8217;s options to their default values"
+msgstr ""
+
+#: app/templates/options/reset_options.php:7
+msgid "If you change your mind, you&#8217;ll have three hours to restore your options before they&#8217;re removed for good."
+msgstr ""
+
+#: app/templates/options/restore_options.php:6
+msgid "You have deleted your Tarski options."
+msgstr ""
+
+#: app/templates/options/restore_options.php:6
+msgid "Restore Tarski Options &raquo;"
+msgstr ""
+
+#: app/templates/options/sidebar_options.php:1
+msgid "The sidebar for posts and pages can be the same as that for index pages, or use its own set of widgets."
+msgstr ""
+
+#: app/templates/options/sidebar_options.php:6
+msgid "Same content as main sidebar?"
+msgstr ""
+
+#: app/templates/options_page.php:10 library/helpers/admin_helper.php:201
+#: library/helpers/admin_helper.php:202
+msgid "Tarski Options"
+msgstr ""
+
+#: app/templates/options_page.php:13 app/templates/options_page.php:30
+msgid "Save Options"
+msgstr ""
+
+#: app/templates/options_page.php:17
+msgid "Tarski documentation"
+msgstr ""
+
+#: app/templates/options_page.php:18
+msgid "Credits &amp; Thanks"
+msgstr ""
+
+#: app/templates/options_page.php:19
+msgid "Forum"
+msgstr ""
+
+#: app/templates/options_page.php:28
+msgid "Alternate Style"
+msgstr ""
+
+#: app/templates/options_page.php:29
+msgid "Miscellaneous Options"
+msgstr ""
+
+#: app/templates/options_page.php:34
+msgid "Sidebar Options"
+msgstr ""
+
+#: app/templates/options_page.php:40
+msgid "Reset Options"
+msgstr ""
+
+#: archive.php:13
+msgid "You are currently browsing the archive for the %s category."
+msgstr ""
+
+#: archive.php:22
+msgid "You are currently browsing articles tagged %s."
+msgstr ""
+
+#: archive.php:26 library/helpers/author_helper.php:32
+msgid "Articles by %s"
+msgstr ""
+
+#: archive.php:33
+msgid "You are currently browsing %s&#8217;s articles."
+msgstr ""
+
+#: archive.php:42
+msgid "You are currently browsing the daily archive for %s."
+msgstr ""
+
+#: archive.php:46 archive.php:50
+msgid "F Y"
+msgstr ""
+
+#: archive.php:50
+msgid "You are currently browsing the monthly archive for %s."
+msgstr ""
+
+#: archive.php:54 archive.php:58
+msgid "Y"
+msgstr ""
+
+#: archive.php:58
+msgid "You are currently browsing the yearly archive for %s."
+msgstr ""
+
+#: archives.php:14 links.php:15 tags.php:15
+msgid "edit page"
+msgstr ""
+
+#: archives.php:25
+msgid "Monthly Archives"
+msgstr ""
+
+#: archives.php:36
+msgid "Category Archives"
+msgstr ""
+
+#: comments.php:12 library/helpers/content_helper.php:158
+#: library/helpers/content_helper.php:213
+msgid "No comments"
+msgstr ""
+
+#: comments.php:12 library/helpers/content_helper.php:160
+#: library/helpers/content_helper.php:214
+msgid "1 comment"
+msgstr ""
+
+#: comments.php:12 library/helpers/content_helper.php:156
+#: library/helpers/content_helper.php:215
+msgid "% comments"
+msgstr ""
+
+#: comments.php:14
+msgid "Comments feed for this article"
+msgstr ""
+
+#: comments.php:18
+msgid "Trackback link: %s"
+msgstr ""
+
+#: comments.php:30
+msgid "&lsaquo; Previous"
+msgstr ""
+
+#: comments.php:31
+msgid "Next &rsaquo;"
+msgstr ""
+
+#: comments.php:39
+msgid "Comments are now closed."
+msgstr ""
+
+#: functions.php:104
+msgid "Main sidebar"
+msgstr ""
+
+#: functions.php:113
+msgid "Post and page sidebar"
+msgstr ""
+
+#: functions.php:122
+msgid "Footer main widgets"
+msgstr ""
+
+#: functions.php:131
+msgid "Footer sidebar widgets"
+msgstr ""
+
+#: functions.php:149
+msgid "Tarski navbar"
+msgstr ""
+
+#: library/classes/comment_walker.php:80
+msgid "%1$s from %2$s on %3$s"
+msgstr ""
+
+#: library/classes/comment_walker.php:81
+msgctxt "noun"
+msgid "Comment"
+msgstr ""
+
+#: library/classes/comment_walker.php:82
+msgid "Trackback"
+msgstr ""
+
+#: library/classes/comment_walker.php:83
+msgid "Pingback"
+msgstr ""
+
+#: library/classes/comment_walker.php:89
+msgid "Your comment is awaiting moderation."
+msgstr ""
+
+#: library/classes/comment_walker.php:94
+msgid "%1$s on %2$s"
+msgstr ""
+
+#: library/classes/options.php:79 library/helpers/template_helper.php:436
+msgid "Home"
+msgstr ""
+
+#: library/helpers/admin_helper.php:23 library/helpers/admin_helper.php:49
+#: library/helpers/admin_helper.php:76
+msgid "You are not authorised to perform this operation."
+msgstr ""
+
+#: library/helpers/admin_helper.php:313
+msgid "Display site title"
+msgstr ""
+
+#: library/helpers/admin_helper.php:314
+msgid "Display site tagline"
+msgstr ""
+
+#: library/helpers/admin_helper.php:315
+msgid "Show post categories"
+msgstr ""
+
+#: library/helpers/admin_helper.php:316
+msgid "Show tags everywhere"
+msgstr ""
+
+#: library/helpers/admin_helper.php:317
+msgid "Centrally align the theme"
+msgstr ""
+
+#: library/helpers/admin_helper.php:318
+msgid "Switch column order"
+msgstr ""
+
+#: library/helpers/admin_helper.php:319
+msgid "Reverse document title order"
+msgstr ""
+
+#: library/helpers/author_helper.php:35
+msgid " by "
+msgstr ""
+
+#: library/helpers/comments_helper.php:21
+msgid "%1$s at %2$s"
+msgstr ""
+
+#: library/helpers/comments_helper.php:40
+msgid "Permalink to this comment"
+msgstr ""
+
+#: library/helpers/comments_helper.php:82
+#: library/helpers/comments_helper.php:99
+msgid "%s&#8217;s avatar"
+msgstr ""
+
+#: library/helpers/comments_helper.php:169
+msgid "You must be %s to post a comment."
+msgstr ""
+
+#: library/helpers/comments_helper.php:171
+msgid "logged in"
+msgstr ""
+
+#: library/helpers/comments_helper.php:173
+msgid "Your comment"
+msgstr ""
+
+#: library/helpers/comments_helper.php:186
+msgid "Reply"
+msgstr ""
+
+#: library/helpers/comments_helper.php:187
+msgid "Reply to %s"
+msgstr ""
+
+#: library/helpers/content_helper.php:59
+msgid "Pages:"
+msgstr ""
+
+#: library/helpers/content_helper.php:63
+msgid "Next page"
+msgstr ""
+
+#: library/helpers/content_helper.php:64
+msgid "Previous page"
+msgstr ""
+
+#: library/helpers/content_helper.php:93
+msgid "Previous results"
+msgstr ""
+
+#: library/helpers/content_helper.php:94
+msgid "More results"
+msgstr ""
+
+#: library/helpers/content_helper.php:97
+msgid "Older entries"
+msgstr ""
+
+#: library/helpers/content_helper.php:98
+msgid "Newer entries"
+msgstr ""
+
+#: library/helpers/content_helper.php:124
+msgid " in %s"
+msgstr ""
+
+#: library/helpers/content_helper.php:192
+#: library/helpers/content_helper.php:217
+msgid "Permalink"
+msgstr ""
+
+#: library/helpers/content_helper.php:345
+msgid "Edit this post"
+msgstr ""
+
+#: library/helpers/content_helper.php:368
+msgid "The page you are looking for does not exist; it may have been moved, or removed altogether. You might want to try the search function or return to the %s."
+msgstr ""
+
+#: library/helpers/tag_helper.php:20 library/helpers/tag_helper.php:90
+msgid ", "
+msgstr ""
+
+#: library/helpers/tag_helper.php:23 library/helpers/tag_helper.php:60
+msgid "and"
+msgstr ""
+
+#: library/helpers/tag_helper.php:62
+msgid "or"
+msgstr ""
+
+#: library/helpers/tag_helper.php:112 tags.php:22
+msgid "Tags"
+msgstr ""
+
+#: library/helpers/template_helper.php:291
+msgid "Header image"
+msgstr ""
+
+#: library/helpers/template_helper.php:298
+#: library/helpers/template_helper.php:327
+msgid "Return to main page"
+msgstr ""
+
+#: library/helpers/template_helper.php:435
+msgid "Return to front page"
+msgstr ""
+
+#: library/helpers/widgets.php:97
+msgid "The most recent articles, offset by the number of visible articles on the home page."
+msgstr ""
+
+#: library/helpers/widgets.php:98 library/helpers/widgets.php:122
+msgid "Recent Articles"
+msgstr ""
+
+#: library/helpers/widgets.php:144
+msgid "View this post"
+msgstr ""
+
+#: library/helpers/widgets.php:145
+msgid "%1$s in %2$s"
+msgstr ""
+
+#: library/helpers/widgets.php:183
+msgid "Title:"
+msgstr ""
+
+#: library/helpers/widgets.php:186
+msgid "Number of posts to display:"
+msgstr ""
+
+#: library/helpers/widgets.php:188
+msgid "(at most 15)"
+msgstr ""
+
+#: search.php:11
+msgid "Search Results"
+msgstr ""
+
+#: search.php:14
+msgid "Your search for %s returned the following results."
+msgstr ""
+
+#: search.php:26
+msgid "No results"
+msgstr ""
+
+#: search.php:29
+msgid "Your search for %1$s returned no results. Try returning to the %2$s."
+msgstr ""
+
+#: searchform.php:1
+msgid "Search this site"
+msgstr ""
+
+#: searchform.php:6
+msgid "Search"
+msgstr ""
+#. Theme Name of the plugin/theme
+msgid "Tarski"
+msgstr ""
+
+#. Theme URI of the plugin/theme
+msgid "http://tarskitheme.com/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "An elegant, flexible theme with built-in display options and alternate styles. Tarski includes support for aside-style posts, comes with numerous default header images, and translations are available for over 20 different languages. It is extremely customisable, both by the usual WordPress mechanisms such as custom headers, backgrounds and menus, but also by its support for custom CSS files and an extensive, well-documented API that gives child theme and plugin authors a huge amount of control without needing to modify the theme's files, making upgrading to new versions simple."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Benedict Eastaugh"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://extralogical.net"
+msgstr ""
+
+#. Tags of the plugin/theme
+msgid "white, two-columns, left-sidebar, right-sidebar, fixed-width, custom-colors, custom-header, custom-background, custom-menu, editor-style, theme-options, threaded-comments, sticky-post, microformats, rtl-language-support, translation-ready"
+msgstr ""

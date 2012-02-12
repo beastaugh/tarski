@@ -76,7 +76,7 @@ include(get_template_directory() . '/app/api/deprecated.php');
  */
 
 // Localisation
-load_theme_textdomain('tarski');
+load_theme_textdomain('tarski', get_template_directory() . '/languages');
 
 // Custom header image
 if (!defined('HEADER_TEXTCOLOR'))

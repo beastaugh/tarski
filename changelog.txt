@@ -2,6 +2,8 @@
 
 ### Version 3.2.0
 
+  * Moved language files to `/languages` directory.
+  * Added POT file to theme files in `languages` directory.
   * Deprecated `tarski_doctitle` in favour of a filter on `wp_title`.
   * Updated the author details per Theme Directory requirements.
   * Updated theme description to explain more of its advantages.
