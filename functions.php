@@ -149,7 +149,7 @@ add_theme_support('automatic-feed-links');
 register_nav_menu('tarski_navbar', __('Tarski navbar', 'tarski'));
 
 // Custom background support
-add_custom_background();
+add_theme_support('custom-background');
 
 // Post thumbnails; change these settings via a child theme or plugin
 add_theme_support('post-thumbnails');

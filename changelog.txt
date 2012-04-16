@@ -8,6 +8,7 @@
   * Updated the author details per Theme Directory requirements.
   * Updated theme description to explain more of its advantages.
   * Fixed options saving bug so post and page sidebar selection works properly.
+  * Replaced use of deprecated `add_custom_background` function.
 
 
 ### Version 3.1.3
