@@ -39,6 +39,7 @@ body {
 #wrapper {
     width: 760px;
     text-align: left;
+    background-color: #fff;
 }
 
 body.rtl #wrapper {
