@@ -4,6 +4,8 @@
 
   * Moved language files to `/languages` directory.
   * Added POT file to theme files in `languages` directory.
+  * Replaced use of deprecated `add_custom_image_header` function.
+  * Stop defining header image constants.
   * Deprecated `tarski_doctitle` in favour of a filter on `wp_title`.
   * Updated the author details per Theme Directory requirements.
   * Updated theme description to explain more of its advantages.
