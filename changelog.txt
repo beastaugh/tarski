@@ -15,6 +15,7 @@
   * Deprecated `tarski_version` in favour of core `wp_get_theme` function.
   * Added white background to main content wrapper.
   * Replaced use of deprecated `add_custom_background` function.
+  * Removed functions deprecated in version 3.1.0.
 
 
 ### Version 3.1.3
