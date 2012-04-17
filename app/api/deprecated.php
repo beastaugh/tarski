@@ -12,6 +12,20 @@
  */
 
 /**
+ * Return the current theme version.
+ *
+ * @since 2.0
+ * @deprecated 3.2.0
+ *
+ * @return string
+ */
+function theme_version() {
+    _deprecated_function('wp_get_theme', '3.2.0');
+    
+    return wp_get_theme()->Version;
+}
+
+/**
  * Returns the document title.
  *
  * The order (site name first or last) can be set on the Tarski Options page.

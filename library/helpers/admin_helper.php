@@ -120,14 +120,14 @@ function maybe_wipe_tarski_options() {
  *
  * @uses get_option
  * @uses get_tarski_option
- * @uses theme_version
+ * @uses wp_get_theme
  *
  * @return boolean
  */
 function tarski_upgrade_needed() {
     if (!get_option('tarski_options')) return false;
     $installed = get_tarski_option('installed');
-    return empty($installed) || version_compare($installed, theme_version('current')) === -1;
+    return empty($installed) || version_compare($installed, wp_get_theme()->Version) === -1;
 }
 
 /**
@@ -182,7 +182,7 @@ function tarski_upgrade() {
     $options = get_option('tarski_options');
     
     // Update the options version so we don't run this code more than once
-    $options->installed = theme_version('current');
+    $options->installed = wp_get_theme()->Version;
     
     // Handle special cases first
     tarski_upgrade_special($options, null);
@@ -256,7 +256,7 @@ function tarski_inject_styles() {
  *
  * @uses get_tarski_option
  * @uses is_valid_tarski_style
- * @uses get_current_theme
+ * @uses wp_get_theme
  *
  * @return array
  */
@@ -264,7 +264,7 @@ function _tarski_list_alternate_styles() {
     $styles        = array();
     $dirs          = array('Tarski' => get_template_directory());
     $current_style = get_tarski_option('style');
-    $current_theme = get_current_theme();
+    $current_theme = wp_get_theme()->Name;
     
     if (get_template_directory() != get_stylesheet_directory())
         $dirs[$current_theme] = get_stylesheet_directory();

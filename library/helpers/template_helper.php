@@ -10,7 +10,7 @@
  * @uses get_tarski_option
  * @uses get_template_directory_uri
  * @uses get_stylesheet_directory_uri
- * @uses get_current_theme
+ * @uses wp_get_theme
  *
  * @return string
  */
@@ -21,7 +21,7 @@ function _tarski_get_alternate_stylesheet_uri() {
     if (is_string($style) && strlen($style) > 0) {
         $file  = $style;
     } elseif (is_array($style)) {
-        if ($style[0] == get_current_theme()) {
+        if ($style[0] == wp_get_theme()->Name) {
             $path = get_stylesheet_directory_uri();
             $file = $style[1];
         } elseif ('Tarski' == $style[0]) {
@@ -120,7 +120,7 @@ function trim_gallery_style($style) {
  *
  * @since 2.7
  *
- * @uses theme_version
+ * @uses wp_get_theme
  * @uses get_bloginfo
  * @uses get_option
  * @uses _tarski_asset_output
@@ -137,7 +137,7 @@ function trim_gallery_style($style) {
 function tarski_meta() {
     global $wp_query;
     
-    $themeversion = theme_version();
+    $themeversion = wp_get_theme()->Version;
     $excerpt      = (isset($wp_query->post)) ?
         trim(strip_tags(esc_attr($wp_query->post->post_excerpt))) : '';
     
@@ -168,7 +168,7 @@ function tarski_meta() {
  *
  * @uses wp_enqueue_script
  * @uses tarski_asset_path
- * @uses theme_version
+ * @uses wp_get_theme
  *
  * @see tarski_meta
  * @see tarski_stylesheets
@@ -178,7 +178,7 @@ function tarski_meta() {
 function tarski_enqueue_scripts() {
     wp_enqueue_script('tarski',
         tarski_asset_path('app/js/tarski.js'),
-        array('jquery'), theme_version());
+        array('jquery'), wp_get_theme()->Version);
     
     wp_enqueue_script('comment-reply');
 }

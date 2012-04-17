@@ -71,7 +71,7 @@ class TarskiOptions {
      */
     function set_defaults() {
         $this->defaults = array(
-            'installed'           => theme_version('current'),
+            'installed'           => wp_get_theme()->Version,
             'update_notification' => true,
             'header'              => 'greytree.jpg',
             'display_title'       => true,
