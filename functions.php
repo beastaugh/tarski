@@ -98,8 +98,9 @@ register_default_headers(_tarski_list_header_images());
 
 // Content width; set this in a plugin or child theme if you want to change
 // the width of the theme via a stylesheet.
-if (!isset($content_width))
+if (!isset($content_width)) {
     $content_width = 500;
+}
 
 // Main sidebar widgets
 register_sidebar(array(
