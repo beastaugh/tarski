@@ -156,10 +156,18 @@ add_theme_support('custom-background');
 
 // Post thumbnails; change these settings via a child theme or plugin
 add_theme_support('post-thumbnails');
-if (get_tarski_option('featured_header'))
-set_post_thumbnail_size(HEADER_IMAGE_WIDTH, HEADER_IMAGE_HEIGHT, true);
-else
-set_post_thumbnail_size(150, 150, false);
+
+if (get_tarski_option('featured_header')) {
+    set_post_thumbnail_size(HEADER_IMAGE_WIDTH, HEADER_IMAGE_HEIGHT, true);
+} else {
+    set_post_thumbnail_size($content_width, 300, false);
+}
+
+// Image size for large feature images, used in the header
+add_image_size('large-feature', HEADER_IMAGE_WIDTH, HEADER_IMAGE_HEIGHT, true);
+
+// Image size for featured posts if a large-feature doesn't exist
+add_image_size('small-feature', $content_width, 300);
 
 // Post types
 add_theme_support('post-formats', array('aside'));

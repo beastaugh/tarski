@@ -2,6 +2,7 @@
 
 ### Version 3.2.0
 
+  * Added option to display featured post images in the header.
   * Moved language files to `/languages` directory.
   * Added POT file to theme files in `languages` directory.
   * Replaced use of deprecated `add_custom_image_header` function.

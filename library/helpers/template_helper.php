@@ -277,32 +277,37 @@ function _tarski_asset_output($type, $assets) {
  * @uses user_trailingslashit
  * @uses home_url
  *
+ * @global object $post
+ *
  * @return string
  */
 function tarski_headerimage() {
     global $post;
+    
     if (!get_theme_mod('header_image')) return;
     
     $header_img_url = get_header_image();
     
-    // inspired by twentyeleven
-    if ( get_tarski_option('featured_header') &&
-      is_singular() &&
-      has_post_thumbnail( $post->ID ) &&
-      ( /* $src, $width, $height */ $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), array( HEADER_IMAGE_WIDTH, HEADER_IMAGE_WIDTH ) ) ) &&
-      $image[1] >= HEADER_IMAGE_WIDTH )
-      // Houston, we have a new header image!
-      $header_img_tag = get_the_post_thumbnail( $post->ID, 'post-thumbnail' );
-    else {
+    if (get_tarski_option('featured_header') &&
+        is_singular($post) &&
+        has_post_thumbnail($post->ID)) {
+        $image_size = array(HEADER_IMAGE_WIDTH, HEADER_IMAGE_WIDTH);
+        $image_id   = get_post_thumbnail_id($post->ID);
+        $image      = wp_get_attachment_image_src($image_id, $image_size);
+        
+        if ($image[1] >= HEADER_IMAGE_WIDTH) {
+            $header_img_tag = get_the_post_thumbnail($post->ID, $image_size);
+        }
+    }
     
     if (!$header_img_url) return;
     
-    $header_img_tag = sprintf('<img alt="%s" src="%s">',
-        get_tarski_option('display_title')
-            ? __('Header image', 'tarski')
-            : get_bloginfo('name'),
-        $header_img_url);
-    
+    if (!isset($header_img_tag)) {
+        $header_img_tag = sprintf('<img alt="%s" src="%s">',
+            get_tarski_option('display_title')
+                ? __('Header image', 'tarski')
+                : get_bloginfo('name'),
+            $header_img_url);
     }
     
     if (!(get_tarski_option('display_title') || is_front_page()))

@@ -317,7 +317,7 @@ function tarski_miscellaneous_options() {
         'centred_theme'    => __('Centrally align the theme', 'tarski'),
         'swap_sides'       => __('Switch column order', 'tarski'),
         'swap_title_order' => __('Reverse document title order', 'tarski'),
-        'featured_header'  => __('Featured images in header', 'tarski'));
+        'featured_header'  => __('Display featured images in header', 'tarski'));
     
     foreach ($checkboxes as $name => $label)
         $output .= tarski_option_checkbox($name, $label) . "\n\n";
