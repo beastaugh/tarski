@@ -18,6 +18,7 @@
   * Replaced use of deprecated `add_custom_background` function.
   * Removed functions deprecated in version 3.1.0.
   * Removed forum link from options page.
+  * Remove 'Hosted by' link from the multisite footer.
 
 
 ### Version 3.1.3
