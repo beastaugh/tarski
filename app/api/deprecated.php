@@ -6,9 +6,7 @@
  * The scrapyard: deprecated functions that haven't yet been removed.
  *
  * Don't write plugins that rely on these functions, as they are liable
- * to be removed between versions. There will usually be a better way
- * to do what you want; post on the forum if you need help.
- * @link http://tarskitheme.com/forum/
+ * to be removed between versions.
  */
 
 /**

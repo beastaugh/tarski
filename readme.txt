@@ -74,13 +74,10 @@ writing plugins; and lastly, improving the theme itself.
 
 ### Reporting bugs
 
-Bugs should be reported on the Tarski [issue tracker]. If you're not sure
-whether the behaviour you're observing is caused by Tarski or WordPress, or
-whether it's intentional or not, please post on the [Tarski forum]. Security
-issues should be reported directly to [Benedict].
+Bugs should be reported on the Tarski [issue tracker]. Security issues should be
+reported directly to [Benedict].
 
   [issue tracker]: http://github.com/beastaugh/tarski/issues
-  [Tarski forum]:  http://tarskitheme.com/forum/
   [Benedict]:      mailto:benedict@eastaugh.net
 
 

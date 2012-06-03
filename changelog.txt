@@ -17,6 +17,7 @@
   * Added white background to main content wrapper.
   * Replaced use of deprecated `add_custom_background` function.
   * Removed functions deprecated in version 3.1.0.
+  * Removed forum link from options page.
 
 
 ### Version 3.1.3
