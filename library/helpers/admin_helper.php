@@ -228,8 +228,8 @@ function tarski_admin() {
 function tarski_admin_header_style() { ?>
     <style type="text/css">
     #headimg {
-        height: <?php echo HEADER_IMAGE_HEIGHT; ?>px;
-        width: <?php echo HEADER_IMAGE_WIDTH; ?>px;
+        height: <?php echo get_custom_header()->height; ?>px;
+        width: <?php echo get_custom_header()->width; ?>px;
     }
     #headimg h1, #headimg #desc {
         display: none;

@@ -159,13 +159,13 @@ add_theme_support('custom-background');
 add_theme_support('post-thumbnails');
 
 if (get_tarski_option('featured_header')) {
-    set_post_thumbnail_size(HEADER_IMAGE_WIDTH, HEADER_IMAGE_HEIGHT, true);
+    set_post_thumbnail_size(get_custom_header()->width, get_custom_header()->height, true);
 } else {
     set_post_thumbnail_size($content_width, 300, false);
 }
 
 // Image size for large feature images, used in the header
-add_image_size('large-feature', HEADER_IMAGE_WIDTH, HEADER_IMAGE_HEIGHT, true);
+add_image_size('large-feature', get_custom_header()->width, get_custom_header()->height, true);
 
 // Image size for featured posts if a large-feature doesn't exist
 add_image_size('small-feature', $content_width, 300);

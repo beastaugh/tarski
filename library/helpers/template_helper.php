@@ -291,11 +291,11 @@ function tarski_headerimage() {
     if (get_tarski_option('featured_header') &&
         is_singular($post) &&
         has_post_thumbnail($post->ID)) {
-        $image_size = array(HEADER_IMAGE_WIDTH, HEADER_IMAGE_WIDTH);
+        $image_size = array(get_custom_header()->width, get_custom_header()->width);
         $image_id   = get_post_thumbnail_id($post->ID);
         $image      = wp_get_attachment_image_src($image_id, $image_size);
         
-        if ($image[1] >= HEADER_IMAGE_WIDTH) {
+        if ($image[1] >= get_custom_header()->width) {
             $header_img_tag = get_the_post_thumbnail($post->ID, $image_size);
         }
     }
