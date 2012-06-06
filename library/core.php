@@ -33,7 +33,7 @@ function is_valid_tarski_style($name) {
  */
 function tarski_asset_path($path) {
     $matches = array();
-    preg_match("/\\.[A-Za-z\d]+\$/", $path, &$matches);
+    preg_match("/\\.[A-Za-z\d]+\$/", $path, $matches);
     $ext     = count($matches) > 0 ? $matches[0] : '';
     $suffix  = defined('TARSKI_DEBUG') && TARSKI_DEBUG === true ? '.dev' : '';
     $root    = get_template_directory_uri();

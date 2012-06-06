@@ -98,9 +98,9 @@ class Tarski_Widget_Recent_Entries extends WP_Widget {
         $this->WP_Widget('recent-articles', __('Recent Articles', 'tarski'), $widget_ops);
         $this->alt_option_name = 'tarski_recent_entries';
         
-        add_action('save_post', array(&$this, 'flush_widget_cache'));
-        add_action('deleted_post', array(&$this, 'flush_widget_cache'));
-        add_action('switch_theme', array(&$this, 'flush_widget_cache'));
+        add_action('save_post', array($this, 'flush_widget_cache'));
+        add_action('deleted_post', array($this, 'flush_widget_cache'));
+        add_action('switch_theme', array($this, 'flush_widget_cache'));
     }
     
     function widget($args, $instance) {

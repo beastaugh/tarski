@@ -5,6 +5,7 @@
   * Added option to display featured post images in the header.
   * Moved language files to `/languages` directory.
   * Added POT file to theme files in `languages` directory.
+  * Removed uses of call-time pass-by-reference for compatibility with PHP 5.4.
   * Replaced use of deprecated `add_custom_image_header` function.
   * Stop defining header image constants.
   * Deprecated `tarski_doctitle` in favour of a filter on `wp_title`.
