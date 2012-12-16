@@ -310,12 +310,11 @@ function tarski_headerimage() {
             $header_img_url);
     }
     
-    if (!(get_tarski_option('display_title') || is_front_page()))
-        $header_img_tag = sprintf(
-            '<a title="%s" rel="home" href="%s">%s</a>',
-            __('Return to main page', 'tarski'),
-            user_trailingslashit(home_url()),
-            $header_img_tag);
+    $header_img_tag = sprintf(
+        '<a title="%s" rel="home" href="%s">%s</a>',
+        __('Return to main page', 'tarski'),
+        user_trailingslashit(home_url()),
+        $header_img_tag);
     
     echo "<div id=\"header-image\">$header_img_tag</div>\n\n";
 }
@@ -323,11 +322,12 @@ function tarski_headerimage() {
 /**
  * Returns site title, wrapped in appropriate markup.
  *
- * The title on the home page will appear inside an h1 element,
- * whereas on other pages it will be a link (to the home page),
- * wrapped in a p (paragraph) element.
- *
  * @since 1.5
+ *
+ * @uses get_bloginfo
+ * @uses get_tarski_option
+ * @uses user_trailingslashit
+ * @uses home_url
  *
  * @return string
  *
@@ -337,21 +337,13 @@ function tarski_headerimage() {
 function tarski_sitetitle() {
     if (!get_tarski_option('display_title')) return '';
     
-    $site_title = get_bloginfo('name');
-    
-    if (!is_front_page()) {
-        $site_title = sprintf(
-            '<a title="%1$s" href="%2$s" rel="home">%3$s</a>',
-            __('Return to main page','tarski'),
-            user_trailingslashit(home_url()),
-            $site_title);
-    }
-    
-    if ((get_option('show_on_front') == 'posts') && is_home()) {
-        $site_title = sprintf('<h1 id="blog-title">%s</h1>', $site_title);
-    } else {
-        $site_title = sprintf('<p id="blog-title">%s</p>', $site_title);
-    }
+    $site_title = sprintf(
+        '<h1 id="blog-title">' .
+            '<a title="%1$s" href="%2$s" rel="home">%3$s</a>' .
+        '</h1>',
+        __('Return to main page','tarski'),
+        user_trailingslashit(home_url()),
+        get_bloginfo('name'));
     
     return apply_filters('tarski_sitetitle', $site_title);
 }
@@ -368,7 +360,8 @@ function tarski_sitetitle() {
  */
 function tarski_tagline() {
     $tagline = get_bloginfo('description', 'display');
-    $tagline = (get_tarski_option('display_tagline') && strlen($tagline)) ? sprintf('<p id="tagline">%s</p>', $tagline) : '';
+    $tagline = (get_tarski_option('display_tagline') && strlen($tagline))
+             ? sprintf('<p id="tagline">%s</p>', $tagline) : '';
     return apply_filters('tarski_tagline', $tagline);
 }
 

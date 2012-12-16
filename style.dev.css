@@ -415,6 +415,10 @@ body .content li {
     line-height: 120%;
 }
 
+#blog-title a {
+    color: #404040;
+}
+
 #tagline {
     font-family: 'Times New Roman', Times, serif;
     font-size: 1.5em;
